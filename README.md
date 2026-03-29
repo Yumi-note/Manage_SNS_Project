@@ -1,6 +1,7 @@
 # Manage_SNS_Project
 
 海外トレンドを日本向けに再構成し、X と Redbook 向けの投稿下書きを生成する管理用リポジトリです。
+X / Redbook 投稿のネタ文作成自動化ツールとして運用できる構成にしています。
 
 ## Main project
 
