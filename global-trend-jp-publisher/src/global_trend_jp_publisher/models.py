@@ -24,3 +24,10 @@ class DraftPost:
     source_name: str
     category: str
     needs_fact_check: bool
+    title_original: str = ""
+    subcategory: str = ""  # Enhanced: AI/ML, Security, Startups, Hardware, etc.
+    mentioned_companies: list[str] = None  # New: company names in article
+
+    def __post_init__(self):
+        if self.mentioned_companies is None:
+            self.mentioned_companies = []

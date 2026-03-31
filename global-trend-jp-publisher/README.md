@@ -35,6 +35,12 @@ cp .env.example .env
 pip install -r requirements.txt
 ```
 
+画像テキスト抽出（OCR）は `rapidocr-onnxruntime` を優先利用します。
+環境によってはフォールバックとしてOS側の `tesseract` コマンドも使用できます。
+
+- macOS: `brew install tesseract`
+- Ubuntu: `sudo apt-get update && sudo apt-get install -y tesseract-ocr`
+
 4. 日次ドラフト生成
 
 ```bash
@@ -54,9 +60,42 @@ gtjp run-daily
 - `gtjp run-daily` : 収集からドラフト出力まで実行
 - `gtjp run-daily --category tech` : テックだけ出力
 - `gtjp run-daily --category finance` : 金融だけ出力
+- `gtjp run-from-url <URL>` : 単一URLから下書きを生成
+- `gtjp run-from-url <URL> --category tech|finance` : 単一URLをカテゴリ指定で生成
+- `gtjp run-from-redbook-url-list <URLファイル>` : Redbook用のURL一覧から一括生成
 - `gtjp list-sources` : 現在の入力ソースを表示
+
+### Redbook URL list format
+
+- UTF-8テキストで1行1URL
+- `#` で始まる行と空行は無視
+
+例:
+
+```text
+# redbook or article urls
+https://techcrunch.com/2026/03/28/stanford-study-outlines-dangers-of-asking-ai-chatbots-for-personal-advice/
+https://www.theverge.com/entertainment/903056/suno-ai-music-v5-5-model
+```
+
+実行例:
+
+```bash
+gtjp run-from-redbook-url-list data/inputs/redbook_urls.txt
+```
+
+出力先には通常の `posts.md` などに加え、Redbook投稿だけをまとめた `redbook_posts_only.md` も生成されます。
+さらに、X投稿原文だけをまとめた `x_posts_only.md` も生成されます。
+
+## GitHub Actions for Redbook Tech -> X
+
+- ワークフロー: `.github/workflows/redbook_tech_x_drafts.yml`
+- 実行時刻: 毎日 01:00 / 03:00 JST
+- 入力URL一覧: `data/inputs/redbook_urls.txt`
+- 主な出力: `x_posts_only.md`（X投稿原文）
 
 ## Classification logic
 
 - ソース名、URL、タイトル、要約内キーワードを組み合わせてテック / 金融を判定
 - X では文字数制限内で、日本向けの一言を優先的に残す
+- 画像中心ページで本文抽出が弱い場合は、画像OCRの結果を要約元に使う
