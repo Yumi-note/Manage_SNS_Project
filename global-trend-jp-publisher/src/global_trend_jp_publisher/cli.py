@@ -42,6 +42,8 @@ def _enrich_items_with_article_text(items: list[TrendItem]) -> list[TrendItem]:
             )
         )
 
+    return enriched
+
 
 @app.command("list-sources")
 def list_sources() -> None:
