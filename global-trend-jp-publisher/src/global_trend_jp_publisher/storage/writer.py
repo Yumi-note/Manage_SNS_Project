@@ -109,8 +109,8 @@ def write_tech_news_output(output_dir: str, drafts: list[DraftPost]) -> Path:
             "summary_ja": d.summary_ja,
             "source_url": d.source_url,
             "source_name": d.source_name,
-            "takeaways_ja": d.takeaways_ja,
             "subcategory": d.subcategory or "Other",
+            "mentioned_companies": d.mentioned_companies,
         }
         for i, d in enumerate(drafts, start=1)
     ]

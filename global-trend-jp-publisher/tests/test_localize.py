@@ -14,6 +14,7 @@ def test_summarize_short_input_unchanged() -> None:
     assert "タイトル。短い説明です。" in result
 
 
-def test_expand_summary_reaches_readable_web_length_for_short_input() -> None:
+def test_expand_summary_does_not_inject_generic_commentary() -> None:
     result = expand_summary("短いタイトル", "これは短い説明です。")
-    assert 500 <= len(result) <= 1000
+    assert "これは短い説明です。" in result
+    assert "日本での実務観点" not in result

@@ -90,19 +90,27 @@ def format_tech_news_item(
     summary_ja: str,
     source_url: str,
     source_name: str,
-    takeaways_ja: list[str],
+    mentioned_companies: list[str],
 ) -> str:
     """Return a single article block for the digest."""
     source_label = _normalize_source(source_name)
-    takeaway_lines = "\n".join(f"　・{line}" for line in takeaways_ja)
+    company_lines = "\n".join(
+        f"- [{company}](companies/{company.lower().replace(' ', '-')}.html)"
+        for company in mentioned_companies
+    )
+    company_block = (
+        "#### 🏢 企業解説リンク\n\n"
+        f"{company_lines}\n\n"
+        if company_lines
+        else ""
+    )
     return (
         f"## 記事 {idx}  ｜  {source_label}\n\n"
         f"### {title_ja}\n\n"
         f"> 原題: *{title_original}*\n\n"
-        "#### 📝 要約\n\n"
+        "#### 📝 記事の日本語訳\n\n"
         f"{summary_ja}\n\n"
-        "#### 🎯 日本への示唆\n\n"
-        f"{takeaway_lines}\n\n"
+        f"{company_block}"
         f"🔗 [元記事を読む]({source_url})\n\n"
         "---\n"
     )
@@ -116,7 +124,7 @@ def format_tech_news_digest(
 
     Each element of *items* must have keys:
         idx, title_ja, title_original, summary_ja,
-        source_url, source_name, takeaways_ja
+        source_url, source_name, mentioned_companies
     """
     if generated_at is None:
         generated_at = datetime.now()
@@ -154,7 +162,7 @@ def format_tech_news_digest(
                 summary_ja=item["summary_ja"],
                 source_url=item["source_url"],
                 source_name=item["source_name"],
-                takeaways_ja=item["takeaways_ja"],
+                mentioned_companies=item.get("mentioned_companies", []),
             )
         )
 

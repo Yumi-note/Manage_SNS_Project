@@ -4,6 +4,7 @@ import typer
 
 from global_trend_jp_publisher.config import Settings
 from global_trend_jp_publisher.connectors.url_article import fetch_url_item
+from global_trend_jp_publisher.models import TrendItem
 from global_trend_jp_publisher.pipeline import build_drafts, collect_items
 from global_trend_jp_publisher.processors.url_list import load_urls_from_file
 from global_trend_jp_publisher.storage.writer import (
@@ -15,6 +16,31 @@ from global_trend_jp_publisher.storage.writer import (
 from global_trend_jp_publisher.storage.archive_index import generate_archive_index
 
 app = typer.Typer(help="Generate Japanese-ready trend post drafts for X and Redbook")
+
+
+def _enrich_items_with_article_text(items: list[TrendItem]) -> list[TrendItem]:
+    """Replace short RSS summaries with article-body excerpts when available."""
+    enriched: list[TrendItem] = []
+    for item in items:
+        if not item.url:
+            enriched.append(item)
+            continue
+        try:
+            detailed_item = fetch_url_item(item.url)
+        except Exception:
+            enriched.append(item)
+            continue
+
+        enriched.append(
+            TrendItem(
+                source_name=item.source_name,
+                category=item.category,
+                title=detailed_item.title if detailed_item.title and detailed_item.title != "(no title)" else item.title,
+                url=item.url,
+                snippet=detailed_item.snippet or item.snippet,
+                language=item.language,
+            )
+        )
 
 
 @app.command("list-sources")
@@ -157,6 +183,8 @@ def run_tech_news(
     if not items:
         typer.echo("No articles fetched. Check RSS feed URLs.")
         raise typer.Exit(code=1)
+
+    items = _enrich_items_with_article_text(items)
 
     drafts = build_drafts(items, category_filter="tech")
     if not drafts:
