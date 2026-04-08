@@ -1,0 +1,614 @@
+# 🌐 海外テックニュース 日本語まとめ
+
+**生成日時:** 2026年4月8日  21:36 JST
+
+> 世界の有力テックメディア（TechCrunch・The Verge・Wired・Ars Technica・MIT Tech Review・VentureBeat・Engadget）から注目記事を自動収集し、日本の読者向けに翻訳・要約しました。
+
+---
+
+## 目次
+
+1. [テキサス州で自動運転車が母アヒルを轢き殺し、近隣住民の怒りを巻き起こした | ニューステッククランチ](#記事-1--テキサス州で自動運転車が母アヒルを轢き殺し、近隣住民の怒りを巻き起こした--ニューステッククランチ)
+2. [Poke では AI エージェントがテキストを送信するのと同じくらい簡単になります |テッククランチ](#記事-2--poke-では-ai-エージェントがテキストを送信するのと同じくらい簡単になります-テッククランチ)
+3. [Canva、Sim Theory と Ortto の買収で AI とマーケティング自動化を強化 |テッククランチ](#記事-3--canva、sim-theory-と-ortto-の買収で-ai-とマーケティング自動化を強化-テッククランチ)
+4. [AWS のボスが、Anthropic と OpenAI の両方に数十億ドルを投資することが競合しても問題ない理由を説明 |テッククランチ](#記事-4--aws-のボスが、anthropic-と-openai-の両方に数十億ドルを投資することが競合しても問題ない理由を説明-テッククランチ)
+5. [Amazon、古い Kindle デバイスのサポートを終了 |テッククランチ](#記事-5--amazon、古い-kindle-デバイスのサポートを終了-テッククランチ)
+6. [OpenAI は経済的な提案をしました - DC はそれについてどう考えていますか](#記事-6--openai-は経済的な提案をしました---dc-はそれについてどう考えていますか)
+7. [ついにiPhone Airを手に入れました](#記事-7--ついにiphone-airを手に入れました)
+8. [AI RAM不足もSSDの価格を押し上げている](#記事-8--ai-ram不足もssdの価格を押し上げている)
+9. [Apple の MacBook Neo が PC ゲームをどう変えるか](#記事-9--apple-の-macbook-neo-が-pc-ゲームをどう変えるか)
+10. [マイクロソフトの開発部門責任者が辞任し、経営陣の刷新が続く](#記事-10--マイクロソフトの開発部門責任者が辞任し、経営陣の刷新が続く)
+11. [ホルムズ海峡が再開、世界の海運は回復までに数カ月かかる](#記事-11--ホルムズ海峡が再開、世界の海運は回復までに数カ月かかる)
+12. [Meta の新しい AI モデルにより、マーク・ザッカーバーグ氏がビッグ・キッズ・テーブルに着席](#記事-12--meta-の新しい-ai-モデルにより、マーク・ザッカーバーグ氏がビッグ・キッズ・テーブルに着席)
+13. [「私たちはこれに対する準備ができていませんでした」：レバノンの緊急システムは一本の糸で停止している](#記事-13--「私たちはこれに対する準備ができていませんでした」レバノンの緊急システムは一本の糸で停止している)
+14. [米陸軍は戦闘用に独自のチャットボットを構築中](#記事-14--米陸軍は戦闘用に独自のチャットボットを構築中)
+15. [Appleの最も高級な時計が100ドルオフ](#記事-15--appleの最も高級な時計が100ドルオフ)
+16. [LinkedIn のユーザーのブラウザ拡張機能のスキャンで論争が巻き起こり、2 件の訴訟が発生](#記事-16--linkedin-のユーザーのブラウザ拡張機能のスキャンで論争が巻き起こり、2-件の訴訟が発生)
+17. [イラン関連のハッカーが米国の重要インフラ施設の運営を妨害](#記事-17--イラン関連のハッカーが米国の重要インフラ施設の運営を妨害)
+18. [Meta の Superintelligence Lab が初の公開モデル Muse Spark を発表](#記事-18--meta-の-superintelligence-lab-が初の公開モデル-muse-spark-を発表)
+19. [私たちのデジタルデバイスが私たちのプライバシーの権利をどのように危険にさらしているか](#記事-19--私たちのデジタルデバイスが私たちのプライバシーの権利をどのように危険にさらしているか)
+20. [Motorola、格安携帯電話の価格を突然最大 50% 値上げ - AI に感謝してもいいでしょう](#記事-20--motorola、格安携帯電話の価格を突然最大-50-値上げ---ai-に感謝してもいいでしょう)
+21. [ムスタファ・スレイマン: AI 開発はすぐに壁にぶつかることはありません。その理由は次のとおりです。](#記事-21--ムスタファ・スレイマン-ai-開発はすぐに壁にぶつかることはありません。その理由は次のとおりです。)
+22. [ダウンロード: イランの水の脅威と起業家が生み出すものに対する AI の影響](#記事-22--ダウンロード-イランの水の脅威と起業家が生み出すものに対する-ai-の影響)
+23. [中東の淡水化プラントはますます脆弱になっている](#記事-23--中東の淡水化プラントはますます脆弱になっている)
+24. [エージェントファーストのプロセス再設計を可能にする](#記事-24--エージェントファーストのプロセス再設計を可能にする)
+25. [ダウンロード: AI が雇用に与える影響と宇宙のデータセンター](#記事-25--ダウンロード-ai-が雇用に与える影響と宇宙のデータセンター)
+26. [さようなら、ラマ？ Meta が新しい独自の AI モデル Muse Spark を発表 — Superintelligence Labs の設立以来初](#記事-26--さようなら、ラマ-meta-が新しい独自の-ai-モデル-muse-spark-を発表--superintelligence-labs-の設立以来初)
+27. [LLM によって参照されるトラフィックのコンバージョン率は 30 ～ 40% ですが、ほとんどの企業はそれを最適化していません。](#記事-27--llm-によって参照されるトラフィックのコンバージョン率は-30--40-ですが、ほとんどの企業はそれを最適化していません。)
+28. [新しいフレームワークにより、AI エージェントは基礎となるモデルを再トレーニングすることなく自身のスキルを書き換えることができます](#記事-28--新しいフレームワークにより、ai-エージェントは基礎となるモデルを再トレーニングすることなく自身のスキルを書き換えることができます)
+29. [Block は、プロアクティブな Square AI エージェントであり、ジャック ドーシーの AI への賭けに対するこれまでで最も明確な証拠である Managerbot を紹介します](#記事-29--block-は、プロアクティブな-square-ai-エージェントであり、ジャック-ドーシーの-ai-への賭けに対するこれまでで最も明確な証拠である-managerbot-を紹介します)
+30. [Amazon S3 ファイルは AI エージェントにネイティブ ファイル システム ワークスペースを提供し、マルチエージェント パイプラインを分断するオブジェクト ファイルの分割を終了します。](#記事-30--amazon-s3-ファイルは-ai-エージェントにネイティブ-ファイル-システム-ワークスペースを提供し、マルチエージェント-パイプラインを分断するオブジェクト-ファイルの分割を終了します。)
+31. [DoorDash と Wing はドローン配送パートナーシップをアトランタに拡大](#記事-31--doordash-と-wing-はドローン配送パートナーシップをアトランタに拡大)
+32. [Xbox 実績リストからゲームを非表示にできるようになります。](#記事-32--xbox-実績リストからゲームを非表示にできるようになります。)
+33. [4 月 9 日の Triple-i Initiative ショーケースの視聴方法](#記事-33--4-月-9-日の-triple-i-initiative-ショーケースの視聴方法)
+34. [Meta の Muse Spark モデルは、Meta AI アプリに推論機能をもたらします](#記事-34--meta-の-muse-spark-モデルは、meta-ai-アプリに推論機能をもたらします)
+35. [ギリシャ、15歳未満の子供全員にソーシャルメディアの使用を禁止](#記事-35--ギリシャ、15歳未満の子供全員にソーシャルメディアの使用を禁止)
+
+---
+
+## 記事 1  ｜  TechCrunch
+
+### テキサス州で自動運転車が母アヒルを轢き殺し、近隣住民の怒りを巻き起こした | ニューステッククランチ
+
+> 原題: *A self-driving car in Texas hit and killed a mother duck, sparking neighborhood outrage | TechCrunch*
+
+#### 📝 記事の日本語訳
+
+テキサス州オースティンのミューラー湖の飛び地でアヒルが死んだことで、近隣住民の間で自動運転車と自動運転車がそこに属しているかどうかについて懸念の声が上がっている。人間は常に車で動物を殺す責任があるが、この事件は新しい技術に否定的な注目を集めた。住民がモラー地区のフェイスブックグループに、自動運転車（人間の安全オペレーターが運転）がアヒルを轢いて殺し、その後も止まらなかったと住民が投稿した後、地元メディアがアヒルの事件を取り上げた。 KXANが報じた投稿には「速度を緩めることも躊躇することも全くなく、ただ勢いよく走り抜けた」と書かれている。地元のイタリア料理店の外にある鍋の中に巣を作っていたこの特定のアヒルについて住民がよく知っていたことも、怒りをさらに増大させた…
+
+#### 🏢 企業解説リンク
+
+- [TechCrunch](companies/techcrunch.html)
+
+🔗 [元記事を読む](https://techcrunch.com/2026/04/08/avride-self-driving-car-austin-kills-duck-mueller/)
+
+---
+
+## 記事 2  ｜  TechCrunch
+
+### Poke では AI エージェントがテキストを送信するのと同じくらい簡単になります |テッククランチ
+
+> 原題: *Poke makes AI agents as easy as sending a text | TechCrunch*
+
+#### 📝 記事の日本語訳
+
+私たちにとって、Poke は OpenClaw なのでしょうか?これは、iMessage、SMS、Telegram、そして一部の市場では WhatsApp 経由でアクセスできる AI エージェントを提供する新しいスタートアップ企業からのアイデアです。 AI エージェント Poke は 3 月に一般公開され、消費者は使い慣れたインターフェイスを通じて自分に代わってアクションを実行できるパーソナル アシスタントにアクセスできるようになりました。現在、Poke は、毎日の計画、カレンダーの管理、健康とフィットネスの追跡、スマート ホームの制御、写真の編集など、日常のニーズをすべてテキスト メッセージ経由で支援できます。質問があるときや調べ物をしたいときは、ChatGPT や Claude などの汎用 AI チャットボットを使用することもできますが、何かをすばやく完了したいとき、またはタスクを自動化して時間を節約したいときは、Poke を使用します。
+
+#### 🏢 企業解説リンク
+
+- [TechCrunch](companies/techcrunch.html)
+
+🔗 [元記事を読む](https://techcrunch.com/2026/04/08/poke-makes-ai-agents-as-easy-as-sending-a-text/)
+
+---
+
+## 記事 3  ｜  TechCrunch
+
+### Canva、Sim Theory と Ortto の買収で AI とマーケティング自動化を強化 |テッククランチ
+
+> 原題: *Canva doubles down on AI and marketing automation with Simtheory, Ortto acquisitions | TechCrunch*
+
+#### 📝 記事の日本語訳
+
+Canvaは水曜日、AIコラボレーションおよびエージェント管理プラットフォームのSim Theoryと、顧客データおよびマーケティングオートメーションの会社Orttoの二重買収を発表した。取引の金銭的条件は明らかにされていない。 Canvaは、今回の買収はAIとマーケティングインフラへの継続的な投資の一環であると述べている。両社は、フェアファックス・メディアに買収された民泊サービス「ステイズ」の創設者だったクリス・シャーキーとマイク・シャーキーによって設立された。両氏はCanvaに加わり、同社のAIチームとマーケティングテクノロジーチーム全体のリーダー的役割を担うことになる。 Canvaは、この買収によってエージェントAI、データインフラストラクチャ、マーケティングオートメーション、顧客エンゲージメントにおける強みが加わり、Canvaがデザインツールからチームがすべての作業を現場で行うシステムへと進化するのに役立つと述べています。
+
+#### 🏢 企業解説リンク
+
+- [TechCrunch](companies/techcrunch.html)
+
+🔗 [元記事を読む](https://techcrunch.com/2026/04/08/canva-doubles-down-on-ai-and-marketing-automation-with-simtheory-ortto-acquisitions/)
+
+---
+
+## 記事 4  ｜  TechCrunch
+
+### AWS のボスが、Anthropic と OpenAI の両方に数十億ドルを投資することが競合しても問題ない理由を説明 |テッククランチ
+
+> 原題: *AWS boss explains why investing billions in both Anthropic and OpenAI is an OK conflict | TechCrunch*
+
+#### 📝 記事の日本語訳
+
+AWSの最高経営責任者（CEO）マット・ガーマン氏は、Anthropicへの80億ドルの投資を含む長年の提携を経て、最近AmazonがOpenAIに500億ドルを投資したことは、クラウド大手が対処することに慣れている種類の利益相反だと述べた。 Garman 氏は、2006 年の AWS 立ち上げ前の 2005 年にビジネススクールでインターンをして以来 Amazon で働いてきたと、今週サンフランシスコで開催される HumanX カンファレンスの聴衆に語った。熾烈な（そしておそらく、時には些細な）競争相手である 2 つの AI モデル企業と緊密に連携することに伴う固有の対立について尋ねられたとき、彼はそれは問題ではないと答えた。 AWS 自体はパートナーと競合することが多いため、そのような競争での直接的な経験が豊富であると同氏は説明しました。 AWS の初期の頃、AWS はすべてのクラウド製品を自社で構築できないことを知っていました...
+
+#### 🏢 企業解説リンク
+
+- [Amazon](companies/amazon.html)
+- [OpenAI](companies/openai.html)
+- [TechCrunch](companies/techcrunch.html)
+
+🔗 [元記事を読む](https://techcrunch.com/2026/04/08/aws-boss-explains-why-investing-billions-in-both-anthropic-and-openai-is-an-ok-conflict/)
+
+---
+
+## 記事 5  ｜  TechCrunch
+
+### Amazon、古い Kindle デバイスのサポートを終了 |テッククランチ
+
+> 原題: *Amazon to end support for older Kindle devices | TechCrunch*
+
+#### 📝 記事の日本語訳
+
+Amazon は、2012 年より前に発売された Kindle デバイスのサポートを終了する準備を進めています。つまり、Kindle ストアからデバイスを切り離し、新しいコンテンツを事実上ロードできなくなります。同社は締め切り日を2026年5月20日に設定した。顧客からソーシャルメディアやレディットに投稿され、アマゾンが確認したメッセージのスクリーンショットによると、アマゾンは今週顧客に電子メールを送り、デバイスのサポートを終了すると発表した。メッセージによると、2012年以前に発売されたKindle電子書籍リーダーとタブレットは、期限を過ぎるとKindleストアの機能にアクセスできなくなるという。つまり、影響を受けるデバイスでは、新しい書籍を直接購入、借りたり、ダウンロードしたりできなくなります。 5 月 20 日以降、ユーザーはダウンロード済みのコンテンツを読むためにのみデバイスを使用できます。古いデバイスが壊れたら...
+
+#### 🏢 企業解説リンク
+
+- [Amazon](companies/amazon.html)
+- [TechCrunch](companies/techcrunch.html)
+
+🔗 [元記事を読む](https://techcrunch.com/2026/04/08/amazon-to-end-support-for-older-kindle-devices-2012/)
+
+---
+
+## 記事 6  ｜  The Verge
+
+### OpenAI は経済的な提案をしました - DC はそれについてどう考えていますか
+
+> 原題: *OpenAI made economic proposals — here’s what DC thinks of them*
+
+#### 📝 記事の日本語訳
+
+このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。さらに：鎖骨はホワイトハウス特派員サーキットで確認されています。
+
+#### 🏢 企業解説リンク
+
+- [OpenAI](companies/openai.html)
+
+🔗 [元記事を読む](https://www.theverge.com/column/908880/openai-made-economic-proposals-heres-what-dc-thinks-of-them)
+
+---
+
+## 記事 7  ｜  The Verge
+
+### ついにiPhone Airを手に入れました
+
+> 原題: *I finally get the iPhone Air*
+
+#### 📝 記事の日本語訳
+
+このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。この著者からの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。
+
+🔗 [元記事を読む](https://www.theverge.com/gadgets/908788/iphone-air-magsafe-wallet-battery-modular)
+
+---
+
+## 記事 8  ｜  The Verge
+
+### AI RAM不足もSSDの価格を押し上げている
+
+> 原題: *The AI RAM shortage is also driving up SSD prices*
+
+#### 📝 記事の日本語訳
+
+このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。 現在、SSD の価格は 12 月の 2 倍、さらには 3 倍になっており、HDD の価格も上昇しています。
+
+🔗 [元記事を読む](https://www.theverge.com/tech/908916/ssd-storage-shortages-price-increases)
+
+---
+
+## 記事 9  ｜  The Verge
+
+### Apple の MacBook Neo が PC ゲームをどう変えるか
+
+> 原題: *How Apple’s MacBook Neo is changing the PC game*
+
+#### 📝 記事の日本語訳
+
+MacBook Neo はラップトップの領域を破壊し、これまでにないほど価値のある選択肢として Apple を会話に取り入れています。価格は 599 ドルから (学生や教師の場合は 499 ドル)、このカラフルなラップトップの A18 Pro チップは古い iPad や iPhone から盗まれたものかもしれませんが、日常の作業や Web ブラウジングには十分すぎるパフォーマンスを提供します。画面の鮮明さ、トラックパッド/キーボードの感触、アルミニウム製の構造など、その他すべてがより高価な MacBook と一致しています。これは、PC メーカーにとって、準備ができていなかった新たな競争相手と戦って適応しなければならないことを意味します。ここでは、一般向けの Apple の Mac に関するニュースと分析をすべて紹介します。 YouTube の ETA Prime は、銅片、Noctua サーマル ペースト、および Arctic Thermal Pad が驚くべき効果をもたらすことを発見しました...
+
+#### 🏢 企業解説リンク
+
+- [Apple](companies/apple.html)
+
+🔗 [元記事を読む](https://www.theverge.com/tech/904705/apple-macbook-neo-news-reviews-mods)
+
+---
+
+## 記事 10  ｜  The Verge
+
+### マイクロソフトの開発部門責任者が辞任し、経営陣の刷新が続く
+
+> 原題: *Microsoft’s executive shake-up continues as developer division chief resigns*
+
+#### 📝 記事の日本語訳
+
+このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。マイクロソフトのベテラン幹部ジュリア・リューソン氏が34年間勤務した後退任する。
+
+#### 🏢 企業解説リンク
+
+- [Microsoft](companies/microsoft.html)
+
+🔗 [元記事を読む](https://www.theverge.com/tech/908793/microsoft-devdiv-julia-liuson-resignation)
+
+---
+
+## 記事 11  ｜  Wired
+
+### ホルムズ海峡が再開、世界の海運は回復までに数カ月かかる
+
+> 原題: *As the Strait of Hormuz Reopens, Global Shipping Will Take Months to Recover*
+
+#### 📝 記事の日本語訳
+
+火曜日の夜、世界が固唾を飲んでいる中、停戦とホルムズ海峡再開の可能性のニュースが一斉に安堵のため息をついた。しかし、海峡での輸送が1カ月以上滞っているため、世界の輸送への混乱はすぐには解決しないだろう。 「ホルムズを通過する交通量は（この紛争中）約95パーセント減少しました。その結果、原油だけでなく、ジェット燃料、ディーゼル、軽油などの精製製品の価格も高騰しました」と、世界の海運業界への燃料と潤滑油の供給を専門とするグランダー・インターナショナル・バンカリングの最高経営責任者（CEO）カールステン・ラデケアル氏は言う。影響は地域間で均等ではありません。中東のエネルギーに大きく依存している国々、特にアジアが最も大きな影響を受けています。インドは約55パーセントを調達しています...
+
+🔗 [元記事を読む](https://www.wired.com/story/the-strait-of-hormuz-reopens-but-global-shipping-will-take-months-to-recover/)
+
+---
+
+## 記事 12  ｜  Wired
+
+### Meta の新しい AI モデルにより、マーク・ザッカーバーグ氏がビッグ・キッズ・テーブルに着席
+
+> 原題: *Meta’s New AI Model Gives Mark Zuckerberg a Seat at the Big Kid’s Table*
+
+#### 📝 記事の日本語訳
+
+メタは水曜日、CEOのマーク・ザッカーバーグ氏がメタ・インテリジェンス・ラボという新しい部門の下で同社のAIへの取り組みを昨年再起動して以来、初の主要モデルを発表した。同社によれば、このモデルは「Muse Spark」と呼ばれ、ザッカーバーグ氏の「個人の超知能」というビジョンに向けた一歩であり、今のところはクローズドソースのままだという。ザッカーバーグ氏はソーシャルメディアへの投稿で、メタの目標は「質問に答えるだけでなく、ユーザーに代わって何かを行うエージェントとして機能する」AI製品を構築することだと述べた。この億万長者は、「これが創造性、起業家精神、成長、健康の波をサポートすると楽観的だ」と付け加えた。 Muse Spark は確かに、2025 年 4 月にリリースされテクノロジー業界では失望したと見なされていた Meta の最後の大きなリリースである Llama 4 を超えるメジャーアップグレードであるように見えます...
+
+#### 🏢 企業解説リンク
+
+- [Meta](companies/meta.html)
+
+🔗 [元記事を読む](https://www.wired.com/story/muse-spark-meta-open-source-closed-source/)
+
+---
+
+## 記事 13  ｜  Wired
+
+### 「私たちはこれに対する準備ができていませんでした」：レバノンの緊急システムは一本の糸で停止している
+
+> 原題: *‘We Were Not Ready for This’: Lebanon's Emergency System Is Hanging by a Thread*
+
+#### 📝 記事の日本語訳
+
+レバノン政府関係者が最後に国家デジタルインフラについて慎重に検討したとき、イスラエルと再び戦争が起こるとは誰も予想していなかった。それがいつもそうだった。 「私たちはこれに対する準備ができていませんでした」とレバノンの技術・AI大臣であり避難民大臣でもあるカマル・シェハディ氏は言う。 「これほど大きなことが起こるとは予想していなかったということを認めざるを得ません。」 2026 年 3 月 2 日、イスラエルの避難警告がレバノン南部全域の電話に表示され始めました。数日後、同様の警報がベイルートの人口密集地南部郊外の住民に届き、ストライキが差し迫っているため立ち去るよう促した。数分以内に家族が引っ越しを始めた。数日のうちに、国内住民のほぼ5人に1人にあたる130万人近くが強制的に避難させられた。転校してきた学校...
+
+🔗 [元記事を読む](https://www.wired.com/story/we-were-not-ready-for-this-lebanons-emergency-system-is-hanging-by-a-thread/)
+
+---
+
+## 記事 14  ｜  Wired
+
+### 米陸軍は戦闘用に独自のチャットボットを構築中
+
+> 原題: *The US Army Is Building Its Own Chatbot for Combat*
+
+#### 📝 記事の日本語訳
+
+米陸軍は、兵士専用のチャットボットを導入することを目標に、実際の任務からのデータに基づいてトレーニングされた AI モデルを開発しています。 「ウクライナ・ロシア戦争やエピック・フューリー作戦などの任務から得た教訓はすべてある」と陸軍最高技術責任者アレックス・ミラー氏は『WIRED』とのインタビューで語った。 「膨大な量の知識が得られます。」ミラー氏はWIREDに、RedditのようなフォーラムとVictorBotと呼ばれるチャットボットを組み合わせたVictorと呼ばれるシステムのプロトタイプを披露し、特定の任務に向けて電磁波戦システムを構成する最適な方法など、軍隊が有益な情報を表面化できるようにした。兵士がハードウェアのセットアップ方法を尋ねると、VictorBot は回答を生成し、他の軍人からの関連する投稿やコメントを示します。 "電磁...
+
+🔗 [元記事を読む](https://www.wired.com/story/army-developing-ai-system-victor-chatbot-soldiers/)
+
+---
+
+## 記事 15  ｜  Wired
+
+### Appleの最も高級な時計が100ドルオフ
+
+> 原題: *Apple’s Fanciest Watch Is $100 Off*
+
+#### 📝 記事の日本語訳
+
+あなたと同じくらい頑丈で大胆な Apple Watch をお探しですか?現在、Amazon で GPS と Cellular 機能を備えた Apple Watch Ultra 3 を 700 ドルで購入できます。色の選択肢はかなり限られていますが、ナチュラル チタン ケースとアンカー ブルー オーシャン バンド、およびブラック チタン ケースとブラック オーシャン バンドが割引価格で販売されているのを見つけました。このアップグレードされたスマートウォッチは週末向けに作られており、衛星メッセージングや長いバッテリー寿命などの冒険に特化した機能を備えています。 Watch Ultra 3 は、基本的に、通知、フィットネスと睡眠の追跡、さまざまな便利なアプリなど、通常の Apple Watch で実行できるすべてのタスクを処理します。 Apple は、健康と使いやすさを重視したさまざまな機能を追加し続けており、Apple Watch のすべてのモデルには、見やすくて大きな明るい画面が搭載されています。
+
+#### 🏢 企業解説リンク
+
+- [Amazon](companies/amazon.html)
+- [Apple](companies/apple.html)
+
+🔗 [元記事を読む](https://www.wired.com/story/apple-watch-ultra-3-deal-426/)
+
+---
+
+## 記事 16  ｜  Ars Technica
+
+### LinkedIn のユーザーのブラウザ拡張機能のスキャンで論争が巻き起こり、2 件の訴訟が発生
+
+> 原題: *LinkedIn scanning users' browser extensions sparks controversy and two lawsuits*
+
+#### 📝 記事の日本語訳
+
+LinkedInは、拡張機能メーカーが捏造した主張がデータスクレイピングのため停止されたと述べた。 LinkedIn は、ユーザーのブラウザをスキャンしてどの拡張機能が実行されているかを判断するという行為をめぐって 2 つの訴訟に直面しています。月曜日、カリフォルニア北部地区連邦地方裁判所に、異なる原告に代わって異なる法律事務所によって2件の集団訴訟が提起された。各申し立てには 1 人の原告が指名されており、米国内のすべての LinkedIn ユーザーを含む提案された集団の代表を求めています。この苦情は、Fairlinkedと呼ばれるドイツの団体による最近の「BrowserGate」レポートに大きく依存しているようだ。Fairlinkedは自らを商業団体であり商用LinkedInユーザーのための擁護団体であると称している。 Fairlinked は、訴訟を起こしたエストニアのソフトウェア会社 Teamfluence と同じ人物によって運営されているようです。
+
+🔗 [元記事を読む](https://arstechnica.com/tech-policy/2026/04/linkedin-scanning-users-browser-extensions-sparks-controversy-and-two-lawsuits/)
+
+---
+
+## 記事 17  ｜  Ars Technica
+
+### イラン関連のハッカーが米国の重要インフラ施設の運営を妨害
+
+> 原題: *Iran-linked hackers disrupt operations at US critical infrastructure sites*
+
+#### 📝 記事の日本語訳
+
+米国とイスラエルの戦争が激化するにつれ、米国の産業施設へのハッキングも増加している。イラン政府に代わって活動するハッカーらが米国の複数の重要インフラ施設で業務を妨害しているが、これはおそらく同国で進行中の米国との戦争への反応であると、6カ国の政府機関が警告している。火曜日に発表された勧告の中で、FBI、サイバーセキュリティ・インフラセキュリティ庁、国家安全保障局、環境保護庁、エネルギー省、および米国サイバー軍は、APT（Advanced Persistent Threat Group）がPLC（プログラマブル・ロジック・コントローラーの略）を標的にしていると「緊急」に警告した。これらの装置は、通常はトースターほどの大きさで、工場、水処理センター、製油所、その他の工業環境、多くの場合遠隔地に設置されています。
+
+🔗 [元記事を読む](https://arstechnica.com/security/2026/04/iran-linked-hackers-disrupt-operations-at-us-critical-infrastructure-sites/)
+
+---
+
+## 記事 18  ｜  Ars Technica
+
+### Meta の Superintelligence Lab が初の公開モデル Muse Spark を発表
+
+> 原題: *Meta's Superintelligence Lab unveils its first public model, Muse Spark*
+
+#### 📝 記事の日本語訳
+
+Meta は強力なベンチマークを宣伝していますが、エージェント システムとコーディング システムにおける「パフォーマンスのギャップ」を認めています。 Metaは水曜日、Museファミリーの最初のAIモデルであるSparkを発表し、「当社のAIへの取り組みの根本的な見直し」を表しているとしている。 Muse Spark は、Meta の Superintelligence Labs の最初のリリースです。この研究所は、「すべての人に個人的な超知能の約束を実現する」という壮大な目標を掲げて 1 年弱前に設立されました。このリリースは、オープンソース Llama モデル ファミリに関する Meta の以前の作業からの完全な決別を表します。これは、ユーザーからも独立した LLM ランキングからも中程度の反応を受けました。そして、Spark はプロプライエタリなモデルになるが、Meta の創設者兼 CEO のマーク・ザッカーバーグ氏は Threads への投稿で、Muse ファミリーには「新しいオープンソース モデルが含まれる」と述べました。
+
+#### 🏢 企業解説リンク
+
+- [Meta](companies/meta.html)
+
+🔗 [元記事を読む](https://arstechnica.com/ai/2026/04/metas-superintelligence-lab-unveils-its-first-public-model-muse-spark/)
+
+---
+
+## 記事 19  ｜  Ars Technica
+
+### 私たちのデジタルデバイスが私たちのプライバシーの権利をどのように危険にさらしているか
+
+> 原題: *How our digital devices are putting our right to privacy at risk*
+
+#### 📝 記事の日本語訳
+
+法学教授のアンドリュー・ガスリー・ファーガソン氏が、彼の新著『Your Data Will Be Used Against You』についてアルス氏と語ります。私たちはデジタルでつながった世界に住んでおり、否定できない個人的な利益をもたらしています。 Google マップ以前の時代のことはほとんど思い出せませんが、Siri 対応のスマートフォン (および/または Apple Car Play) がなければ、見知らぬ場所を移動するのははるかに不便でした。私たちはフィットネス追跡アプリを使用し、家電製品のデジタル接続が増えており、多くの家庭には Nest カメラなどのセキュリティ システムや、Alexa や Amazon Echo などのホーム アシスタントが設置されています。しかし、このデジタルの利便性のために、私たちは何を犠牲にするのでしょうか?私たちは毎日膨大な量のプライベートな個人データを作成していますが、そのデータが法執行機関や司法機関によっていつ、どのように私たちに不利に働く可能性があるかは、法的には不明です。
+
+#### 🏢 企業解説リンク
+
+- [Amazon](companies/amazon.html)
+- [Apple](companies/apple.html)
+- [Google](companies/google.html)
+
+🔗 [元記事を読む](https://arstechnica.com/culture/2026/04/how-our-digital-devices-are-putting-our-right-to-privacy-at-risk/)
+
+---
+
+## 記事 20  ｜  Ars Technica
+
+### Motorola、格安携帯電話の価格を突然最大 50% 値上げ - AI に感謝してもいいでしょう
+
+> 原題: *Motorola suddenly raises budget phone prices up to 50%—you can probably thank AI*
+
+#### 📝 記事の日本語訳
+
+Motorola の格安携帯電話は、現在でははるかに低価格になっています。 Motorola は昨日、新しいミッドレンジ携帯電話、2026 Moto G Stylus を発表しました。スマートフォンにスタイラスを必要としない限り、これは必ずしもゲームチェンジャーとは言えません。アップグレードはほとんどありませんが、新しい G Stylus は、昨年のバージョンより 100 ドル高い 500 ドルでデビューします。 Moto のラインナップでは、より高い価格設定がトレンドになることは明らかです。モトローラは、のぞき見することなく、残りの 2026 年の Moto G ラインナップの最大 50 パーセントの値上げを実施しました。 G Stylus の発表前、Moto には Moto G Play、Moto G、Moto G Power という 3 つの 2026 G シリーズ携帯電話がありました。以前はそれぞれ 180 ドル、200 ドル、300 ドルで販売されていました。過去 1 日で、Moto G Play の価格は 250 ドルに上昇しました。これは 38% の値上がりです。 2026 Moto G...
+
+🔗 [元記事を読む](https://arstechnica.com/gadgets/2026/04/motorolas-budget-phones-are-now-up-to-50-more-expensive-as-memory-shortage-drags-on/)
+
+---
+
+## 記事 21  ｜  MIT Tech Review
+
+### ムスタファ・スレイマン: AI 開発はすぐに壁にぶつかることはありません。その理由は次のとおりです。
+
+> 原題: *Mustafa Suleyman: AI development won’t hit a wall anytime soon—here’s why*
+
+#### 📝 記事の日本語訳
+
+コンピューティングの爆発は、現代のテクノロジーの物語です。そしてそれはまだ始まったばかりです。私たちは直線的な世界を目指して進化しました。 1時間歩くと一定の距離を歩きます。 2 時間歩くと、その 2 倍の距離を移動することになります。この直感はサバンナでは役に立ちました。しかし、AI とその中心となる核となる指数関数的なトレンドに直面すると、壊滅的に失敗します。私が 2010 年に AI に取り組み始めてから現在に至るまでに、フロンティア AI モデルに組み込まれるトレーニング データの量は、驚異的な 1 兆倍に増加しました。初期のシステムの約 10¹⁴ フロップ (計算の中核単位である浮動小数点演算) から、今日の最大のモデルでは 10²⁶ フロップを超えました。これは爆発です。 AI の他のすべてはこの事実から導かれます。懐疑論者たちは壁を予測し続けている。そして彼らは...
+
+🔗 [元記事を読む](https://www.technologyreview.com/2026/04/08/1135398/mustafa-suleyman-ai-future/)
+
+---
+
+## 記事 22  ｜  MIT Tech Review
+
+### ダウンロード: イランの水の脅威と起業家が生み出すものに対する AI の影響
+
+> 原題: *The Download: water threats in Iran and AI’s impact on what entrepreneurs make*
+
+#### 📝 記事の日本語訳
+
+さらに: Anthropic の新しいモデルでは、すべての OS とブラウザーでセキュリティ上の問題が見つかりました。これは、テクノロジーの世界で何が起こっているかを毎日提供する平日のニュースレター、 The Download の本日版です。イランの紛争が激化するにつれ、地域に水を供給する淡水化技術という重要な資源が危機にさらされている。ドナルド・トランプ大統領は、ホルムズ海峡が再開されなければ、イランの「おそらくすべての脱塩施設」を破壊すると脅した。中東の農業、産業、そして何よりも飲酒への影響は深刻になる可能性がある。その理由を調べてください。このストーリーは、次に何が起こるかを理解するのに役立つ複雑で厄介なテクノロジーの世界を解き明かすシリーズ、MIT Technology Review Explains の一部です。このシリーズの詳細は、ここで読むことができます。
+
+🔗 [元記事を読む](https://www.technologyreview.com/2026/04/08/1135405/the-download-water-threats-iran-ais-impact-on-entrepreneurs-make/)
+
+---
+
+## 記事 23  ｜  MIT Tech Review
+
+### 中東の淡水化プラントはますます脆弱になっている
+
+> 原題: *Desalination plants in the Middle East are increasingly vulnerable*
+
+#### 📝 記事の日本語訳
+
+紛争や異常気象は、この地域に水を供給する大規模な淡水化プラントを脅かす可能性がある。 MIT テクノロジー レビューの説明: 次に何が起こるかを理解できるよう、ライターが複雑で厄介なテクノロジーの世界を解き明かします。このシリーズの詳細は、ここで読むことができます。イランの紛争が激化するにつれ、地域の大部分に水を供給する淡水化技術という重要な資源が危機にさらされている。 3月初旬、イラン外務大臣は、ホルムズ海峡のケシュム島にある淡水化施設を攻撃し、30近くの村への給水を妨害したとして米国を非難した。 （米国は責任を否定した。）それ以来数週間、バーレーンとクウェート両国は海水淡水化施設への被害を報告し、イランを非難したが、イランも責任を否定した。
+
+🔗 [元記事を読む](https://www.technologyreview.com/2026/04/07/1135235/desalination-technology-water/)
+
+---
+
+## 記事 24  ｜  MIT Tech Review
+
+### エージェントファーストのプロセス再設計を可能にする
+
+> 原題: *Enabling agent-first process redesign*
+
+#### 📝 記事の日本語訳
+
+AI エージェントは、組織がどのように運営し、競争するかを定義し始めています。 Deloitte Microsoft Technology Practice と連携 静的なルールベースのシステムとは異なり、AI エージェントはプロセスを動的に学習、適応、最適化できます。 AI エージェントはデータ、システム、人、その他のエージェントとリアルタイムで対話するため、ワークフロー全体を自律的に実行できます。しかし、その可能性を引き出すには、従来の最適化手法を使用して断片化された従来のワークフローにエージェントをボルトで固定するのではなく、エージェントを中心としたプロセスを再設計する必要があります。企業はまず代理店になる必要があります。
+
+#### 🏢 企業解説リンク
+
+- [Microsoft](companies/microsoft.html)
+
+🔗 [元記事を読む](https://www.technologyreview.com/2026/04/07/1134966/enabling-agent-first-process-redesign/)
+
+---
+
+## 記事 25  ｜  MIT Tech Review
+
+### ダウンロード: AI が雇用に与える影響と宇宙のデータセンター
+
+> 原題: *The Download: AI’s impact on jobs, and data centres in space*
+
+#### 📝 記事の日本語訳
+
+さらに、トランプ大統領は科学技術支出を再び削減したいと考えている。これは、テクノロジーの世界で何が起こっているかを毎日提供する平日のニュースレター、 The Download の本日版です。シリコンバレーの軌道内では、AI による雇用の終末が当然のことのように語られています。今では、この脅威を軽視してきた経済学者さえも、この考えを持ち始めている。シカゴ大学を拠点とするアレックス・アイマスもその一人です。 AI の影響に対処する計画は、価格弾力性という重要なデータの収集に依存すると彼は考えています。
+
+🔗 [元記事を読む](https://www.technologyreview.com/2026/04/07/1135208/the-download-ai-impact-jobs-data-centres-space/)
+
+---
+
+## 記事 26  ｜  VentureBeat
+
+### さようなら、ラマ？ Meta が新しい独自の AI モデル Muse Spark を発表 — Superintelligence Labs の設立以来初
+
+> 原題: *Goodbye, Llama? Meta launches new proprietary AI model Muse Spark — first since Superintelligence Labs' formation*
+
+#### 📝 記事の日本語訳
+
+<p>Meta は、生成 AI 時代で最も興味深い企業の 1 つです。当初は、2023 年初頭からほぼオープンソースの大規模言語モデル (LLM) である Llama ファミリーのリリース<a href="https://venturebeat.com/ai/forget-chatgpt-why-llama-and-open-source-ai-win-2023">をリリースし、当初は忠実で巨大なユーザーの支持を獲得していましたが、昨年は急停止しました。 <a href="https://venturebeat.com/ai/meta-defends-llama-4-release-against-reports-of-mixed-quality-blames-bugs">Ll の後...
+
+#### 🏢 企業解説リンク
+
+- [Meta](companies/meta.html)
+
+🔗 [元記事を読む](https://venturebeat.com/technology/goodbye-llama-meta-launches-new-proprietary-ai-model-muse-spark-first-since)
+
+---
+
+## 記事 27  ｜  VentureBeat
+
+### LLM によって参照されるトラフィックのコンバージョン率は 30 ～ 40% ですが、ほとんどの企業はそれを最適化していません。
+
+> 原題: *LLM-referred traffic converts at 30-40% — and most enterprises aren't optimizing for it*
+
+#### 📝 記事の日本語訳
+
+<p>20 年以上にわたり、デジタル ディスカバリは、検索、スキャン、クリック、決定という単純なモデルに基づいて運用されてきました。 </p><p>人間が Web 検索を行っていた場合には機能しました。しかし、AI エージェントの出現により、情報の主な消費者は必ずしも人間ではなくなりました。</p><p>これにより、生成エンジン最適化 (GEO) とも呼ばれる応答エンジン最適化 (AEO) という新しいパラダイムが生まれています。エージェントは人間とは大きく異なるデータの見方をしているため、成功はもはや定義ではありません...
+
+🔗 [元記事を読む](https://venturebeat.com/technology/llm-referred-traffic-converts-at-30-40-and-most-enterprises-arent-optimizing)
+
+---
+
+## 記事 28  ｜  VentureBeat
+
+### 新しいフレームワークにより、AI エージェントは基礎となるモデルを再トレーニングすることなく自身のスキルを書き換えることができます
+
+> 原題: *New framework lets AI agents rewrite their own skills without retraining the underlying model*
+
+#### 📝 記事の日本語訳
+
+<p>自律エージェントを導入する際の大きな課題の 1 つは、基盤となる大規模言語モデル (LLM) を再トレーニングすることなく、環境の変化に適応できるシステムを構築することです。</p><p><a href="https://arxiv.org/abs/2603.18743"><u>Memento-Skills</u></a> は、複数の大学の研究者によって開発された新しいフレームワークで、エージェントが自分でスキルを開発できるようにすることで、このボトルネックに対処します。 「<a href="https://venturebeat.com/technology/four-a...」が追加されます。
+
+🔗 [元記事を読む](https://venturebeat.com/orchestration/new-framework-lets-ai-agents-rewrite-their-own-skills-without-retraining-the)
+
+---
+
+## 記事 29  ｜  VentureBeat
+
+### Block は、プロアクティブな Square AI エージェントであり、ジャック ドーシーの AI への賭けに対するこれまでで最も明確な証拠である Managerbot を紹介します
+
+> 原題: *Block introduces Managerbot, a proactive Square AI agent and the clearest proof point yet for Jack Dorsey’s AI bet*
+
+#### 📝 記事の日本語訳
+
+<p><a href="https://block.xyz/">Block</a> は本日、<a href="https://squareup.com/us/en/software">Square プラットフォーム</a>に組み込まれた新しい AI エージェントである <a href="https://squareup.com/us/en/en/software">Managerbot</a> を発表しました。このエージェントは、販売者のビジネスを積極的に監視し、新たな問題を特定し、販売者が質問することなく実用的な解決策を提案します。この製品は、人工知能が...
+
+🔗 [元記事を読む](https://venturebeat.com/data/block-introduces-managerbot-a-proactive-square-ai-agent-and-the-clearest)
+
+---
+
+## 記事 30  ｜  VentureBeat
+
+### Amazon S3 ファイルは AI エージェントにネイティブ ファイル システム ワークスペースを提供し、マルチエージェント パイプラインを分断するオブジェクト ファイルの分割を終了します。
+
+> 原題: *Amazon S3 Files gives AI agents a native file system workspace, ending the object-file split that breaks multi-agent pipelines*
+
+#### 📝 記事の日本語訳
+
+<p>AI エージェントは、標準ツールを使用してファイル システム上で実行され、ディレクトリを移動し、ファイル パスを読み取ります。 </p><p>しかし、課題は、オブジェクト ストレージ システム、特に Amazon S3 に大量のエンタープライズ データが存在することです。オブジェクト ストアは、ファイル パスではなく API 呼び出しを通じてデータを提供します。このギャップを埋めるには、S3 と並行して別のファイル システム レイヤーを必要とし、両方の整合性を維持するためにデータと同期パイプラインを複製する必要がありました。</p><p>T<!-- -->エージェント AI の台頭により、この課題はさらに困難になり、その影響を受けています...
+
+#### 🏢 企業解説リンク
+
+- [Amazon](companies/amazon.html)
+
+🔗 [元記事を読む](https://venturebeat.com/data/amazon-s3-files-gives-ai-agents-a-native-file-system-workspace-ending-the)
+
+---
+
+## 記事 31  ｜  Engadget
+
+### DoorDash と Wing はドローン配送パートナーシップをアトランタに拡大
+
+> 原題: *DoorDash and Wing are expanding their drone delivery partnership to Atlanta*
+
+#### 📝 記事の日本語訳
+
+DoorDashとWingは、アトランタ地下鉄の利用者がドローンで食べ物を配達できるようにする新たなパートナーシップを発表した。バージニア州、ノースカロライナ州、テキサス州の一部の地域でドアダッシュ社と協力しているほか、アルファベット社のドローン配達子会社であるウィング社も最近、ウォルマート向けの配達を行う契約を拡大した。ドアダッシュによると、タンガー・アウトレット・ローカスト・グローブ付近の対象となる顧客は、ドローン配達で食品を注文し、「最短20分」で受け取ることができるという。注文はモリノス メキシカン グリル、コージ ジャパニーズ ステーキハウス、サブロソス メキシカン レストランなど一部のレストランに限定されており、ドローン配送の資格は注文のサイズと重量、および顧客が配達可能な近くに住んでいるかどうかによって決まります。確認するには、Wing が Web サイトを提供しています...
+
+🔗 [元記事を読む](https://www.engadget.com/transportation/doordash-and-wing-are-expanding-their-drone-delivery-partnership-to-atlanta-201133191.html?src=rss)
+
+---
+
+## 記事 32  ｜  Engadget
+
+### Xbox 実績リストからゲームを非表示にできるようになります。
+
+> 原題: *You'll soon be able to hide games from your Xbox achievements list*
+
+#### 📝 記事の日本語訳
+
+Microsoft は、ユーザーが Xbox 実績に表示されるゲームをより詳細に制御できるようにすることと、実績を獲得したときの外観を微調整することをテストしています。この変更は、同社の無料で参加できる Xbox Insiders プログラムを通じて導入されており、おそらく将来のある時点ですべての Xbox 所有者に展開される予定です。 4 月下旬に、一部の Xbox Insider は、ゲームを完了したかどうかに関係なく、実績リストからゲームを非表示にできるようになります。非表示のゲームも引き続きユーザーのゲーマースコアにカウントされますが、このオプションは公開プロフィールを厳選する別の方法として機能するはずです。 Microsoftは実績の表示方法を変更する実験も行っている。 Xbox Insider は、選択したカスタム カラーに一致する新しいアニメーションと通知を備えた再設計された実績を受け取ります。
+
+#### 🏢 企業解説リンク
+
+- [Microsoft](companies/microsoft.html)
+
+🔗 [元記事を読む](https://www.engadget.com/gaming/xbox/youll-soon-be-able-to-hide-games-from-your-xbox-achievements-list-184719290.html?src=rss)
+
+---
+
+## 記事 33  ｜  Engadget
+
+### 4 月 9 日の Triple-i Initiative ショーケースの視聴方法
+
+> 原題: *How to watch the Triple-i Initiative showcase on April 9*
+
+#### 📝 記事の日本語訳
+
+最新の Triple-i Initiative Showcase が間近に迫っており、インディーズに焦点を当てたこのイベントは 4 月 9 日木曜日午後 12 時 (東部時間) / 午前 9 時 (太平洋時間) に 3 年連続で戻ってきます。 8 つのワールドプレミアを含む 40 のゲームの発表が約束されているため、インディーズが好きなら注目する価値があります。このストリームは、The Triple-i Initiative YouTube チャンネル、Twitch、bilibili、niconico、Steam で視聴できます。共同ストリーミング パートナーの IGN と Gamespot も独自のストリームをホストします。ショーケースは 45 分間行われ、さらに詳しく知りたい場合は、ショー後に 9 つの注目スタジオがゲームについて詳しく説明します。以前と同様、ここでのモットーは「ホストなし、広告なし、ゲームだけ」です。ですから、あなたの注意は報われることをご安心ください。これまでに確認された注目のゲーム...
+
+🔗 [元記事を読む](https://www.engadget.com/gaming/how-to-watch-the-triple-i-initiative-showcase-on-april-9-170353957.html?src=rss)
+
+---
+
+## 記事 34  ｜  Engadget
+
+### Meta の Muse Spark モデルは、Meta AI アプリに推論機能をもたらします
+
+> 原題: *Meta's Muse Spark model brings reasoning capabilities to the Meta AI app*
+
+#### 📝 記事の日本語訳
+
+Llama 4 に対する冷ややかな反応を受けて、Meta は、最近設立された Superintelligence チームによって構築された AI システムの新しいファミリーの最初のものをリリースします。同社は、消費者向けの軽量モデルである Spark で新しい Muse 時代をスタートさせています。将来的には、Meta は Muse のより高機能なバージョンを提供する予定ですが、今のところ、同社が基本を確立したいと考えていることは明らかです。その点で、Spark の機能の多くは 2026 年の新モデルに向けての重要な要素となっています。たとえば、Spark は「Instant」モードと「Thinking」モードの両方を提供します。後者を使用すると、モデルはプロンプトを推論するのにさらに少し時間がかかります。他の消費者向け AI システムには、以前からこの種の柔軟性が備わっていました。たとえば、Anthropic は、「ハイブリッド推論モデル」を提供した最初の AI ラボの 1 つでした。
+
+#### 🏢 企業解説リンク
+
+- [Meta](companies/meta.html)
+
+🔗 [元記事を読む](https://www.engadget.com/ai/metas-muse-spark-model-brings-reasoning-capabilities-to-the-meta-ai-app-161456684.html?src=rss)
+
+---
+
+## 記事 35  ｜  Engadget
+
+### ギリシャ、15歳未満の子供全員にソーシャルメディアの使用を禁止
+
+> 原題: *Greece will ban all kids under 15 from using social media*
+
+#### 📝 記事の日本語訳
+
+ギリシャは来年から15歳未満の子どものソーシャルメディア利用を禁止する。キリアコス・ミツォタキス首相はTikTokに投稿した動画で発表し、禁止の理由として不安、睡眠障害、中毒性のあるデザインの特徴に言及した。ギリシャは子どもたちの過剰なスクリーンタイムへの取り組みに積極的で、すでに2024年に学校での携帯電話の使用を禁止している。首相はプラットフォームの名前は明らかにしなかったが、子どもたちがソーシャルメディアで自分を他人と比較し、オンラインのコメントを鵜呑みにすることを懸念していると述べた。 「ギリシャはそのような取り組みを行う最初の国になるだろう」とミツォタキス氏は語った。 「しかし、これが最後ではないと確信しています。私たちの目標は、欧州連合もこの方向に進めることです...
+
+🔗 [元記事を読む](https://www.engadget.com/social-media/greece-will-ban-all-kids-under-15-from-using-social-media-154850415.html?src=rss)
+
+---
+
+
+> ⚠️ 本まとめは自動生成です。数値・固有名詞などの事実は元記事でご確認ください。
