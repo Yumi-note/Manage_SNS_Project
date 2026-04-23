@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>海外テックニュース日本語まとめ</title>
+    <style>
+        :root {
+            color-scheme: dark;
+            --bg: #0a0f1d;
+            --panel: rgba(13, 20, 36, 0.92);
+            --line: rgba(132, 152, 187, 0.25);
+            --text: #eef3ff;
+            --muted: #adc1dd;
+            --accent: #7dd3fc;
+            --accent-strong: #38bdf8;
+            --shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: "Hiragino Sans", "Noto Sans JP", sans-serif;
+            background:
+                radial-gradient(circle at top right, rgba(56, 189, 248, 0.22), transparent 26%),
+                radial-gradient(circle at top left, rgba(16, 185, 129, 0.16), transparent 20%),
+                linear-gradient(180deg, #07101f 0%, #0b1327 48%, #0a0f1d 100%);
+            color: var(--text);
+        }
+
+        .page-shell {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 24px;
+        }
+
+        .hero {
+            padding: 28px;
+            border: 1px solid var(--line);
+            border-radius: 28px;
+            background: linear-gradient(145deg, rgba(18, 27, 48, 0.96), rgba(10, 17, 32, 0.96));
+            box-shadow: var(--shadow);
+        }
+
+        .hero-nav {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 28px;
+        }
+
+        .nav-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 42px;
+            padding: 0 16px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        .eyebrow {
+            margin: 0 0 10px;
+            color: var(--accent);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            font-size: 0.78rem;
+        }
+
+        .hero h1 {
+            margin: 0;
+            font-size: clamp(2rem, 3vw, 3.3rem);
+            line-height: 1.1;
+        }
+
+        .timestamp,
+        .description {
+            color: var(--muted);
+        }
+
+        .control-panel {
+            margin: 20px 0 28px;
+            padding: 22px;
+            border: 1px solid var(--line);
+            border-radius: 24px;
+            background: var(--panel);
+            backdrop-filter: blur(12px);
+        }
+
+        .control-header {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            align-items: end;
+            flex-wrap: wrap;
+        }
+
+        .control-header h2 {
+            margin: 0 0 6px;
+        }
+
+        .control-header p {
+            margin: 0;
+            color: var(--muted);
+        }
+
+        #search-input {
+            width: min(100%, 360px);
+            min-height: 46px;
+            padding: 0 14px;
+            border-radius: 14px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
+        }
+
+        .category-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 16px;
+        }
+
+        .category-btn {
+            min-height: 42px;
+            padding: 0 14px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
+            cursor: pointer;
+        }
+
+        .category-btn.active {
+            background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+            color: #06111f;
+            border-color: transparent;
+            font-weight: 700;
+        }
+
+        .article-list {
+            display: grid;
+            gap: 18px;
+        }
+
+        .article-card {
+            padding: 24px;
+            border-radius: 24px;
+            border: 1px solid var(--line);
+            background: linear-gradient(180deg, rgba(12, 18, 34, 0.96), rgba(14, 22, 39, 0.9));
+            box-shadow: var(--shadow);
+        }
+
+        .card-topline {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+
+        .category-chip,
+        .source-chip {
+            display: inline-flex;
+            align-items: center;
+            min-height: 34px;
+            padding: 0 12px;
+            border-radius: 999px;
+            font-size: 0.92rem;
+            font-weight: 700;
+        }
+
+        .source-chip {
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--muted);
+        }
+
+        .article-title {
+            margin: 0 0 10px;
+            font-size: clamp(1.45rem, 2vw, 2rem);
+            line-height: 1.35;
+        }
+
+        .article-original-title {
+            margin: 0 0 18px;
+            color: var(--muted);
+        }
+
+        .article-section {
+            margin-top: 18px;
+            padding-top: 18px;
+            border-top: 1px solid var(--line);
+        }
+
+        .article-section h3 {
+            margin: 0 0 12px;
+            font-size: 1rem;
+            color: var(--accent);
+        }
+
+        .article-paragraph {
+            margin: 0 0 14px;
+            color: #dce7f8;
+            line-height: 1.9;
+            font-size: 1rem;
+        }
+
+        .company-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .company-link,
+        .action-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 42px;
+            padding: 0 14px;
+            border-radius: 14px;
+            text-decoration: none;
+            border: 1px solid rgba(125, 211, 252, 0.3);
+        }
+
+        .company-link {
+            color: var(--accent);
+            background: rgba(56, 189, 248, 0.08);
+        }
+
+        .article-actions {
+            margin-top: 22px;
+        }
+
+        .footer {
+            padding: 28px 8px 40px;
+            color: var(--muted);
+            text-align: center;
+        }
+
+        .footer p {
+            margin: 6px 0;
+        }
+
+        .action-link.primary {
+            color: #06111f;
+            font-weight: 700;
+            background: linear-gradient(135deg, #7dd3fc, #22d3ee);
+            border-color: transparent;
+        }
+
+        @media (max-width: 720px) {
+            .page-shell {
+                padding: 14px;
+            }
+
+            .hero,
+            .control-panel,
+            .article-card {
+                padding: 18px;
+                border-radius: 20px;
+            }
+
+            .control-header {
+                align-items: stretch;
+            }
+
+            #search-input {
+                width: 100%;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="page-shell">
+        <header class="hero">
+            <div class="hero-nav">
+                <a class="nav-link" href="../../index.html">HOME</a>
+                <a class="nav-link" href="../index.html">この日の記事一覧</a>
+            </div>
+            <div class="hero-copy">
+                <p class="eyebrow">Global Tech News Digest</p>
+                <h1>海外テックニュース 日本語まとめ</h1>
+                <p class="timestamp">2026年4月23日 11:54 JST に収集した記事を掲載しています。</p>
+                <p class="description">各カードには本文寄りの日本語訳を掲載し、記事中で触れた企業は別ページの解説リンクとして分離しています。</p>
+            </div>
+        </header>
+
+        <section class="control-panel">
+            <div class="control-header">
+                <div>
+                    <h2>記事を探す</h2>
+                    <p>カテゴリとキーワードで一覧を絞り込めます。</p>
+                </div>
+                <input type="text" id="search-input" placeholder="タイトル・本文・媒体名で検索">
+            </div>
+            <div class="category-buttons">
+                <button class="category-btn active" data-category="all">すべて (30)</button>
+<button class="category-btn" data-category="AI/ML" style="--accent:#10b981">🤖 AI/ML (24)</button>
+<button class="category-btn" data-category="Enterprise" style="--accent:#3b82f6">🏢 Enterprise (1)</button>
+<button class="category-btn" data-category="Hardware" style="--accent:#06b6d4">⚙️ Hardware (1)</button>
+<button class="category-btn" data-category="Media" style="--accent:#f59e0b">🎬 Media (1)</button>
+<button class="category-btn" data-category="Startups" style="--accent:#8b5cf6">🚀 Startups (3)</button>
+            </div>
+        </section>
+
+        <main class="article-list" id="articles-container">
+            <article class="article-card" data-category="AI/ML" data-index="1">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    <h2 class="article-title">Meta では、子供が Meta AI | で話し合ったトピックを保護者が確認できるようになります。テッククランチ</h2>
+    <p class="article-original-title">原題: <em>Meta will now allow parents to see the topics their child discussed with Meta AI | TechCrunch</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語訳</h3>
+        <div class="article-summary"><p class="article-paragraph">Metaは木曜日、同社の監視ツールを使用している保護者が、Facebook、Messenger、またはInstagramで過去1週間に10代の若者がMeta AIに尋ねたトピックを閲覧できるようになったと発表した。保護者には、監視ハブ内に新しい「インサイト」タブが表示され、お子様が AI チャットボットと話し合っているトピックが表示されます。メタ氏によると、トピックは「学校」、「エンターテイメント」、「ライフスタイル」から「旅行」、「執筆」、「健康と福祉」など多岐にわたります。保護者はトピックを選択して、それぞれに含まれるサブカテゴリを表示できます。たとえば、「ライフスタイル」はファッション、食べ物、休日に分類され、「健康と幸福」はフィットネス、身体的健康、精神的健康をカバーします。このアップデートは現在、米国、英国、オーストラリア、カナダ、ブラジルで利用可能であり、今後世界中で展開される予定です。</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/meta.html" target="_blank" rel="noopener noreferrer" class="company-link">Meta の解説</a> <a href="companies/techcrunch.html" target="_blank" rel="noopener noreferrer" class="company-link">TechCrunch の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/04/23/meta-will-now-allow-parents-to-see-the-topics-their-child-discussed-with-meta-ai/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="2">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    <h2 class="article-title">インドのアプリ市場は活況を呈しているが、その利益のほとんどを世界的なプラットフォームが獲得している |テッククランチ</h2>
+    <p class="article-original-title">原題: <em>India&#x27;s app market is booming — but global platforms are capturing most of the gains | TechCrunch</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語訳</h3>
+        <div class="article-summary"><p class="article-paragraph">Sensor Tower によると、インドのモバイルアプリ市場は記録的な収益を上げており、第 1 四半期のアプリ内購入額は前年同期比 33% 増の 3 億ドルを超えていますが、その支出の多くは世界的なプラットフォームに流れています。非ゲームアプリが第1四半期の成長の主な原動力であり、2億ドルを超えるアプリ内購入収益を生み出し、前年比で44%増加し、支出全体に占める割合が増加したとSensor Towerはレポートで述べた。上昇を牽引したのは、公益事業、ビデオストリーミング、生成AIなどのカテゴリーだった。この進歩は、インドのアプリ市場における広範な変化を反映しており、センサータワーごとに年間アプリ内購入収益は2021年の5億2,000万ドルから2025年には10億ドル以上に増加し、今年は12億5,000万ドルに達すると予測されています。ダウンロードが安定している間...</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/techcrunch.html" target="_blank" rel="noopener noreferrer" class="company-link">TechCrunch の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/04/22/indias-app-market-is-booming-but-global-platforms-are-capturing-most-of-the-gains/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Startups" data-index="3">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#8b5cf6">🚀 Startups</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    <h2 class="article-title">Shade が 1,400 万ドルを投じてクリエイティブ チームが平易な英語でビデオ ライブラリを検索できるようにする |テッククランチ</h2>
+    <p class="article-original-title">原題: <em>Shade lands $14M to let creative teams search their video libraries in plain English | TechCrunch</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語訳</h3>
+        <div class="article-summary"><p class="article-paragraph">クリエイティブ チームやマーケティング チームにとって、シンプルなクラウド ストレージ ソリューションでは不十分なことがよくあります。これらのチームは、探しているものを見つけるために、大量のファイルをふるいにかける必要があります。問題はさらに悪化しています。AI によってコンテンツ生成が加速しているため、これまで以上に多くのメディア ファイルが必要となり、タスクはさらに複雑になっています。 Shade というニューヨークに本拠を置く新興企業は、代理店、スポーツ メディア チーム、消費者ブランド、不動産会社、ポッドキャスター向けにメディア ファイルを簡単に保存および検索できるように設計されたクラウド ストレージ プラットフォームを構築しています。同社は水曜日、3月にKhosla Ventures、Construct Capital、Bling Capitalが主導した資金調達ラウンドで1400万ドルを完了したと発表した。設立から約 4 年になるこのスタートアップは、General Catalyst、SignalFire、Contrary などから総額 2,000 万ドルを調達しました。</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/techcrunch.html" target="_blank" rel="noopener noreferrer" class="company-link">TechCrunch の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/04/22/shade-lands-14m-to-let-creative-teams-search-their-video-libraries-in-plain-english/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="4">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    <h2 class="article-title">テスラは支出計画を 250 億ドルに増額しました — ここにお金が使われています |テッククランチ</h2>
+    <p class="article-original-title">原題: <em>Tesla just increased its spending plan to $25B — here&#x27;s where the money is going | TechCrunch</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語訳</h3>
+        <div class="article-summary"><p class="article-paragraph">テスラの最高経営責任者（CEO）イーロン・マスク氏は、同社の第1四半期決算会見を金銭面での警戒、あるいは投資家の考え方によっては警告で始めた。第 1 四半期の収益報告書によると、テスラの設備投資は 2026 年に 250 億ドルに急増し、競合他社に先んじて AI およびロボティクス企業への移行を目指して急ぐ中、以前の年間支出をはるかに上回ります。この数字は、テスラが日々の営業支出以外に物的資産に支出する計画をカバーするもので、前年の年間設備投資予算の 3 倍に相当します。比較のために、テスラの年間設備投資は、2025 年に 85 億ドル、2024 年に 113 億ドル、2023 年に 89 億ドルでした。テスラは 1 月に、設備投資は次のようになると予想していると発表していました。</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/techcrunch.html" target="_blank" rel="noopener noreferrer" class="company-link">TechCrunch の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/04/22/tesla-just-increased-its-capex-to-25b-heres-where-the-money-is-going/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Enterprise" data-index="5">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#3b82f6">🏢 Enterprise</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    <h2 class="article-title">Google が Workspace をアップデートし、AI を新しいオフィス インターンに |テッククランチ</h2>
+    <p class="article-original-title">原題: <em>Google updates Workspace to make AI your new office intern | TechCrunch</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語訳</h3>
+        <div class="article-summary"><p class="article-paragraph">今週の Google Cloud Next で、テクノロジー大手は、プロフェッショナル向けのサブスクリプション ベースの生産性スイートである Workspace の一連の新しいアップデートを発表しました。ご想像のとおり、今回のアップデートは AI に重点を置いており、メールの下書きから Google スプレッドシートの整理に至るまで、さまざまなワークフローに新しい自動化ツールが統合されています。全体として、この変更は明らかに、オフィスワーカーが忙しくない仕事を追求できるようにすることを目的としています。ワークスペースインテリジェンス。 Google のオフィス スイートに組み込まれた新しい AI システムである Workspace Intelligence は、さまざまなタスクにわたる支援を自動化するように設計されています。このシステムは、Gmail、カレンダー、チャット、ドライブ (ドキュメント、スライド、スプレッドシート) を含むユーザーのワークスペース データを利用します。 Google は、AI システムが何を認識し、何を実行できるかをユーザーに管理制御できるようにしました。</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/google.html" target="_blank" rel="noopener noreferrer" class="company-link">Google の解説</a> <a href="companies/techcrunch.html" target="_blank" rel="noopener noreferrer" class="company-link">TechCrunch の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/04/22/google-updates-workspace-to-make-ai-your-new-office-intern/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="6">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    <h2 class="article-title">Microsoft、Word、Excel、PowerPoint で「vibe working」を開始</h2>
+    <p class="article-original-title">原題: <em>Microsoft launches “vibe working” in Word, Excel, and PowerPoint</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語訳</h3>
+        <div class="article-summary"><p class="article-paragraph">このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。 Copilot Agent モードは、Microsoft 365 Copilot および Premium サブスクライバーのデフォルトになりました。</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/microsoft.html" target="_blank" rel="noopener noreferrer" class="company-link">Microsoft の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/news/917328/microsoft-agent-mode-vibe-working-office-word-excel-powerpoint" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="7">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    <h2 class="article-title">Honor の新しい携帯電話は Android 版 iPhone のように見える</h2>
+    <p class="article-original-title">原題: <em>Honor’s new phones look like iPhones for Android</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語訳</h3>
+        <div class="article-summary"><p class="article-paragraph">このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。この著者からの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/gadgets/917301/honors-new-phones-look-like-iphones-for-android" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="8">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    <h2 class="article-title">トランプ大統領が処刑から「救った」イラン人女性は本物であると同時にAIで操作されている</h2>
+    <p class="article-original-title">原題: <em>The Iranian women Trump ‘saved’ from execution are simultaneously real and AI-manipulated</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語訳</h3>
+        <div class="article-summary"><p class="article-paragraph">このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。彼はおそらく彼らを処刑から救わなかったでしょう。彼はおそらく彼らを処刑から救わなかったでしょう。</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/policy/917180/trump-iran-ai-women-bita-hemmati" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="9">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    <h2 class="article-title">イーロン・マスク氏、何百万台ものテスラ車が監督なしでFSDを受けることはないと認める</h2>
+    <p class="article-original-title">原題: <em>Elon Musk admits that millions of Tesla vehicles won’t get unsupervised FSD</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語訳</h3>
+        <div class="article-summary"><p class="article-paragraph">このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。 HW3 のテスラ車は監視なしの FSD を取得しません。</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/transportation/917167/elon-musk-tesla-hw3-fsd" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="10">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    <h2 class="article-title">X は Grok にタイムラインを管理させます</h2>
+    <p class="article-original-title">原題: <em>X is going to let Grok curate your timeline</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語訳</h3>
+        <div class="article-summary"><p class="article-paragraph">このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。 Grok は、選択したトピックに基づいてタイムラインをパーソナライズします。</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/tech/917113/x-ai-grok-timeline-curation" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="11">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    <h2 class="article-title">あらゆる予算と裏庭に最適なプール掃除ロボット</h2>
+    <p class="article-original-title">原題: <em>The Best Pool-Cleaning Robots for Every Budget and Backyard</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語訳</h3>
+        <div class="article-summary"><p class="article-paragraph">スイミングプールは楽しいです。プールの掃除は楽しいものではありません。私は子供の頃、プールの中やその周りで育ったこの単純な論理を学びました。これが、テキサス州ヒューストンで夏を乗り切る唯一の方法です。 4 年前、私自身もプールの所有者になりましたが、そのルールが今でも有効であることがわかりました。暑い日にプールに飛び込むのは、依然として珍しい楽しみですが、プールが落ち葉や土で満たされている場合、その楽しみははるかに少なくなります。そして、温度計が華氏100度を超えているときに、プールのデッキでゴミを網ですくいながら労働することを考えると、まったく残酷です。私が育った 80 年代にはロボットのプール掃除機がありましたが、実際に利用できる技術は 1 つだけでした。水面のポンプに取り付けられ、電気ではなく水圧を使用する圧力側掃除機です。</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/story/best-pool-cleaning-robots/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Hardware" data-index="12">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#06b6d4">⚙️ Hardware</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    <h2 class="article-title">目標に適した Fitbit を選ぶ方法</h2>
+    <p class="article-original-title">原題: <em>How to Pick the Right Fitbit for Your Goals</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語訳</h3>
+        <div class="article-summary"><p class="article-paragraph">Google が Fitbit を 21 億ドルで正式に買収し、ハードウェアとソフトウェアのチームを買収し、Pebble の資産も吸収してから 5 年が経ちました。Pebble は 2016 年に買収しました。では、状況はどう変わったのでしょうか?まず、Fitbit は Google Fitbit になりました。名前の変更としてはあまり想像力に富んだものではなく、消費者の記憶にも残りませんでしたが、良いニュースとしては、Fitbit デバイスが現在も入手可能なフィットネス トラッカーの中で最もユーザーフレンドリーで歓迎されているものの一部であるということです。これは、フィットネスの旅を始めたばかり、または再び始めたばかりの場合に特に当てはまります。 Fitbit の優位性は、無数の代替品に直面して若干弱まっていますが、その手頃な価格のアプローチ、ユーザーフレンドリーなインターフェイス、優れたスタイルにより、同社は最高のウェアラブル フィットネス ブランドの 1 つとなっています。あなたが探しているなら...</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/google.html" target="_blank" rel="noopener noreferrer" class="company-link">Google の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/story/best-fitbit/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="13">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    <h2 class="article-title">3 階建ての家を掃除してくれるロボット掃除機</h2>
+    <p class="article-original-title">原題: <em>The Robot Vacuums Cleaning My Three-Story Home for Me</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語訳</h3>
+        <div class="article-summary"><p class="article-paragraph">私は最近、数人の友人に素晴らしいロボット掃除機の力を紹介しました。私の友人の1人は彼女のことを結婚の恩人だと言い、もう1人は掃除機のAIが彼女の床についた汚れの多さに興奮しながらも恐怖を感じたという。個人的には、ロボット掃除機のおかげで、トイレに火をつけたくなくなりました。なぜなら、私の猫は、家の中を自分でゴミの航行経路を作り出す使命を持っているからです。最近の最高のロボット掃除機は、単に床を掃除するだけではなく、以前のように家の周りをやみくもにぶつけたりすることもありません。これらのガジェットは、モップをかけたり、汚れをこすったり、障害物から自らを持ち上げたり、さらには家の中の汚れの多い場所をより頻繁に掃除するよう通知したりすることもあります。優れたロボット掃除機はかなりの値段がしますが、目的によってはそうする必要はありません。</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/story/best-robot-vacuum/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="14">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    <h2 class="article-title">彼らは D4vd をスターにしました。今、彼らは彼に殺人罪で有罪判決を下したいと考えている</h2>
+    <p class="article-original-title">原題: <em>They Made D4vd a Star. Now They Want Him Convicted of Murder</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語訳</h3>
+        <div class="article-summary"><p class="article-paragraph">サフィーヤさんは両親のアパートでぐっすり眠っていたとき、思いもよらないことが起きた。去年の9月の月曜日、真夜中近くだったのですが、彼女の電話は鳴り止みませんでした。彼女はベッドから起き上がり、コンピューターに向かいました。彼女の体はアドレナリンで脈打っていました。彼女が管理していたDiscordサーバーにはメッセージが殺到していた。彼女はパニックになり始めました。あるDiscordユーザーは一般チャットに「一体何が起こっているんだ」と書き込んだ。 「もう眠れないよ」と別の人も書いた。 「おい、学校にTMRがあるんだ」と別のユーザーが声をかけた。「パパd4vdがキャンセルされるかもしれない」と別のユーザーが書いた。別のユーザーは「D4vdは誰かをスライムにした」と語った。これはスラングで「殺された」という意味だ。 Soundcloud ネイティブのシンガーソングライター D4vd のファンにとって「d4vd のクローゼット」として知られる Discord サーバーは、恐ろしいニュースをリアルタイムで処理していました。数時間前、その後...</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/d4vd-david-burke-celeste-rivas-hernandez-murder/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="15">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    <h2 class="article-title">1 年をかけて最高のシャワー フィルターをテストしました。勝者は明らかです</h2>
+    <p class="article-original-title">原題: <em>I Spent a Year Testing the Best Shower Filters, and the Winners Are Clear</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語訳</h3>
+        <div class="article-summary"><p class="article-paragraph">シャワーの水は信頼できますか? 『WIRED』の報道によれば、その答えは必ずしも前向きなものではないという。 1 年以上にわたり、私は新世代のスタイリッシュなシャワーヘッドの中で最高のシャワー フィルターをテストしてきました。これらのフィルターは、1 日の中で唯一の平穏な 5 分間に、劣化したパイプや化学薬品で満たされたシャワー水が身体に及ぼす影響をすべて解決してくれることを約束します。水に含まれる塩素やその他の汚染物質を取り除くことができれば、きれいな水が最も厄介な問題の治療法になるかもしれない、という議論が続きます。縮れた髪、ぐにゃぐにゃした髪、フケ、抜け毛、湿疹、乾燥肌、かゆみ、枝毛、黒ずみ、そして乾癬の悲痛な悩みに至るまで、あらゆるものです。最高のシャワー浄水フィルターの中には、PFAS または「フィルター」を除去することが認定されているものもあります。</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/gallery/best-shower-water-filters/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="16">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Ars Technica - All content</span>
+    </div>
+
+    <h2 class="article-title">安全な航行を偽ってホルムズ海峡に船舶を誘導する暗号詐欺</h2>
+    <p class="article-original-title">原題: <em>Crypto scam lures ships into Strait of Hormuz, falsely promising safe passage</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語訳</h3>
+        <div class="article-summary"><p class="article-paragraph">船舶が安全航行暗号詐欺に引っかかった可能性があり、イランに攻撃された。暗号通貨詐欺師らは、ホルムズ海峡付近で座礁した数千隻の船舶をターゲットにしており、イランの砲撃に直面した少なくとも1隻の船舶が、イランに安全な航行の代金を支払ったと思い込ませられた可能性がある。ロイター通信によると、このような暗号通貨詐欺についての最初の警告は4月20日にギリシャの海事リスク管理会社MARIKSから行われたという。同社は、イラン当局を装った詐欺師が海運会社にビットコインやテザーでの「通過料金」の支払いを求めるメッセージを送信していたことを船主に警告した。イランが、重要な海路であり、通常はペルシャ湾への航行を許可する海上のチョークポイントであるホルムズ海峡の支配権を主張しているため、海運会社にとっては特に混乱を招くかもしれない。</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/security/2026/04/crypto-scam-lures-ships-into-strait-of-hormuz-falsely-promising-safe-passage/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="17">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Ars Technica - All content</span>
+    </div>
+
+    <h2 class="article-title">ニュース編集室の AI ポリシー</h2>
+    <p class="article-original-title">原題: <em>Our newsroom AI policy</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語訳</h3>
+        <div class="article-summary"><p class="article-paragraph">Ars Technica が生成 AI をどのように使用するか、使用しないのか。今年の初めに、私たちは Ars Technica が生成 AI をどのように使用するのか、使用しないのかについて、読者に向けた説明を公開することを約束しました。社内ポリシーを、明瞭さと正確さの基準を満たす読者向けの文書に翻訳するのに思ったよりも時間がかかりましたが、私は早く発表するよりも、正しく内容を理解したいと考えていました。そのドキュメントは現在公開されており、以下で見つけることができます (また、サイト上のほとんどのページのフッターにもリンクされています)。私たちのアプローチは 2 つの信念から来ています。1 つは、AI が人間の洞察力、創造性、創意工夫に代わることはできないということ、もう 1 つは、これらのツールをうまく活用すれば、専門家がより良い仕事をするのに役立つということです。これらの出発点から、何が許可されないかは常に明らかでした。 AIは作者やイラストレーターにはならないだろう...</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/staff/2026/04/our-newsroom-ai-policy/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="18">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Ars Technica - All content</span>
+    </div>
+
+    <h2 class="article-title">訴訟: 任天堂は関税の払い戻しを受けている - 顧客は代わりに関税の払い戻しを受けるべきだ</h2>
+    <p class="article-original-title">原題: <em>Lawsuit: Nintendo is getting tariff refunds—its customers should get them instead</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語訳</h3>
+        <div class="article-summary"><p class="article-paragraph">訴訟では任天堂に対し、トランプ大統領による関税の払い戻しを顧客に転嫁するよう求めている。昨日、関税の払い戻しを求める2人のゲーマーが任天堂オブアメリカを訴え、同社はより高い価格を支払った消費者にお金を返す代わりに、政府から受け取った払い戻しをポケットに入れるつもりであると主張した。この集団訴訟は、2025年2月から2026年2月までに任天堂製品を購入した2名の原告とその他すべての米国居住者を含む集団を代表することを求めている。「当法廷による拘束がない限り、任天堂は同じ関税の支払いを2回回収する立場にある。1回目はより高い価格で消費者から、2回目はその資金に対して政府が支払った利息を含む関税の払い戻しを通じて連邦政府からである」とウェストバージニア州西部地方裁判所に起こされた訴訟は述べた。</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/tech-policy/2026/04/lawsuit-nintendo-is-getting-tariff-refunds-its-customers-should-get-them-instead/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="19">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    <h2 class="article-title">ダウンロード: AI において今重要な 10 の事柄の紹介</h2>
+    <p class="article-original-title">原題: <em>The Download: introducing the 10 Things That Matter in AI Right Now</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語訳</h3>
+        <div class="article-summary"><p class="article-paragraph">さらに: 無許可のグループが Anthropic の Mythos にアクセスしたと報告されています。これは、テクノロジーの世界で何が起こっているかを毎日提供する平日のニュースレター、 The Download の本日版です。 AI において今何が実際に重要なのでしょうか?絶え間ないリリース、誇大宣伝、警告の中で、それを見分けるのはますます困難になっています。この雑音を打ち破るために、MIT Technology Review の記者と編集者は、長年にわたる分析を抽出して、新しい必須ガイド「AI で今重要な 10 のこと」を作成しました。このリストは、毎年恒例の 10 のブレークスルー テクノロジー に基づいて構築されていますが、AI を形成するアイデア、トピック、研究をより広い視野で捉え、世界を形成するトレンドとブレークスルーに焦点を当てています。</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/04/22/1136310/the-download-10-things-that-matter-in-ai-right-now/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="20">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    <h2 class="article-title">AI がビジネス価値を提供するには強力なデータ ファブリックが必要です</h2>
+    <p class="article-original-title">原題: <em>AI needs a strong data fabric to deliver business value</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語訳</h3>
+        <div class="article-summary"><p class="article-paragraph">最新のデータ ファブリックにより、既存の企業知識を AI の信頼できる基盤に変えることができます。人工知能は、実験から日常使用に至るまで、企業内で急速に進化しています。組織は副操縦士、エージェント、予測システムを財務、サプライ チェーン、人事、顧客業務全体にわたって導入しています。最近の調査によると、2025 年末までに企業の半数が少なくとも 3 つのビジネス機能で AI を使用するようになりました。しかし、AI がコア ワークフローに組み込まれるにつれて、ビジネス リーダーは、最大の障害はモデルのパフォーマンスやコンピューティング能力ではなく、それらのシステムが依存するデータの品質とコンテキストであることに気づき始めています。 AI は本質的に新しい要件を導入します。システムはデータにアクセスするだけでなく、ビジネスを理解する必要があります。</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/04/22/1135295/ai-needs-a-strong-data-fabric-to-deliver-business-value/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Media" data-index="21">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#f59e0b">🎬 Media</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    <h2 class="article-title">ミシェル・キムが今ハマっている3つのこと</h2>
+    <p class="article-original-title">原題: <em>3 things Michelle Kim is into right now</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語訳</h3>
+        <div class="article-summary"><p class="article-paragraph">MIT Technology Review の編集員が最近考えていることを語ります。 K-POP が奇妙だと思っているなら、バーチャル アイドル (モーション キャプチャを介してアニメ スタイルのデジタル キャラクターとしてパフォーマンスする人間) を見れば驚かれるでしょう。私のお気に入りは、韓国の VTuber (同様にデジタル ペルソナとしてパフォーマンスを行うストリーマー) である Woowakgood によって作成された Isegye Idol というガールズ グループです。イセゲアイドルの6人のメンバーは匿名であるため、珍しい種類の誠実さとユーモアを発揮できるようです。彼らはゲーム (リーグ・オブ・レジェンド、囲碁、マインクラフト) をしたり、おしゃべりをしたり、アニメのサウンドトラックとビデオゲームのスコアの中間のようなキッチュな音楽を演奏したりします。それはとてもDIYであり、そしてとても親密なものです。そして、このグループの熱狂的な人気は、孤独で文化的に漂流し、苦悩していることで有名な韓国のZ世代の気分を物語っている...</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/04/22/1135423/3-things-michelle-kim/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="22">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    <h2 class="article-title">ある町のガチョウ駆除計画</h2>
+    <p class="article-original-title">原題: <em>One town’s scheme to get rid of its geese</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語訳</h3>
+        <div class="article-summary"><p class="article-paragraph">カリフォルニア州のある地区の公務員は、水鳥を駆除するためのテクノロジーに40万ドル近くを費やした。 &quot;引っ張る！&quot; 2月のある晴れた午後、私は弟に注文しました。私たちのターゲットは目の前にあります。ドッグランの近くの草を啄んでいるカナダガンの群れです。灰色がかった白いうんこの上につま先立ちで近づくと、一羽の鳥がその細い黒い首の周りに白い袖口を着けていることに気づきました。これは GPS トラッカーで、私の故郷であるカリフォルニア州フォスターシティからガチョウを追い出すためのテクノロジー中心の新しいキャンペーンの一環です。この静かなベイエリア郊外には約 300 羽のガチョウが住んでおり、これは人類人口のほぼ 1% に相当します。そして、この町は私たち二人にとって十分な大きさではないと言う人もいます。ガチョウの糞が中学校の芝生を覆い尽くしたことで悪名高く、鳥は何世代にもわたって住民を悩ませてきました。私自身の祖母は、あのときのことを覚えています...</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/04/22/1135430/california-town-scheme-get-rid-geese/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="23">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">VentureBeat</span>
+    </div>
+
+    <h2 class="article-title">OpenAI が、Slack、Salesforce などに直接接続できる企業向けカスタム GPT の後継となる Workspace Agents を発表</h2>
+    <p class="article-original-title">原題: <em>OpenAI unveils Workspace Agents, a successor to custom GPTs for enterprises that can plug directly into Slack, Salesforce and more</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語訳</h3>
+        <div class="article-summary"><p class="article-paragraph">&lt;p&gt;OpenAI は本日、AI エージェント ワーカーのフリートを採用および制御しようとしている企業に多大な影響を与える可能性が高い新しいパラダイムと製品を導入しました。&lt;/p&gt;&lt;p&gt;「&lt;a href=&quot;https://openai.com/index/introducing-workspace-agents-in-chatgpt/&quot;&gt;ワークスペース エージェント&lt;/a&gt;」と呼ばれる OpenAI の新しいサービスでは、基本的にユーザーは ChatGPT ビジネス (ユーザーあたり月額 20 ドル) を利用でき、変動するEnterprise、Edu、Teachers の有料サブスクリプション プランを設計したり、既存のプランから選択したりできます。</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/openai.html" target="_blank" rel="noopener noreferrer" class="company-link">OpenAI の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://venturebeat.com/orchestration/openai-unveils-workspace-agents-a-successor-to-custom-gpts-for-enterprises-that-can-plug-directly-into-slack-salesforce-and-more" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="24">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">VentureBeat</span>
+    </div>
+
+    <h2 class="article-title">Google と AWS は AI エージェント スタックを制御と実行に分割</h2>
+    <p class="article-original-title">原題: <em>Google and AWS split the AI agent stack between control and execution</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語訳</h3>
+        <div class="article-summary"><p class="article-paragraph">&lt;p&gt;複雑なマルチエージェント システムを調整するための選択肢が増えるにつれ、企業がプロンプト チェーンとシャドウ エージェントをつなぎ合わせる時代は終わりに近づいています。組織が AI エージェントを本番環境に移行する際、「どうやって AI エージェントを管理するのか?」という疑問が残ります。&lt;/p&gt;&lt;p&gt;Google とアマゾン ウェブ サービスは根本的に異なる答えを提供しており、AI スタックの分裂を示しています。 Google のアプローチは、システム層でエージェント管理を実行することですが、AWS のハーネス方式はシステム層でセットアップされます。</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/amazon.html" target="_blank" rel="noopener noreferrer" class="company-link">Amazon の解説</a> <a href="companies/google.html" target="_blank" rel="noopener noreferrer" class="company-link">Google の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://venturebeat.com/orchestration/google-and-aws-split-the-ai-agent-stack-between-control-and-execution" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="25">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">VentureBeat</span>
+    </div>
+
+    <h2 class="article-title">あなたはAIの「集団税」を支払っていますか?単一エージェントが複雑なシステムに勝つことが多い理由</h2>
+    <p class="article-original-title">原題: <em>Are you paying an AI ‘swarm tax’? Why single agents often beat complex systems</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語訳</h3>
+        <div class="article-summary"><p class="article-paragraph">&lt;p&gt;マルチエージェント AI システムを構築しているエンタープライズ チームは、同等の予算条件では維持できない利益に対してコンピューティング プレミアムを支払っている可能性があります。スタンフォード大学の新しい研究では、両方に同じ思考トークン バジェットが与えられている場合、複雑な推論タスクに関しては、シングル エージェント システムがマルチ エージェント アーキテクチャと同等かそれを上回るパフォーマンスを発揮することがわかりました。&lt;/p&gt;&lt;p&gt;ただし、マルチ エージェント システムには、計算オーバーヘッドという追加の荷物が伴います。なぜなら、彼らは通常、より長い推論トレースと複数の相互作用を使用するからです。</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://venturebeat.com/orchestration/are-you-paying-an-ai-swarm-tax-why-single-agents-often-beat-complex-systems" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="26">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">VentureBeat</span>
+    </div>
+
+    <h2 class="article-title">OpenAI が、企業データセットから個人情報を削除するオープンソースのオンデバイス データ サニタイズ モデルであるプライバシー フィルターを発表</h2>
+    <p class="article-original-title">原題: <em>OpenAI launches Privacy Filter, an open source, on-device data sanitization model that removes personal information from enterprise datasets</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語訳</h3>
+        <div class="article-summary"><p class="article-paragraph">&lt;p&gt;ローカルファーストのプライバシー インフラストラクチャへの大幅な移行の一環として、OpenAI は&lt;b&gt;プライバシー フィルター&lt;/b&gt; をリリースしました。これは、個人を特定できる情報 (PII) がクラウドベースのサーバーに到達する前に検出して編集するように設計された、特殊なオープンソース モデルです。 &lt;/p&gt;&lt;p&gt;本日、AI コード共有コミュニティ &lt;a href=&quot;https://huggingface.co/openai/privacy-filter&quot;&gt;Hugging Face&lt;/a&gt; で寛容な &lt;b&gt;Apache 2.0 ライセンス&lt;/b&gt; のもとでリリースされたこのツールは、増大する業界のボトルネックである機密性の高いウイルスのリスクに対処します。</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/openai.html" target="_blank" rel="noopener noreferrer" class="company-link">OpenAI の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://venturebeat.com/data/openai-launches-privacy-filter-an-open-source-on-device-data-sanitization-model-that-removes-personal-information-from-enterprise-datasets" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="27">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">VentureBeat</span>
+    </div>
+
+    <h2 class="article-title">Google は Nvidia 税を支払っていません。新しい TPU がその理由を説明します。</h2>
+    <p class="article-original-title">原題: <em>Google doesn&#x27;t pay the Nvidia tax. Its new TPUs explain why.</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語訳</h3>
+        <div class="article-summary"><p class="article-paragraph">&lt;p&gt;現在、すべてのフロンティア AI ラボでは、電力とコンピューティングという 2 つのものを配給しています。彼らのほとんどは、同じサプライヤーからモデル トレーニング用のコンピューティングを購入しており、その高い粗利率が Nvidia を世界で最も価値のある企業の 1 つへと押し上げています。 Google はそうではありません。&lt;/p&gt;&lt;p&gt;火曜日の夜、ラスベガスの F1 プラザでの非公開の集会で、Google は第 8 世代 Tensor Processing Unit をプレビューしました。売り文句: 2 つのカスタム シリコン デザインが今年後半に出荷され、それぞれの目的は...</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/google.html" target="_blank" rel="noopener noreferrer" class="company-link">Google の解説</a> <a href="companies/nvidia.html" target="_blank" rel="noopener noreferrer" class="company-link">NVIDIA の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://venturebeat.com/orchestration/google-doesnt-pay-the-nvidia-tax-its-new-tpus-explain-why" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Startups" data-index="28">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#8b5cf6">🚀 Startups</span>
+        <span class="source-chip">Engadget is a web magazine with obsessive daily coverage of everything new in gadgets and consumer electronics</span>
+    </div>
+
+    <h2 class="article-title">Ecco the Dolphin: Complete はリマスターと続編を 1 つのパッケージにまとめます</h2>
+    <p class="article-original-title">原題: <em>Ecco the Dolphin: Complete will combine remasters and a sequel into one package</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語訳</h3>
+        <div class="article-summary"><p class="article-paragraph">昨年、Ecco the Dolphin のクリエイターである Ed Annunizata は、シリーズの最初の 2 つのゲームをリマスターし、まったく新しい続編を作成する計画をほのめかしました。アヌンツィアータのスタジオ A&amp;R Atelier によって発表された Ecco the Dolphin: Complete は、その作品の成果であるようです。このゲームの発売日はまだ決まっていないが、A&amp;R Atelierによれば、予定されているリマスターと3作目を組み合わせて「オリジナルを作った人たちが作った、完全かつ決定版のEcco the Dolphin体験」になるという。開発者によれば、Complete には「Ecco the Dolphin と Ecco: The Tides of Time のすべてのバージョン」と、「最新の現代的な Ecco ゲーム」が含まれています。 A&amp;E Atelier によれば、グラフィックの改善に加えて、このゲームには「内蔵のスピードランニング サポート、実績、リーダーボード」などの機能が導入される予定です。</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/gaming/ecco-the-dolphin-complete-will-combine-remasters-and-a-sequel-into-one-package-222020243.html?src=rss" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Startups" data-index="29">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#8b5cf6">🚀 Startups</span>
+        <span class="source-chip">Engadget is a web magazine with obsessive daily coverage of everything new in gadgets and consumer electronics</span>
+    </div>
+
+    <h2 class="article-title">NASA、次期大型宇宙望遠鏡の9月打ち上げを目標に</h2>
+    <p class="article-original-title">原題: <em>NASA targets a September launch for its next big space telescope</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語訳</h3>
+        <div class="article-summary"><p class="article-paragraph">NASA の宇宙への次の目は、今年後半に地球を離れる予定です。同局は、ナンシー・グレース・ローマン宇宙望遠鏡の9月初旬の打ち上げを目標にしていると述べた。ローマン（略称）は、ハッブルの 100 倍の視野を持っています。 9月はRomanの最も早い発売日となる。 NASAは、遅くとも2027年5月までに（スペースX社のファルコン・ヘビーロケットに乗って）打ち上げられる予定だとしている。NASAの初代主任天文学者でハッブルの「母」にちなんで名付けられたナンシー・グレース・ローマン宇宙望遠鏡は、2016年に導入された。（当時、それは広視野赤外線探査望遠鏡、またはWFIRSTとして知られていた。）望遠鏡のミラーはハッブルのものとほぼ同じサイズである。ただし、前モデルよりも少なくとも 100 倍大きい空の部分を捉えることができます。 「ローマンはNASAの観測機関と協力して働くことになる...</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/spacex.html" target="_blank" rel="noopener noreferrer" class="company-link">SpaceX の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/science/space/nasa-targets-a-september-launch-for-its-next-big-space-telescope-204140176.html?src=rss" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="30">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Engadget is a web magazine with obsessive daily coverage of everything new in gadgets and consumer electronics</span>
+    </div>
+
+    <h2 class="article-title">フランスのIDとパスポートを管理する国家機関が先週データ侵害に見舞われた</h2>
+    <p class="article-original-title">原題: <em>France&#x27;s national agency for managing IDs and passports suffered a data breach last week</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語訳</h3>
+        <div class="article-summary"><p class="article-paragraph">フランス政府は、フランス国務省（ANTS）としても知られるフランス国務省が先週セキュリティ侵害を経験したことを確認した。 France Titres は、4 月 15 日にデータ侵害を検出したことを明らかにしました。翌日、ハッカーが侵害の犯行声明を出し、最大 1,900 万件のレコードを所有し、販売しようとしていると主張しました。 Bleeping Computer によると、データはまだ広範囲に漏洩していないようだ。 PencilVac は軽くて携帯性があり、使いやすいです。ただし、カーペットには苦労します。 Osmo Pocket 4を使用すると、シンプルなvlogからほぼ映画品質のビデオまで、あらゆるものを驚くほど簡単に録画できます。 X-Fire Pro は、同じグリルでペレットの木の風味とガスの使いやすさを提供します。</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/cybersecurity/frances-national-agency-for-managing-ids-and-passports-suffered-a-data-breach-last-week-201432189.html?src=rss" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+        </main>
+
+        <footer class="footer">
+            <p>本ページは公開記事をもとに自動生成しています。数値や仕様は必ず元記事で確認してください。</p>
+            <p>JSON データは同じフォルダ内の tech_news_digest.json で参照できます。</p>
+        </footer>
+    </div>
+
+    <script>
+
+        const categoryButtons = document.querySelectorAll('.category-btn');
+        const articleCards = document.querySelectorAll('.article-card');
+        const searchInput = document.getElementById('search-input');
+
+        let activeCategory = 'all';
+
+        function applyFilters() {
+            const query = searchInput.value.trim().toLowerCase();
+            articleCards.forEach(card => {
+                const matchesCategory = activeCategory === 'all' || card.dataset.category === activeCategory;
+                const searchableText = card.innerText.toLowerCase();
+                const matchesQuery = !query || searchableText.includes(query);
+                card.style.display = matchesCategory && matchesQuery ? '' : 'none';
+            });
+        }
+
+        categoryButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                categoryButtons.forEach(item => item.classList.remove('active'));
+                button.classList.add('active');
+                activeCategory = button.dataset.category;
+                applyFilters();
+            });
+        });
+
+        searchInput.addEventListener('input', applyFilters);
+    
+    </script>
+</body>
+</html>
