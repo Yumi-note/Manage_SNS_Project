@@ -1,0 +1,616 @@
+# 🌐 海外テックニュース 日本語まとめ
+
+**生成日時:** 2026年5月4日  18:10 JST
+
+> 世界の有力テックメディア（TechCrunch・The Verge・Wired・Ars Technica・MIT Tech Review・VentureBeat・Engadget）から注目記事を自動収集し、日本の読者向けに翻訳・要約しました。
+
+---
+
+## 目次
+
+1. [ハッカーは今でも cPanel のバグを悪用して、何千もの Web サイトを制御しています。テッククランチ](#記事-1--ハッカーは今でも-cpanel-のバグを悪用して、何千もの-web-サイトを制御しています。テッククランチ)
+2. [OpenAI裁判でイーロン・マスク氏の唯一のAI専門家証人はAGIの軍拡競争を懸念 |テッククランチ](#記事-2--openai裁判でイーロン・マスク氏の唯一のai専門家証人はagiの軍拡競争を懸念-テッククランチ)
+3. [エンタープライズ AI を所有する競争が深刻になる中、Sierra が 9 億 5,000 万ドルを調達 |テッククランチ](#記事-3--エンタープライズ-ai-を所有する競争が深刻になる中、sierra-が-9-億-5000-万ドルを調達-テッククランチ)
+4. [イーロン・マスク氏は和解を求めた後、グレッグ・ブロックマン氏とサム・アルトマン氏に不気味なテキストを送信したとOpenAIが主張テッククランチ](#記事-4--イーロン・マスク氏は和解を求めた後、グレッグ・ブロックマン氏とサム・アルトマン氏に不気味なテキストを送信したとopenaiが主張テッククランチ)
+5. [Anthropic と OpenAI は両方ともエンタープライズ AI サービスの合弁事業を立ち上げます |テッククランチ](#記事-5--anthropic-と-openai-は両方ともエンタープライズ-ai-サービスの合弁事業を立ち上げます-テッククランチ)
+6. [ルンバの生みの親が、毛皮で覆われたロボットの仲間とともに帰ってきた](#記事-6--ルンバの生みの親が、毛皮で覆われたロボットの仲間とともに帰ってきた)
+7. [Pixel 11はRAM不足の次の犠牲者になる可能性がある](#記事-7--pixel-11はram不足の次の犠牲者になる可能性がある)
+8. [スターウォーズデーのお得なセール](#記事-8--スターウォーズデーのお得なセール)
+9. [OpenAI の将来をめぐるイーロン・マスク氏とサム・アルトマン氏の法廷闘争からのライブ最新情報](#記事-9--openai-の将来をめぐるイーロン・マスク氏とサム・アルトマン氏の法廷闘争からのライブ最新情報)
+10. [Amazonはその大規模な配送業務を別のAWSに変えようとしている](#記事-10--amazonはその大規模な配送業務を別のawsに変えようとしている)
+11. [罪悪感に悩まされないように、期限内に届く母の日ギフトのベストセール](#記事-11--罪悪感に悩まされないように、期限内に届く母の日ギフトのベストセール)
+12. [DHS、反ICE投稿をめぐりカナダ人の活動と位置に関するデータをGoogleに差し出すよう要求](#記事-12--dhs、反ice投稿をめぐりカナダ人の活動と位置に関するデータをgoogleに差し出すよう要求)
+13. [この会社はFace IDを見えなくする方法を考え出した](#記事-13--この会社はface-idを見えなくする方法を考え出した)
+14. [RFK Jr.の新しいポッドキャストは予想通り奇妙です](#記事-14--rfk-jrの新しいポッドキャストは予想通り奇妙です)
+15. [ライトセーバーの刃には質量がありますか?](#記事-15--ライトセーバーの刃には質量がありますか)
+16. [AMD は Linux に HDMI 2.1 サポートを追加しています。これは Steam Machine にとって朗報です。](#記事-16--amd-は-linux-に-hdmi-21-サポートを追加しています。これは-steam-machine-にとって朗報です。)
+17. [Twitter訴訟におけるマスク氏の「第三次世界大戦」の脅威がOpenAI裁判で頭から離れない](#記事-17--twitter訴訟におけるマスク氏の「第三次世界大戦」の脅威がopenai裁判で頭から離れない)
+18. [Mac miniの開始価格は799ドルに上昇、入手は「数カ月」困難になる可能性がある](#記事-18--mac-miniの開始価格は799ドルに上昇、入手は「数カ月」困難になる可能性がある)
+19. [トランプ政権、165基の風力発電所停止について国家安全保障を理由に](#記事-19--トランプ政権、165基の風力発電所停止について国家安全保障を理由に)
+20. [MIT のバーチャル バイオリンは弦楽器製作者に新しいデザイン ツールを提供します](#記事-20--mit-のバーチャル-バイオリンは弦楽器製作者に新しいデザイン-ツールを提供します)
+21. [マスク対アルトマン裁判の第 1 週: 部屋の中の様子](#記事-21--マスク対アルトマン裁判の第-1-週-部屋の中の様子)
+22. [ヘルスケアのニーズに合わせて AI ソリューションをカスタマイズ](#記事-22--ヘルスケアのニーズに合わせて-ai-ソリューションをカスタマイズ)
+23. [マスク対アルトマン 第 1 週: イーロン・マスク、騙されたと発言、AI が人類を滅ぼす可能性があると警告、xAI が OpenAI のモデルを抽出したことを認める](#記事-23--マスク対アルトマン-第-1-週-イーロン・マスク、騙されたと発言、ai-が人類を滅ぼす可能性があると警告、xai-が-openai-のモデルを抽出したことを認める)
+24. [AI時代のサイバー不安](#記事-24--ai時代のサイバー不安)
+25. [規模と主権を実現する AI の運用化](#記事-25--規模と主権を実現する-ai-の運用化)
+26. [Salesforce がエンタープライズ AI を破壊するワークフローを修正するために Agentforce Operations を開始](#記事-26--salesforce-がエンタープライズ-ai-を破壊するワークフローを修正するために-agentforce-operations-を開始)
+27. [200,000 台の MCP サーバーで、Anthropic が機能と呼ぶコマンド実行の欠陥が公開される](#記事-27--200000-台の-mcp-サーバーで、anthropic-が機能と呼ぶコマンド実行の欠陥が公開される)
+28. [AI の足場層が崩壊しつつあります。 LlamaIndex の CEO が生き残るものについて説明します。](#記事-28--ai-の足場層が崩壊しつつあります。-llamaindex-の-ceo-が生き残るものについて説明します。)
+29. [xAI が、非常に低価格な Grok 4.3 と、新しく高速で強力な音声クローン作成スイートを発売](#記事-29--xai-が、非常に低価格な-grok-43-と、新しく高速で強力な音声クローン作成スイートを発売)
+30. [隠れた IT 問題が密かにリスク、シャドー IT、生産性の低下を生み出しています](#記事-30--隠れた-it-問題が密かにリスク、シャドー-it、生産性の低下を生み出しています)
+31. [ミニ・モーターウェイズはプレイヤーに次の都市マップを投票させている - Engadget](#記事-31--ミニ・モーターウェイズはプレイヤーに次の都市マップを投票させている---engadget)
+32. [携帯電話の使用禁止は米国の学生のテストのスコアを向上させなかったことが研究で判明 - Engadget](#記事-32--携帯電話の使用禁止は米国の学生のテストのスコアを向上させなかったことが研究で判明---engadget)
+33. [Xbox の Stranger Than Heaven ショーケースを視聴する方法 - Engadget](#記事-33--xbox-の-stranger-than-heaven-ショーケースを視聴する方法---engadget)
+34. [Instagram、オプションの「AIクリエイター」ラベルをテスト中 - Engadget](#記事-34--instagram、オプションの「aiクリエイター」ラベルをテスト中---engadget)
+35. [アマゾン、あらゆる企業に物流ネットワークを開放 - Engadget](#記事-35--アマゾン、あらゆる企業に物流ネットワークを開放---engadget)
+
+---
+
+## 記事 1  ｜  TechCrunch
+
+### ハッカーは今でも cPanel のバグを悪用して、何千もの Web サイトを制御しています。テッククランチ
+
+> 原題: *Hackers are still exploiting the cPanel bug to gain control of thousands of websites | TechCrunch*
+
+#### 📝 記事の日本語訳
+
+人気の Web サーバー管理ソフトウェア cPanel と WebHost Manager (WHM) のメーカーが、そのソフトウェアに重大な欠陥があることをユーザーに警告してからほぼ 1 週間が経過しましたが、ハッカーは依然として脆弱なソフトウェアを使用する数千の Web サイトを標的にしています。木曜日、セキュリティ研究者らは、攻撃者がコントロール パネルを介して脆弱なサーバーを完全に制御し乗っ取ることを可能にするバグを利用して、ハッカーが cPanel と WHM を実行しているサーバーを侵害し始めたと警告しました。 Bleeping Computer が報じたように、被害の程度は、明らかなランサムウェア攻撃で被害者のファイルを暗号化したと主張するハッカーグループからのメッセージをある時点で表示した数十の Web サイトを Google がインデックスしたという事実によって明らかです。それらのサイトの一部は現在、正常に読み込まれるようになりました。た...
+
+#### 🏢 企業解説リンク
+
+- [Google](companies/google.html)
+- [TechCrunch](companies/techcrunch.html)
+
+🔗 [元記事を読む](https://techcrunch.com/2026/05/04/hackers-are-still-exploiting-the-cpanel-bug-to-gain-control-of-thousands-of-websites/)
+
+---
+
+## 記事 2  ｜  TechCrunch
+
+### OpenAI裁判でイーロン・マスク氏の唯一のAI専門家証人はAGIの軍拡競争を懸念 |テッククランチ
+
+> 原題: *Elon Musk's only AI expert witness at the OpenAI trial fears an AGI arms race | TechCrunch*
+
+#### 📝 記事の日本語訳
+
+これが、OpenAIの営利AI事業を閉鎖しようとするイーロン・マスク氏の試みの重要な内訳だ。同氏の弁護士らは、この組織はAIの安全性に焦点を当てた慈善団体として設立され、利益を追求するあまり道に迷ったと主張している。それを証明するために、彼らは、Google DeepMind に対する公共の精神に基づく対抗手段の必要性について、組織の創設者らからの古い電子メールや声明を引用しています。今日、彼らはAIテクノロジーについて直接話すことができる唯一の専門家証人であるスチュアート・ラッセル氏を呼び出した。スチュアート・ラッセル氏は、数十年にわたってAIを研究してきたカリフォルニア大学バークレー校のコンピュータサイエンス教授である。彼の仕事は、AI に関する背景を提供し、このテクノロジーが心配するほど危険であることを証明することでした。ラッセル氏は2023年3月、AI研究の6カ月間の一時停止を求める公開書簡に共同署名した。矛盾の兆候で彼女は...
+
+#### 🏢 企業解説リンク
+
+- [Google](companies/google.html)
+- [OpenAI](companies/openai.html)
+- [TechCrunch](companies/techcrunch.html)
+
+🔗 [元記事を読む](https://techcrunch.com/2026/05/04/elon-musks-only-expert-witness-at-the-openai-trial-fears-an-agi-arms-race/)
+
+---
+
+## 記事 3  ｜  TechCrunch
+
+### エンタープライズ AI を所有する競争が深刻になる中、Sierra が 9 億 5,000 万ドルを調達 |テッククランチ
+
+> 原題: *Sierra raises $950M as the race to own enterprise AI gets serious | TechCrunch*
+
+#### 📝 記事の日本語訳
+
+ブレット・テイラー氏のAIスタートアップ、シエラは、タイガー・グローバルとGV主導の資金調達ラウンドで9億5000万ドルを調達しており、同社は月曜日に発表し、資金調達後の評価額は150億ドルを超えている。この資金調達により、Sierra は 10 億ドル以上の資金を得ることができ、この資金は AI を活用した顧客エクスペリエンスの「世界標準」となるために使用すると同社は述べています。多くの AI 企業と同様に、Sierra は賢明にも、混雑した市場で自社の成長を宣伝することに非常に積極的でした。同社によれば、数年前にわずか 4 社のデザインパートナーからスタートしたという。現在、同社はフォーチュン 50 企業の 40% 以上を顧客として抱えていると主張しており、同社のプラットフォーム上で稼働しているエージェントは、住宅ローンの借り換えから保険請求の処理、返品の管理、非営利団体への支援に至るまで、数十億件のやり取りを処理していると述べています。
+
+#### 🏢 企業解説リンク
+
+- [TechCrunch](companies/techcrunch.html)
+
+🔗 [元記事を読む](https://techcrunch.com/2026/05/04/sierra-raises-950m-as-the-race-to-own-enterprise-ai-gets-serious/)
+
+---
+
+## 記事 4  ｜  TechCrunch
+
+### イーロン・マスク氏は和解を求めた後、グレッグ・ブロックマン氏とサム・アルトマン氏に不気味なテキストを送信したとOpenAIが主張テッククランチ
+
+> 原題: *Elon Musk sent ominous texts to Greg Brockman, Sam Altman after asking for a settlement, OpenAI claims | TechCrunch*
+
+#### 📝 記事の日本語訳
+
+イーロン・マスク対OpenAIの裁判が先週始まる2日前に、マスクは模型メーカーの社長兼共同創設者のグレッグ・ブロックマンにテキストメッセージを送った。マスク氏はブロックマンに対し、OpenAIが訴訟を解決するよう提案した。ブロックマン氏が双方に訴訟を取り下げるよう示唆して返答すると、やり取りは軌道に乗らず、マスク氏は「今週末までに、あなたとサムはアメリカで最も嫌われている男になるだろう。あなたが主張するなら、そうなるだろう」と応じた。 OpenAIの弁護士が日曜日に提出した新たな申請書にはこう述べられている。提出書類には文書交換のコピーは含まれておらず、そのほとんどは、和解交渉に関するこの交換が証拠として認められるべき理由を裁判官に説得することに捧げられていた。しかし、現場で取材中のTechCrunch記者ティム・ファーンホルツ氏によると、裁判官はそれを認めておらず、このやりとりは容認できないとの判決を下したという。
+
+#### 🏢 企業解説リンク
+
+- [OpenAI](companies/openai.html)
+- [TechCrunch](companies/techcrunch.html)
+
+🔗 [元記事を読む](https://techcrunch.com/2026/05/04/elon-musk-sent-ominous-texts-to-greg-brockman-sam-altman-after-asking-for-a-settlement-openai-claims/)
+
+---
+
+## 記事 5  ｜  TechCrunch
+
+### Anthropic と OpenAI は両方ともエンタープライズ AI サービスの合弁事業を立ち上げます |テッククランチ
+
+> 原題: *Anthropic and OpenAI are both launching joint ventures for enterprise AI services | TechCrunch*
+
+#### 📝 記事の日本語訳
+
+月曜日、Anthropic はエンタープライズ AI サービスの展開に焦点を当てた合弁事業を発表しました。ブラックストーン、ヘルマン・アンド・フリードマン、ゴールドマン・サックスがこの新しい事業の設立パートナーとなり、アポロ・グローバル・マネジメント、ゼネラル・アトランティック、GIC、レナード・グリーン、セコイア・キャピタルを含むVC、ヘッジファンド、プライベート・エクイティ会社のグループが支援する。この提携のニュースを最初に報じたウォール・ストリート・ジャーナルは、この新しい事業の評価額​​が15億ドルと報じており、これにはAnthropic、Blackstone、Hellman & Friedmanからのそれぞれ3億ドルの出資が含まれている。この発表は、Anthropic の最大のライバルである Anthropic が同様の動きを準備しているまさにそのタイミングで行われた。 Anthropic の発表のほんの数時間前に、ブルームバーグは、OpenAI が The Dev... と呼ばれる新しいベンチャーのために資金を調達していると報じました。
+
+#### 🏢 企業解説リンク
+
+- [OpenAI](companies/openai.html)
+- [TechCrunch](companies/techcrunch.html)
+
+🔗 [元記事を読む](https://techcrunch.com/2026/05/04/anthropic-and-openai-are-both-launching-joint-ventures-for-enterprise-ai-services/)
+
+---
+
+## 記事 6  ｜  The Verge
+
+### ルンバの生みの親が、毛皮で覆われたロボットの仲間とともに帰ってきた
+
+> 原題: *The creator of Roomba is back with a furry robot companion*
+
+#### 📝 記事の日本語訳
+
+このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。コリン・アングル氏は今週、彼の最新作を発表した。雑用ではなく人間とのつながりを目的として設計された犬サイズのロボット「ファミリア」だ。
+
+🔗 [元記事を読む](https://www.theverge.com/ai-artificial-intelligence/922947/roomba-creator-new-robot-familiar-machines-magic-ai-launch)
+
+---
+
+## 記事 7  ｜  The Verge
+
+### Pixel 11はRAM不足の次の犠牲者になる可能性がある
+
+> 原題: *The Pixel 11 could be the next victim of the RAM shortage*
+
+#### 📝 記事の日本語訳
+
+このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。基本のPixel 11は8GBのRAMで開始される可能性がありますが、Proモデルは12GBの開始構成になると報告されています。
+
+🔗 [元記事を読む](https://www.theverge.com/tech/923252/google-pixel-11-spec-leak-lower-ram)
+
+---
+
+## 記事 8  ｜  The Verge
+
+### スターウォーズデーのお得なセール
+
+> 原題: *The best Star Wars Day deals*
+
+#### 📝 記事の日本語訳
+
+このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。 5 月 4 日が到来し、スター ウォーズのゲーム、おもちゃ、その他のオタク向けの装飾品のセールも行われます。
+
+🔗 [元記事を読む](https://www.theverge.com/gadgets/922905/best-star-wars-day-2026-may-the-fourth-4th-deals-sale)
+
+---
+
+## 記事 9  ｜  The Verge
+
+### OpenAI の将来をめぐるイーロン・マスク氏とサム・アルトマン氏の法廷闘争からのライブ最新情報
+
+> 原題: *Live updates from Elon Musk and Sam Altman’s court battle over the future of OpenAI*
+
+#### 📝 記事の日本語訳
+
+サム・アルトマン氏とイーロン・マスク氏は、OpenAIとその最も有名な製品であるChatGPTの将来を変える可能性のある一か八かの裁判で対決している。 2024年、マスク氏はOpenAIが人類に利益をもたらすAIを開発するという設立当初の使命を放棄し、代わりに利益拡大に焦点を移したとして訴訟を起こした。裁判は4月27日の陪審員の選定から始まった。イーロン・マスク氏は4月28日、最初の証人の呼び掛けに応じて証言台に立ち、人類を救うための取り組みとしてOpenAIを設立することに関心があると述べ、4月29日に再び証言台に戻り、4月30日に再度3日目の証言を行った後、財務マネージャーでニューラリンクのCEOであるジャレッド・バーチャル氏が証言台に立った。トライアルの第 2 週が始まり、スチュアート・ラッセル教授と OpenAI 共同創設者のグレッグ・ブロックマンが参加する予定です。
+
+#### 🏢 企業解説リンク
+
+- [OpenAI](companies/openai.html)
+
+🔗 [元記事を読む](https://www.theverge.com/tech/917225/sam-altman-elon-musk-openai-lawsuit)
+
+---
+
+## 記事 10  ｜  The Verge
+
+### Amazonはその大規模な配送業務を別のAWSに変えようとしている
+
+> 原題: *Amazon’s trying to turn its massive shipping operation into another AWS*
+
+#### 📝 記事の日本語訳
+
+このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。電子商取引大手の新しいサプライ チェーン サービスは、世界中の企業に提供されます。
+
+#### 🏢 企業解説リンク
+
+- [Amazon](companies/amazon.html)
+
+🔗 [元記事を読む](https://www.theverge.com/tech/923013/amazon-supply-chain-services)
+
+---
+
+## 記事 11  ｜  Wired
+
+### 罪悪感に悩まされないように、期限内に届く母の日ギフトのベストセール
+
+> 原題: *The Best Mother’s Day Deals on Gifts That’ll Arrive in Time So You Aren’t Wracked With Guilt*
+
+#### 📝 記事の日本語訳
+
+私は母の日の最高のセール、つまりお気に入りの母の日ギフト メーカーからの正当な割引を調べてきました。 WIRED のレビュー チームは幸運なことに、年間を通じて多くのママたちがギアをテストしています。当社の母の日ギフト ガイドには、他のすべての購入ガイドと同様に、母親や母親を持つ人たちの手作業でテストされた推奨事項が満載です。確かに、クールな花もありますが、ヘッドフォンや電子書籍リーダーも同様です。お母さんがどれを好むかに関係なく、良いものがたくさん販売されています。 5 月 10 日までに商品が届く可能性があるため、お早めにご購入ください。Lettuce Grow Farmstand は、自分で作物を育てるというお母さんの夢を手の届くところに置くことができる屋内水耕栽培ガーデンです。これには、小型、中型 (図示)、大型のバージョンがあり、屋内用と屋外用もあります。クーポンコードを使ってお得に…。
+
+🔗 [元記事を読む](https://www.wired.com/story/mothers-day-deals-2026/)
+
+---
+
+## 記事 12  ｜  Wired
+
+### DHS、反ICE投稿をめぐりカナダ人の活動と位置に関するデータをGoogleに差し出すよう要求
+
+> 原題: *DHS Demanded Google Surrender Data on Canadian’s Activity, Location Over Anti-ICE Posts*
+
+#### 📝 記事の日本語訳
+
+今年初めにミネアポリスで連邦移民局職員によるレニー・グッドさんとアレックス・プレティさんの殺害を受け、カナダ人男性がオンラインでトランプ政権を批判した後、国土安全保障省はグーグルからカナダ人男性の位置情報、行動記録、その他の身元情報を入手しようとした。名前は公表されていないが、この男性の弁護士らは、この男性が10年以上米国に入国していないということもあり、警戒している。 「政府が私たちの依頼者の住居について何を知っているのかは分かりませんが、政府が調査をやめていないのは明らかです」と、コロンビア特別区アメリカ自由人権協会の上級職員弁護士であり、マークウェイン・マリン長官に対する訴訟でこの男性の代理人を務めるマイケル・パーロフ氏は言う。
+
+#### 🏢 企業解説リンク
+
+- [Google](companies/google.html)
+
+🔗 [元記事を読む](https://www.wired.com/story/dhs-demanded-google-surrender-data-on-canadians-activity-location-over-anti-ice-posts/)
+
+---
+
+## 記事 13  ｜  Wired
+
+### この会社はFace IDを見えなくする方法を考え出した
+
+> 原題: *This Company Has Figured Out a Way to Make Face ID Invisible*
+
+#### 📝 記事の日本語訳
+
+私たちはノッチ、つまり iPhone X や LG G7 など、長年にわたり多くのスマートフォンを飾ってきた見苦しいカットインについてよく知っています。今日のスマートフォンでは、ノッチの大部分が、スペースをとらず、より未来的に見えるフローティング パンチホール カメラに置き換えられていますが、Apple の MacBook などの一部のラップトップではノッチが依然として普及しています。 iPhone では、Apple は浮遊錠剤型カメラ システムをダイナミック アイランドと呼んでおり、iPhone 14 でデビューしました。 iPhone は生体認証システム Face ID を搭載しているため、現在でもカメラの欠損が最も大きくなっています。 (Google Pixel スマートフォンを除いて、Android スマートフォンの大部分は安全な顔認証に相当する機能を提供していないため、大きなカメラの切り欠きは必要ありません。) しかし、この島は、次のおかげでさらに小さくなる可能性があります...
+
+#### 🏢 企業解説リンク
+
+- [Apple](companies/apple.html)
+- [Google](companies/google.html)
+
+🔗 [元記事を読む](https://www.wired.com/story/metalenz-has-figured-out-a-way-to-make-face-id-invisible/)
+
+---
+
+## 記事 14  ｜  Wired
+
+### RFK Jr.の新しいポッドキャストは予想通り奇妙です
+
+> 原題: *RFK Jr.’s New Podcast Is as Weird as You’d Expect*
+
+#### 📝 記事の日本語訳
+
+先月、ロバート・F・ケネディ・ジュニア保健福祉長官はポッドキャストを開始し、これは「政府における徹底的な透明性の新時代」の一環となるだろうと述べた。ケネディ大統領はティーザーの中で、不吉なBGMを流しながら、慢性疾患流行の根本原因について「疑問を投げかけ、タブーを取り除き、偽善を暴露する」と約束した。 「何十年もの間、アメリカ人はこの制度を信頼すべきだと言われてきたが、子供たちの病気はさらに深刻だ」と同氏はビデオで語った。 「慢性疾患は爆発的に増加しており、これまでに与えられた答えは役に立たない。私たちの多くは、実際には政府が私たちに嘘をついているとの結論に達している。」同氏によると、彼のポッドキャストでは独立した医師、科学者、医療革新や研究のリーダーとの会話が特集される予定だという。打ち上げは…
+
+🔗 [元記事を読む](https://www.wired.com/story/rfk-jrs-new-podcast-is-as-weird-as-youd-expect/)
+
+---
+
+## 記事 15  ｜  Wired
+
+### ライトセーバーの刃には質量がありますか?
+
+> 原題: *Do Lightsaber Blades Have Mass?*
+
+#### 📝 記事の日本語訳
+
+スター・ウォーズについて考えるとき、ライトセーバーを思い浮かべます。右？映画製作の観点からすると、昔のエロル・フリンの冒険家のような素晴らしいフェンシングの決闘を可能にする未来的な剣よりも優れたものはありません。 （ストームトルーパーが壁や天井、ターゲット以外のあらゆるものにブラスターを発射するのを見るよりもはるかに良いです。） ライトセーバーには宇宙のような虹色の色合い（善人には青または緑、悪人には赤で色分けされています）とさまざまな形があります。 『ファントム・メナス』には両刃バージョンもあります。 （私はまだオタクの戦いを始めたくありませんが、正史の中で最高のライトセーバーの戦いは、ダースモール俳優レイパークのスキルと怖さのおかげで、あの映画の「運命の決闘」でなければなりません。） それで…ライトセーバーとは正確には何ですか？もちろん、それらは現実のものではありません...
+
+🔗 [元記事を読む](https://www.wired.com/story/do-lightsaber-blades-have-mass/)
+
+---
+
+## 記事 16  ｜  Ars Technica
+
+### AMD は Linux に HDMI 2.1 サポートを追加しています。これは Steam Machine にとって朗報です。
+
+> 原題: *AMD is adding HDMI 2.1 support for Linux. That's good news for the Steam Machine.*
+
+#### 📝 記事の日本語訳
+
+固定料金リンクは現在追加中です。表示ストリーム圧縮は近日公開予定です。昨年、私たちは、HDMI ライセンスとオープンソースの AMD ドライバー開発に関する長年にわたる気まぐれな問題がどのように組み合わさって、次期 Steam Machine が HDMI 2.1 ディスプレイ規格の正式なサポートを受けるのを妨げたかに注目しました。しかし現在、AMD は近い将来、Linux amdgpu ドライバーに完全な HDMI 2.1 準拠を追加することに向けて本格的な進歩を遂げているようです。金曜日に投稿された（そしてPhoronixによって注目された）amdgpuドライバーアップデートのパッチシリーズノートの中で、AMDのハリー・ウェントランド氏は、同社がついに人気の高いLinuxディスプレイドライバーにHDMI FRL（固定レートリンク）のサポートを追加すると述べた。これは、HDMI 2.0 以前の TMDS 標準と比較して、互換性のある HDMI ケーブルでより高い帯域幅を可能にする機能です。 ...
+
+🔗 [元記事を読む](https://arstechnica.com/gaming/2026/05/amd-is-adding-hdmi-2-1-support-for-linux-thats-good-news-for-the-steam-machine/)
+
+---
+
+## 記事 17  ｜  Ars Technica
+
+### Twitter訴訟におけるマスク氏の「第三次世界大戦」の脅威がOpenAI裁判で頭から離れない
+
+> 原題: *Musk’s “World War III” threat in Twitter lawsuit haunts him at OpenAI trial*
+
+#### 📝 記事の日本語訳
+
+OpenAIはマスク氏が裁判開始の数日前に和解を「強要」しようとしたと非難している。裁判が始まる数日前に、イーロン・マスク氏はサム・アルトマン氏の指示の下、OpenAIが人類に利益をもたらすAIを作る非営利団体としての使命を放棄したと主張する訴訟で和解しようとした。 OpenAIが日曜日に裁判所に提出した文書によると、マスク氏は裁判の2日前にOpenAIのグレッグ・ブロックマン社長に、和解案への「関心を測る」ようメッセージを送った。ブロックマン氏は即座に反応し、「双方」が主張を取り下げるよう示唆した。しかしマスク氏は拒否したが、その後、訴訟を進めるマスク氏の真の動機を明らかにする証拠として、法廷がブロックマン氏にそのメッセージについて証言することを許可するほど脅しを強めたようだ。 「今週末までに、あなたとサムは最も嫌われている男になるでしょう...
+
+#### 🏢 企業解説リンク
+
+- [OpenAI](companies/openai.html)
+
+🔗 [元記事を読む](https://arstechnica.com/tech-policy/2026/05/musks-world-war-iii-threat-in-twitter-lawsuit-haunts-him-at-openai-trial/)
+
+---
+
+## 記事 18  ｜  Ars Technica
+
+### Mac miniの開始価格は799ドルに上昇、入手は「数カ月」困難になる可能性がある
+
+> 原題: *Mac mini starting price goes up to $799, may be hard to get for "months"*
+
+#### 📝 記事の日本語訳
+
+チップ不足とAI愛好家からの需要の両方が影響している。 Apple の Mac mini および Mac Studio デスクトップは、年間を通して購入することがますます困難になっています。複数の構成が Apple のサイトに「現在入手不可」としてリストされていますが、実際にはそのようなことはほとんどありません。その他の構成は、今日注文しても出荷までに数週間から数か月かかる場合があります。 512 GB の RAM を搭載した Mac Studio の最上位バージョンは、Apple ストアから完全にリストから削除されました。現在、599ドルのエントリーレベルのMac miniもAppleストアから削除されている。現在 Apple から注文できる最も安い Mac mini の価格は 799 ドルで、M4 チップ、16 GB の RAM、512 GB のストレージを搭載しています。これは厳密に言えば値上げではありません。 Apple は、2024 年後半に M4 Mac mini を発売して以来、これらのスペックに対して同額を請求してきました。しかし、...
+
+#### 🏢 企業解説リンク
+
+- [Apple](companies/apple.html)
+
+🔗 [元記事を読む](https://arstechnica.com/gadgets/2026/05/apple-may-take-several-months-to-catch-up-to-mac-mini-and-studio-demand/)
+
+---
+
+## 記事 19  ｜  Ars Technica
+
+### トランプ政権、165基の風力発電所停止について国家安全保障を理由に
+
+> 原題: *Trump administration cites national security in stalling 165 wind farms*
+
+#### 📝 記事の日本語訳
+
+米国における陸上風力発電の開発は停止に追い込まれている。トランプ政権は国家安全保障上の懸念を理由に米国の陸上風力発電開発を停止させており、再生可能エネルギーに対する大統領の運動が大幅にエスカレートしていることを示している。米国クリーンパワー協会（ACP）や関係者らによると、私有地における約165件の陸上風力発電プロジェクトの承認が国防総省によって停滞しており、その中には最終承認を待っている風力発電所や交渉中の風力発電所、通常は国防省の監督を必要としないものも含まれる。風力発電所はレーダーシステムに干渉しないように国防総省からの定期的な承認を必要とします。これには通常、次のようなリスクのレベルが関係します。
+
+🔗 [元記事を読む](https://arstechnica.com/science/2026/05/trump-administration-cites-national-security-in-stalling-165-wind-farms/)
+
+---
+
+## 記事 20  ｜  Ars Technica
+
+### MIT のバーチャル バイオリンは弦楽器製作者に新しいデザイン ツールを提供します
+
+> 原題: *MIT's virtual violin offers luthiers a new design tool*
+
+#### 📝 記事の日本語訳
+
+計算モデルを使用すると、ユーザーは初期の設計プロセスでパラメーターを調整してサウンドへの影響を確認できます。ヴァイオリン製作者、別名弦楽器製作者は伝統的に、楽器の最終的な音を形作るために部品を作成し、材料を選択する方法を実践的な経験から学びます。 MIT のエンジニアは、新しいバーチャル バイオリンを使用して、その骨の折れるプロセスを合理化したいと考えています。学術誌「npj Acoustics」に掲載された論文によると、これは楽器の正確な物理学を捉え、弦を弾いたリアルな音さえも再現できるコンピューターシミュレーションツールだという。サンプリングによってバイオリンのサウンドをシミュレートし、数千の音符から最終的なサウンドを平均する一般的なソフトウェア プログラムやプラグインとは異なり、MIT モデルは楽器の基本的な物理学に基づいています。 「再現できると言っているわけではありません...
+
+🔗 [元記事を読む](https://arstechnica.com/science/2026/05/mits-virtual-violin-offers-luthiers-a-new-design-tool/)
+
+---
+
+## 記事 21  ｜  MIT Tech Review
+
+### マスク対アルトマン裁判の第 1 週: 部屋の中の様子
+
+> 原題: *Week one of the Musk v. Altman trial: What it was like in the room*
+
+#### 📝 記事の日本語訳
+
+イーロン・マスク氏の証言から私たちが学んだことと、今週何が予想されるかをご紹介します。 AI分野で最も権力のある2人、サム・アルトマンとイーロン・マスクが先週、カリフォルニア州オークランドの法廷で対決を開始した。マスク氏は、約10年前に資金調達に費やした数百万ドルは企業ではなく非営利団体のためのものであり、それ以来同社はその使命を反故にしていると主張して、OpenAIを訴えている。賭け金は高く、マスク氏が部分的に勝利したとしても、今年上場を計画していると伝えられているOpenAIは後退する可能性がある。しかし、注目のほとんどは、現在連邦裁判所で繰り広げられているXをめぐる確執の光景から来ている。 「OpenAIの設立と成長の背後にある、不快な文章、生々しい日記の書き込み、そして際限のない陰謀が明るみに出ることが予想されている」と、私の同僚のミシェル・キムはそれが始まる前に書いていた。そして ...
+
+#### 🏢 企業解説リンク
+
+- [OpenAI](companies/openai.html)
+
+🔗 [元記事を読む](https://www.technologyreview.com/2026/05/04/1136826/week-one-of-the-musk-v-altman-trial-what-it-was-like-in-the-room/)
+
+---
+
+## 記事 22  ｜  MIT Tech Review
+
+### ヘルスケアのニーズに合わせて AI ソリューションをカスタマイズ
+
+> 原題: *Tailoring AI solutions for health care needs*
+
+#### 📝 記事の日本語訳
+
+開発者は、分野固有のデータと専門知識を活用することで、医療の最大の課題のいくつかに対処する AI アプリケーションを構築できます。 Mayo Clinic Platform との提携 AI 市場には、大きな変革の大きな期待が満ちています。ヘルスケアはこうした約束の主なターゲットだが、財政的圧力、労働力不足、高齢化社会の介護負担の増大に悩まされている。 AI 開発者は、がんの治療や手術の実行から日常的な管理タスクの合理化まで、多岐にわたる機能をターゲットにしています。チャンスは本物ですが、実行するのは難しい場合があります。多くのソフトウェア ベンダーが医療上の課題を「解決」しようと試みてきましたが、環境を誤解していたために失敗しました。 「医療は非常に複雑です」とスティーブ・ベスケ副大統領は言います。
+
+🔗 [元記事を読む](https://www.technologyreview.com/2026/05/04/1134425/tailoring-ai-solutions-for-health-care-needs/)
+
+---
+
+## 記事 23  ｜  MIT Tech Review
+
+### マスク対アルトマン 第 1 週: イーロン・マスク、騙されたと発言、AI が人類を滅ぼす可能性があると警告、xAI が OpenAI のモデルを抽出したことを認める
+
+> 原題: *Musk v. Altman week 1: Elon Musk says he was duped, warns AI could kill us all, and admits that xAI distills OpenAI’s models*
+
+#### 📝 記事の日本語訳
+
+マスク氏は冷静さを保ったが、OpenAIの弁護士はマスク氏が同社を告訴した動機について鋭い質問をしてブルドーザーを攻撃した。イーロン・マスク氏とオープンAIの間の画期的な裁判の最初の週、マスク氏はパリッとした黒のスーツとネクタイ姿で証言台に立ち、OpenAIの最高経営責任者（CEO）サム・アルトマンと社長のグレッグ・ブロックマンが自分を騙して会社に資金を提供させたと主張した。その過程で、彼はAIが私たち全員を滅ぼす可能性があると警告し、自分の会社のためにOpenAIの従業員を引き抜いたという暴露を黙って見守った。彼は、法廷で息を呑む声が聞こえる中、チャットボット Grok を開発している自社の AI 会社 xAI が、OpenAI のモデルを使用して自社のモデルをトレーニングしているとさえ告白しました。カリフォルニア州オークランドの連邦裁判所は、証拠品の入った箱を運ぶ弁護士の軍隊で満員となり、記者たちは自宅で原稿を打っていた。
+
+#### 🏢 企業解説リンク
+
+- [OpenAI](companies/openai.html)
+
+🔗 [元記事を読む](https://www.technologyreview.com/2026/05/01/1136800/musk-v-altman-week-1-musk-says-he-was-duped-warns-ai-could-kill-us-all-and-admits-that-xai-distills-openais-models/)
+
+---
+
+## 記事 24  ｜  MIT Tech Review
+
+### AI時代のサイバー不安
+
+> 原題: *Cyber-Insecurity in the AI Era*
+
+#### 📝 記事の日本語訳
+
+AI がスタックに導入される前から、サイバーセキュリティはすでに負担にさらされていました。現在、AI が攻撃対象領域を拡大し、新たな複雑性が加わっているため、従来のアプローチの限界を無視することが難しくなってきています。 MIT Technology Review の EmTech AI カンファレンスのこのセッションでは、セキュリティを事後的に重ね合わせるのではなく、AI を中核として再考する必要がある理由を探ります。 Tarique Mustafa は、AI を活用したサイバーセキュリティ企業 2 社の共同創設者兼 CEO/CTO です。GCCyber​​security, Inc. と、そのデータ コンプライアンスからスピンアウトした Chorology, Inc. 多作の発明家であり、知識表現、推論計算、AI 計画の権威として国際的に認められている Tarique は、自律的に協調する AI を適用して、サイバーセキュリティ、データ セキュリティ、コンプライアンスにわたる複雑で超大規模な課題を解決することにキャリアを費やしてきました。
+
+🔗 [元記事を読む](https://www.technologyreview.com/2026/05/01/1136779/cyber-insecurity-in-the-ai-era/)
+
+---
+
+## 記事 25  ｜  MIT Tech Review
+
+### 規模と主権を実現する AI の運用化
+
+> 原題: *Operationalizing AI for Scale and Sovereignty*
+
+#### 📝 記事の日本語訳
+
+企業は自社のデータを管理して、ニーズに合わせて AI を調整しています。課題は、所有権と、信頼性の高い洞察を実現するために必要な高品質のデータの安全で信頼できるフローとのバランスをとることにあります。 MIT Technology Review の EmTech AI カンファレンスでのこの会話では、AI 工場がどのようにして新たなレベルの規模、持続可能性、ガバナンスを解放し、データ管理を政府や企業にとって戦略的必須事項として位置づけるかについて考察します。 Chris Davidson は、Hewlett Packard Enterprise の HPC および AI カスタマー ソリューション担当副社長です。彼は、AI ファクトリー ソリューションとソブリン AI に関する HPE の世界戦略を主導し、政府、企業、研究機関と協力して安全でスケーラブルな国家レベルおよびエンタープライズ グレードの AI 機能を構築しています。彼はまた、製品管理とパフォーマンス管理も指揮しています。
+
+🔗 [元記事を読む](https://www.technologyreview.com/2026/05/01/1136772/operationalizing-ai-for-scale-and-sovereignty/)
+
+---
+
+## 記事 26  ｜  VentureBeat
+
+### Salesforce がエンタープライズ AI を破壊するワークフローを修正するために Agentforce Operations を開始
+
+> 原題: *Salesforce launches Agentforce Operations to fix the workflows breaking enterprise AI*
+
+#### 📝 記事の日本語訳
+
+<p>エンタープライズ AI チームが壁にぶつかっているのは、モデルが推論できないからではなく、その下にあるワークフローがエージェント向けに構築されていないためです。組織がエージェントをバックオフィス システムの奥深くに押し込むにつれて、タスクは失敗し、引き継ぎは中断され、問題はさらに悪化します。これに対処するために、新しいアーキテクチャ レイヤが登場しています。エージェントが実行するプロセスに決定論的な構造を課すワークフロー実行コントロール プレーンです。</p><p>これを最前線に押し上げている企業の 1 つが...
+
+🔗 [元記事を読む](https://venturebeat.com/orchestration/salesforce-launches-agentforce-operations-to-fix-the-workflows-breaking-enterprise-ai)
+
+---
+
+## 記事 27  ｜  VentureBeat
+
+### 200,000 台の MCP サーバーで、Anthropic が機能と呼ぶコマンド実行の欠陥が公開される
+
+> 原題: *200,000 MCP servers expose a command execution flaw that Anthropic calls a feature*
+
+#### 📝 記事の日本語訳
+
+<p>Anthropic は、AI エージェントとツール間の通信のオープン スタンダードとして、<a href="https://modelcontextprotocol.io/">モデル コンテキスト プロトコル</a>を作成しました。 OpenAI は<a href="https://techcrunch.com/2025/03/26/openai-adopts-rival-anthropics-standard-for-connecting-ai-models-to-data/">2025 年 3 月にこれを採用</a>しました。 Google DeepMind が続いた。 Anthropic <a href="https://www.linuxfoundation.org/press/linux-foundation-announces-the-formation-of-the-agentic-ai-foundation">MCP を Linux Foundation に寄付しました</a>...
+
+#### 🏢 企業解説リンク
+
+- [Google](companies/google.html)
+- [OpenAI](companies/openai.html)
+- [TechCrunch](companies/techcrunch.html)
+
+🔗 [元記事を読む](https://venturebeat.com/security/mcp-stdio-flaw-200000-ai-agent-servers-exposed-ox-security-audit)
+
+---
+
+## 記事 28  ｜  VentureBeat
+
+### AI の足場層が崩壊しつつあります。 LlamaIndex の CEO が生き残るものについて説明します。
+
+> 原題: *The AI scaffolding layer is collapsing. LlamaIndex's CEO explains what survives.*
+
+#### 📝 記事の日本語訳
+
+<p>開発者がかつて LLM アプリケーションを出荷するために必要だったスキャフォールディング レイヤー (インデックス レイヤー、クエリ エンジン、取得パイプライン、慎重に調整されたエージェント ループ) は崩壊しつつあります。 <a href="http://www.llamaindex.ai/">LlamaIndex</a> の共同創設者兼 CEO である Jerry Liu 氏によると、それは問題ではありません。それが重要です。</p><p>「その結果、ユーザーがこれらの決定論的なワークフローを軽く浅い方法で実際に作成できるようにするためのフレームワークの必要性が低くなります。」と Jerry Liu...
+
+🔗 [元記事を読む](https://venturebeat.com/infrastructure/the-ai-scaffolding-layer-is-collapsing-llamaindexs-ceo-explains-what-survives)
+
+---
+
+## 記事 29  ｜  VentureBeat
+
+### xAI が、非常に低価格な Grok 4.3 と、新しく高速で強力な音声クローン作成スイートを発売
+
+> 原題: *xAI launches Grok 4.3 at an aggressively low price and a new, fast, powerful voice cloning suite*
+
+#### 📝 記事の日本語訳
+
+<p>イーロン・マスク氏が<a href="https://www.theverge.com/ai-artificial-intelligence/920775/evidence-exhibits-elon-musk-sam-altman-openai-trial">法廷</a>で元同僚でOpenAI共同創設者のサム・アルトマン氏と対峙している一方で、OpenAIに対抗するために設立されたマスク氏のライバル企業xAIは立ち上げの手を緩めていない。 </p><p>昨夜、<a href="https://x.com/elonmusk/status/2050034277375672520">xAI は、新しい独自の基本大規模言語モデル (LLM)、G... を出荷しました。
+
+#### 🏢 企業解説リンク
+
+- [OpenAI](companies/openai.html)
+
+🔗 [元記事を読む](https://venturebeat.com/technology/xai-launches-grok-4-3-at-an-aggressively-low-price-and-a-new-fast-powerful-voice-cloning-suite)
+
+---
+
+## 記事 30  ｜  VentureBeat
+
+### 隠れた IT 問題が密かにリスク、シャドー IT、生産性の低下を生み出しています
+
+> 原題: *Hidden IT problems are quietly creating risk, shadow IT, and lost productivity*
+
+#### 📝 記事の日本語訳
+
+<p><i>TeamViewer による提供</i></p><hr /><p>エンタープライズ テクノロジーの障害はほとんど目に見えません。 <a href="https://ad.doubleclick.net/ddm/trackclk/N2700600.133013VENTUREBEAT/B35613896.445429744;dc_trk_aid=639044651;dc_trk_cid=25327 5872;dc_lat=;dc_rdid=;tag_for_child_directed_treatment=;tfua=;gdpr=${GDPR};gdpr_consent=${GDPR_CONSENT_755};ltd=;dc_tdv=1">研究TeamViewer から</a> は、4,200 人の管理者と従業員を対象とした世界規模の調査に基づいて、デジタル機能不全の大部分が決して気付かないことを発見しました。
+
+🔗 [元記事を読む](https://venturebeat.com/technology/hidden-it-problems-are-quietly-creating-risk-shadow-it-and-lost-productivity)
+
+---
+
+## 記事 31  ｜  Engadget
+
+### ミニ・モーターウェイズはプレイヤーに次の都市マップを投票させている - Engadget
+
+> 原題: *Mini Motorways is letting players vote for its next city map - Engadget*
+
+#### 📝 記事の日本語訳
+
+交通管理シム Mini Motorways は、プレイヤーに次のマップへの投票を再度求めています。開発者の Dinosaur Polo Club は、ウィーン、オークランド、シンガポール、リマを含む 4 つの都市地図から選択できる Web サイトを公開しました。最も多くの票を獲得した都市には、今年後半にゲーム内で公式マップが提供され、現在のすべてのプラットフォームで無料で利用できるようになります。このゲームは、iOS デバイス、PC、Mac、Nintendo Switch でプレイできます。同社は、投票できるのは 1 回だけだが、「ソーシャル メディア チャネルで熱意がないか常に監視する」としている。また、「投票結果を尊重する」ために最善を尽くすが、「最終的なリリース順序」は最終的にはダイナソー・ポロ・クラブ次第であるとも述べた。投票は 5 月 15 日に締め切ります。会社が最後にコンテストを開催したのは...
+
+🔗 [元記事を読む](https://www.engadget.com/2164037/mini-motorways-is-letting-players-vote-for-its-next-city-map/)
+
+---
+
+## 記事 32  ｜  Engadget
+
+### 携帯電話の使用禁止は米国の学生のテストのスコアを向上させなかったことが研究で判明 - Engadget
+
+> 原題: *A study shows that cellphone bans didn't improve US students' test scores - Engadget*
+
+#### 📝 記事の日本語訳
+
+最近発表された研究結果によると、教室内でのスマートフォンの使用禁止は、政府や学校管理者が望んでいる万能薬ではない可能性がある。ニューヨーク・タイムズ紙が最初に報じたように、国家経済調査局は「学校での電話禁止の影響：ロック可能な電話からの国家的証拠」と呼ばれる研究を発表し、携帯電話の禁止はテストの得点に「一貫してゼロに近い」影響を与えたと結論付けた。この研究では、2019年から2026年までの4万校以上の学校から電話の位置データをサンプリングし、懲戒事件の一時的な増加と、短期的な混乱が原因である生徒の幸福度の短期的な低下があったことを示した。しかし、この研究では、学生の幸福度は後年に改善され、懲戒処分は下火になったことが明らかになりました。
+
+🔗 [元記事を読む](https://www.engadget.com/2164015/study-shows-that-cellphone-bans-didnt-improve-us-students-test-scores/)
+
+---
+
+## 記事 33  ｜  Engadget
+
+### Xbox の Stranger Than Heaven ショーケースを視聴する方法 - Engadget
+
+> 原題: *How to watch Xbox's Stranger Than Heaven showcase - Engadget*
+
+#### 📝 記事の日本語訳
+
+龍が如くスタジオの今後の龍が如く大作『ストレンジャー・ザン・ヘヴン』について、間もなくさらに多くのことが分かることになるでしょう。水曜日、Xbox は開発者と今後のアクション アドベンチャー ゲームについてのキャストとの詳細なディスカッションを開催します。約30分のイベントでは、「ゲームのストーリー、世界、キャラクターなどに関する詳細と洞察」が追加される予定だ。 『ストレンジャー・ザン・ヘヴン』が 1915 年、1929 年、1943 年、1951 年、1965 年の 5 つの時代にわたる 5 つの都市をカバーすることはすでにわかっています。60 年代の時代は、『龍が如く』シリーズの架空の東京地区、神室町で行われるようです。実際、ファンは次のタイトルが、フランチャイズの氏族の隆盛を示す、ある種の『龍が如く』の前編となるのではないかと推測している。これまでのところ、RGGは新作がその長期連載シリーズと関連があるかどうかについては沈黙を守ってきた。ストレンジャー・ザン・ヘブン...
+
+🔗 [元記事を読む](https://www.engadget.com/2161474/how-to-watch-xboxs-stranger-than-heaven-showcase/)
+
+---
+
+## 記事 34  ｜  Engadget
+
+### Instagram、オプションの「AIクリエイター」ラベルをテスト中 - Engadget
+
+> 原題: *Instagram is testing optional 'AI creator' labels - Engadget*
+
+#### 📝 記事の日本語訳
+
+Instagram は、サービス上の AI 生成コンテンツの透明性向上に向けて小さな一歩を踏み出しています。このアプリは、クリエイターが「AI クリエイター」であることを自己認識できるようにする、新しいアカウント レベルのラベルをテストしています。ラベルは、クリエイターのプロフィールと、アプリ内の投稿やリールの横の両方で目立つように表示されます。 「このプロフィールは、AIで生成または変更されたコンテンツを投稿します」と書かれています。 Meta 氏によると、新しいラベルは「Instagram における AI の透明性の基準を高める」取り組みであるとのこと。そして、新しいラベルの文言は、特定の投稿が AI ツールで作成または編集された「可能性がある」ことを示す Meta の「AI 情報」バッジよりも明らかに明確です。ただし、重要なのは、「AI クリエーター」ラベルは完全にオプションであるということです。これは、多くのユーザーが依然として次のことを行う可能性があることを意味します。
+
+#### 🏢 企業解説リンク
+
+- [Meta](companies/meta.html)
+
+🔗 [元記事を読む](https://www.engadget.com/2162426/instagram-is-testing-optional-ai-creator-labels/)
+
+---
+
+## 記事 35  ｜  Engadget
+
+### アマゾン、あらゆる企業に物流ネットワークを開放 - Engadget
+
+> 原題: *Amazon opens up its logistics networks to any business - Engadget*
+
+#### 📝 記事の日本語訳
+
+米国郵便公社や他の運送業者への依存を減らした後、Amazon は独自の物流および配送サービスを他の企業に開放しています。 「本日、AmazonはAmazon Supply Chain Services (ASCS)を発表し、Amazonの出品者だけでなく、あらゆるタイプや規模の企業に貨物、配送、フルフィルメント、小包配送機能の全ポートフォリオを開放します」と同社はプレスリリースで述べた。 Amazonは、プロクター・アンド・ギャンブル、3M、ランズ・エンド、アメリカン・イーグル・アウトフィッターズ社を含むいくつかの大手企業とこの新サービスを開始する。3MとP&Gにとって、アマゾンの貨物サービスは製造現場から流通ネットワークに製品を発送し、ランズ・エンドとアメリカン・イーグルの顧客への注文を直接履行することになる。アマゾン ウェブ サービス (AWS) とよく似ており、Amazon ...
+
+#### 🏢 企業解説リンク
+
+- [Amazon](companies/amazon.html)
+
+🔗 [元記事を読む](https://www.engadget.com/2163550/amazon-opens-up-its-logistics-network/)
+
+---
+
+
+> ⚠️ 本まとめは自動生成です。数値・固有名詞などの事実は元記事でご確認ください。
