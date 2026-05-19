@@ -1,0 +1,607 @@
+# 🌐 海外テックニュース 日本語まとめ
+
+**生成日時:** 2026年5月19日  16:14 JST
+
+> 世界の有力テックメディア（TechCrunch・The Verge・Wired・Ars Technica・MIT Tech Review・VentureBeat・Engadget）から注目記事を自動収集し、日本の読者向けに翻訳・要約しました。
+
+---
+
+## 目次
+
+1. [OpenAI の共同創設者 Andrej Karpathy が Anthropic の事前トレーニング チームに参加 |テッククランチ](#記事-1--openai-の共同創設者-andrej-karpathy-が-anthropic-の事前トレーニング-チームに参加-テッククランチ)
+2. [ミニマリストの Light Phone が Andrew Yang の Noble Mobile と提携し、運命スクロールを止めると報酬が得られる |テッククランチ](#記事-2--ミニマリストの-light-phone-が-andrew-yang-の-noble-mobile-と提携し、運命スクロールを止めると報酬が得られる-テッククランチ)
+3. [ハッカーは進行中のサプライ チェーン攻撃で数十の人気のあるオープン ソース パッケージを侵害しました。テッククランチ](#記事-3--ハッカーは進行中のサプライ-チェーン攻撃で数十の人気のあるオープン-ソース-パッケージを侵害しました。テッククランチ)
+4. [米国のサイバー機関 CISA が大量のパスワードとクラウド キーをオープン ウェブに公開 |テッククランチ](#記事-4--米国のサイバー機関-cisa-が大量のパスワードとクラウド-キーをオープン-ウェブに公開-テッククランチ)
+5. [Apple、Apple Intelligence によるアクセシビリティ機能のアップデートを発表 |テッククランチ](#記事-5--apple、apple-intelligence-によるアクセシビリティ機能のアップデートを発表-テッククランチ)
+6. [Sony の 1000X The Collection は柔らかく高価です](#記事-6--sony-の-1000x-the-collection-は柔らかく高価です)
+7. [Google I/O 2026: すべてのニュースと発表](#記事-7--google-io-2026-すべてのニュースと発表)
+8. [AI アナウンサーが卒業式中に名前を間違えて読み飛ばした](#記事-8--ai-アナウンサーが卒業式中に名前を間違えて読み飛ばした)
+9. [アメリカの危険で厄介なディープフェイクの取り締まりが始まる](#記事-9--アメリカの危険で厄介なディープフェイクの取り締まりが始まる)
+10. [Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.](#記事-10--error-500-server-error1500thats-an-errorthere-was-an-error-please-try-again-laterthats-all-we-know)
+11. [OpenAIの元スタッフは、xAIの劣悪な安全記録がSpaceXのIPOを複雑にする可能性があると警告](#記事-11--openaiの元スタッフは、xaiの劣悪な安全記録がspacexのipoを複雑にする可能性があると警告)
+12. [ザッカーバーグ夫妻はライフガードを雇っているが、それを「ビーチの水担当者」と呼んでいる](#記事-12--ザッカーバーグ夫妻はライフガードを雇っているが、それを「ビーチの水担当者」と呼んでいる)
+13. [お気に入りのアクション カメラをヘルメットや浮き輪にストラップで固定しましょう](#記事-13--お気に入りのアクション-カメラをヘルメットや浮き輪にストラップで固定しましょう)
+14. [これはハーマンミラーのゲーマー向けの新しいスタンディングデスクです](#記事-14--これはハーマンミラーのゲーマー向けの新しいスタンディングデスクです)
+15. [米国は公有地への公平なアクセスを確保するためのサイトを構築した。その後、すべてがうまくいかなくなりました](#記事-15--米国は公有地への公平なアクセスを確保するためのサイトを構築した。その後、すべてがうまくいかなくなりました)
+16. [電力会社の巨大合併の焦点はデータセンターにある](#記事-16--電力会社の巨大合併の焦点はデータセンターにある)
+17. [ヴァスト社は宇宙ステーションに加えて、今後は高出力衛星も建造すると発表](#記事-17--ヴァスト社は宇宙ステーションに加えて、今後は高出力衛星も建造すると発表)
+18. [イラン、大手テック企業にホルムズ海峡の海底インターネットケーブル料金の支払いを要求](#記事-18--イラン、大手テック企業にホルムズ海峡の海底インターネットケーブル料金の支払いを要求)
+19. [エボラ出血熱の流行：WHOが非常事態宣言、米国が渡航制限、米国人感染者](#記事-19--エボラ出血熱の流行whoが非常事態宣言、米国が渡航制限、米国人感染者)
+20. [法的失敗: AI を使用して、デートの誘いをしたとして Facebook ユーザーを訴えるのはやめてください](#記事-20--法的失敗-ai-を使用して、デートの誘いをしたとして-facebook-ユーザーを訴えるのはやめてください)
+21. [現代のサイバー犯罪情勢を理解する](#記事-21--現代のサイバー犯罪情勢を理解する)
+22. [ダウンロード: マスク対アルトマン、戦争用スマート グラス、および Google I/O](#記事-22--ダウンロード-マスク対アルトマン、戦争用スマート-グラス、および-google-io)
+23. [Colossal Biosciences は 3D プリントした人工卵殻でニワトリを育てています](#記事-23--colossal-biosciences-は-3d-プリントした人工卵殻でニワトリを育てています)
+24. [イーロン・マスクがOpenAIに対する訴訟で敗訴した理由は次のとおりです](#記事-24--イーロン・マスクがopenaiに対する訴訟で敗訴した理由は次のとおりです)
+25. [今週 Google に期待できること](#記事-25--今週-google-に期待できること)
+26. [エージェント型 AI が企業の検索を限界まで押し上げるにつれて、コンテキスト アーキテクチャが RAG に取って代わりつつあります](#記事-26--エージェント型-ai-が企業の検索を限界まで押し上げるにつれて、コンテキスト-アーキテクチャが-rag-に取って代わりつつあります)
+27. [50 日間で 4 件の AI サプライチェーン攻撃により、レッド チームがカバーしていないリリース パイプラインが明らかになった](#記事-27--50-日間で-4-件の-ai-サプライチェーン攻撃により、レッド-チームがカバーしていないリリース-パイプラインが明らかになった)
+28. [LangSmith エンジンはエージェントのデバッグ ループを自動的に閉じますが、マルチモデルの企業には依然として中立層が必要です](#記事-28--langsmith-エンジンはエージェントのデバッグ-ループを自動的に閉じますが、マルチモデルの企業には依然として中立層が必要です)
+29. [グラフ拡張 RAG のアーキテクチャ パターン: 本番環境でのベクトル検索を超えて](#記事-29--グラフ拡張-rag-のアーキテクチャ-パターン-本番環境でのベクトル検索を超えて)
+30. [誰もモデル化していないエンタープライズ リスク: AI は学ぶ必要のある専門家そのものに取って代わりつつあります](#記事-30--誰もモデル化していないエンタープライズ-リスク-ai-は学ぶ必要のある専門家そのものに取って代わりつつあります)
+31. [Sony 1000X The Collection レビュー: より豪華だが完璧とは程遠い - Engadget](#記事-31--sony-1000x-the-collection-レビュー-より豪華だが完璧とは程遠い---engadget)
+32. [サムスン、世界初の6Kゲーミングモニターを生産 - Engadget](#記事-32--サムスン、世界初の6kゲーミングモニターを生産---engadget)
+33. [Spotify、リスナーが AI のスロップを回避できるようにポッドキャストの認証バッジを開始 - Engadget](#記事-33--spotify、リスナーが-ai-のスロップを回避できるようにポッドキャストの認証バッジを開始---engadget)
+34. [Insta360のMic Proには3つのマイクが内蔵されており、分厚いピンバッジのように見えます - Engadget](#記事-34--insta360のmic-proには3つのマイクが内蔵されており、分厚いピンバッジのように見えます---engadget)
+35. [Microsoft の新しいビジネス向け Surface Laptop はプライバシー スクリーンと風変わりな触覚を備えています - Engadget](#記事-35--microsoft-の新しいビジネス向け-surface-laptop-はプライバシー-スクリーンと風変わりな触覚を備えています---engadget)
+
+---
+
+## 記事 1  ｜  TechCrunch
+
+### OpenAI の共同創設者 Andrej Karpathy が Anthropic の事前トレーニング チームに参加 |テッククランチ
+
+> 原題: *OpenAI co-founder Andrej Karpathy joins Anthropic's pre-training team | TechCrunch*
+
+#### 📝 記事の日本語訳
+
+OpenAI の共同設立者であり、以前は OpenAI で働いており、以前は Tesla で AI を率いていた AI 研究者の Andrej Karpathy 氏が Anthropic に加わりました。 「私はAnthropicに参加しました」とKarpathy氏はX Tuesdayに投稿した。 「LLM の最前線での今後数年間は、特に形成的な時期になると思います。ここのチームに参加して研究開発に戻ることができることにとても興奮しています。」個人的な最新情報: Anthropic に参加しました。 LLM の最前線での今後数年間は、特に形成的な時期になると思います。ここのチームに加わり、研究開発に戻ることにとても興奮しています。私は教育に対して今も深い情熱を持っており、時間内に教育への取り組みを再開するつもりです。カルパシーは今週アンスロピックでスタートし、チームリーダーのニック・ジョセフの下で事前トレーニングに取り組んでいる。事前トレーニングは、クロードに核となる知識を与える大規模なトレーニングの実行を担当します。
+
+#### 🏢 企業解説リンク
+
+- [OpenAI](companies/openai.html)
+- [TechCrunch](companies/techcrunch.html)
+
+🔗 [元記事を読む](https://techcrunch.com/2026/05/19/openai-co-founder-andrej-karpathy-joins-anthropics-pre-training-team/)
+
+---
+
+## 記事 2  ｜  TechCrunch
+
+### ミニマリストの Light Phone が Andrew Yang の Noble Mobile と提携し、運命スクロールを止めると報酬が得られる |テッククランチ
+
+> 原題: *The minimalist Light Phone teams up with Andrew Yang's Noble Mobile, which pays you to stop doomscrolling | TechCrunch*
+
+#### 📝 記事の日本語訳
+
+「ダムフォン」を試すためのサインを探しているなら、ここにあります。トレンディでミニマルなライトフォンが、起業家で政治家のアンドリュー・ヤンによって設立された電話ネットワークであるノーブルモバイルと提携し、データ使用量が減れば料金を返金します。火曜日には、500 台の Light Phone III モデルが在庫にあり、Noble Mobile を通じて出荷できるようになります。問題は、月額 50 ドルの 2 年間の Noble Mobile 電話プランにサインアップする必要があり、契約料は 1,200 ドルになります。 Light Phone に興味を持っている人はご存知かもしれませんが、Light Phone III が 699 ドルの前払いなしですぐに入手可能になるのはこれが初めてです。 Noble Mobile プランなしで Light Phone III を購入した場合、同社は、購入できないと推定しています...
+
+#### 🏢 企業解説リンク
+
+- [TechCrunch](companies/techcrunch.html)
+
+🔗 [元記事を読む](https://techcrunch.com/2026/05/19/the-minimalist-light-phone-teams-up-with-andrew-yangs-noble-mobile-which-pays-you-to-stop-doomscrolling/)
+
+---
+
+## 記事 3  ｜  TechCrunch
+
+### ハッカーは進行中のサプライ チェーン攻撃で数十の人気のあるオープン ソース パッケージを侵害しました。テッククランチ
+
+> 原題: *Hackers have compromised dozens of popular open source packages in an ongoing supply chain attack | TechCrunch*
+
+#### 📝 記事の日本語訳
+
+ハッカーは、進行中のサイバー攻撃で、世界中のソフトウェア開発者が依存しているいくつかの人気のオープンソース プロジェクトを侵害しました。火曜日、サイバーセキュリティ企業のStepSecurityとSafeDepは、いわゆる「サプライチェーン」攻撃の最新波について警告した。この攻撃は、人気のオープンソースプロジェクトの開発者を侵害し、そのアクセスを利用して下流のユーザーにプッシュする悪意のあるアップデートを仕掛けることを目的としている。 SafeDep によると、ハッカーは 1 人の開発者のアカウントを乗っ取り、約 20 分間で 317 のパッケージにわたる 630 以上の悪意のあるバージョンをリリースしました。この攻撃の目的は、データを盗み、マルウェアの拡散を続ける手段として、パスワード マネージャーを含むさまざまなサービスの認証情報を盗むことです。ハッカーが侵害したパッケージの中には、...によって作成されたライブラリである Antv があります。
+
+#### 🏢 企業解説リンク
+
+- [TechCrunch](companies/techcrunch.html)
+
+🔗 [元記事を読む](https://techcrunch.com/2026/05/19/hackers-have-compromised-dozens-of-popular-open-source-packages-in-an-ongoing-supply-chain-attack/)
+
+---
+
+## 記事 4  ｜  TechCrunch
+
+### 米国のサイバー機関 CISA が大量のパスワードとクラウド キーをオープン ウェブに公開 |テッククランチ
+
+> 原題: *US cyber agency CISA exposed reams of passwords and cloud keys to the open web | TechCrunch*
+
+#### 📝 記事の日本語訳
+
+米国のサイバーセキュリティ機関 CISA は、政府のクラウドや内部機関のシステムへのアクセスを許可する公的に公開された資格情報を特定した誠実なセキュリティ研究者のおかげで、大規模なセキュリティ侵害を免れた可能性があります。独立系セキュリティ記者のブライアン・クレブス氏が最初に報じたように、GitGuardianのセキュリティ研究者ギヨーム・ヴァラドン氏は、スプレッドシートにリストされた大量の平文認証情報が公開されているのを発見した。これらの認証情報は、CISAの請負業者に勤める従業員によってGitHubリポジトリで公開されていたものだった。ヴァラドン氏はクレブス氏に対し、流出した資格情報はCISAとその親機関である国土安全保障省に属するシステムへのアクセスに使用されたと語った。ヴァラドン氏は、認証情報にはアクセストークン、クラウドキー、その他の機密ファイルが含まれていたと述べた。ヴァラドンはクレブスにこう語った。
+
+#### 🏢 企業解説リンク
+
+- [TechCrunch](companies/techcrunch.html)
+
+🔗 [元記事を読む](https://techcrunch.com/2026/05/19/us-cyber-agency-cisa-exposed-reams-of-passwords-and-cloud-keys-to-the-open-web/)
+
+---
+
+## 記事 5  ｜  TechCrunch
+
+### Apple、Apple Intelligence によるアクセシビリティ機能のアップデートを発表 |テッククランチ
+
+> 原題: *Apple announces Apple Intelligence powered accessibility feature updates | TechCrunch*
+
+#### 📝 記事の日本語訳
+
+火曜日の Google 年次開発者会議に先立ち、Apple は、VoiceOver、音声コントロール、ライブ認識、ビデオのリアルタイム キャプション生成などの機能に対する Apple Intelligence を活用したいくつかの新しいアクセシビリティ アップデートを発表しました。同社はまた、Vision Proのユーザーは、このアップデートを使用して互換性のある車椅子を目で制御できるようになると述べた。同社は、VoiceOver の Apple Intelligence の画像認識機能により画像をよりよく理解し、より詳細に説明できると述べています。たとえば、請求書を見て、金額や期限などの詳細を読み上げることができます。 Apple によると、この更新された機能により、写真や個人の記録をより適切に説明できるようになりました。ユーザーは iPhone を使用して、カメラを使用するライブ認識機能をアクティブ化できるようになりました。
+
+#### 🏢 企業解説リンク
+
+- [Apple](companies/apple.html)
+- [Google](companies/google.html)
+- [TechCrunch](companies/techcrunch.html)
+
+🔗 [元記事を読む](https://techcrunch.com/2026/05/19/apple-announces-apple-intelligence-powered-accessibility-feature-updates/)
+
+---
+
+## 記事 6  ｜  The Verge
+
+### Sony の 1000X The Collection は柔らかく高価です
+
+> 原題: *Sony’s 1000X The Collexion are cushy and costly*
+
+#### 📝 記事の日本語訳
+
+このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。 ソニーの最新ヘッドフォンは、フラッグシップ シリーズをさらに豪華にし、それに見合った価格を設定しています。
+
+🔗 [元記事を読む](https://www.theverge.com/tech/933168/sony-1000x-collexion-review)
+
+---
+
+## 記事 7  ｜  The Verge
+
+### Google I/O 2026: すべてのニュースと発表
+
+> 原題: *Google I/O 2026: All the news and announcements*
+
+#### 📝 記事の日本語訳
+
+Google I/O 2026 は本日開幕し、イベントの基調講演は 5 月 19 日太平洋時間午前 10 時 / 東部時間午後 1 時に予定されています。 Gemini は今年の開発者カンファレンスでも再び中心となることが予想されており、Google は新しいバージョンの AI モデルやよりエージェント的な AI 機能を導入する可能性があります。 Google はすでに Android Show で、AI 生成のウィジェットを含む Android 17 に導入される多数の AI 機能を披露しました。この基調講演では、検索や他の Google サービスにも同様の更新が行われる可能性があります。また、Google XR のアップデートも入手できる可能性があり、サムスンやグッチのモデルも開発中と伝えられている、いくつかの新しいスマート グラスを垣間見ることができる可能性もあります。 Google の年次開発者カンファレンスがやって来ました。 Gemini、Search、その他すべての製品に多くのアップデートが行われることを期待しています...
+
+#### 🏢 企業解説リンク
+
+- [Google](companies/google.html)
+
+🔗 [元記事を読む](https://www.theverge.com/tech/932454/google-io-2026-news-announcements)
+
+---
+
+## 記事 8  ｜  The Verge
+
+### AI アナウンサーが卒業式中に名前を間違えて読み飛ばした
+
+> 原題: *An AI announcer mispronounced and skipped names during a graduation*
+
+#### 📝 記事の日本語訳
+
+このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。アリゾナ州のグレンデール コミュニティ カレッジでは、AI システムがミスを繰り返したため、数人の学生がやり直しを命じられました。
+
+🔗 [元記事を読む](https://www.theverge.com/tech/933653/ai-graduation-commencement-glendale-community-college)
+
+---
+
+## 記事 9  ｜  The Verge
+
+### アメリカの危険で厄介なディープフェイクの取り締まりが始まる
+
+> 原題: *America’s dangerous, messy deepfakes crackdown is here*
+
+#### 📝 記事の日本語訳
+
+このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。 ﻿The Take It Down Act is in full force, but it could be a gift to government censors — not victims of image-based sexual abuse.
+
+🔗 [元記事を読む](https://www.theverge.com/policy/933518/take-it-down-act-notice-removal-social-media-deepfake)
+
+---
+
+## 記事 10  ｜  The Verge
+
+### Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.
+
+> 原題: *Apple’s accessibility features add more AI-powered processing*
+
+#### 📝 記事の日本語訳
+
+このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。 Apple’s adding AI-generated subtitling for any video.
+
+#### 🏢 企業解説リンク
+
+- [Apple](companies/apple.html)
+
+🔗 [元記事を読む](https://www.theverge.com/tech/933420/apple-iphone-mac-vision-pro-accessibility-2026-apple-intelligence)
+
+---
+
+## 記事 11  ｜  Wired
+
+### OpenAIの元スタッフは、xAIの劣悪な安全記録がSpaceXのIPOを複雑にする可能性があると警告
+
+> 原題: *Former OpenAI Staffers Warn That xAI’s Poor Safety Record Could Complicate SpaceX’s IPO*
+
+#### 📝 記事の日本語訳
+
+OpenAIの元従業員2名とAI安全性非営利団体のグループは、イーロン・マスク氏のAI研究所「xAI」が、ウォール街史上最大規模と予想される新規株式公開の申請を準備しているスペースXへの将来の投資家にとって負債となる可能性があると警告している。火曜日に発行された投資家に宛てた書簡の中で、元スタッフらは、IPOの一環として最大750億ドルを調達すると報じられているスペースXの計画を複雑にする可能性があるxAIに関連した「値段のつけられないリスク」と表現するものを強調した。昨年 xAI を買収した後、このロケット会社の非公開評価額は 1 兆ドル以上に跳ね上がりました。マスク氏は、彼のロケット会社がAI研究室のためにデータセンターを宇宙に打ち上げることができると主張したが、書簡の著者らは、xAIの安全性問題に関する実績が乏しいため、投資家間の競争が複雑になる可能性があると主張している。
+
+#### 🏢 企業解説リンク
+
+- [OpenAI](companies/openai.html)
+- [SpaceX](companies/spacex.html)
+
+🔗 [元記事を読む](https://www.wired.com/story/ex-openai-staffers-warn-spacex-investors-of-ai-safety-risks/)
+
+---
+
+## 記事 12  ｜  Wired
+
+### ザッカーバーグ夫妻はライフガードを雇っているが、それを「ビーチの水担当者」と呼んでいる
+
+> 原題: *The Zuckerbergs Are Hiring a Lifeguard but Calling It a ‘Beach Water Person’*
+
+#### 📝 記事の日本語訳
+
+ザッカーバーグ家のオフィスであるウェスト10に関連したグリーンハウスの新しい求人情報によると、メタの最高経営責任者（CEO）マーク・ザッカーバーグとその妻プリシラ・チャンは、家族が広大な敷地を所有しているハワイ州カウアイ島に拠点を置く、季節限定のオンコールの「ビーチウォーター担当者」を雇用しているという。これは役職としては興味深い選択です。なぜなら、職務内容によれば、この「海水担当者」の主な任務には「ビーチのライフガード」と「プールのライフガード」としての勤務が含まれるからです。いわばライフセーバーです。求人情報には「ボートの甲板員」としての勤務についても触れられており、「スタンドアップパドルボード（SUP）、カヌーパドリング、シュノーケリング、その他の海洋活動」の指導など、追加の職務もいくつか挙げられている。 These, however, come after the water safety responsibilities in the job description...
+
+#### 🏢 企業解説リンク
+
+- [Meta](companies/meta.html)
+
+🔗 [元記事を読む](https://www.wired.com/story/mark-zuckerberg-priscilla-chan-lifeguard-beach-water-person/)
+
+---
+
+## 記事 13  ｜  Wired
+
+### お気に入りのアクション カメラをヘルメットや浮き輪にストラップで固定しましょう
+
+> 原題: *Strap One of Our Favorite Action Cameras to Your Helmet or a Floaty*
+
+#### 📝 記事の日本語訳
+
+最適なアクション カメラを選択するのは以前は簡単でした。GoPro を選択するだけです。 GoPro は私たちのリストの上位にランクされており、今後発売される Mission 1 カメラは再びこのリストの上位に入る可能性があるため、これは依然として良いアドバイスですが、いくつかの面で現在のフラッグシップ GoPro Hero 13 Black を上回る価値のある競合他社もいくつかあります。決定は簡単ではありません。そのため、正確に何が最高のアクション カメラであるかを判断するために、私たちはアクション カメラと一緒に潜り、一緒に登り、一緒にサーフィンをし、自転車に乗った無謀な 13 歳の子供たちにカメラを渡しました。スキー場、ビーチ、スケートパークでの冒険を乗り切るための素晴らしいオプションをいくつか見つけました。ベスト 360 カメラのガイドも必ずお読みください。最近ではアクション カメラとかなり重複する部分があり、場合によっては、一部の人にとっては...
+
+🔗 [元記事を読む](https://www.wired.com/gallery/best-action-cameras/)
+
+---
+
+## 記事 14  ｜  Wired
+
+### これはハーマンミラーのゲーマー向けの新しいスタンディングデスクです
+
+> 原題: *This Is Herman Miller’s New Standing Desk for Gamers*
+
+#### 📝 記事の日本語訳
+
+「ゲーム用」アクセサリを購入するときは、勝利を求めて何時間もクリックを続けるゲーマー向けに、もう少し活気のある製品、つまりいくつかの追加の特典や高度な機能を提供する製品を購入することがよくあります。特にシックではないかもしれませんが、これらのゲーム周辺機器は、ゲーミング キーボード、ゲーミング ヘッドセット、ゲーミング マウスのいずれであっても、最大化を目指しています。ゲーミングデスクは現在成長中のカテゴリーです。これらの家具はゲーム ルームやホーム オフィスのアクセントになると同時に、気が散る要素を最小限に抑え、ゲーマーがゲームプレイに集中できるようにします。多くの場合、付属のゲーム チェアやその独特のレース カー シートの美しさに合わせてデザインされています。 Secretlab や Corsair など、ゲームに特化したさまざまな企業が、より包括的なゲーム用のシットツースタンディング デスクを市場に提供しています。
+
+🔗 [元記事を読む](https://www.wired.com/story/exclusive-herman-miller-coyl-standing-desk-for-gamers/)
+
+---
+
+## 記事 15  ｜  Wired
+
+### 米国は公有地への公平なアクセスを確保するためのサイトを構築した。その後、すべてがうまくいかなくなりました
+
+> 原題: *The US Built a Site to Ensure Fair Access to Public Lands. Then Everything Went Wrong*
+
+#### 📝 記事の日本語訳
+
+3月16日、山岳時間午前8時の数分前、この日は公共用地予約のための連邦ウェブサイトRecreation.govで河川使用許可の取り消しが発表される日だ。この記事は、独立した非営利報道機関である RE:PUBLIC Lands Media と提携して制作されました。ここから RE:PUBLIC のニュースレターに登録してください。一般に Rec.gov と呼ばれるこの機関は、河川の許可や最も人気のある国立公園の時間指定入場料から、土地管理局が所有する遠隔地にあるキャンプ場の予約に至るまで、あらゆるものを管理しており、最近では多くの人々が公有地でレクリエーションを行っています。 2024 年のサイトの予約数は 1,100 万件で、2019 年に報告された予約数 350 万件から大幅に増加しました。その中心にいるのは、屋外の意外なプレイヤーです...
+
+🔗 [元記事を読む](https://www.wired.com/story/the-us-built-a-site-to-ensure-fair-access-to-public-lands-then-everything-went-wrong/)
+
+---
+
+## 記事 16  ｜  Ars Technica
+
+### 電力会社の巨大合併の焦点はデータセンターにある
+
+> 原題: *Electrical utility megamerger is all about the data centers*
+
+#### 📝 記事の日本語訳
+
+NextEra と Dominion との大ヒット契約は、おそらく消費者にとっての請求額の増加を意味します。市場価値で国内最大手の電力会社NextEra Energyと6位のDominion社の合併案は、データセンターと電力需要の急増により業界が再構築されている時期に巨大企業を誕生させることになる。月曜朝に発表されたこの提案は、州および連邦の規制当局の承認を条件としており、発電全般、天然ガス発電、再生可能エネルギーなど、米国の電力・公益事業業界のほぼすべての側面で主導権を握る企業が誕生することになる。 670億ドルの契約は、NextEraの規模と範囲と、バージニア北部にある世界最大のデータセンター集中地域の地域電力会社としてのドミニオンの位置付けを組み合わせたものである。しかし結果は…
+
+🔗 [元記事を読む](https://arstechnica.com/tech-policy/2026/05/electrical-utility-megamerger-is-all-about-the-data-centers/)
+
+---
+
+## 記事 17  ｜  Ars Technica
+
+### ヴァスト社は宇宙ステーションに加えて、今後は高出力衛星も建造すると発表
+
+> 原題: *In addition to space stations, Vast says it will now build high-power satellites*
+
+#### 📝 記事の日本語訳
+
+「成功している宇宙企業はどれも、その製品は多様化しています。」民間宇宙ステーション開発計画の一環として、ヴァスト・スペース社は小型のデモンストレーション宇宙船を建造し、11月初旬に打ち上げた。その後、この車両は数十のテスト目標を見事に達成し、3 か月後に軌道離脱に成功しました。ヴァスト社のヘイブン-1宇宙ステーションに必要な動力、推進力、追跡、その他多数の技術をテストしたこのミッションは明らかに大成功を収めたため、同社はその宇宙飛行能力を他の目的に使用する準備ができている。カリフォルニア州ロングビーチに本拠を置く同社は火曜日、高性能衛星バスの販売を開始する計画を発表した。 「成功している宇宙企業はいずれも、その製品を多様化しています」とマックス・ハオット最高経営責任者は述べています。
+
+🔗 [元記事を読む](https://arstechnica.com/space/2026/05/vast-space-seeks-to-diversify-by-building-satellites-as-well-as-space-stations/)
+
+---
+
+## 記事 18  ｜  Ars Technica
+
+### イラン、大手テック企業にホルムズ海峡の海底インターネットケーブル料金の支払いを要求
+
+> 原題: *Iran demands Big Tech pay fees for undersea Internet cables in Strait of Hormuz*
+
+#### 📝 記事の日本語訳
+
+海底チョークポイントに対するイランの主張により、米国のハイテク企業は陸上ファイバーに移行するよう促されている。 TeleGeography の調査責任者、Alan Mauldin 氏は CNN のインタビューで、FALCON ケーブルとガルフブリッジケーブルは特定の地点でイラン領海を通過していると述べた。 CNNはまた、イラン国営メディアが「ケーブルへの損傷を警告する隠れた脅迫を行った」と報じた。イランが自らの意志を押し付ける手段として海底ケーブルを脅す能力があるかどうかは、現時点では不確実だ。米国とイスラエルが2月28日にイランを攻撃して戦争を開始して以来、米中央軍司令官ブラッド・クーパー提督が5月14日に上院軍事委員会で行った証言で、米軍はイラン海軍の艦艇161隻を撃破したと主張している。米軍は小型高速戦艦の一部も撃沈したと述べた。
+
+🔗 [元記事を読む](https://arstechnica.com/tech-policy/2026/05/iran-demands-big-tech-pay-fees-for-undersea-internet-cables-in-strait-of-hormuz/)
+
+---
+
+## 記事 19  ｜  Ars Technica
+
+### エボラ出血熱の流行：WHOが非常事態宣言、米国が渡航制限、米国人感染者
+
+> 原題: *Ebola outbreak: WHO declares emergency, US restricts travel, American infected*
+
+#### 📝 記事の日本語訳
+
+CDCは感染した米国人と他の6人をドイツに移送するよう取り組んでいる。金曜日にコンゴ民主共和国で最初に報告されたエボラ出血熱の流行は、急速に拡大し、制御不能な多国間での大規模な流行に発展したようだ。同地域に事務所を構える米国疾病予防管理センターの最新データによると、5月17日現在、コンゴ民主共和国では確定患者10人、感染疑い患者336人、死亡者88人となっており、隣国ウガンダでも確定患者2人、死亡者1人となっている。この数字によれば、この流行はすでにエボラ出血熱の流行規模で記録された上位10位以内に入っているが、それでも最悪とは程遠く、2014年から2016年の西アフリカでの流行では感染者2万8,000人、死者1万1,000人を超えた。日曜日、世界保健機関はこのアウトブレイクが公衆衛生上の危機に瀕していると宣言した。
+
+🔗 [元記事を読む](https://arstechnica.com/health/2026/05/ebola-outbreak-who-declares-emergency-us-restricts-travel-american-infected/)
+
+---
+
+## 記事 20  ｜  Ars Technica
+
+### 法的失敗: AI を使用して、デートの誘いをしたとして Facebook ユーザーを訴えるのはやめてください
+
+> 原題: *Legal fail: Don’t use AI to sue Facebook users for calling you a bad date*
+
+#### 📝 記事の日本語訳
+
+偽の引用により、男性による「私たちは同じ男と付き合っているのか」復讐訴訟が打ち砕かれた。シカゴのFacebookグループ「Are We Dating the Same Guy」と呼ばれる重要な投稿を削除するようメタに圧力をかけようとする試みは、個人情報暴露の主張を裏付けるために偽のAI引用に依存しているように見える削除の議論を行った弁護士に対する制裁に終わる可能性がある。この訴訟はすでに地方裁判所によって予断を持って却下されており、同裁判所は訴状を修正して救済する方法はないとの判決を下した。しかし、ニッコー・ダンブロージオ氏は、20人以上の女性を名誉毀損で告発し、メタ氏がその「娯楽的価値」で利益を上げるために投稿を宣伝したと非難し、とにかく控訴した。おそらく彼は、AI を使って「法的反対派を発見する」と主張する法律事務所、MarcTrent.AI に頼っていたため、厳しい可能性が高いにもかかわらず自信を持っていたのかもしれません。
+
+#### 🏢 企業解説リンク
+
+- [Meta](companies/meta.html)
+
+🔗 [元記事を読む](https://arstechnica.com/tech-policy/2026/05/legal-fail-dont-use-ai-to-sue-facebook-users-for-calling-you-a-bad-date/)
+
+---
+
+## 記事 21  ｜  MIT Tech Review
+
+### 現代のサイバー犯罪情勢を理解する
+
+> 原題: *Understanding the modern cybercrime landscape*
+
+#### 📝 記事の日本語訳
+
+ネットワークの極めて重要な役割と、ネットワークが企業のデジタル防御をどのように管理できるかを再考する時期が来ています。 HPE は 2025 年を通じて、サイバー犯罪者の活動方法に大きな変化があることを観察しました。現実世界の脅威を分析する HPE 脅威研究所は、新しい In the Wild レポートでサイバー犯罪者の手口の産業化を強調し、攻撃活動の規模、速度、構造を向上させました。通常、彼らは長年にわたる脆弱性を悪用するために自動化と AI を使用しており、多くは効率を最適化するために専門的な企業階層を採用しています。 CISO や CIO なら誰でもおそらく認めるでしょうが、今日のサイバーセキュリティの脅威は企業にとってこれまでと同様に脅威となっています。しかし、その率直な発言の裏を深く掘り下げてみると、より微妙で複雑なサイバーセキュリティの状況が存在しています。
+
+🔗 [元記事を読む](https://www.technologyreview.com/2026/05/19/1136925/understanding-the-modern-cybercrime-landscape/)
+
+---
+
+## 記事 22  ｜  MIT Tech Review
+
+### ダウンロード: マスク対アルトマン、戦争用スマート グラス、および Google I/O
+
+> 原題: *The Download: Musk v. Altman, smart glasses for warfare, and Google I/O*
+
+#### 📝 記事の日本語訳
+
+さらに、OpenAI はイーロン・マスクに対する法的勝利により、大ヒット IPO への道を切り開きました。これは、テクノロジーの世界で何が起こっているかを毎日提供する平日のニュースレター、 The Download の本日版です。イーロン・マスク氏は、OpenAIが非営利団体としての設立契約に違反したかどうかを争点としたOpenAIに対する訴訟で敗訴した。陪審は、彼が訴訟を起こすのが遅すぎた、つまり彼の主張は時効によって禁止されていると判断した。しかし、判決ではOpenAIが非営利の使命に違反したかどうかは判断されず、マスク氏の訴訟が間に合うかどうかだけが判断された。この論争は、OpenAI がいつから営利組織に移行し始めたかを中心にしている。同社は、変化の兆候は2017年にはすでに見られていたと主張したが、マスク氏はその変化に気づいたのは2022年だと述べた。
+
+#### 🏢 企業解説リンク
+
+- [Google](companies/google.html)
+- [OpenAI](companies/openai.html)
+
+🔗 [元記事を読む](https://www.technologyreview.com/2026/05/19/1137505/the-download-musk-altman-trial-smart-glasses-warfare-google-i-o/)
+
+---
+
+## 記事 23  ｜  MIT Tech Review
+
+### Colossal Biosciences は 3D プリントした人工卵殻でニワトリを育てています
+
+> 原題: *Colossal Biosciences is growing chickens in a 3D-printed artificial eggshell*
+
+#### 📝 記事の日本語訳
+
+人工子宮に向けた初期段階として、あるバイオテクノロジー企業が「完全人工」鶏卵を開発したと主張している。雛たちは体を動かし、羽音を立て始め、あるいは孵化しようとしていました。しかし、卵からではありません。代わりに、これらのニワトリは、Colossal Biosciences のダラス本社にある、3D プリントされた透明なプラスチック カップの中で成長していました。このバイオテクノロジー企業は本日、ドードーやジャイアントモアなどの鳥類を含む絶滅した鳥類を復活させる取り組みの一環として「完全人工卵」を開発したと主張した。
+
+🔗 [元記事を読む](https://www.technologyreview.com/2026/05/19/1137471/colossal-biosciences-is-growing-chickens-in-a-3d-printed-container/)
+
+---
+
+## 記事 24  ｜  MIT Tech Review
+
+### イーロン・マスクがOpenAIに対する訴訟で敗訴した理由は次のとおりです
+
+> 原題: *Here’s why Elon Musk lost his suit against OpenAI*
+
+#### 📝 記事の日本語訳
+
+3週間にわたる証言の決闘の後、陪審はマスク氏がAI巨人を告訴したのは遅すぎたと判断した。月曜日、マスク対アルトマン事件の陪審はイーロン・マスク氏に大きな打撃を与え、マスク氏がOpenAIを告訴したのが遅すぎたため、その結果、彼の請求は適用される時効によって妨げられるという全会一致の諮問評決に達した。米国地方判事イヴォンヌ・ゴンザレス・ロジャースは直ちにこの判決を受諾した。マスク氏はXでこの決定に対して控訴すると発表した。 「裁判官と陪審は、実際には事件の本案に基づいて判決を下したことはなく、単にカレンダーの専門性に基づいて判断しただけだ」と彼は書いた。 OpenAI は 2015 年にマスク氏と研究者のグループによって共同設立され、金銭的利益を生み出す必要に束縛されず、人類の利益のために AI を開発するという使命を持つ非営利団体として設立されました。マスク氏は設立当初に同社に3,800万ドルを寄付した。
+
+#### 🏢 企業解説リンク
+
+- [OpenAI](companies/openai.html)
+
+🔗 [元記事を読む](https://www.technologyreview.com/2026/05/18/1137488/elon-musk-suit-openai-verdict/)
+
+---
+
+## 記事 25  ｜  MIT Tech Review
+
+### 今週 Google に期待できること
+
+> 原題: *What to expect from Google this week*
+
+#### 📝 記事の日本語訳
+
+同社は最も重要な点で最も近い競合他社に後れを取っている。追いつくことができるでしょうか？明日、Google が年次開発者カンファレンス I/O を開くとき、Google はファウンデーション モデル レースで明らかに 3 位となるでしょう。 1 年前の Google I/O 2025 では、状況は大きく異なっていました。同社は、3 月に Gemini 2.5 Pro を発表して以来、依然として絶好調でした。トップレベルの大規模言語モデルを区別することは、主観的には毛が生えたように感じられることがよくありました。しかし、今日の基盤モデルの評判はそのコーディング機能に大きく依存しており、ここ数カ月間、Google のコーディング ツールは Anthropic の Claude Code や OpenAI の Codex に負け続けています。これらのシステムは Google 自身の製品よりも劇的に優れているため、同社は改善を余儀なくされたと伝えられています...
+
+#### 🏢 企業解説リンク
+
+- [Google](companies/google.html)
+- [OpenAI](companies/openai.html)
+
+🔗 [元記事を読む](https://www.technologyreview.com/2026/05/18/1137439/what-to-expect-from-google-this-week/)
+
+---
+
+## 記事 26  ｜  VentureBeat
+
+### エージェント型 AI が企業の検索を限界まで押し上げるにつれて、コンテキスト アーキテクチャが RAG に取って代わりつつあります
+
+> 原題: *Context architecture is replacing RAG as agentic AI pushes enterprise retrieval to its limits*
+
+#### 📝 記事の日本語訳
+
+<p>Redis は、負荷がかかっても Web アプリケーションが崩壊しないようにするキャッシュ レイヤーとしてその名を築きました。現在、同社が対象としている問題も同じ構造を持っていますが、解決はより困難です。実稼働 AI エージェントが失敗するのは、モデルが間違っているためではなく、その下にあるデータが散在し、古くなり、機械ではなく人間向けに構造化されているためです。単一のクエリ用に構築された取得パイプラインでは、エージェントが生成する量を吸収できません。</p><p>Redis がターゲットとしているギャップは構造的なものであり、エージェントが注文を出します...
+
+🔗 [元記事を読む](https://venturebeat.com/data/context-architecture-is-replacing-rag-as-agentic-ai-pushes-enterprise-retrieval-to-its-limits)
+
+---
+
+## 記事 27  ｜  VentureBeat
+
+### 50 日間で 4 件の AI サプライチェーン攻撃により、レッド チームがカバーしていないリリース パイプラインが明らかになった
+
+> 原題: *Four AI supply-chain attacks in 50 days exposed the release pipeline red teams aren't covering*
+
+#### 📝 記事の日本語訳
+
+<p>50 日間で 4 件のサプライ チェーン インシデントが OpenAI、Anthropic、Meta を襲いました。そのうち 3 件は敵対者による攻撃で、1 件は自らによるパッケージングの失敗でした。モデルを対象としたものはなく、リリース パイプライン、依存関係フック、CI ランナー、および<a href="https://openai.com/index/gpt-4o-system-card/">システム カード</a>、<a href="https://www.aisi.gov.uk/work/advanced-ai-evaluations-may-update">AISI 評価</a>、または <a> を持たないパッケージ化ゲートの 4 つすべてが同じギャップを明らかにしました。 href="https://www.grayswan.ai/">グレイスワン r...
+
+#### 🏢 企業解説リンク
+
+- [Meta](companies/meta.html)
+- [OpenAI](companies/openai.html)
+
+🔗 [元記事を読む](https://venturebeat.com/security/supply-chain-incidents-openai-anthropic-meta-release-surface-vendor-questionnaire-matrix)
+
+---
+
+## 記事 28  ｜  VentureBeat
+
+### LangSmith エンジンはエージェントのデバッグ ループを自動的に閉じますが、マルチモデルの企業には依然として中立層が必要です
+
+> 原題: *LangSmith Engine closes the agent debugging loop automatically — but multi-model enterprises still need a neutral layer*
+
+#### 📝 記事の日本語訳
+
+<p>エージェントを構築および導入している企業には問題があります。エンジニアがエージェントの間違いに気づくまでに時間がかかりすぎ、特にすべての段階で人間が介入しない場合、ループが永続し続けています。 </p><p>LangChain の監視および評価プラットフォームである LangSmith は、こ​​の問題をより管理しやすくする新しい機能をパブリック ベータ版で開始しました。 <a href="https://www.langchain.com/blog/introducing-langsmith-engine">LangSmith エンジン</a> はチェーン全体を自動化します...
+
+🔗 [元記事を読む](https://venturebeat.com/orchestration/langsmith-engine-closes-the-agent-debugging-loop-automatically-but-multi-model-enterprises-still-need-a-neutral-layer)
+
+---
+
+## 記事 29  ｜  VentureBeat
+
+### グラフ拡張 RAG のアーキテクチャ パターン: 本番環境でのベクトル検索を超えて
+
+> 原題: *Architectural patterns for graph-enhanced RAG: Moving beyond vector search in production*
+
+#### 📝 記事の日本語訳
+
+<p>検索拡張生成 (RAG) は、プライベート データ内の大規模言語モデル (LLM) を基盤とするための事実上の標準になっています。標準アーキテクチャ (ドキュメントをチャンク化し、ベクトル データベースに埋め込み、コサイン類似度によって上位 K 件の結果を取得する) は、非構造化セマンティック検索に効果的です。</p><p>しかし、高度に相互接続されたデータ (サプライ チェーン、財務コンプライアンス、不正検出) を特徴とするエンタープライズ ドメインの場合、ベクトルのみの RAG は失敗することがよくあります。それは<i...をキャプチャします
+
+🔗 [元記事を読む](https://venturebeat.com/orchestration/architectural-patterns-for-graph-enhanced-rag-moving-beyond-vector-search-in-production)
+
+---
+
+## 記事 30  ｜  VentureBeat
+
+### 誰もモデル化していないエンタープライズ リスク: AI は学ぶ必要のある専門家そのものに取って代わりつつあります
+
+> 原題: *The enterprise risk nobody is modeling: AI is replacing the very experts it needs to learn from*
+
+#### 📝 記事の日本語訳
+
+<p><a についてhref="https://venturebeat.com/infrastruct/intent-based-chaos-testing-is-designed-for-when-ai-behaves-confidently-and-wrongly?_gl=1*11n0mtp*_up*MQ..*_ga*NTg2Mj M1NTE0LjE3Nzg5NjQ5NzA.*_ga_SCH1J7LNKY*czE3Nzg5NjQ5NjkkbzEkZzAkdDE3Nzg5NjQ5NjkkajY wJGwwJGgw*_ga_B8TDS1LEXQ*czE3Nzg5NjQ5NjkkbzEkZzAkdDE3Nzg5NjQ5NjkkajYwJGwwJGgw">AIシステム</a>がナレッジワークを改善し続けるためには、自律的な自己改善のための信頼できるメカニズムか、エラーを発見できる人間の評価者のいずれかが必要です...
+
+🔗 [元記事を読む](https://venturebeat.com/technology/the-enterprise-risk-nobody-is-modeling-ai-is-replacing-the-very-experts-it-needs-to-learn-from)
+
+---
+
+## 記事 31  ｜  Engadget
+
+### Sony 1000X The Collection レビュー: より豪華だが完璧とは程遠い - Engadget
+
+> 原題: *Sony 1000X The Collexion review: More luxurious, but far from perfect - Engadget*
+
+#### 📝 記事の日本語訳
+
+dek: ソニーは、1000X ヘッドフォンの 10 周年を新しいウルトラプレミアム モデルで祝います。ソニーの 1000X ヘッドフォンの持続力を否定することはできません。 10 年前のデビュー以来、歴代の各モデルは入荷と同時に当社のベストヘッドフォンリストのトップの座を獲得しました。同社の伝説的なオーバーイヤーヘッドフォンの記念日を祝うために、ソニーは 1000X The Collection (WH-1000XX) エディションをデビューさせました。デザインと素材には明らかなアップグレードがいくつかありますが、同社はフラッグシップヘッドフォンの理想的な形を作成することを期待して、内部も同様に再構築しました。しかし、テスト中に私が発見したのは、1000XX は完璧とは程遠く、リスニングの優先順位によっては、現時点でのソニーのラインナップの中で最良の選択でさえない可能性があるということです。さらに、この超プレミアム モデルは 650 ドルで、かなり高価です。
+
+🔗 [元記事を読む](https://www.engadget.com/2176369/sony-1000x-the-collexion-review/)
+
+---
+
+## 記事 32  ｜  Engadget
+
+### サムスン、世界初の6Kゲーミングモニターを生産 - Engadget
+
+> 原題: *Samsung's has produced the world's first 6K gaming monitor - Engadget*
+
+#### 📝 記事の日本語訳
+
+その他の優れた機能には、MovingStyle の大型バージョンや、多数のデュアルモード ゲーム パネルなどがあります。サムスンは、カレンダー全体を通して製品を少しずつ投入するのではなく、2026年に向けて新しいモニターの大部分を一度に投入しようとしている。そこで同社は、昨年末に CES の直前にからかった後、本日、スタジオや小さな家庭向けに設計された巻き取り可能な多目的ディスプレイから、ゲーマー向けの最新オプションのフルスイートまで、6 つのディスプレイをリリースしました。前モデルの成功を受けて、サムスンは Movingstyle Essential を大型化して戻ってきました。価格は 900 ドルで、より大型の 43 インチ 4K スクリーン (32 インチから増加) を備えています。以前と同様に、新しいモデルには、内蔵スマート TV アプリ、サムスンのゲーミング ハブ、そして重要な点として、専用のリモコンが付属しています。
+
+🔗 [元記事を読む](https://www.engadget.com/2176579/samsungs-has-produced-the-worlds-first-6k-gaming-monitor/)
+
+---
+
+## 記事 33  ｜  Engadget
+
+### Spotify、リスナーが AI のスロップを回避できるようにポッドキャストの認証バッジを開始 - Engadget
+
+> 原題: *Spotify is launching verification badges for podcasts to help listeners avoid AI slop - Engadget*
+
+#### 📝 記事の日本語訳
+
+このプラットフォームは最近、音楽に関しても同様のことを行った。 Spotify は、「クリエイターの身元と肖像の認証」を支援するために、ポッドキャスト用の認証バッジを開始します。これの最も明白な使用例は、AI のスロップの海の中でリスナーが本物のポッドキャストを見つけられるようにすることです。そのために同プラットフォームは、「AI音声クローンまたはその他の方法」を介して他のクリエイターになりすましたポッドキャストも削除すると述べている。 「Verified by Spotify」バッジには薄緑色のチェックマークアイコンが付いているため、閲覧中に本物のポッドキャストを見つけやすくなります。これらのバッジとアイコンは番組ページと検索に表示されます。検証プロセスでは、ポッドキャスト自体だけでなく、そのリスナーも考慮されます。 AI によって生成されたポッドキャストは、ボット主導のリスナーを引き付ける傾向があります。 Spotify が求めているのは「持続可能なライフスタイル」
+
+🔗 [元記事を読む](https://www.engadget.com/2176567/spotify-is-launching-verification-badges-for-podcasts-to-help-listeners-avoid-ai-slop/)
+
+---
+
+## 記事 34  ｜  Engadget
+
+### Insta360のMic Proには3つのマイクが内蔵されており、分厚いピンバッジのように見えます - Engadget
+
+> 原題: *Insta360's Mic Pro has three built-in mics and looks like a chunky pin badge - Engadget*
+
+#### 📝 記事の日本語訳
+
+Insta360は先月のNAB 2026でいくつかの新しいデバイスを予告したが、その中にはデュアルカメラを備えたDJI Osmoのライバルとなる可能性のある「Luna」も含まれていた。カメラはまだ準備ができていませんが、ワイヤレスマイクのアップグレードバージョンは準備が整っています。多くのテクノロジーが詰め込まれていますが、目を引くのは Mic Pro の円形面のほぼ全体を覆う e-ink ディスプレイです。コンパニオン アプリを使用すると、簡単な画像、単語、さらには YouTube チャンネルのロゴをアップロードできます。また、画像の焼き付きを避けるために、充電中に画面が更新されて循環します。奇妙に人目を引くのですが、マイクっぽくはなく（目に見えないところに隠れていますか？）、分厚いボタンバッジとエナメルピンの間のようなもののように見えます。色も心地よく鮮やかで、一部の作品のローファイ コミックブックのような外観が気に入っています。
+
+🔗 [元記事を読む](https://www.engadget.com/2175567/insta360-mic-pro-has-three-built-in-mics-and-looks-like-a-chunky-pin-badge/)
+
+---
+
+## 記事 35  ｜  Engadget
+
+### Microsoft の新しいビジネス向け Surface Laptop はプライバシー スクリーンと風変わりな触覚を備えています - Engadget
+
+> 原題: *Microsoft's new Surface Laptop for Business has a privacy screen and quirky haptics - Engadget*
+
+#### 📝 記事の日本語訳
+
+新しい Surface Pro および Surface Laptop for Business は、インテルの Core Ultra シリーズ 3 プロセッサーを搭載しています。私たちは RAM 危機の真っ只中にいる可能性があり、その結果として Surface の価格が高騰している可能性がありますが、だからといって Microsoft が今日新しい Surface 製品を発表することを止めるわけではありません。同社は、最新の Surface Pro および Surface Laptop for Business のラインナップを発表したばかりです。通常、Engadget ではエンタープライズ デバイスについては取り上げませんが、これらのコンピューターには言及する価値のある興味深い機能がいくつかあります。特に、Surface Laptop には、オプションの「アンチグレア機能付き統合プライバシー スクリーン」を装備することができます。これは Microsoft によると、Surface デバイスでは初のことです。また、ドラマなどの作業を行うときに、より多くの要素に反応してより多くのフィードバックを得る独自の触覚システムも提供します。
+
+#### 🏢 企業解説リンク
+
+- [Microsoft](companies/microsoft.html)
+
+🔗 [元記事を読む](https://www.engadget.com/2176309/microsoft-surface-pro-business-laptops-2026/)
+
+---
+
+
+> ⚠️ 本まとめは自動生成です。数値・固有名詞などの事実は元記事でご確認ください。
