@@ -1,0 +1,634 @@
+# 🌐 海外テックニュース 日本語まとめ
+
+**生成日時:** 2026年5月19日  20:29 JST
+
+> 世界の有力テックメディア（TechCrunch・The Verge・Wired・Ars Technica・MIT Tech Review・VentureBeat・Engadget）から注目記事を自動収集し、日本の読者向けに翻訳・要約しました。
+
+---
+
+## 目次
+
+1. [イーロン・マスク氏は、サム・アルトマン氏が非営利団体を「盗んだ」と述べたが、裁判では彼も同様の目的を持っていたことが判明した。テッククランチ](#記事-1--イーロン・マスク氏は、サム・アルトマン氏が非営利団体を「盗んだ」と述べたが、裁判では彼も同様の目的を持っていたことが判明した。テッククランチ)
+2. [Google、メタ氏の著書の一部を抜粋し、新しいオーディオ搭載スマートグラスを発表 |テッククランチ](#記事-2--google、メタ氏の著書の一部を抜粋し、新しいオーディオ搭載スマートグラスを発表-テッククランチ)
+3. [Google の Genie ワールド モデルは、ストリート ビューで実際の街路をシミュレートできるようになりました |テッククランチ](#記事-3--google-の-genie-ワールド-モデルは、ストリート-ビューで実際の街路をシミュレートできるようになりました-テッククランチ)
+4. [Gemini 3.5 Flash で、Google は次の AI の波をチャットボットではなくエージェントに賭けます |テッククランチ](#記事-4--gemini-35-flash-で、google-は次の-ai-の波をチャットボットではなくエージェントに賭けます-テッククランチ)
+5. [Google の新しい情報エージェントの使用方法 |テッククランチ](#記事-5--google-の新しい情報エージェントの使用方法-テッククランチ)
+6. [これまでのところ、メモリアルデーのお気に入りのハイテクセールをご紹介します](#記事-6--これまでのところ、メモリアルデーのお気に入りのハイテクセールをご紹介します)
+7. [民主党は政権を取り戻した場合、チケットマスター和解後にどのように対処するかをプレビューする](#記事-7--民主党は政権を取り戻した場合、チケットマスター和解後にどのように対処するかをプレビューする)
+8. [Ugreen の新しいサッカー ボール型トラッカーは最長 7 年のバッテリー寿命を誇ります](#記事-8--ugreen-の新しいサッカー-ボール型トラッカーは最長-7-年のバッテリー寿命を誇ります)
+9. [Kickstarter が新しい成人向けコンテンツ ルールを廃止した](#記事-9--kickstarter-が新しい成人向けコンテンツ-ルールを廃止した)
+10. [ジェミニはボルボの外部カメラを使用して駐車標識を解釈する](#記事-10--ジェミニはボルボの外部カメラを使用して駐車標識を解釈する)
+11. [Google I/O 2026 で発表されたすべて](#記事-11--google-io-2026-で発表されたすべて)
+12. [メタ従業員はレイオフを前に福利厚生を急いで使い切ろうとしている](#記事-12--メタ従業員はレイオフを前に福利厚生を急いで使い切ろうとしている)
+13. [デミス・ハサビス氏、AIの人員削減は愚かだと考えている](#記事-13--デミス・ハサビス氏、aiの人員削減は愚かだと考えている)
+14. [Google で自分自身のディープフェイクが簡単にできる](#記事-14--google-で自分自身のディープフェイクが簡単にできる)
+15. [Google 検索がエージェント的になり、もうユーザーは必要ありません](#記事-15--google-検索がエージェント的になり、もうユーザーは必要ありません)
+16. [2 人の AI ベースの科学アシスタントが薬物のリターゲティング作業に成功](#記事-16--2-人の-ai-ベースの科学アシスタントが薬物のリターゲティング作業に成功)
+17. [Google の SynthID AI 透かし技術は OpenAI、Nvidia などで採用されています](#記事-17--google-の-synthid-ai-透かし技術は-openai、nvidia-などで採用されています)
+18. [公開 GitHub リポジトリで秘密の CISA 認証情報が見つかる](#記事-18--公開-github-リポジトリで秘密の-cisa-認証情報が見つかる)
+19. [RFKジュニア、反ワクチンインチキ勢力にCDC委員会を開く憲章の撤回を余儀なくされた](#記事-19--rfkジュニア、反ワクチンインチキ勢力にcdc委員会を開く憲章の撤回を余儀なくされた)
+20. [Gemini 3.5 Flash は、Gen AI が理解できるほど高速である可能性があります](#記事-20--gemini-35-flash-は、gen-ai-が理解できるほど高速である可能性があります)
+21. [現代のサイバー犯罪情勢を理解する](#記事-21--現代のサイバー犯罪情勢を理解する)
+22. [ダウンロード: マスク対アルトマン、戦争用スマート グラス、および Google I/O](#記事-22--ダウンロード-マスク対アルトマン、戦争用スマート-グラス、および-google-io)
+23. [Colossal Biosciences は 3D プリントした人工卵殻でニワトリを育てています](#記事-23--colossal-biosciences-は-3d-プリントした人工卵殻でニワトリを育てています)
+24. [イーロン・マスクがOpenAIに対する訴訟で敗訴した理由は次のとおりです](#記事-24--イーロン・マスクがopenaiに対する訴訟で敗訴した理由は次のとおりです)
+25. [今週 Google に期待できること](#記事-25--今週-google-に期待できること)
+26. [クロード エージェントはついに認証情報を漏らすことなくエンタープライズ API に接続できるようになりました](#記事-26--クロード-エージェントはついに認証情報を漏らすことなくエンタープライズ-api-に接続できるようになりました)
+27. [Google の新しい AI エージェントは、メールの下書きを作成し、受信トレイを監視し、最終的にはお金を使うことができます](#記事-27--google-の新しい-ai-エージェントは、メールの下書きを作成し、受信トレイを監視し、最終的にはお金を使うことができます)
+28. [Google、Gemini 3.5 Flash は企業の AI コストを年間 10 億ドル以上削減できると発表](#記事-28--google、gemini-35-flash-は企業の-ai-コストを年間-10-億ドル以上削減できると発表)
+29. [Google は 25 年ぶりに検索ボックスのデザインを変更しました。それがあなたが思っている以上に重要である理由がここにあります。](#記事-29--google-は-25-年ぶりに検索ボックスのデザインを変更しました。それがあなたが思っている以上に重要である理由がここにあります。)
+30. [Google、Gemini Omni の「any-to-any」AI モデルを発表: 企業が知っておくべきこと](#記事-30--google、gemini-omni-の「any-to-any」ai-モデルを発表-企業が知っておくべきこと)
+31. [Google、科学研究のワークフローを最適化するAI搭載ツールを発表 - Engadget](#記事-31--google、科学研究のワークフローを最適化するai搭載ツールを発表---engadget)
+32. [Fortnite、米国での復活から 1 年後、App Store に世界中で復活 - Engadget](#記事-32--fortnite、米国での復活から-1-年後、app-store-に世界中で復活---engadget)
+33. [Google、Wear OS 7を発表 - Engadget](#記事-33--google、wear-os-7を発表---engadget)
+34. [Google I/O 2026 で発表されたすべて - Engadget](#記事-34--google-io-2026-で発表されたすべて---engadget)
+
+---
+
+## 記事 1  ｜  TechCrunch
+
+### イーロン・マスク氏は、サム・アルトマン氏が非営利団体を「盗んだ」と述べたが、裁判では彼も同様の目的を持っていたことが判明した。テッククランチ
+
+> 原題: *Elon Musk said Sam Altman "stole" a non-profit — but the trial showed he had similar aims | TechCrunch*
+
+#### 📝 記事の日本語訳
+
+OpenAIとマイクロソフトの他の創設者に対するイーロン・マスク氏の訴訟を棄却するという陪審の迅速な決定は、私たちが法廷で見たことを裏付けた。つまり、マスク氏の訴訟は、訴訟を起こすまでに非常に長い間待ったこともあり、弱い訴訟だったということだ。先週の最終弁論を見て、OpenAIの弁護士は法律がいかにクライアント側に味方しているかを点ごとに詳細に説明したが、一方、原告チームはサム・アルトマン氏の明らかに信頼性の欠如に焦点を当て、マスク氏の告発に同意しない人がいるとは信じられないと表明した。最終的な影響は、判決後、マスク氏自身を含め、マスク氏が負けたとは信じがたい人もいたということだった。後に削除した投稿の中で、マスク氏はイボンヌ・ゴンザレス・ロジャーズ判事を「ひどい活動家オークランド判事」と呼び、その後控訴する計画を発表し、「判決には疑問の余地はない」と宣言した。
+
+#### 🏢 企業解説リンク
+
+- [Microsoft](companies/microsoft.html)
+- [OpenAI](companies/openai.html)
+- [TechCrunch](companies/techcrunch.html)
+
+🔗 [元記事を読む](https://techcrunch.com/2026/05/19/elon-musk-said-sam-altman-stole-a-non-profit-but-the-trial-showed-he-had-similar-aims/)
+
+---
+
+## 記事 2  ｜  TechCrunch
+
+### Google、メタ氏の著書の一部を抜粋し、新しいオーディオ搭載スマートグラスを発表 |テッククランチ
+
+> 原題: *Google takes a page out of Meta's book, announces new audio-powered smart glasses | TechCrunch*
+
+#### 📝 記事の日本語訳
+
+Googleはスマートグラスゲームに（再び）参入しつつある。火曜日のGoogle I/Oで、同社はAI搭載メガネの新製品ラインを生産するために、Warby ParkerおよびGentle Monsterとの新たな提携を発表した。同社によると、これらのデバイスはAndroidおよびiOSデバイスとペアリングできるように構築され、Samsungと協力して設計されたという。同社によれば、今年後半に発売される予定だという。 Googleは、ユーザーがこれらのデバイスに口頭でコマンドを発行し、Geminiを含む同社のアプリやサービスのエコシステムを通じて物事を実行できるという点で、新しいデバイスを「オーディオグラス」と呼んでいる。ユーザーはメガネに話しかけるだけで（火曜日に共有されたデモでは、Google社員がメガネに話しかけるだけでオンラインでコーヒーを注文するというものでした）、デバイスは同期するとそれに応じます。
+
+#### 🏢 企業解説リンク
+
+- [Google](companies/google.html)
+- [Meta](companies/meta.html)
+- [TechCrunch](companies/techcrunch.html)
+
+🔗 [元記事を読む](https://techcrunch.com/2026/05/19/google-takes-a-page-out-of-metas-book-announces-new-audio-powered-smart-glasses/)
+
+---
+
+## 記事 3  ｜  TechCrunch
+
+### Google の Genie ワールド モデルは、ストリート ビューで実際の街路をシミュレートできるようになりました |テッククランチ
+
+> 原題: *Google’s Genie world model can now simulate real streets with Street View | TechCrunch*
+
+#### 📝 記事の日本語訳
+
+私たちは皆、Google マップのストリート ビューを表示して、子供時代を過ごした家の様子を友人に見せたり、パリの街路に小さな人のアイコンをドロップして、素敵な地域のホテルを予約したかどうかを確認したりしたことがあります。それが、より没入型でインタラクティブな方法でできることを想像してみてください。これにより、通りとその周辺を実際にシミュレートしたり、天気を調整したり、「デイ・アフター・トゥモロー」のシナリオでどのようになるかを確認したりすることもできます。それが Google の最新の統合の目標の 1 つです。本日より、Google DeepMind はストリート ビューを、多様でインタラクティブな環境を生成できる同社の汎用ワールド モデルである Project Genie に接続します。この新機能は、Google I/O 開発者カンファレンス中に発表されました。 「これはエージェントとエージェントの両方にとって非常に強力です。
+
+#### 🏢 企業解説リンク
+
+- [Google](companies/google.html)
+- [TechCrunch](companies/techcrunch.html)
+
+🔗 [元記事を読む](https://techcrunch.com/2026/05/19/googles-genie-world-model-can-now-simulate-real-streets-with-street-view/)
+
+---
+
+## 記事 4  ｜  TechCrunch
+
+### Gemini 3.5 Flash で、Google は次の AI の波をチャットボットではなくエージェントに賭けます |テッククランチ
+
+> 原題: *With Gemini 3.5 Flash, Google bets its next AI wave on agents, not chatbots | TechCrunch*
+
+#### 📝 記事の日本語訳
+
+Google は火曜日、Gemini 3.5 Flash を発表しました。これは、コーディングおよび自律型 AI エージェントにとってこれまでで最強であると同社が主張する新しい AI モデルです。同社の年次 Google I/O 開発者カンファレンスで発表されたこのモデルは、コーディング パイプラインを独立して実行し、研究プロジェクトを管理し、内部テストではオペレーティング システムを完全にゼロから構築できます。このリリースは、Google が AI を会話ツールとして売り込むことから、AI をエージェント ツールとして売り出すことに移行したことを示しています。単に質問に答えるだけではなく、人間の入力を最小限に抑えて実際の作業を計画、構築、反復することです。 DeepMind の主任技術者である Koray Kavukcuoglu 氏は、一般公開に先立って月曜日に記者団に対し、「3.5 Flash は、品質と低レイテンシーの驚くべき組み合わせを提供します。当社の最新のフロンティア モジュールよりも優れたパフォーマンスを発揮します。...
+
+#### 🏢 企業解説リンク
+
+- [Google](companies/google.html)
+- [TechCrunch](companies/techcrunch.html)
+
+🔗 [元記事を読む](https://techcrunch.com/2026/05/19/with-gemini-3-5-flash-google-bets-its-next-ai-wave-on-agents-not-chatbots/)
+
+---
+
+## 記事 5  ｜  TechCrunch
+
+### Google の新しい情報エージェントの使用方法 |テッククランチ
+
+> 原題: *How to use Google’s new information agents | TechCrunch*
+
+#### 📝 記事の日本語訳
+
+2026 年の Google I/O 基調講演で、ハイテク巨人は、ユーザーが複数の AI エージェントを作成、カスタマイズ、管理して、関心のあるトピックの最新情報を入手できる、検索の新しいエージェント機能を明らかにしました。この発表は、一度に 1 つの質問に答えるのではなく、主導権を握って進行中のタスクを支援できるエージェント AI システムに対する Google の大きな推進の一環です。プロンプトが表示された場合にのみ応答する従来の検索ツールとは異なり、Google のインフォメーション エージェントはバックグラウンドで 24 時間年中無休で継続的に動作するように設計されているため、ユーザーは毎日同じ情報を繰り返し検索する必要がなく、興味のある情報を常に入手できるようになります。エージェントは、リンクのリストを配信する代わりに、複数のソースからの情報を総合し、なぜそれが重要なのかを説明し、観点を比較することができます。
+
+#### 🏢 企業解説リンク
+
+- [Google](companies/google.html)
+- [TechCrunch](companies/techcrunch.html)
+
+🔗 [元記事を読む](https://techcrunch.com/2026/05/19/how-to-use-googles-new-information-agents/)
+
+---
+
+## 記事 6  ｜  The Verge
+
+### これまでのところ、メモリアルデーのお気に入りのハイテクセールをご紹介します
+
+> 原題: *Here are our favorite Memorial Day tech deals so far*
+
+#### 📝 記事の日本語訳
+
+このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。お気に入りのテレビ、ノイズキャンセリングイヤホン、ポータブルスピーカー、その他のガジェットのお買い得品を見つけました。
+
+🔗 [元記事を読む](https://www.theverge.com/gadgets/932465/best-memorial-day-sales-deals-2026)
+
+---
+
+## 記事 7  ｜  The Verge
+
+### 民主党は政権を取り戻した場合、チケットマスター和解後にどのように対処するかをプレビューする
+
+> 原題: *Democrats preview how they’d go after the Ticketmaster settlement if they regain power*
+
+#### 📝 記事の日本語訳
+
+このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。そしてカリフォルニア州のAGは、ライブ・ネイションのさらに広範な分割が検討されていると述べた。
+
+🔗 [元記事を読む](https://www.theverge.com/policy/934112/live-nation-ticketmaster-democrats-doj-settlement)
+
+---
+
+## 記事 8  ｜  The Verge
+
+### Ugreen の新しいサッカー ボール型トラッカーは最長 7 年のバッテリー寿命を誇ります
+
+> 原題: *Ugreen’s new soccer ball-shaped tracker has up to 7 years of battery life*
+
+#### 📝 記事の日本語訳
+
+このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。 ただし、交換不可能なバッテリーが切れたら、FineTrack 2 を電子ゴミ箱に捨てなければなりません。
+
+🔗 [元記事を読む](https://www.theverge.com/tech/934101/ugreen-finetrack-2-mini-tracker-apple-find-my-soccer-ball)
+
+---
+
+## 記事 9  ｜  The Verge
+
+### Kickstarter が新しい成人向けコンテンツ ルールを廃止した
+
+> 原題: *Kickstarter just killed its new mature content rules*
+
+#### 📝 記事の日本語訳
+
+このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。この著者からの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。この著者からの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。
+
+🔗 [元記事を読む](https://www.theverge.com/tech/933844/kickstarter-just-killed-its-new-mature-content-rules)
+
+---
+
+## 記事 10  ｜  The Verge
+
+### ジェミニはボルボの外部カメラを使用して駐車標識を解釈する
+
+> 原題: *Gemini will use Volvo’s external cameras to interpret parking signs*
+
+#### 📝 記事の日本語訳
+
+このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。駐車違反切符を切られたらAIのせいにすればいいだけだ。
+
+🔗 [元記事を読む](https://www.theverge.com/transportation/933556/google-io-gemini-volvo-ex60-camera-ai-parking)
+
+---
+
+## 記事 11  ｜  Wired
+
+### Google I/O 2026 で発表されたすべて
+
+> 原題: *Everything Announced at Google I/O 2026*
+
+#### 📝 記事の日本語訳
+
+Google は、年次 I/O 開発者イベントでの基調講演を終えたところです。同社は、一連の新しいエージェント AI 機能と、今後の Android 搭載スマート グラスのデモをいくつか披露しました。ここ数年と同様、この光景は主に、Google の絶え間ない AI への取り組みを中心に展開していました。同社によれば、9 億人が Gemini アシスタントを使用しており、Gemini を使用して 500 億以上の画像が生成されています。 Google の 2026 年の目標は、検索、Gmail、YouTube、ドキュメント、Chrome ブラウザなど、同社の最大のサービスすべての最前線に AI エージェントを配置することです。 I/O前日のデモブリーフィングで、GoogleとAlphabetの最高経営責任者（CEO）サンダー・ピチャイ氏は、同社がAIへの取り組みで「非常に進歩している」時期にあると述べたが、これはそのサイクルの一部であることを認めた。
+
+#### 🏢 企業解説リンク
+
+- [Google](companies/google.html)
+
+🔗 [元記事を読む](https://www.wired.com/story/everything-google-announced-at-google-io-2026/)
+
+---
+
+## 記事 12  ｜  Wired
+
+### メタ従業員はレイオフを前に福利厚生を急いで使い切ろうとしている
+
+> 原題: *Meta Employees Are Scrambling to Use Up Benefits Ahead of Layoffs*
+
+#### 📝 記事の日本語訳
+
+メタ社の最新の大量解雇を明日に控え、一部の従業員はオフィスを捨て、仕事を放棄し、すぐに失われるかもしれない特典を積み込んでいる、と同社の数名が『WIRED』に語った。 2 人の従業員は、健康やウェルネス活動を含むさまざまな費用をカバーできる年間 2,000 ドルの柔軟な福利厚生を使い切るために殺到していると述べています。オーディオ機器の購入に 3 年ごとに 200 ドルが付与されることにより、Apple AirPods やその他のヘッドフォンの争奪戦が発生しました。別の情報筋によると、人々は履歴書に磨きをかけることを優先し、同僚として最後の時間となるかもしれない友人との思いを馳せるために社外に集まっているため、今週メタのオフィスはほとんど空いているという。関係者によると、従業員はさまざまな「麻痺」、「ふらつき」、「パニック」に陥っているという。会った...
+
+#### 🏢 企業解説リンク
+
+- [Apple](companies/apple.html)
+- [Meta](companies/meta.html)
+
+🔗 [元記事を読む](https://www.wired.com/story/meta-employees-scramble-benefits-layoffs-ai/)
+
+---
+
+## 記事 13  ｜  Wired
+
+### デミス・ハサビス氏、AIの人員削減は愚かだと考えている
+
+> 原題: *Demis Hassabis Thinks AI Job Cuts Are Dumb*
+
+#### 📝 記事の日本語訳
+
+Google DeepMind の CEO、Demis Hassabis は、彼の会社の最新モデルである Gemini 3.5 Flash のコーディング スキルについて熱心に語ろうとしています。このモデルは、複雑なエージェント コーディング タスクを実行するようにトレーニングされています。つまり、大規模なコード ベースをある言語から別の言語に翻訳します。複雑なコードの奥深くに潜むバグを見つけて修正します。さらには、オペレーティング システム全体を最初から作成することもできます。しかし、ハサビス氏は、これがソフトウェア開発者に破滅をもたらすとは考えていない。今日のGoogleのI/Oイベントでの新モデル発表に先立って、ハサビス氏は「なぜ人々がそのことについて確信を持って語り始めるのか、私には分かりません」と『WIRED』に語った。 「おそらく、こうしたメッセージを発信するのには、資金集めなどの裏の動機があるのでしょう」とハサビス氏は言う。 「私の観点、DeepMind と Google の観点からすると、エンジニアが...
+
+#### 🏢 企業解説リンク
+
+- [Google](companies/google.html)
+
+🔗 [元記事を読む](https://www.wired.com/story/demis-hassabis-ai-layoffs-deepmind-google-io/)
+
+---
+
+## 記事 14  ｜  Wired
+
+### Google で自分自身のディープフェイクが簡単にできる
+
+> 原題: *Google Makes It Easy to Deepfake Yourself*
+
+#### 📝 記事の日本語訳
+
+Google Labs の製品管理担当副社長であるエリアス・ローマンが、ユーザーが AI ビデオや画像を生成してリミックスできる同社のツールである Flow の新しい「アバター」機能をデモしていると、既視感の波が私を襲いました。彼は以前、自分の肖像をスキャンして自分のデジタルクローンを作成しました。今では、Google の新しい Omni Flash モデルを使用して、AI が生成した任意のビデオクリップに自分自身を挿入できるようになりました。 「これは、自分自身をコンテンツに取り込みたいが、自分自身を撮影する必要はないクリエイター向けです」とローマン氏は言います。ソーシャルファーストのこの特定のスタイルの自撮りディープフェイクは、OpenAI の現在は廃止された Sora アプリの典型的な機能を思い出させます。カメオ出演やキャラクターではなく、Google はそれらをアバターと呼んでいます。これらのアバターは、Gemini アプリや YouTube からも入手できます。グーグルが発表…
+
+#### 🏢 企業解説リンク
+
+- [Google](companies/google.html)
+- [OpenAI](companies/openai.html)
+
+🔗 [元記事を読む](https://www.wired.com/story/google-makes-it-easy-to-make-a-deepfake-of-yourself/)
+
+---
+
+## 記事 15  ｜  Wired
+
+### Google 検索がエージェント的になり、もうユーザーは必要ありません
+
+> 原題: *Google Search Goes Agentic—and Doesn’t Need You Anymore*
+
+#### 📝 記事の日本語訳
+
+AI エージェントはどこにでもいます。過去 1 年間に私が出席したソフトウェア会社の説明会では、生成 AI ツールを使用してデジタル タスクを自動化するエージェントについての言及が必ずありました。 2026 年の初めに、初期の採用者がオンライン生活を管理するために使用した勇敢な OpenClaw エージェントのような画期的な瞬間があったにもかかわらず、ほとんどの人はまだこのスタイルの自動化を日常的に受け入れていません。 Googleの思いどおりになれば、この状況は長くは続かないだろう。 Google I/O で、テクノロジー大手は、人気の検索エンジンを数十億の既存ユーザーに同社の優れたエージェント機能を提供する中核的な手段にするというビジョンを共有しました。 Google で検索を率いるリズ・リード氏は、「多くのタスクに対応する複数の AI エージェントを検索内で直接作成、カスタマイズ、管理できるようになります」と述べています。彼女は、システムのセットアップの例を示します。
+
+#### 🏢 企業解説リンク
+
+- [Google](companies/google.html)
+
+🔗 [元記事を読む](https://www.wired.com/story/google-search-goes-agentic-and-doesnt-need-you-anymore/)
+
+---
+
+## 記事 16  ｜  Ars Technica
+
+### 2 人の AI ベースの科学アシスタントが薬物のリターゲティング作業に成功
+
+> 原題: *Two AI-based science assistants succeed with drug-retargeting tasks*
+
+#### 📝 記事の日本語訳
+
+どちらのツールも仮説を生成します。続いてデータの一部を分析します。 Nature は火曜日、科学者による仮説の開発と検証を支援することを目的とした AI システムについて説明した 2 つの論文を発表しました。 1 つは、Google の共同科学者であり、彼らが言うところの「現場の科学者」として設計されています。これは、研究者が定期的に自分たちの判断を適用してシステムを制御していることを意味します。 2 つ目は、FutureHouse と呼ばれる非営利団体によるもので、さらに一歩進んで、特定の種類の実験から得られる生物学的データを評価できるシステムをトレーニングしました。 Googleは自社のシステムが物理学にも有効であると言っているが、両グループはもっぱら生物学的データとほぼ単純な仮説を提示しており、この薬は物理学にも有効だという。したがって、これは科学者や科学プロセスを置き換えようとするものではありません。代わりに、私は...
+
+#### 🏢 企業解説リンク
+
+- [Google](companies/google.html)
+
+🔗 [元記事を読む](https://arstechnica.com/science/2026/05/two-ai-based-science-assistants-succeed-with-drug-retargeting-tasks/)
+
+---
+
+## 記事 17  ｜  Ars Technica
+
+### Google の SynthID AI 透かし技術は OpenAI、Nvidia などで採用されています
+
+> 原題: *Google's SynthID AI watermarking tech is being adopted by OpenAI, Nvidia, and more*
+
+#### 📝 記事の日本語訳
+
+AI コンテンツは良くなっていますが、SynthID はフィクションから真実を伝えるのに役立つかもしれません。わずか数年で、私たちは余分な指をフィーチャーした AI コンテンツを簡単に識別することから、驚くほどリアルに見える画像やビデオに移行しました。 AI の時代に何が真実なのかをどうやって知ることができるのでしょうか? Google の答えは、3 年前に初めて実証した SynthID です。同社によれば、それ以来、SynthID は 1,000 億枚の画像とビデオ、さらに 60,000 年分の音声にラベルを付けるために使用されてきました。 SynthID が Google を超えて拡大している今、この数字はさらに増加するばかりです。 SynthID は Google の唯一の AI ラベリング戦略ではありません。また、コンテンツにその作成方法を説明するメタデータをタグ付けする C2PA 標準にも準拠しています。 Google は、Pixel 10 スマートフォンで C2PA をより顕著に使用し始めました。撮影した写真...
+
+#### 🏢 企業解説リンク
+
+- [Google](companies/google.html)
+- [NVIDIA](companies/nvidia.html)
+- [OpenAI](companies/openai.html)
+
+🔗 [元記事を読む](https://arstechnica.com/google/2026/05/googles-synthid-ai-watermarking-tech-is-being-adopted-by-openai-nvidia-and-more/)
+
+---
+
+## 記事 18  ｜  Ars Technica
+
+### 公開 GitHub リポジトリで秘密の CISA 認証情報が見つかる
+
+> 原題: *Secret CISA credentials found in public GitHub repo*
+
+#### 📝 記事の日本語訳
+
+SSH キー、平文パスワード、その他の機密データは、2025 年 11 月から公開されていました。セキュリティ研究者のブライアン クレブス氏は、アメリカのサイバーセキュリティ・インフラストラクチャ庁 (CISA) が、少なくとも 2025 年 11 月以来、平文パスワード、SSH 秘密鍵、トークン、および「その他の CISA の機密資産」の大規模な保存をパブリック GitHub リポジトリで公開していたというニュースを伝えました。現在オフラインになっているパブリック リポジトリには、やや意欲的な名前が付けられています。 「Private-CISA」 - GitGuardian の Guillaume Valadon によって Krebs 氏の注意を引き付けられました。彼は、GitGuardian のパブリック コード スキャンによってリポジトリの存在を知りました。クレブス氏は、Private-CISAリポジトリの所有者から返答がなかったため、ヴァラドン氏が彼に接触したと述べている。 Valadon は、Krebs への電子メールの中で、リポジトリのコミット ログには、GitHub のデフォルトの保護機能が...
+
+🔗 [元記事を読む](https://arstechnica.com/information-technology/2026/05/in-stunning-display-of-stupid-secret-cisa-credentials-found-in-public-github-repo/)
+
+---
+
+## 記事 19  ｜  Ars Technica
+
+### RFKジュニア、反ワクチンインチキ勢力にCDC委員会を開く憲章の撤回を余儀なくされた
+
+> 原題: *RFK Jr. forced to withdraw charter that opened CDC panel to anti-vaccine quacks*
+
+#### 📝 記事の日本語訳
+
+チャーターでは会員資格を拡大し、負傷容疑に焦点を当てていただろう。火曜日の連邦官報に掲載された通知によると、疾病管理予防センターの影響力のあるワクチン諮問委員会の修正憲章文書が、事務上のミスを理由に保健省によって撤回された。反ワクチン派のロバート・F・ケネディ・ジュニア保健長官の下で憲章が改訂されれば、ケネディ大統領はCDCに助言する資格のある反ワクチン同盟者を任命することが可能になっていただろう。また、CDC委員会に対し、疑惑のワクチン傷害とリスクに焦点を当てるよう指示し、連邦ワクチン政策の策定に非主流団体や反ワクチン団体が参加することを歓迎するはずだった。ケネディ大統領は、CDC委員会である予防接種政策諮問委​​員会を再編しようとしている。
+
+🔗 [元記事を読む](https://arstechnica.com/health/2026/05/rfk-jr-forced-to-withdraw-charter-that-opened-cdc-panel-to-anti-vaccine-quacks/)
+
+---
+
+## 記事 20  ｜  Ars Technica
+
+### Gemini 3.5 Flash は、Gen AI が理解できるほど高速である可能性があります
+
+> 原題: *Gemini 3.5 Flash might be fast enough for gen AI to make sense*
+
+#### 📝 記事の日本語訳
+
+Google は、より効率的な Gemini 3.5 Flash がエージェント AI の未来への鍵であると述べています。昨年の I/O イベントでも、Google は依然として Gemini の 2.5 ブランチについて、そして 1 年でどれほどの変化が生じるのかについて話していました。それ以来、3.0 および 3.1 ファミリを経て、現在はバージョン 3.5 です。 Gemini 3.5 Flash は本日より幅広い Google 製品に展開されており、Google はこのモデルが前世代の Pro モデルよりもさらに優れていると改めて主張しています。これは過去 1 年間の Google のチクタク モデル アップデートの傾向でしたが、チームは今回のリリースは特別だと述べています。 Gemini 3.5 Flash は、おそらくフロンティアレベルのインテリジェンスを提供すると同時に、複雑なエージェントタスクを最終的に大規模に実行する価値のあるものにするのに十分な効率性を備えていると考えられています。製品管理担当シニアディレクター、Tulsee Doshi 氏...
+
+#### 🏢 企業解説リンク
+
+- [Google](companies/google.html)
+
+🔗 [元記事を読む](https://arstechnica.com/google/2026/05/google-announces-agent-optimized-gemini-3-5-flash-and-a-do-anything-model-called-omni/)
+
+---
+
+## 記事 21  ｜  MIT Tech Review
+
+### 現代のサイバー犯罪情勢を理解する
+
+> 原題: *Understanding the modern cybercrime landscape*
+
+#### 📝 記事の日本語訳
+
+ネットワークの極めて重要な役割と、ネットワークが企業のデジタル防御をどのように管理できるかを再考する時期が来ています。 HPE は 2025 年を通じて、サイバー犯罪者の活動方法に大きな変化があることを観察しました。現実世界の脅威を分析する HPE 脅威研究所は、新しい In the Wild レポートでサイバー犯罪者の手口の産業化を強調し、攻撃活動の規模、速度、構造を向上させました。通常、彼らは長年にわたる脆弱性を悪用するために自動化と AI を使用しており、多くは効率を最適化するために専門的な企業階層を採用しています。 CISO や CIO なら誰でもおそらく認めるでしょうが、今日のサイバーセキュリティの脅威は企業にとってこれまでと同様に脅威となっています。しかし、その率直な発言の裏を深く掘り下げてみると、より微妙で複雑なサイバーセキュリティの状況が存在しています。
+
+🔗 [元記事を読む](https://www.technologyreview.com/2026/05/19/1136925/understanding-the-modern-cybercrime-landscape/)
+
+---
+
+## 記事 22  ｜  MIT Tech Review
+
+### ダウンロード: マスク対アルトマン、戦争用スマート グラス、および Google I/O
+
+> 原題: *The Download: Musk v. Altman, smart glasses for warfare, and Google I/O*
+
+#### 📝 記事の日本語訳
+
+さらに、OpenAI はイーロン・マスクに対する法的勝利により、大ヒット IPO への道を切り開きました。これは、テクノロジーの世界で何が起こっているかを毎日提供する平日のニュースレター、 The Download の本日版です。イーロン・マスク氏は、OpenAIが非営利団体としての設立契約に違反したかどうかを争点としたOpenAIに対する訴訟で敗訴した。陪審は、彼が訴訟を起こすのが遅すぎた、つまり彼の主張は時効によって禁止されていると判断した。しかし、判決ではOpenAIが非営利の使命に違反したかどうかは判断されず、マスク氏の訴訟が間に合うかどうかだけが判断された。この論争は、OpenAI がいつから営利組織に移行し始めたかを中心にしている。同社は、変化の兆候は2017年にはすでに見られていたと主張したが、マスク氏はその変化に気づいたのは2022年だと述べた。
+
+#### 🏢 企業解説リンク
+
+- [Google](companies/google.html)
+- [OpenAI](companies/openai.html)
+
+🔗 [元記事を読む](https://www.technologyreview.com/2026/05/19/1137505/the-download-musk-altman-trial-smart-glasses-warfare-google-i-o/)
+
+---
+
+## 記事 23  ｜  MIT Tech Review
+
+### Colossal Biosciences は 3D プリントした人工卵殻でニワトリを育てています
+
+> 原題: *Colossal Biosciences is growing chickens in a 3D-printed artificial eggshell*
+
+#### 📝 記事の日本語訳
+
+人工子宮に向けた初期段階として、あるバイオテクノロジー企業が「完全人工」鶏卵を開発したと主張している。雛たちは体を動かし、羽音を立て始め、あるいは孵化しようとしていました。しかし、卵からではありません。代わりに、これらのニワトリは、Colossal Biosciences のダラス本社にある、3D プリントされた透明なプラスチック カップの中で成長していました。このバイオテクノロジー企業は本日、ドードーやジャイアントモアなどの鳥類を含む絶滅した鳥類を復活させる取り組みの一環として「完全人工卵」を開発したと主張した。
+
+🔗 [元記事を読む](https://www.technologyreview.com/2026/05/19/1137471/colossal-biosciences-is-growing-chickens-in-a-3d-printed-container/)
+
+---
+
+## 記事 24  ｜  MIT Tech Review
+
+### イーロン・マスクがOpenAIに対する訴訟で敗訴した理由は次のとおりです
+
+> 原題: *Here’s why Elon Musk lost his suit against OpenAI*
+
+#### 📝 記事の日本語訳
+
+3週間にわたる証言の決闘の後、陪審はマスク氏がAI巨人を告訴したのは遅すぎたと判断した。月曜日、マスク対アルトマン事件の陪審はイーロン・マスク氏に大きな打撃を与え、マスク氏がOpenAIを告訴したのが遅すぎたため、その結果、彼の請求は適用される時効によって妨げられるという全会一致の諮問評決に達した。米国地方判事イヴォンヌ・ゴンザレス・ロジャースは直ちにこの判決を受諾した。マスク氏はXでこの決定に対して控訴すると発表した。 「裁判官と陪審は、実際には事件の本案に基づいて判決を下したことはなく、単にカレンダーの専門性に基づいて判断しただけだ」と彼は書いた。 OpenAI は 2015 年にマスク氏と研究者のグループによって共同設立され、金銭的利益を生み出す必要に束縛されず、人類の利益のために AI を開発するという使命を持つ非営利団体として設立されました。マスク氏は設立当初に同社に3,800万ドルを寄付した。
+
+#### 🏢 企業解説リンク
+
+- [OpenAI](companies/openai.html)
+
+🔗 [元記事を読む](https://www.technologyreview.com/2026/05/18/1137488/elon-musk-suit-openai-verdict/)
+
+---
+
+## 記事 25  ｜  MIT Tech Review
+
+### 今週 Google に期待できること
+
+> 原題: *What to expect from Google this week*
+
+#### 📝 記事の日本語訳
+
+同社は最も重要な点で最も近い競合他社に後れを取っている。追いつくことができるでしょうか？明日、Google が年次開発者カンファレンス I/O を開くとき、Google はファウンデーション モデル レースで明らかに 3 位となるでしょう。 1 年前の Google I/O 2025 では、状況は大きく異なっていました。同社は、3 月に Gemini 2.5 Pro を発表して以来、依然として絶好調でした。トップレベルの大規模言語モデルを区別することは、主観的には毛が生えたように感じられることがよくありました。しかし、今日の基盤モデルの評判はそのコーディング機能に大きく依存しており、ここ数カ月間、Google のコーディング ツールは Anthropic の Claude Code や OpenAI の Codex に負け続けています。これらのシステムは Google 自身の製品よりも劇的に優れているため、同社は改善を余儀なくされたと伝えられています...
+
+#### 🏢 企業解説リンク
+
+- [Google](companies/google.html)
+- [OpenAI](companies/openai.html)
+
+🔗 [元記事を読む](https://www.technologyreview.com/2026/05/18/1137439/what-to-expect-from-google-this-week/)
+
+---
+
+## 記事 26  ｜  VentureBeat
+
+### クロード エージェントはついに認証情報を漏らすことなくエンタープライズ API に接続できるようになりました
+
+> 原題: *Claude agents can finally connect to enterprise APIs without leaking credentials*
+
+#### 📝 記事の日本語訳
+
+<p>企業が AI エージェントを内部 API やデータベースに接続するのが遅れている理由は、モデルではなく認証情報です。ほとんどの実稼働環境では、エージェントはツール呼び出しを実行するときに認証トークンを持ち歩きます。これは、侵害されたエージェントまたは不正な動作をするエージェントがキーを持ち出すことを意味します。</p><p>Anthropic は、<a href="https://venturebeat.com/orchestration/anthropic-wants-to-own-your-agents-memory-evals-and-orches... の 2 つの新機能でこの問題に対処しています。
+
+🔗 [元記事を読む](https://venturebeat.com/orchestration/claude-agents-can-finally-connect-to-enterprise-apis-without-leaking-credentials)
+
+---
+
+## 記事 27  ｜  VentureBeat
+
+### Google の新しい AI エージェントは、メールの下書きを作成し、受信トレイを監視し、最終的にはお金を使うことができます
+
+> 原題: *Google’s new AI agent can draft your emails, monitor your inbox and eventually spend your money*
+
+#### 📝 記事の日本語訳
+
+<p>Google は火曜日、<a href="https://blog.google/innovation-and-ai/products/gemini-app/next-evolution-gemini-app/">Gemini Spark</a> を発表しました。<!-- -->ユーザーのラップトップが閉じられ、携帯電話がロックされている場合でも、電子メールの下書き、文書の組み立て、受信箱の監視、最終的には購入を行うなど、24 時間稼働するように設計されたパーソナル AI エージェントです。</p><p>この発表は、<a> で行われました。 href="https://io.google/2026/">Google I/O 2026</a> は、<!-- -->同社にとって最も野心的なイベントです...
+
+#### 🏢 企業解説リンク
+
+- [Google](companies/google.html)
+
+🔗 [元記事を読む](https://venturebeat.com/technology/googles-new-ai-agent-can-draft-your-emails-monitor-your-inbox-and-eventually-spend-your-money)
+
+---
+
+## 記事 28  ｜  VentureBeat
+
+### Google、Gemini 3.5 Flash は企業の AI コストを年間 10 億ドル以上削減できると発表
+
+> 原題: *Google says Gemini 3.5 Flash can slash enterprise AI costs by more than $1 billion a year*
+
+#### 📝 記事の日本語訳
+
+<p>Google は火曜日、年次 <a href="https://io.google/2026/">I/O 開発者カンファレンス</a>で <a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-5/">Gemini 3.5 Flash</a> を発表しました。同社によれば、AI 業界の一見鉄則となっていたもの、つまり最も賢いモデルを打ち破る新しい人工知能モデルです。 </p><p>このモデルは、広範囲にわたる一連の発表の中心に位置します。
+
+#### 🏢 企業解説リンク
+
+- [Google](companies/google.html)
+
+🔗 [元記事を読む](https://venturebeat.com/technology/google-says-gemini-3-5-flash-can-slash-enterprise-ai-costs-by-more-than-1-billion-a-year)
+
+---
+
+## 記事 29  ｜  VentureBeat
+
+### Google は 25 年ぶりに検索ボックスのデザインを変更しました。それがあなたが思っている以上に重要である理由がここにあります。
+
+> 原題: *Google just redesigned the search box for the first time in 25 years — here’s why it matters more than you think.*
+
+#### 📝 記事の日本語訳
+
+<p>四半世紀にわたり、Google 検索ボックスはコンピューティングにおいて最もよく知られるインターフェイスの 1 つであり、薄い白い四角形、点滅するカーソル、入力されたいくつかの単語、および青いリンクのリストです。火曜日、Google はそのパラダイムを正式に廃止します。</p><p>年次<a href="https://io.google/2026/">I/O 開発者カンファレンス</a>で、Google は検索ボックス自体の<a href="https://blog.google/products-and-platforms/products/search/search-io-2026/">大幅な再設計</a>を発表しました。
+
+#### 🏢 企業解説リンク
+
+- [Google](companies/google.html)
+
+🔗 [元記事を読む](https://venturebeat.com/technology/google-just-redesigned-the-search-box-for-the-first-time-in-25-years-heres-why-it-matters-more-than-you-think)
+
+---
+
+## 記事 30  ｜  VentureBeat
+
+### Google、Gemini Omni の「any-to-any」AI モデルを発表: 企業が知っておくべきこと
+
+> 原題: *Google unveils Gemini Omni 'any-to-any' AI model: what enterprises should know*
+
+#### 📝 記事の日本語訳
+
+<p>この問題は <a href="https://9to5google.com/2026/05/11/gemini-omni-video-model-shows-up-with-some-early-demos/">何週間も前に勇敢な AI パワー ユーザーによってすでに発見されていました</a>が、Google の <a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-omni/">新しい Gemini Omni モデル</a>は本日、カリフォルニア州マウンテンビューで開催された同社の年次 I/O 開発者カンファレンスで正式にデビューしました。これは、広範な AI およびテクノロジー市場における大幅に新しいパラダイムを示しています...
+
+#### 🏢 企業解説リンク
+
+- [Google](companies/google.html)
+
+🔗 [元記事を読む](https://venturebeat.com/technology/google-unveils-gemini-omni-any-to-any-ai-model-what-enterprises-should-know)
+
+---
+
+## 記事 31  ｜  Engadget
+
+### Google、科学研究のワークフローを最適化するAI搭載ツールを発表 - Engadget
+
+> 原題: *Google debuts AI-powered tools to optimize scientific research workflows - Engadget*
+
+#### 📝 記事の日本語訳
+
+Gemini for Science コレクションでは、3 つの新機能が利用可能になります。社会がハイテク巨人があらゆるものに AI を導入するのを無力に見守る中、Google は少なくとも、科学的発見に伴う困難な作業を支援する可能性のある AI を活用した新しいツールをいくつか導入しました。 Google I/O 2026 中に、テクノロジー大手は、研究者が仮説を生成し、テストを実施し、科学文献を理解するのに役立つ実験ツールのコレクションである Gemini for Science を発表しました。 Gemini for Science には、仮説生成、計算による発見、文献洞察という 3 つの主な機能が含まれています。名前が示すように、仮説生成は、何百万もの科学論文を掘り下げて理論や課題を考え出すことで、科学的手法の最初の数ステップを支援します。 ...
+
+#### 🏢 企業解説リンク
+
+- [Google](companies/google.html)
+
+🔗 [元記事を読む](https://www.engadget.com/2177120/google-debuts-ai-powered-tools-to-optimize-scientific-research-workflows/)
+
+---
+
+## 記事 32  ｜  Engadget
+
+### Fortnite、米国での復活から 1 年後、App Store に世界中で復活 - Engadget
+
+> 原題: *Fortnite is returning to the App Store globally, a year after its US comeback - Engadget*
+
+#### 📝 記事の日本語訳
+
+Fortnite が世界中で App Store に戻ってきました…オーストラリアを除きます。 (ごめんなさい、仲間たち。) このバトル ロイヤル ゲームは、Epic と Apple との終わりのない法廷闘争に端を発した 5 年近い禁止処分を受けて、昨年から米国の App Store に戻ってきました。エピックは、政治的な逆風に対して、世界中の（ほとんどの）iOS デバイスにゲームを再びインストールできるようにするのに十分な自信があると示唆した。同社は、Appleに対し、App Storeの手数料の裏にある運営コストを開示するよう米国連邦裁判所に求めている。エピックは「ひとたびアップルがコストの提示を強制されれば、世界中の政府はアップルのジャンク料金の放置を許さないだろう」と考えている。ただし、フォートナイトでもブーストを使用することができます。 3 月、エピックは従業員の約 4 分の 1 を解雇すると発表しました。同僚は...
+
+#### 🏢 企業解説リンク
+
+- [Apple](companies/apple.html)
+
+🔗 [元記事を読む](https://www.engadget.com/2177068/fortnite-is-returning-to-the-app-store-globally-a-year-after-its-us-comeback/)
+
+---
+
+## 記事 33  ｜  Engadget
+
+### Google、Wear OS 7を発表 - Engadget
+
+> 原題: *Google announces Wear OS 7 - Engadget*
+
+#### 📝 記事の日本語訳
+
+OS アップデートでは Gemini Intelligence が統合され、新しいウィジェット システムが追加されます。 I/O 2026 では、AI に焦点を当てた多数の新しい発表に加えて、Google はウェアラブル オペレーティング システムの最新アップデートである Wear OS 7 も発表しました。このソフトウェア アップデートでは、同社が Android 17 で導入する予定のデザイン調整の一部が引き継がれ、新しい Gemini Intelligence 機能の基礎が築かれ、新しい方法で一目でわかる情報を表示するインターフェイス要素が追加されます。これらの追加機能の中で最大のものは、Google が Wear Widgets と呼ぶもので、現時点で長年に渡って Wear OS エクスペリエンスの基礎となっている情報「タイル」の進化版です。 Wear ウィジェットは、開発者にとってより動的でカスタマイズできるように設計されており、スマートフォンで提供できるものを厳密に反映しています。ウィジェット...
+
+#### 🏢 企業解説リンク
+
+- [Google](companies/google.html)
+
+🔗 [元記事を読む](https://www.engadget.com/2177050/google-announces-wear-os-7/)
+
+---
+
+## 記事 34  ｜  Engadget
+
+### Google I/O 2026 で発表されたすべて - Engadget
+
+> 原題: *Everything announced at Google I/O 2026 - Engadget*
+
+#### 📝 記事の日本語訳
+
+AI のニュースが多すぎて、スマート グラスもいくつかあります。今週、テクノロジー業界の注目はカリフォルニア州マウンテンビューに向けられている。サンフランシスコ ベイエリアの都市は Google の本社があるため、同社の年次開発者会議を開催するのは理にかなった場所です。そうです、皆さん、Google I/O 2026 は火曜日に恒例のオープニング基調講演で始まりました。そこで同社は消費者にとってイベントでおそらく最も関連性のある情報を明らかにします。 Googleは先週、Androidに関する大量の発表を行ったため、そのモバイルエコシステムはあまり議題にはならなかった。しかし、AI でなければ、他にどんな責任があったでしょうか?私たちは「Gemini」という言葉を数え切れないほど聞いたことがありますが、同社はこの面で多くの最新情報を共有していました。 Google が長年にわたって提供してきた検索。
+
+#### 🏢 企業解説リンク
+
+- [Google](companies/google.html)
+
+🔗 [元記事を読む](https://www.engadget.com/2176896/everything-google-announced-io-2026-gemini-omni-spark/)
+
+---
+
+
+> ⚠️ 本まとめは自動生成です。数値・固有名詞などの事実は元記事でご確認ください。
