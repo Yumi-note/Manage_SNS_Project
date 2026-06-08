@@ -1,0 +1,643 @@
+# 🌐 海外テックニュース 日本語まとめ
+
+**生成日時:** 2026年6月8日  17:58 JST
+
+> 世界の有力テックメディア（TechCrunch・The Verge・Wired・Ars Technica・MIT Tech Review・VentureBeat・Engadget）から注目記事を自動収集し、日本の読者向けに翻訳・要約しました。
+
+---
+
+## 目次
+
+1. [Apple の待望の AI Siri の刷新がついに実現 |テッククランチ](#記事-1--apple-の待望の-ai-siri-の刷新がついに実現-テッククランチ)
+2. [Apple、電子メールや写真のひどい検索機能を修正したと発表 |テッククランチ](#記事-2--apple、電子メールや写真のひどい検索機能を修正したと発表-テッククランチ)
+3. [WWDC 2026: Siri AI、iOS 27、Apple Intelligence などに関するすべての発表 |テッククランチ](#記事-3--wwdc-2026-siri-ai、ios-27、apple-intelligence-などに関するすべての発表-テッククランチ)
+4. [Apple、物議を醸している液体ガラスのデザインを微調整中 |テッククランチ](#記事-4--apple、物議を醸している液体ガラスのデザインを微調整中-テッククランチ)
+5. [Startup Battlefield 2026 への応募方法、本日 6 月 8 日の締め切りに先立って必要なもの |テッククランチ](#記事-5--startup-battlefield-2026-への応募方法、本日-6-月-8-日の締め切りに先立って必要なもの-テッククランチ)
+6. [Appleはスクリーンタイムを再設計し、子コントロールを全面的に見直している](#記事-6--appleはスクリーンタイムを再設計し、子コントロールを全面的に見直している)
+7. [AmazonがAI生成のカスタムグッズを発売](#記事-7--amazonがai生成のカスタムグッズを発売)
+8. [Apple、iPadOS 27を発表](#記事-8--apple、ipados-27を発表)
+9. [Apple、Siri AI とその次世代 Apple Intelligence を発表](#記事-9--apple、siri-ai-とその次世代-apple-intelligence-を発表)
+10. [Apple、iOS 27を発表](#記事-10--apple、ios-27を発表)
+11. [英国は米国テクノロジー依存から抜け出すため、10億ドル規模のAIスーパーコンピュータに賭けている](#記事-11--英国は米国テクノロジー依存から抜け出すため、10億ドル規模のaiスーパーコンピュータに賭けている)
+12. [WIREDの報道を受け、メタ社がスマートグラスアプリから顔認識システムを削除](#記事-12--wiredの報道を受け、メタ社がスマートグラスアプリから顔認識システムを削除)
+13. [Apple WWDC 2026 ライブ ブログ: すべての最新情報を随時更新](#記事-13--apple-wwdc-2026-ライブ-ブログ-すべての最新情報を随時更新)
+14. [Watch Duty、Wildfire アプリに洪水警報を追加](#記事-14--watch-duty、wildfire-アプリに洪水警報を追加)
+15. [ついに、大きな欠陥がほとんどない手頃な価格のノートパソコンを見つけました](#記事-15--ついに、大きな欠陥がほとんどない手頃な価格のノートパソコンを見つけました)
+16. [フロック被告が犯行現場から8マイル離れていたことを証明したにもかかわらず、男に1か月の懲役刑](#記事-16--フロック被告が犯行現場から8マイル離れていたことを証明したにもかかわらず、男に1か月の懲役刑)
+17. [モナコのF1：ついに予選でマシンは全開だった](#記事-17--モナコのf1ついに予選でマシンは全開だった)
+18. [Falcon 9 ブースターが 5 周年を迎え、驚くべき再利用記録を樹立しました](#記事-18--falcon-9-ブースターが-5-周年を迎え、驚くべき再利用記録を樹立しました)
+19. [ミシガン州の政治家は中国のバッジを付けた車の米国への訪問さえ禁止したいと考えている](#記事-19--ミシガン州の政治家は中国のバッジを付けた車の米国への訪問さえ禁止したいと考えている)
+20. [「チャットは死んだ」: OpenAI が ChatGPT のオーバーホールを準備](#記事-20--「チャットは死んだ」-openai-が-chatgpt-のオーバーホールを準備)
+21. [ダウンロード: ワールドカップのボールの飛び方とOpenAIの「スーパーアプリ」](#記事-21--ダウンロード-ワールドカップのボールの飛び方とopenaiの「スーパーアプリ」)
+22. [今年のワールドカップのボールがそれほど遠くに飛ばない可能性がある理由](#記事-22--今年のワールドカップのボールがそれほど遠くに飛ばない可能性がある理由)
+23. [ダウンロード: 神話を超えた AI ハッキングとチャットボットの脳への影響](#記事-23--ダウンロード-神話を超えた-ai-ハッキングとチャットボットの脳への影響)
+24. [AI チャットボットは私たちの脳の制御を失わせているのでしょうか?](#記事-24--ai-チャットボットは私たちの脳の制御を失わせているのでしょうか)
+25. [メタハックは、AI セキュリティには Mythos だけではないことを示しています](#記事-25--メタハックは、ai-セキュリティには-mythos-だけではないことを示しています)
+26. [クロードが変わるとすべてが変わりました: 本番環境での AI 爆発範囲の管理](#記事-26--クロードが変わるとすべてが変わりました-本番環境での-ai-爆発範囲の管理)
+27. [Agentic AI はコーディングを解決し、ソフトウェア エンジニアリングにおけるその他すべての問題を明らかにしました](#記事-27--agentic-ai-はコーディングを解決し、ソフトウェア-エンジニアリングにおけるその他すべての問題を明らかにしました)
+28. [Microsoft AI責任者、同社はスーパーインテリジェンスを追求するためにOpenAIから「解放された」と語る](#記事-28--microsoft-ai責任者、同社はスーパーインテリジェンスを追求するためにopenaiから「解放された」と語る)
+29. [Microsoft の AI Futurist が Copilot の使用方法と、企業がエージェントを使用して解決している現実の問題について説明します](#記事-29--microsoft-の-ai-futurist-が-copilot-の使用方法と、企業がエージェントを使用して解決している現実の問題について説明します)
+30. [AI エージェントは仕事中に学習しますが、チーム全体の学習ではありません](#記事-30--ai-エージェントは仕事中に学習しますが、チーム全体の学習ではありません)
+31. [macOS Golden Gate で Siri AI が脚光を浴びる - Engadget](#記事-31--macos-golden-gate-で-siri-ai-が脚光を浴びる---engadget)
+32. [Apple、WWDC 2024で発表したAI搭載Siriを再導入 - Engadget](#記事-32--apple、wwdc-2024で発表したai搭載siriを再導入---engadget)
+33. [Apple、ペアレンタルコントロールを拡張し、自動画像フィルタリングを追加 - Engadget](#記事-33--apple、ペアレンタルコントロールを拡張し、自動画像フィルタリングを追加---engadget)
+34. [Appleの新しいOSは大幅な速度向上を実現 - Engadget](#記事-34--appleの新しいosは大幅な速度向上を実現---engadget)
+35. [AppleのWWDC 2026基調講演で発表されたすべて - Engadget](#記事-35--appleのwwdc-2026基調講演で発表されたすべて---engadget)
+
+---
+
+## 記事 1  ｜  TechCrunch
+
+### Apple の待望の AI Siri の刷新がついに実現 |テッククランチ
+
+> 原題: *Apple's long-awaited AI Siri overhaul is finally here | TechCrunch*
+
+#### 📝 記事の日本語訳
+
+よりスマートな Siri の開発を約束しながらも失敗してから 2 年後、Apple は月曜日、世界開発者会議 WWDC 2026 で全面的に見直した AI 搭載アシスタントを発表しました。新しい「Siri AI」と呼ばれるその背後にあるアイデアは、Siri を音声制御のアシスタントから、より多くのことを実行できる AI コンパニオンに変えることです。新しいアシスタントは、専用のSiriアプリとともに起動します。新しい Siri は、現在の世界の知識を利用して、質問に対する答えを基礎づけることができます。更新されたアシスタントは、ユーザーのデバイス上の情報にアクセスし、画面に表示されている内容に基づいて応答できるようになります。テクノロジー巨人は、ChatGPT、Claude、Gemini などの人気プラットフォームに対応するために、Siri を本格的な会話型 AI チャットボットに変換しています。このアップデートは Siri に大きな変更を加えます。
+
+#### 🏢 企業解説リンク
+
+- [Apple](companies/apple.html)
+- [TechCrunch](companies/techcrunch.html)
+
+🔗 [元記事を読む](https://techcrunch.com/2026/06/08/apples-long-awaited-ai-siri-overhaul-is-finally-here/)
+
+---
+
+## 記事 2  ｜  TechCrunch
+
+### Apple、電子メールや写真のひどい検索機能を修正したと発表 |テッククランチ
+
+> 原題: *Apple says it's fixed the awful search function for emails, photos | TechCrunch*
+
+#### 📝 記事の日本語訳
+
+あなたが Apple デバイス ユーザーで、受信したことがわかっている電子メール メッセージや、自分が撮ったことがわかっている写真を見つけようとして失敗したことがある方に、Apple からニュースがあります。同社は月曜日、WWDC 2026イベントで、検索がうまく機能していないことに気づいたと述べた。そこで、完全に再構築しました。 OS プログラム管理担当バイスプレジデントのステイシー フォード氏は、WWDC の開会基調講演で、「存在するとわかっているものを検索しても、なかなか見つからないという経験は誰しもあるでしょう。」と述べました。 「そこで、iOS、iPadOS、macOS 上で、Spotlight、写真、メールを強化する検索の基盤を再構築しました。その中核となるのが、デバイスがすべてのコンテンツから構築する豊富なカタログである検索インデックスです。これにより、ユーザーが何を持っているか、どこで見つけられるかを理解できるようになります。」フォードは、同社がシステムを再設計したと述べています。
+
+#### 🏢 企業解説リンク
+
+- [Apple](companies/apple.html)
+- [TechCrunch](companies/techcrunch.html)
+
+🔗 [元記事を読む](https://techcrunch.com/2026/06/08/apple-says-its-fixed-the-awful-search-function-for-emails-photos/)
+
+---
+
+## 記事 3  ｜  TechCrunch
+
+### WWDC 2026: Siri AI、iOS 27、Apple Intelligence などに関するすべての発表 |テッククランチ
+
+> 原題: *WWDC 2026: Everything announced on Siri AI, iOS 27, Apple Intelligence and more | TechCrunch*
+
+#### 📝 記事の日本語訳
+
+Apple の WWDC 2026 イベントは今朝、​​太平洋時間午前 10 時に Apple Park で開幕し、開発者イベントやデモとともに、Siri、iOS 27、Apple Intelligence などに関する予想される発表が満載の 1 週間が始まりました。今年のイベントはいくつかの点で特に注目に値します。 CEOのティム・クック氏は、9月1日にハードウェアエンジニアリング担当上級副社長のジョン・ターナス氏に業務を引き継ぐと発表したが、これが同社での最後の勤務となる。そして、一部の作業を Google に引き渡し、一部のリリースを延期した後、Siri とその AI の取り組み全体を大幅に後押ししようとする Apple の試みのホストとなることが予想されています。彼らは成功していますか？このページと今後の継続的な報道を常にチェックしてください。予想通り、Apple は長年使用している Siri アシスタントのエクスペリエンス向上を主張しました。
+
+#### 🏢 企業解説リンク
+
+- [Apple](companies/apple.html)
+- [Google](companies/google.html)
+- [TechCrunch](companies/techcrunch.html)
+
+🔗 [元記事を読む](https://techcrunch.com/2026/06/08/wwdc-2026-everything-announced-on-siri-ai-os-27-apple-intelligence-and-more/)
+
+---
+
+## 記事 4  ｜  TechCrunch
+
+### Apple、物議を醸している液体ガラスのデザインを微調整中 |テッククランチ
+
+> 原題: *Apple is tweaking its controversial Liquid Glass design | TechCrunch*
+
+#### 📝 記事の日本語訳
+
+Apple が昨年の WWDC でデザインの大規模な見直しである Liquid Glass を発表したとき、ユーザーからは二極化した反応がありました。一部のユーザーは「ガラスのように見える」洗練された透明なデザインを気に入っていましたが、他のユーザーは新しいデザインが読みにくいと感じていました。月曜日に開催された Apple のイベント WWDC 2026 で、同社は液体ガラス嫌いの人々に利益をもたらす可能性のあるいくつかの変更を発表しました。 Apple は、「優れた可読性を確保するために、液体ガラスの構築方法の基礎を更新している」と述べています。これは、背後に「複雑なコンテンツ」を分散させて、コンテンツパネル間の奥行きと分離を作り出すことでこれを達成するようです。重要なのは、Apple がユーザーにこの新しい外観を強制することはないと述べたことです。 「好みは人それぞれ異なるため、液体ガラスを調整するための新しいスライダーと設定を追加しています。
+
+#### 🏢 企業解説リンク
+
+- [Apple](companies/apple.html)
+- [TechCrunch](companies/techcrunch.html)
+
+🔗 [元記事を読む](https://techcrunch.com/2026/06/08/apple-is-tweaking-its-controversial-liquid-glass-design/)
+
+---
+
+## 記事 5  ｜  TechCrunch
+
+### Startup Battlefield 2026 への応募方法、本日 6 月 8 日の締め切りに先立って必要なもの |テッククランチ
+
+> 原題: *How to apply to Startup Battlefield 2026, what you need ahead of today's June 8 deadline | TechCrunch*
+
+#### 📝 記事の日本語訳
+
+毎年、私は何千もの Startup Battlefield アプリケーションに目を通しています。そして、毎年同じパターンが見られます。このステージに参加する創業者は、ほとんど応募しなかった創業者であることが多いのです。彼らは時期尚早だと考えています。彼らはもっと牽引力が必要だと考えています。彼らは、このプログラムは自分たちよりもさらに進んだ企業のためのものだと考えています。ここでは、私たちが実際に探しているものと、アプリケーションがそれを確実に反映する方法を説明します。検討の締め切りは 5 月 27 日でしたが、競争が激化して応募が続いているため、締め切りを 6 月 8 日まで延長しました。まだここから応募できますが、時間はまだ迫っています。今年の Startup Battlefield の詳細をまだご存じない方のために、これは 10 月からサンフランシスコで開催される TechCrunch Disrupt のプレミア パートです。
+
+#### 🏢 企業解説リンク
+
+- [TechCrunch](companies/techcrunch.html)
+
+🔗 [元記事を読む](https://techcrunch.com/2026/06/08/how-to-apply-to-startup-battlefield-2026-what-you-need-ahead-of-todays-june-8-deadline/)
+
+---
+
+## 記事 6  ｜  The Verge
+
+### Appleはスクリーンタイムを再設計し、子コントロールを全面的に見直している
+
+> 原題: *Apple is redesigning Screen Time and overhauling child controls*
+
+#### 📝 記事の日本語訳
+
+このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。 アプリの推奨時間制限と「ブラウズを求める」機能が Apple デバイスに導入されます。
+
+#### 🏢 企業解説リンク
+
+- [Apple](companies/apple.html)
+
+🔗 [元記事を読む](https://www.theverge.com/tech/945898/apple-parental-controls-child-accounts-wwdc2026)
+
+---
+
+## 記事 7  ｜  The Verge
+
+### AmazonがAI生成のカスタムグッズを発売
+
+> 原題: *Amazon is launching AI-generated custom merch*
+
+#### 📝 記事の日本語訳
+
+このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。 この小売業者がほぼインスタントのデザインと印刷に進出したことで、自社のサードパーティ販売者ネットワークやプリント オン デマンドの競合他社も脅かされています。
+
+#### 🏢 企業解説リンク
+
+- [Amazon](companies/amazon.html)
+
+🔗 [元記事を読む](https://www.theverge.com/news/945905/amazon-alexa-shopping-ai-generated-custom-merch-design-printing)
+
+---
+
+## 記事 8  ｜  The Verge
+
+### Apple、iPadOS 27を発表
+
+> 原題: *Apple announces iPadOS 27*
+
+#### 📝 記事の日本語訳
+
+このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。 iPad の次の大きなアップデートは今年後半に登場する予定です。
+
+#### 🏢 企業解説リンク
+
+- [Apple](companies/apple.html)
+
+🔗 [元記事を読む](https://www.theverge.com/tech/942546/apple-ipados-27-wwdc-2026)
+
+---
+
+## 記事 9  ｜  The Verge
+
+### Apple、Siri AI とその次世代 Apple Intelligence を発表
+
+> 原題: *Apple announces Siri AI and its next generation of Apple Intelligence*
+
+#### 📝 記事の日本語訳
+
+このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。 Apple の AI Siri への 2 度目のチャンスは、Apple デバイスの機能向上をもたらすはずです。
+
+#### 🏢 企業解説リンク
+
+- [Apple](companies/apple.html)
+
+🔗 [元記事を読む](https://www.theverge.com/tech/942416/apple-siri-ai-update-wwdc)
+
+---
+
+## 記事 10  ｜  The Verge
+
+### Apple、iOS 27を発表
+
+> 原題: *Apple announces iOS 27*
+
+#### 📝 記事の日本語訳
+
+このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。この著者からの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。
+
+#### 🏢 企業解説リンク
+
+- [Apple](companies/apple.html)
+
+🔗 [元記事を読む](https://www.theverge.com/tech/941202/apple-ios-27-wwdc-2026)
+
+---
+
+## 記事 11  ｜  Wired
+
+### 英国は米国テクノロジー依存から抜け出すため、10億ドル規模のAIスーパーコンピュータに賭けている
+
+> 原題: *The UK Is Betting on a Billion-Dollar AI Supercomputer to Kick Its Addiction to US Tech*
+
+#### 📝 記事の日本語訳
+
+英国政府は、外国製の人工知能ハードウェアへの依存を打破するために14億7000万ドルの計画を打ち出した。月曜日に発表されたこの措置では、英国は国家AIスーパーコンピューターに10億ドル以上を費やすことになる。 5 億 3,000 万ドル相当のハードウェアが在庫される予定で、その 2 億ドルは AI タスクを処理するための専門推論チップに充てられます。調達プロセスにおいては、新興の英国企業が優先されます。政府は潜在的な受益者として、新しいスタイルの推論チップを開発している英国のスタートアップ企業であるOlixとFractileを指摘した。英国の研究者や新興企業は2030年からこのスーパーコンピューターを利用できるようになる予定だ。新たな措置は、外国への依存を最小限に抑えるための英国政府による広範な取り組みの一環である。
+
+🔗 [元記事を読む](https://www.wired.com/story/uk-supercomputer-investment-ai-homegrown-semiconductor/)
+
+---
+
+## 記事 12  ｜  Wired
+
+### WIREDの報道を受け、メタ社がスマートグラスアプリから顔認識システムを削除
+
+> 原題: *Meta Deletes Face-Recognition System From Its Smart Glasses App After WIRED Report*
+
+#### 📝 記事の日本語訳
+
+WIREDが最新バージョンのコードを分析したところ、メタ社が5000万台以上の携帯電話にインストールされているアプリに未公開の顔認識システムを密かに埋め込んでいたとWIREDが明らかにした翌日、同社はそれを削除したという。 Meta AI の最新バージョンは、同社のスマート グラス シリーズのコンパニオン アプリであり、Meta 内部で NameTag と呼ばれるシステムを駆動していたアクティブ化されていないソフトウェア コンポーネントを取り除きます。 WIREDの報道当日に公開されたバージョンには、顔認識用に明示的に指定されたいくつかのコードライブラリが含まれていました。金曜日のリリースにはそのどれも含まれていない。木曜日、WIREDは、MetaがNameTagシステムのかなりの部分をMeta AIアプリに密かに統合したと報じた。公に有効になることはありませんでしたが、この機能はガラスで捉えた顔を変換するように設計されました。
+
+#### 🏢 企業解説リンク
+
+- [Meta](companies/meta.html)
+
+🔗 [元記事を読む](https://www.wired.com/story/meta-removes-face-recognition-code-meta-ai-app-smart-glasses/)
+
+---
+
+## 記事 13  ｜  Wired
+
+### Apple WWDC 2026 ライブ ブログ: すべての最新情報を随時更新
+
+> 原題: *Apple WWDC 2026 Live Blog: All the Updates, as They Happen*
+
+#### 📝 記事の日本語訳
+
+iOS、macOS、watchOS などのすべてのアップデートについては、WWDC 2026 ライブ ブログをフォローしてください。 WIREDのApple WWDC 2026ライブブログへようこそ。カリフォルニア州クパチーノのアップル・パークにはWIRED編集者のジュリアン・チョッカトゥがおり、ブーン・アシュワース、リース・ロジャース、マイケル・カロアといった数人のWIRED記者と編集者が遠くからイベントを見守り、ライブブログに寄稿している。以下のライブアップデートをフォローしてください。 Safari はタブをトピックごとにグループ化し始めます。コンテンツを分析し、すべてをトピックのヘッダーに分類します。これにより乱雑さは軽減されますが、もちろん、タブが常に残された場所に存在するわけではないことを意味します。 Safari は Apple Intelligence のアップグレードを受けています。
+
+#### 🏢 企業解説リンク
+
+- [Apple](companies/apple.html)
+
+🔗 [元記事を読む](https://www.wired.com/live/apple-wwdc-2026-live-blog-all-the-updates-as-they-happen/)
+
+---
+
+## 記事 14  ｜  Wired
+
+### Watch Duty、Wildfire アプリに洪水警報を追加
+
+> 原題: *Watch Duty Is Adding Flood Alerts to Its Wildfire App*
+
+#### 📝 記事の日本語訳
+
+山火事警報アプリの Watch Duty は、人気の災害認識サービスに洪水警報を導入しています。これは山火事に次いで広く含まれる 2 番目の災害タイプです。無料のアップデートとして利用できます。アプリをお持ちで、位置追跡を許可していて、たまたま洪水地帯の近くにいる場合、Watch Duty は洪水に関する詳細情報を含むプッシュ通知を送信します。この非営利団体は、カリフォルニアの山火事に焦点を当てて 2021 年に設立されました。その後、このアプリは米国全土に拡大し、有給の従業員「レポーター」と、緊急対応の無線チャンネルを監視し、被災地に関する情報をアプリのユーザーに翻訳する多くのボランティアを組み合わせて利用しています。昨年のロサンゼルスのパリセーズ火災とイートン火災の際には、Watch Duty が重要なリソースとなりました。
+
+🔗 [元記事を読む](https://www.wired.com/story/watch-duty-is-adding-flood-alerts-to-its-wildfire-app/)
+
+---
+
+## 記事 15  ｜  Wired
+
+### ついに、大きな欠陥がほとんどない手頃な価格のノートパソコンを見つけました
+
+> 原題: *Finally, I Found an Affordable Laptop With Almost No Major Flaws*
+
+#### 📝 記事の日本語訳
+
+今年はノートパソコンの価格が上がると思われます。サプライチェーンの不足と一般的なインフレは、私たちが購入するほぼすべてのものに影響を与え、価格の上昇を引き起こしています。次に、Lenovo IdeaPad Slim 5x が登場します。これは、機能、価格、品質のバランスを見事に備えた、疑う余地のないラップトップです。このラップトップが 400 ドル高かったとしても、それでもまともな取引だと思います。 850 ドルという価格は、まさに MacBook Air のキラーであり、購入できるラップトップの中で最高の製品の 1 つです。このラップトップの外観は必ずしもユニークではありません。基本的なシルバーのシャーシには、Web カメラを収容する蓋の逆のノッチなど、私たちが期待する Lenovo イズムのいくつかが組み込まれています。しかし、画面サイズは本当に興味深いです。これは 15.3 インチの画面で、Windows ラップトップの一般的な 14 インチと 16 インチのディスプレイ オプションの中間に位置します。 B...
+
+🔗 [元記事を読む](https://www.wired.com/review/lenovo-ideapad-slim-5x/)
+
+---
+
+## 記事 16  ｜  Ars Technica
+
+### フロック被告が犯行現場から8マイル離れていたことを証明したにもかかわらず、男に1か月の懲役刑
+
+> 原題: *Man jailed for a month despite Flock showing he was 5 miles from crime scene*
+
+#### 📝 記事の日本語訳
+
+警官は逮捕を正当化するためにフロックカメラのタイムスタンプを無視したようだ。サンディエゴ警察は、タイムスタンプに基づいて、警察が探している車が写っていないことを知っていたはずだったフロックのカメラアラートに基づいて男性を1か月懲役したとして、訴訟に直面している。昨年11月、サンディエゴ警察がフロックのデータと目撃者の証言を頼りに、彼を銃突きによる自動車強盗未遂と誤って結びつけ、ヒューゴ・パラが重罪で逮捕されたとサンディエゴ・タイムズ紙が報じた。警察は、窓に色がついた赤いアルファロメオ車とグレーのパーカーを着た男を捜索していたが、パーラさんは友人の車に乗っていたときにたまたま白いパーカーを着ていたが、その車の説明とほぼ一致していた。 「このフロックの衝突は明らかに間違った車でした。そんなことはありえませんでした...
+
+🔗 [元記事を読む](https://arstechnica.com/tech-policy/2026/06/man-jailed-for-a-month-despite-flock-showing-he-was-5-miles-from-crime-scene/)
+
+---
+
+## 記事 17  ｜  Ars Technica
+
+### モナコのF1：ついに予選でマシンは全開だった
+
+> 原題: *F1 in Monaco: Finally, the cars were flat-out in qualifying*
+
+#### 📝 記事の日本語訳
+
+車が大きすぎてうまくレースをすることはできませんが、ポールポジションをめぐる競争はスリリングです。 F1は先週末、モンテカルロの路上で毎年恒例のレースを開催した。このイベントはスポーツよりも古く、最初のモナコ グランプリは 1929 年に今日使用されているレイアウトとそれほど変わらないレイアウトで開催されました。長い年月が経ち、建物は変化し、衝突防止柵が出現し、プールセクションが拡大し、最終的には車が大きくなりすぎて、サーキットの狭い範囲で適切にレースをすることができなくなり、ある世界チャンピオンは「リビングルームで自転車に乗っている」と表現しました。しかし、地中海に抱かれ、スーパーヨットに囲まれたF1の最もつまらないレースは、最も有名で魅力的なレースでもある。ホームグランプリの後、多くのドライバーが最も勝ちたいと願うグランプリだ。ここで追い越し…
+
+🔗 [元記事を読む](https://arstechnica.com/cars/2026/06/f1-in-monaco-finally-the-cars-were-flat-out-in-qualifying/)
+
+---
+
+## 記事 18  ｜  Ars Technica
+
+### Falcon 9 ブースターが 5 周年を迎え、驚くべき再利用記録を樹立しました
+
+> 原題: *A Falcon 9 booster turns 5 years old—and just set a remarkable reuse record*
+
+#### 📝 記事の日本語訳
+
+私たちはファルコン 9 ロケットを当然のことと考えています。しかし、おそらくそうすべきではありません。 5 年ちょっと前、光沢のある白いファルコン 9 ロケットがデビュー飛行を行い、カーゴ ドラゴン宇宙船を国際宇宙ステーションに押し上げました。翌年にかけて、2つの宇宙飛行士ミッションと数機の商用宇宙船を打ち上げる予定だった。しかしそれ以来、B 1067 と指定されたこの第 1 段ブースターは、主にスターリンクのミッションで飛行してきました。次々とドローンを打ち上げ、必ず安全にドローン船に戻ってから改修を受けて再び飛行する。 1ヶ月に2回飛んだこともあります。打ち上げの成功により、SpaceX は、Falcon 9 の第 1 段階ロケットをそれぞれ 40 回のミッションに対応できるようにするという、最近掲げた目標に近づくことになります。その目標は以上に概説されていたので...
+
+#### 🏢 企業解説リンク
+
+- [SpaceX](companies/spacex.html)
+
+🔗 [元記事を読む](https://arstechnica.com/space/2026/06/a-falcon-9-booster-turns-five-years-old-and-just-set-a-remarkable-reuse-record/)
+
+---
+
+## 記事 19  ｜  Ars Technica
+
+### ミシガン州の政治家は中国のバッジを付けた車の米国への訪問さえ禁止したいと考えている
+
+> 原題: *Michigan politicians want to ban Chinese-badged cars from even visiting the US*
+
+#### 📝 記事の日本語訳
+
+最新の法案は、中国車によるカナダやメキシコからの日帰り旅行を禁止する内容となっている。今年は選挙の年であり、それは政治家たちがゴールラインを越えるのに役立つと考えている特別利益団体に迎合するために余分な労力を費やしていることを意味する。ミシガン州での当選を目指すなら、自動車業界ほど特別な利害関係者は多くありません。自動車業界を味方につける良い方法は、自動車業界が最も恐れているもの、つまり中国を追及することです。さて、もし二人の議員が可決すれば、中国のバッジが付いた車両は米国での販売や輸入が制限されるだけでなく、カナダやメキシコからの単純な日帰り旅行であっても、米国への入国が禁止されることになる。米国の自動車産業を保護する動きは新しいものではなく、党派を超えて人気がある。バイデン前大統領と...
+
+🔗 [元記事を読む](https://arstechnica.com/cars/2026/06/michigan-politicians-want-to-ban-chinese-badged-cars-from-even-visiting-the-us/)
+
+---
+
+## 記事 20  ｜  Ars Technica
+
+### 「チャットは死んだ」: OpenAI が ChatGPT のオーバーホールを準備
+
+> 原題: *"Chat is dead": OpenAI preps overhaul of ChatGPT*
+
+#### 📝 記事の日本語訳
+
+OpenAI は、潜在的な IPO の前に、利益率の高い製品へのルートとしてヒットしたチャットボットを再構築します。 OpenAIは、8,500億ドルのグループが今年計画されている上場に先立って新たな成長原動力を模索している中、ChatGPTの立ち上げがAIブームの火付け役となって以来、最大規模のChatGPTの全面見直しを準備している。同社はチャットボットをコーディングツールとAIエージェントを組み合わせた「スーパーアプリ」に変え、経営陣がより多くの収益を生み出すと信じている製品を追加するつもりだ。十数人の現従業員と元従業員によると、この変更はOpenAIの広範な組織再編の一環で、サンフランシスコに本拠を置く同社は収益性の高い企業顧客を獲得し、ライバルのAnthropicとより熾烈な競争をすることにリソースを移している。
+
+#### 🏢 企業解説リンク
+
+- [OpenAI](companies/openai.html)
+
+🔗 [元記事を読む](https://arstechnica.com/ai/2026/06/chat-is-dead-openai-preps-overhaul-of-chatgpt/)
+
+---
+
+## 記事 21  ｜  MIT Tech Review
+
+### ダウンロード: ワールドカップのボールの飛び方とOpenAIの「スーパーアプリ」
+
+> 原題: *The Download: how the World Cup ball will fly and OpenAI’s “super app”*
+
+#### 📝 記事の日本語訳
+
+さらに、OpenAI は、IPO 前に ChatGPT を「スーパー アプリ」に変える予定です。これは、テクノロジーの世界で何が起こっているかを毎日提供する平日のニュースレター、 The Download の本日版です。今月の FIFA ワールドカップ トーナメントについては、新しいことがたくさんあります。これまで以上に多くのチームをホストします。 3つの異なる開催国で発生するのは初めてだ。そして、半世紀以上のすべてのワールドカップと同様に、まったく新しいデザインのサッカーボールが採用されます。
+
+#### 🏢 企業解説リンク
+
+- [OpenAI](companies/openai.html)
+
+🔗 [元記事を読む](https://www.technologyreview.com/2026/06/08/1138485/the-download-world-cup-ball-openai-super-app/)
+
+---
+
+## 記事 22  ｜  MIT Tech Review
+
+### 今年のワールドカップのボールがそれほど遠くに飛ばない可能性がある理由
+
+> 原題: *Why this year’s World Cup ball may not fly as far*
+
+#### 📝 記事の日本語訳
+
+外部の研究者チームは、アディダスの再設計されたサッカーボールがどのように空気を切るのかを研究してきた。今月、米国、カナダ、メキシコで開催されるFIFAワールドカップトーナメントについては、多くのことが新しいことになっている。これまで以上に多くのチームをホストします。 3つの異なる開催国で発生するのは初めてだ。また、半世紀以上にわたる前世代のカップと同様に、まったく新しいデザインのサッカーボールが採用されます。過去 20 年間、ワールドカップ ボールの物理学をテストしてきたある研究者グループは、最近、トリオンダと呼ばれるこの新しいエントリーを研究しました。アディダス製のトリオンダは、深い溝がテクスチャー加工された 4 つの赤、緑、青のパネルと、開催国 3 か国を表すカエデの葉、緑の鷲、星のエンブレムが特徴です。風洞実験を通じて、...
+
+🔗 [元記事を読む](https://www.technologyreview.com/2026/06/08/1138470/why-this-years-world-cup-ball-may-not-fly-as-far/)
+
+---
+
+## 記事 23  ｜  MIT Tech Review
+
+### ダウンロード: 神話を超えた AI ハッキングとチャットボットの脳への影響
+
+> 原題: *The Download: AI hacking beyond Mythos, and chatbots’ impact on our brains*
+
+#### 📝 記事の日本語訳
+
+さらに、Anthropic は AI 開発の世界的な減速を求めています。これは、テクノロジーの世界で何が起こっているかを毎日提供する平日のニュースレター、 The Download の本日版です。月曜日、攻撃者がMetaのAIカスタマーサポートエージェントを利用してInstagramアカウントを盗んだという報告が浮上した。彼らのアプローチはシンプルでした。エージェントにアカウントを自分が管理する電子メール アドレスにリンクするよう依頼し、それはそれに応じました。 Anthropic が、Mythos モデルが一般リリースするにはハッキング能力が高すぎると発表して以来、サイバーセキュリティの懸念は、超強力な AI システムがコンピュータ インフラストラクチャを圧倒するリスクに焦点を当てています。しかし、インスタグラムのハッキングは、はるかに単純な悪用でも被害を引き起こす可能性があることを示しています。
+
+#### 🏢 企業解説リンク
+
+- [Meta](companies/meta.html)
+
+🔗 [元記事を読む](https://www.technologyreview.com/2026/06/05/1138452/the-download-ai-hacking-mythos-chatbots-brain-impacts/)
+
+---
+
+## 記事 24  ｜  MIT Tech Review
+
+### AI チャットボットは私たちの脳の制御を失わせているのでしょうか?
+
+> 原題: *Are AI chatbots making us lose control of our brains?*
+
+#### 📝 記事の日本語訳
+
+心理学者のグロリア・マークによれば、そうです。しかし、そのコントロールを取り戻す方法はあります。今週私はSXSWロンドンに行ってきました。音楽、映画、そして AI に関する話題がたくさんあります。また、カリフォルニア大学アーバイン校の心理学者グロリア・マークと話をする機会もありました。彼は過去 30 年間、人々がデジタル テクノロジーとどのようにやり取りするかを研究してきました。マークは状況が悪化するばかりだと心配しています。私たちのセッションのタイトルは「私たちは脳の制御を失ったのか?」でした。残念ながら、答えはイエスだ、とマークは言いました。約 20 年前、マークは、デバイスの使用が注意力の持続時間にどのような影響を与えるかについて疑問を持ち始めました。彼女は、センサーとトラッカーを使用して成人ボランティアの注意力、気分などを監視する、彼女が「生きた実験室」と呼ぶものをセットアップしました。
+
+🔗 [元記事を読む](https://www.technologyreview.com/2026/06/05/1138427/are-ai-chatbots-making-us-lose-control-of-our-brains/)
+
+---
+
+## 記事 25  ｜  MIT Tech Review
+
+### メタハックは、AI セキュリティには Mythos だけではないことを示しています
+
+> 原題: *The Meta hack shows there’s more to AI security than Mythos*
+
+#### 📝 記事の日本語訳
+
+AI サイバーセキュリティの脅威の中には、信じられないほど単純なものもあります。彼らはまだ危険です。 6 月 5 日、404 Media は、攻撃者が Meta の AI カスタマー サポート エージェントを使用して Instagram アカウントを盗んでいたと報じました。彼らのアプローチはシンプルでした。彼らはエージェントに、自分が管理する電子メール アドレスにアカウントをリンクするよう依頼し、エージェントはそれに応じました。ある攻撃者はオバマ大統領の休眠アカウントに侵入し、親イラン的な投稿を行った。他の人は、おそらく販売するために、貴重な 1 語のハンドルを持つアカウントを乗っ取りました。 AI のサイバーセキュリティに関する懸念は新しいものではありません。 Anthropic が 4 月に、Mythos モデルはハッキング能力が高すぎて一般公開できないと発表して以来、解説者、研究者、連邦当局者は同様に、超強力な AI システムが無駄になる可能性があるという考えに固執しています...
+
+#### 🏢 企業解説リンク
+
+- [Meta](companies/meta.html)
+
+🔗 [元記事を読む](https://www.technologyreview.com/2026/06/05/1138437/the-meta-hack-shows-theres-more-to-ai-security-than-mythos/)
+
+---
+
+## 記事 26  ｜  VentureBeat
+
+### クロードが変わるとすべてが変わりました: 本番環境での AI 爆発範囲の管理
+
+> 原題: *When Claude changed, everything changed: Managing AI blast radius in production*
+
+#### 📝 記事の日本語訳
+
+<p>私たちのシステムは 1 つのことを実行し、それがうまくいきました。それは、自然言語の質問を API 呼び出しに変換することでした。</p><p>ユーザーはアナリスト、アカウント マネージャー、運用リーダーでした。彼らは必要なデータを知っていましたが、それを手動で組み立てるには、4 つのダッシュボード、2 つの BI ツール、Salesforce レポート ビルダーから取得する必要がありました。私たちのシステムでは、彼らはわかりやすい英語でリクエストを入力しました。 「北東部地域の 2026 年 1 月から 3 月までの販売量に関するレポートを作成してください。...
+
+🔗 [元記事を読む](https://venturebeat.com/orchestration/when-claude-changed-everything-changed-managing-ai-blast-radius-in-production)
+
+---
+
+## 記事 27  ｜  VentureBeat
+
+### Agentic AI はコーディングを解決し、ソフトウェア エンジニアリングにおけるその他すべての問題を明らかにしました
+
+> 原題: *Agentic AI solved coding — and exposed every other problem in software engineering*
+
+#### 📝 記事の日本語訳
+
+<p>Agentic AI は現在、エンジニアリング プロセスの中核を成しており、大規模な実行レバレッジを推進し、これまで以上に多くのコードを生成するのに役立ちます。しかし、ビジネス リーダーから聞かれることが増えてきた難しい質問は、次のとおりです。<i>これまでよりも早くコードを出荷しているのに、なぜ製品が同じ速度で改善しないのですか?</i></p><p>その理由は、コードの作成が速度を制限するものではなかったからです。適切な要件を定義し、複雑なシステムと統合し、実世界の環境下でソフトウェアを保守します。
+
+🔗 [元記事を読む](https://venturebeat.com/technology/agentic-ai-solved-coding-and-exposed-every-other-problem-in-software-engineering)
+
+---
+
+## 記事 28  ｜  VentureBeat
+
+### Microsoft AI責任者、同社はスーパーインテリジェンスを追求するためにOpenAIから「解放された」と語る
+
+> 原題: *Microsoft AI chief says company was “set free” from OpenAI to pursue superintelligence*
+
+#### 📝 記事の日本語訳
+
+<p>3 年間、Microsoft の人工知能の歴史は OpenAI と切り離せないものでした。累計 130 億ドルを超える投資によって強固となったこのパートナーシップにより、マイクロソフトは地球上で最も先進的な AI モデルに早期にアクセスできるようになり、Copilot 製品が企業の主流に躍り出て、同社の時価総額は数千億ドル増加しました。外部の世界にとって、Microsoft の AI 戦略は OpenAI<i>でした</i>。</p><p>ムスタファ スレイマン氏は、これを変えたいと考えています...
+
+#### 🏢 企業解説リンク
+
+- [Microsoft](companies/microsoft.html)
+- [OpenAI](companies/openai.html)
+
+🔗 [元記事を読む](https://venturebeat.com/technology/microsoft-ai-chief-says-company-was-set-free-from-openai-to-pursue-superintelligence)
+
+---
+
+## 記事 29  ｜  VentureBeat
+
+### Microsoft の AI Futurist が Copilot の使用方法と、企業がエージェントを使用して解決している現実の問題について説明します
+
+> 原題: *Microsoft's AI Futurist explains how he uses Copilot — and the real-world problems enterprises are solving with agents*
+
+#### 📝 記事の日本語訳
+
+<p>Microsoft は今週、<a href="https://news.microsoft.com/build-2026/">Build 2026 カンファレンス </a> を使用して、エージェントがエンタープライズ システム全体で急速に実稼働環境に移行しており、勝利するプラットフォームは信頼性の高いコンテキスト、ガバナンス、ID、メモリ、そしてエンタープライズ データへの安全なアクセスをエージェントに提供するものになるという明確なメッセージを押し出しました。 </p><p>会社 <a href="https://venturebeat.com/data/enterprise-ai-agents-keep-creating-data-silos-microsofts-build-answer-is-microsoft-iq-and-rayf...
+
+#### 🏢 企業解説リンク
+
+- [Microsoft](companies/microsoft.html)
+
+🔗 [元記事を読む](https://venturebeat.com/orchestration/microsofts-ai-futurist-explains-how-he-uses-copilot-and-the-real-world-problems-enterprises-are-solving-with-agents)
+
+---
+
+## 記事 30  ｜  VentureBeat
+
+### AI エージェントは仕事中に学習しますが、チーム全体の学習ではありません
+
+> 原題: *AI agents are learning on the job — just not for your whole team*
+
+#### 📝 記事の日本語訳
+
+<p>チームの誰かが AI エージェントを修正すると (プロンプトが改善され、フィードバックが改善され、コンテキストが改善され)、その改善は同僚が同じツールを開いた瞬間に消えてしまいます。修正は転送されず、次の担当者はゼロからのスタートとなります。</p><p>チームがエージェントにユーザーやタスク間でコンテキストを共有することを期待しているマルチエージェント ワークフローでは、問題がさらに悪化します。共有メモリ層がなければ、すべてのチーム メンバーが同じエージェントの異なるバージョンを効果的にトレーニングします。そして、それらのバージョンは決して...
+
+🔗 [元記事を読む](https://venturebeat.com/orchestration/ai-agents-are-learning-on-the-job-just-not-for-your-whole-team)
+
+---
+
+## 記事 31  ｜  Engadget
+
+### macOS Golden Gate で Siri AI が脚光を浴びる - Engadget
+
+> 原題: *macOS Golden Gate puts Siri AI into Spotlight - Engadget*
+
+#### 📝 記事の日本語訳
+
+そして、それにはいくつかの新しい液体ガラスのカスタマイズが含まれます 昨年、macOS Tahoe 26 は Apple のデスクトップに液体ガラスのちょっとした改良を加えました。今年の macOS Golden Gate は洗練がすべてであり、同社の新しい Siri AI がショーの真の主役です。 Apple の Siri 刷新は、WWDC 2024 の短いプレビューの後、同社が動作するデモさえ持っていなかったため、何度も延期されてきたため、これはそれほど驚くべきことではありません。 Siri AI は、昨年のパワー ユーザー向けのアップデートを基に構築された Spotlight に統合されます。
+
+#### 🏢 企業解説リンク
+
+- [Apple](companies/apple.html)
+
+🔗 [元記事を読む](https://www.engadget.com/2189760/macos-golden-gate-puts-siri-ai-into-spotlight/)
+
+---
+
+## 記事 32  ｜  Engadget
+
+### Apple、WWDC 2024で発表したAI搭載Siriを再導入 - Engadget
+
+> 原題: *Apple reintroduces the AI-powered Siri it announced at WWDC 2024 - Engadget*
+
+#### 📝 記事の日本語訳
+
+2年間のMIAを経て、Appleの再設計されたSiriがついに再登場した。 WWDC 2026 で、同社は 2024 年に初めて登場した AI 搭載 Siri の新バージョンを披露しました。Apple は新しいアシスタントを Siri AI と呼んでいます。今年の初めに発表されたように、Apple は Google と提携して、同社の Gemini モデル上に Apple Intelligence と Siri を再構築しました。 iPhone では、新しい Siri はデバイスのダイナミック アイランド内に存在します。ダイナミック アイランドは、Apple が 2023 年に通常の iPhone に導入する前に、2022 年に iPhone 14 Pro でデビューしました。以前と同様に、「Siri」と言うか、電源ボタンを押し続けることでアシスタントを起動できます。 Apple は、デバイスの上部中央から引き下げる新しいスワイプ ジェスチャも追加しました。これらのアクションにより、新しい「検索または質問」インターフェイスが表示されます。
+
+#### 🏢 企業解説リンク
+
+- [Apple](companies/apple.html)
+- [Google](companies/google.html)
+
+🔗 [元記事を読む](https://www.engadget.com/2189744/apple-reintroduces-the-ai-powered-siri-it-announced-at-wwdc-2024/)
+
+---
+
+## 記事 33  ｜  Engadget
+
+### Apple、ペアレンタルコントロールを拡張し、自動画像フィルタリングを追加 - Engadget
+
+> 原題: *Apple expands parental controls to include automatic image filtering - Engadget*
+
+#### 📝 記事の日本語訳
+
+子どもたちは、特定の Web サイトを閲覧したり、特定の人に連絡したりするように要求できるようになりました。 WWDC '26 で、Apple は親が子供が見たり行うことをより詳細に制御できるようにするための変更を発表しました。同社は、子供たちがどのようなアプリをダウンロードするかについて大人に発言権を与えるだけでなく、「Ask」機能を拡大しようとしている。子どもたちは、フィルターの外にある特定のサイトにアクセスするよう親に請願できるようになります。同様に、子アカウントのユーザーが知らない相手と連絡を取りたい場合は、チャットする前に保護者の承認が必要になります。子どもの安全性を高めるさまざまな改善の一環として、Apple は潜在的に有害な写真について子どもたちに先制的に警告します。この一環として、システムが不適切なコンテンツを含む可能性があると判断したデバイスに送信された画像は、自動的に検閲されます。そ...
+
+#### 🏢 企業解説リンク
+
+- [Apple](companies/apple.html)
+
+🔗 [元記事を読む](https://www.engadget.com/2189728/apple-expands-parental-controls-to-include-automatic-image-filtering/)
+
+---
+
+## 記事 34  ｜  Engadget
+
+### Appleの新しいOSは大幅な速度向上を実現 - Engadget
+
+> 原題: *Apple's new OSes are getting a massive speed boost - Engadget*
+
+#### 📝 記事の日本語訳
+
+Apple の大規模な WWDC カンファレンスが進行中ですが、同社は次期 iPad 27 と iOS 27 に影響を与えるちょっとしたニュースを発表しました。それらはパフォーマンスと速度を念頭に置いて設計されています。そのために同社は、iPhoneとiPadのアプリの起動が最大30パーセント速くなると述べている。これは、ファーストパーティのアプリとサードパーティのアプリの両方に当てはまります。また、コンテンツはデバイスのライブラリに迅速にアップロードされる必要があります。 AirDrop 経由での写真やファイルの共有も最大 80% 高速化されるはずです。このスピードへのこだわりは、あらゆるところで見られます。 iPad から外部ドライブへのファイルの転送は「最大 5 倍高速」になります。同社によれば、現在では Mac の Finder とほぼ同じ速度になっているという。デバイスは、Wi-Fi と携帯電話サービス間の切り替えも改善され、コントロール センターにアクセスする必要がなくなります。
+
+#### 🏢 企業解説リンク
+
+- [Apple](companies/apple.html)
+
+🔗 [元記事を読む](https://www.engadget.com/2189714/apples-new-oses-are-getting-a-massive-speed-boost/)
+
+---
+
+## 記事 35  ｜  Engadget
+
+### AppleのWWDC 2026基調講演で発表されたすべて - Engadget
+
+> 原題: *Everything announced at Apple's WWDC 2026 keynote - Engadget*
+
+#### 📝 記事の日本語訳
+
+Siri AI はいよいよ完成に近づいており、液体ガラスは間もなく少し液体ではなくなるでしょう。この時期は、Apple のエコシステム用のアプリやツールを作成する開発者 (そして近所のフレンドリーな技術ジャーナリスト) が Apple Park やリモートに集まり、今年後半に同社のオペレーティング システムに何が登場するかを学ぶ時期です。 Apple の Worldwide Developer Conference は本日、これまでと同様、主要な発表の大部分を含む基調講演で始まりました。今年の WWDC は何かが少し異なります。ティム・クック氏はこれがアップルCEOとしての最後の任期となり、9月1日に辞任してハードウェアエンジニアリング担当上級副社長のジョン・ターナス氏にその職を譲る。 Ternus の任命は、会社が次にどこへ向かうのかに光を当てるかもしれません。
+
+#### 🏢 企業解説リンク
+
+- [Apple](companies/apple.html)
+
+🔗 [元記事を読む](https://www.engadget.com/2189698/everything-announced-at-apples-wwdc-2026-keynote/)
+
+---
+
+
+> ⚠️ 本まとめは自動生成です。数値・固有名詞などの事実は元記事でご確認ください。
