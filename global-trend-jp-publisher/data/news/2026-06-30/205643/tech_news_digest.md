@@ -1,0 +1,554 @@
+# 🌐 海外テックニュース 日本語まとめ
+
+**生成日時:** 2026年6月30日  20:56 JST
+
+> 世界の有力テックメディア（TechCrunch・The Verge・Wired・Ars Technica・MIT Tech Review・VentureBeat・Engadget）から注目記事を自動収集し、日本の読者向けに翻訳・要約しました。
+
+---
+
+## 目次
+
+1. [ポーカー AI を開発した DeepMind のトリオは現在、クオンツ ヘッジ ファンドで儲けています。テッククランチ](#記事-1--ポーカー-ai-を開発した-deepmind-のトリオは現在、クオンツ-ヘッジ-ファンドで儲けています。テッククランチ)
+2. [Realta Fusion は、明らかに初の、核融合反応から直接電気を生成します。テッククランチ](#記事-2--realta-fusion-は、明らかに初の、核融合反応から直接電気を生成します。テッククランチ)
+3. [Google が Nano Banana 2 Lite を使用した、より高速で安価な画像生成機能を導入 |テッククランチ](#記事-3--google-が-nano-banana-2-lite-を使用した、より高速で安価な画像生成機能を導入-テッククランチ)
+4. [Clicks が新しい実践ビデオで BlackBerry にインスピレーションを得た携帯電話を披露 |テッククランチ](#記事-4--clicks-が新しい実践ビデオで-blackberry-にインスピレーションを得た携帯電話を披露-テッククランチ)
+5. [Nvidia の競合企業 Etched が AI チップの評価額 50 億ドル、売上高 10 億ドルに達 |テッククランチ](#記事-5--nvidia-の競合企業-etched-が-ai-チップの評価額-50-億ドル、売上高-10-億ドルに達-テッククランチ)
+6. [Acer の Swift Go 16 は 900 ドルで十分なラップトップです](#記事-6--acer-の-swift-go-16-は-900-ドルで十分なラップトップです)
+7. [Google の NotebookLM は、TikTok スタイルのクリップで研究内容を要約できます](#記事-7--google-の-notebooklm-は、tiktok-スタイルのクリップで研究内容を要約できます)
+8. [LGの27インチタンデムOLEDゲーミングモニターがこれまでよりも安価に](#記事-8--lgの27インチタンデムoledゲーミングモニターがこれまでよりも安価に)
+9. [007 First Lightの開発者はスタッフを解雇するが、次のシリーズは継続すると主張](#記事-9--007-first-lightの開発者はスタッフを解雇するが、次のシリーズは継続すると主張)
+10. [Moto の Tag 2 トラッカーは期間限定で 20 ドル](#記事-10--moto-の-tag-2-トラッカーは期間限定で-20-ドル)
+11. [ニューヨークはフェニックスより暑くなりそうだ](#記事-11--ニューヨークはフェニックスより暑くなりそうだ)
+12. [忍者は静かに、しかし劇的に改良したスラッシーマシン](#記事-12--忍者は静かに、しかし劇的に改良したスラッシーマシン)
+13. [プライバシーオタク向けではありませんが、Bitdefender VPN は優れた価値があります](#記事-13--プライバシーオタク向けではありませんが、bitdefender-vpn-は優れた価値があります)
+14. [バーニー・サンダースはこれが来ると予見していた](#記事-14--バーニー・サンダースはこれが来ると予見していた)
+15. [ハンター・バイデンはいかにしてインターネットを勝ち取ったのか](#記事-15--ハンター・バイデンはいかにしてインターネットを勝ち取ったのか)
+16. [Google の新しい Nano Banana 2 Lite イメージ モデルは、これまでで最速かつ最も安価です](#記事-16--google-の新しい-nano-banana-2-lite-イメージ-モデルは、これまでで最速かつ最も安価です)
+17. [すべての.govウェブサイトを再設計するというトランプ大統領の計画は、AIが設計した恐怖につながる](#記事-17--すべてのgovウェブサイトを再設計するというトランプ大統領の計画は、aiが設計した恐怖につながる)
+18. [米国が2040年までに100％EV化すれば10万人以上の命が救われると研究報告](#記事-18--米国が2040年までに100ev化すれば10万人以上の命が救われると研究報告)
+19. [ラウンドテーブル: 長寿の次のフロンティア: 身体の「再プログラミング」](#記事-19--ラウンドテーブル-長寿の次のフロンティア-身体の「再プログラミング」)
+20. [ダウンロード: AI の「同僚」と成層圏のインターネット](#記事-20--ダウンロード-ai-の「同僚」と成層圏のインターネット)
+21. [農業は AI の準備ができていますが、そのデータはまだ準備ができていません](#記事-21--農業は-ai-の準備ができていますが、そのデータはまだ準備ができていません)
+22. [世界の秘密の研究開発拠点でテクノロジーを構築する](#記事-22--世界の秘密の研究開発拠点でテクノロジーを構築する)
+23. [AIエージェントはあなたの「同僚」ではありません](#記事-23--aiエージェントはあなたの「同僚」ではありません)
+24. [Anthropic、大ヒットIPOを目指して最上位モデルを大幅に値引きしてClaude Sonnet 5を発売](#記事-24--anthropic、大ヒットipoを目指して最上位モデルを大幅に値引きしてclaude-sonnet-5を発売)
+25. [Google の Gemini Omni Flash が API にアクセスし、企業のビデオ制作を会話に変える](#記事-25--google-の-gemini-omni-flash-が-api-にアクセスし、企業のビデオ制作を会話に変える)
+26. [Google、低コストで 4 秒でエンタープライズ イメージを生成できる Nano Banana 2 Lite 別名 Gemini 3.1 Flash-Lite を発表](#記事-26--google、低コストで-4-秒でエンタープライズ-イメージを生成できる-nano-banana-2-lite-別名-gemini-31-flash-lite-を発表)
+27. [AI エージェントは、クラウドが追随できない場所であっても、実行されるすべての場所でコンテキストを必要とします。](#記事-27--ai-エージェントは、クラウドが追随できない場所であっても、実行されるすべての場所でコンテキストを必要とします。)
+28. [Meituan は、OpenRouter をリードしてきた 1.6T のニアフロンティア エージェント コーディング モデルである LongCat-2.0 をオープンソース化 - 完全に中国製チップでトレーニング](#記事-28--meituan-は、openrouter-をリードしてきた-16t-のニアフロンティア-エージェント-コーディング-モデルである-longcat-20-をオープンソース化---完全に中国製チップでトレーニング)
+29. [最高裁判所はAppleとEpic Gamesの間の長期訴訟の上告を審理する - Engadget](#記事-29--最高裁判所はappleとepic-gamesの間の長期訴訟の上告を審理する---engadget)
+30. [iPhoneでカスタムアラーム音を設定する方法 - Engadget](#記事-30--iphoneでカスタムアラーム音を設定する方法---engadget)
+31. [カリフォルニア州のオンラインゲーム保存法案が委員会で否決 - Engadget](#記事-31--カリフォルニア州のオンラインゲーム保存法案が委員会で否決---engadget)
+32. [スーパーマリオギャラクシームービーが7月30日にピーコックで公開 - Engadget](#記事-32--スーパーマリオギャラクシームービーが7月30日にピーコックで公開---engadget)
+
+---
+
+## 記事 1  ｜  TechCrunch
+
+### ポーカー AI を開発した DeepMind のトリオは現在、クオンツ ヘッジ ファンドで儲けています。テッククランチ
+
+> 原題: *The DeepMind trio who built a poker AI are now making money for quant hedge funds | TechCrunch*
+
+#### 📝 記事の日本語訳
+
+ポーカーで人間に勝つ AI を開発したディープマインドの元研究者 3 名が、現在同じテクノロジーを株式取引に応用しており、その賭けは成果を上げているようです。 TechCrunchによると、プラハに本拠を置く同社のAIラボ「EquiLibre Technologies」の価値は非公開のシリーズAで調達し、現在5億ドルと評価されている。このラウンドはCreandumが主導し、VCもラウンドの規模の開示を拒否したが、キャメロン・セラーズ副社長は、これが同社が「これまでに企業に一度に行った単一の投資としては最大規模」であることを認めた、とTechCrunchに語った。ポーカーとウォール街の共通点は、自己学習モデルが報酬によって奨励される AI トレーニング手法である強化学習に適していることです。 Martin Schmid 氏によると、EquiLib...
+
+#### 🏢 企業解説リンク
+
+- [TechCrunch](companies/techcrunch.html)
+
+🔗 [元記事を読む](https://techcrunch.com/2026/06/30/the-deepmind-trio-who-built-a-poker-ai-are-now-making-money-for-quant-hedge-funds/)
+
+---
+
+## 記事 2  ｜  TechCrunch
+
+### Realta Fusion は、明らかに初の、核融合反応から直接電気を生成します。テッククランチ
+
+> 原題: *Realta Fusion generates electricity directly from a fusion reaction, an apparent first | TechCrunch*
+
+#### 📝 記事の日本語訳
+
+核融合スタートアップにとって、難しい部分は終わりました。2022 年の画期的な実験のおかげで、制御された核融合反応では、消費する以上の電力を生成できることがわかりました。しかし今、企業は自社の原子炉が利益を得るのに十分な電力を生産できることを証明する必要がある。 1 つのオプションは、温度を上げてより多くの熱を発生させ、より大きなタービンを回転させるためのより多くの蒸気を生成することです。もう 1 つは、核融合反応そのものから直接電気を採取することであり、より効率が期待できるアプローチです。リアルティ・フュージョンは、6月19日に実施した実験で、デモ用融合装置であるWHAMから直接採取した電力を使って電球に電力を供給することに成功したと発表した。ウィスコンシンに本拠を置くこの新興企業は、自社がこの問題を公に実証する最初の民間企業であると信じています。
+
+#### 🏢 企業解説リンク
+
+- [TechCrunch](companies/techcrunch.html)
+
+🔗 [元記事を読む](https://techcrunch.com/2026/06/30/realta-fusion-generates-electricity-directly-from-a-fusion-reaction-an-apparent-first/)
+
+---
+
+## 記事 3  ｜  TechCrunch
+
+### Google が Nano Banana 2 Lite を使用した、より高速で安価な画像生成機能を導入 |テッククランチ
+
+> 原題: *Google introduces a faster, cheaper image generator with Nano Banana 2 Lite | TechCrunch*
+
+#### 📝 記事の日本語訳
+
+Googleは火曜日、社内AIビデオおよび画像ジェネレーターの最新バージョンであるNano Banana 2 Liteをリリースした。このバージョンは、以前のリリースよりも大幅に高速かつ手頃な価格になっていると同社は主張しています。このモデルはレイテンシーがはるかに低く、4 秒で画像を生成できるため、画像をワークショップして大量の画像を立て続けに生成する必要がある場合に良い選択肢になると Google は述べています。画像 1,000 枚あたり 0.034 ドルの料金がかかるため、大規模なコンテンツの下書きや完成度を高めたい人にとっては非常に手頃な価格になります。このリリースは、昨年夏の Gemini 3.1 Flash を搭載したオリジナルの Nano Banana の発売と、2 月の Nano Banana 2 のリリースに続くものです。後者では、よりリアルな画像を作成する機能など、ジェネレーターに新しい機能が導入されました。そ...
+
+#### 🏢 企業解説リンク
+
+- [Google](companies/google.html)
+- [TechCrunch](companies/techcrunch.html)
+
+🔗 [元記事を読む](https://techcrunch.com/2026/06/30/google-introduces-a-faster-cheaper-image-generator-with-nano-banana-2-lite/)
+
+---
+
+## 記事 4  ｜  TechCrunch
+
+### Clicks が新しい実践ビデオで BlackBerry にインスピレーションを得た携帯電話を披露 |テッククランチ
+
+> 原題: *Clicks shows off its BlackBerry-inspired phone in a new hands-on video | TechCrunch*
+
+#### 📝 記事の日本語訳
+
+Clicks Technology は、BlackBerry スマートフォンに独自の解釈を加えた製品の発売を準備している新興企業で、本日公開された新しいビデオで自社の製品を披露しています。 Clicks Communicator として知られるこのデバイスは、テキストメッセージの送信や電子メールの送信など、携帯電話で多くの作業を行う人々に応えるために、ラスベガスで 1 月に開催されたコンシューマー エレクトロニクス ショー (CES) で発表されました。これは特に、BlackBerry の物理キーボードが恋しい人にアピールすることを目的としており、この種のタスクには BlackBerry の物理キーボードの方が適していると主張する人もいます。価格が 499 ドルの Communicator は、現代の BlackBerry によく似ており、メッセージを表示して応答するための画面と、その下に触覚的なタッチセンサー式キーボードが付いています。ただし、この携帯電話は、他の領域で革新を行っているため、単なる BlackBerry のカモではありません。例えば、 ...
+
+#### 🏢 企業解説リンク
+
+- [TechCrunch](companies/techcrunch.html)
+
+🔗 [元記事を読む](https://techcrunch.com/2026/06/30/clicks-shows-off-its-blackberry-inspired-phone-in-a-new-hands-on-video/)
+
+---
+
+## 記事 5  ｜  TechCrunch
+
+### Nvidia の競合企業 Etched が AI チップの評価額 50 億ドル、売上高 10 億ドルに達 |テッククランチ
+
+> 原題: *Nvidia competitor Etched hits $5B valuation, $1B in sales for AI chip | TechCrunch*
+
+#### 📝 記事の日本語訳
+
+Nvidia AIチップの競合企業であるEtchedは、TSMCが今年初めにチップの製造に成功したことを受けて、火曜日に進捗報告書を発表した。同社は、自社製品、つまりこれらのチップを搭載した完全なシステムに対して、すでに 10 億ドルの契約受注を予約していると述べています。 Etched は現在、その最初の製品を顧客とともにテスト中です。同社はこれらのシステムを「フロンティア推論クラスター」と呼んでおり、チップとカスタム設計のラックおよびソフトウェアを含むバンドルで、すべてフロンティアモデルが競合他社よりも高速かつ安価に、より優れた電力効率で推論を実行できるように構築されているとエッチング氏は主張する。 (推論はユーザーがプロンプトを送信した後に行われることです。推論は現在最大のボトルネックであり、顧客に大規模にサービスを提供しようとしている AI 企業にとって最大のコスト センターです。これがまさに...
+
+#### 🏢 企業解説リンク
+
+- [NVIDIA](companies/nvidia.html)
+- [TechCrunch](companies/techcrunch.html)
+
+🔗 [元記事を読む](https://techcrunch.com/2026/06/30/nvidia-competitor-etched-hits-5b-valuation-1b-in-sales-for-ai-chip/)
+
+---
+
+## 記事 6  ｜  The Verge
+
+### Acer の Swift Go 16 は 900 ドルで十分なラップトップです
+
+> 原題: *Acer’s Swift Go 16 is a lot of laptop for $900*
+
+#### 📝 記事の日本語訳
+
+このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。こちらは、メモリとストレージのコストがひどいにもかかわらず、手頃な価格のしっかりした 16 インチ ラップトップです。
+
+🔗 [元記事を読む](https://www.theverge.com/gadgets/959687/acer-swift-go-16-ai-deal-sale)
+
+---
+
+## 記事 7  ｜  The Verge
+
+### Google の NotebookLM は、TikTok スタイルのクリップで研究内容を要約できます
+
+> 原題: *Google’s NotebookLM can sum up your research in a TikTok-style clip*
+
+#### 📝 記事の日本語訳
+
+このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。 60 秒のビデオでは、AI が生成した画像とナレーションでソースを要約します。
+
+#### 🏢 企業解説リンク
+
+- [Google](companies/google.html)
+
+🔗 [元記事を読む](https://www.theverge.com/tech/959778/google-notebooklm-ai-clips)
+
+---
+
+## 記事 8  ｜  The Verge
+
+### LGの27インチタンデムOLEDゲーミングモニターがこれまでよりも安価に
+
+> 原題: *LG’s 27-inch Tandem OLED gaming monitor is cheaper than ever*
+
+#### 📝 記事の日本語訳
+
+このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。機能満載の優れた 1440p OLED ゲーミング モニターの価格は、比較的新しいものであっても下がり続けています。
+
+🔗 [元記事を読む](https://www.theverge.com/gadgets/906880/lg-ultragear-tandem-oled-1440p-gaming-monitor-deal-sale)
+
+---
+
+## 記事 9  ｜  The Verge
+
+### 007 First Lightの開発者はスタッフを解雇するが、次のシリーズは継続すると主張
+
+> 原題: *007 First Light’s developer lays off staff but claims its next franchise will continue*
+
+#### 📝 記事の日本語訳
+
+このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。 IO Interactive は、「Project Fantasy」の外部パートナーを失いました。それは Microsoft だったと伝えられています。
+
+#### 🏢 企業解説リンク
+
+- [Microsoft](companies/microsoft.html)
+
+🔗 [元記事を読む](https://www.theverge.com/games/959713/io-interactive-project-fantasy-layoffs)
+
+---
+
+## 記事 10  ｜  The Verge
+
+### Moto の Tag 2 トラッカーは期間限定で 20 ドル
+
+> 原題: *Moto’s Tag 2 tracker is $20 for a limited time*
+
+#### 📝 記事の日本語訳
+
+このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。 IP68 定格、600 日のバッテリー寿命、多機能ボタンを備えた、これは Android 用の優れたトラッカーです。
+
+🔗 [元記事を読む](https://www.theverge.com/gadgets/959657/moto-tag-2-deal-sale)
+
+---
+
+## 記事 11  ｜  Wired
+
+### ニューヨークはフェニックスより暑くなりそうだ
+
+> 原題: *New York Is About to Feel Hotter Than Phoenix*
+
+#### 📝 記事の日本語訳
+
+世界中がホットポテトゲームに興じている中、米国東部が最近猛暑に見舞われている場所だ。今後数日間、ニューヨークでは気温が華氏 100 度 (摂氏 38 度) 近くまで上昇すると予想されていますが、湿度が高いため、体感温度は華氏 109 度 (摂氏 43 度) くらいになる可能性があります。デトロイトからワシントンD.C.、ボストンに至る他の都市では、連休が近づくにつれて気温が平年より華氏20度高くなる見込みです。気温はフェニックスほど高くはならないでしょう。しかし、これは乾いた暑さではありません。湿気も相まって、屋外に出た人は犬の口の中をうろうろしているのとほぼ同じような経験をするはずです。高温多湿の天候によるひどいことのほかに、非常に深刻な健康上の懸念もあります。ふみ…
+
+🔗 [元記事を読む](https://www.wired.com/story/new-york-about-feel-hotter-than-phoenix/)
+
+---
+
+## 記事 12  ｜  Wired
+
+### 忍者は静かに、しかし劇的に改良したスラッシーマシン
+
+> 原題: *Ninja Quietly but Drastically Improved Its Slushie Machines*
+
+#### 📝 記事の日本語訳
+
+私たちは家庭用スラッシーマシンの黄金時代に生きています。 2024 年、大流行したニンジャ スラッシーがバー スラッシュをアメリカのキッチンに持ち込んだ後、2024 年に私たちにもたらされた新時代です。それとともにフローズン マルガリータとバップル スラッシュの新しい世界も生まれました。しかし、今年はNinjaのオリジナルのスラッシーマシンが置き換えられました。 Ninja Slushi はプライムデー中に記録的な安値に下落しましたが、これはおそらく新しい最高の Slushi マシンが Ninja のいくつかの新しいモデルであることも一因と思われます。 2026 年の新しい Ninja スラッシー マシンは両方とも、残りの競争を飛び越えました。 Ninja Slushi XL ($350) は、冷凍時間の短縮、スマートなコントロール、大容量、アルコール度数と糖度の柔軟性の向上、そして満足のいくソフト クリームを作る能力の点で、私が最もお勧めする最高のフローズン ドリンク メーカーです。
+
+🔗 [元記事を読む](https://www.wired.com/gallery/best-slushie-machines/)
+
+---
+
+## 記事 13  ｜  Wired
+
+### プライバシーオタク向けではありませんが、Bitdefender VPN は優れた価値があります
+
+> 原題: *It's Not for Privacy Nerds, But Bitdefender VPN Is an Excellent Value*
+
+#### 📝 記事の日本語訳
+
+Bitdefender は技術的には無料の VPN オプションを提供していますが、制限されています。このソフトウェアは、ユーザーをサブスクリプションに強く誘導します (いくつかのプロンプトから取り消さない限り、無料オプションの存在にさえ気付かないでしょう)。無料ユーザーは自動的に選択されたサーバーにのみアクセスでき、1 日あたりのデータ量は 200 MB に制限されます。つまり、ほとんどの場合、さまざまなセキュリティ サービスのエントリーレベルとして位置付けられる Bitdefender Premium VPN のサブスクリプションを購入する必要があります。ウイルス対策とパスワード マネージャーを追加する Premium Security、または (他の機能の中でも特に) デジタル ID 保護とダークウェブ監視を追加する Ultimate Security にアップグレードできます。 Bitdefender VPN はすべての層に含まれており、すべての層で同様に機能します。言い換えれば、実際には VPN サービスは 2 層しかありません。
+
+🔗 [元記事を読む](https://www.wired.com/review/bitdefender-vpn/)
+
+---
+
+## 記事 14  ｜  Wired
+
+### バーニー・サンダースはこれが来ると予見していた
+
+> 原題: *Bernie Sanders Saw This Coming*
+
+#### 📝 記事の日本語訳
+
+バーモント州上院議員を長年務めた彼が嘘つきの特徴を持っているからではない。確かに彼は政治家としてのキャリアがあるが、84歳の進歩的な聖火ランナーは、スキャンダルよりもバイラルなミームのほうが多いと考えている。むしろ、バーニー・サンダース氏を信じるのは難しい。なぜなら、彼は何十年もアメリカ国民に、この国は根本的に変わることができると言いながら、現状からかけ離れた考えを擁護し、実際にチャンスを得ることができないからである。その一例として、彼は億万長者をヒールに引き入れたいと考えている。そして、政府が運営する国民皆保険を実施します。大学の学費？もしサンダース氏の思いどおりにしていれば、それは存在すらしなかっただろう。状況は変わる可能性があります。私はそれを信じており、『WIRED』はそれを支持します。でも、そんなに変わるんですか？この国では？本当に、バーニー？しかし、サンダースは現在、この山にもう一つ大きな、ありそうもない変化を加えようと懸命に取り組んでいる。2023年以来、サンダースは...
+
+🔗 [元記事を読む](https://www.wired.com/story/the-big-interview-podcast-senator-bernie-sanders/)
+
+---
+
+## 記事 15  ｜  Wired
+
+### ハンター・バイデンはいかにしてインターネットを勝ち取ったのか
+
+> 原題: *How Hunter Biden Won the Internet*
+
+#### 📝 記事の日本語訳
+
+約10年前、ミッドタウンのストリップクラブでダンサー2人がハンター・バイデンと個室でラップダンスに会い、そこで彼は携帯電話でフリート・フォクシーズをプレイしたり麻薬を吸ったりしていた。 QAnon に深く関わっている人なら、すでにご存知かもしれません。あるいは、あなたが新しい「ハンター・バイデンは熱い」[原文ママ] スタン・アカウントの約5万人のフォロワーの一人であるとしたら、このアカウントは最近、この言い伝えを法廷文書から再浮上させた――バイデンに屈辱を与えるためではなく、バイデンを嘲笑するためだ。 TikTokのスライドショーでは、2020年に流出したことで有名なバイデンの写真に、俗っぽい「白い冬の賛美歌」が流れている。バスタブに入るトップレスのハンター、タバコを吹き飛ばすトップレスのハンター、屋内で不可解にスカーフやサングラスをかけているトップレスのハンターなどだ。バイデンは過去3年間のほとんどをマリブにあるこの質素なガレージで過ごし、そのガレージを仮設に改造した...
+
+🔗 [元記事を読む](https://www.wired.com/story/how-hunter-biden-won-the-internet/)
+
+---
+
+## 記事 16  ｜  Ars Technica
+
+### Google の新しい Nano Banana 2 Lite イメージ モデルは、これまでで最速かつ最も安価です
+
+> 原題: *Google's new Nano Banana 2 Lite image model is its fastest and cheapest yet*
+
+#### 📝 記事の日本語訳
+
+見た目はあまり良くないかもしれませんが、Nano Banana 2 Lite イメージの作成には数秒しかかかりません。最近では AI 画像生成モデルがたくさんありますが、高品質の出力が可能なモデルは速度が遅く、高価になる傾向があります。 Google DeepMind は、Nano Banana 2 Lite として知られる新しい画像モデルは、品質と速度の最適なバランスを提供すると述べています。現在、Google エコシステム全体で利用可能であり、Google のより強力なモデルに比べてわずかな時間で画像を作成できます。新しいモデルは Gemini 3.1 ファミリの一部であり、技術的には Gemini 3.1 Flash Lite Image と呼ばれます。一方で Google は、このモデルはアイデアの検討や「急速な」プロトタイピング、つまり品質が優先されるアプリケーションに最適であると述べています。ただし、同社は、Nano Ban がどれほど近いかを示すことを目的としたいくつかの例も提供しています。
+
+#### 🏢 企業解説リンク
+
+- [Google](companies/google.html)
+
+🔗 [元記事を読む](https://arstechnica.com/ai/2026/06/googles-new-nano-banana-2-lite-image-model-is-its-fastest-and-cheapest-yet/)
+
+---
+
+## 記事 17  ｜  Ars Technica
+
+### すべての.govウェブサイトを再設計するというトランプ大統領の計画は、AIが設計した恐怖につながる
+
+> 原題: *Trump's plan to redesign every .gov website leads to AI-designed horrors*
+
+#### 📝 記事の日本語訳
+
+1 年後、National Design Studio は政府の Web 標準を更新する計画を延期しました。 「デジタルの穴を埋め」、AIを活用してすべての政府ウェブサイトを迅速に再設計するというドナルド・トランプ大統領の計画は、あまりうまくいっていない。昨年8月、トランプ大統領は大統領令によりナショナル・デザイン・スタジオ（NDS）を創設した。大統領にのみ応答する一時的な DOGE のような組織である NDS は、米国ウェブ デザイン システム (USWDS) を更新し、わずか 3 年間で 27,000 の dot-gov ウェブサイトを全面的に刷新するための新しい標準を作成する任務を負っていました。このいわゆる「デザインによるアメリカ」構想の終了時には、政府の「デザイン言語」がより使いやすく、より美しくなることになるだろうとトランプ大統領は予想した。しかし、短期間で少人数のチームに割り当てられたこの途方もない任務は、DOGE の大幅な削減によってさらに困難になったようです...
+
+🔗 [元記事を読む](https://arstechnica.com/tech-policy/2026/06/trumps-plan-to-redesign-every-gov-website-leads-to-ai-designed-horrors/)
+
+---
+
+## 記事 18  ｜  Ars Technica
+
+### 米国が2040年までに100％EV化すれば10万人以上の命が救われると研究報告
+
+> 原題: *The US going 100% EV by 2040 would save more than 100k lives, study says*
+
+#### 📝 記事の日本語訳
+
+その多くはディーゼルを燃やす大型トラックやバスから来ています。電気自動車導入の主な動機は気候変動ですが、考慮すべき点はそれだけではありません。内燃機関を道路から撤去することは、喘息やその他の肺疾患の原因となる可能性のある大気汚染物質を削減し、命を直接救うことになります。今回、国際クリーン交通評議会の報告書では、今後数十年間のさまざまな電化シナリオを比較し、その効果を定量化しようとしている。 ICCTによれば、現在4万1,800人以上の早期死亡が道路交通による大気汚染が原因であるという。交通量の多い道路の近くに住むと健康状態が悪化することは昔から知られていました。窒素酸化物（NOx）、一酸化炭素（CO）などの燃焼生成物...
+
+🔗 [元記事を読む](https://arstechnica.com/cars/2026/06/the-us-going-100-ev-by-2040-would-save-more-than-100k-lives-study-says/)
+
+---
+
+## 記事 19  ｜  MIT Tech Review
+
+### ラウンドテーブル: 長寿の次のフロンティア: 身体の「再プログラミング」
+
+> 原題: *Roundtables: Longevity’s Next Frontier: “Reprogramming” Your Body*
+
+#### 📝 記事の日本語訳
+
+長寿の新たな焦点を探る購読者限定のディスカッションをご覧ください。 MIT 卒業生および購読者のみが利用できます。科学者たちが細胞を若い状態に戻す方法を模索する中、老化を逆転させる取り組みに何十億ドルも注ぎ込まれている。しかし、これらの実験的治療法はどれほど遠いのでしょうか?本当に機能するのでしょうか？長寿の新たな焦点を探る会話をご覧ください。講演者 : メアリー・ベス・グリッグス、科学編集者、ジェシカ・ハムゼロウ、上級バイオテクノロジー記者
+
+🔗 [元記事を読む](https://www.technologyreview.com/2026/06/30/1139958/roundtables-longevitys-next-frontier-reprogramming-your-body/)
+
+---
+
+## 記事 20  ｜  MIT Tech Review
+
+### ダウンロード: AI の「同僚」と成層圏のインターネット
+
+> 原題: *The Download: AI “coworkers” and stratospheric internet*
+
+#### 📝 記事の日本語訳
+
+さらに: 米国下院は、新しい青少年のオンライン安全法を可決しました。これは、テクノロジーの世界で何が起こっているかを毎日提供する平日のニュースレター、 The Download の本日版です。新しい部下があなたの直属となることを知るために出社したところを想像してみてください。従業員は人間ではなく、AI ツールです。それでもあなたの会社では AI ツールをアレックスと呼び、肩書きと明確な責任を持つ「従業員」と呼びます。アレックスとどのくらいうまく仕事ができると思いますか?もしあなたがボストン大学教授エマ・ワイルズが研究したマネージャーのような人であれば、その AI を「同僚」として扱うと、より悪い仕事をすることになるでしょう。作業がチャットボットではなくエージェントの「AI 従業員」によるものであった場合、検出されるエラーは 18% 減少しました。
+
+🔗 [元記事を読む](https://www.technologyreview.com/2026/06/30/1139954/the-download-ai-agents-coworkers-solar-powered-internet/)
+
+---
+
+## 記事 21  ｜  MIT Tech Review
+
+### 農業は AI の準備ができていますが、そのデータはまだ準備ができていません
+
+> 原題: *Agriculture is ready for AI, but its data isn’t*
+
+#### 📝 記事の日本語訳
+
+データの精度、構造、ガバナンスは、農業 AI に必要な基礎的な要素です。人工知能は農業で可能なことを変革しつつありますが、業界のリーダーは基礎を築かずに AI に投資することに慎重になる必要があります。このユースケースは、特に、不安定な肥料コスト、予測不可能な天候、誤差がほとんど許されないマージンを乗り越える業界にとって、有望です。研究によると、AI を活用した予測モデルにより、作物の収量が 26% 向上し、水の使用量が 41% 削減され、化学物質の使用量が 33% 削減されることが示されています。ただし、AI ベンダーは通常、これらのソリューションはクリーンで強固なデータ基盤がある場合にのみ有効であるとは教えません。しかし、レルティオには、大手農業企業で技術戦略をリードするなど、この分野での経験があります。
+
+🔗 [元記事を読む](https://www.technologyreview.com/2026/06/30/1139513/agriculture-is-ready-for-ai-but-its-data-isnt/)
+
+---
+
+## 記事 22  ｜  MIT Tech Review
+
+### 世界の秘密の研究開発拠点でテクノロジーを構築する
+
+> 原題: *Building tech in the world’s secret R&D hub*
+
+#### 📝 記事の日本語訳
+
+チューリッヒは、シリコンバレーの密度に近いテクノロジーエコシステムを構築しました。りんご。人間的。ディズニーリサーチ。グーグル。メタ。マイクロソフト。エヌビディア。オープンAI。シリコンバレー以外では、これらすべての企業の研究開発拠点を主張できる場所はほとんどありません。サンフランシスコの約半分の面積である人口40万人強の都市に集中している人口はさらに少ない。しかし、過去 20 年にわたり、世界で最も影響力のあるテクノロジー企業の多くがスイスのチューリッヒとその周辺に研究開発拠点を設立しました。米国外に同社最大の研究開発ハブを建設するという Google の決定から始まった取り組みは、特定の地域においてシリコンバレーよりも高密度で、AI 研究、人材、商業化が世界で最も集中するセンターの 1 つへと進化しました。問題は、なぜこれほど多くのテクノロジーが...
+
+#### 🏢 企業解説リンク
+
+- [Apple](companies/apple.html)
+- [Google](companies/google.html)
+- [Meta](companies/meta.html)
+- [Microsoft](companies/microsoft.html)
+- [NVIDIA](companies/nvidia.html)
+- [OpenAI](companies/openai.html)
+
+🔗 [元記事を読む](https://www.technologyreview.com/2026/06/30/1139661/building-tech-in-the-worlds-secret-rd-hub/)
+
+---
+
+## 記事 23  ｜  MIT Tech Review
+
+### AIエージェントはあなたの「同僚」ではありません
+
+> 原題: *AI agents are not your “coworkers”*
+
+#### 📝 記事の日本語訳
+
+AI エージェントをデジタル従業員としてマーケティングすると、人間の従業員は間違いを発見する能力が低下し、責任を負わされる可能性が高くなります。新しい部下があなたの直属となることを知るために出社したところを想像してみてください。従業員は人間ではなく、AI ツールです。それでもあなたの会社では AI ツールをアレックスと呼び、肩書きと明確な責任を持つ「従業員」と呼びます。アレックスとどのくらいうまく仕事ができると思いますか?もしあなたが、ボストン大学の経営学教授エマ・ワイルズが最近研究したマネージャーのような人なら、アレックスをソフトウェアツールではなく「同僚」として扱うと、より悪い仕事をすることになるだろう。ワイルズ氏は、作業がチャットボットではなくエージェントの「AI 従業員」からのものであると言われた場合、人々が発見するエラーが 18% 少ないことを発見しました。名前に含まれる内容が重要であることがわかりました。たくさん。これはアラです...
+
+🔗 [元記事を読む](https://www.technologyreview.com/2026/06/29/1139849/ai-agents-are-not-your-coworkers/)
+
+---
+
+## 記事 24  ｜  VentureBeat
+
+### Anthropic、大ヒットIPOを目指して最上位モデルを大幅に値引きしてClaude Sonnet 5を発売
+
+> 原題: *Anthropic launches Claude Sonnet 5 at a steep discount to its top model as the company races toward a blockbuster IPO*
+
+#### 📝 記事の日本語訳
+
+<p><a href="https://www.anthropic.com/">Anthropic</a> は本日、<a href="https://www.anthropic.com/news/claude-sonnet-5">Claude Sonnet-5">Claude Sonnet 5</a> をリリースしました。これは、同社によれば、中間層の価格で主力製品に近いパフォーマンスを提供するという新しい AI モデルです。これは、サンフランシスコを拠点とする AI ラボが、コストを重視する企業開発者に強力なエージェント機能へのアクセスを提供することを目的とした動きです。民間市場の驚異的なAI評価が可能かどうかをテストする新規株式公開...
+
+🔗 [元記事を読む](https://venturebeat.com/technology/anthropic-launches-claude-sonnet-5-at-a-steep-discount-to-its-top-model-as-the-company-races-toward-a-blockbuster-ipo)
+
+---
+
+## 記事 25  ｜  VentureBeat
+
+### Google の Gemini Omni Flash が API にアクセスし、企業のビデオ制作を会話に変える
+
+> 原題: *Google's Gemini Omni Flash hits the API, turning enterprise video production into a conversation*
+
+#### 📝 記事の日本語訳
+
+<p>ほとんどの企業にとって、90 秒のトレーニング ビデオや製品説明は決して簡単なことではありません。それは、綿密に計画されたブリーフ、社内の撮影スタッフまたは外部のベンダー、撮影、編集、および一連の修正を意味します。法的審査により画面上のテキストを 1 行変更すると、チェーン全体が再度実行されます。コストと長いスケジュールが、これほど多くの社内ビデオが作成されない理由です。</p><p>この方程式こそが、Google が <a href="https://blog.google/innovation-and-ai/m... で書き直そうとしているものです。
+
+#### 🏢 企業解説リンク
+
+- [Google](companies/google.html)
+
+🔗 [元記事を読む](https://venturebeat.com/technology/googles-gemini-omni-flash-hits-the-api-turning-enterprise-video-production-into-a-conversation)
+
+---
+
+## 記事 26  ｜  VentureBeat
+
+### Google、低コストで 4 秒でエンタープライズ イメージを生成できる Nano Banana 2 Lite 別名 Gemini 3.1 Flash-Lite を発表
+
+> 原題: *Google unveils Nano Banana 2 Lite aka Gemini 3.1 Flash-Lite for low cost, 4-second fast enterprise image generations*
+
+#### 📝 記事の日本語訳
+
+<p>Google は本日、<a href="https://x.com/googleaidevs/status/2071988366925521075">Nano Banana の<a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-omni-flash-nano-banana-2-lite/">デビュー</a>により AI 画像生成機能をアップグレードします。 2 (NB2) Lite</a> は、迅速な実行と厳しいインフラストラクチャ予算向けに構築された最適化されたモデルです。 </p><p>Google のアプリケーション プログラミング インターフェイス (API) では、技術的には Gemini 3.1 Flash-Lite イメージとして指定されています。
+
+#### 🏢 企業解説リンク
+
+- [Google](companies/google.html)
+
+🔗 [元記事を読む](https://venturebeat.com/technology/google-unveils-nano-banana-2-lite-aka-gemini-3-1-flash-lite-for-low-cost-4-second-fast-enterprise-image-generations)
+
+---
+
+## 記事 27  ｜  VentureBeat
+
+### AI エージェントは、クラウドが追随できない場所であっても、実行されるすべての場所でコンテキストを必要とします。
+
+> 原題: *AI agents need context everywhere they run, even where the cloud can't follow*
+
+#### 📝 記事の日本語訳
+
+<p>エンタープライズ AI の競争力はコンテキストに移りつつあります。どのプラットフォームがエージェントに適切なメモリ、適切な取得、意思決定の瞬間に適切なデータを提供できるかということです。</p><p>Couchbase は火曜日、永続的なエージェントのメモリ、リアルタイムのコンテキスト取得、および企業が管理する MCP サーバーを単一の運用プラットフォームに組み合わせた AI データ プレーンを発表しました。 </p><p>Couchbase のルーツは <a href="https://venturebeat.com/ai/enterprise-ai-gets-closer-to-data-with-couchbases-new-c... にあります。
+
+🔗 [元記事を読む](https://venturebeat.com/data/ai-agents-need-context-everywhere-they-run-even-where-the-cloud-cant-follow)
+
+---
+
+## 記事 28  ｜  VentureBeat
+
+### Meituan は、OpenRouter をリードしてきた 1.6T のニアフロンティア エージェント コーディング モデルである LongCat-2.0 をオープンソース化 - 完全に中国製チップでトレーニング
+
+> 原題: *Meituan open sources LongCat-2.0, the 1.6T, near-frontier agentic coding model that's been leading OpenRouter — trained entirely on Chinese chips*
+
+#### 📝 記事の日本語訳
+
+<p>数時間前、中国の配達アプリ会社 <a href="https://longcat.chat/blog/longcat-2.0/">Meituan は、<a href="https://github.com/meituan-longcat/LongCat-2.0">GitHub</a> で LongCat-2.0 を正式に発表しました</a>。<a href="https://huggingface.co/meituan-longcat/LongCat-2.0">Hugging Face</a> とそのネイティブ プラットフォームは、このモデルが「Owl Alpha」の背後にある計算エンジンであることを明らかにします。このモデルは、過去 2 か月間、Ope の世界的な開発者チャートを支配してきた匿名のステルス モデルです。
+
+🔗 [元記事を読む](https://venturebeat.com/technology/meituan-open-sources-longcat-2-0-the-1-6t-near-frontier-agentic-coding-model-thats-been-leading-openrouter-trained-entirely-on-chinese-chips)
+
+---
+
+## 記事 29  ｜  Engadget
+
+### 最高裁判所はAppleとEpic Gamesの間の長期訴訟の上告を審理する - Engadget
+
+> 原題: *The Supreme Court will hear an appeal in the long-running case between Apple and Epic Games - Engadget*
+
+#### 📝 記事の日本語訳
+
+Appleは、App Storeの手数料に関連した命令を侮辱したと認定され、控訴した。 AppleとEpic Gamesの間の独占禁止法訴訟は米国の最高裁判所に持ち込まれている。最高裁判所は、7年近く続いている法廷闘争における侮辱判決に対するAppleの上訴を審理することになる。ロイター通信によると、判事らは10月に始まる次期法廷で控訴を検討する予定だという。来年6月までに判決が下される予定だ。 2025年4月、地方判事イヴォンヌ・ゴンザレス・ロジャースは、開発者がユーザーをアプリ内支払いのサードパーティ支払いオプションに誘導できるようにすることを同社に求めた2021年の判決をAppleが軽視したと認定した。これにより、Apple が通常受け取る手数料を回避できたでしょう。エピックはアップルを「悪意がある」と非難していた。
+
+#### 🏢 企業解説リンク
+
+- [Apple](companies/apple.html)
+
+🔗 [元記事を読む](https://www.engadget.com/2205396/the-supreme-court-will-hear-an-appeal-in-the-long-running-case-between-apple-and-epic-games/)
+
+---
+
+## 記事 30  ｜  Engadget
+
+### iPhoneでカスタムアラーム音を設定する方法 - Engadget
+
+> 原題: *How to set a custom alarm sound on your iPhone - Engadget*
+
+#### 📝 記事の日本語訳
+
+iPhone のアラームには好きな音を使用できます。その設定方法は次のとおりです。良いアラーム音を選ぶにはコツがあります。やるべきことをやらずに、数分間喜んでそれを聞くのは、あまりにも楽しいことではありません。また、電源を切ろうとベッドから飛び起きたときに機嫌が悪くなる可能性があるので、あまり煩わしいこともありません（ベッドにいる間は iPhone を手の届かないところに置きますよね？）。残念ながら、iOS のデフォルトの着信音とアラーム音の一部は、後者の方向に傾く可能性があります。ありがたいことに、iPhone でカスタムのアラーム音を設定するのは比較的簡単です。特定の曲を使用したい場合、最も簡単な方法は Apple Music の購読者になることです。このサービスには 1 億曲以上の曲があり、アラーム音として設定できます。まず、次のことを行う必要があります...
+
+#### 🏢 企業解説リンク
+
+- [Apple](companies/apple.html)
+
+🔗 [元記事を読む](https://www.engadget.com/2204492/how-to-set-custom-alarm-sound-iphone/)
+
+---
+
+## 記事 31  ｜  Engadget
+
+### カリフォルニア州のオンラインゲーム保存法案が委員会で否決 - Engadget
+
+> 原題: *California bill to preserve online games fails committee vote - Engadget*
+
+#### 📝 記事の日本語訳
+
+「ストップ・キリング・ゲーム」キャンペーンは、連邦レベルで同様の法案を支持することを「真剣に検討」している。パブリッシャーがゲームをオフラインにしてプレイ不可能にすることを阻止する（または少なくとも思いとどまらせる）ことを目的とした法案が、カリフォルニア州上院で障害に突き当たった。 「私たちのゲームを守る法」は、州上院議員4名が賛成、3名が反対、4名が棄権したため、ビジネス・職業・経済開発委員会を通過できなかった。委員会は全会一致で法案の再検討を認めることに賛成票を投じ、これは法案がこの州上院議員グループの前で再び提出される可能性があることを意味する。クリス・ウォード議員は2月にこの法案を提出し、5月下旬にカリフォルニア州議会を43対16で可決した。とはいえ、棄権により今のところ法案の進行は阻止された。 「エノウじゃないよ…
+
+🔗 [元記事を読む](https://www.engadget.com/2205041/california-bill-to-preserve-online-games-fails-committee-vote/)
+
+---
+
+## 記事 32  ｜  Engadget
+
+### スーパーマリオギャラクシームービーが7月30日にピーコックで公開 - Engadget
+
+> 原題: *The Super Mario Galaxy Movie launches onto Peacock on July 30 - Engadget*
+
+#### 📝 記事の日本語訳
+
+マリオのアニメ映画 2 作目は 10 億ドル以上の収益を上げました。スーパー マリオ ギャラクシー ムービーは、7 月 30 日に Peacock 経由でストリーミングできるようになります。何か他のことをしている間に子供たちを前にさせるのにこれ以上の映画はないので、これは忙しい親にとって朗報です。結局のところ、その時点で私たちは夏に突入します。この映画はすでにデジタル ダウンロードとして、また物理メディアの趣のあるアイテムとして入手可能です。デジタル版は5月にリリースされ、Blu-Ray/DVDは6月にリリースされました。スーパー マリオ ギャラクシー ムービーは大ヒットし、10 億ドルを超えました。かなり騒々しくて退屈な出来事であることがわかりましたが、最初の出来事にも同じことが言えました。プロットはかろうじてまとまっていますが、ノスタルジー中毒者のための任天堂のイースターエッグがたくさんあります。スターフォックスの主人公フォックス・マクラウド ...
+
+🔗 [元記事を読む](https://www.engadget.com/2205013/the-super-mario-galaxy-movie-launches-onto-peacock-on-july-30/)
+
+---
+
+
+> ⚠️ 本まとめは自動生成です。数値・固有名詞などの事実は元記事でご確認ください。
