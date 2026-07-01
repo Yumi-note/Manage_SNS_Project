@@ -1,0 +1,557 @@
+# 🌐 海外テックニュース 日本語まとめ
+
+**生成日時:** 2026年7月1日  18:55 JST
+
+> 世界の有力テックメディア（TechCrunch・The Verge・Wired・Ars Technica・MIT Tech Review・VentureBeat・Engadget）から注目記事を自動収集し、日本の読者向けに翻訳・要約しました。
+
+---
+
+## 目次
+
+1. [SpaceX には AI デバイスのプロトタイプがありますが、確かに電話っぽいですね。テッククランチ](#記事-1--spacex-には-ai-デバイスのプロトタイプがありますが、確かに電話っぽいですね。テッククランチ)
+2. [アシュトン・カッチャー、サウンド・ベンチャーズを退社、モーガン・ベラーと新たなVC会社を立ち上げる |テッククランチ](#記事-2--アシュトン・カッチャー、サウンド・ベンチャーズを退社、モーガン・ベラーと新たなvc会社を立ち上げる-テッククランチ)
+3. [Neocloud Together AI が 8 億ドルを調達、評価額は 83 億ドルに急上昇 |テッククランチ](#記事-3--neocloud-together-ai-が-8-億ドルを調達、評価額は-83-億ドルに急上昇-テッククランチ)
+4. [ライムは長年の不確実性を経て、上場企業としてのスタートを切る |テッククランチ](#記事-4--ライムは長年の不確実性を経て、上場企業としてのスタートを切る-テッククランチ)
+5. [Cloudflare の新しいポリシーにより、AI 企業はパブリッシャーのコンテンツの代金を支払うよう促されます |テッククランチ](#記事-5--cloudflare-の新しいポリシーにより、ai-企業はパブリッシャーのコンテンツの代金を支払うよう促されます-テッククランチ)
+6. [クラフトン、2億5000万ドルを巡る長引く紛争の後、『Subnautica 2』開発者と和解](#記事-6--クラフトン、2億5000万ドルを巡る長引く紛争の後、『subnautica-2』開発者と和解)
+7. [Xbox、物理的なゲーム コレクションをデジタル化するディスクからデジタル機能をテスト](#記事-7--xbox、物理的なゲーム-コレクションをデジタル化するディスクからデジタル機能をテスト)
+8. [最近の値上げにより、私のお気に入りの Kindle 代替品が 30 ドル引きになりました](#記事-8--最近の値上げにより、私のお気に入りの-kindle-代替品が-30-ドル引きになりました)
+9. [コムキャストの分割はピーコックの成否を左右する](#記事-9--コムキャストの分割はピーコックの成否を左右する)
+10. [私が試した最高のSwitch 2ケースは通常より安い](#記事-10--私が試した最高のswitch-2ケースは通常より安い)
+11. [AI の不正行為に警鐘を鳴らすことができるようになりました](#記事-11--ai-の不正行為に警鐘を鳴らすことができるようになりました)
+12. [REI 7 月 4 日セールでキャンプ、ハイキング、バックパッキング用品が最大 50% オフになりました](#記事-12--rei-7-月-4-日セールでキャンプ、ハイキング、バックパッキング用品が最大-50-オフになりました)
+13. [ソニーのPlayStationが物理メディアの棺に釘を刺す](#記事-13--ソニーのplaystationが物理メディアの棺に釘を刺す)
+14. [ペナルティシュートアウト: 先にキックしたチームが勝つ可能性が高くなりますか?](#記事-14--ペナルティシュートアウト-先にキックしたチームが勝つ可能性が高くなりますか)
+15. [Anthropic、トランプ政権の恩恵を取り戻すために新たな安全対策を追加](#記事-15--anthropic、トランプ政権の恩恵を取り戻すために新たな安全対策を追加)
+16. [ソニーは2028年にPlayStationゲームの物理コピーの製造を中止する](#記事-16--ソニーは2028年にplaystationゲームの物理コピーの製造を中止する)
+17. [すぐには買えなくなる良質な小型EV: Volvo EX30 Cross Country](#記事-17--すぐには買えなくなる良質な小型ev-volvo-ex30-cross-country)
+18. [『オデッセイ』の最終予告編でイサカの王が神に逆らう](#記事-18--『オデッセイ』の最終予告編でイサカの王が神に逆らう)
+19. [トランプ大統領を怖がらせて安全性テストをさせた後、人類AIモデルが世界的にリリースされる](#記事-19--トランプ大統領を怖がらせて安全性テストをさせた後、人類aiモデルが世界的にリリースされる)
+20. [NASA監察官、ボーイングのスターライナーは10年遅れると示唆](#記事-20--nasa監察官、ボーイングのスターライナーは10年遅れると示唆)
+21. [LLM は集団思考の溝にはまってしまいます。このスタートアップは彼らを追い出そうとしている。](#記事-21--llm-は集団思考の溝にはまってしまいます。このスタートアップは彼らを追い出そうとしている。)
+22. [ダウンロード: Anthropic が Claude Science とカリフォルニアの炭素肥料の計算を開始](#記事-22--ダウンロード-anthropic-が-claude-science-とカリフォルニアの炭素肥料の計算を開始)
+23. [Claude Science は Anthropic の最新の主力製品です](#記事-23--claude-science-は-anthropic-の最新の主力製品です)
+24. [ラウンドテーブル: 長寿の次のフロンティア: 身体の「再プログラミング」](#記事-24--ラウンドテーブル-長寿の次のフロンティア-身体の「再プログラミング」)
+25. [ダウンロード: AI の「同僚」と成層圏のインターネット](#記事-25--ダウンロード-ai-の「同僚」と成層圏のインターネット)
+26. [米国が輸出規制令を解除した後、Anthropic はクロード・フェイブル 5 を世界中で復活させています - 企業はどこからアクセスできますか?](#記事-26--米国が輸出規制令を解除した後、anthropic-はクロード・フェイブル-5-を世界中で復活させています---企業はどこからアクセスできますか)
+27. [Square の新しい、低料金、セットアップ不要の統合のおかげで、レストランは ChatGPT と Claude からの注文を直接受け入れることができるようになりました](#記事-27--square-の新しい、低料金、セットアップ不要の統合のおかげで、レストランは-chatgpt-と-claude-からの注文を直接受け入れることができるようになりました)
+28. [AI と人間の専門知識が連携して拡張されると、デジタル レジリエンスが強化されます](#記事-28--ai-と人間の専門知識が連携して拡張されると、デジタル-レジリエンスが強化されます)
+29. [モルガン・スタンレーは、エージェントの自律性を下げることで、最もリスクの高い照合業務を半分に削減した](#記事-29--モルガン・スタンレーは、エージェントの自律性を下げることで、最もリスクの高い照合業務を半分に削減した)
+30. [Anthropic、大ヒットIPOを目指して最上位モデルを大幅に値引きしてClaude Sonnet 5を発売](#記事-30--anthropic、大ヒットipoを目指して最上位モデルを大幅に値引きしてclaude-sonnet-5を発売)
+31. [UV技術のおかげで、将来のヒュンダイと起亜車には芳香剤が不要になるかもしれない - Engadget](#記事-31--uv技術のおかげで、将来のヒュンダイと起亜車には芳香剤が不要になるかもしれない---engadget)
+32. [Fufjilm、レトロな QuickSnap インスタント カメラの特別な防水および白黒版を発売 - Engadget](#記事-32--fufjilm、レトロな-quicksnap-インスタント-カメラの特別な防水および白黒版を発売---engadget)
+33. [乱雑な Subnautica 2 サーガは Unknown Worlds CEO の再出発で終了 - Engadget](#記事-33--乱雑な-subnautica-2-サーガは-unknown-worlds-ceo-の再出発で終了---engadget)
+34. [ソニーは2028年からディスクベースのPlayStationゲームの製造を中止する - Engadget](#記事-34--ソニーは2028年からディスクベースのplaystationゲームの製造を中止する---engadget)
+
+---
+
+## 記事 1  ｜  TechCrunch
+
+### SpaceX には AI デバイスのプロトタイプがありますが、確かに電話っぽいですね。テッククランチ
+
+> 原題: *SpaceX has an AI device prototype, and it sure sounds phone-ish | TechCrunch*
+
+#### 📝 記事の日本語訳
+
+イーロン・マスク氏のスペースXは投資家に「ハンドセットのような」AIデバイスのプロトタイプを披露したとウォール・ストリート・ジャーナルが報じた。このプロトタイプは iPhone よりも滑らかでスリムだと伝えられており、小型のタッチスクリーン携帯電話と Rabbit R1 の間のようなものではないかと思われます。伝えられるところによると、SpaceXはこのデバイスを公開する前に投資家や関係者にこのデバイスを見せ、十分に初期の段階にあるため、設計がまだ変更される可能性があると伝えたという。マスク氏はこの報道を「全くの虚偽」と否定しているが、スペースX社は姉妹会社のテスラ社と並んで、多数のAIデバイスを量産できる製造専門知識を持っており、オンデバイスのコンピューティングに必要なチップへのアクセスは言うまでもない。 SpaceX はまた、Starlink Mobile を可能性としてワイヤレス分野への拡大に意欲を示している...
+
+#### 🏢 企業解説リンク
+
+- [SpaceX](companies/spacex.html)
+- [TechCrunch](companies/techcrunch.html)
+
+🔗 [元記事を読む](https://techcrunch.com/2026/07/01/spacex-has-an-ai-device-prototype-and-it-sure-sounds-phone-ish/)
+
+---
+
+## 記事 2  ｜  TechCrunch
+
+### アシュトン・カッチャー、サウンド・ベンチャーズを退社、モーガン・ベラーと新たなVC会社を立ち上げる |テッククランチ
+
+> 原題: *Ashton Kutcher leaving Sound Ventures to launch new VC firm with Morgan Beller | TechCrunch*
+
+#### 📝 記事の日本語訳
+
+アシュトン・カッチャー氏は、11年前にガイ・オセアリー氏と共同設立した会社サウンド・ベンチャーズから離れ、別のVCファンドを立ち上げるとウォール・ストリート・ジャーナルが報じた。 TechCrunchはカッチャー氏が退職の準備をしていると別途聞いていた。 WSJの報道はそれを裏付けており、ベラー氏との計画について新たな詳細を付け加えている。俳優兼投資家である彼の新会社は、モーガン・ベラー氏と共同設立されている（名前はまだ公表されていない）。彼は最近までシードに焦点を当てたVC企業NFXのゼネラル・パートナーであり、以前はメタ社で暗号通貨プロジェクトのリブラを共同主導していた。ベラー氏は、アンドリーセン・ホロヴィッツのパートナーとしても 3 年近くを過ごしました。カッチャー氏の退任は、サウンド・ベンチャーズにおける問題の兆候ではないようだ。投資家は業績の悪い企業から離れることが多いが、ここでは当てはまらない。そ...
+
+#### 🏢 企業解説リンク
+
+- [Meta](companies/meta.html)
+- [TechCrunch](companies/techcrunch.html)
+
+🔗 [元記事を読む](https://techcrunch.com/2026/07/01/ashton-kutcher-leaving-sound-ventures-to-launch-new-vc-firm-with-morgan-beller/)
+
+---
+
+## 記事 3  ｜  TechCrunch
+
+### Neocloud Together AI が 8 億ドルを調達、評価額は 83 億ドルに急上昇 |テッククランチ
+
+> 原題: *Neocloud Together AI raises $800M, leaps to $8.3B valuation | TechCrunch*
+
+#### 📝 記事の日本語訳
+
+2022年に設立されたAIネオクラウドであるTogetter AIは、評価額83億ドルでシリーズCで8億ドルを調達したと同社は水曜日に発表した。このラウンドはAramco Venturesが主導し、Vista Equity Partners、General Catalyst、Emergence Capital、Nvidia、March Capital、Pegatron、SentinelOneのS Venturesなどが参加した。 Together AI は最後に約 16 か月前に、評価額 33 億ドルでシリーズ B として 3 億 500 万ドルを調達しました。実際、同社は2023年にNvidiaとEmergence Capitalの参加のもと、クライナー・パーキンス氏主導で1億250万ドルのシリーズA資金調達ラウンドを実施し、潤沢な資金でスタートした。このラウンドの噂は3月に遡り、同社が10億ドルの資金調達を求めているが評価額は75億ドルであるとThe Informationが報じた。したがって、次の数字が...
+
+#### 🏢 企業解説リンク
+
+- [NVIDIA](companies/nvidia.html)
+- [TechCrunch](companies/techcrunch.html)
+
+🔗 [元記事を読む](https://techcrunch.com/2026/07/01/neocloud-together-ai-raises-800m-leaps-to-8-3b-valuation/)
+
+---
+
+## 記事 4  ｜  TechCrunch
+
+### ライムは長年の不確実性を経て、上場企業としてのスタートを切る |テッククランチ
+
+> 原題: *Lime begins life as a public company after years of uncertainty | TechCrunch*
+
+#### 📝 記事の日本語訳
+
+マイクロモビリティ企業ライムは、IPOで1億6,700万ドルを調達し、複数の大きな誇大広告サイクルと世界的なパンデミックを乗り越える中で評価が大きく変動した非公開企業としてのほぼ10年にわたる経営に終止符を打った。ウーバーの支援を受けて創立9年目のスクーター・自転車会社は、24～26ドルの価格帯の中間点である1株25ドルで668万株を売却した。水曜日の午後、ナスダック証券取引所で株価は「LIME」というティッカーで取引が始まり、最初の1時間で約9％上昇した。待望のIPOにより、ライムの評価額は約16億6000万ドルとなり、同じくマイクロモビリティ企業のバードが2021年に特別買収目的会社と合併した際の価格にわずかに及ばない。
+
+#### 🏢 企業解説リンク
+
+- [TechCrunch](companies/techcrunch.html)
+
+🔗 [元記事を読む](https://techcrunch.com/2026/07/01/lime-begins-life-as-a-public-company-after-years-of-uncertainty/)
+
+---
+
+## 記事 5  ｜  TechCrunch
+
+### Cloudflare の新しいポリシーにより、AI 企業はパブリッシャーのコンテンツの代金を支払うよう促されます |テッククランチ
+
+> 原題: *Cloudflare's new policy pushes AI companies to pay for publishers' content | TechCrunch*
+
+#### 📝 記事の日本語訳
+
+CloudflareはAI業界に対し、Google検索などの従来の検索目的に使用されるWebクローラーと、AIエージェントやトレーニングに使用されるWebクローラーを分離する新たな期限を発表した。 2026年9月15日以降、Cloudflareのデフォルト設定は、広告をホストするすべてのページから「混合用途」クローラーをブロックすると同社は水曜日に発表した。つまり、サイト所有者が設定を調整しない限り、検索、エージェントの使用、トレーニングを組み合わせたクローラーは、これらのサイトをクロールすることがデフォルトでブロックされます。デフォルトに対するこれらの変更は、Cloudflareの新規顧客、既存顧客がセットアップした新しいサイト、および既存のすべての無料顧客に適用されると同社は述べている。この動きは、AI モデル プロバイダーがトレーニング目的で Web コンテンツにアクセスしたり、...
+
+#### 🏢 企業解説リンク
+
+- [Google](companies/google.html)
+- [TechCrunch](companies/techcrunch.html)
+
+🔗 [元記事を読む](https://techcrunch.com/2026/07/01/cloudflares-new-policy-pushes-ai-companies-to-pay-for-publishers-content/)
+
+---
+
+## 記事 6  ｜  The Verge
+
+### クラフトン、2億5000万ドルを巡る長引く紛争の後、『Subnautica 2』開発者と和解
+
+> 原題: *Krafton settles with Subnautica 2 developer after drawn-out dispute over $250 million*
+
+#### 📝 記事の日本語訳
+
+このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。アンノウン・ワールドの全スタッフにはボーナスが支給されるが、CEOのテッド・ギル氏は退職する。
+
+🔗 [元記事を読む](https://www.theverge.com/games/960354/krafton-subnautica-2-settlement-bonuses-unknown-worlds)
+
+---
+
+## 記事 7  ｜  The Verge
+
+### Xbox、物理的なゲーム コレクションをデジタル化するディスクからデジタル機能をテスト
+
+> 原題: *Xbox testing disc-to-digital feature that digitizes a physical game collection*
+
+#### 📝 記事の日本語訳
+
+このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。 Microsoft の Disc-to-Digital 機能は、次世代 Xbox コンソールにとって不可欠となる可能性があります。
+
+#### 🏢 企業解説リンク
+
+- [Microsoft](companies/microsoft.html)
+
+🔗 [元記事を読む](https://www.theverge.com/report/960173/microsoft-xbox-disc-to-digital-feature-physical-game-collection)
+
+---
+
+## 記事 8  ｜  The Verge
+
+### 最近の値上げにより、私のお気に入りの Kindle 代替品が 30 ドル引きになりました
+
+> 原題: *My favorite Kindle alternative is $30 off after a recent price increase*
+
+#### 📝 記事の日本語訳
+
+このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。防水の Kobo Libra Color は、物理的なページめくりボタン、スタイラスのサポート、鮮明なカラー画面を備えています。
+
+🔗 [元記事を読む](https://www.theverge.com/gadgets/960282/kobo-libra-colour-july-fourth-sale-deal-sale)
+
+---
+
+## 記事 9  ｜  The Verge
+
+### コムキャストの分割はピーコックの成否を左右する
+
+> 原題: *Comcast’s split could make or break Peacock*
+
+#### 📝 記事の日本語訳
+
+このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。ピーコックは、コムキャストがNBCユニバーサルから分離した後、単独で生き残ることができることを証明する必要がある。
+
+🔗 [元記事を読む](https://www.theverge.com/streaming/960235/comcast-breakup-peacock-streaming)
+
+---
+
+## 記事 10  ｜  The Verge
+
+### 私が試した最高のSwitch 2ケースは通常より安い
+
+> 原題: *The best Switch 2 case I’ve tried is cheaper than usual*
+
+#### 📝 記事の日本語訳
+
+このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。 1440p QD-OLED を 315 ドルで入手したり、Criterion Collection のフリックを 50% 割引したりすることもできます。
+
+🔗 [元記事を読む](https://www.theverge.com/gadgets/960185/dbrand-killswitch-switch-2-deal-sale)
+
+---
+
+## 記事 11  ｜  Wired
+
+### AI の不正行為に警鐘を鳴らすことができるようになりました
+
+> 原題: *You Can Now Sound the Alarm on AI Behaving Badly*
+
+#### 📝 記事の日本語訳
+
+毎週 AI Lab を書いていると、時々、ひどく奇妙な動作をする AI モデルに遭遇することになります。通常、それについては、その話をあなたと共有する以外に何もすることがありません。しかし、それはすぐに変わる可能性があります。 AI 研究者のグループは、AI の危害を報告および追跡するためのクラウドソーシング Web サイト「Flaw Reporting for AI (FLARE-AI)」を設立しました。たとえば、チャットボットがマルウェアや爆弾製造レシピを生成したり、個人情報を漏洩したり、ユーザーの妄想的思考を引き起こしたりした場合、FLARE-AI を使用して警報を鳴らすことができます。システムの背後にあるオープン ソース コードにより、他のユーザーが問題を検証し、モデル メーカーや技術システムの問題を追跡する非営利団体 MITRE などの組織にレポートを送ることができます。これは、リアルタイムのユーザー レポートを編集する Downdetector に似ています。
+
+🔗 [元記事を読む](https://www.wired.com/story/flare-website-ai-flaw-reporting-safety/)
+
+---
+
+## 記事 12  ｜  Wired
+
+### REI 7 月 4 日セールでキャンプ、ハイキング、バックパッキング用品が最大 50% オフになりました
+
+> 原題: *Camping, Hiking, and Backpacking Gear Is Up to 50 Percent off Right Now at the REI 4th of July Sale*
+
+#### 📝 記事の日本語訳
+
+キャンパー、ハイカー、そしてアウトドア派の皆さん、今こそロックインする時期です。REI 独立記念日のセールでは、ハイキング、キャンプ、バックパッキングの必需品が大幅にお買い得になっているので、まだ準備が整っていない夏の冒険に向けて、過剰な支払いをせずに買いだめできます。今年のセールは 6 月 26 日から 7 月 6 日まで開催されますが、REI アウトレットの割引の多くは 7 月 2 日に終了します。バックカントリーやその他の小売店でもセールが行われており (幸運なことに)、それらのブランドのセールも含まれています。お気に入りの寝袋からお気に入りのキャンプチェアまで、あらゆるものが大幅割引 (場合によっては 50% 以上オフ) です。 WIREDでは一年中キャンプやハイキングのギアをレビューしていますが、これらのREIセールは私たちがすでにテストして気に入ったギアを対象としています。私たちのお気に入りのほとんどすべてがここにあります...
+
+🔗 [元記事を読む](https://www.wired.com/story/rei-4th-of-july-sale-2026/)
+
+---
+
+## 記事 13  ｜  Wired
+
+### ソニーのPlayStationが物理メディアの棺に釘を刺す
+
+> 原題: *Sony’s PlayStation Puts a Nail in Physical Media’s Coffin*
+
+#### 📝 記事の日本語訳
+
+物理メディアのファンにとって悪いニュース : ソニーはゲーム ディスクを放棄すると発表しました。 PlayStationのグローバルコンテンツコミュニケーション担当シニアディレクターであるシド・シューマン氏は、水曜日に公開されたブログ投稿の中で、2028年1月から「PlayStationコンソールで発売されるすべての新作ゲームの物理ゲームディスクの生産が中止される」と述べた。シューマン氏は、この決定は「消費者の好み」と、広範なエンターテインメント業界が物理ディスクからデジタルに移行していることによるものであり、「デジタルメディアに対する一般的な好みが物理ディスクを大幅に上回っているため、ソニー・インタラクティブエンタテインメントが消費者の傾向に適応するのは自然な方向である」と感じていると付け加えた。このブログはわずか 3 段落ですが、ソニーの決定とその世界全体への影響についていくつかの疑問を提起しています。
+
+🔗 [元記事を読む](https://www.wired.com/story/sony-playstation-puts-a-nail-in-physical-medias-coffin/)
+
+---
+
+## 記事 14  ｜  Wired
+
+### ペナルティシュートアウト: 先にキックしたチームが勝つ可能性が高くなりますか?
+
+> 原題: *Penalty Shootouts: Is the Team That Kicks First More Likely to Win?*
+
+#### 📝 記事の日本語訳
+
+ワールドカップでは、最も重要な試合のいくつかはPK戦で決まります。その瞬間が来たら、キャプテンたちはキックの順番を決めるコイントスに勝ちたいと考えています。その理由は、シューターとゴールキーパーのスキルに関係なく、最初のペナルティーキックを蹴ったチームが勝つ可能性が高いという古い考えにあります。ほとんどのサッカー選手はこれを当然のことと考えていますが、この明白な利点の背後にある理由は依然として科学的な議論の対象となっています。n ペナルティキックに関する戦略的思考の多くは選手が蹴る順序に焦点を当てていますが、心理的なプレッシャーにも注意することも重要です。今年のワールドカップでは、ラウンド32の最初の4試合のうち2試合、パラグアイがドイツに勝利、モロッコがオランダに勝利することが決定しました...
+
+🔗 [元記事を読む](https://www.wired.com/story/penalty-shootouts-is-the-team-that-kicks-first-more-likely-to-win/)
+
+---
+
+## 記事 15  ｜  Wired
+
+### Anthropic、トランプ政権の恩恵を取り戻すために新たな安全対策を追加
+
+> 原題: *Anthropic Added a New Security Measure to Get Back Into the Trump Administration’s Good Graces*
+
+#### 📝 記事の日本語訳
+
+事情に詳しい関係者2人によると、アンスロピックがユーザーが特定の制限された機能にアクセスしようとするのを防ぐために既存のガードレールを拡張することに合意した後、トランプ政権はアンスロピックのクロード・フェイブル5 AIモデルに対する輸出規制を解除した。この安全策は、これらの機能のロックを解除しようとするユーザーにはリクエストがブロックされたことが通知され、クエリは高度ではない Opus 4.8 AI モデルによって処理されることになる、と関係者は述べています。 Anthropic が Fable 5 へのアクセスを遮断する前は、機密性の高いサイバーセキュリティと生物学の機能に関連するユーザーのリクエストは Opus 4.8 によって処理されることになっていました。関係者によると、新しい安全策はこのガードレールを、アマゾンの論文で特定された特定の行為に関連するリクエストにも拡張するという。出版された分析によると...
+
+#### 🏢 企業解説リンク
+
+- [Amazon](companies/amazon.html)
+
+🔗 [元記事を読む](https://www.wired.com/story/anthropic-added-a-new-security-measure-to-get-back-into-the-trump-administrations-good-graces/)
+
+---
+
+## 記事 16  ｜  Ars Technica
+
+### ソニーは2028年にPlayStationゲームの物理コピーの製造を中止する
+
+> 原題: *Sony will stop making physical copies of PlayStation games in 2028*
+
+#### 📝 記事の日本語訳
+
+本日、ソニーが2028年1月以降PlayStationゲーム用の物理ディスクを製造しないと発表したことを受けて、一部のゲーマーはゲーム所有の将来について懸念している。その日から「新しいゲームはPlayStation Storeおよび小売店でデジタルフォーマットのみで入手可能になる」とソニーはブログ投稿で述べた。同投稿では、「デジタルメディアに対する一般的な嗜好が物理ディスクを大幅に上回っているため、消費者の傾向に適応するために」ソニーにとってディスクを廃止するのは「自然な方向」であると述べた。ソニーの 2026 年 3 月 31 日に終了する会計年度中、デジタル ダウンロードはゲーム本体購入全体の 78 パーセントを占め、2024 会計年度の 76 パーセントから増加しました。「当社は、プレーヤーがゲームにアクセスする方法の革新を推進し、プレーヤーが新作を購入する場所に関する選択肢を提供するためにリソースを引き続き優先していきます。」
+
+🔗 [元記事を読む](https://arstechnica.com/gaming/2026/07/sony-will-stop-making-physical-copies-of-playstation-games-in-2028/)
+
+---
+
+## 記事 17  ｜  Ars Technica
+
+### すぐには買えなくなる良質な小型EV: Volvo EX30 Cross Country
+
+> 原題: *A good little EV you won't be able to buy soon: The Volvo EX30 Cross Country*
+
+#### 📝 記事の日本語訳
+
+関税と反中政策により、米国ではこの小さなボルボが潰れました。 2013 年から 2023 年の間に、米国の平均新車の幅が 25 mm (1 インチ)、全長が 22 インチ (558 mm) 増加したことをご存知ですか?それはおそらく、最近外に一歩足を踏み入れた人には明らかであり、私たちが逆転させるべき傾向です。車が大きいほど乗員はより安心できるかもしれませんが、目的地に到達するためには常により多くのエネルギーが必要です。そして、f=ma が現実であることから、大型車両は不運にも衝突の相手となった車両に永続的かつ有害な影響を残す傾向があります。ボルボ EX30 が完璧な解毒剤になる可能性があるため、今日の話はかなりほろ苦い話になります。二酸化炭素排出量はわずかですが、妥協のないコンパクトで効率的な電動クロスオーバーです。
+
+🔗 [元記事を読む](https://arstechnica.com/cars/2026/07/the-volvo-ex30-cross-country-review-a-victim-of-geopolitics/)
+
+---
+
+## 記事 18  ｜  Ars Technica
+
+### 『オデッセイ』の最終予告編でイサカの王が神に逆らう
+
+> 原題: *Ithaca's king defies the gods in final The Odyssey trailer*
+
+#### 📝 記事の日本語訳
+
+「あなた方神々は、私たちが理解できるような言葉を話さないのです。」私たちはクリストファー・ノーラン監督の『オデッセイ』の公開までの日数をカウントダウンしており、ユニバーサル・ピクチャーズは期待を高めるために最後の予告編を公開しました。私たちのほとんどは高校で『オデュッセイア』の何らかのバージョンを読んでいるので、この物語には馴染みがあります。伝説的なギリシャのイサカ王オデュッセウスは、トロイア戦争での 10 年間の戦いを終えて故郷への長い旅を始めます。しかし、オデュッセウスとその部下たちは、サイクロプスのポリフェムス、セイレーン、キルケーという名の魔女などの障害に遭遇し、旅は順調に進みません。一方、彼の辛抱強い妻ペネロペは、オデュッセウスの地位を奪おうとする数百人の求婚者を追い払います。マット・デイモンが放浪のイサカン王を演じる。キャストにはペネロペ役のアン・ハサウェイも含まれています。トム・ホル…
+
+🔗 [元記事を読む](https://arstechnica.com/culture/2026/07/ithacas-king-defies-the-gods-in-final-the-odyssey-trailer/)
+
+---
+
+## 記事 19  ｜  Ars Technica
+
+### トランプ大統領を怖がらせて安全性テストをさせた後、人類AIモデルが世界的にリリースされる
+
+> 原題: *After spooking Trump into safety testing, Anthropic AI models get global release*
+
+#### 📝 記事の日本語訳
+
+米国は、Anthropic の高度な Fable モデルと Mythos モデルの制限を解除します。トランプ政権がこれらのモデルに国家安全保障上のリスクがあると警告してから約3週間後、米国はアンスロピック社の最新クロードモデル「フェイブル5」と「ミトス5」の輸出規制を解除した。本日の時点で、Anthropic はブログ投稿で、Fable 5 は世界中で利用可能になることを確認し、米国の組織は 6 月 26 日以降 Mythos 5 へのアクセスを回復しました。Anthropic は現在、「Glasswing プログラムのより広範な国内外のパートナー」に Mythos へのアクセスを拡大するために政府と協力していると述べました。このプログラムにより、信頼できる企業のサイバーセキュリティ研究者が防御目的で Mythos にアクセスできるようになります。モデルのリリースが長期化することに直面しているラトニック氏は、アンスロピックは政府とのパートナーシップを拡大することに同意したと述べた。
+
+🔗 [元記事を読む](https://arstechnica.com/tech-policy/2026/07/after-spooking-trump-into-safety-testing-anthropic-ai-models-get-global-release/)
+
+---
+
+## 記事 20  ｜  Ars Technica
+
+### NASA監察官、ボーイングのスターライナーは10年遅れると示唆
+
+> 原題: *NASA inspector general suggests Boeing's Starliner will now be a decade late*
+
+#### 📝 記事の日本語訳
+
+スターライナーの認証はボーイングの当初の予定より10年遅れ、2027年に遅れる可能性がある。 NASAの監察総監は火曜日、NASAの民間乗組員プログラムの監査結果を発表し、ボーイング社のスターライナー乗組員カプセルが来年まで国際宇宙ステーションへの運用飛行の認定を受けない可能性が高まっている。これは、NASAがISSを正式に退役させる2030年まであとわずか3年だが、議会議員らは2032年までの延長を求めている。さらに、スターライナーが来年定期乗組員ローテーション飛行の準備ができていると宣言すれば、ボーイングの乗組員カプセルの当初目標である2017年より10年遅れることになる。監察総監は6つの勧告を出した。 NASA関係者も全員が同意した。推奨事項には、計画の開発が含まれます。
+
+🔗 [元記事を読む](https://arstechnica.com/space/2026/07/nasa-inspector-general-suggests-boeings-starliner-will-now-be-a-decade-late/)
+
+---
+
+## 記事 21  ｜  MIT Tech Review
+
+### LLM は集団思考の溝にはまってしまいます。このスタートアップは彼らを追い出そうとしている。
+
+> 原題: *LLMs are stuck in a groupthink groove. This startup is trying to get them out.*
+
+#### 📝 記事の日本語訳
+
+チャットボットは、予想よりもはるかに応答を予測しやすいものです。研究やコーディングには問題ありませんが、何か新しいことを探している場合には問題です。ゲームから始めましょう。選択したチャットボット (Claude、ChatGPT、Gemini) を開き、「1 から 10 までの乱数を教えてください」と入力します。ほぼ常に 7 が得られます。ここで「Another」と入力すると、3 または 4 が表示されます。もう一度「Another」と入力すると、8 または 9 が表示されます。毎回うまくいくわけではありませんが、もしうまくいったとしたら、私には超能力があるのではないかと思うかもしれません。私はしません。実のところ、大規模な言語モデルのほとんどはマンネリ化しています。彼らの反応はあなたが予想するよりもはるかに予測可能であり、創造性がはるかに低いです。コーディングやリサーチなどのタスクでは問題ありませんが、ブレインストーミングや研究計画を立てる場合には、グループで考えることが問題になります。
+
+🔗 [元記事を読む](https://www.technologyreview.com/2026/07/01/1140003/llms-are-stuck-in-a-groupthink-rut-this-startup-is-trying-to-get-them-out/)
+
+---
+
+## 記事 22  ｜  MIT Tech Review
+
+### ダウンロード: Anthropic が Claude Science とカリフォルニアの炭素肥料の計算を開始
+
+> 原題: *The Download: Anthropic launches Claude Science, and California’s carbon manure math*
+
+#### 📝 記事の日本語訳
+
+さらに: 米国は、Anthropic の Mythos および Fable モデルに対する制限を解除しました。これは、テクノロジーの世界で何が起こっているかを毎日提供する平日のニュースレター、 The Download の本日版です。昨日の製薬会社幹部、バイオテクノロジー創設者、研究者向けのイベントで、Anthropic は、Claude Code がソフトウェア エンジニアリングをサポートするのと同様に、科学研究をサポートすることを目的とした主要な新製品、Claude Science を発表しました。 Claude Code と同様に、Claude Science は、計算生物学や創薬用のツールを使用して、簡潔で高レベルの指示から有意義な作業を自律的に実行できます。この発売は、Anthropic が科学のために AI を倍増させていることを示しており、同社はこの製品を希少な顧みられない病気の治療薬に関する独自の研究にも使用する予定です。ディスコ...
+
+🔗 [元記事を読む](https://www.technologyreview.com/2026/07/01/1139996/the-download-anthropic-claude-science-california-carbon-manure/)
+
+---
+
+## 記事 23  ｜  MIT Tech Review
+
+### Claude Science は Anthropic の最新の主力製品です
+
+> 原題: *Claude Science is Anthropic’s newest flagship product*
+
+#### 📝 記事の日本語訳
+
+同社は科学分野での AI の活用を強化しています。火曜日に製薬会社幹部、バイオテクノロジー創設者、研究者向けのイベントで、Anthropic は、Claude Code がソフトウェア エンジニアリングをサポートするのと同じ方法で科学研究をサポートすることを目的とした主要な新製品である Claude Science を発表しました。クロード コードと同様に、クロード サイエンスは、簡潔で高度な指示が与えられると有意義な作業を自律的に実行でき、計算生物学や創薬の研究に特に役立つツールにアクセスできます。現在、すべての有料 Claude 購読者が利用できる Claude Science の立ち上げとプレビューに加え、Anthropic は、この製品を使用して希少な顧みられない病気の治療薬に関する独自の研究を進めることも発表しました。
+
+🔗 [元記事を読む](https://www.technologyreview.com/2026/06/30/1139987/claude-science-is-anthropics-newest-flagship-product/)
+
+---
+
+## 記事 24  ｜  MIT Tech Review
+
+### ラウンドテーブル: 長寿の次のフロンティア: 身体の「再プログラミング」
+
+> 原題: *Roundtables: Longevity’s Next Frontier: “Reprogramming” Your Body*
+
+#### 📝 記事の日本語訳
+
+長寿の新たな焦点を探る購読者限定のディスカッションをご覧ください。 MIT 卒業生および購読者のみが利用できます。科学者たちが細胞を若い状態に戻す方法を模索する中、老化を逆転させる取り組みに何十億ドルも注ぎ込まれている。しかし、これらの実験的治療法はどれほど遠いのでしょうか?本当に機能するのでしょうか？長寿の新たな焦点を探る会話をご覧ください。講演者 : メアリー・ベス・グリッグス、科学編集者、ジェシカ・ハムゼロウ、上級バイオテクノロジー記者
+
+🔗 [元記事を読む](https://www.technologyreview.com/2026/06/30/1139958/roundtables-longevitys-next-frontier-reprogramming-your-body/)
+
+---
+
+## 記事 25  ｜  MIT Tech Review
+
+### ダウンロード: AI の「同僚」と成層圏のインターネット
+
+> 原題: *The Download: AI “coworkers” and stratospheric internet*
+
+#### 📝 記事の日本語訳
+
+さらに: 米国下院は、新しい青少年オンライン安全法を可決しました。これは、テクノロジーの世界で何が起こっているかを毎日提供する平日のニュースレター、 The Download の本日版です。新しい部下があなたの直属となることを知るために出社したところを想像してみてください。従業員は人間ではなく、AI ツールです。それでもあなたの会社では AI ツールをアレックスと呼び、肩書きと明確な責任を持つ「従業員」と呼びます。アレックスとどのくらいうまく仕事ができると思いますか?もしあなたがボストン大学教授エマ・ワイルズが研究したマネージャーのような人であれば、その AI を「同僚」として扱うと、より悪い仕事をすることになるでしょう。作業がチャットボットではなくエージェントの「AI 従業員」によるものであった場合、検出されるエラーは 18% 減少しました。
+
+🔗 [元記事を読む](https://www.technologyreview.com/2026/06/30/1139954/the-download-ai-agents-coworkers-solar-powered-internet/)
+
+---
+
+## 記事 26  ｜  VentureBeat
+
+### 米国が輸出規制令を解除した後、Anthropic はクロード・フェイブル 5 を世界中で復活させています - 企業はどこからアクセスできますか?
+
+> 原題: *Anthropic is bringing back Claude Fable 5 globally after US lifts export control order — where can enterprises access it?*
+
+#### 📝 記事の日本語訳
+
+<p>Anthropic は、米国商務省が昨夜、このモデルに関して以前に発令していた緊急輸出規制を撤回したことを受けて、本日、一般リリースされた最も強力な AI モデルである Claude Fable 5 への<a href="https://www.anthropic.com/news/redeploying-fable-5">世界的なアクセスを回復</a>します。 </p><p>2026 年 6 月 12 日に発行された米国の輸出管理命令により、Anthropic は <a href="https://venturebeat.com/technology/anthropic-blocks-all-public-access-to-claude-fable-5-mythos-5-f...
+
+🔗 [元記事を読む](https://venturebeat.com/technology/anthropic-is-bringing-back-claude-fable-5-globally-after-us-lifts-export-control-order-where-can-enterprises-access-it)
+
+---
+
+## 記事 27  ｜  VentureBeat
+
+### Square の新しい、低料金、セットアップ不要の統合のおかげで、レストランは ChatGPT と Claude からの注文を直接受け入れることができるようになりました
+
+> 原題: *Restaurants can now accept orders placed directly from ChatGPT and Claude thanks to Square's new, low-fee, no setup integration*
+
+#### 📝 記事の日本語訳
+
+<p>Square は、新しい ChatGPT アプリと Claude プラグインをリリースします。これにより、消費者がこれらの AI プラットフォーム内でレストランを発見し、シームレスに直接注文できるようになります。また、レストランは、技術的な能力がなくても、ユーザーやその AI エージェントからの注文を受け入れることができます。 </p><p>企業にとってさらに有益なのは、Square が食品および飲料業界を歴史的に圧迫してきた従来のマーケットプレイスの手数料を請求することなく、これらの AI 主導の取引を処理していることです。
+
+🔗 [元記事を読む](https://venturebeat.com/technology/restaurants-can-now-accept-orders-placed-directly-from-chatgpt-and-claude-thanks-to-squares-new-low-fee-no-setup-integration)
+
+---
+
+## 記事 28  ｜  VentureBeat
+
+### AI と人間の専門知識が連携して拡張されると、デジタル レジリエンスが強化されます
+
+> 原題: *Digital resilience compounds when AI and human expertise scale together*
+
+#### 📝 記事の日本語訳
+
+<p><i>Splunk による提供 </i></p><hr /><p>Agentic AI は、IT チームとセキュリティ チームの効率を劇的に向上させます。しかし同時に、長年にわたって経験豊富なオペレーターを生み出してきた見習い制度も廃止されます。 </p><p>組織は、かつて若手アナリストやエンジニアが行っていた作業の多くを自動化するにつれて、アーキテクチャ設計と同じくらい労働力設計に関する課題に直面しています。それは、かつて彼らを訓練していた作業を AI が処理するときに、次世代のエキスパートをどのように構築するかということです。</p><h2>何...
+
+🔗 [元記事を読む](https://venturebeat.com/security/digital-resilience-compounds-when-ai-and-human-expertise-scale-together)
+
+---
+
+## 記事 29  ｜  VentureBeat
+
+### モルガン・スタンレーは、エージェントの自律性を下げることで、最もリスクの高い照合業務を半分に削減した
+
+> 原題: *Morgan Stanley cut its riskiest reconciliation job in half — by making its agents less autonomous*
+
+#### 📝 記事の日本語訳
+
+<p>これまでのエンタープライズ AI の導入のほとんどは、コーディング アシスタントとカスタマー サービス ボットに焦点を当てていました。モルガン・スタンレーは、銀行業界で最も精度が重視され、期限重視のワークフローの1つである損益（P&L）調整にエージェントを導入し、業務を半分に削減した。直観に反する部分: それは、システムの自律性を高めることではなく、自律性を低下させることで実現しました。</p><p>人間は常にループ内に留まり、人間の決定は、システムが適用できる反復可能なルールに繰り返し変換されます。
+
+🔗 [元記事を読む](https://venturebeat.com/orchestration/morgan-stanley-cut-its-riskiest-reconciliation-job-in-half-by-making-its-agents-less-autonomous)
+
+---
+
+## 記事 30  ｜  VentureBeat
+
+### Anthropic、大ヒットIPOを目指して最上位モデルを大幅に値引きしてClaude Sonnet 5を発売
+
+> 原題: *Anthropic launches Claude Sonnet 5 at a steep discount to its top model as the company races toward a blockbuster IPO*
+
+#### 📝 記事の日本語訳
+
+<p><a href="https://www.anthropic.com/">Anthropic</a> は本日、<a href="https://www.anthropic.com/news/claude-sonnet-5">Claude Sonnet-5">Claude Sonnet 5</a> をリリースしました。これは、同社によれば、中間層の価格で主力製品に近いパフォーマンスを提供するという新しい AI モデルです。これは、サンフランシスコを拠点とする AI ラボが、コストを重視する企業開発者に強力なエージェント機能へのアクセスを提供することを目的とした動きです。民間市場の驚異的なAI評価が可能かどうかをテストする新規株式公開...
+
+🔗 [元記事を読む](https://venturebeat.com/technology/anthropic-launches-claude-sonnet-5-at-a-steep-discount-to-its-top-model-as-the-company-races-toward-a-blockbuster-ipo)
+
+---
+
+## 記事 31  ｜  Engadget
+
+### UV技術のおかげで、将来のヒュンダイと起亜車には芳香剤が不要になるかもしれない - Engadget
+
+> 原題: *Future Hyundai and Kia cars might never need air fresheners thanks to UV tech - Engadget*
+
+#### 📝 記事の日本語訳
+
+両社は、Plasma Careと呼ばれる消毒システムを発表した。現代自動車と起亜自動車は最近、プラズマケア UVC と呼ばれる車内衛生用の新しい UV 技術を導入しました。このシステムは機内の細菌を減少させ、乗客がいる間でも作動することができます。両社は、この技術は臭いの背後にある実際の微生物を殺すため、悪臭を除去するのに特に有用であると述べている。いずれにせよ、何十年も車に社外ココナッツのような匂いを与え続けてきた吊り下げ式芳香剤よりは優れている可能性が高い。これはすべて、遠紫外 C (Far-UVC) 光を生成するプラズマ ランプの使用によって行われます。この光は 200 ～ 230 ナノメートルの範囲で放射され、人間の皮膚を透過しませんが、細菌やウイルスを破壊します。従来の紫外線殺菌装置
+
+🔗 [元記事を読む](https://www.engadget.com/2205298/hyundai-kia-reveal-uv-car-system/)
+
+---
+
+## 記事 32  ｜  Engadget
+
+### Fufjilm、レトロな QuickSnap インスタント カメラの特別な防水および白黒版を発売 - Engadget
+
+> 原題: *Fufjilm launches special waterproof and black-and-white editions of its retro QuickSnap instant cameras - Engadget*
+
+#### 📝 記事の日本語訳
+
+ほとんどの人は、滑稽なほど強力なカメラを常にポケットに入れていますが、使い終わったらゴミ箱に捨てなければならないものであっても、アナログの代替品は長持ちします。使い捨てカメラ「QuickSnap」の 40 周年を記念して、富士フイルムは信頼できる使い捨てスナッパーの 2 つの新しいバージョンを発表しました。 「写ルンです白黒」は一目瞭然です。 ISO 400 の白黒ネガ フィルムの 27 ショット ロールで撮影します。防水ではありませんが、スイッチで作動するフラッシュが内蔵されており、射程は約 10 フィートです。それで終わりです。ほとんどのインスタント カメラと同様に、QuickSnap は休暇や夜の外出を記録するのに最適な、直接的なオートフォーカス エクスペリエンスを提供します。また、防水性と耐久性に優れたバージョンの QuickSnap Active も新登場です。
+
+🔗 [元記事を読む](https://www.engadget.com/2206038/fujifilm-launches-special-waterproof-and-black-and-white-editions-of-its-retro-quicksnap-instant-cameras/)
+
+---
+
+## 記事 33  ｜  Engadget
+
+### 乱雑な Subnautica 2 サーガは Unknown Worlds CEO の再出発で終了 - Engadget
+
+> 原題: *Messy Subnautica 2 saga ends with Unknown Worlds CEO departing again - Engadget*
+
+#### 📝 記事の日本語訳
+
+クラフトンは開発会社の上層部と和解に達した。クラフトンと『Subnautica 2』開発会社Unknown Worlds Entertainmentのリーダーシップとの間の厄介な法廷闘争は終わった。両者は和解に達し、クラフトン氏はスタジオの全スタッフにボーナスを支払い、テッド・ギル氏は再びアンノウン・ワールドCEOの職を離れることになった。 「私たちは袂を分かつことにお互いに同意した」とギル氏はブルームバーグに語った。 「新しいリーダーシップはスタジオが前進するための最良の方法です。」ギル氏によると、誰がCEOに就任しても外部からの採用となるという。クラフトン氏は昨夏、ギル氏とアンノウン・ワールドの共同創設者であるチャーリー・クリーブランド氏とマックス・マクガイア氏を追放した。訴訟の中で、このトリオは会社が彼らを解雇し、2億5000万ドルのボーナスを支払わなくて済むよう『Subnautica 2』を2026年に延期したと訴えた。
+
+🔗 [元記事を読む](https://www.engadget.com/2206022/messy-subnautica-2-saga-ends-with-unknown-worlds-ceo-departing-again/)
+
+---
+
+## 記事 34  ｜  Engadget
+
+### ソニーは2028年からディスクベースのPlayStationゲームの製造を中止する - Engadget
+
+> 原題: *Sony will stop making disc-based PlayStation games starting 2028 - Engadget*
+
+#### 📝 記事の日本語訳
+
+Xbox と任天堂も消費者にデジタル ゲームを勧めてきました。ソニーは、PlayStation がすべてデジタル化され、物理的なゲームディスクの生産が 2028 年 1 月から中止されることを発表しました。この日以降は、PlayStation Store および小売店でのみ新しいゲームをデジタルで購入できます。ソニーは今回の決定は、デジタル売上が物理売上を大幅に上回っている「消費者の嗜好の傾向の変化」に対応したものだと述べている。昨年、物理的なゲーム配信がPlayStationの収益に占める割合はわずか3％であり、PS5 Proがディスクドライブなしで2024年に発売されたという事実は、ソニーの将来の方向性をかなりよく示していた。この戦略的変更は、すでにリリースされている物理的なゲームや、以前にリリースが予定されているゲームには影響しません。
+
+🔗 [元記事を読む](https://www.engadget.com/2205792/sony-will-stop-making-disc-based-playstation-games-starting-2028/)
+
+---
+
+
+> ⚠️ 本まとめは自動生成です。数値・固有名詞などの事実は元記事でご確認ください。
