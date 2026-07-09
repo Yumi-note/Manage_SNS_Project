@@ -10,6 +10,7 @@ from bs4 import BeautifulSoup
 from global_trend_jp_publisher.models import TrendItem
 from global_trend_jp_publisher.processors.categorize import determine_category
 from global_trend_jp_publisher.processors.ocr import ocr_from_image_url
+from global_trend_jp_publisher.processors.text_cleaner import strip_source_suffix
 
 
 BOILERPLATE_KEYWORDS = {
@@ -182,6 +183,14 @@ def extract_article_text_from_html(html: str) -> tuple[str, str]:
     og_title = soup.find("meta", property="og:title")
     if og_title and og_title.get("content"):
         title = og_title["content"].strip()
+
+    # <title>/og:title very often carry a trailing "| Site Name" suffix
+    # (e.g. "Headline | TechCrunch"). The hostname-derived source_name used
+    # elsewhere rarely matches that display name exactly, so prefer the
+    # page's own og:site_name for stripping it before translation.
+    og_site_name = soup.find("meta", property="og:site_name")
+    if og_site_name and og_site_name.get("content"):
+        title = strip_source_suffix(title, og_site_name["content"].strip())
 
     # Prefer article/main containers; fallback to all paragraph text.
     containers = soup.select("article") or soup.select("main") or [soup]

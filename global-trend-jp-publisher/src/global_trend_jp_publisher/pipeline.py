@@ -14,7 +14,11 @@ from global_trend_jp_publisher.processors.localize import (
     rewrite_to_japanese,
     expand_summary,
 )
-from global_trend_jp_publisher.processors.text_cleaner import clean_html_entities
+from global_trend_jp_publisher.processors.text_cleaner import (
+    clean_html_entities,
+    dedupe_repeated_text,
+    strip_html_tags,
+)
 from global_trend_jp_publisher.quality.checks import validate_draft
 
 
@@ -22,6 +26,40 @@ def collect_items(settings: Settings) -> list[TrendItem]:
     items = list(fetch_rss_items(settings.feed_list(), settings.max_items_per_source))
     items.extend(fetch_newsapi_items(settings.newsapi_key, settings.max_items_per_source))
     return [x for x in items if x.url]
+
+
+def select_top_items_interleaved(items: list[TrendItem], total: int) -> list[TrendItem]:
+    """Cap the item list to ``total`` while keeping a mix of sources.
+
+    Items normally arrive grouped by source (all of feed A, then all of feed
+    B, ...). Naively slicing the first N would return articles from a single
+    source only. This round-robins across sources instead, so a 5-article
+    digest still touches multiple outlets.
+    """
+    if total <= 0 or len(items) <= total:
+        return items
+
+    by_source: dict[str, list[TrendItem]] = {}
+    order: list[str] = []
+    for item in items:
+        if item.source_name not in by_source:
+            by_source[item.source_name] = []
+            order.append(item.source_name)
+        by_source[item.source_name].append(item)
+
+    selected: list[TrendItem] = []
+    while len(selected) < total:
+        progressed = False
+        for source in order:
+            if len(selected) >= total:
+                break
+            bucket = by_source[source]
+            if bucket:
+                selected.append(bucket.pop(0))
+                progressed = True
+        if not progressed:
+            break
+    return selected
 
 
 def build_drafts(items: list[TrendItem], category_filter: str = "all") -> list[DraftPost]:
@@ -32,8 +70,12 @@ def build_drafts(items: list[TrendItem], category_filter: str = "all") -> list[D
             continue
         item.language = detect_language(f"{item.title} {item.snippet}")
 
-        # Clean HTML entities from snippet
-        cleaned_snippet = clean_html_entities(item.snippet)
+        # Clean HTML tags/entities from snippet and drop repeated boilerplate
+        # sentences before translation (safety net in case a connector ever
+        # hands us raw markup or duplicated text).
+        cleaned_snippet = strip_html_tags(item.snippet)
+        cleaned_snippet = clean_html_entities(cleaned_snippet)
+        cleaned_snippet = dedupe_repeated_text(cleaned_snippet)
 
         title_ja = rewrite_to_japanese(item.title)
         summary_seed_ja = rewrite_to_japanese(cleaned_snippet)

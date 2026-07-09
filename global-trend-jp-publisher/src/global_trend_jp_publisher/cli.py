@@ -5,7 +5,7 @@ import typer
 from global_trend_jp_publisher.config import Settings
 from global_trend_jp_publisher.connectors.url_article import fetch_url_item
 from global_trend_jp_publisher.models import TrendItem
-from global_trend_jp_publisher.pipeline import build_drafts, collect_items
+from global_trend_jp_publisher.pipeline import build_drafts, collect_items, select_top_items_interleaved
 from global_trend_jp_publisher.processors.url_list import load_urls_from_file
 from global_trend_jp_publisher.storage.writer import (
     write_outputs,
@@ -164,7 +164,12 @@ def run_tech_news(
         "--sites-file",
         help="Path to text file with one RSS feed URL per line",
     ),
-    max_items: int = typer.Option(5, "--max-items", help="Max articles per source"),
+    max_items: int = typer.Option(5, "--max-items", help="Max articles fetched per source (candidate pool)"),
+    total_items: int = typer.Option(
+        0,
+        "--total-items",
+        help="Cap the final digest to this many articles total, interleaved across sources. 0 = no cap.",
+    ),
     news_dir: str = typer.Option("data/news", "--news-dir", help="Output directory for digest"),
 ) -> None:
     """Fetch articles from influential overseas tech sites and write a Japanese digest."""
@@ -185,6 +190,10 @@ def run_tech_news(
     if not items:
         typer.echo("No articles fetched. Check RSS feed URLs.")
         raise typer.Exit(code=1)
+
+    if total_items > 0:
+        items = select_top_items_interleaved(items, total_items)
+        typer.echo(f"Capped to {len(items)} articles (interleaved across {sites_file}) before enrichment/translation")
 
     items = _enrich_items_with_article_text(items)
 

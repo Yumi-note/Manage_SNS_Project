@@ -1,35 +1,26 @@
-name: Tech News Japanese Digest (Every 2 Hours)
+name: Tech News Japanese Digest (Every ~10 Hours)
 
 on:
   schedule:
-    # 00:00 JST (15:00 UTC prev day) – 毎日 0時
+    # 00:00 JST (15:00 UTC prev day)
     - cron: '0 15 * * *'
-    # 02:00 JST (17:00 UTC)
-    - cron: '0 17 * * *'
-    # 04:00 JST (19:00 UTC)
-    - cron: '0 19 * * *'
-    # 06:00 JST (21:00 UTC)
-    - cron: '0 21 * * *'
-    # 08:00 JST (23:00 UTC)
-    - cron: '0 23 * * *'
-    # 10:00 JST (01:00 UTC)
+    # 10:00 JST (01:00 UTC) — 10h after the previous run
     - cron: '0 1 * * *'
-    # 12:00 JST (03:00 UTC)
-    - cron: '0 3 * * *'
-    # 14:00 JST (05:00 UTC)
-    - cron: '0 5 * * *'
-    # 16:00 JST (07:00 UTC)
-    - cron: '0 7 * * *'
-    # 18:00 JST (09:00 UTC)
-    - cron: '0 9 * * *'
-    # 20:00 JST (11:00 UTC)
+    # 20:00 JST (11:00 UTC) — 10h after the previous run
     - cron: '0 11 * * *'
-    # 22:00 JST (13:00 UTC)
-    - cron: '0 13 * * *'
+    # NOTE: 24 hours doesn't divide evenly by 10, so the gap from 20:00 back
+    # to the next day's 00:00 run is only 4 hours instead of 10. This is a
+    # GitHub Actions cron limitation (schedules repeat on a 24h clock), not
+    # a bug — if you'd rather have perfectly even spacing, 3 runs/day at
+    # 8h apart or 2 runs/day at 12h apart both divide evenly into 24h.
   workflow_dispatch:
     inputs:
       max_items:
-        description: 'Max articles per source (default: 5)'
+        description: 'Max articles fetched per source, before capping (default: 5)'
+        required: false
+        default: '5'
+      total_items:
+        description: 'Total articles in the final digest, interleaved across sources (default: 5, 0 = no cap)'
         required: false
         default: '5'
 
@@ -67,9 +58,11 @@ jobs:
       - name: Generate Japanese tech news digest
         run: |
           MAX_ITEMS="${{ github.event.inputs.max_items || '5' }}"
+          TOTAL_ITEMS="${{ github.event.inputs.total_items || '5' }}"
           python -m global_trend_jp_publisher.cli run-tech-news \
             --sites-file data/inputs/tech_sites.txt \
             --max-items "$MAX_ITEMS" \
+            --total-items "$TOTAL_ITEMS" \
             --news-dir data/news
 
       - name: Commit generated digest
