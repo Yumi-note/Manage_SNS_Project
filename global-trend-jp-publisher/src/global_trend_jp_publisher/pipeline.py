@@ -10,14 +10,12 @@ from global_trend_jp_publisher.processors.categorize_enhanced import categorize_
 from global_trend_jp_publisher.processors.company_extractor import extract_companies_from_text
 from global_trend_jp_publisher.processors.insights import build_japan_takeaways, build_x_japan_hook
 from global_trend_jp_publisher.processors.language import detect_language
-from global_trend_jp_publisher.processors.localize import (
-    rewrite_to_japanese,
-    expand_summary,
-)
+from global_trend_jp_publisher.processors.localize import condense_summary, rewrite_to_japanese
 from global_trend_jp_publisher.processors.text_cleaner import (
     clean_html_entities,
     dedupe_repeated_text,
     strip_html_tags,
+    truncate_summary,
 )
 from global_trend_jp_publisher.quality.checks import validate_draft
 
@@ -79,9 +77,13 @@ def build_drafts(items: list[TrendItem], category_filter: str = "all") -> list[D
 
         title_ja = rewrite_to_japanese(item.title)
         summary_seed_ja = rewrite_to_japanese(cleaned_snippet)
-        # Expand after translation so the final Japanese text reaches the target length.
-        summary_ja = expand_summary(title_ja, summary_seed_ja)
-        summary_ja = clean_html_entities(summary_ja)
+        # Condense to a ~300-char summary in both languages instead of
+        # dumping the full translated body. condense_summary backfills with
+        # the title when the body alone is too thin to stand on its own.
+        summary_ja = truncate_summary(
+            clean_html_entities(condense_summary(title_ja, summary_seed_ja)), max_chars=300
+        )
+        summary_en = truncate_summary(condense_summary(item.title, cleaned_snippet), max_chars=300)
         takeaways_ja = build_japan_takeaways(item.category, title_ja, summary_ja)
         x_hook_ja = build_x_japan_hook(item.category, title_ja, summary_ja)
 
@@ -94,6 +96,7 @@ def build_drafts(items: list[TrendItem], category_filter: str = "all") -> list[D
         draft = DraftPost(
             title_ja=title_ja,
             summary_ja=summary_ja,
+            summary_en=summary_en,
             x_post=format_for_x(title_ja, summary_ja, item.url, x_hook_ja),
             redbook_post=format_for_redbook(title_ja, summary_ja, item.url, item.category, takeaways_ja),
             takeaways_ja=takeaways_ja,

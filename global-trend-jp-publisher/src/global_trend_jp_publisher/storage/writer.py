@@ -107,6 +107,7 @@ def write_tech_news_output(output_dir: str, drafts: list[DraftPost]) -> Path:
             "title_ja": d.title_ja,
             "title_original": d.title_original or d.source_name,
             "summary_ja": d.summary_ja,
+            "summary_en": d.summary_en,
             "source_url": d.source_url,
             "source_name": d.source_name,
             "subcategory": d.subcategory or "Other",

@@ -41,7 +41,8 @@ def test_dashboard_uses_article_translation_and_company_links() -> None:
         [
             DraftPost(
                 title_ja="新機能の発表",
-                summary_ja="本文の日本語訳です。\n\n追加の説明です。",
+                summary_ja="本文の日本語要約です。\n\n追加の説明です。",
+                summary_en="Summary of the announcement.",
                 x_post="",
                 redbook_post="",
                 takeaways_ja=["示唆1"],
@@ -56,7 +57,9 @@ def test_dashboard_uses_article_translation_and_company_links() -> None:
         ],
         generated_at=datetime(2026, 4, 4, 10, 0, 0),
     )
-    assert "記事の日本語訳" in html
+    assert "記事の日本語要約" in html
+    assert "English Summary" in html
+    assert "Summary of the announcement." in html
     assert "日本への示唆" not in html
     assert "Google の解説" in html
     assert "../../index.html" in html
@@ -69,7 +72,8 @@ def test_markdown_digest_omits_takeaway_section_and_lists_company_links() -> Non
                 "idx": 1,
                 "title_ja": "日本語タイトル",
                 "title_original": "Original Title",
-                "summary_ja": "本文の日本語訳。",
+                "summary_ja": "本文の日本語要約。",
+                "summary_en": "English body summary.",
                 "source_url": "https://example.com/article",
                 "source_name": "TechCrunch",
                 "mentioned_companies": ["Google"],
@@ -80,3 +84,5 @@ def test_markdown_digest_omits_takeaway_section_and_lists_company_links() -> Non
     assert "#### 🎯 日本への示唆" not in digest
     assert "#### 🏢 企業解説リンク" in digest
     assert "companies/google.html" in digest
+    assert "#### 🇺🇸 English Summary" in digest
+    assert "English body summary." in digest

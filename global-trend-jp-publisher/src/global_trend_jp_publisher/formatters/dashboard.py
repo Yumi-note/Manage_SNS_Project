@@ -109,6 +109,14 @@ def _generate_article_card(idx: int, draft: DraftPost) -> str:
     color = get_category_color(category)
     paragraphs_html = _render_summary_paragraphs(draft.summary_ja)
     company_links_html = _render_company_links(draft.mentioned_companies)
+    english_section_html = (
+        f"""<section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary">{_render_summary_paragraphs(draft.summary_en)}</div>
+    </section>"""
+        if draft.summary_en
+        else ""
+    )
 
     return f"""<article class="article-card" data-category="{escape(category)}" data-index="{idx}">
     <div class="card-topline">
@@ -120,9 +128,11 @@ def _generate_article_card(idx: int, draft: DraftPost) -> str:
     <p class="article-original-title">原題: <em>{escape(draft.title_original)}</em></p>
 
     <section class="article-section">
-        <h3>記事の日本語訳</h3>
+        <h3>記事の日本語要約</h3>
         <div class="article-summary">{paragraphs_html}</div>
     </section>
+
+    {english_section_html}
 
     {company_links_html}
 

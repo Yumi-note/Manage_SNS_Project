@@ -12,6 +12,19 @@ def _normalize_whitespace(text: str) -> str:
     return " ".join(text.split()).strip()
 
 
+def condense_summary(title: str, body: str) -> str:
+    """Normalize a translated/cleaned body, backfilling with the title when the
+    body alone is too thin (e.g. a one-line snippet) to read as a standalone summary.
+    """
+    cleaned_body = _normalize_whitespace(body)
+    cleaned_title = _normalize_whitespace(title)
+    if len(cleaned_body) >= 20 or not cleaned_title or cleaned_title in cleaned_body:
+        return cleaned_body
+    is_japanese_title = any("぀" <= ch <= "ヿ" or "一" <= ch <= "鿿" for ch in cleaned_title)
+    separator = "。" if is_japanese_title else ". "
+    return f"{cleaned_title}{separator}{cleaned_body}".strip()
+
+
 def _truncate_sentences(text: str, max_chars: int) -> str:
     if len(text) <= max_chars:
         return text

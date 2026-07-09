@@ -91,6 +91,7 @@ def format_tech_news_item(
     source_url: str,
     source_name: str,
     mentioned_companies: list[str],
+    summary_en: str = "",
 ) -> str:
     """Return a single article block for the digest."""
     source_label = _normalize_source(source_name)
@@ -104,12 +105,14 @@ def format_tech_news_item(
         if company_lines
         else ""
     )
+    english_block = f"#### 🇺🇸 English Summary\n\n{summary_en}\n\n" if summary_en else ""
     return (
         f"## 記事 {idx}  ｜  {source_label}\n\n"
         f"### {title_ja}\n\n"
         f"> 原題: *{title_original}*\n\n"
-        "#### 📝 記事の日本語訳\n\n"
+        "#### 📝 記事の日本語要約\n\n"
         f"{summary_ja}\n\n"
+        f"{english_block}"
         f"{company_block}"
         f"🔗 [元記事を読む]({source_url})\n\n"
         "---\n"
@@ -123,7 +126,7 @@ def format_tech_news_digest(
     """Return the full digest Markdown document.
 
     Each element of *items* must have keys:
-        idx, title_ja, title_original, summary_ja,
+        idx, title_ja, title_original, summary_ja, summary_en,
         source_url, source_name, mentioned_companies
     """
     if generated_at is None:
@@ -163,6 +166,7 @@ def format_tech_news_digest(
                 source_url=item["source_url"],
                 source_name=item["source_name"],
                 mentioned_companies=item.get("mentioned_companies", []),
+                summary_en=item.get("summary_en", ""),
             )
         )
 

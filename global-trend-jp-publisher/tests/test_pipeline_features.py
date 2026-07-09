@@ -47,3 +47,23 @@ def test_build_drafts_applies_category_filter_and_takeaways() -> None:
     assert drafts[0].category == "finance"
     assert len(drafts[0].takeaways_ja) == 2
     assert "日本向けの示唆:" in drafts[0].redbook_post
+
+
+def test_build_drafts_summaries_are_condensed_to_about_300_chars() -> None:
+    long_snippet = "This is a detailed sentence about the announcement. " * 40
+    items = [
+        TrendItem(
+            source_name="The Verge",
+            category="tech",
+            title="Company ships a major update",
+            url="https://example.com/tech-update",
+            snippet=long_snippet,
+        ),
+    ]
+
+    drafts = build_drafts(items)
+
+    assert len(drafts) == 1
+    assert len(drafts[0].summary_ja) <= 310
+    assert len(drafts[0].summary_en) <= 310
+    assert drafts[0].summary_en
