@@ -27,7 +27,9 @@ class DraftPost:
     title_original: str = ""
     subcategory: str = ""  # Enhanced: AI/ML, Security, Startups, Hardware, etc.
     mentioned_companies: list[str] = None  # New: company names in article
-    summary_en: str = ""  # ~300-char English summary, alongside summary_ja
+    summary_en: str = ""  # ~400-char English summary, alongside summary_ja
+    security_alert: bool = False  # True when a security engineer would find this important
+    security_reason: str = ""  # Short justification for security_alert
 
     def __post_init__(self):
         if self.mentioned_companies is None:

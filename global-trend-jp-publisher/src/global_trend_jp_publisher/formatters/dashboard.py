@@ -117,12 +117,19 @@ def _generate_article_card(idx: int, draft: DraftPost) -> str:
         if draft.summary_en
         else ""
     )
+    security_badge_html = (
+        f"""<p class="security-alert">🔒 セキュリティエンジニア向け重要記事 — {escape(draft.security_reason)}</p>"""
+        if draft.security_alert
+        else ""
+    )
 
     return f"""<article class="article-card" data-category="{escape(category)}" data-index="{idx}">
     <div class="card-topline">
         <span class="category-chip" style="background:{color}">{emoji} {escape(category)}</span>
         <span class="source-chip">{escape(draft.source_name)}</span>
     </div>
+
+    {security_badge_html}
 
     <h2 class="article-title">{escape(draft.title_ja)}</h2>
     <p class="article-original-title">原題: <em>{escape(draft.title_original)}</em></p>
@@ -364,6 +371,17 @@ def _get_dark_theme_css() -> str:
         .article-original-title {
             margin: 0 0 18px;
             color: var(--muted);
+        }
+
+        .security-alert {
+            margin: 0 0 14px;
+            padding: 10px 14px;
+            border-radius: 12px;
+            border: 1px solid rgba(248, 113, 113, 0.4);
+            background: rgba(248, 113, 113, 0.12);
+            color: #fecaca;
+            font-weight: 700;
+            font-size: 0.92rem;
         }
 
         .article-section {

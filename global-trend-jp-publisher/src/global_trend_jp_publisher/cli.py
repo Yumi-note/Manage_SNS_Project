@@ -5,6 +5,7 @@ import typer
 from global_trend_jp_publisher.config import Settings
 from global_trend_jp_publisher.connectors.url_article import fetch_url_item
 from global_trend_jp_publisher.models import TrendItem
+from global_trend_jp_publisher.notifications.email_notifier import send_security_alert_email
 from global_trend_jp_publisher.pipeline import build_drafts, collect_items, select_top_items_interleaved
 from global_trend_jp_publisher.processors.url_list import load_urls_from_file
 from global_trend_jp_publisher.storage.writer import (
@@ -68,7 +69,7 @@ def run_daily(category: str = typer.Option("all", "--category", help="all, tech,
         typer.echo("No trend items found. Check RSS_FEEDS / API settings.")
         raise typer.Exit(code=1)
 
-    drafts = build_drafts(items, category_filter=category)
+    drafts = build_drafts(items, category_filter=category, settings=settings)
     if not drafts:
         typer.echo(f"No drafts produced for category: {category}")
         raise typer.Exit(code=1)
@@ -92,7 +93,7 @@ def run_from_url(
         typer.echo(f"Failed to fetch URL: {exc}")
         raise typer.Exit(code=1)
 
-    drafts = build_drafts([item], category_filter=category)
+    drafts = build_drafts([item], category_filter=category, settings=settings)
     if not drafts:
         typer.echo(f"No drafts produced for category: {category}")
         raise typer.Exit(code=1)
@@ -135,7 +136,7 @@ def run_from_redbook_url_list(
             typer.echo(f"- {err}")
         raise typer.Exit(code=1)
 
-    drafts = build_drafts(items, category_filter=category)
+    drafts = build_drafts(items, category_filter=category, settings=settings)
     if not drafts:
         typer.echo(f"No drafts produced for category: {category}")
         raise typer.Exit(code=1)
@@ -176,6 +177,8 @@ def run_tech_news(
     from global_trend_jp_publisher.processors.url_list import load_urls_from_file
     from global_trend_jp_publisher.connectors.rss import fetch_rss_items
 
+    settings = Settings()
+
     try:
         feeds = load_urls_from_file(sites_file)
     except Exception as exc:
@@ -197,7 +200,7 @@ def run_tech_news(
 
     items = _enrich_items_with_article_text(items)
 
-    drafts = build_drafts(items, category_filter="tech")
+    drafts = build_drafts(items, category_filter="tech", settings=settings)
     if not drafts:
         typer.echo("No tech drafts produced from fetched articles.")
         raise typer.Exit(code=1)
@@ -212,6 +215,29 @@ def run_tech_news(
         typer.echo(f"✅ Updated archive index: {archive_path}")
     except Exception as e:
         typer.echo(f"⚠️  Archive index update failed: {e}", err=True)
+
+    # Email alert for articles a security engineer would want to see
+    security_drafts = [d for d in drafts if d.security_alert]
+    if security_drafts:
+        if settings.smtp_user and settings.smtp_password and settings.notify_email_to:
+            try:
+                send_security_alert_email(
+                    security_drafts,
+                    to_email=settings.notify_email_to,
+                    smtp_host=settings.smtp_host,
+                    smtp_port=settings.smtp_port,
+                    smtp_user=settings.smtp_user,
+                    smtp_password=settings.smtp_password,
+                )
+                typer.echo(f"📧 Sent security alert email for {len(security_drafts)} article(s)")
+            except Exception as exc:
+                typer.echo(f"⚠️  Failed to send security alert email: {exc}", err=True)
+        else:
+            typer.echo(
+                f"⚠️  {len(security_drafts)} security-relevant article(s) found but SMTP is not "
+                "configured (SMTP_USER/SMTP_PASSWORD/NOTIFY_EMAIL_TO); skipping email",
+                err=True,
+            )
 
 
 @app.command("generate-archive-index")

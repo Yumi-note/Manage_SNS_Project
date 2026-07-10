@@ -92,6 +92,8 @@ def format_tech_news_item(
     source_name: str,
     mentioned_companies: list[str],
     summary_en: str = "",
+    security_alert: bool = False,
+    security_reason: str = "",
 ) -> str:
     """Return a single article block for the digest."""
     source_label = _normalize_source(source_name)
@@ -106,8 +108,12 @@ def format_tech_news_item(
         else ""
     )
     english_block = f"#### 🇺🇸 English Summary\n\n{summary_en}\n\n" if summary_en else ""
+    security_block = (
+        f"> 🔒 **セキュリティエンジニア向け重要記事** — {security_reason}\n\n" if security_alert else ""
+    )
     return (
         f"## 記事 {idx}  ｜  {source_label}\n\n"
+        f"{security_block}"
         f"### {title_ja}\n\n"
         f"> 原題: *{title_original}*\n\n"
         "#### 📝 記事の日本語要約\n\n"
@@ -167,6 +173,8 @@ def format_tech_news_digest(
                 source_name=item["source_name"],
                 mentioned_companies=item.get("mentioned_companies", []),
                 summary_en=item.get("summary_en", ""),
+                security_alert=item.get("security_alert", False),
+                security_reason=item.get("security_reason", ""),
             )
         )
 

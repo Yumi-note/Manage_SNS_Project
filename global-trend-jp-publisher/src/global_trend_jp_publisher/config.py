@@ -14,5 +14,16 @@ class Settings(BaseSettings):
     target_language: str = Field(default="ja")
     default_audience: str = Field(default="日本の読者")
 
+    # Grok (xAI) summarization
+    xai_api_key: str = Field(default="")
+    grok_model: str = Field(default="grok-4-fast")
+
+    # Security-alert email notifications
+    smtp_host: str = Field(default="smtp.gmail.com")
+    smtp_port: int = Field(default=465)
+    smtp_user: str = Field(default="")
+    smtp_password: str = Field(default="")
+    notify_email_to: str = Field(default="")
+
     def feed_list(self) -> list[str]:
         return [x.strip() for x in self.rss_feeds.split(",") if x.strip()]
