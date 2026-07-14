@@ -1,0 +1,1182 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>海外テックニュース日本語まとめ</title>
+    <style>
+        :root {
+            color-scheme: dark;
+            --bg: #0a0f1d;
+            --panel: rgba(13, 20, 36, 0.92);
+            --line: rgba(132, 152, 187, 0.25);
+            --text: #eef3ff;
+            --muted: #adc1dd;
+            --accent: #7dd3fc;
+            --accent-strong: #38bdf8;
+            --shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: "Hiragino Sans", "Noto Sans JP", sans-serif;
+            background:
+                radial-gradient(circle at top right, rgba(56, 189, 248, 0.22), transparent 26%),
+                radial-gradient(circle at top left, rgba(16, 185, 129, 0.16), transparent 20%),
+                linear-gradient(180deg, #07101f 0%, #0b1327 48%, #0a0f1d 100%);
+            color: var(--text);
+        }
+
+        .page-shell {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 24px;
+        }
+
+        .hero {
+            padding: 28px;
+            border: 1px solid var(--line);
+            border-radius: 28px;
+            background: linear-gradient(145deg, rgba(18, 27, 48, 0.96), rgba(10, 17, 32, 0.96));
+            box-shadow: var(--shadow);
+        }
+
+        .hero-nav {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 28px;
+        }
+
+        .nav-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 42px;
+            padding: 0 16px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        .eyebrow {
+            margin: 0 0 10px;
+            color: var(--accent);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            font-size: 0.78rem;
+        }
+
+        .hero h1 {
+            margin: 0;
+            font-size: clamp(2rem, 3vw, 3.3rem);
+            line-height: 1.1;
+        }
+
+        .timestamp,
+        .description {
+            color: var(--muted);
+        }
+
+        .control-panel {
+            margin: 20px 0 28px;
+            padding: 22px;
+            border: 1px solid var(--line);
+            border-radius: 24px;
+            background: var(--panel);
+            backdrop-filter: blur(12px);
+        }
+
+        .control-header {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            align-items: end;
+            flex-wrap: wrap;
+        }
+
+        .control-header h2 {
+            margin: 0 0 6px;
+        }
+
+        .control-header p {
+            margin: 0;
+            color: var(--muted);
+        }
+
+        #search-input {
+            width: min(100%, 360px);
+            min-height: 46px;
+            padding: 0 14px;
+            border-radius: 14px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
+        }
+
+        .category-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 16px;
+        }
+
+        .category-btn {
+            min-height: 42px;
+            padding: 0 14px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
+            cursor: pointer;
+        }
+
+        .category-btn.active {
+            background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+            color: #06111f;
+            border-color: transparent;
+            font-weight: 700;
+        }
+
+        .article-list {
+            display: grid;
+            gap: 18px;
+        }
+
+        .article-card {
+            padding: 24px;
+            border-radius: 24px;
+            border: 1px solid var(--line);
+            background: linear-gradient(180deg, rgba(12, 18, 34, 0.96), rgba(14, 22, 39, 0.9));
+            box-shadow: var(--shadow);
+        }
+
+        .card-topline {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+
+        .category-chip,
+        .source-chip {
+            display: inline-flex;
+            align-items: center;
+            min-height: 34px;
+            padding: 0 12px;
+            border-radius: 999px;
+            font-size: 0.92rem;
+            font-weight: 700;
+        }
+
+        .source-chip {
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--muted);
+        }
+
+        .article-title {
+            margin: 0 0 10px;
+            font-size: clamp(1.45rem, 2vw, 2rem);
+            line-height: 1.35;
+        }
+
+        .article-original-title {
+            margin: 0 0 18px;
+            color: var(--muted);
+        }
+
+        .security-alert {
+            margin: 0 0 14px;
+            padding: 10px 14px;
+            border-radius: 12px;
+            border: 1px solid rgba(248, 113, 113, 0.4);
+            background: rgba(248, 113, 113, 0.12);
+            color: #fecaca;
+            font-weight: 700;
+            font-size: 0.92rem;
+        }
+
+        .article-section {
+            margin-top: 18px;
+            padding-top: 18px;
+            border-top: 1px solid var(--line);
+        }
+
+        .article-section h3 {
+            margin: 0 0 12px;
+            font-size: 1rem;
+            color: var(--accent);
+        }
+
+        .article-paragraph {
+            margin: 0 0 14px;
+            color: #dce7f8;
+            line-height: 1.9;
+            font-size: 1rem;
+        }
+
+        .company-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .company-link,
+        .action-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 42px;
+            padding: 0 14px;
+            border-radius: 14px;
+            text-decoration: none;
+            border: 1px solid rgba(125, 211, 252, 0.3);
+        }
+
+        .company-link {
+            color: var(--accent);
+            background: rgba(56, 189, 248, 0.08);
+        }
+
+        .article-actions {
+            margin-top: 22px;
+        }
+
+        .footer {
+            padding: 28px 8px 40px;
+            color: var(--muted);
+            text-align: center;
+        }
+
+        .footer p {
+            margin: 6px 0;
+        }
+
+        .action-link.primary {
+            color: #06111f;
+            font-weight: 700;
+            background: linear-gradient(135deg, #7dd3fc, #22d3ee);
+            border-color: transparent;
+        }
+
+        @media (max-width: 720px) {
+            .page-shell {
+                padding: 14px;
+            }
+
+            .hero,
+            .control-panel,
+            .article-card {
+                padding: 18px;
+                border-radius: 20px;
+            }
+
+            .control-header {
+                align-items: stretch;
+            }
+
+            #search-input {
+                width: 100%;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="page-shell">
+        <header class="hero">
+            <div class="hero-nav">
+                <a class="nav-link" href="../../index.html">HOME</a>
+                <a class="nav-link" href="../index.html">この日の記事一覧</a>
+            </div>
+            <div class="hero-copy">
+                <p class="eyebrow">Global Tech News Digest</p>
+                <h1>海外テックニュース 日本語まとめ</h1>
+                <p class="timestamp">2026年7月14日 16:19 JST に収集した記事を掲載しています。</p>
+                <p class="description">各カードには本文寄りの日本語訳を掲載し、記事中で触れた企業は別ページの解説リンクとして分離しています。</p>
+            </div>
+        </header>
+
+        <section class="control-panel">
+            <div class="control-header">
+                <div>
+                    <h2>記事を探す</h2>
+                    <p>カテゴリとキーワードで一覧を絞り込めます。</p>
+                </div>
+                <input type="text" id="search-input" placeholder="タイトル・本文・媒体名で検索">
+            </div>
+            <div class="category-buttons">
+                <button class="category-btn active" data-category="all">すべて (29)</button>
+<button class="category-btn" data-category="AI/ML" style="--accent:#10b981">🤖 AI/ML (21)</button>
+<button class="category-btn" data-category="Media" style="--accent:#f59e0b">🎬 Media (3)</button>
+<button class="category-btn" data-category="Mobile" style="--accent:#6366f1">📱 Mobile (2)</button>
+<button class="category-btn" data-category="Other" style="--accent:#6b7280">📰 Other (2)</button>
+<button class="category-btn" data-category="Startups" style="--accent:#8b5cf6">🚀 Startups (1)</button>
+            </div>
+        </section>
+
+        <main class="article-list" id="articles-container">
+            <article class="article-card" data-category="AI/ML" data-index="1">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Google 画像検索が発見に重点を置いた Pinterest 風の再設計に</h2>
+    <p class="article-original-title">原題: <em>Google Images gets a Pinterest-like redesign focused on discovery</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">テクノロジー大手の画像検索エンジンである Google イメージズは、最新の再設計で Pinterest に対抗し、サイトを Web 上の画像の閲覧可能な動的なギャラリーに変えています。Google は、Google 画像のデビューから 25 周年を記念して、ユーザーが検索内で直接 AI 画像を作成できる方法も追加しています。Pinterest は、人々がファッションから室内装飾に至るまで、あらゆるものの視覚的なインスピレーションを閲覧して保存できることで長い間知られてきました。今回の再設計により、Google は基本的にその戦略を模倣し、Google 画像を検索だけでなく発見とインスピレーションの場所に変えることで、ユーザーが Google プラットフォームに費やす時間を増やし、広告収入の増加につながる可能性があります。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Google Images, the tech giant’s image search engine, is taking on Pinterest with its latest redesign that turns the site into a browsable, dynamic gallery of images from across the web.Google is also adding a way for users to create AI images right in Search, as it celebrates 25 years since the debut of Google Images.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/google.html" target="_blank" rel="noopener noreferrer" class="company-link">Google の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/07/14/google-images-gets-a-pinterest-like-redesign-focused-on-discovery/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="2">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">OLED Xbox Ally X20は非常に優れているため、ASUSが単独で販売する予定です</h2>
+    <p class="article-original-title">原題: <em>The OLED Xbox Ally X20 is so good, Asus will sell it solo</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。 OLED Ally を入手するために AR メガネを購入する必要はありません。これが私たちのプレビューです。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. You won’t need to buy AR glasses to get the OLED Ally — here’s our preview.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/games/965123/asus-rog-xbox-ally-x20-oled-preview" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Media" data-index="3">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#f59e0b">🎬 Media</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">YouTube と X はアプリを無効化するための「ゲートウェイ」となった</h2>
+    <p class="article-original-title">原題: <em>YouTube and X Have Become ‘Gateways’ to Nudify Apps</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">主流のソーシャル メディア プラットフォームのほとんどには、同意のない親密な画像 (NCII) や露骨な性的写真やビデオの拡散を防ぐ厳格なガイドラインがあります。しかし、新しいレポートによると、多くのソーシャルメディアプラットフォームがユーザーにそのようなコンテンツを直接誘導していることが判明した。反過激主義および反偽情報団体である戦略対話研究所（ISD）の報告書は、ユーザーが同意なしにデジタル的に人の服を脱ぐことを可能にする、いわゆる「ヌード化」アプリやウェブサイトの蔓延を可能にするオンラインエコシステムを分析しています。月曜日に発表されたこの調査では、合意のない露骨なディープフェイクの作成に使用された上位 10 のアプリと Web サイトと、人々がそれらをどのように見つけているかを調査しました。驚くべき量の紹介トラフィックが小規模なものから来ているわけではないことがわかりました。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Most mainstream social media platforms have strict guidelines preventing the dissemination of nonconsensual intimate images (NCII), or sexually explicit photos and videos.But a new report finds that many social media platforms directly refer users to such content.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/story/youtube-and-x-have-become-gateways-to-nudify-apps/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Other" data-index="4">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#6b7280">📰 Other</span>
+        <span class="source-chip">Ars Technica - All content</span>
+    </div>
+
+    
+
+    <h2 class="article-title">爆発性下痢症例の調査でタコベルとレタスの不良が判明</h2>
+    <p class="article-original-title">原題: <em>Probe into explosive diarrheal cases points to Taco Bell and bad lettuce</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">保健当局はまだ情報源を確認しておらず、複数の情報源がある可能性がある。レタスとサラダ菜は、下痢性寄生虫シクロスポラの爆発的発生の主な容疑者となっている。シクロスポラは全国的に急増しているが、ミシガン州では異常な規模で爆発している。ミシガン州では近年、水様性下痢、腹痛、吐き気などの緊急発作を引き起こすシクロスポラ症の症例が通常約50件報告されている。しかし、今年は7月14日の時点で、州は食品由来の病原菌の症例を3,309件報告している。このうち44人が入院している。ミシガン州保健福祉省（MDHHS）によると、ミシガン州で病気になった1,000人以上への聞き取りに基づく最新のデータは、葉物野菜が感染源であることを示しているという。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Health officials have not confirmed a source yet—and there may be multiple sources.Lettuce and salad greens have become the prime suspects in an explosive outbreak of the diarrheal parasite Cyclospora , which is surging nationwide but erupting to extraordinary heights in Michigan.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/health/2026/07/taco-bell-eyed-in-explosive-diarrheal-outbreak-leafy-greens-suspected/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="5">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">ダウンロード: クロードの内部構造と世界モデルの未来</h2>
+    <p class="article-original-title">原題: <em>The Download: Claude’s inner workings, and the future of world models</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">さらに: ニューヨーク州は、データセンターの一時停止を制定した最初の州となりました。これは、テクノロジーの世界で何が起こっているかを毎日提供する平日のニュースレター、 The Download の本日版です。アンスロピック社が先週、モデルたちが答えを推論する際の「内なる思考」に新たな窓を発見したと発表したとき、私が話さなければならなかった同僚の一人がいた。それは上級編集者のウィル・ダグラス・ヘブンだ。コンピューター サイエンスの博士号を取得していることに加えて、ウィルは AI モデルがどのように機能するかについて、私たちが言えることを深く掘り下げることに多くの時間を費やしてきました。私はアンスロピックの新しい（そして典型的には風変わりな）研究から何を学ぶべきかについて彼と話しました。彼が言いたかったことは次のとおりです。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Plus: New York has become the first state to enact a data center moratorium.This is today&#x27;s edition of The Download , our weekday newsletter that provides a daily dose of what&#x27;s going on in the world of technology.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/07/14/1140391/the-download-anthropic-claude-internal-thoughts-world-models/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="6">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">VentureBeat</span>
+    </div>
+
+    
+
+    <h2 class="article-title">1Password が AI コスト管理に移行、トークン支出が次の企業予算危機になると予想</h2>
+    <p class="article-original-title">原題: <em>1Password moves into AI cost management, betting that token spend is the next enterprise budget crisis</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">1Password は火曜日、自社の SaaS Manager プラットフォームに組み込まれた新機能である AI 支出および消費管理 を開始しました。これにより、IT チームと財務チームが、組織が Anthropic 、 Cursor 、 OpenAI などのベンダーの AI サービスをどのように消費および支出しているかをリアルタイムで統一したビューを得ることができます。 &lt;。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">1Password on Tuesday launched AI Spend and Consumption Management , a new capability embedded in its SaaS Manager platform that gives IT and finance teams a unified, real-time view of how their organizations consume and spend on AI services from vendors including Anthropic , Cursor , and OpenAI . &lt;. .</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/openai.html" target="_blank" rel="noopener noreferrer" class="company-link">OpenAI の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://venturebeat.com/security/1password-moves-into-ai-cost-management-betting-that-token-spend-is-the-next-enterprise-budget-crisis" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Mobile" data-index="7">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#6366f1">📱 Mobile</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Apple Arcade バージョンの Madden NFL 27 は 8 月 7 日に登場します</h2>
+    <p class="article-original-title">原題: <em>An Apple Arcade version of Madden NFL 27 will arrive on August 7</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">EA のフットボール シム シリーズが Apple Arcade に登場します。残念ながらワールドカップも終わりに近づいています。しかし、NFL シーズンが近づいているので、ラウンドなしのフットボールを楽しむ準備ができている人はいるでしょうか?競技場への復帰は、EA Sports の Madden NFL シリーズの最新版が間もなく登場する予定であることも意味します。今年は状況が少し異なり、このシリーズが Apple Arcade に初登場します。加入者は、PC およびコンソールのバージョンが終了する 6 日前の 8 月 7 日から、iPhone、iPad、Mac、Apple TV でマッデン NFL 27 アーケード エディションをプレイできるようになります。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">EA&#x27;s football sim series is making its debut on Apple Arcade.The World Cup is, unfortunately, drawing to a close.However, the NFL season is fast approaching, so who&#x27;s ready for some football of the non-round variety?A return to the gridiron also means the latest edition of EA Sports&#x27; Madden NFL series is set to arrive soon.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/apple.html" target="_blank" rel="noopener noreferrer" class="company-link">Apple の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2214777/madden-nfl-27-apple-arcade-edition-arrives-on-august-7/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="8">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">ニューヨーク州、すべての新規データセンター建設を中止</h2>
+    <p class="article-original-title">原題: <em>New York State halts construction of all new data centers</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">キャシー・ホチョル知事が本日、州による大規模プロジェクトの新規許可の承認を一時的に禁止する大統領令に署名したことを受け、ニューヨーク州はデータセンター建設を中止した最初の州となった。 Hochul の命令は 50 メガワット以上のデータセンターに適用され、十数のプロジェクトに影響を及ぼす可能性があります。州環境保護局は、まだ完了していない許可を発行しません。資源への懸念が一部の反発に拍車をかけているが、その多くの背景にはAIに関する広範な懸念もある。ピューリサーチの最近のレポートによると、日常生活での AI の使用について心配よりも楽しみにしているアメリカ人はわずか 10% であり、テクノロジーが人々の仕事のやり方にプラスの影響を与えると感じているのはわずか 23% でした。 Less than a quarter of the gener. 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">New York became the first state to halt data center construction after Gov.Kathy Hochul signed an executive order today that temporarily bars the state from approving new permits for large projects.Hochul’s order applies to data centers 50 megawatts or larger, potentially affecting more than a dozen projects.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/07/14/new-york-state-halts-construction-of-all-new-data-centers/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="9">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Google 画像のホームページでは、検索する前でも写真が推奨されます</h2>
+    <p class="article-original-title">原題: <em>The Google Images homepage will recommend photos even before you search</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。この著者からの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. Posts from this author will be added to your daily email digest and your homepage feed.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/google.html" target="_blank" rel="noopener noreferrer" class="company-link">Google の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/tech/965138/google-images-homepage-ai-overviews-search-nano-banana" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Other" data-index="10">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#6b7280">📰 Other</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">ニューヨーク州知事、初の州全体のデータセンター一時停止措置に署名</h2>
+    <p class="article-original-title">原題: <em>New York Governor Signs First Statewide Data Center Moratorium</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">ニューヨーク州のキャシー・ホチョル知事は火曜日、ハイパースケール・データセンターの開発を1年間停止する大統領令に署名し、全米初の州全体のデータセンターの一時停止に影響を与えた。この大統領令は、データセンター建設への反対運動が全米に広がり、選挙で選ばれた議員らに行動を起こすよう強い圧力をかけられる中で出された。この命令は特に、50メガワットを超える施設に対する州の環境審査を1年間一時停止するものである。同州公共サービス局に対し、この期間中にデータセンターの環境とエネルギーへの影響を評価し、州内に建設を希望するデータセンターで発生する可能性のある複雑な環境問題に対する一般的な許可プロセスである、新しい一般的な環境影響報告書を作成するよう指示している。ホチョルはアルです。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">New York governor Kathy Hochul signed an executive order Tuesday enacting a one-year pause on the development of hyperscale data centers , effecting the nation’s first statewide data center moratorium.The executive order comes as opposition to data center construction sweeps across the country, putting elected officials under intense pressure to take action.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/story/new-york-governor-signs-first-statewide-data-center-moratorium/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="11">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">PsiQuantumは光から巨大な量子コンピュータを作る計画を持っている</h2>
+    <p class="article-original-title">原題: <em>PsiQuantum has a plan to make a massive quantum computer out of light</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">同社は、壊れやすい光子を制御し、有用な量子マシンを構築する取り組みに政府、大手チップメーカー、国防総省を引き入れた。初となることを目指している。世界を変える可能性のあるマシンは、データセンターとアイスクリーム工場が交差したような部屋に設置されます。内部には約100個のステンレス鋼製キャビネットがあり、それぞれの高さは約6フィートで、絶対零度よりわずか数度高い温度に保つ液体ヘリウムの供給源に接続されている。これらのキャビネットの中には数百のチップがあり、その上では数千の光の粒子が光スイッチとビーム スプリッターの迷路の中を飛び交います。光子がどこに行き着くのかを正確に測定することは、現在のコンピューターでは解決するのに何百万年もかかるかもしれない疑問の答えに役立つため、各光子を考慮する必要があります。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">The company has drawn governments, a major chipmaker, and the Pentagon into an effort to control fragile photons and build a useful quantum machine.It aims to be the first.The machine that could change the world will be housed in a room that looks like a data center crossed with an ice cream factory.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/07/14/1140356/psiquantum-plan-massive-quantum-computer-out-of-light/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="12">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">VentureBeat</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Canva が Code 2.0 を発表、無料アカウントを含むすべてのユーザーに AI ウェブサイト構築を提供</h2>
+    <p class="article-original-title">原題: <em>Canva launches Code 2.0, offering AI website building to every user — including free accounts</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Canvaは火曜日、AIを活用したコーディングツールのメジャーアップグレードであるCanva Code 2.0をリリースした。これにより、ユーザーは平易な言語プロンプトを使用してインタラクティブなWebサイト、アプリ、エクスペリエンスを構築でき、Canvaプレゼンテーションを微調整するのと同じくらい簡単に結果を編集できるようになる。この機能は現在、無料アカウントを含むすべての価格帯で、同社の月間 2 億 6,500 万人を超えるユーザー全員が利用できるようになりました。 &lt;。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Canva on Tuesday launched Canva Code 2.0 , a major upgrade to its AI-powered coding tool that lets users build interactive websites, apps, and experiences using plain-language prompts — and then edit the results as easily as tweaking a Canva presentation.The feature is now available to all of the company&#x27;s more than 265 million monthly users across every pricing tier, including free accounts.&lt;..</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://venturebeat.com/technology/canva-launches-code-2-0-offering-ai-website-building-to-every-user-including-free-accounts" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="13">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Google 画像検索が 25 周年を記念して刷新される</h2>
+    <p class="article-original-title">原題: <em>Google Images is getting a makeover for its 25th anniversary</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">また、検索の AI 概要に Nano Banana が追加されます。Google は、Images の立ち上げから 25 年を経て、Images を刷新しました。。ジェニファー・ロペスのヴェルサーチのドレスがその創作のきっかけとなってから 26 年後。画像インターフェイスは現在のデザインとそれほど変わっていないが、新バージョンで表示される結果は「リアルタイムで更新」され、「ユーザーの独自の興味に合わせてインテリジェントに調整される」と同社は述べている。これまでと同様に、特定の写真をクリックし、その上にあるケバブ メニュー アイコンをクリックしてから保存をクリックすることで、画像をコレクションに保存することができる。画像を追加すると、メイン ギャラリーの上にタブとして表示されるため、簡単に戻って、さらに類似した結果を探し続けることができます。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">It’s also adding Nano Banana to AI Overviews in Search.Google has given Images a makeover 25 years after it launched..and 26 years after Jennifer Lopez&#x27;s Versace dress inspired its creation.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/google.html" target="_blank" rel="noopener noreferrer" class="company-link">Google の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2214477/google-images-25th-anniversary-makeover/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="14">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">イランは中東の米軍の位置を特定するためにモバイルネットワークの脆弱性を悪用したと報告書が伝える</h2>
+    <p class="article-original-title">原題: <em>Iran abused mobile networks&#x27; vulnerabilities to locate US military in the Middle East, report says</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">フィナンシャル・タイムズ紙によると、イラン政府は、イラン戦争の準備段階および紛争の初期段階において、米軍要員の位置を特定するために、世界の通信インフラの既知の脆弱性を悪用した。同紙は、Mobile Surveillance Monitorとスパイ活動に詳しい匿名の政府高官らの調査を引用し、イラン政府がシグナリング・システム7（SS7）を悪用したと報じた。これは、長い間、携帯電話ネットワークが互いに接続し、加入者の通話やテキストメッセージを世界中にルーティングする方法のバックボーンであった2Gおよび3Gネットワ​​ーク用の一連のプロトコルである。諜報機関は長年にわたって海外の携帯電話を追跡するためにSS7を悪用しており、今回のキャンペーンでもそれが起きた。この技術を使用して、イランは の位置を特定できたと伝えられています。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">The Iranian government abused well-known vulnerabilities in the global telecoms infrastructure to locate U.S.military personnel in the build-up to the Iran War, as well as in the early days of the conflict, according to Financial Times .</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/07/14/iran-abused-mobile-networks-vulnerabilities-to-locate-u-s-military-in-the-middle-east-report-says/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Media" data-index="15">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#f59e0b">🎬 Media</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">SpotifyもAIチャットボットに</h2>
+    <p class="article-original-title">原題: <em>Spotify is now an AI chatbot, too</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。 新しいプレミアム ベータ機能では、Spotify の AI とチャットして音楽、ポッドキャスト、オーディオブックを探索できます。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. ﻿A new Premium beta feature lets you explore music, podcasts, and audiobooks by chatting with Spotify’s AI.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/entertainment/965358/spotify-ai-chatbot-interface-music-audiobooks-podcasts" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Media" data-index="16">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#f59e0b">🎬 Media</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">プレックスは悪化し続けています。ジェリフィンは適切な代替品ですか?</h2>
+    <p class="article-original-title">原題: <em>Plex Keeps Getting Worse. Is Jellyfin a Decent Replacement?</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">私はプレックスを毎日使っています。最近、やめようか迷っています。このソフトウェアを使用すると、テレビ番組や映画の個人コレクションを Netflix スタイルのストリーミング サービスに変えることができ、非常に便利です。しかし、Plex を提供している会社は、最近では、乱雑なユーザー インターフェイスの改善よりも機能の追加に重点を置いているようです。最近、ソーシャル プラットフォームとユーザー レビューが追加されましたが、この 2 つの機能はすぐに無効にしました。私は何かを見たいのですが、見知らぬ人とそれについて話すのではありません。(私にはそのような友人がいます。) 同社は、私がサービスを利用して楽しんでいる個人的なメディア コレクションや DVR 機能よりも、広告付きストリーミングの選択肢を押し上げるような設計上の選択をし続けています。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">I use Plex every day.Lately, I&#x27;ve been wondering if I should stop.The software, which lets you turn your personal collection of TV shows and movies into a Netflix-style streaming service, is extremely convenient.But Plex is offered by a company that, as of late, seems more focused on adding features than improving the cluttered user interface.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/story/plex-keeps-getting-worse-is-jellyfin-a-decent-replacement/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Startups" data-index="17">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#8b5cf6">🚀 Startups</span>
+        <span class="source-chip">Ars Technica - All content</span>
+    </div>
+
+    
+
+    <h2 class="article-title">SpaceXは今週後半のStarshipの13回目の試験飛行に向けて準備を進めている</h2>
+    <p class="article-original-title">原題: <em>SpaceX is gearing up for Starship&#x27;s 13th test flight later this week</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">この飛行はスターシップに高い圧力をかけ、軌道上で新しいスターリンク衛星をテストすることになる。スペースXのスターシップ宇宙船とスーパーヘビーブースターの次のテスト飛行は早ければ木曜日に離陸する可能性があり、1時間にわたるミッションの多くは5月の最後のスターシップ飛行とよく似たものになるだろう。ただし、この打ち上げにはいくつかの重要な違いがあり、木曜日の午後 5 時 45 分 (CDT) (協定世界時 22 時 45 分) に開始される打ち上げ期間中に発生する予定です。最も注目すべき変更は、Starship の貨物室内に実際に機能する Starlink 衛星が組み込まれたことです。SpaceXは以前、同社の次世代Starlinkバージョン3ブロードバンド衛星の質量と寸法を模倣したシミュレーターを使用して、船のペイロード展開メカニズムをテストしました。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">This flight will put Starship under higher pressure and test out new Starlink satellites in orbit.The next test flight of SpaceX’s Starship spacecraft and Super Heavy booster could take off as soon as Thursday, and much of the hour-long mission will look a lot like the last Starship flight in May .</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/spacex.html" target="_blank" rel="noopener noreferrer" class="company-link">SpaceX の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/space/2026/07/spacex-is-gearing-up-for-starships-13th-test-flight-later-this-week/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="18">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Anthropic の最新の AI 発見で何が分かるのか、何が分からないのか</h2>
+    <p class="article-original-title">原題: <em>What Anthropic’s latest AI discovery does—and doesn’t—show</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">同社は、モデルがどのように答えに到達するかについて新たな扉を発見したと述べている。上級編集者のウィル・ダグラス・ヘブンにそれについて話を聞いた。Anthropic は現在世界で最も価値のある AI 企業であり、評価額は 1 兆ドル近くに達していますが、奇妙で目まぐるしい研究を発表することで評判です。たとえば、AI モデルが痛みを感じることができるかどうかを調査しており、ユーザーがモデルを「悪用」していると疑われる場合にはチャットボットの会話を遮断することもあります。Anthropic が他の AI 企業よりも多くの時間と資金を費やしているニッチ分野の 1 つは、機械的解釈可能性と呼ばれます。これは、AI モデルの複雑な数学的内部を調べて、特定の出力が得られ、別の出力が得られない理由を知ることを意味します。それは複雑なことです。結果に寄与する可能性のあるデータ ポイントが何百万も存在します。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">The company says it has found a new window into how its models arrive at answers.We spoke with senior editor Will Douglas Heaven about it.Anthropic—currently the world’s most valuable AI company, with a nearly $1 trillion valuation—has a reputation for publishing strange and heady research.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/07/13/1140343/what-anthropics-latest-ai-discovery-does-and-doesnt-show/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="19">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">VentureBeat</span>
+    </div>
+
+    
+
+    <h2 class="article-title">ACRouter はタスクごとに最もスマートな AI モデルを選択し、コストで Opus のみのセットアップを 2.6 倍上回ります</h2>
+    <p class="article-original-title">原題: <em>ACRouter picks the smartest AI model per task, beating Opus-only setups by 2.6x on cost</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">モデル ルーティングは、エンタープライズ AI スタックの重要なコンポーネントになりつつあり、プロンプトを適切な AI モデルに動的に送信して、速度とコストを最適化します。ただし、現在のフレームワークはほとんどの場合、ルーティングを静的な分類問題として扱っており、その可能性が大幅に制限されています。 Agent-as-a-Router と呼ばれる新しいオープンソース フレームワークは、ルーターを動的なメモリ構築エージェントとして扱い、このボトルネックに取り組んでいます。コンテキスト アクション フィードバック (C. .</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Model routing is becoming a key component of the enterprise AI stack, dynamically sending prompts to the right AI model to optimize speed and costs.However, current frameworks mostly treat routing as a static classification problem, which severely limits their potential.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://venturebeat.com/orchestration/acrouter-picks-the-smartest-ai-model-per-task-beating-opus-only-setups-by-2-6x-on-cost" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="20">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">流出したGoogle Pixel Watch 5の画像には4つの異なるカラーオプションが示されている</h2>
+    <p class="article-original-title">原題: <em>Leaked Google Pixel Watch 5 images show four different color options</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Google は 8 月 12 日に Pixel Watch 5 を正式に発表すると予想されています。Google の年次 Pixel イベントが目前に迫っており、ウェブ上でリーク情報が飛び出すのは避けられません。昨日はおしゃれな Pixel 11 カラーでしたが、今日は Pixel Watch の番です。公式に見える 4 つのレンダリングがオンラインに登場しました。問題の画像は、The Tide Chart 経由で OnLeaks から提供されたものです。このブログは現在単一投稿の技術ブログであり、このリークをホストすることだけを目的として作成されたように見えます。つまり、現時点ではこれらの画像はほとんど非公式ですが、確かに合法的に見えます。OnLeaks は、歴史的にもこのようなレンダリングを長年にわたって多数リリースしてきたため、これらが正確である可能性はかなり高いと思われます。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Google is expected to officially reveal the Pixel Watch 5 on August 12.Google&#x27;s annual Pixel event is just around the corner, which means leaks are inevitably popping up all over the web.Yesterday it was snazzy Pixel 11 colors , and today it&#x27;s the turn of the Pixel Watch, which has appeared online in four official-looking renders.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/google.html" target="_blank" rel="noopener noreferrer" class="company-link">Google の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2214745/leaked-google-pixel-watch-5-images-show-four-different-color-options/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="21">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">RingConn 3 を購入することであなたの影響を減らします (たとえそれが美しいとしても)</h2>
+    <p class="article-original-title">原題: <em>I&#x27;m de-influencing you from buying the RingConn 3 (even though it&#x27;s pretty)</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">ウェアラブル ヘルス トラッカーがそれほど醜くなかったら、もっと早く購入していたと思います。手首に光るスクリーンはつけたくないし、編み込んだ Whoop ブレスレットはサマーキャンプで作ったような見た目です。しかし、ここ数か月で、RingConn と Oura の両社は、実際にジュエリーに溶け込むスリムなハードウェアを発売したため、血中酸素濃度を監視していることを世界に向かって叫ぶ必要はありません。そこで、私のより良い判断に反して、そして理由もなく自分の健康データをテクノロジー企業に提供しているという知識に反して、私は最初の毎日着用可能な健康トラッカーである RingConn 3 を購入しました。およそ10日後、まだ2週間の返却期限内であることが分かり安心して郵便局に投函しました。 RingConn 3 と Oura Ring 5 の間で、私は op. 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">I would’ve bought a wearable health tracker a lot sooner if they all weren’t so ugly.I don’t want a glowing screen on my wrist, and the woven Whoop bracelet looks like something I would’ve made at summer camp.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/07/14/ringconn-3-review/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="22">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Xは、壊れたアルゴリズムによりサイトが「戦場」のように感じられたことを認めた</h2>
+    <p class="article-original-title">原題: <em>X admits its broken algorithm made the site feel like a ‘battleground’</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。 現在は、フォローしていない人からの返信ではなく、コミュニティに重点を置いているようです。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. ﻿Now it’s supposedly focusing on community instead of replies from people you don’t follow.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/tech/965360/x-algorithm-tweak-mutuals-strangers-community" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Mobile" data-index="23">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#6366f1">📱 Mobile</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Google Chat をさらに活用するための 9 つのヒント</h2>
+    <p class="article-original-title">原題: <em>9 Tips to Get More Out of Google Chat</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Google Chat は、Gmail ウェブ インターフェースの片隅に位置しているにもかかわらず、十分な注目を集めることはあまりありません。これは、あなたが思っている以上に高機能で機能満載のメッセージング アプリであり、他の Google アプリやサービスとのシームレスな接続は、その魅力の一部にすぎません。毎日 Google Chat を利用している人でも、Google Chat をまったく適切にチェックしたことがない人でも、これらのヒントは、メッセージの編集からプライバシー設定のロックダウンまで、Google Chat でできることと、それを最大限に活用する方法を紹介するのに役立ちます。Web 、Android 、iOS で無料で使用できます。Google Chat では、スペースは強力なグループ チャットのように機能します。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Despite having a spot in the corner of the Gmail web interface, Google Chat doesn&#x27;t often get the attention it deserves.It&#x27;s a more capable and feature-packed messaging app than you might give it credit for, and its seamless connections to other Google apps and services are just part of its appeal.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/google.html" target="_blank" rel="noopener noreferrer" class="company-link">Google の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/story/9-tips-to-get-more-out-of-google-chat/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="24">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Ars Technica - All content</span>
+    </div>
+
+    
+
+    <h2 class="article-title">米国はエボラ出血熱に感染した国民を排除し続けている。ドイツに派遣された2人目のアメリカ人</h2>
+    <p class="article-original-title">原題: <em>US continues to shun Ebola-infected citizens; second American sent to Germany</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">男性はフランクフルトの病院で順調に回復しているという。コンゴ民主共和国で人道活動を行っている米国人がエボラ出血熱検査で陽性反応を示し、コンゴ民主共和国でエボラ出血熱が爆発的に流行している中で2人目の米国人感染者となり、米国ではなくドイツで治療を受ける2人目となった。 5月15日に初めて宣言されたエボラ出血熱の流行は、すでに記録上3番目に大きい規模となっており、さらに拡大し続けている。 7月12日の時点で、コンゴ民主共和国は、あまり知られていないエボラウイルスのブンディブギョ株によって引き起こされるアウトブレイクで1,926人の感染者と702人の死亡者を報告している。トランプ政権下で、米国は一見孤立主義的なアプローチを採用し、物議を醸す厳格な渡航制限を実施し、ウイルスにさらされた、またはウイルスに感染した国民の帰国を阻止している。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">The man is said to be doing well in a Frankfurt hospital.A US citizen doing humanitarian work in the Democratic Republic of the Congo has tested positive for Ebola, marking the second American infected amid the DRC’s explosive Ebola outbreak—and the second to be sent for care in Germany rather than the US.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/health/2026/07/us-continues-to-shun-ebola-infected-citizens-second-american-sent-to-germany/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="25">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">ダウンロード: ドナーの概念の上限と AI の世界モデル</h2>
+    <p class="article-original-title">原題: <em>The Download: a donor conception cap and world models for AI</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">さらに、Apple は企業秘密を盗んだ疑いで OpenAI を訴えました。これは、テクノロジーの世界で何が起こっているかを毎日提供する平日のニュースレター、 The Download の本日版です。タイス・ファン・デル・メールさんには兄弟が何人いるのか知らない。 47歳のこの女性は、匿名のドナーからの精子を使用して民間の不妊治療クリニックで妊娠した。彼は最終的に 1 人の兄弟を追跡しましたが、見つからない兄弟が他にもいるかもしれません。他のドナーによって妊娠した人々は、数十、さらには数百ものドナーを持っていることに気づきました。 25人の異母兄弟がいることを知ったある人は、「ちょっと大量生産されているような気がする」と語った。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Plus: Apple has sued OpenAI for allegedly stealing trade secrets.This is today&#x27;s edition of The Download , our weekday newsletter that provides a daily dose of what&#x27;s going on in the world of technology.Ties van der Meer doesn’t know how many siblings he has.The 47-year-old was conceived at a private fertility clinic using sperm from an anonymous donor.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/apple.html" target="_blank" rel="noopener noreferrer" class="company-link">Apple の解説</a> <a href="companies/openai.html" target="_blank" rel="noopener noreferrer" class="company-link">OpenAI の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/07/13/1140339/the-download-sperm-donor-limits-ai-world-models/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="26">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">VentureBeat</span>
+    </div>
+
+    
+
+    <h2 class="article-title">タイポスクワッティングのことは忘れてください。スロップスクワッティングは AI コーディング ツールによって生み出されるソフトウェア サプライ チェーンの脅威です</h2>
+    <p class="article-original-title">原題: <em>Forget typosquatting; slopsquatting is the software supply chain threat created by AI coding tools</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">スロップスクワッティングは、AI の幻覚によって可能になった新たなサプライチェーンの脅威を表しています。開発者が AI コーディング アシスタントへの依存を強めるにつれ、知らず知らずのうちに初日からサイバー犯罪者にソフトウェアへのアクセスを許可してしまうことになります。スロップスクワッティングとは何かを理解する スロップスクワッティングは、新しいタイプのサプライ チェーンです。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Slopsquatting represents an emerging supply chain threat made possible by AI hallucinations. As developers increasingly rely on AI coding assistants, they unknowingly grant cybercriminals access to their software from day one. Understanding what slopsquatting is Slopsquatting is a new type of supply chain at. .</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://venturebeat.com/security/forget-typosquatting-slopsquatting-is-the-software-supply-chain-threat-created-by-ai-coding-tools" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="27">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">まだ 1 台のモニターを使用している場合、これがワークフローの最良のアップグレードです</h2>
+    <p class="article-original-title">原題: <em>If you&#x27;re still on a single monitor, this is the best workflow upgrade you can make</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">さまざまな方法でコンピューティング エクスペリエンスが向上します。自宅で仕事をしている人や、単にデスクで多くの時間を過ごしている人は、適切な周辺機器を購入したり、優れた生産性向上アプリを見つけたりして、すべてを適切にセットアップすることがどれほどやりがいを感じるかを理解するでしょう。ただし、セットアップに別のディスプレイを追加することで追加される画面領域は、ソフトウェアだけでは再現できません。これまでにセットアップしたことがない場合、2 台目のモニターのセットアップは複雑に思えるかもしれませんが、コンピューター上の利用可能な DisplayPort または HDMI ポートに接続するだけで簡単です。ポートのオプションが限られているラップトップを使用している場合は、ドッキング ステーションが便利です。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">It will enhance your computing experience in multiple ways.Those who work from home or simply spend a lot of time at their desks will understand how rewarding it feels when you set everything up just right by buying the right peripherals or finding good productivity apps.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2210891/why-dual-smaller-monitors-beat-27-inch-displays-for-home-offices/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="28">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">反射インク、Nebius と 10 億ドルのコンピューティング契約</h2>
+    <p class="article-original-title">原題: <em>Reflection inks $1B compute deal with Nebius</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">オープン モデルの開発を競う米国の新興企業である Reflection AI は、欧州の AI インフラストラクチャ会社 Nebius と 10 億ドルのコンピューティング契約を締結しました。Nebius は、ロシアのテクノロジー大手 Yandex の国際部門でしたが、Reflection に Nvidia の最新チップへのアクセスを提供します。この契約は、このスタートアップがSpaceXのコンピューティングリソースにアクセスするために同様の契約を締結してからわずか数週間後に行われたもので、モデルのトレーニングとデプロイのためのコンピューティングの確保を競うAI企業によるいくつかのパートナーシップを反映している。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Reflection AI, a U.S.startup vying to develop open models , has signed a $1 billion compute deal with European AI infrastructure company Nebius.Nebius , formerly the international arm of Russian tech giant Yandex, will provide Reflection access to Nvidia’s latest chips.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/nvidia.html" target="_blank" rel="noopener noreferrer" class="company-link">NVIDIA の解説</a> <a href="companies/spacex.html" target="_blank" rel="noopener noreferrer" class="company-link">SpaceX の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/07/14/reflection-inks-1b-compute-deal-with-nebius/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="29">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">サム・アルトマンには新たな訴訟は必要なかった</h2>
+    <p class="article-original-title">原題: <em>Sam Altman didn’t need another lawsuit</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。 それでも、企業秘密の窃盗に関するAppleの告発は、訴訟に何年もかかる可能性がある。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. ﻿And yet, Apple’s accusations around stealing trade secrets might take years to litigate.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/apple.html" target="_blank" rel="noopener noreferrer" class="company-link">Apple の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/ai-artificial-intelligence/965294/openai-apple-trade-secrets-lawsuit-sam-altman-ipo" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+        </main>
+
+        <footer class="footer">
+            <p>本ページは公開記事をもとに自動生成しています。数値や仕様は必ず元記事で確認してください。</p>
+            <p>JSON データは同じフォルダ内の tech_news_digest.json で参照できます。</p>
+        </footer>
+    </div>
+
+    <script>
+
+        const categoryButtons = document.querySelectorAll('.category-btn');
+        const articleCards = document.querySelectorAll('.article-card');
+        const searchInput = document.getElementById('search-input');
+
+        let activeCategory = 'all';
+
+        function applyFilters() {
+            const query = searchInput.value.trim().toLowerCase();
+            articleCards.forEach(card => {
+                const matchesCategory = activeCategory === 'all' || card.dataset.category === activeCategory;
+                const searchableText = card.innerText.toLowerCase();
+                const matchesQuery = !query || searchableText.includes(query);
+                card.style.display = matchesCategory && matchesQuery ? '' : 'none';
+            });
+        }
+
+        categoryButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                categoryButtons.forEach(item => item.classList.remove('active'));
+                button.classList.add('active');
+                activeCategory = button.dataset.category;
+                applyFilters();
+            });
+        });
+
+        searchInput.addEventListener('input', applyFilters);
+    
+    </script>
+</body>
+</html>
