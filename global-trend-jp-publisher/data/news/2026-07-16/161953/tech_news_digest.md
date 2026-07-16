@@ -1,0 +1,615 @@
+# 🌐 海外テックニュース 日本語まとめ
+
+**生成日時:** 2026年7月16日  16:19 JST
+
+> 世界の有力テックメディア（TechCrunch・The Verge・Wired・Ars Technica・MIT Tech Review・VentureBeat・Engadget）から注目記事を自動収集し、日本の読者向けに翻訳・要約しました。
+
+---
+
+## 目次
+
+1. [AI を活用した旅行代理店 Fora がユニコーンの地位を獲得、6,000 万ドルを調達](#記事-1--ai-を活用した旅行代理店-fora-がユニコーンの地位を獲得、6000-万ドルを調達)
+2. [GoogleはNotebookLMの名前をGemini Notebookに変更します](#記事-2--googleはnotebooklmの名前をgemini-notebookに変更します)
+3. [スウォッチの新しいゴールド ムーンスウォッチがナイトメア ロイヤル ポップ発売の問題を解決](#記事-3--スウォッチの新しいゴールド-ムーンスウォッチがナイトメア-ロイヤル-ポップ発売の問題を解決)
+4. [さあ、GPS: 地球低軌道の航法衛星が復活しつつあります](#記事-4--さあ、gps-地球低軌道の航法衛星が復活しつつあります)
+5. [ダウンロード: OpenAI が GPT-Red を発表し、米国でヒートポンプが台頭](#記事-5--ダウンロード-openai-が-gpt-red-を発表し、米国でヒートポンプが台頭)
+6. [エージェント オーケストレーション: エンタープライズ AI 組織はプラットフォームの問題ではなく展開の問題を抱えており、ほとんどがチャットボット エージェントを呼んでいます。](#記事-6--エージェント-オーケストレーション-エンタープライズ-ai-組織はプラットフォームの問題ではなく展開の問題を抱えており、ほとんどがチャットボット-エージェントを呼んでいます。)
+7. [Google の NotebookLM は Gemini Notebook になりました](#記事-7--google-の-notebooklm-は-gemini-notebook-になりました)
+8. [Google の AI モードで、選択したアプリとリンクして操作できるようになりました](#記事-8--google-の-ai-モードで、選択したアプリとリンクして操作できるようになりました)
+9. [スプラトゥーン レイダースの物理的な予約注文で 10 ドル節約できる時間は残りわずかです](#記事-9--スプラトゥーン-レイダースの物理的な予約注文で-10-ドル節約できる時間は残りわずかです)
+10. [XPengの新しい「低価格」EVはフェラーリ・ルーチェに似ている](#記事-10--xpengの新しい「低価格」evはフェラーリ・ルーチェに似ている)
+11. [Xboxの人員削減に抗議するために数百人がベセスダ本社に集会、アルスもそこにいた](#記事-11--xboxの人員削減に抗議するために数百人がベセスダ本社に集会、アルスもそこにいた)
+12. [なぜ米国ではヒートポンプが依然として人気があるのか](#記事-12--なぜ米国ではヒートポンプが依然として人気があるのか)
+13. [Thinking Machines が、低コストと「検閲への耐性」に重点を置いた初のマルチモーダル言語モデル Inkling をオープンソース化](#記事-13--thinking-machines-が、低コストと「検閲への耐性」に重点を置いた初のマルチモーダル言語モデル-inkling-をオープンソース化)
+14. [Suno は、その世代 AI 音楽の魅力を iMessage にもたらします](#記事-14--suno-は、その世代-ai-音楽の魅力を-imessage-にもたらします)
+15. [Google は NotebookLM を Gemini Notebook に変更することで名前変更を続けています](#記事-15--google-は-notebooklm-を-gemini-notebook-に変更することで名前変更を続けています)
+16. [テキサス州で死亡事故を起こしたテスラ運転手は、アクセルを「100パーセント」踏んでFSDを無視したと捜査員が確認](#記事-16--テキサス州で死亡事故を起こしたテスラ運転手は、アクセルを「100パーセント」踏んでfsdを無視したと捜査員が確認)
+17. [あらゆる冒険に最適な寝袋](#記事-17--あらゆる冒険に最適な寝袋)
+18. [バズ・オルドリン、アポロの月面打ち上げに貢献した有名なサインペンを販売](#記事-18--バズ・オルドリン、アポロの月面打ち上げに貢献した有名なサインペンを販売)
+19. [GPT-Red をご紹介します: モデルをより安全にするために構築された LLM スーパーハッカー OpenAI](#記事-19--gpt-red-をご紹介します-モデルをより安全にするために構築された-llm-スーパーハッカー-openai)
+20. [Amazon AGI ディレクター、VB Transform 2026 でエンタープライズ展開を妨げているのは AI エージェントの能力ではなく信頼性であると語る](#記事-20--amazon-agi-ディレクター、vb-transform-2026-でエンタープライズ展開を妨げているのは-ai-エージェントの能力ではなく信頼性であると語る)
+21. [スマートスピーカーはOpenAIの損失をさらに増やす可能性がある](#記事-21--スマートスピーカーはopenaiの損失をさらに増やす可能性がある)
+22. [はい、コマンドラインから DoorDash を注文できるようになりました。](#記事-22--はい、コマンドラインから-doordash-を注文できるようになりました。)
+23. [価格が上昇し続ける中、AppleのOLED iPad Miniアップグレードが進行中](#記事-23--価格が上昇し続ける中、appleのoled-ipad-miniアップグレードが進行中)
+24. [バックパッキングに最適な浄水フィルターを見つけるために小川を飲みました](#記事-24--バックパッキングに最適な浄水フィルターを見つけるために小川を飲みました)
+25. [Sheetz が VMware をやめ、11,000 台の仮想マシンを移行](#記事-25--sheetz-が-vmware-をやめ、11000-台の仮想マシンを移行)
+26. [ダウンロード: 便利な量子マシンと記録破りの海底トンネル](#記事-26--ダウンロード-便利な量子マシンと記録破りの海底トンネル)
+27. [Cohere副社長は、VB Transform 2026でエンタープライズAIの主権にはエージェントスタック全体の制御が必要であると述べた](#記事-27--cohere副社長は、vb-transform-2026でエンタープライズaiの主権にはエージェントスタック全体の制御が必要であると述べた)
+28. [英国の警察、若いハッカー2人の逮捕により悪名高いハッカーグループの活動が混乱したと発表](#記事-28--英国の警察、若いハッカー2人の逮捕により悪名高いハッカーグループの活動が混乱したと発表)
+29. [Proton の CTO は、優れたバックドアなど存在しないと語る](#記事-29--proton-の-cto-は、優れたバックドアなど存在しないと語る)
+
+---
+
+## 記事 1  ｜  TechCrunch
+
+### AI を活用した旅行代理店 Fora がユニコーンの地位を獲得、6,000 万ドルを調達
+
+> 原題: *AI-powered travel agency Fora hits unicorn status, raises $60M*
+
+#### 📝 記事の日本語要約
+
+旅行代理店 Fora は、Forerunner と Tactile Ventures が主導する 6,000 万ドルのシリーズ D ラウンドを発表し、同社の評価額は 10 億ドルとされました。2021 年に設立された Fora は 2 つの部分からなるプラットフォームです。クライアントとのコミュニケーションと旅行計画をサポートするインフラストラクチャを提供することで、人々が簡単に旅行代理店になれるようにします。また、新婚旅行や家族旅行など、コスタリカやタイなどの目的地への旅行を計画するときに、アドバイザーを見つけて連絡を取ることもできます。この最新ラウンドの他の投資家には、Insight Partners と Thrive Capital が含まれます。同社は138ドルを調達した。これまでに500万の資金を調達したという。
+
+#### 🇺🇸 English Summary
+
+Travel agency Fora announced a $60 million Series D round led by Forerunner and Tactile Ventures, valuing the company at $1 billion.
+
+🔗 [元記事を読む](https://techcrunch.com/2026/07/16/ai-powered-travel-agency-fora-hits-unicorn-status-raises-60m/)
+
+---
+
+## 記事 2  ｜  The Verge
+
+### GoogleはNotebookLMの名前をGemini Notebookに変更します
+
+> 原題: *Google is renaming NotebookLM to Gemini Notebook*
+
+#### 📝 記事の日本語要約
+
+このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。 AI モードでもノートブックにアクセスできるようになる予定です。
+
+#### 🇺🇸 English Summary
+
+Posts from this topic will be added to your daily email digest and your homepage feed. You’ll soon be able to access your notebooks in AI Mode, too.
+
+#### 🏢 企業解説リンク
+
+- [Google](companies/google.html)
+
+🔗 [元記事を読む](https://www.theverge.com/tech/966112/google-gemini-notebook-notebooklm)
+
+---
+
+## 記事 3  ｜  Wired
+
+### スウォッチの新しいゴールド ムーンスウォッチがナイトメア ロイヤル ポップ発売の問題を解決
+
+> 原題: *Swatch’s New Gold MoonSwatch Solves the Problem of the Nightmare Royal Pop Launch*
+
+#### 📝 記事の日本語要約
+
+宇宙を旅したという歴史を強調したいと考えているオメガは、再びスウォッチと協力して、オメガ独自の18Kムーンシャインゴールド合金を使用した別の限定版ムーンスウォッチをリリースしました。しかし、以前の特別バージョンにはほんの少しの光沢しかありませんでしたが、この新しいモデルは、文字盤、針、リューズ、プッシャーのすべてがオメガの 18K ムーンシャイン ゴールド合金で作られており、合計重量は 11 グラムです。「Mission to the Moon 1969」と呼ばれるこの時計は、1969 年 7 月 21 日のアポロ 11 号の月面着陸を記念しています。この時計は、かなり適切に、番号付きの 1,969 個に限定されており、Swatch のアップグレードされたラバー MoonSwatch ストラップのブラックとゴールドのバージョンが付属しています。
+
+#### 🇺🇸 English Summary
+
+Ever looking to underline its space-faring pedigree, Omega has again joined forces with Swatch to release another limited-edition MoonSwatch featuring Omega’s proprietary 18K Moonshine Gold alloy.
+
+🔗 [元記事を読む](https://www.wired.com/story/swatch-gold-moonswatch-solves-the-problem-of-the-nightmare-royal-pop-launch/)
+
+---
+
+## 記事 4  ｜  Ars Technica
+
+### さあ、GPS: 地球低軌道の航法衛星が復活しつつあります
+
+> 原題: *Move over, GPS: Navigation satellites in low-Earth orbit are making a comeback*
+
+#### 📝 記事の日本語要約
+
+Xona は、GPS の代替として 258 基の衛星を地球低軌道に配備することを目指しています。地球低軌道上の新しいナビゲーション衛星は、より高い軌道高度で動作する GPS や他のグローバル ナビゲーション衛星システムと比較して 100 倍強力な信号強度を提供することができ、密集した都市内、鬱蒼とした木の葉の下、さらには建物の内部でも位置精度を向上させることができます。また、民間航空機、海上輸送、さらにはさまざまなスマートフォン アプリさえも、GPS 妨害による広範囲にわたる混乱に直面している現在、このような信号は干渉に対する耐性がより高いことが証明される可能性があります。
+
+#### 🇺🇸 English Summary
+
+Xona aims to deploy 258 satellites into low-Earth orbit as a GPS alternative.New navigation satellites in low-Earth orbit could provide 100 times stronger signal strength compared to GPS and other global navigation satellite systems operating from higher orbital altitudes—enabling greater location accuracy within dense cities, under thick foliage, and even inside buildings.
+
+🔗 [元記事を読む](https://arstechnica.com/space/2026/07/move-over-gps-navigation-satellites-in-low-earth-orbit-are-making-a-comeback/)
+
+---
+
+## 記事 5  ｜  MIT Tech Review
+
+### ダウンロード: OpenAI が GPT-Red を発表し、米国でヒートポンプが台頭
+
+> 原題: *The Download: OpenAI unveils GPT-Red and heat pumps rise in the US*
+
+#### 📝 記事の日本語要約
+
+さらに、イーロン・マスクは、Grokに電力を供給するために、慎重に10億ドルのガスタービン会社を買収しました。これは、テクノロジーの世界で何が起こっているかを毎日提供する平日のニュースレター、 The Download の本日版です。 OpenAI は、GPT-Red と呼ばれる LLM スーパー ハッカーを構築しました。これをスパーリング パートナーとして使用し、他のモデルのサイバー攻撃に対する防御力を強化します。これは、通常は人間のテスターのチームによって行われる、レッドチームとして知られるソフトウェア システムの一種の安全性評価を自動化します。目的は、システムを破壊またはハイジャックするさまざまな方法をできるだけ多く見つけることです。
+
+#### 🇺🇸 English Summary
+
+Plus: Elon Musk discreetly bought a $1 billion gas turbine firm to power Grok.This is today's edition of The Download , our weekday newsletter that provides a daily dose of what's going on in the world of technology.OpenAI has built an LLM super-hacker called GPT-Red that it uses as a sparring partner to help its other models boost their defenses against cyberattacks.
+
+#### 🏢 企業解説リンク
+
+- [OpenAI](companies/openai.html)
+
+🔗 [元記事を読む](https://www.technologyreview.com/2026/07/16/1140600/the-download-openai-unveils-gpt-red-heat-pumps-rise-us/)
+
+---
+
+## 記事 6  ｜  VentureBeat
+
+### エージェント オーケストレーション: エンタープライズ AI 組織はプラットフォームの問題ではなく展開の問題を抱えており、ほとんどがチャットボット エージェントを呼んでいます。
+
+> 原題: *Agentic orchestration: Enterprise AI organizations have a deployment problem, not a platform problem — and most are calling chatbots agents*
+
+#### 📝 記事の日本語要約
+
+101 社の企業にわたって、エージェント オーケストレーションがモデル プロバイダー プラットフォームに統合されています。Anthropic の Claude が大差でリードしています。基盤となるモデルの重要性を考慮して選択され、信頼性の高いマルチステップ実行で判断されます。しかし、その野心は現実よりもはるかに先を行っています。導入されている「エージェント」のほとんどは依然としてチャットボット ラッパーであり、企業が期待するコントロール プレーンはロックインを避けるために意図的にハイブリッドであること、そしてトークン バーンに対するリアルタイムの財政管理は依然として例外的なことです。このヴェンの波。 。
+
+#### 🇺🇸 English Summary
+
+Across 101 enterprises, agent orchestration is consolidating onto model-provider platforms — Anthropic’s Claude leads by a wide margin — chosen for the gravity of the underlying model and judged on reliable multi-step execution.
+
+🔗 [元記事を読む](https://venturebeat.com/ai/agentic-orchestration-enterprise-ai-organizations-have-a-deployment-problem-not-a-platform-problem-and-most-are-calling-chatbots-agents)
+
+---
+
+## 記事 7  ｜  Engadget
+
+### Google の NotebookLM は Gemini Notebook になりました
+
+> 原題: *Google's NotebookLM is now Gemini Notebook*
+
+#### 📝 記事の日本語要約
+
+記念すべき新機能がいくつか追加されました。Google の詳細調査ツールである NotebookLM は、Google の他の AI ツールと並びやすくするために新しい名前になりました。少なくとも現時点では、Gemini の他の製品からはスタンドアロン製品のままであっても、今日からこのサービスは Gemini Notebook として知られることになります。名前の変更に加えて、この検索大手はコードをネイティブに記述して実行する機能など、内部的な改善を行っています。そうすることで、独自の研究内で収集したデータのみに基づいて複雑なデータ分析を実行できます。さらに、Google は、このシステム内で作成されたノートブックを通常の Google 検索で AI モードにする機能を間もなく追加すると述べています。
+
+#### 🇺🇸 English Summary
+
+It’s getting some new features to celebrate.Google's deep research tool, NotebookLM , is getting a new name to better sit beside the rest of Google's AI tools .From today, the service will be known as Gemini Notebook, even if it remains a standalone product from the rest of Gemini — at least for now.
+
+#### 🏢 企業解説リンク
+
+- [Google](companies/google.html)
+
+🔗 [元記事を読む](https://www.engadget.com/2216473/google-notebooklm-is-now-gemini-notebook/)
+
+---
+
+## 記事 8  ｜  TechCrunch
+
+### Google の AI モードで、選択したアプリとリンクして操作できるようになりました
+
+> 原題: *Google's AI Mode now lets you link and interact with select apps*
+
+#### 📝 記事の日本語要約
+
+Googleは木曜日、ユーザーが同社の会話型検索エクスペリエンスであるAIモードで、一部の頼りになるアプリにリンクして操作できるようになったと発表した。起動時にサポートされるアプリには、Instacart、Canva、YouTube が含まれます。この新しいアップデートにより、Google は AI モードを質問に答えるだけでなく、定期的に使用するアプリ全体でタスクを完了できるように拡張しています。テクノロジー大手はまた、ユーザーが計画や買い物などでAIモードにもっと依存することを望んでいる可能性がある。さらに、この展開により、Google は OpenAI の ChatGPT や Anthropic の Claude などのライバルとより競争できるようになり、どちらもアプリの統合をサポートしています。
+
+#### 🇺🇸 English Summary
+
+Google announced on Thursday that it now allows users to link and interact with some of their go-to apps right in AI Mode, the tech giant’s conversational search experience.At launch, supported apps include Instacart, Canva, and YouTube.With this new update, Google is expanding AI Mode beyond answering questions and into completing tasks across the apps they use regularly.
+
+#### 🏢 企業解説リンク
+
+- [Google](companies/google.html)
+- [OpenAI](companies/openai.html)
+
+🔗 [元記事を読む](https://techcrunch.com/2026/07/16/googles-ai-mode-now-lets-you-link-and-interact-with-select-apps/)
+
+---
+
+## 記事 9  ｜  The Verge
+
+### スプラトゥーン レイダースの物理的な予約注文で 10 ドル節約できる時間は残りわずかです
+
+> 原題: *Time’s running out to save $10 on Splatoon Raiders physical preorders*
+
+#### 📝 記事の日本語要約
+
+このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。ゲームは7月23日に発売されます。また、今後発売予定の「ザ・ソプラノズ」の 4K Blu-ray 限定版セットを節約する方法も見つけました。
+
+#### 🇺🇸 English Summary
+
+Posts from this topic will be added to your daily email digest and your homepage feed. The game launches July 23rd. We also found a way to save on The Sopranos ’ upcoming 4K Blu-ray limited edition set.
+
+🔗 [元記事を読む](https://www.theverge.com/gadgets/966478/splatoon-raiders-preorder-the-sopranos-4k-bluray-deal-sale)
+
+---
+
+## 記事 10  ｜  Wired
+
+### XPengの新しい「低価格」EVはフェラーリ・ルーチェに似ている
+
+> 原題: *XPeng’s New ‘Budget’ EV Looks Like the Ferrari Luce*
+
+#### 📝 記事の日本語要約
+
+XPeng のミュンヘンのショーケース イベントに足を踏み入れると、冗談ではありませんが、巨大な木製のトロイの木馬が迎えてくれます。ドイツ自動車産業の裏庭で、中国ブランドが史上初の世界初の電気自動車発売を発表したことは、決して微妙なメッセージではない。 XPeng が 12 年前に設立されたとは信じられません。しかし、2020年までにすでにEVをノルウェーに出荷しており、これが中国企業の欧州進出の始まりとなった。現在、同社の商用製品ポートフォリオには、自動車のほかにロボットや空飛ぶ自動車も含まれています。中国のEVメーカーの販売台数トップ10社を見るとXPengは見つからないが、同社は成長を続けており、本国外でもより大きな評判を築いている。現在、同社はブランド初の最新モデル L03 で世界展開を目指しています。 。
+
+#### 🇺🇸 English Summary
+
+As you walk into XPeng’s Munich showcase event, you’re greeted by, I kid you not, a giant wooden Trojan horse.Not exactly a subtle message from a Chinese brand announcing its first-ever global release of an electric vehicle, right in the backyard of the German auto industry.It’s hard to believe that XPeng was founded just shy of 12 years ago.
+
+🔗 [元記事を読む](https://www.wired.com/story/xpeng-new-budget-ev-looks-like-the-ferrari-luce/)
+
+---
+
+## 記事 11  ｜  Ars Technica
+
+### Xboxの人員削減に抗議するために数百人がベセスダ本社に集会、アルスもそこにいた
+
+> 原題: *Hundreds rally at Bethesda HQ to protest Xbox layoffs, and Ars was there*
+
+#### 📝 記事の日本語要約
+
+労働組合は解雇の「永久サイクル」を止め、契約交渉に戻りたいと考えている。メリーランド州ロックビル -- 本日、ベセスダ ゲーム スタジオとゼニマックス オンライン スタジオの数百人の従業員とその支持者が、華氏 100 度近くの気温の中、親会社ゼニマックスの本社前でランチタイム集会を開催し、Xbox 全体の大幅な人員削減に抗議しました。この集会は、ゼニマックス・ワーカーズ・ユナイテッドとその親組合であるコミュニケーション・ワーカーズ・オブ・アメリカがテキサス、カリフォルニア、モントリオールの各地の事務所で本日開催した５つの集会のうちの１つであった。参加者は「レイオフ…レイオフは決して変わらない」「選手たちはもっと良くなる権利がある」などのメッセージを書いたプラカードを掲げ、組合の主催者や従業員がスピーチや歌で群衆を結集させた。その圧倒的なメッセージは、団結と再び押し返す意欲を示すものでした。
+
+#### 🇺🇸 English Summary
+
+Union wants to halt a “perpetual cycle” of layoffs, get back to contract bargaining.ROCKVILLE, Maryland—Hundreds of Bethesda Game Studios and Zenimax Online Studios employees and their supporters braved nearly 100° F temperatures to protest sweeping layoffs across Xbox during a lunchtime rally in front of parent company Zenimax’s headquarters today.
+
+🔗 [元記事を読む](https://arstechnica.com/gaming/2026/07/hundreds-rally-at-bethesda-hq-to-protest-xbox-layoffs-and-ars-was-there/)
+
+---
+
+## 記事 12  ｜  MIT Tech Review
+
+### なぜ米国ではヒートポンプが依然として人気があるのか
+
+> 原題: *Why heat pumps are still so hot in the US*
+
+#### 📝 記事の日本語要約
+
+米国における重要な税額控除は終了したが、ヒートポンプの売上は依然として好調である。真夏に暖房器具のことを考えること自体が違法であるかのように感じられますが、ニューヨークの熱波は本当にひどいものです。しかし、私たちはヒートポンプについて話す必要があります。家電製品は暖房に電気を使用しており、信じられないほど効率が良く、増加傾向にあります。 （実際、多くのヒートポンプは建物を冷却するために逆回転させることもできます。）新しいレポートによると、米国ではヒートポンプの売上が過去 15 年間で 2 倍に増加しました。そして、化石燃料との暖房競争で彼らは勝利しており、2026 年の第 1 四半期には天然ガス炉を 32% 上回っています。ヒートポンプに対する主要な税額控除がちょうど終了とともに終了したばかりであるため、これらの統計は現時点では特に驚くべきものです。 。
+
+#### 🇺🇸 English Summary
+
+A key tax credit in the US ended, but heat pump sales are still going strong.It feels as if it should be illegal to even think about heating appliances during the height of summer—seriously, these heat waves in New York have been brutal—but we need to talk about heat pumps.The appliances use electricity for heating, they’re incredibly efficient, and they’re on the rise.
+
+🔗 [元記事を読む](https://www.technologyreview.com/2026/07/16/1140505/heat-pump-sales-us/)
+
+---
+
+## 記事 13  ｜  VentureBeat
+
+### Thinking Machines が、低コストと「検閲への耐性」に重点を置いた初のマルチモーダル言語モデル Inkling をオープンソース化
+
+> 原題: *Thinking Machines open sources first multimodal language model, Inkling, focused on low cost and 'resistance to censorship'*
+
+#### 📝 記事の日本語要約
+
+オンプレミスまたは仮想プライベート クラウドでカスタマイズ、制御、実行できるオープン ウェイト モデルに、より多くのエージェント AI ワークロードを移行したいと考えている企業は、検討すべき強力な新たな競合相手を抱えています。本日、Thinking Machines (元 OpenAI CTO ミラ ムラティ氏が設立した大資本の米国 AI スタートアップ企業) は、<a href="https://choosealicense. com/licenses/apache-2. ] の下で初の主要言語モデルである Inkling をリリースしました。
+
+#### 🇺🇸 English Summary
+
+Enterprises looking to move more of their agentic AI workloads to open weights models they can customize, control and run on-premises or in virtual private clouds have a strong new contender to consider.
+
+#### 🏢 企業解説リンク
+
+- [OpenAI](companies/openai.html)
+
+🔗 [元記事を読む](https://venturebeat.com/technology/thinking-machines-open-sources-first-multimodal-language-model-inkling-focused-on-low-cost-and-resistance-to-censorship)
+
+---
+
+## 記事 14  ｜  Engadget
+
+### Suno は、その世代 AI 音楽の魅力を iMessage にもたらします
+
+> 原題: *Suno brings its gen AI music gunk to iMessage*
+
+#### 📝 記事の日本語要約
+
+代わりに、ボイスノートでばかげた歌を歌ってみてはいかがでしょうか?Suno は、iMessage との統合を追加することで、音楽を作成する喜びを吸い取る別の方法を見つけました。最新バージョンの Suno iPhone アプリをお持ちの方は、テキストまたは音声プロンプトを使用して、メッセージから 30 秒間の出力を直接生成できるようになりました。チャットでプラス ボタンをタップし、Suno を選択すると、そのオプションが表示されます。友人からのメッセージをプロンプトとして貼り付けて、音声のジャンルを選択できる、と Suno 氏は言います。チャットの相手が出力を聞くには、Suno アプリをインストールする必要があります。後者の要件があると、これらの曲を聞く可能性が低くなるので、私は嬉しいです。
+
+#### 🇺🇸 English Summary
+
+Maybe just sing a silly song in a voice note instead?Suno has found another way to suck the joy out of creating music by adding iMessage integration.Those who have the latest version of the Suno iPhone app can now generate a 30-second output right from their messages with a text or voice prompt.They'll find the option to do that by tapping the plus button in a chat and selecting Suno.
+
+🔗 [元記事を読む](https://www.engadget.com/2216558/suno-brings-gen-ai-music-gunk-to-imessage/)
+
+---
+
+## 記事 15  ｜  TechCrunch
+
+### Google は NotebookLM を Gemini Notebook に変更することで名前変更を続けています
+
+> 原題: *Google continues its renaming streak by turning NotebookLM to Gemini Notebook*
+
+#### 📝 記事の日本語要約
+
+Googleは実験段階で1つの名前のAI製品を発売するかもしれないが、最終的にはすべてをGeminiに結び付けることになるだろう。この傾向の最新の例として、同社は AI を活用した研究製品である NotebookLM の名前を Gemini Notebook に変更しています。同社は、データ分析のためのコーディング実行を組み込むことでツールをよりインタラクティブにする機能も追加しています。同社は、2023 年の Google IO 中に Project Tailwind として NotebookLM を初めて披露し、それ以来、3,000 万人、60 万以上の組織が使用する製品に成長させました。過去 3 年間で、同社はインタラクティブなポッドキャストの生成、厳選されたノートブック、ビデオ概要、より多くのファイル タイプのサポート、エンタープライズ プランなどの機能を追加してきました。
+
+#### 🇺🇸 English Summary
+
+Google might launch an AI product with one name during its experimental phase, but it will eventually tie it all to Gemini.In the latest example of this trend, the company is renaming its AI-powered research product NotebookLM to Gemini Notebook.The company is also adding features to make the tool more interactive by infusing coding execution for data analysis.
+
+#### 🏢 企業解説リンク
+
+- [Google](companies/google.html)
+
+🔗 [元記事を読む](https://techcrunch.com/2026/07/16/google-continues-its-renaming-streak-by-turning-notebooklm-to-gemini-notebook/)
+
+---
+
+## 記事 16  ｜  The Verge
+
+### テキサス州で死亡事故を起こしたテスラ運転手は、アクセルを「100パーセント」踏んでFSDを無視したと捜査員が確認
+
+> 原題: *Tesla driver in fatal Texas crash overrode FSD by pressing accelerator ‘100 percent,’ investigators confirm*
+
+#### 📝 記事の日本語要約
+
+このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。 NTSBの調査によると、テスラ・モデル3は衝突時に時速110マイル以上の速度に達していた。
+
+#### 🇺🇸 English Summary
+
+Posts from this topic will be added to your daily email digest and your homepage feed. The Tesla Model 3 reached speeds greater than 70mph during the crash, the NTSB found.
+
+🔗 [元記事を読む](https://www.theverge.com/transportation/966563/tesla-texas-crash-ntsb-investigation)
+
+---
+
+## 記事 17  ｜  Wired
+
+### あらゆる冒険に最適な寝袋
+
+> 原題: *The Best Sleeping Bags for Every Adventure*
+
+#### 📝 記事の日本語要約
+
+キャンプは好きではないと言う人の多くは、ベッドから離れて寝るという考えを最も嫌がります。わかった。ナイロン製のバッグに包まれても、綿や麻のシーツの贅沢な心地よさには勝てません。しかし、キャンプをより快適に、より快適にする寝袋があり、何年にもわたるテストの結果、最高のものを見つけました。バックパッキングをしている場合でも、完璧な家族キャンプ旅行を計画している場合でも、サンティアゴ巡礼路をトレッキングしている場合でも、それに適した寝袋があります。旅行の方法、目的地、またはどれほど快適さを求めていても、これらはあらゆる種類のキャンパーにとって最高の寝袋です。 2026 年 6 月更新: このリストからバックパッキング キルトを削除し、独自のガイドに追加し、ジッパーのない Marmot Wraptor と Alpha Direct ライナーを追加しました。 。
+
+#### 🇺🇸 English Summary
+
+Many people who say they don't like camping are most put off by the idea of sleeping away from their beds.I get it.Being swathed in a nylon bag cannot compete with the luxurious coziness of cotton or linen sheets.But there are sleeping bags that make camping a whole lot nicer, and toastier, and after years of testing we've found the best of the best.
+
+🔗 [元記事を読む](https://www.wired.com/story/the-best-sleeping-bags-for-every-adventure/)
+
+---
+
+## 記事 18  ｜  Ars Technica
+
+### バズ・オルドリン、アポロの月面打ち上げに貢献した有名なサインペンを販売
+
+> 原題: *Buzz Aldrin sells famous felt-tip pen that helped launch Apollo from the Moon*
+
+#### 📝 記事の日本語要約
+
+素晴らしい売上ではありましたが、ペンとスイッチは記録を破りませんでした。水曜日、サザビーズのオークションで、乾燥したフェルトチップマーカーと折り取られた成形された黒いプラスチックの一部が85万7,600ドルで落札された。 57年前、宇宙飛行士を月に着陸させるという人類初のミッションでNASAのアポロ11号に乗って打ち上げられたこの2つの品物が、本来は無価値なゴミであったかもしれないものが、最高値で落札されたのである。行き先が決まったこと以上に、1つはニール・アームストロングとバズ・オルドリンを月面に取り残されそうになった問題であり、もう1つはミッションを救う簡単な解決策だった。 「ヒューストン、トランキリティ。エンジンアームサーキットブレーカーの構成を示す方法はありますか？」オルドリンまたはアームストロングが不注意に気づいた後、無線でミッションコントロールに連絡した。 。
+
+#### 🇺🇸 English Summary
+
+While an impressive sale, the pen and switch did not break records.A dried-out felt-tip marker and a snapped-off piece of molded black plastic sold for $857,600 at a Sotheby’s auction on Wednesday.
+
+🔗 [元記事を読む](https://arstechnica.com/space/2026/07/apollo-11s-broken-switch-and-mission-saving-pen-sell-for-860k/)
+
+---
+
+## 記事 19  ｜  MIT Tech Review
+
+### GPT-Red をご紹介します: モデルをより安全にするために構築された LLM スーパーハッカー OpenAI
+
+> 原題: *Meet GPT-Red: an LLM super-hacker OpenAI built to make its models safer*
+
+#### 📝 記事の日本語要約
+
+独占：同社は、安全手順を将来も保証し、人間の攻撃者に先んじたいと述べています。OpenAI は、GPT-Red と呼ばれる LLM スーパー ハッカーを構築しました。これをスパーリング パートナーとして使用し、他のモデルのサイバー攻撃に対する防御力を強化します。同社は先週、主力LLMの最新バージョンであるGPT-5をリリースした。6.OpenAI は、GPT-Red に対してトレーニングしたことで、このモデルがこれまでで最も堅牢なリリースになったと述べています。GPT-Red は、通常は人間のテスターのチームによって行われる、レッドチームとして知られるソフトウェア システムの一種の安全性評価を自動化します。目的は、システムを破壊またはハイジャックするさまざまな方法をできるだけ多く見つけることです。ソフトウェアの最終バージョンがリリースされる前に、弱点にパッチを適用できます。
+
+#### 🇺🇸 English Summary
+
+Exclusive: The firm says it wants to future-proof its safety procedures and stay ahead of human attackers.OpenAI has built an LLM super-hacker called GPT-Red that it uses as a sparring partner to help its other models boost their defenses against cyberattacks.Last week the company released the latest version of its flagship LLM, GPT-5.6.
+
+#### 🏢 企業解説リンク
+
+- [OpenAI](companies/openai.html)
+
+🔗 [元記事を読む](https://www.technologyreview.com/2026/07/15/1140514/meet-gpt-red-an-llm-super-hacker-openai-built-to-make-its-models-safer/)
+
+---
+
+## 記事 20  ｜  VentureBeat
+
+### Amazon AGI ディレクター、VB Transform 2026 でエンタープライズ展開を妨げているのは AI エージェントの能力ではなく信頼性であると語る
+
+> 原題: *Amazon AGI director says AI agent reliability, not capability, is blocking enterprise deployment at VB Transform 2026*
+
+#### 📝 記事の日本語要約
+
+エンタープライズ AI 業界には数学的な問題があります。シスコのデータによると、企業の 85% が AI エージェントを試験的に導入していますが、実稼働環境に導入しているのは 5% のみです。火曜日の VB Transform 2026 で、Amazon の AGI Autonomy ディレクターである Bryan Silverthorn 氏は、なぜこのギャップが持続するのか、そしてその理由について説明しました。 。
+
+#### 🇺🇸 English Summary
+
+The enterprise AI industry has a math problem. Cisco data shows 85% of enterprises are piloting AI agents, but only 5% have shipped them to production. At VB Transform 2026 on Tuesday, Bryan Silverthorn , Director of AGI Autonomy at Amazon, explained why that gap persists — and why t. .
+
+#### 🏢 企業解説リンク
+
+- [Amazon](companies/amazon.html)
+
+🔗 [元記事を読む](https://venturebeat.com/orchestration/amazon-agi-director-says-ai-agent-reliability-not-capability-is-blocking-enterprise-deployment-at-vb-transform-2026)
+
+---
+
+## 記事 21  ｜  Engadget
+
+### スマートスピーカーはOpenAIの損失をさらに増やす可能性がある
+
+> 原題: *Smart speakers could help OpenAI lose even more money*
+
+#### 📝 記事の日本語要約
+
+これは気が散るサイドクエストの典型のように感じます。この春、元 OpenAI 幹部のフィジー・シモ氏は、OpenAI が 4 月に閉鎖した Sora のような高価なソフトウェア プロジェクトに言及し、「サイドクエストに気を取られている」ために同社がその瞬間を逃す危険があると従業員に警告した。今週、ブルームバーグのマーク・ガーマン氏は、同社の初期のハードウェアへの取り組みに関する最新情報を共有し、OpenAIのデビューファーストパーティデバイスは「人間らしい」充電式スマートスピーカーになるだろうと書いた。不採算企業にとって、これはシモ氏が避けたかったことの典型のように感じられる。 2026 年、スマート スピーカーとディスプレイの市場は成長していません。ダイレクトのジテシュ・ウブラニ氏は「トレンドラインに関しては、かなり長い間減速が続いており、来年は下落すると予想している」と述べた。 。
+
+#### 🇺🇸 English Summary
+
+This feels like the epitome of a distracting side quest.This past spring, former OpenAI executive Fidji Simo warned employees the company was at risk of missing its moment because it was " distracted by side quests ," referring to costly software projects like Sora , which OpenAI shut down in April.
+
+#### 🏢 企業解説リンク
+
+- [OpenAI](companies/openai.html)
+
+🔗 [元記事を読む](https://www.engadget.com/2216556/smart-speakers-could-help-openai-lose-even-more-money/)
+
+---
+
+## 記事 22  ｜  TechCrunch
+
+### はい、コマンドラインから DoorDash を注文できるようになりました。
+
+> 原題: *Yes, you can now order DoorDash from the command line*
+
+#### 📝 記事の日本語要約
+
+須藤がサンドイッチを作ってくれ。未来がやって来ました！DoorDash は、AI エージェントから直接 DoorDash を注文できる開発者向けコマンドライン ツールである DoorDash CLI の限定ベータ版を導入しました。同社によると、このツールは店舗の検索、セールの検索、チェックアウトに使用できるという。本日、DoorDash CLI を限定ベータ版で公開します。「dd-cli」を使用すると、ストアを検索したり、最安値を見つけたり、チェックアウトしたりして、DoorDash をエージェントに直接注文できます。米国/カナダの macOS 開発者向けのウェイティングリストによる早期アクセス。みんなが何を構築するのかを見るのが楽しみです!写真。ツイッター。
+
+#### 🇺🇸 English Summary
+
+Sudo make me a sandwich .The future has arrived!DoorDash just introduced a limited beta of DoorDash CLI, a command-line tool for developers that lets you order DoorDash directly from your AI agent.The tool can be used to search stores, find deals, and check out, the company says.Today we're opening up the DoorDash CLI in limited beta.
+
+🔗 [元記事を読む](https://techcrunch.com/2026/07/16/yes-you-can-now-order-doordash-from-the-command-line/)
+
+---
+
+## 記事 23  ｜  The Verge
+
+### 価格が上昇し続ける中、AppleのOLED iPad Miniアップグレードが進行中
+
+> 原題: *Apple’s OLED iPad Mini upgrade is on the way as prices continue to rise*
+
+#### 📝 記事の日本語要約
+
+このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。 Appleはまた、iPad Airの「最終的な」OLEDアップグレードも計画していると伝えられている。
+
+#### 🇺🇸 English Summary
+
+Posts from this topic will be added to your daily email digest and your homepage feed. ﻿Apple is also reportedly planning an ‘eventual’ OLED upgrade for the iPad Air.
+
+#### 🏢 企業解説リンク
+
+- [Apple](companies/apple.html)
+
+🔗 [元記事を読む](https://www.theverge.com/tech/966535/apple-oled-ipad-mini-rumor)
+
+---
+
+## 記事 24  ｜  Wired
+
+### バックパッキングに最適な浄水フィルターを見つけるために小川を飲みました
+
+> 原題: *We Drank From Streams to Find the Best Backpacking Water Filters*
+
+#### 📝 記事の日本語要約
+
+かつては、バックパック用浄水器のような目新しい装置は必要ありませんでした。さわやかな飲み物を飲むということは、錫のシエラ カップ (またはナルゲン) を小川に浸し、冷たくて透明なおいしい飲み物を飲むことを意味します。幸いなことに、バネを見つけられれば、それはまだ機能するということです。残念なことに、私たちのほとんどがバックパッキング中に遭遇する水には、ジアルジアやその他の楽しい原生動物やバクテリアが含まれている可能性があり、それらはあなたの旅行をすぐに台無しにする可能性があります。ありがたいことに、解決策は非常に簡単です。これらの浄水フィルターの 1 つを手に取り、氷のように冷たい小川との間に置きます。私たちがテストしたフィルターの多くは、カップを水流に浸すよりも操作がそれほど複雑ではありません。
+
+#### 🇺🇸 English Summary
+
+Once upon a time, you didn’t need such a newfangled contraption as a backpacking water filter.Getting a refreshing drink meant dipping your tin Sierra cup ( or Nalgene ) in any stream and taking a nice, cool, clear drink.The good news is that if you can find a spring, that still works.
+
+🔗 [元記事を読む](https://www.wired.com/gallery/best-backpacking-water-filters/)
+
+---
+
+## 記事 25  ｜  Ars Technica
+
+### Sheetz が VMware をやめ、11,000 台の仮想マシンを移行
+
+> 原題: *Sheetz is quitting VMware, migrating 11,000 virtual machines*
+
+#### 📝 記事の日本語要約
+
+コンビニチェーンは代わりにStorMagicを使用する予定だ。米国のコンビニエンス ストア チェーンである Sheetz は、838 の店舗を VMware から移転します。Sheetz は 2019 年以来、各拠点で 2 台の Dell R440/R450 シリーズ サーバー間で VMware 仮想化を使用しています。現在、各店舗で 12 ～ 14 台の仮想マシン (VM) を VMware vSphere から StorMagic の SvHCI に移行しており、「Windows 10 から Windows 11 に移行するために、今後数か月間でさらに 2 台の VM を置き換える予定です」と Sheetz のインフラストラクチャ チーム マネージャーのスコット ロバートソン氏は語りました。Ars Technica まで電子メールでご連絡ください。
+
+#### 🇺🇸 English Summary
+
+The convenience store chain will use StorMagic instead.Sheetz, a US convenience store chain, is moving its 838 locations off VMware.Sheetz has used VMware virtualization across two Dell R440/R450-series servers at each of its locations since 2019.
+
+🔗 [元記事を読む](https://arstechnica.com/information-technology/2026/07/sheetz-moves-838-stores-off-vmware-broadcom-created-too-much-uncertainty/)
+
+---
+
+## 記事 26  ｜  MIT Tech Review
+
+### ダウンロード: 便利な量子マシンと記録破りの海底トンネル
+
+> 原題: *The Download: a useful quantum machine and a record-breaking subsea tunnel*
+
+#### 📝 記事の日本語要約
+
+さらに、メタ社は AI を利用して、健康上の問題を抱えた労働者を解雇のターゲットにしたとされています。これは、テクノロジーの世界で何が起こっているかを毎日提供する平日のニュースレター、 The Download の本日版です。世界を変える可能性のあるマシンは、データセンターとアイスクリーム工場が交差したような部屋に設置されます。内部には約 100 個のステンレス鋼キャビネットがあり、それぞれに数百枚のチップが保管されています。これらのチップ上では、何千もの光の粒子が光スイッチとビーム スプリッターの迷路を通って飛び交います。光子がどこに行き着くかを正確に測定することは、現在のコンピューターが解決するのに何百万年もかかるかもしれない問題の解決に役立つため、各光子を考慮する必要があります。
+
+#### 🇺🇸 English Summary
+
+Plus: Meta allegedly used AI to target workers with health issues for layoffs.This is today's edition of The Download , our weekday newsletter that provides a daily dose of what's going on in the world of technology.The machine that could change the world will be housed in a room that looks like a data center crossed with an ice cream factory.
+
+#### 🏢 企業解説リンク
+
+- [Meta](companies/meta.html)
+
+🔗 [元記事を読む](https://www.technologyreview.com/2026/07/15/1140498/the-download-useful-quantum-computer-subsea-tunnel/)
+
+---
+
+## 記事 27  ｜  VentureBeat
+
+### Cohere副社長は、VB Transform 2026でエンタープライズAIの主権にはエージェントスタック全体の制御が必要であると述べた
+
+> 原題: *Cohere VP says enterprise AI sovereignty requires control of the full agent stack at VB Transform 2026*
+
+#### 📝 記事の日本語要約
+
+今週、何百人もの企業リーダーと技術専門家が、生成 AI エージェントを使用してビジネスの成果を推進することに関する今年の傑出したカンファレンスである VB Transform 2026 のために、メンローパークの高級ホテル ニアのメインボールルームに詰めかけました。カナダの新興エンタープライズ AI スタートアップ Cohere の製品エンジニアリング担当バイスプレジデントである Rachad Alao が、VentureBeat の CEO 兼編集長 <a href="https://venturebeat. com/author/m. ] に加わりました。
+
+#### 🇺🇸 English Summary
+
+Hundreds of enterprise leaders and technical experts packed the main ballroom of the luxurious Hotel Nia in Menlo Park this week for VB Transform 2026 , the year's preeminent conference on using generative AI agents to drive business outcomes.
+
+🔗 [元記事を読む](https://venturebeat.com/technology/cohere-vp-says-enterprise-ai-sovereignty-requires-control-of-the-full-agent-stack)
+
+---
+
+## 記事 28  ｜  TechCrunch
+
+### 英国の警察、若いハッカー2人の逮捕により悪名高いハッカーグループの活動が混乱したと発表
+
+> 原題: *UK cops say arrest of two young hackers disrupted the operations of an infamous hacking group*
+
+#### 📝 記事の日本語要約
+
+英国警察は木曜日、10代のハッカー2人の投獄により、Scattered Spiderとして知られる悪名高いサイバー犯罪グループの活動が「著しく」妨げられたと発表した。オーウェン・フラワーズさん（18歳）とタハ・ジュバイルさん（20歳）は今年初め、2024年に英国の首都の公共交通システムを監督する政府機関ロンドン交通局（TfL）をハッキングしたとして有罪を認めた。木曜日、2人には懲役5年6か月の判決が言い渡された。フラワーズとジュベアの投獄は、最も危険で有能なハッカーが、数百万ドルの予算を持つ洗練された政府機関で働いているわけではないことを思い出させます。多くの場合、彼らはお金と仲間内での悪名を動機とする非常に若くて賢いハッカーです。 Scattered Spider や ShinyHunters などのグループ。 。
+
+#### 🇺🇸 English Summary
+
+U.K police said on Thursday that the jailing of two teenage hackers has “severely” hampered the activities of the infamous cybercrime group known as Scattered Spider .Owen Flowers, 18, and Thalha Jubair, 20, pleaded guilty earlier this year to hacking Transport of London (TfL), the government body overseeing the U.K.capital’s public transit system in 2024.
+
+🔗 [元記事を読む](https://techcrunch.com/2026/07/16/uk-cops-say-arrest-of-two-young-hackers-disrupted-the-operations-of-an-infamous-hacking-group/)
+
+---
+
+## 記事 29  ｜  The Verge
+
+### Proton の CTO は、優れたバックドアなど存在しないと語る
+
+> 原題: *Proton’s CTO says there’s no such thing as a good backdoor*
+
+#### 📝 記事の日本語要約
+
+このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。バート・バトラーが暗号化、子供の安全、そしてなぜ善良な人間だけが利用できるバックドアなど存在しないのかについて語ります。
+
+#### 🇺🇸 English Summary
+
+Posts from this topic will be added to your daily email digest and your homepage feed. Bart Butler on encryption, child safety, and why there’s no such thing as a backdoor for only the good guys.
+
+#### 🏢 企業解説リンク
+
+- [Proton](companies/proton.html)
+
+🔗 [元記事を読む](https://www.theverge.com/podcast/966074/proton-cto-bart-butler-privacy-encryption-surveillance-age-verification)
+
+---
+
+
+> ⚠️ 本まとめは自動生成です。数値・固有名詞などの事実は元記事でご確認ください。
