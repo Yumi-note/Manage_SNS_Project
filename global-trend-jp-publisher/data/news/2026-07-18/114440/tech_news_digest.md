@@ -1,0 +1,578 @@
+# 🌐 海外テックニュース 日本語まとめ
+
+**生成日時:** 2026年7月18日  11:44 JST
+
+> 世界の有力テックメディア（TechCrunch・The Verge・Wired・Ars Technica・MIT Tech Review・VentureBeat・Engadget）から注目記事を自動収集し、日本の読者向けに翻訳・要約しました。
+
+---
+
+## 目次
+
+1. [ニール・ライマーはAIマネーが戻ってくると考えている](#記事-1--ニール・ライマーはaiマネーが戻ってくると考えている)
+2. [いいよ、電動マウンテンバイクは悪くないよ](#記事-2--いいよ、電動マウンテンバイクは悪くないよ)
+3. [私はこのウォーキング パッドを使って仕事中に何千歩も記録しました](#記事-3--私はこのウォーキング-パッドを使って仕事中に何千歩も記録しました)
+4. [グーグルが支援する山火事探知衛星が打ち上げ、煙が詰まる米国、カナダ](#記事-4--グーグルが支援する山火事探知衛星が打ち上げ、煙が詰まる米国、カナダ)
+5. [ダウンロード: 閉経周辺期の誤った情報と中国の最新の AI の飛躍](#記事-5--ダウンロード-閉経周辺期の誤った情報と中国の最新の-ai-の飛躍)
+6. [Capital One が、ハッカーが発見する前にソフトウェアの欠陥を発見するオープンソース AI ツール、VulnHunter をリリース](#記事-6--capital-one-が、ハッカーが発見する前にソフトウェアの欠陥を発見するオープンソース-ai-ツール、vulnhunter-をリリース)
+7. [AI が運営する「ユートピア」、2D のモス、その他チェックする価値のある新しいインディー ゲーム](#記事-7--ai-が運営する「ユートピア」、2d-のモス、その他チェックする価値のある新しいインディー-ゲーム)
+8. [申し込みは 48 時間で終了します — Stripe x Startup Battlefield についてオーストラリアの創業者が知っておくべきことはすべてここにあります](#記事-8--申し込みは-48-時間で終了します--stripe-x-startup-battlefield-についてオーストラリアの創業者が知っておくべきことはすべてここにあります)
+9. [テイラー・ファームズ、シクロスポラ症発生後、アイスバーグレタスを米国市場から撤退](#記事-9--テイラー・ファームズ、シクロスポラ症発生後、アイスバーグレタスを米国市場から撤退)
+10. [あなたの生理トラッカーは（おそらく）あなたを監視しています](#記事-10--あなたの生理トラッカーはおそらくあなたを監視しています)
+11. [国防総省の宇宙開発局は誰もが望むほど早く動いていない](#記事-11--国防総省の宇宙開発局は誰もが望むほど早く動いていない)
+12. [更年期障害については、さまざまな誇大宣伝が行われています。買わないでください。](#記事-12--更年期障害については、さまざまな誇大宣伝が行われています。買わないでください。)
+13. [Intuit は、4 か月間に 2 回、独自の AI エージェント アーキテクチャを廃止しました。 VB Transform 2026 で、同社の AI VP はこれをファストパスと呼びました](#記事-13--intuit-は、4-か月間に-2-回、独自の-ai-エージェント-アーキテクチャを廃止しました。-vb-transform-2026-で、同社の-ai-vp-はこれをファストパスと呼びました)
+14. [OpenAI は、10 代の子供が ChatGPT から除外された場合に保護者に通知を開始します](#記事-14--openai-は、10-代の子供が-chatgpt-から除外された場合に保護者に通知を開始します)
+15. [Vertu は、幹部が AI エージェントに 6,880 ドルを支払うことを望んでいます - 実際のパフォーマンスは次のとおりです](#記事-15--vertu-は、幹部が-ai-エージェントに-6880-ドルを支払うことを望んでいます---実際のパフォーマンスは次のとおりです)
+16. [Shark の汎用性の高い ChillPill 冷却システムがベストプライスに戻りました](#記事-16--shark-の汎用性の高い-chillpill-冷却システムがベストプライスに戻りました)
+17. [ホームセキュリティカメラに代わるプライバシー最優先の最良の代替品](#記事-17--ホームセキュリティカメラに代わるプライバシー最優先の最良の代替品)
+18. [ヘグセスは「ハイ・ティー」な軍隊を望んでいる。医者はそれを臨床地雷原と呼ぶ](#記事-18--ヘグセスは「ハイ・ティー」な軍隊を望んでいる。医者はそれを臨床地雷原と呼ぶ)
+19. [エージェントはミリ秒単位で考えますが、従来のインフラストラクチャはそうではありません。 LinkedIn、Walmart、Zendesk が VB Transform 2026 でどのようにギャップを埋めたかを共有しました](#記事-19--エージェントはミリ秒単位で考えますが、従来のインフラストラクチャはそうではありません。-linkedin、walmart、zendesk-が-vb-transform-2026-でどのようにギャップを埋めたかを共有しました)
+20. [TikTokは米国政府のデバイスで禁止されなくなりました](#記事-20--tiktokは米国政府のデバイスで禁止されなくなりました)
+21. [Databricks の評価額は 1,880 億ドルに達し、AI のお気に入りの第 2 幕としての地位を拡大](#記事-21--databricks-の評価額は-1880-億ドルに達し、ai-のお気に入りの第-2-幕としての地位を拡大)
+22. [TikTokはAI類似度検出ツールをテスト中](#記事-22--tiktokはai類似度検出ツールをテスト中)
+23. [FIFAには気候変動に対処する計画がない](#記事-23--fifaには気候変動に対処する計画がない)
+24. [ダウンロード: OpenAI が GPT-Red を発表し、米国でヒートポンプが台頭](#記事-24--ダウンロード-openai-が-gpt-red-を発表し、米国でヒートポンプが台頭)
+25. [Brex は、最初にルールを作成するのではなく、エージェントが実際に行うことを観察することによって AI エージェント ポリシーを構築しました。](#記事-25--brex-は、最初にルールを作成するのではなく、エージェントが実際に行うことを観察することによって-ai-エージェント-ポリシーを構築しました。)
+26. [トランプの真実のソーシャル投稿をメインライン化するための API が登場](#記事-26--トランプの真実のソーシャル投稿をメインライン化するための-api-が登場)
+27. [「私を録画しないでください」というZoomハック](#記事-27--「私を録画しないでください」というzoomハック)
+28. [Pebble の創設者 Eric Migicovsky 氏は、30 日間の保証は信頼がすべてであると述べています](#記事-28--pebble-の創設者-eric-migicovsky-氏は、30-日間の保証は信頼がすべてであると述べています)
+
+---
+
+## 記事 1  ｜  TechCrunch
+
+### ニール・ライマーはAIマネーが戻ってくると考えている
+
+> 原題: *Neil Rimer thinks the AI money is coming back out*
+
+#### 📝 記事の日本語要約
+
+5月下旬、私がアテネで行った座談会でニール・ライマーが言った言葉が、私には今でも揺るぎません。市内で開かれた活気に満ちた新技術フェスティバルで、AIを中心に積み重なる富について語り、「ある種の再分配が起こるだろうという強い感覚がある」と彼は続けた。 「それは自発的なものになるか、非自発的なものになるかだけど、それは必ず起こるし、私はそれが自発的なものであることを願っている」と彼は私に語り、テクノロジーリーダーが「それを見抜く上で主導的な役割を果たすことができる」と考えていると付け加えた。過去 30 年間で最も成功したベンチャー企業の 1 つである Index Ventures の共同創設者である Rimer 氏の言葉としては、公の場で言うのは衝撃的なことのように思えました。ライマー氏は2021年に日常の投資から身を引いた。 。
+
+#### 🇺🇸 English Summary
+
+In late May, Neil Rimer said something during a sit-down I had with him in Athens that I haven’t been able to shake.At a vibrant new tech festival in the city, talking about the wealth piling up around AI, he said he has “a strong sense that there will be some sort of a redistribution.” He continued on.
+
+🔗 [元記事を読む](https://techcrunch.com/2026/07/17/neil-rimer-thinks-the-ai-money-is-coming-back-out/)
+
+---
+
+## 記事 2  ｜  The Verge
+
+### いいよ、電動マウンテンバイクは悪くないよ
+
+> 原題: *Fine, electric mountain bikes don’t suck*
+
+#### 📝 記事の日本語要約
+
+このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。ただ楽しんでいるだけなら不正行為ではありません。
+
+#### 🇺🇸 English Summary
+
+Posts from this topic will be added to your daily email digest and your homepage feed. It’s not cheating if you’re just having fun.
+
+🔗 [元記事を読む](https://www.theverge.com/tech/966964/emtb-riders-are-not-cheaters)
+
+---
+
+## 記事 3  ｜  Wired
+
+### 私はこのウォーキング パッドを使って仕事中に何千歩も記録しました
+
+> 原題: *I’ve Logged Thousands of Steps at Work With These Walking Pads*
+
+#### 📝 記事の日本語要約
+
+かさばって常に騒音の多いトレッドミルとは異なり、最適なウォーキング パッドは、スタンディング デスクの下に滑り込ませたり、家のどこにでも収まるスリムな (多くの場合持ち運び可能な) マシンで、仕事をしたり、むちゃくちゃ観たり、あるいは人間との関わりを避けながら歩数を稼ぐことができます。一日中机に座っているのは文字通り苦痛です。これは姿勢にとって最悪であり、肉体的、精神的健康に悪影響を及ぼし、徐々に体を前かがみのキーボードのガーゴイルに変えていきます。理論的には、ウォーキング休憩をとって画面から離れることもできますが、それでも、一日の多くの時間を尻で過ごすことになります。また、ウォーキングパッドを使用すると生産性が向上するとも確信しています。毎日の歩数を減らすだけでなく、定期的に使用すると、エネルギーレベル、気分、心臓血管の健康状態も向上します。 i の上を歩く。 。
+
+#### 🇺🇸 English Summary
+
+Unlike bulky and almost always noisy treadmills , the best walking pads are slim (often portable) machines that can slide under your standing desk or fit anywhere in your home, letting you rack up steps while working, binge-watching, or just avoiding human interaction.Sitting at your desk all day is literally a pain.
+
+🔗 [元記事を読む](https://www.wired.com/story/best-walking-pads/)
+
+---
+
+## 記事 4  ｜  Ars Technica
+
+### グーグルが支援する山火事探知衛星が打ち上げ、煙が詰まる米国、カナダ
+
+> 原題: *Google-backed satellites for wildfire detection launch as smoke chokes US, Canada*
+
+#### 📝 記事の日本語要約
+
+FireSat プログラムは、他の衛星が見逃す山火事も発見できます。何百もの燃え盛る山火事からの煙がカナダと米国に広がる中、Google が支援する FireSat プログラムの最初の 3 つの運用衛星が軌道上に打ち上げられることに成功しました。これらの衛星は、年末までに米国、オーストラリア、ヨーロッパで小規模な火災も発見できる山火事探知の提供を開始する予定だ。 2026 年 7 月 7 日にカリフォルニアのヴァンデンバーグ宇宙軍基地から SpaceX ファルコン 9 ロケットに搭載された超小型衛星の打ち上げは、非営利団体 Earth Fire Alliance が管理する FireSat 衛星群の「初期運用能力」への移行を示します。 3 か月のテスト期間の後、3 つの衛星は消防機関へのデータの積極的な提供を開始します。 。
+
+#### 🇺🇸 English Summary
+
+The FireSat program can spot wildfires that other satellites miss.As smoke from hundreds of burning wildfires spread across Canada and the United States, the first three operational satellites in the Google-backed FireSat program successfully launched into orbit.
+
+#### 🏢 企業解説リンク
+
+- [Google](companies/google.html)
+- [SpaceX](companies/spacex.html)
+
+🔗 [元記事を読む](https://arstechnica.com/space/2026/07/google-backed-satellites-for-wildfire-detection-launch-as-smoke-chokes-us-canada/)
+
+---
+
+## 記事 5  ｜  MIT Tech Review
+
+### ダウンロード: 閉経周辺期の誤った情報と中国の最新の AI の飛躍
+
+> 原題: *The Download: perimenopause misinformation and China’s latest AI leap*
+
+#### 📝 記事の日本語要約
+
+さらに、中国と米国の AI の差は縮まったばかりかもしれません。これは、テクノロジーの世界で何が起こっているかを毎日提供する平日のニュースレター、 The Download の本日版です。更年期障害は以前はタブーと考えられていましたが、今ではタブーではありません。少なくとも一部はテレビの医師やソーシャルメディアのインフルエンサーのおかげで、閉経までの時には数年に及ぶ期間についての会話がこれまで以上にオープンに行われるようになりました。しかし、会話はますます誤った情報によって形作られています。一部のマーケティング担当者が主張しているにもかかわらず、閉経周辺期を診断するテストはありません。だからといって、女性が症状を我慢しなければならないというわけではありませんが、治療法の提案には科学的証拠が欠けていることがよくあります。
+
+#### 🇺🇸 English Summary
+
+Plus: China's AI gap with the US may have just narrowed.This is today's edition of The Download , our weekday newsletter that provides a daily dose of what's going on in the world of technology.Perimenopause used to be considered taboo, but not anymore.
+
+🔗 [元記事を読む](https://www.technologyreview.com/2026/07/17/1140640/the-download-perimenopause-misinformation-china-moonshot-ai/)
+
+---
+
+## 記事 6  ｜  VentureBeat
+
+### Capital One が、ハッカーが発見する前にソフトウェアの欠陥を発見するオープンソース AI ツール、VulnHunter をリリース
+
+> 原題: *Capital One releases VulnHunter, an open-source AI tool that finds software flaws before hackers do*
+
+#### 📝 記事の日本語要約
+
+Capital One は木曜日、オープンソースのエージェント型 AI セキュリティ ツールである VulnHunter をリリースしました。これは、ソース コードをスキャンして悪用可能な脆弱性を探し、攻撃者がどのように脆弱性に到達するかを計画し、ターゲットを絞った修正を提案します。これらすべては、単一のラインが本番環境に出荷される前に行われます。このツールは内部で構築され、Apache 2.0 ライセンスに基づいて GitHub で利用できるようになりました。 。
+
+#### 🇺🇸 English Summary
+
+Capital One on Thursday released VulnHunter , an open-source, agentic AI security tool that scans source code for exploitable vulnerabilities, maps out how an attacker would reach them, and proposes targeted fixes — all before a single line ships to production. The tool, built internally and now available on GitHub under an Apache 2. 0 license, . .
+
+🔗 [元記事を読む](https://venturebeat.com/technology/capital-one-releases-vulnhunter-an-open-source-ai-tool-that-finds-software-flaws-before-hackers-do)
+
+---
+
+## 記事 7  ｜  Engadget
+
+### AI が運営する「ユートピア」、2D のモス、その他チェックする価値のある新しいインディー ゲーム
+
+> 原題: *AI-run 'utopias,' Moss in 2D and other new indie games worth checking out*
+
+#### 📝 記事の日本語要約
+
+さらに、電車を使って派手なスケートボード スタイルのトリックを決めます。リンクからの購入に対して手数料を受け取る場合があります。インディー ゲーム分野で何が起こっているかに関する最新のまとめへようこそ。今週末はぜひチェックしていただきたい新しいゲームがたくさんあります。また、もう少し先に発売されるタイトルについてのニュースもいくつかあります。今週は夏なのであまりゲームに時間を費やしておらず、「外に出る」スキルツリーに経験値を入れています。ただし、いくつかの新しいゲームを簡単にチェックしました。その中の1つがデンシャアタックです！ 、Undercodersと開発者のFireshine Gamesから。
+
+#### 🇺🇸 English Summary
+
+Plus, pulling off rad skateboard-style tricks with a train.We may receive a commission on purchases made from links.Welcome to our latest roundup of what's going on in the indie game space.There are a lot of neat new games for you to check out this weekend and we've got some news about titles that are a little further out to bring you.
+
+🔗 [元記事を読む](https://www.engadget.com/2217879/ai-run-utopias-moss-in-2d-and-other-new-indie-games-worth-checking-out/)
+
+---
+
+## 記事 8  ｜  TechCrunch
+
+### 申し込みは 48 時間で終了します — Stripe x Startup Battlefield についてオーストラリアの創業者が知っておくべきことはすべてここにあります
+
+> 原題: *Applications close in 48 hours — here's everything Australian founders need to know about Stripe x Startup Battlefield*
+
+#### 📝 記事の日本語要約
+
+窓はほとんど閉まっています。8 月 19 日には、投資家、世界的な報道機関、オーストラリアのテクノロジー コミュニティの前で、8 つのスタートアップ企業がストライプ ツアー シドニーのステージに登壇します。あるスタートアップが、サンフランシスコの TechCrunch Disrupt に自動的にエントリーして退場しました。応募も追加の競争もなく、世界で最も象徴的なスタートアップ ステージへの出場が保証されています。申請期限は残り 48 時間です。待ってはいけません。Startup Battlefield は、Dropbox、Cloudflare、Discord、Trello を立ち上げた TechCrunch の主力ピッチ コンテストです。Startup Battlefield の卒業生は合計で 320 億ドルを調達し、世界中の 1,700 社以上で 250 件以上の撤退を実現しました。
+
+#### 🇺🇸 English Summary
+
+The window is almost shut.On August 19, eight startups will take the stage at Stripe Tour Sydney in front of investors, global press, and the Australian tech community.One startup walks away with automatic entry into TechCrunch Disrupt in San Francisco — no application, no further competition, a guaranteed spot on the world’s most iconic startup stage.There are only 48 hours left to apply .
+
+#### 🏢 企業解説リンク
+
+- [TechCrunch](companies/techcrunch.html)
+
+🔗 [元記事を読む](https://techcrunch.com/2026/07/17/applications-close-in-48-hours-heres-everything-australian-founders-need-to-know-about-stripe-x-startup-battlefield/)
+
+---
+
+## 記事 9  ｜  The Verge
+
+### テイラー・ファームズ、シクロスポラ症発生後、アイスバーグレタスを米国市場から撤退
+
+> 原題: *Taylor Farms pulls iceberg lettuce from the US market after cyclosporiasis outbreak*
+
+#### 📝 記事の日本語要約
+
+このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。シクロスポリア症の発生についてこれまでにわかっていることはすべてです。
+
+#### 🇺🇸 English Summary
+
+Posts from this topic will be added to your daily email digest and your homepage feed. Everything we know so far about the cyclosporiasis outbreak.
+
+🔗 [元記事を読む](https://www.theverge.com/science/967563/cyclospora-taylor-farms-taco-bell-iceberg-lettuce)
+
+---
+
+## 記事 10  ｜  Wired
+
+### あなたの生理トラッカーは（おそらく）あなたを監視しています
+
+> 原題: *Your Period Tracker Is (Probably) Spying on You*
+
+#### 📝 記事の日本語要約
+
+オープンウェブ上に公開された何時間ものサンフランシスコ市警察のドローンビデオ映像は、信じられないほど詳細で結果的な都市監視の新時代を示している。一方、サンフランシスコ市検察局は今週、アップルとグーグルに対し、ほぼ独占的に女性と女児をターゲットにするために使われているAIを無効化する「顔交換」アプリ13件をアプリストアから削除するようテック大手に要求する差し止め書簡を送った。 『WIRED』が6月にMetaのNameTag顔認識システムについて初めて報じて以来、同社幹部らはこの機能が存在するかどうかについて不透明で矛盾したコメントをしてきた。私たちは一歩下がって、非常に現実的なシステムに関する主張と事実の両方を明らかにしました。木曜日の演説で、ドナルド・トランプ大統領は根拠のない徹底的な主張を続けた。 。
+
+#### 🇺🇸 English Summary
+
+Hours of San Francisco Police Department drone video footage exposed on the open web illustrates a new era of incredibly granular—and consequential—urban surveillance.
+
+#### 🏢 企業解説リンク
+
+- [Apple](companies/apple.html)
+- [Google](companies/google.html)
+- [Meta](companies/meta.html)
+
+🔗 [元記事を読む](https://www.wired.com/story/security-news-this-week-your-period-tracker-is-probably-spying-on-you/)
+
+---
+
+## 記事 11  ｜  Ars Technica
+
+### 国防総省の宇宙開発局は誰もが望むほど早く動いていない
+
+> 原題: *The Pentagon's Space Development Agency hasn't moved as fast as anyone would like*
+
+#### 📝 記事の日本語要約
+
+「統合軍では、[作戦]エピック・フューリーで毎日ミサイルが発射されている。」 宇宙開発庁は、国防総省の伝統的な怠惰な官僚主義を回避して米軍宇宙システムの展開を加速することを目的として2019年に設立された。 7年後、SDAはついに運用衛星の最初のバッチを打ち上げようとしているが、ちょうど国防総省がこの半自治機関を閉鎖し、武器購入を合理化するために複数の計画獲得幹部のもとに新たに再編された宇宙軍の調達パイプラインに戻す計画を立てている。 SDA の運命は驚くべきことではなく、上下両院の議員は今年の国防権限法の草案で SDA の閉鎖を支持している。
+
+#### 🇺🇸 English Summary
+
+“Missiles are being launched at the joint force every single day in [Operation] Epic Fury.” The Space Development Agency was established in 2019 to help speed up the deployment of US military space systems by sidestepping the Pentagon’s traditional sluggish bureaucracy.
+
+🔗 [元記事を読む](https://arstechnica.com/space/2026/07/the-pentagons-space-development-agency-hasnt-moved-as-fast-as-anyone-would-like/)
+
+---
+
+## 記事 12  ｜  MIT Tech Review
+
+### 更年期障害については、さまざまな誇大宣伝が行われています。買わないでください。
+
+> 原題: *There’s a lot of hype around perimenopause. Don’t buy it.*
+
+#### 📝 記事の日本語要約
+
+ライフステージに関する議論は、しばしば誤った情報によって曇らされます。閉経は、最後の月経が終わってから 1 年後に起こるライフステージとして定義されます。閉経周辺期は、その時点に至るまでの数年にわたる期間であり、一般的に閉経に関連するすべての症状が現れることもあります。今日、閉経周辺期に関する情報はかつてないほど広まり、アクセスしやすくなりました。あなたが 40 代の女性で、体調が 100% ではない場合、オンライン上で、あなたが更年期障害だと告げる人がいる可能性があります。そして、血液検査、アプリ、サプリメント、またはホルモン補充療法の要求にお金を使い始めたいと思うかもしれません。しかし、一般の読者ならここまでで推測しているかもしれませんが、ことはそれほど単純ではありません。更年期障害は 4 歳頃から始まることが多いです。
+
+#### 🇺🇸 English Summary
+
+Discussions of the life stage are often clouded by misinformation.Menopause is defined as the life stage that occurs a year after a person has had their last period.Perimenopause is the sometimes years-long period before that point, which can also feature all the symptoms we’d typically associate with menopause.Today, information about perimenopause is more prevalent and accessible than ever.
+
+🔗 [元記事を読む](https://www.technologyreview.com/2026/07/17/1140608/theres-a-lot-of-hype-around-perimenopause-dont-buy-it/)
+
+---
+
+## 記事 13  ｜  VentureBeat
+
+### Intuit は、4 か月間に 2 回、独自の AI エージェント アーキテクチャを廃止しました。 VB Transform 2026 で、同社の AI VP はこれをファストパスと呼びました
+
+> 原題: *Intuit scrapped its own AI agent architecture twice in four months. At VB Transform 2026, its AI VP called that the fast path*
+
+#### 📝 記事の日本語要約
+
+Intuit はエージェント AI の使用における初期の先駆者でしたが、その成功への道は決して直線ではありませんでした。 VB Transform 2026 で、Intuit の AI 担当副社長 Nhung Ho 氏は、同社が約 4 か月の間にエージェント アーキテクチャを 2 回再構築し、最初は専門エージェントのフリートから中央のオーケストラに移行した方法について説明しました。 。
+
+#### 🇺🇸 English Summary
+
+Intuit was an early pioneer in the usage of agentic AI, but its path to success has hardly been a straight line. At VB Transform 2026 , Intuit VP of AI Nhung Ho described how the company rebuilt its agent architecture twice in the span of about four months, first moving from a fleet of specialist agents to a central orchestra. .
+
+🔗 [元記事を読む](https://venturebeat.com/orchestration/intuit-scrapped-its-own-ai-agent-architecture-twice-in-four-months-at-vb-transform-2026-its-ai-vp-called-that-the-fast-path)
+
+---
+
+## 記事 14  ｜  Engadget
+
+### OpenAI は、10 代の子供が ChatGPT から除外された場合に保護者に通知を開始します
+
+> 原題: *OpenAI will start notifying parents if their teen has been kicked off of ChatGPT*
+
+#### 📝 記事の日本語要約
+
+リンクされた十代のアカウントを持つ親は、自分の子供が暴力に関する OpenAI のポリシーに違反したかどうかを知ることができます。OpenAIは、子供がオンラインでの暴力的脅迫や暴力行為に関するポリシーに違反したためにChatGPTから除外された場合、リンクされたアカウントを持つ親や保護者に通知するようになった。同社は昨年、ChatGPTのペアレンタルコントロールを開始し、親が自分の個人アカウントを10代の子供のアカウントにリンクできるようにした。これにより、ChatGPT を使用できない時間をスケジュールしたり、機密性の高いコンテンツを減らしたりすることができ、子供が自傷行為を考えている可能性がある兆候をチャットボットが検出した場合には通知が届きます。現在、OpenAI は通知機能を拡張し、自分の子供が他人にとって危険である可能性があるかどうかを保護者に知らせるようにしました。
+
+#### 🇺🇸 English Summary
+
+Parents with linked teen accounts will know if their children have violated OpenAI's policies around violence.OpenAI will now notify parents and guardians with linked accounts if their child has been kicked off ChatGPT for violating its policies on violent threats or acts of violence online.
+
+#### 🏢 企業解説リンク
+
+- [OpenAI](companies/openai.html)
+
+🔗 [元記事を読む](https://www.engadget.com/2218076/openai-notify-parents-teen-banned-chatgpt-violence/)
+
+---
+
+## 記事 15  ｜  TechCrunch
+
+### Vertu は、幹部が AI エージェントに 6,880 ドルを支払うことを望んでいます - 実際のパフォーマンスは次のとおりです
+
+> 原題: *Vertu wants executives to pay $6,880 for an AI agent — here's how it actually performs*
+
+#### 📝 記事の日本語要約
+
+AI はスマートフォン業界の最新の戦場となっており、メーカーは主流の消費者を引き付けるために AI を活用した機能を追加しようと競い合っています。Vertu は別の道を歩んでいます。英国に設立された高級携帯電話メーカーは、数万ドルもする手作業で仕上げられた端末で知られ、スペックではなくステータスを売りにしている。同社の折りたたみ式携帯電話である Alphafold は、裕福な購入者、特に最高経営責任者をターゲットにしており、高級素材と経営陣の業務の一部を自動化するように設計された AI エージェントを組み合わせています。そこで私はその提案をテストしてみました。
+
+#### 🇺🇸 English Summary
+
+AI has become the smartphone industry’s latest battleground, with manufacturers racing to add AI-powered features to attract mainstream consumers.Vertu is taking a different path.The UK-founded luxury phone maker, known for hand-finished devices often costing tens of thousands of dollars, sells status instead of specs.
+
+🔗 [元記事を読む](https://techcrunch.com/2026/07/17/vertu-wants-executives-to-pay-6880-for-an-ai-agent-heres-how-it-actually-performs/)
+
+---
+
+## 記事 16  ｜  The Verge
+
+### Shark の汎用性の高い ChillPill 冷却システムがベストプライスに戻りました
+
+> 原題: *Shark’s versatile ChillPill cooling system is back to its best price*
+
+#### 📝 記事の日本語要約
+
+このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。充電式ファンはドライタッチ霧吹きとしても機能し、身に着けたり、バッグにクリップしたり、卓上で使用したりできます。
+
+#### 🇺🇸 English Summary
+
+Posts from this topic will be added to your daily email digest and your homepage feed. The rechargeable fan doubles as a dry-touch mister and can be worn, clipped to a bag, or used on a tabletop.
+
+🔗 [元記事を読む](https://www.theverge.com/gadgets/967512/shark-chillpill-personal-fan-and-cooling-system-deal-sale)
+
+---
+
+## 記事 17  ｜  Wired
+
+### ホームセキュリティカメラに代わるプライバシー最優先の最良の代替品
+
+> 原題: *The Best Privacy-First Alternatives to Home Security Cameras*
+
+#### 📝 記事の日本語要約
+
+幸いなことに、家の安全を確保したり、侵入者を検知したりするためにカメラは必要ありません。私は、プライバシーを犠牲にすることなく、同様に効果的にアクティビティを警告できるいくつかのモーション センサーと代替システムをテストしました。 (ホーム セキュリティに対する従来のアプローチで問題がない場合は、ベスト屋内セキュリティ カメラ、ベスト屋外セキュリティ カメラ、ベスト ビデオ ドアベル カメラに関する私の推奨事項を確認してください。) このレーダー システムは、最大 0.5 マイルの範囲と調整可能な検出ゾーンを備えており、大規模な不動産を保護するのに最適です。これは昔ながらのやり方です。Wi-Fi もアプリも必要なく、受信機の電源を入れて検出器をペアリングするだけです。人や動物がそのエリアに入るたびに警報を鳴らします。最大 6 台の検出器を受信機とペアリングできます (ただし、yo. .
+
+#### 🇺🇸 English Summary
+
+The good news is you don’t need a camera to secure your home or detect intruders.I tested several motion sensors and alternative systems that can alert you of activity just as effectively without sacrificing your privacy.
+
+🔗 [元記事を読む](https://www.wired.com/story/best-motion-sensors-private-alternatives-security/)
+
+---
+
+## 記事 18  ｜  Ars Technica
+
+### ヘグセスは「ハイ・ティー」な軍隊を望んでいる。医者はそれを臨床地雷原と呼ぶ
+
+> 原題: *Hegseth wants a "High-T" military; doctors call it a clinical minefield*
+
+#### 📝 記事の日本語要約
+
+「私たちは合理的な医療に時計の針を戻しています。」水曜日、ピート・ヘグセス国防長官は、米軍が30歳以上の現役および予備役人員全員にテストステロン欠乏症の強制検査を受けるよう義務付けるとの驚くべき発表を行った。スクリーニングは年に一度の健康診断の際に行われます。 30歳未満の方でもご希望に応じて検査を受けることができます。ソーシャルメディアに投稿された短いビデオの中で、ヘグセス氏は軍関係者に対し、検査とその後の治療の目的は「パフォーマンス、回復力、そして長期的な健康を最適化すること」であると説明し、この取り組みは「人為的な強化」を目的としたものではなく、隊員は治療を拒否することもできるとしながらも、検査と潜在的な治療は「人為的な強化」を目的としたものではないと主張した。 。
+
+#### 🇺🇸 English Summary
+
+“We’re turning the clock back on rational healthcare.” On Wednesday, Defense Secretary Pete Hegseth made the startling announcement that the US military would begin requiring all active duty and reserve personnel aged 30 and older to undergo mandatory screening for testosterone deficiency.The screenings will take place during yearly health assessments.
+
+🔗 [元記事を読む](https://arstechnica.com/health/2026/07/hegseth-wants-a-high-t-military-doctors-call-it-a-clinical-minefield/)
+
+---
+
+## 記事 19  ｜  VentureBeat
+
+### エージェントはミリ秒単位で考えますが、従来のインフラストラクチャはそうではありません。 LinkedIn、Walmart、Zendesk が VB Transform 2026 でどのようにギャップを埋めたかを共有しました
+
+> 原題: *Agents think in milliseconds, legacy infrastructure doesn't. LinkedIn, Walmart and Zendesk shared how they closed the gap at VB Transform 2026*
+
+#### 📝 記事の日本語要約
+
+実際に AI エージェントの速度を低下させているのは、モデル自体ではなくレガシー インフラストラクチャです。これが、VB Transform 2026 で LinkedIn、Walmart、Zendesk の 3 つのインフラストラクチャ リーダーが共有した結論でした。パネルディスカッションには、LinkedIn の AI プラットフォームおよびインフラストラクチャ担当シニア ディレクターである Animesh Singh 氏、Walmart のコーポレート テクノロジー サービスおよびテクノロジー戦略担当 SVP である Desiree Gosby 氏、および S.
+
+#### 🇺🇸 English Summary
+
+Legacy infrastructure, not the models themselves, is what's actually slowing AI agents down.That was the shared conclusion of three infrastructure leaders — from LinkedIn, Walmart, and Zendesk — at VB Transform 2026 .
+
+🔗 [元記事を読む](https://venturebeat.com/data/agents-think-in-milliseconds-legacy-infrastructure-doesnt-linkedin-walmart-and-zendesk-shared-how-they-closed-the-gap-at-vb-transform-2026)
+
+---
+
+## 記事 20  ｜  Engadget
+
+### TikTokは米国政府のデバイスで禁止されなくなりました
+
+> 原題: *TikTok is no longer banned on US government devices*
+
+#### 📝 記事の日本語要約
+
+TikTokの米国法人はバイトダンスとは独立して機能すると司法省は説明した。米国司法省は、連邦職員が政府が提供する電子機器にTikTokをダウンロードしてインストールできるようになったと発表し、現在のバージョンには以前のバージョンのようなリスクはないと説明した。 2022年、国家安全保障上の懸念から、TikTokはほぼすべてのデバイスの問題で米国連邦政府によって非合法化された。当時のFBI長官クリス・レイ氏は、中国がこのアプリを利用して親会社バイトダンス経由でユーザーのデータを収集する可能性があると警告した。 2024年、米国下院はバイトダンスが販売しない限り国内でTikTokを全面的に禁止する法案を可決した。米国におけるアプリ事業の契約は今年1月に成立し、creにつながった。 。
+
+#### 🇺🇸 English Summary
+
+TikTok's US entity functions independently of ByteDance, the Justice Department explained.The US Department of Justice has announced that federal employees can now download and install TikTok on electronics provided by the government, explaining that its current version doesn't pose the risks the previous one did.
+
+🔗 [元記事を読む](https://www.engadget.com/2218069/us-government-lifts-tiktok-ban-federal-devices/)
+
+---
+
+## 記事 21  ｜  TechCrunch
+
+### Databricks の評価額は 1,880 億ドルに達し、AI のお気に入りの第 2 幕としての地位を拡大
+
+> 原題: *Databricks hits $188B valuation, extending its run as AI's favorite second act*
+
+#### 📝 記事の日本語要約
+
+Databricks は木曜日、同社の価値を 1,880 億ドルとする新たな資金調達ラウンドを発表しました。このラウンドはコートゥがリードした。Databricksは正確な調達額を明らかにしなかった。資金はまだ手元になく、ラウンドは今夏の後半に終了すると述べた。（その後、他のメディアが調達額はおよそ30億ドルだと報じている。）企業が資金を得る前に発表するのは異例だが、あるベンチャーキャピタルはTechCrunchに対し、非常に多くの企業が希望しているため、この契約は堅実であり、同社がそのピカピカの新しい評価額を秘密にしておく理由はないと語った。実際、Databricks は、自社のイメージを単なる往年の SaaS センセーションではなく、AI プロバイダーへと移行させることに成功したため、1 年半にわたって資金調達に苦戦してきました。昔はBC時代（ChatGPT以前）に戻りました。
+
+#### 🇺🇸 English Summary
+
+Databricks on Thursday announced a new round of funding that values the company at $188 billion .The round was led by Coatue.Databricks didn’t disclose exactly how much it raised; it said the money isn’t in its hands yet and that the round will close later this summer.(Other outlets have since reported the raise is roughly $3 billion .
+
+#### 🏢 企業解説リンク
+
+- [TechCrunch](companies/techcrunch.html)
+
+🔗 [元記事を読む](https://techcrunch.com/2026/07/17/databricks-hits-188b-valuation-extending-its-run-as-ais-favorite-second-act/)
+
+---
+
+## 記事 22  ｜  The Verge
+
+### TikTokはAI類似度検出ツールをテスト中
+
+> 原題: *TikTok is testing an AI likeness detection tool*
+
+#### 📝 記事の日本語要約
+
+このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。クリエイターはTikTokで不正なAIディープフェイクをスキャンさせることができる。
+
+#### 🇺🇸 English Summary
+
+Posts from this topic will be added to your daily email digest and your homepage feed. Creators can have TikTok scan for unauthorized AI deepfakes.
+
+🔗 [元記事を読む](https://www.theverge.com/tech/967486/tiktok-ai-likeness-detection-tool)
+
+---
+
+## 記事 23  ｜  Wired
+
+### FIFAには気候変動に対処する計画がない
+
+> 原題: *FIFA Doesn’t Have a Plan to Deal With Climate Change*
+
+#### 📝 記事の日本語要約
+
+サッカー界の最大の試合は日曜日に予定されており、ニューヨーク市郊外でアルゼンチンとスペインがワールドカップ決勝で対戦する。問題が 1 つだけあります。現在、山火事の煙が試合を脅かしているが、スポーツの統括団体であるFIFAは選手やファンの健康を守る計画を立てていないようだ。カナダから吹き出す山火事の煙はここ数日、中西部と東海岸の広い範囲を覆い、十数の州に影響を及ぼしており、最も被害が大きかった都市の一部は、危険と考えられる範囲の大気質に直面している。ニューヨーカーも今週、空気がオレンジ色に曇っていくのを目の当たりにしてきた人々の一人だ。木曜日、州は大気質指数が「不健康」および「非常に不健康」のレベルに上昇したとして警報を発令した。 「次の場合は、屋外で時間を過ごすことを避けてください。
+
+#### 🇺🇸 English Summary
+
+The biggest game in soccer is set for Sunday, when Argentina and Spain will meet in the World Cup final, held just outside of New York City.There’s just one problem.Wildfire smoke now threatens the match—and FIFA, the sport’s governing body, doesn’t appear to have any plan in place to protect the health of players or fans.
+
+🔗 [元記事を読む](https://www.wired.com/story/fifa-doesnt-have-plan-to-deal-with-climate-change/)
+
+---
+
+## 記事 24  ｜  MIT Tech Review
+
+### ダウンロード: OpenAI が GPT-Red を発表し、米国でヒートポンプが台頭
+
+> 原題: *The Download: OpenAI unveils GPT-Red and heat pumps rise in the US*
+
+#### 📝 記事の日本語要約
+
+さらに、イーロン・マスクは、Grokに電力を供給するために、慎重に10億ドルのガスタービン会社を買収しました。これは、テクノロジーの世界で何が起こっているかを毎日提供する平日のニュースレター、 The Download の本日版です。 OpenAI は、GPT-Red と呼ばれる LLM スーパー ハッカーを構築しました。これをスパーリング パートナーとして使用し、他のモデルのサイバー攻撃に対する防御力を強化します。これは、通常は人間のテスターのチームによって行われる、レッドチームとして知られるソフトウェア システムの一種の安全性評価を自動化します。目的は、システムを破壊またはハイジャックするさまざまな方法をできるだけ多く見つけることです。
+
+#### 🇺🇸 English Summary
+
+Plus: Elon Musk discreetly bought a $1 billion gas turbine firm to power Grok.This is today's edition of The Download , our weekday newsletter that provides a daily dose of what's going on in the world of technology.OpenAI has built an LLM super-hacker called GPT-Red that it uses as a sparring partner to help its other models boost their defenses against cyberattacks.
+
+#### 🏢 企業解説リンク
+
+- [OpenAI](companies/openai.html)
+
+🔗 [元記事を読む](https://www.technologyreview.com/2026/07/16/1140600/the-download-openai-unveils-gpt-red-heat-pumps-rise-us/)
+
+---
+
+## 記事 25  ｜  VentureBeat
+
+### Brex は、最初にルールを作成するのではなく、エージェントが実際に行うことを観察することによって AI エージェント ポリシーを構築しました。
+
+> 原題: *Brex built its AI agent policy by watching what agents actually do, not by writing rules first*
+
+#### 📝 記事の日本語要約
+
+OpenClaw は、最も広く採用されているエージェント フレームワークの 1 つとなっていますが、エンタープライズ規模での有効性はまだ証明されていません。エージェントが効果的に機能するには、実際の認証情報 (API キー、OAuth トークン、サービス アカウント) が必要ですが、Brex は、従来のガードレールではエージェントが行っていることを封じ込めることができないことに気づきました。 Brex は、社内 PL を構築することでこれらの制限を克服することに着手しました。 。
+
+#### 🇺🇸 English Summary
+
+OpenClaw has become one of the most widely adopted agentic frameworks, but it has yet to prove itself at enterprise scale. Agents need real credentials — API keys, OAuth tokens, service accounts — to work effectively, and Brex found that traditional guardrails couldn't contain what those agents were doing with them. Brex set out to overcome these limitations by building an internal pl. .
+
+🔗 [元記事を読む](https://venturebeat.com/orchestration/brex-built-its-ai-agent-policy-by-watching-what-agents-actually-do-not-by-writing-rules-first)
+
+---
+
+## 記事 26  ｜  Engadget
+
+### トランプの真実のソーシャル投稿をメインライン化するための API が登場
+
+> 原題: *There's now an API for mainlining Trump's Truth Social posts*
+
+#### 📝 記事の日本語要約
+
+API は、「最高ランクの Truth Social アカウント」からの投稿を配信することになっています。' リンクからの購入に対して手数料を受け取る場合があります。ソーシャルメディアプラットフォームTruth Socialを運営するトランプ・メディア・アンド・テクノロジー・グループは、新しいAPIを通じてTruth Social投稿へのアクセスを販売すると発表した。新しい Truth API が 8 月 1 日に利用可能になると、企業は「最高ランクの Truth Social アカウントからの投稿へのリアルタイム アクセス」が可能になります。これは、ドナルド トランプ大統領のお気に入りのソーシャル メディア サイトから、彼の投稿に基づいて投資を行おうとしている人への直接のパイプです。
+
+#### 🇺🇸 English Summary
+
+The API is supposed to deliver posts from 'the highest-ranking Truth Social accounts.' We may receive a commission on purchases made from links.Trump Media and Technology Group, the company behind social media platform Truth Social, has announced it will sell access to Truth Social posts through a new API.
+
+🔗 [元記事を読む](https://www.engadget.com/2217943/there-s-now-an-api-for-mainlining-trump-s-truth-social-posts/)
+
+---
+
+## 記事 27  ｜  TechCrunch
+
+### 「私を録画しないでください」というZoomハック
+
+> 原題: *The Zoom hack that says, 'Don't record me'*
+
+#### 📝 記事の日本語要約
+
+AI文字起こしアプリの台頭に関するウォール・ストリート・ジャーナルの新しい記事によると、ベンチャーキャピタルのジェレミー・レバイン氏は、日常的にイライラしていることに対する皮肉な解決策を持っているという。Zoom上では、彼はもはや「ジェレミー・レヴィン」ではなく、「ジェレミー・レヴィン。文字起こしや録音には同意しません。」 見方によっては些細なことのように聞こえるかもしれないし、素晴らしいことのように聞こえるかもしれないが、明らかなことは、AIメモアプリやデバイスの成長のおかげで、常時録音がユビキタスになりつつあるということであり、その多くはここTechCrunchでも取り上げてきた（いくつかはランク付けもした）。ベンチャーキャピタルのエリック・バーン氏は、電話が会議テーブルの上を滑るのを見る前から、創業者たちとのミーティングは録音されるだろうと自動的に思い込んでいると同メディアに語った。
+
+#### 🇺🇸 English Summary
+
+VC Jeremy Levine has a wry solution to something that routinely annoys him, according to a new Wall Street Journal article on the rise of AI transcription apps.On Zoom, he is no longer “Jeremy Levine” but instead “Jeremy Levine I do not consent to transcribing or recording.
+
+#### 🏢 企業解説リンク
+
+- [TechCrunch](companies/techcrunch.html)
+
+🔗 [元記事を読む](https://techcrunch.com/2026/07/17/the-zoom-hack-that-says-dont-record-me/)
+
+---
+
+## 記事 28  ｜  The Verge
+
+### Pebble の創設者 Eric Migicovsky 氏は、30 日間の保証は信頼がすべてであると述べています
+
+> 原題: *Pebble founder Eric Migicovsky says his 30-day warranty is all about trust*
+
+#### 📝 記事の日本語要約
+
+このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。 Pebble は DIY 修理用の部品の提供も「検討」しています。
+
+#### 🇺🇸 English Summary
+
+Posts from this topic will be added to your daily email digest and your homepage feed. ﻿Pebble is also ‘looking into’ offering parts for DIY repairs.
+
+🔗 [元記事を読む](https://www.theverge.com/gadgets/967471/pebble-smartwatch-warranty-repairs-migicovsky-interview)
+
+---
+
+
+> ⚠️ 本まとめは自動生成です。数値・固有名詞などの事実は元記事でご確認ください。
