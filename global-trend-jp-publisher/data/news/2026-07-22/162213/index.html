@@ -1,0 +1,1203 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>海外テックニュース日本語まとめ</title>
+    <style>
+        :root {
+            color-scheme: dark;
+            --bg: #0a0f1d;
+            --panel: rgba(13, 20, 36, 0.92);
+            --line: rgba(132, 152, 187, 0.25);
+            --text: #eef3ff;
+            --muted: #adc1dd;
+            --accent: #7dd3fc;
+            --accent-strong: #38bdf8;
+            --shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: "Hiragino Sans", "Noto Sans JP", sans-serif;
+            background:
+                radial-gradient(circle at top right, rgba(56, 189, 248, 0.22), transparent 26%),
+                radial-gradient(circle at top left, rgba(16, 185, 129, 0.16), transparent 20%),
+                linear-gradient(180deg, #07101f 0%, #0b1327 48%, #0a0f1d 100%);
+            color: var(--text);
+        }
+
+        .page-shell {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 24px;
+        }
+
+        .hero {
+            padding: 28px;
+            border: 1px solid var(--line);
+            border-radius: 28px;
+            background: linear-gradient(145deg, rgba(18, 27, 48, 0.96), rgba(10, 17, 32, 0.96));
+            box-shadow: var(--shadow);
+        }
+
+        .hero-nav {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 28px;
+        }
+
+        .nav-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 42px;
+            padding: 0 16px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        .eyebrow {
+            margin: 0 0 10px;
+            color: var(--accent);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            font-size: 0.78rem;
+        }
+
+        .hero h1 {
+            margin: 0;
+            font-size: clamp(2rem, 3vw, 3.3rem);
+            line-height: 1.1;
+        }
+
+        .timestamp,
+        .description {
+            color: var(--muted);
+        }
+
+        .control-panel {
+            margin: 20px 0 28px;
+            padding: 22px;
+            border: 1px solid var(--line);
+            border-radius: 24px;
+            background: var(--panel);
+            backdrop-filter: blur(12px);
+        }
+
+        .control-header {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            align-items: end;
+            flex-wrap: wrap;
+        }
+
+        .control-header h2 {
+            margin: 0 0 6px;
+        }
+
+        .control-header p {
+            margin: 0;
+            color: var(--muted);
+        }
+
+        #search-input {
+            width: min(100%, 360px);
+            min-height: 46px;
+            padding: 0 14px;
+            border-radius: 14px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
+        }
+
+        .category-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 16px;
+        }
+
+        .category-btn {
+            min-height: 42px;
+            padding: 0 14px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
+            cursor: pointer;
+        }
+
+        .category-btn.active {
+            background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+            color: #06111f;
+            border-color: transparent;
+            font-weight: 700;
+        }
+
+        .article-list {
+            display: grid;
+            gap: 18px;
+        }
+
+        .article-card {
+            padding: 24px;
+            border-radius: 24px;
+            border: 1px solid var(--line);
+            background: linear-gradient(180deg, rgba(12, 18, 34, 0.96), rgba(14, 22, 39, 0.9));
+            box-shadow: var(--shadow);
+        }
+
+        .card-topline {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+
+        .category-chip,
+        .source-chip {
+            display: inline-flex;
+            align-items: center;
+            min-height: 34px;
+            padding: 0 12px;
+            border-radius: 999px;
+            font-size: 0.92rem;
+            font-weight: 700;
+        }
+
+        .source-chip {
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--muted);
+        }
+
+        .article-title {
+            margin: 0 0 10px;
+            font-size: clamp(1.45rem, 2vw, 2rem);
+            line-height: 1.35;
+        }
+
+        .article-original-title {
+            margin: 0 0 18px;
+            color: var(--muted);
+        }
+
+        .security-alert {
+            margin: 0 0 14px;
+            padding: 10px 14px;
+            border-radius: 12px;
+            border: 1px solid rgba(248, 113, 113, 0.4);
+            background: rgba(248, 113, 113, 0.12);
+            color: #fecaca;
+            font-weight: 700;
+            font-size: 0.92rem;
+        }
+
+        .article-section {
+            margin-top: 18px;
+            padding-top: 18px;
+            border-top: 1px solid var(--line);
+        }
+
+        .article-section h3 {
+            margin: 0 0 12px;
+            font-size: 1rem;
+            color: var(--accent);
+        }
+
+        .article-paragraph {
+            margin: 0 0 14px;
+            color: #dce7f8;
+            line-height: 1.9;
+            font-size: 1rem;
+        }
+
+        .company-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .company-link,
+        .action-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 42px;
+            padding: 0 14px;
+            border-radius: 14px;
+            text-decoration: none;
+            border: 1px solid rgba(125, 211, 252, 0.3);
+        }
+
+        .company-link {
+            color: var(--accent);
+            background: rgba(56, 189, 248, 0.08);
+        }
+
+        .article-actions {
+            margin-top: 22px;
+        }
+
+        .footer {
+            padding: 28px 8px 40px;
+            color: var(--muted);
+            text-align: center;
+        }
+
+        .footer p {
+            margin: 6px 0;
+        }
+
+        .action-link.primary {
+            color: #06111f;
+            font-weight: 700;
+            background: linear-gradient(135deg, #7dd3fc, #22d3ee);
+            border-color: transparent;
+        }
+
+        @media (max-width: 720px) {
+            .page-shell {
+                padding: 14px;
+            }
+
+            .hero,
+            .control-panel,
+            .article-card {
+                padding: 18px;
+                border-radius: 20px;
+            }
+
+            .control-header {
+                align-items: stretch;
+            }
+
+            #search-input {
+                width: 100%;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="page-shell">
+        <header class="hero">
+            <div class="hero-nav">
+                <a class="nav-link" href="../../index.html">HOME</a>
+                <a class="nav-link" href="../index.html">この日の記事一覧</a>
+            </div>
+            <div class="hero-copy">
+                <p class="eyebrow">Global Tech News Digest</p>
+                <h1>海外テックニュース 日本語まとめ</h1>
+                <p class="timestamp">2026年7月22日 16:22 JST に収集した記事を掲載しています。</p>
+                <p class="description">各カードには本文寄りの日本語訳を掲載し、記事中で触れた企業は別ページの解説リンクとして分離しています。</p>
+            </div>
+        </header>
+
+        <section class="control-panel">
+            <div class="control-header">
+                <div>
+                    <h2>記事を探す</h2>
+                    <p>カテゴリとキーワードで一覧を絞り込めます。</p>
+                </div>
+                <input type="text" id="search-input" placeholder="タイトル・本文・媒体名で検索">
+            </div>
+            <div class="category-buttons">
+                <button class="category-btn active" data-category="all">すべて (30)</button>
+<button class="category-btn" data-category="AI/ML" style="--accent:#10b981">🤖 AI/ML (23)</button>
+<button class="category-btn" data-category="Hardware" style="--accent:#06b6d4">⚙️ Hardware (2)</button>
+<button class="category-btn" data-category="Mobile" style="--accent:#6366f1">📱 Mobile (1)</button>
+<button class="category-btn" data-category="Security" style="--accent:#f97316">🔒 Security (1)</button>
+<button class="category-btn" data-category="Startups" style="--accent:#8b5cf6">🚀 Startups (3)</button>
+            </div>
+        </section>
+
+        <main class="article-list" id="articles-container">
+            <article class="article-card" data-category="AI/ML" data-index="1">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">OpenAIのAI支出額は7,500億ドルに膨れ上がった</h2>
+    <p class="article-original-title">原題: <em>OpenAI&#x27;s AI spending spree has ballooned to $750B</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">OpenAIは水曜日、2030年までにインフラストラクチャに7,500億ドルを費やすと発表したが、これは今年初めの予想よりも約25％多いとウォール・ストリート・ジャーナル紙は報じた。同社のスターゲイト・データセンター・プロジェクトが停滞しているように見える中で、新たな電撃が起きたという。OpenAIの莫大な支出の最初の一斉攻撃は、プロジェクト・カメリアとして知られるジョージア州の200億ドルのデータセンター・キャンパスとなるだろう。この開発はサバンナ北西の1,400エーカーに及び、この地域の電力会社であるジョージアパワーから少なくとも3.2ギガワットの電力を利用する予定だ。発電能力は2028年から2032年の間に利用可能になる予定だ。AI企業は、新しいデータセンターの「インフラストラクチャと電気サービスの費用を全額支払う」と述べた。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">OpenAI announced Wednesday that it will spend $750 billion on infrastructure through 2030, some 25% more than it estimated earlier this year, The Wall Street Journal reported The renewed blitz comes as its Stargate data center project appears to have stalled .The first salvo in OpenAI’s spending spree will be a $20 billion data center campus in Georgia known as Project Camellia.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/openai.html" target="_blank" rel="noopener noreferrer" class="company-link">OpenAI の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/07/22/openais-ai-spending-spree-has-ballooned-to-750b/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="2">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Galaxy Z Fold 8 と Z Flip 8 スマートフォンの比較</h2>
+    <p class="article-original-title">原題: <em>How the Galaxy Z Fold 8 and Z Flip 8 phones compare</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。驚くべきことはそれほど多くありませんが、どこを見るべきかを知っていれば、歓迎すべき改善点がいくつかあります。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. Not many surprises, but some welcome improvements if you know where to look.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/gadgets/968682/samsung-galaxy-z-fold-flip-8-specs-features-hardware-comparison" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="3">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Samsung の 3 つの非常に異なる新しい Galaxy Z 折りたたみ式スマートフォンを紹介します</h2>
+    <p class="article-original-title">原題: <em>Meet Samsung’s 3 Very Different New Galaxy Z Foldable Phones</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">サムスンは折りたたみ式デバイスを着実に改良してきましたが、8回目の年次アップデートには、長い間噂されていたワイドフォームファクターを備えた新しい顔、Z Fold8が含まれています。昨年の Fold7 の後継であるフラッグシップ Z Fold8 Ultra と、Flip7 の後継である小型の Flip8 の間に位置します。この新参者は気まずい中間子なのか、それともサムスンの折り畳まれた家族を結びつける接着剤なのか？サムスンには、Galaxy Watch Ultra2 と Watch9 という新しいスマートウォッチもいくつかあります。新しい携帯電話は予約注文可能ですが、購入する前に、サムスンのどの折りたたみ式携帯電話を購入するかを決定するために詳細を調べてみましょう。情報に基づいた選択ができるように、主な違いと類似点を詳しく説明します。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Samsung has steadily improved its foldables , but the eighth annual update includes a fresh face, the Z Fold8 , which features the long-rumored wide form factor.It slots in between the flagship Z Fold8 Ultra, which is the successor to last year’s Fold7 , and the smaller Flip8, which succeeds the Flip7.Is the newcomer an awkward middle child or the glue that holds Samsung&#x27;s folding family together?</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/story/which-samsung-galaxy-z-fold8-to-buy/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Mobile" data-index="4">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#6366f1">📱 Mobile</span>
+        <span class="source-chip">Ars Technica - All content</span>
+    </div>
+
+    
+
+    <h2 class="article-title">光子を半分に切り刻もうとすると何が起こるでしょうか?</h2>
+    <p class="article-original-title">原題: <em>What happens when you try to chop a photon in half?</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">光子の中間で移動するミラーは、新しい光子のシャワーを放出する可能性があります。フォトンは単一の光の粒子であり、通常の状況下では分割することはできません。しかし、光子は特定の位置を持たないという意味で粒子でもありません。代わりに、これは拡張オブジェクトです。では、光子が完全な鏡から反射する過程の途中で、鏡を引き離したら、何が起こるでしょうか?ノルウェーの物理学者 3 人による答えは、私が予想していたよりも複雑であることが判明しました (arxiv.org link)。まず、フォトンの分割と結合について簡単に説明しましょう。これが私たちの生活の中でよくある経験だとしたら、単一色の光をガラスを通して照らしたり、表面から反射したりすると、光子が分裂したり結合したりする可能性があります。これは、につながります。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">A mirror that moves mid-photon could release a shower of new photons.A photon is a single particle of light, and under normal circumstances, it can’t be divided.But a photon is also not a particle, in the sense that it does not have a specific location.Instead, it is an extended object.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/science/2026/07/what-happens-when-you-try-to-chop-a-photon-in-half/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="5">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">ダウンロード: NASA の新しい宇宙望遠鏡と OpenAI の自律型ハッカー</h2>
+    <p class="article-original-title">原題: <em>The Download: NASA’s new space telescope and OpenAI’s autonomous hacker</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">さらに: フランスは、15 歳未満に対するソーシャルメディアを禁止した最初の EU 加盟国となりました。これは、テクノロジーの世界で何が起こっているかを毎日提供する平日のニュースレター、 The Download の本日版です。 NASAのナンシー・グレース・ローマン宇宙望遠鏡が早ければ来月末に打ち上げられると、これまでの天文学で最も正確な消滅行為の1つが試みられることになる。これは、撮影中に星からの光の大部分を効果的に消去する機器である、初の宇宙限定の「アクティブ」コロナグラフを搭載する予定です。この技術により、天文学者は、太陽系にあるものと同様の他の恒星を周回する惑星の最初の写真を撮影できるようになります。最終的には、地球に似た世界の最初の写真を撮影できる将来のミッションへの道を開く可能性がある。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Plus: France has become the first EU country to ban social media for under-15s.This is today&#x27;s edition of The Download , our weekday newsletter that provides a daily dose of what&#x27;s going on in the world of technology.When NASA’s Nancy Grace Roman Space Telescope launches, as early as the end of next month, it will attempt one of astronomy’s most precise disappearing acts to date.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/openai.html" target="_blank" rel="noopener noreferrer" class="company-link">OpenAI の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/07/22/1140717/the-download-nasa-space-telescope-openai-hugging-face-hack/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="6">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">VentureBeat</span>
+    </div>
+
+    
+
+    <h2 class="article-title">OpenAI、企業がリアルタイムの音声エージェントとチャットボットを起動および管理できる新しいプラットフォームである Presence を発表</h2>
+    <p class="article-original-title">原題: <em>OpenAI unveils Presence, a new platform that lets enterprises launch and manage realtime voice agents and chatbots</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">OpenAI は、顧客対応および社内のビジネス ワークフロー全体に AI エージェントを展開および管理するための新しいエンタープライズ製品である Presence を発表しました。このサービスは、会社が定義したポリシー、権限、評価基準に基づいて業務を行いながら、エージェントが質問に答え、会社のシステムにアクセスし、承認されたアクションを実行し、人間の従業員にエスカレーションすることを希望する適格な企業顧客向けに設計されています。面前。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">OpenAI has announced Presence , a new enterprise product for deploying and managing AI agents across customer-facing and internal business workflows.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/openai.html" target="_blank" rel="noopener noreferrer" class="company-link">OpenAI の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://venturebeat.com/orchestration/openai-unveils-presence-a-new-platform-that-lets-enterprises-launch-and-manage-realtime-voice-agents-and-chatbots" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="7">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">ニルヴァーナ・ザ・バンドのショーと映画がついに 7 月 24 日に Hulu でストリーミング配信されるようになります</h2>
+    <p class="article-original-title">原題: <em>Nirvanna the Band the Show and Movie will finally be available to stream via Hulu on July 24</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">最近の映画は大ヒットしましたが、このシリーズはどこでも視聴できませんでした。コメディファンはおそらく今週末は参加しないほうがいいでしょう。カルト的ヒット作「ニルヴァーナ ザ バンド ザ ショー ザ ムービー」が 7 月 24 日から Hulu でストリーミング配信されるようになります。以前はレンタルまたは購入可能でしたが、この経済状況で誰がそのお金を持っているでしょうか?それだけではありません。Hulu は、映画「ニルヴァーナ ザ バンド ザ ショー」のインスピレーションとなった番組の新しい本拠地でもあります。2017 年っぽい番組の両方のシーズンが同じ日にストリーミング開始されますが、これはかなり大きなことです。というのも、ここ数年はストリーミング配信ができていないからだ。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">The recent film was a big hit, but the series wasn&#x27;t available to watch anywhere.Comedy fans should probably block off this upcoming weekend.The cult hit Nirvanna the Band the Show the Movie will be available to stream via Hulu starting on July 24.It had previously been available to rent or purchase, but who has the money for that in this economy?That&#x27;s not all.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2220821/nirvanna-the-band-the-show-and-movie-stream-on-hulu/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Security" data-index="8">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#f97316">🔒 Security</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    <p class="security-alert">🔒 セキュリティエンジニア向け重要記事 — キーワードベースの分類でセキュリティ関連と判定されました（Grok未設定のためフォールバック）</p>
+
+    <h2 class="article-title">ハッカーに身代金を支払えば、彼らはさらに多くの金を求めて戻ってくる可能性が高い</h2>
+    <p class="article-original-title">原題: <em>If you pay a hacker&#x27;s ransom, chances are that they&#x27;ll come back for more</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">政府は長年、ハッカーの身代金要求に応じないよう警告しており、そうすれば犯罪者がサイバー攻撃で利益を得て次の攻撃に資金を提供できるだけだと主張している。もう 1 つの理由があります。一度支払った場合、ハッカーがあなたを放っておく可能性は低く、多くのハッカーが戻ってきて追加料金を要求するからです。サイバーセキュリティ大手プルーフポイントは水曜日に発表した報告書で、953社を調査した結果、ハッカーに身代金を支払った企業の3分の1以上が二度目の恐喝要求に見舞われていることが判明したと発表した。この調査結果は、相手側が実際に立ち去るインセンティブがないため、恐喝相手と誠意を持って交渉することは不可能であるというセキュリティ研究者やネットワーク防御者の間での長年の理解を強調している。 Proofpoint のデータは、ランサムウェア攻撃を示しています。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Governments have long warned not to pay a hacker’s ransom demands, arguing that doing so only lets criminals profit from their cyberattacks and funds the next one.There’s also another reason: The hackers are unlikely to leave you alone if you pay up once, and many will come back demanding more.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/07/22/if-you-pay-a-hackers-ransom-chances-are-that-theyll-come-back-for-more/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="9">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">サムスンの新しい Z Fold と Flip 8 の予約注文には最大 350 ドルのギフトカードが付属します</h2>
+    <p class="article-original-title">原題: <em>Preorders for Samsung’s new Z Fold and Flip 8 come with up to $350 in gift cards</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。 Galaxy Z Fold 8、Fold 8 Ultra、Flip 8 は、8 月 7 日の発売に先駆けて現在予約注文が可能です。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. ﻿The Galaxy Z Fold 8, Fold 8 Ultra, and Flip 8 are now available for preorder ahead of their August 7th launch.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/gadgets/968716/samsung-galaxy-z-flip-fold-8-ultra-how-to-buy-preorder-price-release-date" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Hardware" data-index="10">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#06b6d4">⚙️ Hardware</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">サムスンが次期折りたたみスマートフォンに新しい形状を与えた理由</h2>
+    <p class="article-original-title">原題: <em>Why Samsung Gave Its Next Folding Phone a New Shape</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">「折りたたみスマートフォン」と考えれば、おそらく Samsung が思い浮かぶでしょう。同社は、2019 年に初代 Galaxy Fold を発表して以来、このカテゴリーの先頭に立ってきました。それ以来、Fold および Flip デバイスのハードウェアを改良し、より薄く、より軽く、そしてより強くなってきました。それで、次は何でしょうか？どうやら新しい形のようです。水曜日、今年2回目のGalaxy Unpackedイベントで、サムスンはGalaxy Fold8のまったく新しいデザインを発表した。これはパスポートの形をした本のような折り目で、ブランド名が変更されたGalaxy Z Fold8 UltraとコンパクトなGalaxy Z Flip8の間に位置する。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Think “folding phone,” and Samsung probably comes to mind.The company has led the charge in the category since it debuted the first Galaxy Fold in 2019.It has refined the hardware of its Fold and Flip devices ever since, making them thinner, lighter, and stronger.So what’s next?A new shape, apparently.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/story/why-samsung-gave-its-next-folding-phone-a-new-shape-galaxy-z-fold8/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="11">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Ars Technica - All content</span>
+    </div>
+
+    
+
+    <h2 class="article-title">サムスン、新しい Galaxy Z8 折りたたみ式モデルと Galaxy Watch を発表、8 月 7 日に発売</h2>
+    <p class="article-original-title">原題: <em>Samsung unveils new Galaxy Z8 foldables and Galaxy Watches, available August 7</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">サムスンの新しい折りたたみ式デバイスは、よりスリムで高速で、より高価です。噂はあまり想像の余地がありませんが、サムスンは本日、2026年の折りたたみ式ラインナップを発表しました。Samsung の第 8 世代折りたたみ式ファミリーには、最上位の Z Fold 8 Ultra を含む 3 つのモデルが初めて登場します。この携帯電話は昨年発売された Galaxy Z Fold 7 の後継機種ですが、Z Fold 8 は新しく、マルチタスクよりもメディア向けに設計された同社初のワイドボディの折りたたみ式携帯電話です。そして、新しくて薄い折りたたみ式携帯電話と、スマートウォッチが 2 つあります。サムスンの新しいハードウェアは今日から予約注文できますが、コンポーネント不足により、すでに高価なこれらの製品ラインは今年さらに高価になっています。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Samsung’s new foldables are slimmer, faster, and more expensive.The rumors haven’t left much to the imagination, but Samsung has unfurled its 2026 foldable lineup today.There are three models for the first time in Samsung’s eight-gen foldable family, including the top-of-the-line Z Fold 8 Ultra.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/gadgets/2026/07/samsung-unveils-new-galaxy-z8-foldables-and-galaxy-watches-available-august-7/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Startups" data-index="12">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#8b5cf6">🚀 Startups</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">NASAの新しい宇宙望遠鏡の形状変化ミラーは、私たちの木星と同じように姿を現す可能性がある</h2>
+    <p class="article-original-title">原題: <em>Shape-shifting mirrors on NASA’s new space telescope could unveil Jupiters like our own</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">ナンシー・グレース・ローマン宇宙望遠鏡は、不要な星の光を遮断するために「アクティブコロナグラフ」を使用する最初の宇宙望遠鏡になります。 NASAのナンシー・グレース・ローマン宇宙望遠鏡が早ければ来月末に打ち上げられると、これまでの天文学で最も正確な消滅行為の1つが試みられることになる。この望遠鏡には、初の宇宙限定「アクティブ」コロナグラフが搭載されます。これは、撮影中に星からの光の大部分を効果的に消去する装置です。これにより、天文学者は、太陽系にあるものと同様の他の恒星を周回する惑星の最初の写真を撮影できるようになります。最終的には、地球に似た世界の最初の写真を撮影できる将来のミッションへの道を開く可能性がある。 「地球 2.0 を発見するための重要な足がかりとして、記憶に残ることを願っています」とBrは言う。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">The Nancy Grace Roman Space Telescope will be the first space telescope to use an “active coronagraph” to block out unwanted starlight.When NASA’s Nancy Grace Roman Space Telescope launches, as early as the end of next month, it will attempt one of astronomy’s most precise disappearing acts to date.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/07/22/1140701/shape-shifting-mirrors-roman-space-telescope/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="13">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">VentureBeat</span>
+    </div>
+
+    
+
+    <h2 class="article-title">OpenAI のモデルが封じ込めを突破し、サイバー攻撃を受けた「Hugging Face」 - 企業が知っておくべきこと</h2>
+    <p class="article-original-title">原題: <em>OpenAI&#x27;s models broke containment and cyberattacked Hugging Face — what enterprises need to know</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">昨日の午後、OpenAI と Hugging Face は、エンタープライズ テクノロジーの脅威の状況を再定義するサイバーセキュリティ イベントの概要を示す共同開示情報を発表しました。内部ベンチマーク評価中に、GPT-5 を含む OpenAI によって開発されたフロンティア人工知能モデル。 6 Sol と未リリースの高機能プレリリース モデルは、サンドボックス化された研究環境である obta から抜け出しました。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Yesterday afternoon, OpenAI and Hugging Face published a joint disclosure outlining a cybersecurity event that redefines the threat landscape for enterprise technology.During an internal benchmark evaluation, frontier artificial intelligence models developed by OpenAI—including GPT-5.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/openai.html" target="_blank" rel="noopener noreferrer" class="company-link">OpenAI の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://venturebeat.com/security/openais-models-broke-containment-and-cyberattacked-hugging-face-what-enterprises-need-to-know" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="14">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">サラウンド サウンド スピーカーのチャンネル番号の説明: 大きいほど良いとは限りません</h2>
+    <p class="article-original-title">原題: <em>Surround sound speaker channel numbers explained: Bigger isn&#x27;t always better</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">ホームシアターシステムを構築する際に注意すべき点は次のとおりです。ホームシアターセットアップの購入を検討していますか?次に、サラウンド サウンド チャンネル番号が何を意味するのか疑問に思うかもしれません。ほとんどのシステムは、X.Y または X.Y.Z 表記に分類されます。通常、最初の数字は常に耳の高さのスピーカーに関係し、2 番目の数字はサブウーファーの有無に関係し、オプションの 3 番目の数字は、超豪華な Dolby Atmos システムで時々見られる特定のタイプのスピーカーです。ホーム シアターのセットアップをアップグレードするために最高の機器を購入する前に、サラウンド サウンド チャンネル番号をよく理解してください。また、部屋の広さと予算に応じて、実際に必要なスピーカーの数も検討する必要があります。これについては後ほど説明します。これは非常に単純な e です。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Here&#x27;s what to pay attention to when building a home theater system.Are you considering buying a home theater setup?Then you might be wondering what surround sound channel numbers mean.Most systems are either broken down into an X.Y or X.Y.Z notation.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2219808/speaker-channel-number-explained/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Startups" data-index="15">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#8b5cf6">🚀 Startups</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Cascade は建設会社のプロジェクト発見と獲得を支援するために 350 万ドルを調達</h2>
+    <p class="article-original-title">原題: <em>Cascade raises $3.5M to help construction firms find and win projects</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Cascade は、建築、エンジニアリング、建設会社がプロジェクトを見つけて獲得できるように支援するプラットフォームを構築するスタートアップで、3 ドルを調達しました。Andreessen Horowitz Speedrun、Ada Ventures、Snowball VC からの 500 万シードラウンド。2025 年に設立された Cascade は、その創設者である Hannia Zia と Joana Ferreira が、予測どおりに工事を確保するという建設業界が直面する困難を目の当たりにして誕生しました。「母は建設会社に資材を販売する会社で働いていて、叔父は中東に大邸宅を建てていました。彼らはその技術においては素晴らしいのですが、より多くの仕事を得るために適切なツールにアクセスできません」とフェレイラ氏はTechCrunchに語った。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Cascade , a startup building a platform to help architecture, engineering, and construction firms find and win projects, has raised a $3.5 million seed round from Andreessen Horowitz Speedrun, Ada Ventures, and Snowball VC.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/techcrunch.html" target="_blank" rel="noopener noreferrer" class="company-link">TechCrunch の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/07/22/cascade-raises-3-5m-to-help-construction-firms-find-and-win-projects/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="16">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">フィリップスの新しいスマート歯ブラシは、正しく磨いていない場所を示します</h2>
+    <p class="article-original-title">原題: <em>Philips’ new smart toothbrush shows you where you didn’t properly brush</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。 この歯ブラシは AI を使用してその動きを追跡し、やり直しが必要な可能性のある口の領域を提案します。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. ﻿The toothbrush uses AI to track its movements and suggest areas of your mouth that may need a do-over.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/tech/969271/philip-sonicare-next-generation-diamondclean-9900-prestige-ai-electric-toothbrush" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="17">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">最後に、興奮する価値のあるファンについて</h2>
+    <p class="article-original-title">原題: <em>Finally, Some Fans Worth Getting Excited About</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">新しいファンが必要ないと思われる場合は、考え直した方がよいかもしれません。たとえ 25 年間持ち歩いていた埃っぽい古い台座ファンがまだ動いているとしても、最新のファンは単に空気を送り込む以上のことができます。これらは、これまでよりも賢く、静かで、はるかに多用途であり、5 年前でさえ SF のように見えたであろう新しいテクノロジー機能を備えています。たとえば、Dreo TurboPoly 707S には、室内のどこに人がいるかを追跡し、動き回るときに気流の方向を変えることができるレーダーが搭載されています。一方、同社の 508S モデルは、1,000 色以上のムード照明を提供できます。羽根のない扇風機、フィットネス専用の扇風機、冷凍技術を応用した金属プレートで肌を霧吹きしたり冷却したりできる扇風機などがあります。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">If you don’t think you need a new fan, you might want to reconsider.Even if the dusty old pedestal fan you&#x27;ve been carting around for 25 years is still kicking, modern fans can do a lot more than just blow air.They&#x27;re smarter, quieter, and far more versatile than they&#x27;ve ever been, with new tech features that would have seemed like science fiction even five years ago.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/story/the-best-fans-2026/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="18">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Ars Technica - All content</span>
+    </div>
+
+    
+
+    <h2 class="article-title">米軍が供給を使い果たしているため、無制限の AI トークンは結局のところ無制限ではない</h2>
+    <p class="article-original-title">原題: <em>Unlimited AI tokens aren&#x27;t unlimited after all as US Army burns through supply</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">部隊はAIトークンが急速に枯渇していることを知らせる電子メールを受け取った。国防総省 (DOD) が、従業員 350 万人のほぼ半数が職場で AI を使用していると豪語してから 1 か月あまり後、陸軍戦闘能力開発司令部 (DEVCOM) のメンバーは、トークンが使い果たされており、使用を制限する必要があることを知らせる電子メールを受け取りました。 「陸軍CIOは2026年5月に無制限のトークンを提供すると発表したが、6月中旬までに陸軍CIOプールはトークンを使い果たし、制限を再設定する必要があった」と電子メールには書かれている。この電子メールは続けて、陸軍はトークンの使用を「現在のレベル」で更新することを選択したが、「陸軍のCIOプールが10月1日以降に更新されるかどうか」は不明であると述べている。陸軍はマルチモーダルな属であるAsk Sageを使用している。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Troops received an email informing them that they were rapidly depleting their AI tokens.A little over a month after the Department of Defense (DOD) bragged that nearly half of its 3.5 million employees were using AI at work, members of the Army’s Combat Capabilities Development Command (DEVCOM) received an email informing them that they were burning through tokens, and needed to limit use.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/ai/2026/07/us-army-faces-ai-use-limits-after-exhausting-years-supply-of-ai-tokens/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="19">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">ダウンロード: 中国の AI がホワイトハウスを二分し、記録的な著作権料が支払われる</h2>
+    <p class="article-original-title">原題: <em>The Download: Chinese AI divides the White House, and a record copyright payout</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">さらに: Anthropic の記録となる 1 ドル。 50億の著作権和解が承認された。これは、テクノロジーの世界で何が起こっているかを毎日提供する平日のニュースレター、 The Download の本日版です。先週末、AIに関するドナルド・トランプ大統領の現および元顧問数名が、国内の大手AI企業に対して公に侮辱の言葉を投げかけた。デビッド・サックス氏はアンスロピック社のモデルを「ロボトミー化」し「覚醒した」と決めつけ、国防総省幹部のエミール・マイケル氏は、オープンAIの新戦略未来責任者を「最高の村バカ」と呼んだ。この事態は、中国のAI企業ムーンショットが先週立ち上げた無料のオープンソースモデル「キミ」についてどうするかについて誰も合意できないことから始まった。これは、まったく無料ではない OpenAI や Anthropic のモデルの知能に匹敵するようです。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Plus: Anthropic&#x27;s record $1.5 billion copyright settlement has been approved.This is today&#x27;s edition of The Download , our weekday newsletter that provides a daily dose of what&#x27;s going on in the world of technology.Last weekend, several current and former advisers to President Donald Trump on AI publicly lobbed insults at the country’s leading AI companies.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/openai.html" target="_blank" rel="noopener noreferrer" class="company-link">OpenAI の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/07/21/1140685/the-download-chinese-ai-divides-white-house-anthropic-copyright-settlement/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="20">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">VentureBeat</span>
+    </div>
+
+    
+
+    <h2 class="article-title">プールサイドが、競合他社を 10 倍上回るオープンウェイトコーディングモデルである Laguna S 2.1 を発表</h2>
+    <p class="article-original-title">原題: <em>Poolside drops Laguna S 2.1, an open-weight coding model that beats rivals 10x its size</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">サンフランシスコの AI 研究所である Poolside は、その 3 年間の存続期間のほとんどを政府や防衛機関へのコーディング モデルのひっそり販売に費やし、火曜日にこれまでで最も有能なモデルをリリースしました。そして、小規模な研究所が最前線で競争する方法は、生の規模ではなく抜本的な透明性であるという、異常に積極的な賭けをしました。モデル Laguna S 2. 1 は 1,180 億パラメータ&lt;a href=&quot;http. .</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Poolside , the San Francisco AI lab that has spent most of its three-year existence quietly selling coding models to governments and defense agencies, released its most capable model to date on Tuesday — and made an unusually aggressive bet that radical transparency, not raw scale, is how a smaller lab competes at the frontier. The model, Laguna S 2. 1 , is a 118-billion-parameter&lt;a href=&quot;http. .</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://venturebeat.com/infrastructure/poolside-drops-laguna-s-2-1-an-open-weight-coding-model-that-beats-rivals-10x-its-size" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="21">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Samsung Galaxy Z Flip 8 と Motorola Razr Ultra: どちらを買うのが良いでしょうか?</h2>
+    <p class="article-original-title">原題: <em>Samsung Galaxy Z Flip 8 vs. Motorola Razr Ultra: Which is the better buy?</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">市場で最も注目されている 2 つの折りたたみ式携帯電話から選択する方法。ノスタルジックな気分になり、どうしても折りたたみ式携帯電話を手に入れる必要がある場合は、最近ではかなりの数の選択肢があるため、幸運です。さらに嬉しいのは、市場で最も高性能な折りたたみ式携帯電話のうち 2 台が、数週間以内に相次いで下落したということです。Samsung Galaxy Z Flip 8は、2026年7月22日にGalaxy Unpackedに1,200ドルで登場し、Motorola Razr Ultraは5月から1,500ドルで販売されています。これらの携帯電話には多くの類似点が見られましたが、多くの違いもあるので、どちらがお金を払う価値があるかを判断しましょう。正直に言うと、画面は私たちのほとんどがかなり気にしているものです。結局のところ、あなたは毎日見つめることになります。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">How to choose between two of the most notable flip phones on the market.If nostalgia hits and you just absolutely need to get a flip phone, you&#x27;re in luck because there are quite a few options these days.Even better, two of the most capable flip phones on the market just dropped within weeks of each other.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2220645/samsung-galaxy-z-flip-8-vs-motorola-razr-ultra-comparison/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="22">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">ブラウザ戦争はもはや検索に関するものではありません - Chrome と Safari に代わる最良のブラウザは次のとおりです</h2>
+    <p class="article-original-title">原題: <em>The browser wars aren&#x27;t about search anymore — here are the best alternatives to Chrome and Safari</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">今年、ブラウザ戦争は新たな段階に入った。戦いはもはや検索結果だけを巡るものではなく、ブラウザ内でユーザーに代わってどの企業の AI が機能するかが争点となっている。Google Chrome と Apple の Safari は依然として市場全体を支配しており、Chrome の優位性は主に検索に生成 AI を積極的に組み込んでいることに由来しています。しかし、2026 年には、資金豊富な新興企業からビッグテックまで、新規参入者の波が押し寄せてきました。彼らは皆、ブラウザーがウェブ上の窓ではなく、ユーザーに代わって何かを行うアシスタントのようなものになるだろうと賭けています。Chrome や Safari の代替手段を探しているユーザーは、業界の巨人に対抗することを目的とした、ますます多様化するブラウザから選択できます。競争環境を乗り切るために、いくつかのトップアルの概要をまとめました。。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">The browser wars have entered a new phase this year: The fight isn’t just over search results anymore — it’s over which company’s AI gets to act on your behalf inside the browser.Google Chrome and Apple’s Safari still dominate the market overall, with Chrome’s edge coming largely from how aggressively it has woven generative AI into search.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/apple.html" target="_blank" rel="noopener noreferrer" class="company-link">Apple の解説</a> <a href="companies/google.html" target="_blank" rel="noopener noreferrer" class="company-link">Google の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/07/22/as-the-browser-wars-heat-up-here-are-the-hottest-alternatives-to-chrome-and-safari-in-2026/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="23">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">マイクロソフトはオリジナルの Xbox ゲームを PC に提供します</h2>
+    <p class="article-original-title">原題: <em>Microsoft is bringing original Xbox games to PC</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。 PC 向けの Xbox 下位互換性により、クラシック Xbox コンソール ゲームを Windows 上で正式に実行できます。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. Xbox backward compatibility for PC allows classic Xbox console games to officially run on Windows.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/microsoft.html" target="_blank" rel="noopener noreferrer" class="company-link">Microsoft の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/news/969117/microsoft-xbox-games-pc-backward-compatibility" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Hardware" data-index="24">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#06b6d4">⚙️ Hardware</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">目標に適した Fitbit を選ぶ方法</h2>
+    <p class="article-original-title">原題: <em>How to Pick the Right Fitbit for Your Goals</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Google が Fitbit を正式に 2 ドルで買収してから 5 年が経ちました。10 億ドルをかけて、ハードウェアとソフトウェアのチームを買収し、Pebble から資産も吸収しました。Pebble は 2016 年に買収しました。それで、状況はどう変わりましたか?まず、Fitbit は Google Fitbit になりました。名前の変更としてはあまり想像力に富んだものではなく、消費者の記憶にも残りませんでしたが、良いニュースとしては、Fitbit デバイスが現在も入手可能なフィットネス トラッカーの中で最もユーザーフレンドリーで歓迎されているものの一部であるということです。これは、フィットネスの旅を始めたばかり、または再び始めたばかりの場合に特に当てはまります。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">It’s been five years since Google officially acquired Fitbit for a reported $2.1 billion, grabbing hardware and software teams that also absorbed assets from Pebble, which Fitbit itself acquired in 2016.So, how have things changed?Well, for starters, Fitbit is now Google Fitbit.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/google.html" target="_blank" rel="noopener noreferrer" class="company-link">Google の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/story/best-fitbit/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="25">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Ars Technica - All content</span>
+    </div>
+
+    
+
+    <h2 class="article-title">ウクライナの無人機が海と空からロボットを直接戦闘に投入</h2>
+    <p class="article-original-title">原題: <em>Ukrainian drones deliver robots directly into battle by sea and air</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">ウクライナの戦場でロボットが急増し、空中投下と海岸襲撃が行われるようになった。戦場の革新に関する最新の展開として、ウクライナは飛行ドローンキャリアとドローンボートの両方を使用して、武器や爆発物で武装した地上ロボットを戦闘に送り込んだ。ドローン支援の展開により、低速の車輪付きロボットが険しい地形やロシアの防衛を迂回して、係争地で異例のロボットによる水陸両用攻撃を実行できるようになった。このような戦術は、ウクライナ軍が人的資源におけるロシア軍の優位性を相殺し、同時にウクライナ兵士の危険な攻撃を避けるためにドローンやロボットを使用する実験を続けていることも示している。 7月19日、ロシア軍の電報チャンネルは、地上ロボットsuを運ぶウクライナのヘキサコプター無人機を映すビデオを投稿した。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Ukraine’s battlefield surge of robots now features airdrops and beach assaults.In the latest twist on battlefield innovations, Ukraine has used both flying drone carriers and drone boats to send ground robots armed with weapons or explosives into battle.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/gadgets/2026/07/ukrainian-drones-deliver-robots-directly-into-battle-by-sea-and-air/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="26">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">材料科学のイノベーションで次世代 AI を推進</h2>
+    <p class="article-original-title">原題: <em>Advancing next-gen AI with materials science innovation</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">人工知能が半導体やデータセンターを新たな物理的限界に押し上げるにつれて、材料科学の進歩はイノベーションのペースを維持するために不可欠なものとなっています。 AI テクノロジーが新世代になるたびに、より多くの処理能力、より多くのメモリ、より高いエネルギー効率、より高い信頼性が求められます。コンピューティングのパフォーマンスが向上するたびに、AI を作成および実行するシステムにかかる物理的な要求も増加します。これらの利点を実現できるかどうかは、チップ設計とシステム アーキテクチャの進歩だけでなく、極限条件下での性能を可能にする材料の進歩にもかかっています。 AI が半導体やデータセンター インフラストラクチャの物理的限界を押し広げ続ける中、先端材料はもはやこの分野のイノベーションを単にサポートするだけではありません。彼らは を定義しています。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">As artificial intelligence pushes semiconductors and data centers to new physical limits, advances in materials science are becoming essential to sustaining the pace of innovation.Every new generation of AI technology demands more processing power, more memory, greater energy efficiency, and higher reliability.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/07/21/1140602/advancing-next-gen-ai-with-materials-science-innovation/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="27">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">VentureBeat</span>
+    </div>
+
+    
+
+    <h2 class="article-title">GPU の追加をやめる: Weka の新しいストレージ プラットフォームは、AI モデルの事前計算されたトークンを 100% キャッシュすることで負荷を軽減します。</h2>
+    <p class="article-original-title">原題: <em>Stop adding more GPUs: Weka&#x27;s new storage platform reduces load by caching 100% of an AI model&#x27;s pre-calculated tokens</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">GPU メモリは、実稼働 AI で最も高価なリソースであり、最も早く枯渇するリソースでもあります。長いコンテキスト ウィンドウと複数ターンの会話により、AI モデルはすでに処理した情報を繰り返し再計算する必要があり、追加のユーザーにサービスを提供したり、新しい応答を生成したりする可能性がある GPU メモリと計算を消費します。 GPU メモリを制限リソースとして扱うのではなく、はるかに安価なストレージ テクノロジで拡張してみてはいかがでしょうか? &lt;a href=&quot;https:. .</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">GPU memory is the most expensive resource in production AI, and it&#x27;s also the one running out fastest.Long context windows and multi-turn conversations force AI models to repeatedly recompute information they&#x27;ve already processed, consuming GPU memory and compute that could otherwise serve additional users or generate new responses.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://venturebeat.com/data/stop-adding-more-gpus-wekas-new-storage-platform-reduces-load-by-caching-100-of-ai-models-pre-calculated-tokens" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="28">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">USB-B が USB-A や USB-C ほど普及しなかった理由</h2>
+    <p class="article-original-title">原題: <em>Why USB-B never became as popular as USB-A or USB-C</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">なぜ、どのようにして USB-A から USB-C に直接移行したのか疑問に思っているなら、そうではありません。ほとんどの人は、USB-B コネクタとそれが数十年にわたって果たしてきた役割について単によく知りません。USBの歴史には驚かれるかもしれません。Type-A コネクタと Type-B コネクタは、独自のコネクタとポートによって生じた混乱を解消することを目的として、1996 年に同時に導入されました。もちろん、USB-A は、現在でも広く使用されている最も一般的なコネクタ タイプです。これは主にコンピュータ、古いラップトップ、充電器に見られます。言い換えれば、ホストデバイスです。一方、USB-B は、プリンターや外付けハードドライブなどの周辺機器をホストデバイスに接続するために使用するために特別に設計されました。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">If you&#x27;re wondering how and why we jumped straight from USB-A to USB-C, well, we didn&#x27;t — most people simply aren&#x27;t familiar with the USB-B connector and the role it has played for decades.The history of USB may surprise you.Both Type-A and Type-B connectors were introduced at the same time in 1996, with the goal of replacing the mess that proprietary connectors and ports had created.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2217240/usb-type-b-explained/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Startups" data-index="29">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#8b5cf6">🚀 Startups</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Passionfroot が B2B クリエイター市場を米国に拡大するために 1,500 万ドルを調達</h2>
+    <p class="article-original-title">原題: <em>Passionfroot raises $15M to expand its B2B creator marketplace to the US</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">B2Bクリエイターとブランドをつなぐマーケットプレイスを構築するドイツのスタートアップ、 Passionfroot は水曜日、Insight Partners主導のシリーズA資金調達ラウンドで1500万ドルを調達したと発表した。インサイト・パートナーズのマネージング・ディレクター、レベッカ・リュー・ドイル氏は、AI企業がより認知度を高めようとする中、クリエイターが専門化している時期にパッションフルートは適切な位置にあると述べた。「Passionfrootには、B2Bクリエイターにとって真のマーケットプレイスを保証するための完璧な力関係が双方に備わっています。需要側では、B2Bブランドが市場に参入する方法の消費者化が進んでいます。これは、部分的には、伝道、物語構築、教育を必要とするAIテクノロジーの産物です。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Passionfroot , a German startup building a marketplace connecting B2B creators with brands, said on Wednesday it has raised $15 million in a Series A funding round led by Insight Partners.Rebecca Liu-Doyle, managing director at Insight Partners, said Passionfroot is placed well at a time when creators are specializing as AI companies look for more visibility.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/07/22/passionfroot-raises-15m-to-expand-its-b2b-creator-marketplace-to-the-us/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="30">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">AMD、Anthropic に最大 50 億ドルをコミット</h2>
+    <p class="article-original-title">原題: <em>AMD commits up to $5 billion to  Anthropic</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。契約の一環として、Anthropic は最大 2 ギガワットの AMD の AI GPU を導入します。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. As part of the agreement, Anthropic will deploy up to 2 gigawatts of AMD’s AI GPUs.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/ai-artificial-intelligence/969285/amd-anthropic-ai-infrastructure-deal" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+        </main>
+
+        <footer class="footer">
+            <p>本ページは公開記事をもとに自動生成しています。数値や仕様は必ず元記事で確認してください。</p>
+            <p>JSON データは同じフォルダ内の tech_news_digest.json で参照できます。</p>
+        </footer>
+    </div>
+
+    <script>
+
+        const categoryButtons = document.querySelectorAll('.category-btn');
+        const articleCards = document.querySelectorAll('.article-card');
+        const searchInput = document.getElementById('search-input');
+
+        let activeCategory = 'all';
+
+        function applyFilters() {
+            const query = searchInput.value.trim().toLowerCase();
+            articleCards.forEach(card => {
+                const matchesCategory = activeCategory === 'all' || card.dataset.category === activeCategory;
+                const searchableText = card.innerText.toLowerCase();
+                const matchesQuery = !query || searchableText.includes(query);
+                card.style.display = matchesCategory && matchesQuery ? '' : 'none';
+            });
+        }
+
+        categoryButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                categoryButtons.forEach(item => item.classList.remove('active'));
+                button.classList.add('active');
+                activeCategory = button.dataset.category;
+                applyFilters();
+            });
+        });
+
+        searchInput.addEventListener('input', applyFilters);
+    
+    </script>
+</body>
+</html>
