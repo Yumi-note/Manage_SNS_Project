@@ -1,0 +1,1209 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>海外テックニュース日本語まとめ</title>
+    <style>
+        :root {
+            color-scheme: dark;
+            --bg: #0a0f1d;
+            --panel: rgba(13, 20, 36, 0.92);
+            --line: rgba(132, 152, 187, 0.25);
+            --text: #eef3ff;
+            --muted: #adc1dd;
+            --accent: #7dd3fc;
+            --accent-strong: #38bdf8;
+            --shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: "Hiragino Sans", "Noto Sans JP", sans-serif;
+            background:
+                radial-gradient(circle at top right, rgba(56, 189, 248, 0.22), transparent 26%),
+                radial-gradient(circle at top left, rgba(16, 185, 129, 0.16), transparent 20%),
+                linear-gradient(180deg, #07101f 0%, #0b1327 48%, #0a0f1d 100%);
+            color: var(--text);
+        }
+
+        .page-shell {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 24px;
+        }
+
+        .hero {
+            padding: 28px;
+            border: 1px solid var(--line);
+            border-radius: 28px;
+            background: linear-gradient(145deg, rgba(18, 27, 48, 0.96), rgba(10, 17, 32, 0.96));
+            box-shadow: var(--shadow);
+        }
+
+        .hero-nav {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 28px;
+        }
+
+        .nav-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 42px;
+            padding: 0 16px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        .eyebrow {
+            margin: 0 0 10px;
+            color: var(--accent);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            font-size: 0.78rem;
+        }
+
+        .hero h1 {
+            margin: 0;
+            font-size: clamp(2rem, 3vw, 3.3rem);
+            line-height: 1.1;
+        }
+
+        .timestamp,
+        .description {
+            color: var(--muted);
+        }
+
+        .control-panel {
+            margin: 20px 0 28px;
+            padding: 22px;
+            border: 1px solid var(--line);
+            border-radius: 24px;
+            background: var(--panel);
+            backdrop-filter: blur(12px);
+        }
+
+        .control-header {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            align-items: end;
+            flex-wrap: wrap;
+        }
+
+        .control-header h2 {
+            margin: 0 0 6px;
+        }
+
+        .control-header p {
+            margin: 0;
+            color: var(--muted);
+        }
+
+        #search-input {
+            width: min(100%, 360px);
+            min-height: 46px;
+            padding: 0 14px;
+            border-radius: 14px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
+        }
+
+        .category-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 16px;
+        }
+
+        .category-btn {
+            min-height: 42px;
+            padding: 0 14px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
+            cursor: pointer;
+        }
+
+        .category-btn.active {
+            background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+            color: #06111f;
+            border-color: transparent;
+            font-weight: 700;
+        }
+
+        .article-list {
+            display: grid;
+            gap: 18px;
+        }
+
+        .article-card {
+            padding: 24px;
+            border-radius: 24px;
+            border: 1px solid var(--line);
+            background: linear-gradient(180deg, rgba(12, 18, 34, 0.96), rgba(14, 22, 39, 0.9));
+            box-shadow: var(--shadow);
+        }
+
+        .card-topline {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+
+        .category-chip,
+        .source-chip {
+            display: inline-flex;
+            align-items: center;
+            min-height: 34px;
+            padding: 0 12px;
+            border-radius: 999px;
+            font-size: 0.92rem;
+            font-weight: 700;
+        }
+
+        .source-chip {
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--muted);
+        }
+
+        .article-title {
+            margin: 0 0 10px;
+            font-size: clamp(1.45rem, 2vw, 2rem);
+            line-height: 1.35;
+        }
+
+        .article-original-title {
+            margin: 0 0 18px;
+            color: var(--muted);
+        }
+
+        .security-alert {
+            margin: 0 0 14px;
+            padding: 10px 14px;
+            border-radius: 12px;
+            border: 1px solid rgba(248, 113, 113, 0.4);
+            background: rgba(248, 113, 113, 0.12);
+            color: #fecaca;
+            font-weight: 700;
+            font-size: 0.92rem;
+        }
+
+        .article-section {
+            margin-top: 18px;
+            padding-top: 18px;
+            border-top: 1px solid var(--line);
+        }
+
+        .article-section h3 {
+            margin: 0 0 12px;
+            font-size: 1rem;
+            color: var(--accent);
+        }
+
+        .article-paragraph {
+            margin: 0 0 14px;
+            color: #dce7f8;
+            line-height: 1.9;
+            font-size: 1rem;
+        }
+
+        .company-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .company-link,
+        .action-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 42px;
+            padding: 0 14px;
+            border-radius: 14px;
+            text-decoration: none;
+            border: 1px solid rgba(125, 211, 252, 0.3);
+        }
+
+        .company-link {
+            color: var(--accent);
+            background: rgba(56, 189, 248, 0.08);
+        }
+
+        .article-actions {
+            margin-top: 22px;
+        }
+
+        .footer {
+            padding: 28px 8px 40px;
+            color: var(--muted);
+            text-align: center;
+        }
+
+        .footer p {
+            margin: 6px 0;
+        }
+
+        .action-link.primary {
+            color: #06111f;
+            font-weight: 700;
+            background: linear-gradient(135deg, #7dd3fc, #22d3ee);
+            border-color: transparent;
+        }
+
+        @media (max-width: 720px) {
+            .page-shell {
+                padding: 14px;
+            }
+
+            .hero,
+            .control-panel,
+            .article-card {
+                padding: 18px;
+                border-radius: 20px;
+            }
+
+            .control-header {
+                align-items: stretch;
+            }
+
+            #search-input {
+                width: 100%;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="page-shell">
+        <header class="hero">
+            <div class="hero-nav">
+                <a class="nav-link" href="../../index.html">HOME</a>
+                <a class="nav-link" href="../index.html">この日の記事一覧</a>
+            </div>
+            <div class="hero-copy">
+                <p class="eyebrow">Global Tech News Digest</p>
+                <h1>海外テックニュース 日本語まとめ</h1>
+                <p class="timestamp">2026年7月23日 04:19 JST に収集した記事を掲載しています。</p>
+                <p class="description">各カードには本文寄りの日本語訳を掲載し、記事中で触れた企業は別ページの解説リンクとして分離しています。</p>
+            </div>
+        </header>
+
+        <section class="control-panel">
+            <div class="control-header">
+                <div>
+                    <h2>記事を探す</h2>
+                    <p>カテゴリとキーワードで一覧を絞り込めます。</p>
+                </div>
+                <input type="text" id="search-input" placeholder="タイトル・本文・媒体名で検索">
+            </div>
+            <div class="category-buttons">
+                <button class="category-btn active" data-category="all">すべて (30)</button>
+<button class="category-btn" data-category="AI/ML" style="--accent:#10b981">🤖 AI/ML (25)</button>
+<button class="category-btn" data-category="Enterprise" style="--accent:#3b82f6">🏢 Enterprise (2)</button>
+<button class="category-btn" data-category="Hardware" style="--accent:#06b6d4">⚙️ Hardware (1)</button>
+<button class="category-btn" data-category="Mobile" style="--accent:#6366f1">📱 Mobile (1)</button>
+<button class="category-btn" data-category="Startups" style="--accent:#8b5cf6">🚀 Startups (1)</button>
+            </div>
+        </section>
+
+        <main class="article-list" id="articles-container">
+            <article class="article-card" data-category="AI/ML" data-index="1">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">衝撃的な四半期の後、IBMはAIがメインフレームを破壊するものではないと主張</h2>
+    <p class="article-original-title">原題: <em>After shocking quarter, IBM insists that AI isn&#x27;t killing the mainframe</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">水曜日、IBMは正式に収益を報告したが、そのニュースは誰もが予想していた通り悪いものだった。創業 115 年の同社は今でも多額の現金 (17 ドル) を生み出しています。収益20億、9ドル。粗利益は 90 億、利益率はほぼ 58%、2 ドルです。同四半期の純利益は20億ドルで、その結果はウォール街の予想を大きく下回りました。これはあまりにひどい失敗だったので、IBM CEOのアルビンド・クリシュナと取締役会は、利益が「我々の予想よりも悪かった」と投資家に事前に警告し、全員にこっそり見せつけるという前例のない措置を講じた。同氏は先週「投資家への書簡」を発行し、暫定的な結果を共有した。同社の最も重要な「インフラ」部門の収益がひどいと警告し、利益率も打撃を受けるだろうと述べた。会社。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">On Wednesday, IBM officially reported earnings and the news was as bad as everyone knew it would be.While the 115-year-old company still generates boatloads of cash — $17.2 billion in revenue, $9.9 billion in gross profit, nearly 58% margins, and $2.2 billion in net earnings for the quarter — its results fell well short of Wall Street’s expectations.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/07/22/after-shocking-quarter-ibm-insists-that-ai-isnt-killing-the-mainframe/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="2">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">レゴのドンキーコングアーケードマシンでマリオは無限の樽をジャンプできる - 伝えられるところによれば、宮本氏は満足している</h2>
+    <p class="article-original-title">原題: <em>Lego’s Donkey Kong arcade machine lets Mario jump endless barrels — Miyamoto is reportedly happy</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。ここで言う「マリオ」とは、もちろんジャンプマンのことです。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. Where by “Mario,” I of course mean Jumpman.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/gadgets/969668/lego-donkey-kong-arcade-machine" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="3">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">いつもレタスだよ</h2>
+    <p class="article-original-title">原題: <em>It’s Always Lettuce</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">サラダは通常、健康的な食事の同義語です。現在を除いて、米国はミシガン州だけで7,100人以上を罹患させたシクロスポリア症の拡大に取り組んでいるが、その原因はおそらくテイラー・ファームズが供給したアイスバーグ・レタスが原因であると考えられる。実際、葉物野菜は食中毒の例に頻繁に関係しています。2022年にはウェンディーズのサンドイッチに添えられたロメインに関連した複数の州で大腸菌が発生し、イリノイ州の飲食店D.C.コブスに関連して173件のノロウイルスが発生した。2021年、ブライトファームズは31人がサルモネラ菌に感染したことを受け、複数の州で販売されていた包装されたサラダ菜をリコールした。そして2019年には、カリフォルニア州サリナスバレー地域で収穫されたロメインを食べた後、合計167人が大腸菌に感染しました。レタスに関連したシクロスポラの発生はこれが初めてではありません：2020 年。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Salad is usually synonymous with healthy eating.Except now, as the US grapples with an expanding outbreak of cyclosporiasis that’s sickened more than 7,100 people in Michigan alone, likely caused by iceberg lettuce supplied by Taylor Farms .In fact, leafy greens are frequently implicated in instances of foodborne illness.There was a 2022 multistate E.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/story/why-lettuce-always-making-people-sick/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Enterprise" data-index="4">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#3b82f6">🏢 Enterprise</span>
+        <span class="source-chip">Ars Technica - All content</span>
+    </div>
+
+    
+
+    <h2 class="article-title">テスラの売上は増加しましたが、コストと支出も増加しました</h2>
+    <p class="article-original-title">原題: <em>Sales were up at Tesla but so were costs and spending</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">テスラは今日午後、今年第2四半期の財務諸表を発表した。 7 月初旬、このアメリカの自動車メーカーが売上高で好調な四半期を過ごし、前年同期比 25% 増加したことを知りました。しかし、販売増加によりテスラが十分な利益をもたらすことを期待していたファンは失望するかもしれない。収益は増加しましたが、支出も増加しており、かつては羨ましがられた二桁の利益率はわずか 1.4% に低下しました。テスラは20ドルをもたらした。電気自動車事業からは前年比 23% 増の 50 億ドルが発生し、自動車規制からの融資はわずか 1 億 4,600 万ドルでした。クレジットはこれまでの困難な四半期においてテスラの収益性の鍵であったが、マスク氏の祝福により米国では2025年に廃止された。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Tesla posted its financial statement for the second quarter of the year this afternoon.Earlier in July, we learned that the American automaker had had a good quarter in terms of sales , growing 25 percent year over year.Fans hoping that sales increase would result in a plenty profitable Tesla may be disappointed, though.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/cars/2026/07/teslas-revenues-are-up-but-profits-squeezed-as-musk-spends-on-ai/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="5">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">ダウンロード: NASA の新しい宇宙望遠鏡と OpenAI の自律型ハッカー</h2>
+    <p class="article-original-title">原題: <em>The Download: NASA’s new space telescope and OpenAI’s autonomous hacker</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">さらに: フランスは、15 歳未満に対するソーシャルメディアを禁止した最初の EU 加盟国となりました。これは、テクノロジーの世界で何が起こっているかを毎日提供する平日のニュースレター、 The Download の本日版です。 NASAのナンシー・グレース・ローマン宇宙望遠鏡が早ければ来月末に打ち上げられると、これまでの天文学で最も正確な消滅行為の1つが試みられることになる。これは、撮影中に星からの光の大部分を効果的に消去する機器である、初の宇宙限定の「アクティブ」コロナグラフを搭載する予定です。この技術により、天文学者は、太陽系にあるものと同様の他の恒星を周回する惑星の最初の写真を撮影できるようになります。最終的には、地球に似た世界の最初の写真を撮影できる将来のミッションへの道を開く可能性がある。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Plus: France has become the first EU country to ban social media for under-15s.This is today&#x27;s edition of The Download , our weekday newsletter that provides a daily dose of what&#x27;s going on in the world of technology.When NASA’s Nancy Grace Roman Space Telescope launches, as early as the end of next month, it will attempt one of astronomy’s most precise disappearing acts to date.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/openai.html" target="_blank" rel="noopener noreferrer" class="company-link">OpenAI の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/07/22/1140717/the-download-nasa-space-telescope-openai-hugging-face-hack/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="6">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">VentureBeat</span>
+    </div>
+
+    
+
+    <h2 class="article-title">OpenAI のエージェントを Hugging Face に入れるための資格情報は、現在ほとんどの企業に存在します。</h2>
+    <p class="article-original-title">原題: <em>The credential that let OpenAI&#x27;s agents into Hugging Face exists in most enterprises right now</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">先週、Hugging Faceが攻撃を受けたとき、共同創設者のClement Delangue氏は、エージェントの巧妙さからフロンティアラボを疑った。彼は正しかった。デラング氏は X で、OpenAI と 1 日働いた後、悪意はなく、すべてが自律的に起こったことには驚くべきだと強く信じたと語った。 &lt;a href=&quot;https://openai.com/index/hugging-face-model-evaluation-securi. .</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">When Hugging Face got hit last week, co-founder Clement Delangue suspected a frontier lab, given the agent&#x27;s sophistication.He was right.Delangue said on X that after a day working with OpenAI he strongly believed there was no malicious intent and that it was mind-blowing the whole thing had happened autonomously.The two OpenAI models that &lt;a href=&quot;https://openai.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/openai.html" target="_blank" rel="noopener noreferrer" class="company-link">OpenAI の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://venturebeat.com/security/the-credential-that-let-openais-agents-into-hugging-face-exists-in-most-enterprises-right-now" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="7">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">この気の利いた 3D Playdate ゲームのデモをチェックしてください</h2>
+    <p class="article-original-title">原題: <em>Check out this nifty 3D Playdate game demo</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Playdate には素晴らしいゲームがたくさんありますが (さらに多くのゲームが開発中です)、開発者はこの小さな黄色いマシンを最大限に活用するための創造的な方法を見つけ続けています。今日、私たちはゲーム プラットフォームが期待していなかった技術を紹介する素晴らしいデモを発見しました。ゲーム開発者のクリスティーナ・ラモスは、プレイデートを 3D 化する進行中の作業のビデオをソーシャル メディアに投稿しました。ゲームプレイの一部は、内部空間を上向きにプラットフォームで移動し、屋上に出てミラーズ エッジ スタイルで大空の下を飛び回ることから始まります。 Playdateでは3Dはできないと言われたので、やりました。その後、『ミラーズ エッジ』のような外部レベルを作成する方法はないと言われたので、それが間違いであることを再度証明しました。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">There are a ton of fantastic games available on the Playdate (with more on the way ), but devs keep finding increasingly creative ways to push the little yellow machine to the max.Today, we spotted a neat demo that showcases some tech the game platform wasn&#x27;t expected to be capable of.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2221371/check-out-this-nifty-3d-playdate-game-demo/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Enterprise" data-index="8">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#3b82f6">🏢 Enterprise</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Google、クラウド事業の急成長で巨額のAI支出を正当化</h2>
+    <p class="article-original-title">原題: <em>Google justifies its massive AI spending with a booming cloud business</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">アルファベットの投資家らは、同社のAIへの巨額投資が投資に値しないのではないかと公の場で懸念している。同社の最新の決算報告を読めば、そうした投資家も少しは安心できるはずだ。要点: Google のクラウド ビジネスは、主にエンタープライズ AI の導入によって推進されており、急成長しています。検索大手である同社は、Google Cloud の収益が昨年の今頃から 82% 急増し、24 ドルにまで上昇しました。80億。これは、売上高が 63% 増の 200 億ドルとなった前四半期の大幅な前年比成長をはるかに上回っており、ウォール街のアナリストが今四半期の成長について予想していた額 (予想は 224 億 6000 億ドル) を軽く上回っています。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Alphabet investors have very publicly worried that the company’s massive AI spending isn’t worth the money.With the company’s latest earnings report, those investors should be able to relax a little.The takeaway: Google’s cloud business — driven largely by enterprise AI adoption — is booming.The search giant saw Google Cloud revenue spike 82% from where it was this time last year, climbing to $24.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/google.html" target="_blank" rel="noopener noreferrer" class="company-link">Google の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/07/22/google-justifies-its-massive-ai-spending-with-a-booming-cloud-business/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="9">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">メタは次に予定されているソーシャルメディア依存症の裁判を受ける必要がなくなる</h2>
+    <p class="article-original-title">原題: <em>Meta won’t have to face the next planned social media addiction trial</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。他のソーシャルメディア企業と和解した後、原告は訴訟を取り下げた。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. After settling with other social media companies, the plaintiff dropped his case.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/meta.html" target="_blank" rel="noopener noreferrer" class="company-link">Meta の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/policy/969644/meta-social-media-addiction-trial-dropped" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="10">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">ホワイトハウスは中国のAIに対して何をすべきか検討中</h2>
+    <p class="article-original-title">原題: <em>The White House Is Trying to Figure Out What to Do About Chinese AI</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">審議に詳しい複数の関係者によると、トランプ政権は中国の主要なAIモデルの急速な台頭にどう対応するかについて意見が分かれている。議論は、間もなく最も強力な米国モデルに匹敵する可能性がある中国製AIに対するより厳格な規制を推進しているホワイトハウスの一部と、それらの規制は実行不可能であると見ている商務省の間で大きく分かれている。中国のムーンショットAI研究所が先週、米国のAnthropicやOpenAIのトップモデルに匹敵するKimi K3モデルを発表したことを受けて、この難問はAIをめぐる政権にとって最新の発火点となっている。ここ数日、ホワイトハウス高官らは、中国のAI研究所が米国のモデルでトレーニングすることによってモデルを開発すること（「蒸留」として知られる行為）を阻止するための可能な措置を議論してきた。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">The Trump administration is split over how to respond to the rapid rise of China’s leading AI models , according to multiple people familiar with deliberations.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/openai.html" target="_blank" rel="noopener noreferrer" class="company-link">OpenAI の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/story/the-white-house-is-trying-to-figure-out-what-to-do-about-chinese-ai/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Hardware" data-index="11">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#06b6d4">⚙️ Hardware</span>
+        <span class="source-chip">Ars Technica - All content</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Microsoft、初代 Xbox の下位互換性を Windows PC に提供</h2>
+    <p class="article-original-title">原題: <em>Microsoft brings original Xbox backward compatibility to Windows PCs</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">最初の 4 つの互換タイトルは、11 年前のグラフィック カードで実行できます。Microsoft は長年にわたり、Xbox ハードウェアの複数世代にわたる広範な下位互換性を自社コンソールの主要なセールス ポイントとして重視してきました。現在、その取り組みはコンソール エコシステムを超えて拡大され、一部のオリジナル Xbox タイトルが Windows PC で初めて正式にプレイ可能 (および購入可能) になりました。これらの古い Xbox タイトルを PC でプレイすると、Vsync サポート、異方性フィルタリング、強化されたアンチエイリアシング、元の SD 信号の最大 4 倍の解像度スケーリング (2560 × 1920 まで) などのいくつかのボーナス グラフィック機能が有効になります。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">First four compatible titles can be run with an 11-year-old graphics card.For years, Microsoft has leaned heavily into extensive backward compatibility across multiple generations of Xbox hardware as a major selling point for its consoles.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/microsoft.html" target="_blank" rel="noopener noreferrer" class="company-link">Microsoft の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/gaming/2026/07/microsoft-brings-original-xbox-backward-compatibility-to-windows-pcs/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Startups" data-index="12">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#8b5cf6">🚀 Startups</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">NASAの新しい宇宙望遠鏡の形状変化ミラーは、私たちの木星と同じように姿を現す可能性がある</h2>
+    <p class="article-original-title">原題: <em>Shape-shifting mirrors on NASA’s new space telescope could unveil Jupiters like our own</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">ナンシー・グレース・ローマン宇宙望遠鏡は、不要な星の光を遮断するために「アクティブコロナグラフ」を使用する最初の宇宙望遠鏡になります。 NASAのナンシー・グレース・ローマン宇宙望遠鏡が早ければ来月末に打ち上げられると、これまでの天文学で最も正確な消滅行為の1つが試みられることになる。この望遠鏡には、初の宇宙限定「アクティブ」コロナグラフが搭載されます。これは、撮影中に星からの光の大部分を効果的に消去する装置です。これにより、天文学者は、太陽系にあるものと同様の他の恒星を周回する惑星の最初の写真を撮影できるようになります。最終的には、地球に似た世界の最初の写真を撮影できる将来のミッションへの道を開く可能性がある。 「地球 2.0 を発見するための重要な足がかりとして、記憶に残ることを願っています」とBrは言う。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">The Nancy Grace Roman Space Telescope will be the first space telescope to use an “active coronagraph” to block out unwanted starlight.When NASA’s Nancy Grace Roman Space Telescope launches, as early as the end of next month, it will attempt one of astronomy’s most precise disappearing acts to date.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/07/22/1140701/shape-shifting-mirrors-roman-space-telescope/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="13">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">VentureBeat</span>
+    </div>
+
+    
+
+    <h2 class="article-title">AI エージェントは、コンテキストが悪いからといって自信を持って間違っているわけではありません。データ エンジニアリングが悪いから間違っているのです。</h2>
+    <p class="article-original-title">原題: <em>AI agents aren&#x27;t confidently wrong because of bad context — they&#x27;re wrong because of bad data engineering</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">AI チャットボットのチューニングに何週間も費やします。答えは正確です。関係者が承認すると、あなたはそれを出荷します。 3 か月後、システムはユーザーの質問の 3 分の 1 が間違いなく間違っていることがわかりました。誰もモデルを変更しませんでしたし、誰もプロンプトに触れませんでした。世界は動き、価格は変更され、ポリシーは更新され、製品仕様は新しいバージョンを出荷しましたが、基盤となるナレッジ ストアはそれに伴って移行しませんでした。これは仮説ではありません。これは、enterpri で最も一般的な運用障害モードの 1 つです。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">You spend weeks tuning an AI chatbot.Answers are accurate.Stakeholders sign off, and you ship it.Three months later, the system is confidently wrong about a third of what users ask.Nobody changed the model, and nobody touched the prompts.The world moved, pricing changed, a policy updated, a product spec shipped a new version, and the underlying knowledge store didn&#x27;t move with it.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://venturebeat.com/data/ai-agents-arent-confidently-wrong-because-of-bad-context-theyre-wrong-because-of-bad-data-engineering" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="14">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Steam に便利なギフトとウィッシュリストの更新が追加</h2>
+    <p class="article-original-title">原題: <em>Steam adds handy gifting and wishlist updates</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Steam アカウントがなくてもゲームをギフトしたり、ウィッシュリストをカテゴリに分類したりできるようになりました。Valve は、ゲームの購入をさらに簡単にするために、Steam のギフト機能とウィッシュリスト機能のアップデートをプッシュしました。改善点としては、ギフトカードや Steam ハードウェアだけでなく、ゲスト アカウントを使用してゲームを購入できるようになりました。また、ウィッシュリストの整理に興味がある場合は、同社は保存されたゲームをカテゴリに分類できるようにしました。ゲスト アカウントをより便利にすることは、Steam でのゲーム購入プロセスの合理化に大いに役立ちますが、Valve はゲームのギフト方法も拡大しています。このアップデートの一環として、ゲームを電子メールで直接送信できるようになりました。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">You can now gift games without a Steam account and sort your wishlist into categories.Valve has pushed updates to Steam&#x27;s gifting and wishlist features to — surprise, surprise — make it even easier to buy games.Among the improvements, it&#x27;s now possible to use a guest account to purchase games, instead of just gift cards and Steam hardware.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2221369/steam-adds-handy-gifting-and-wishlist-updates/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="15">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">ホワイトハウスがムーンショットで人類の寓話を抽出したと主張、財務省が制裁を脅す</h2>
+    <p class="article-original-title">原題: <em>Treasury threatens sanctions after White House claims Moonshot distilled Anthropic&#x27;s Fable</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">スコット・ベッセント米財務長官は水曜日、アンスロピックの寓話モデルを不当に抽出したとしてムーンショット社を非難したことを受けてホワイトハウス当局者が非難したことを受けて、中国のAI企業に対する警告を倍増させ、制裁は依然として検討の対象となっていると述べた。モデルの蒸留は、より小さなモデルがより大きなモデルの出力から学習する一般的な AI トレーニング手法です。このプロセスは知的財産権を侵害する可能性がありますが、合法的な最適化方法としても広く使用されています。 「オープンソースはアメリカの知的財産においてオープンシーズンではない」と Bessent 氏は X に投稿した。 「（中国の）企業が知財窃盗の一線を越える産業規模の蒸留攻撃を秘密裏に実施した場合、制裁とエンティティリストの指定が検討の対象となるだろう。」今週初め、ベッセント氏は米国政府が調査を行うと述べた。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">U.S.Treasury secretary Scott Bessent doubled down on his warnings to Chinese AI companies on Wednesday, saying that sanctions remain on the table after a White House official accused Moonshot of improperly distilling Anthropic’s Fable model.Model distillation is a common AI training technique in which a smaller model learns from the outputs of a larger one.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/07/22/treasury-threatens-sanctions-after-white-house-claims-moonshot-distilled-anthropics-fable/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="16">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">テスラの収益は回復傾向にあるが、利益は依然として低い</h2>
+    <p class="article-original-title">原題: <em>Tesla’s revenues are bouncing back, but profits are still weak</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。テスラはAIインフラやロボット工学などの主要プロジェクトへの支出を増やしており、フリーキャッシュフローがマイナスの領域にある。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. Tesla is in negative free cash flow territory, as it increases its expenditures on major projects like AI infrastructure and robotics.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/transportation/969311/tesla-q2-2026-earnings-revenue-profit-sales" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="17">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">ノードストローム アニバーサリー セールの最高の赤線マスクとデバイスのセール</h2>
+    <p class="article-original-title">原題: <em>The Nordstrom Anniversary Sale’s Best Red-Light Mask and Device Deals</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">LED療法は本当に効果があるのでしょうか？これを支持する科学的証拠はたくさんありますが、それは鏡に映る実際の目に見える結果に反映されるのでしょうか?『WIRED』のレビューチームのメンバーは、過去1年半かけて人気のマスク、帽子、ヘルメットをすべてテストし、どのデバイスがお金を払う価値があるかを自分の目で確認してきました。幸いなことに、8 月 9 日まで開催されるノードストロームの毎年恒例のアニバーサリー セール中に、当社のお気に入りのいくつかが稀に割引されています。当社のテストの詳細については、ベスト レッド ライト セラピー マスクとベスト レッド ライト セラピー フォー ヘア グロースに関するガイドをご覧ください。なかなかセールにならないマスクがこの価格でお買い得です。私はこのマスクを所有していますが、治療時間が短いため強くお勧めします。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Does LED therapy really work?There&#x27;s plenty of scientific evidence in its favor , but will that translate to actual, visible results you can see in the mirror?Members of WIRED&#x27;s Reviews team have spent the past year and a half testing all the popular masks, hats, and helmets to see for ourselves which devices are worth your money.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/story/red-light-device-deals-from-nordstroms-anniversary-sale-2026/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="18">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Ars Technica - All content</span>
+    </div>
+
+    
+
+    <h2 class="article-title">ISP が請求するすべての料金をリストしなければならないという長い悪夢がついに終わりました</h2>
+    <p class="article-original-title">原題: <em>ISPs&#x27; long nightmare of having to list all the fees they charge is finally over</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">企業が難しすぎると訴えたため、FCCはISPにすべての料金を掲載するのをやめさせた。 ISP は正確な価格を宣伝する代わりに、人為的に低価格を宣伝し、加入者の毎月の請求書にあらゆる種類の料金を上乗せすることを好みます。請求額のショックを防ぎ、消費者が価格を比較できるようにするため、FCCは2023年にブロードバンドラベル規則を更新し、ISPに対し「プロバイダーが消費者に渡す任意の月額料金をすべてラベルに項目化する」ことを義務付けた。ISPは、請求することを選択したすべてのパススルー料金をリストする負担と複雑さに不満を抱いていた。おそらく、プロバイダーにとっては、追加料金を請求したり、ラベルに価格を記載したりする必要がなく、正確な価格を宣伝することの負担が軽減されるでしょう。しかし数週間前、FCC委員長のブレンダン・カー氏は広報を通じてISPを支援した。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">FCC lets ISPs stop listing all fees after companies complained it was too hard.Instead of advertising accurate prices, ISPs like to advertise artificially low prices and then add all sorts of fees to subscribers’ monthly bills.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/tech-policy/2026/07/isps-long-nightmare-of-having-to-list-all-the-fees-they-charge-is-finally-over/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="19">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">ダウンロード: 中国の AI がホワイトハウスを二分し、記録的な著作権料が支払われる</h2>
+    <p class="article-original-title">原題: <em>The Download: Chinese AI divides the White House, and a record copyright payout</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">さらに: Anthropic の記録となる 1 ドル。 50億の著作権和解が承認された。これは、テクノロジーの世界で何が起こっているかを毎日提供する平日のニュースレター、 The Download の本日版です。先週末、AIに関するドナルド・トランプ大統領の現および元顧問数名が、国内の大手AI企業に対して公に侮辱の言葉を投げかけた。デビッド・サックス氏はアンスロピック社のモデルを「ロボトミー化」し「覚醒した」と決めつけ、国防総省幹部のエミール・マイケル氏は、オープンAIの新戦略未来責任者を「最高の村バカ」と呼んだ。この事態は、中国のAI企業ムーンショットが先週立ち上げた無料のオープンソースモデル「キミ」についてどうするかについて誰も合意できないことから始まった。これは、まったく無料ではない OpenAI や Anthropic のモデルの知能に匹敵するようです。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Plus: Anthropic&#x27;s record $1.5 billion copyright settlement has been approved.This is today&#x27;s edition of The Download , our weekday newsletter that provides a daily dose of what&#x27;s going on in the world of technology.Last weekend, several current and former advisers to President Donald Trump on AI publicly lobbed insults at the country’s leading AI companies.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/openai.html" target="_blank" rel="noopener noreferrer" class="company-link">OpenAI の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/07/21/1140685/the-download-chinese-ai-divides-white-house-anthropic-copyright-settlement/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="20">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">VentureBeat</span>
+    </div>
+
+    
+
+    <h2 class="article-title">OpenAI、企業がリアルタイムの音声エージェントとチャットボットを起動および管理できる新しいプラットフォームである Presence を発表</h2>
+    <p class="article-original-title">原題: <em>OpenAI unveils Presence, a new platform that lets enterprises launch and manage realtime voice agents and chatbots</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">OpenAI は、顧客対応および社内のビジネス ワークフロー全体に AI エージェントを展開および管理するための新しいエンタープライズ製品である Presence を発表しました。このサービスは、会社が定義したポリシー、権限、評価基準に基づいて業務を行いながら、エージェントが質問に答え、会社のシステムにアクセスし、承認されたアクションを実行し、人間の従業員にエスカレーションすることを希望する適格な企業顧客向けに設計されています。面前。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">OpenAI has announced Presence , a new enterprise product for deploying and managing AI agents across customer-facing and internal business workflows.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/openai.html" target="_blank" rel="noopener noreferrer" class="company-link">OpenAI の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://venturebeat.com/orchestration/openai-unveils-presence-a-new-platform-that-lets-enterprises-launch-and-manage-realtime-voice-agents-and-chatbots" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="21">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">米国、AI で科学を推進する 50 億ドル規模のジェネシス ミッションについて概要を説明</h2>
+    <p class="article-original-title">原題: <em>US outlines its $5 billion Genesis Mission to boost science with AI</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">いくつかの連邦機関が学際的な研究活動に貢献しています。本日、ホワイトハウスとエネルギー省は、ジェネシスミッションが実施する研究の種類についての詳細を共有しました。ジェネシス ミッションは、科学的発見を促進するために AI を使用するという広範な目標を掲げ、昨年 11 月に大統領令によって創設されました。この取り組みの主要リーダーとしてエネルギー省が挙げられているが、現在は保健社会福祉省、国立衛生研究所、運輸省、内務省、NASA、国立科学財団、陸軍省、農務省、商務省など少なくとも15の連邦機関が関与している。 50億ドル以上が投入されています。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Several federal agencies are contributing toward the interdisciplinary research efforts.Today, the White House and the Department of Energy shared some details about the types of research the Genesis Mission will undertake.The Genesis Mission was created via executive order last November with the broadly stated goal of using AI to further scientific discoveries.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2221309/us-outlines-its-5-billion-genesis-mission-to-boost-science-with-ai/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="22">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">サイバーキャブ、セミ、メガパックの生産スケジュールが遅れ、テスラの支出が急増</h2>
+    <p class="article-original-title">原題: <em>Tesla spending skyrockets as Cybercab, Semi, Megapack production timeline slips</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">水曜日に発行された第2四半期の株主書簡によると、テスラは同社の最新製品3製品、サイバーキャブ、テスラ・セミ、商用エネルギー貯蔵ソリューションのメガパック3を2026年に「量産」する計画はもうないという。同社はまた、オプティマスロボットが「量産」に達したという第1四半期の書簡から文言を削除し、同社は水曜日、サイバーキャブとテスラセミの大規模な生産を開始するために、特に同社の4680セル周辺でバッテリーの生産を増加しようとしていると述べた。新しいメガパックの量産を延期する理由は示されていないが、テスラの最高経営責任者（CEO）イーロン・マスク氏はオプティマスの課題について警告した。 「これは、私たちがこれまでテスで作った製品の中で、製造規模を拡大するのが最も難しい製品になるでしょう。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Tesla is no longer planning to reach “volume production” of three of its newest products — the Cybercab, the Tesla Semi, and its Megapack 3 commercial energy-storage solution — in 2026, according to a second-quarter shareholder letter published Wednesday.The company also removed language from its first-quarter letter about its Optimus robot reaching “volume production.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/07/22/tesla-spending-skyrockets-as-cybercab-semi-megapack-production-timeline-slips/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="23">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">値上がりしたiPadも今は少し安くなりました</h2>
+    <p class="article-original-title">原題: <em>Price-hiked iPads are a little cheaper right now</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。また、AirTag 4 パックを 10 ドル引きで購入したり、ソニーの再生品 PS5 スリムを新品より 100 ドル安く購入することもできます。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. You can also grab a four-pack of AirTags for $10 off, or a refurbished PS5 slim from Sony that’s $100 less than new.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/gadgets/969003/apple-ipad-air-pro-airtag-deal-sale" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="24">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">『オデッセイ』は前例のないレベルの対処を促す</h2>
+    <p class="article-original-title">原題: <em>‘The Odyssey’ Is Inspiring Unprecedented Levels of Cope</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">イーロン・マスクと、『X』で同氏が支持する右翼の変人たちは、存命で最も成功した映画監督の一人による古代ギリシャの詩を冒涜したとされる件をめぐって、何カ月もの間、激しく泡立ってきた。彼らが作り上げた反発が爆発した今、彼らは一般の意見からますます乖離しているという現実に対処する方法を模索している。激怒したマスク監督らによると、『オデッセイ』をスクリーンに公開する際のクリストファー・ノーランの芸術的犯罪は、怪物、魔女、アンデッドの霊がはびこる豪華なファンタジーにおける彼らの言うところの「歴史的不正確さ」の一例であり、主に黒人のルピタ・ニョンゴがトロイのヘレン役に、トランスジェンダーのエリオット・ペイジがシノン役にキャスティングされたことだという。合計の上映時間は約 10 分です。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">For months, Elon Musk and the right-wing cranks he caters to on X have whipped themselves into a raging froth over the supposed desecration of an ancient Greek poem by one of the most successful movie directors alive.Now that their manufactured backlash has bombed , they’re searching for ways to cope with the reality that they are increasingly divorced from popular opinion.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/story/the-odysseys-success-is-inspiring-unprecedented-levels-of-cope/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="25">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Ars Technica - All content</span>
+    </div>
+
+    
+
+    <h2 class="article-title">クレイフェイスのトレーラーがボディホラーに傾く</h2>
+    <p class="article-original-title">原題: <em>Clayface trailer leans into the body horror</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">「私が信頼していた人々が私を裏切った。司法制度は私を失望させた。」 サンディエゴ・コミコンが明日開幕し、DCスタジオとワーナー・ブラザーズは、DCユニバースの「神とモンスター」篇の一部であるクレイフェイスの初の完全な予告編を公開し、舞台を整えている。この映画はマイク・フラナガンのプロジェクトとして始まりました（彼は、『ザ・ホーンティング・オブ・ヒルハウス』、『ザ・フォール・オブ・ザ・ハウス・オブ・アッシャー』、『ミッドナイト・ミサ』、『ドクター・スリープ』、その他の不気味な作品を私たちにもたらしたホラーマスターです）。フラナガン監督は、『バットマン: アニメイテッド・シリーズ』の1992年の「クレイの偉業」エピソードにインスピレーションを受け、肉体的な恐怖と悲劇的なスリラーを組み合わせた映画を作りたいと熱望したと語った。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">“The people I trusted betrayed me.The justice system failed me.” The San Diego Comic-Con kicks off tomorrow, and DC Studios and Warner Brothers are setting the stage by dropping the first full trailer for Clayface , part of the DC Universe’s “Gods and Monsters” arc.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/culture/2026/07/clayface-trailer-leans-into-the-body-horror/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="26">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">材料科学のイノベーションで次世代 AI を推進</h2>
+    <p class="article-original-title">原題: <em>Advancing next-gen AI with materials science innovation</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">人工知能が半導体やデータセンターを新たな物理的限界に押し上げるにつれて、材料科学の進歩はイノベーションのペースを維持するために不可欠なものとなっています。 AI テクノロジーが新世代になるたびに、より多くの処理能力、より多くのメモリ、より高いエネルギー効率、より高い信頼性が求められます。コンピューティングのパフォーマンスが向上するたびに、AI を作成および実行するシステムにかかる物理的な要求も増加します。これらの利点を実現できるかどうかは、チップ設計とシステム アーキテクチャの進歩だけでなく、極限条件下での性能を可能にする材料の進歩にもかかっています。 AI が半導体やデータセンター インフラストラクチャの物理的限界を押し広げ続ける中、先端材料はもはやこの分野のイノベーションを単にサポートするだけではありません。彼らは を定義しています。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">As artificial intelligence pushes semiconductors and data centers to new physical limits, advances in materials science are becoming essential to sustaining the pace of innovation.Every new generation of AI technology demands more processing power, more memory, greater energy efficiency, and higher reliability.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/07/21/1140602/advancing-next-gen-ai-with-materials-science-innovation/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="27">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">VentureBeat</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Microsoft の騒動後、Inflection AI が Pi Journeys で消費者市場に復帰</h2>
+    <p class="article-original-title">原題: <em>Inflection AI returns to consumer market with Pi Journeys after Microsoft upheaval</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">2年前にフロンティアAIの残忍な経済学についてシリコンバレーで最も有名な警鐘となったパロアルトの新興企業インフレクションAIは火曜日、新たな研究部門と、AIにおける次の競争の戦場は生のインテリジェンスではなく関係性であるという挑発的なテーマを中心に構築された実験製品を携えて消費者市場に復帰すると発表した。同社は &lt;a href=&quot;https://inflection.ai/l. . 」を開始しました。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Inflection AI , the Palo Alto startup that two years ago became Silicon Valley&#x27;s most famous cautionary tale about the brutal economics of frontier AI, announced Tuesday that it is returning to the consumer market with a new research division and an experimental product built around a provocative thesis: the next competitive battleground in AI won&#x27;t be raw intelligence, but relationships.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/microsoft.html" target="_blank" rel="noopener noreferrer" class="company-link">Microsoft の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://venturebeat.com/orchestration/inflection-ai-returns-to-consumer-market-with-pi-journeys-after-microsoft-upheaval" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="28">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">EU、パラマウントのワーナー・ブラザーズ買収にゴーサインを与える</h2>
+    <p class="article-original-title">原題: <em>EU gives Paramount&#x27;s Warner Bros. acquisition the go-ahead</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">パラマウントがユニバーサルとの配給事業を終了する限り、ヨーロッパのワーナー・ブラザース・ディスカバリーを買収できる。欧州委員会の規制当局は、同地域におけるユニバーサルとのビジネス関係を終了することを条件に、パラマウントとワーナー・ブラザース・ディスカバリーとの合併を承認した。 EUと米国の規制当局の承認を得て、パラマウントによる1,110億ドルの大規模なワーナー・ブラザース・ディスカバリー買収に対する最後の大きな障害の1つが、現在12州からの法的異議申し立てにより合併を一時停止している。規制当局は合併が映画製作、映画配給、メディアライセンス、テレビ放送などにどのような影響を与えるかを検討し、最終的にパラマウントの将来の配給事業が公正な市場競争にとって最大のリスクとなると判断した。ユニバーサルとパラマウン。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">As long as Paramount ends its distribution business with Universal, it can purchase Warner Bros.Discovery in Europe.European Commission regulators have approved Paramount&#x27;s merger with Warner Bros.Discovery, provided it ends its business relationship with Universal in the region.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2221157/eu-gives-paramount-warner-bros-acquisition-the-go-ahead/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="29">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">メタに対するソーシャルメディア依存症訴訟が取り下げられる</h2>
+    <p class="article-original-title">原題: <em>Social media addiction lawsuit against Meta is dropped</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">スナップがソーシャルメディア依存症訴訟で原告と暫定的に和解し、メタが唯一の残る被告となった翌日、訴訟は取り下げられた。メタ氏は声明で、原告は支払いを受け取ることなくメタ氏に対する訴訟を取り下げることを選択したと述べた。 TikTokとGoogleのYouTubeは以前、原告と和解合意に達していた。 （火曜日のスナップは、暫定的な合意に達したことを確認した。）弁護陪審裁判は来週、ロサンゼルスのカリフォルニア高等裁判所で始まる予定だった。原告はイニシャル「R.K.C.」で知られるフロリダ州の十代の若者で、中毒性のあるプラットフォームを作成したとしてソーシャルメディア企業を訴えていた。これは、大手企業を告発した十代の若者、学校、州司法長官らによる数千件の同様の訴訟の一つだった。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">A day after Snap tentatively settled with the plaintiff in a social media addiction lawsuit, leaving Meta as the only remaining defendant, the case has been dropped.In a statement, Meta said the plaintiff chose to drop his case against Meta without receiving any payment.TikTok and Google’s YouTube had previously reached settlement agreements with the plaintiff.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/google.html" target="_blank" rel="noopener noreferrer" class="company-link">Google の解説</a> <a href="companies/meta.html" target="_blank" rel="noopener noreferrer" class="company-link">Meta の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/07/22/social-media-addiction-lawsuit-against-meta-is-dropped/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Mobile" data-index="30">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#6366f1">📱 Mobile</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">iOSコードにより、ユーザーがiPhoneの支払いを怠った場合にAppleがアプリを遮断できる可能性があると報じられている</h2>
+    <p class="article-original-title">原題: <em>iOS code could reportedly let Apple cut off apps when users miss iPhone payments</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。 新しい「パートナー ファイナンス ロック」は、ユーザーが「制限付きモード」にあるデバイスを消去したり転売したりすることもブロックします。 』</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. ﻿A new ‘Partner Finance Lock’ would also block users from erasing or reselling devices that are in ‘Restricted Mode. ’</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/apple.html" target="_blank" rel="noopener noreferrer" class="company-link">Apple の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/tech/969596/apple-restricted-mode-ios-27" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+        </main>
+
+        <footer class="footer">
+            <p>本ページは公開記事をもとに自動生成しています。数値や仕様は必ず元記事で確認してください。</p>
+            <p>JSON データは同じフォルダ内の tech_news_digest.json で参照できます。</p>
+        </footer>
+    </div>
+
+    <script>
+
+        const categoryButtons = document.querySelectorAll('.category-btn');
+        const articleCards = document.querySelectorAll('.article-card');
+        const searchInput = document.getElementById('search-input');
+
+        let activeCategory = 'all';
+
+        function applyFilters() {
+            const query = searchInput.value.trim().toLowerCase();
+            articleCards.forEach(card => {
+                const matchesCategory = activeCategory === 'all' || card.dataset.category === activeCategory;
+                const searchableText = card.innerText.toLowerCase();
+                const matchesQuery = !query || searchableText.includes(query);
+                card.style.display = matchesCategory && matchesQuery ? '' : 'none';
+            });
+        }
+
+        categoryButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                categoryButtons.forEach(item => item.classList.remove('active'));
+                button.classList.add('active');
+                activeCategory = button.dataset.category;
+                applyFilters();
+            });
+        });
+
+        searchInput.addEventListener('input', applyFilters);
+    
+    </script>
+</body>
+</html>
