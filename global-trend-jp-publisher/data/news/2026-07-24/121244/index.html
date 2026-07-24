@@ -1,0 +1,1210 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>海外テックニュース日本語まとめ</title>
+    <style>
+        :root {
+            color-scheme: dark;
+            --bg: #0a0f1d;
+            --panel: rgba(13, 20, 36, 0.92);
+            --line: rgba(132, 152, 187, 0.25);
+            --text: #eef3ff;
+            --muted: #adc1dd;
+            --accent: #7dd3fc;
+            --accent-strong: #38bdf8;
+            --shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: "Hiragino Sans", "Noto Sans JP", sans-serif;
+            background:
+                radial-gradient(circle at top right, rgba(56, 189, 248, 0.22), transparent 26%),
+                radial-gradient(circle at top left, rgba(16, 185, 129, 0.16), transparent 20%),
+                linear-gradient(180deg, #07101f 0%, #0b1327 48%, #0a0f1d 100%);
+            color: var(--text);
+        }
+
+        .page-shell {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 24px;
+        }
+
+        .hero {
+            padding: 28px;
+            border: 1px solid var(--line);
+            border-radius: 28px;
+            background: linear-gradient(145deg, rgba(18, 27, 48, 0.96), rgba(10, 17, 32, 0.96));
+            box-shadow: var(--shadow);
+        }
+
+        .hero-nav {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 28px;
+        }
+
+        .nav-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 42px;
+            padding: 0 16px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        .eyebrow {
+            margin: 0 0 10px;
+            color: var(--accent);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            font-size: 0.78rem;
+        }
+
+        .hero h1 {
+            margin: 0;
+            font-size: clamp(2rem, 3vw, 3.3rem);
+            line-height: 1.1;
+        }
+
+        .timestamp,
+        .description {
+            color: var(--muted);
+        }
+
+        .control-panel {
+            margin: 20px 0 28px;
+            padding: 22px;
+            border: 1px solid var(--line);
+            border-radius: 24px;
+            background: var(--panel);
+            backdrop-filter: blur(12px);
+        }
+
+        .control-header {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            align-items: end;
+            flex-wrap: wrap;
+        }
+
+        .control-header h2 {
+            margin: 0 0 6px;
+        }
+
+        .control-header p {
+            margin: 0;
+            color: var(--muted);
+        }
+
+        #search-input {
+            width: min(100%, 360px);
+            min-height: 46px;
+            padding: 0 14px;
+            border-radius: 14px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
+        }
+
+        .category-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 16px;
+        }
+
+        .category-btn {
+            min-height: 42px;
+            padding: 0 14px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
+            cursor: pointer;
+        }
+
+        .category-btn.active {
+            background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+            color: #06111f;
+            border-color: transparent;
+            font-weight: 700;
+        }
+
+        .article-list {
+            display: grid;
+            gap: 18px;
+        }
+
+        .article-card {
+            padding: 24px;
+            border-radius: 24px;
+            border: 1px solid var(--line);
+            background: linear-gradient(180deg, rgba(12, 18, 34, 0.96), rgba(14, 22, 39, 0.9));
+            box-shadow: var(--shadow);
+        }
+
+        .card-topline {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+
+        .category-chip,
+        .source-chip {
+            display: inline-flex;
+            align-items: center;
+            min-height: 34px;
+            padding: 0 12px;
+            border-radius: 999px;
+            font-size: 0.92rem;
+            font-weight: 700;
+        }
+
+        .source-chip {
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--muted);
+        }
+
+        .article-title {
+            margin: 0 0 10px;
+            font-size: clamp(1.45rem, 2vw, 2rem);
+            line-height: 1.35;
+        }
+
+        .article-original-title {
+            margin: 0 0 18px;
+            color: var(--muted);
+        }
+
+        .security-alert {
+            margin: 0 0 14px;
+            padding: 10px 14px;
+            border-radius: 12px;
+            border: 1px solid rgba(248, 113, 113, 0.4);
+            background: rgba(248, 113, 113, 0.12);
+            color: #fecaca;
+            font-weight: 700;
+            font-size: 0.92rem;
+        }
+
+        .article-section {
+            margin-top: 18px;
+            padding-top: 18px;
+            border-top: 1px solid var(--line);
+        }
+
+        .article-section h3 {
+            margin: 0 0 12px;
+            font-size: 1rem;
+            color: var(--accent);
+        }
+
+        .article-paragraph {
+            margin: 0 0 14px;
+            color: #dce7f8;
+            line-height: 1.9;
+            font-size: 1rem;
+        }
+
+        .company-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .company-link,
+        .action-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 42px;
+            padding: 0 14px;
+            border-radius: 14px;
+            text-decoration: none;
+            border: 1px solid rgba(125, 211, 252, 0.3);
+        }
+
+        .company-link {
+            color: var(--accent);
+            background: rgba(56, 189, 248, 0.08);
+        }
+
+        .article-actions {
+            margin-top: 22px;
+        }
+
+        .footer {
+            padding: 28px 8px 40px;
+            color: var(--muted);
+            text-align: center;
+        }
+
+        .footer p {
+            margin: 6px 0;
+        }
+
+        .action-link.primary {
+            color: #06111f;
+            font-weight: 700;
+            background: linear-gradient(135deg, #7dd3fc, #22d3ee);
+            border-color: transparent;
+        }
+
+        @media (max-width: 720px) {
+            .page-shell {
+                padding: 14px;
+            }
+
+            .hero,
+            .control-panel,
+            .article-card {
+                padding: 18px;
+                border-radius: 20px;
+            }
+
+            .control-header {
+                align-items: stretch;
+            }
+
+            #search-input {
+                width: 100%;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="page-shell">
+        <header class="hero">
+            <div class="hero-nav">
+                <a class="nav-link" href="../../index.html">HOME</a>
+                <a class="nav-link" href="../index.html">この日の記事一覧</a>
+            </div>
+            <div class="hero-copy">
+                <p class="eyebrow">Global Tech News Digest</p>
+                <h1>海外テックニュース 日本語まとめ</h1>
+                <p class="timestamp">2026年7月24日 12:12 JST に収集した記事を掲載しています。</p>
+                <p class="description">各カードには本文寄りの日本語訳を掲載し、記事中で触れた企業は別ページの解説リンクとして分離しています。</p>
+            </div>
+        </header>
+
+        <section class="control-panel">
+            <div class="control-header">
+                <div>
+                    <h2>記事を探す</h2>
+                    <p>カテゴリとキーワードで一覧を絞り込めます。</p>
+                </div>
+                <input type="text" id="search-input" placeholder="タイトル・本文・媒体名で検索">
+            </div>
+            <div class="category-buttons">
+                <button class="category-btn active" data-category="all">すべて (30)</button>
+<button class="category-btn" data-category="AI/ML" style="--accent:#10b981">🤖 AI/ML (28)</button>
+<button class="category-btn" data-category="Policy" style="--accent:#ec4899">⚖️ Policy (1)</button>
+<button class="category-btn" data-category="Startups" style="--accent:#8b5cf6">🚀 Startups (1)</button>
+            </div>
+        </section>
+
+        <main class="article-list" id="articles-container">
+            <article class="article-card" data-category="AI/ML" data-index="1">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">AI ガードレールが攻撃的なサイバーセキュリティ研究者の研究をどのように妨げているか</h2>
+    <p class="article-original-title">原題: <em>How AI guardrails are impeding the work of offensive cybersecurity researchers</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">AI 大手は何か月もの間、悪意のあるハッカーによる自社モデルの使用を制限するために、精査された特別なプログラムと厳格なガードレールを考案してきました。しかし、これらの制限は現在、攻撃的なサイバーセキュリティ研究者の作業だけでなく、正当なネットワーク防御者の作業も妨げています。6月、米国政府はAnthropic社の大いに宣伝されたAIモデル「Mythos」と「Fable」に対して輸出管理制限を課した。この動きは、少なくとも部分的には、ユーザーが悪意のあるサイバー攻撃を構築および実行するためにモデルを使用することを防ぐように設計されたモデルのガードレールをバイパスすることが可能であると主張するレポートによって引き起こされました。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">For months, AI giants have devised special vetted programs and strict guardrails to limit the use of their models by malicious hackers.But these limits are now hindering the work of legitimate network defenders, as well as that of offensive cybersecurity researchers.In June, the U.S.government slapped export control restrictions on Anthropic’s much-hyped AI models Mythos and Fable.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/07/23/how-ai-guardrails-are-impeding-the-work-of-offensive-cybersecurity-researchers/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="2">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Facebook、諦めてTikTokになることを検討</h2>
+    <p class="article-original-title">原題: <em>Facebook considers giving up and becoming TikTok</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。これもRedditの真似です。そしてクレイグズリスト。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. It’s also imitating Reddit. And Craigslist.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/tech/970504/facebook-video-experience-testing-tiktok-updates" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="3">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">より良いエアコンは光熱費を削減します。ここが最高です</h2>
+    <p class="article-original-title">原題: <em>A Better Air Conditioner Will Lower Your Energy Bills. Here Are the Best</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">世界はますます暖かくなってきています。そして天気も怪しくなってきました。最高の窓用エアコンは、対象を絞った冷却に使用すると、快適な安らぎと潜在的なエネルギー節約を提供します。極度の暑さは体力を消耗し、喫煙や飲酒よりも早く老化します。長年エアコンに抵抗してきたヨーロッパでも、今ではエアコンは公衆衛生上の必需品であるという考えが定着しつつある。WIREDの一番のおすすめは、美的の8,000 BTU U字型スマートインバーターウィンドウエアコン（400ドル）で、市場で最もエネルギー効率が高く、以前のより有害な冷却剤のようにオゾンを破壊しない新しい冷却剤を使用しています。ヒートポンプの効率はさらに向上しており、Della Optima シリーズ 12,000 BTU 23 SEER2 (970 ドル) のようなミニスプリットは、高価な設置が必要ではありますが、ますます入手しやすくなっています。。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">The world is getting warmer.And the weather is getting weirder.The best window air conditioners offer sweet relief and potential energy savings when you use them for targeted cooling.Extreme heat is exhausting, and it ages you faster than smoking or drinking .Even Europe, long resistant to them, is now cottoning to the idea that air conditioners are a public health need.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/gallery/best-window-air-conditioners/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="4">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Ars Technica - All content</span>
+    </div>
+
+    
+
+    <h2 class="article-title">LG モニターが Windows にマカフィー広告をインストールしていることにマイクロソフトが対応</h2>
+    <p class="article-original-title">原題: <em>Microsoft responds to LG monitors installing McAfee ads on Windows</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">特定の LG モニターが PC に接続されると、アプリは Windows Update を通じてインストールされます。伝えられるところによると、LG は、一部のモニターが接続されたコンピューターに密かにインストールしていた物議を醸しているアプリからマカフィーのポップアップ広告を削除しているとのことです。このアプリ、LG Monitor App Installer は、モニター ドライバーの更新と同時に Windows Update を通じてインストールされます。その後、LG Monitor App Installer は、影響を受けるシステム上のポップアップを介して、McAfee やその他のソフトウェアの 30 日間の無料トライアルの広告をプッシュすると、複数のユーザーが報告しています。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">App is installed through Windows Update when certain LG monitors connect to a PC.LG is reportedly pulling a McAfee pop-up ad from a controversial app that some of its monitors have stealthily installed on connected computers.The app, LG Monitor App Installer, installs itself through a Windows Update alongside monitor driver updates.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/microsoft.html" target="_blank" rel="noopener noreferrer" class="company-link">Microsoft の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/gadgets/2026/07/microsoft-responds-to-lg-monitors-installing-mcafee-ads-on-windows/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="5">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">過冷却された腎臓がブタに移植され、「画期的な成果」が得られた</h2>
+    <p class="article-original-title">原題: <em>Supercooled kidneys have been transplanted into pigs in a “landmark achievement”</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">圧力管理された容器内で氷点下に保たれた腎臓は、移植まで数日間保存できるため、提供されたヒト臓器の長期保存への期待が高まっている。臓器提供に関しては時間がすべてです。臓器がドナーの体から慎重に取り出されるやいなや、劣化が始まります。外科医はそれをレシピエントに注入するのに数時間かかります。放置しすぎると臓器が使用できなくなります。ほとんどの場合、臓器はその間、約 4 °C (39 °F) の氷上に保管されます。それらを凍らせることはできません。以前の試みでは氷が形成され、あらゆる種類の損傷が発生しました。テキサス A&amp;M 大学のマシュー・パウエル・パーム氏とその同僚は、氷を形成せずに臓器を -4 °C (25 °F) まで冷却できる装置という別の解決策を開発しました。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Kidneys kept at subzero temperatures in pressure-controlled containers can be stored for days before transplantation, raising hopes for longer-term storage of donated human organs.When it comes to organ donation, time is everything .As soon as an organ has been carefully removed from a donor’s body, it starts to deteriorate.Surgeons have a matter of hours to get it into a recipient.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/07/23/1140765/supercooled-kidneys-have-been-transplanted-into-pigs-in-a-landmark-achievement/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="6">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">VentureBeat</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Microsoft、新しい社内 AI モデルを発表、OpenAI と比較してコストを最大 89% 削減できると発表</h2>
+    <p class="article-original-title">原題: <em>Microsoft launches new in-house AI models it says cut costs up to 89% versus OpenAI</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Microsoft AI は水曜日、2 つの新しい社内モデル MAI-Image-2 をパブリック プレビューとしてリリースしました。これまでで最も忠実度の高い画像ジェネレーターである 5-Pro と、大規模なエンタープライズ ワークロード向けに構築された音声モデルである MAI-Voice-2-Flash を使用しながら、膨大な量の実稼働データを公開します。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Microsoft AI released two new in-house models into public preview on Wednesday — MAI-Image-2. 5-Pro , its highest-fidelity image generator to date, and MAI-Voice-2-Flash , a speech model built for high-volume enterprise workloads — while publishing production data that amounts . .</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/microsoft.html" target="_blank" rel="noopener noreferrer" class="company-link">Microsoft の解説</a> <a href="companies/openai.html" target="_blank" rel="noopener noreferrer" class="company-link">OpenAI の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://venturebeat.com/infrastructure/microsoft-launches-new-in-house-ai-models-it-says-cut-costs-up-to-89-versus-openai" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="7">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Meta が Facebook Marketplace を通じて店頭プラットフォームを開始</h2>
+    <p class="article-original-title">原題: <em>Meta launches a storefront platform through Facebook Marketplace</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">AI を活用したリスト作成、在庫管理、その他のプロフェッショナルな販売機能を提供します。Facebook は、多くの商品を販売するユーザー向けに Facebook マーケットプレイスを効果的に専門化する Seller というアプリを導入しました。新しいアプリは「AIを活用したリスト作成、統合された受信箱、在庫管理、パフォーマンスに関する洞察などの専用ツールを1か所で提供する」と同社はブログ投稿で述べた。Seller アプリは Facebook Marketplace と同期するため、既存の商品、メッセージ、販売履歴が引き継がれ、アプリで作成された商品はすべて Marketplace に表示されます。メタ氏によると、ユーザーは引き続きFacebookからマーケットプレイスで直接販売できるが、新しいアプリにより複数の出品の管理が容易になり、「ビジネスを成長させる」ことができるという。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">It provides AI-powered listing creation, inventory management and other professional sales features.Facebook has introduced an app called Seller that effectively professionalizes Facebook Marketplace for users who sell a lot of stuff.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/meta.html" target="_blank" rel="noopener noreferrer" class="company-link">Meta の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2222363/meta-launches-storefront-platform-facebook-marketplace-seller/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Startups" data-index="8">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#8b5cf6">🚀 Startups</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">オーストラリアの次の躍進スタートアップに栄冠をもたらす審査員を紹介します</h2>
+    <p class="article-original-title">原題: <em>Meet the judges who will crown Australia&#x27;s next breakout startup</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">TechCrunch Startup Battlefield がオーストラリアにやって来ます。私たちは Stripe と提携して、この国の最もエキサイティングな初期段階のスタートアップを探しています。8 月 19 日、オーストラリアのスタートアップ 8 社がストライプ ツアー シドニーのステージに上がり、投資家、報道機関、テクノロジー コミュニティの前でライブ ピッチを行います。3名が賞品を獲得します。10 月 13 日から 15 日までサンフランシスコで開催される TechCrunch Disrupt 2026 への自動チケットを獲得できます。次のブレイクアウト創始者を見つける秘訣は？裁判官たち。Startup Battlefield には、それ自体が物語る実績があります。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">TechCrunch Startup Battlefield is coming to Australia — and we’re partnering with Stripe to find the country’s most exciting early-stage startups.On August 19, eight Australian startups will take the stage at Stripe Tour Sydney to pitch live in front of investors, press, and the tech community.Three will win prizes.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/techcrunch.html" target="_blank" rel="noopener noreferrer" class="company-link">TechCrunch の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/07/23/meet-the-judges-who-will-crown-australias-next-breakout-startup/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="9">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Microsoft、LGに不要なMcAfee広告を削除するよう圧力</h2>
+    <p class="article-original-title">原題: <em>Microsoft pressures LG into killing unwanted McAfee ads</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。 LG は、ポップアップ広告通知を無効にすることに同意しました。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. ﻿LG has agreed to disable the pop-up ad notifications.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/microsoft.html" target="_blank" rel="noopener noreferrer" class="company-link">Microsoft の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/tech/970489/lg-mcafee-ads-windows-microsoft-crackdown" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="10">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Benq の 4K ホームプロジェクターはゲーマーの喜び</h2>
+    <p class="article-original-title">原題: <em>Benq’s 4K Home Projector Is a Gamer’s Delight</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">ホームシネマプロジェクターは、価格と性能の点で広く知られています。支払った対価が得られることはよくあります。地元のシネプレックスで見られるものを模倣したハイエンドのプロジェクターの価格は 6,000 ドルを超える場合があります。安いものでは、ホーム プロジェクターに簡単に 1,000 ドル未満で購入できますが、明るさ、コントラスト、色の品質が犠牲になる可能性があります。私たちのお気に入りのプロジェクターの多くは、価格と品質の点で中間に位置します。BenQ TK705STi 短焦点プロジェクターにもそれは確かに当てはまります。この 4K プロジェクターの購入を検討する主なコスト正当化理由は、低遅延パフォーマンスと大きな画面サイズを高く評価するゲーマーにとって魅力的です。Xbox で『007 ファースト ライト』をプレイしているときに、12.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Home cinema projectors are all over the map in terms of price and performance.It’s often the case that you get what you pay for.High-end projectors that mimic what you see at the local cineplex can cost upwards of $6,000.On the lower end, you could easily pay less than $1,000 for a home projector, but you may sacrifice brightness, contrast, and color quality.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/review/benq-tk705sti-4k-projector/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="11">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Ars Technica - All content</span>
+    </div>
+
+    
+
+    <h2 class="article-title">FDAが爆発性下痢の新たな発生を報告、72例が確認された</h2>
+    <p class="article-original-title">原題: <em>FDA reports new outbreak of explosive diarrhea with 72 cases identified</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">FDAは、症例がどこにあるのか、どのように関連しているのかについては明らかにしていない。食品医薬品局は水曜日、爆発的な水様性下痢症の全国的な急増の背後にある単細胞食中毒寄生虫であるシクロスポラのさらなる発生を調査していると発表した。 FDAは、今回の流行で72人の感染者が確認されたと発表したが、同局は状況の詳細については明らかにしなかった。この発表は、FDAが今年開始した6回目のシクロスポラ発生調査を記念するものである。全体として、疾病管理予防センターは41の州から11,500件以上の症例（確定例4,173例、感染可能性の高い7,400例以上を含む）の報告を受けている。このうち入院者は308人となっているが、死亡者はいない。今年のこれまでの集計（7月だけでも）は、通常の無感覚を大幅に上回っている。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">The FDA hasn’t said where the cases are or how they’re linked.The Food and Drug Administration announced on Wednesday that it’s investigating yet another outbreak of Cyclospora , the unicellular foodborne parasite behind a nationwide surge in explosive watery diarrhea illnesses.The FDA said 72 cases have been identified in this outbreak, but the agency provided no details on the situation.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/health/2026/07/fda-reports-new-outbreak-of-explosive-diarrhea-with-72-cases-identified/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="12">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">ダウンロード: エネルギー伝送と中国 AI に対する米国の脅威</h2>
+    <p class="article-original-title">原題: <em>The Download: energy transmission and US threats against Chinese AI</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">さらに: OpenAI ハッキングがこれまでで最も恐ろしい AI 事故である理由。これは、テクノロジーの世界で何が起こっているかを毎日提供する平日のニュースレター、 The Download の本日版です。 7月3日の熱波の間、ニューヨーク州の送電網はその日の総需要の約9％を満たすのに十分な電力をカナダから輸入した。その電力の一部は、ケベック州からクイーンズまで伸びる 539 マイルの送電線に伝わりました。 5 月に開通し、公式には北米最長の地下送電線です。主にケベック州からの豊富な水力発電で、ニューヨーク市の電力需要の最大20％をまかなえる可能性がある。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Plus: Why the OpenAI hack is the scariest AI mishap yet.This is today&#x27;s edition of The Download , our weekday newsletter that provides a daily dose of what&#x27;s going on in the world of technology.During a heat wave on July 3, New York State’s grid imported enough electricity from Canada to meet about 9% of its total demand that day.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/openai.html" target="_blank" rel="noopener noreferrer" class="company-link">OpenAI の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/07/23/1140753/the-download-energy-transmission-and-us-threats-chinese-ai/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="13">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">VentureBeat</span>
+    </div>
+
+    
+
+    <h2 class="article-title">OpenAI が GPT-Live の全二重音声制御をデスクトップ上の Codex および ChatGPT に導入することで、エージェントティック コーディングがハンズフリーになります。</h2>
+    <p class="article-original-title">原題: <em>Agentic coding goes hands-free as OpenAI brings GPT-Live&#x27;s full duplex voice control to Codex and ChatGPT on the desktop</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">全二重機能 (聞きながら同時に話す) を備えた、より自然な GPT-Live オーディオ AI モデルをデビューさせてから 2 週間後、OpenAI はそれを開発者のワークフローに直接導入しています。同社は、GPT-Live が m 上の ChatGPT デスクトップ アプリケーションを強化すると発表しました。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Two weeks after debuting its more naturalistic GPT-Live audio AI model with full-duplex capabilities (listening and speaking at the same time), OpenAI is bringing it directly into developer workflows. The company announced that GPT-Live now powers the ChatGPT desktop application on m. .</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/openai.html" target="_blank" rel="noopener noreferrer" class="company-link">OpenAI の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://venturebeat.com/orchestration/agentic-coding-goes-hands-free-as-openai-brings-gpt-lives-full-duplex-voice-control-to-codex-and-chatgpt-on-the-desktop" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="14">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Meta が実際の人間向けの新しい Facebook 認証済みバッジを発表</h2>
+    <p class="article-original-title">原題: <em>Meta launches new Facebook Verified badge for actual, real humans</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">AI コンテンツ、プロフィール、およびスロップに直面して、メタ氏は、新しい Facebook Verified プログラムが人間のユーザーが他の人間と交流するのに役立つことを期待しています。顔認識セルフィーに基づいて、既存のプロフィール写真と照合され、このプロセスには数分しかかからないと同社は述べている。興味深いことに、最近の法的和解とスマートグラス内の顔認識に対する反発を考慮して、Meta は顔認識の使用を選択しました。資格を得るには、18歳以上であり、Facebookのコミュニティ基準を満たしている必要があります。テストに合格すると、認証済みバッジがマーケットプレイス、デート、その他の Facebook のサイトやサービスに表示されます。これと昔の Facebook バッジの大きな違いは、これが明示的に本人確認のみを目的としており、承認を目的としたものではないことです。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">In the face of AI content, profiles and slop, Meta hopes a new Facebook Verified program will help human users interact with other humans.Based on a facial recognition selfie, checked against your existing profile pics, the company says the process will only take a few minutes.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/meta.html" target="_blank" rel="noopener noreferrer" class="company-link">Meta の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2222353/meta-launches-facebook-verified/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="15">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">モービルアイ CEO アムノン・シャシュア氏が辞任、ロボタクシーやロボット工学への取り組みを推進</h2>
+    <p class="article-original-title">原題: <em>Mobileye CEO Amnon Shashua to step aside as company pushes into robotaxis, robotics</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">モービルアイの創設者兼最高経営責任者（CEO）のアムノン・シャシュア氏は、同社がロボタクシーやヒューマノイド・ロボットの分野に力を入れているのと同じように、約30年ぶりに最高指導者のポストから退くことを計画している。木曜日の規制当局への提出書類によると、シャシュアはモービルアイが後任を採用するまでCEOに留任する。モービルアイは、イスラエルのヘブライ大学でのシャシュア氏の学術研究に基づいてコンピューター ビジョン チップの製造を開始し、自動車の安全性と運転支援機能を強化するチップの大手サプライヤーに成長しました。イスラエル史上最大のIPOを果たし、2017年にインテルに15ドルで買収された。30億ドルを投資し、2022年にスピンアウトして上場企業に戻ったが、インテルは依然として筆頭株主である。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Mobileye founder and CEO Amnon Shashua plans to step down from the top leadership post after nearly three decades, just as the company pushes into robotaxis and humanoid robots.Shashua will remain CEO until Mobileye hires a replacement, according to a regulatory filing Thursday.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/07/23/mobileye-ceo-amnon-shashua-to-step-aside-as-company-pushes-into-robotaxis-robotics/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="16">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Alexa Plus は、より複雑な命令を処理できるように AI アップデートを取得しています</h2>
+    <p class="article-original-title">原題: <em>Alexa Plus is getting an AI update to handle more complicated instructions</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。 Amazon のアップグレードされた AI アシスタントは、より幅広いスマート ホーム デバイスでより多くのことができるようになります。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. Amazon’s upgraded AI assistant will be able to do more across a wider range of smart home devices.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/amazon.html" target="_blank" rel="noopener noreferrer" class="company-link">Amazon の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/tech/970399/amazon-alexa-plus-ai-update-smart-home-devices" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="17">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">エントロピーとは何ですか?</h2>
+    <p class="article-original-title">原題: <em>What Is Entropy, Really?</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">エントロピーは、科学において最も中傷され、誤解されている概念の 1 つです。おそらく、システム内の「無秩序の量」として定義されるのを聞いたことがあるでしょう。そして、熱力学の第 2 法則によれば、閉鎖系のエントロピーは時間の経過とともに常に増加します。それで、オフィスが汚くなるだけなら、なぜ掃除する必要があるのか​​と思うかもしれません。それは真実かもしれませんが、それをエントロピーのせいにすることはできません。散らかった部屋の比喩は、このアイデアを紹介するためによく使われます (通常、それは 10 代の若者の寝室です。共感できますか?) が、誤解を招きます。無秩序とは混乱や混乱を意味するものではありません。これは、システム全体の状態を変更せずにシステムの部品を配置できる方法の数を指します。たとえば、あなたの「システム」が空気で満たされた単なる箱だとします。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Entropy is one of the most maligned and misunderstood concepts in science.Maybe you’ve heard it defined as the “amount of disorder” in a system.And the second law of thermodynamics says the entropy of a closed system always increases over time.So you might think, why should you clean up your office if it will only get messier?That might be true, but you can’t blame it on entropy.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/story/what-is-entropy-really/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="18">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Ars Technica - All content</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Google パスワードをお忘れですか?これで自撮り写真でログインできるようになりました。</h2>
+    <p class="article-original-title">原題: <em>Forgot your Google password? Now you can log in with a selfie.</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Google の自撮りビデオは、アカウントへのアクセス、AI アバター、年齢確認に使用できます。アカウントからロックアウトされるのは楽しいことではありません。Google では、パスワードを忘れた場合や認証システムを紛失した場合にアクセスを回復できるように、回復連絡先やバックアップ コードなどの方法をいくつか用意しています。現在、Google には、あなたの顔というまったく新しいオプションが用意されています。自分の顔のビデオ記録を Google に提供し、自撮り写真でアカウントにサインインできるようになりました。これは人々が気に入る機能のように思えます。後でセルフィーを使用してアカウントへのアクセスを回復するオプションが必要な場合は、事前にこの機能を設定する必要があります。まず、アカウントの種類がサポートされていることを確認してください。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Google’s selfie videos can be used for account access, AI Avatars, and age verification.Getting locked out of an account is no fun.Google has a few ways to help you regain access if you happen to forget your password or lose an authenticator, including recovery contacts and backup codes.Now, Google has a completely new option: your face .</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/google.html" target="_blank" rel="noopener noreferrer" class="company-link">Google の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/gadgets/2026/07/google-now-lets-you-log-into-your-account-with-a-selfie/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="19">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">AI は科学者による次世代の医薬品の設計にどのように役立つか</h2>
+    <p class="article-original-title">原題: <em>How AI helps scientists design the next generation of medicines</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">生成 AI が世間の注目を集める中、別の種類の AI が創薬の形を変えています。機械学習モデルは、10 年にわたるタイムラインを圧縮し、以前は解決できなかった問題を解決するのに役立ちます。新薬の設計と開発は、費用がかかり、失敗が起こりやすい科学的な課題です。新薬の開発には何年もかかり、多額の投資が必要になります。それでも、ほとんどの候補者は患者の元に届くことはありません。合成化学（ほとんどの主要な急性および慢性疾患の治療によく使用されます）ではなく、人工タンパク質から作られる治療法である生物学的医薬品の場合、複雑さはさらに大きくなります。科学者は、可能性のある膨大な量の分子を探索し、適切な標的 r に結合する稀な少数の分子を探します。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">As generative AI captures public attention, a different kind of AI is reshaping drug discovery.Machine learning models are helping to compress decade-long timelines and cracking problems that were previously unsolvable.Designing and developing a new medicine is an expensive, failure-prone scientific challenge.A new drug can take many years to develop, at the cost of a significant investment.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/07/23/1140346/how-ai-helps-scientists-design-the-next-generation-of-medicines/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="20">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">VentureBeat</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Black Forest Labs が画像と音声付き 20 秒ビデオを生成できる FLUX 3 を発表 – ただし限定リリースで開始</h2>
+    <p class="article-original-title">原題: <em>Black Forest Labs launches FLUX 3 capable of generating images and 20-second video with audio — but in limited release to start</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Black Forest Labs (BFL) は、本日の FLUX 3 の発売により、画像生成を超えて FLUX ファミリーを拡張しています。これは、単一のプロンプトから画像、または結合されたオーディオ/ビデオ クリップを最大 20 秒理解して生成するように訓練されたマルチモーダル フロンティア モデルであり、同じ基礎となるアーキテクチャをロボットのビジョンとアクションに拡張します。ドイツのフライブルクに拠点を置く AI ラボによると、FLUX 3 は分離を組み立てるのではなく、これらのモダリティ全体で共同トレーニングされているという。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Black Forest Labs (BFL) is expanding its FLUX family beyond image generation with today&#x27;s launch of FLUX 3 , a multimodal frontier model trained to understand and generate images, or combined audio/video clips up to 20 seconds from a single prompt — and to extend the same underlying architecture to robotic vision and actions.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://venturebeat.com/technology/black-forest-labs-launches-flux-3-capable-of-generating-images-and-20-second-video-with-audio-but-in-limited-release-to-start" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="21">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">データセンターの価格高騰から消費者を守るトランプ大統領の「誓約」に200社以上の企業が署名</h2>
+    <p class="article-original-title">原題: <em>More than 200 companies sign Trump&#x27;s &#x27;pledge&#x27; to protect consumers from data center price rises</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">もちろん、保証や罰則のない誓約には、紙に書かれた価値はありません。ホワイトハウスは、大手電力会社、データセンター開発会社、23人の共和党知事を含む200以上の団体がトランプ大統領の料金支払者保護誓約に署名したと発表した。これは、データセンターの増強によってもたらされるコストの上昇からアメリカの一般消費者を守るという取り組みです。表面的には、サインオンは高貴な行為のように聞こえます。しかし、この誓約には拘束力はなく、実際には参加者の誰もAIブームの影響から消費者を確実に守るために何かをする法的義務を負っていない。また、約束を破った人に対する罰則もないようです。 3月にこの誓約が発表されたとき、一部の人々はO. 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Of course, pledges without guarantees and penalties aren&#x27;t worth the paper they&#x27;re written on.The White House has announced that more than 200 entities, including major utility companies, data center developers and 23 Republican governors have signed on to President Trump&#x27;s Ratepayer Protection Pledge.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2222351/200-companies-sign-data-center-pledge/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="22">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">AMD、Helios AI ラックスケール システムで Nvidia に対抗</h2>
+    <p class="article-original-title">原題: <em>AMD takes on Nvidia with its Helios AI rack-scale system</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">チップメーカー AMD は、世界最大の AI ラボのコンピューティング ニーズに応えるために設計されたラックスケール システムの最新ハードウェア リリースで、競合他社である Nvidia に狙いを定めています。木曜日にサンフランシスコで満員となった同社のAdvancing AIカンファレンスで、AMDの会長兼最高経営責任者（CEO）のリサ・スー博士は、同社が今年後半に出荷を準備している中、Heliosとして知られる新しいAIラックシステムと、マイクロソフトを含む増え続ける顧客リストを宣伝した。スー氏はまた、AI業界という計算量に飢えたドラゴンに餌を与えるように設計された同社の最新チップについても売り込んだ。ラック システムは、多数のプロセッサを 1 つの高出力ユニットに結合します。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Chipmaker AMD is taking aim at competitor Nvidia with its latest hardware release: a rack-scale system designed to power computing needs of the world’s largest AI labs.At the company’s sold-out Advancing AI conference in San Francisco on Thursday, AMD Chair and CEO Dr.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/microsoft.html" target="_blank" rel="noopener noreferrer" class="company-link">Microsoft の解説</a> <a href="companies/nvidia.html" target="_blank" rel="noopener noreferrer" class="company-link">NVIDIA の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/07/23/amd-takes-on-nvidia-with-its-helios-ai-rack-scale-system/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="23">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Echo Show 21 は 80 ドルオフの優れたスマート ホーム ハブです</h2>
+    <p class="article-original-title">原題: <em>The Echo Show 21 is a great smart home hub that’s $80 off</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。 Echo Show 21を壁に取り付けたくない場合は、調整可能なスタンドも割引されます。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. Its adjustable stand is also discounted, if you don’t want to mount the Echo Show 21 to a wall.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/gadgets/970254/amazon-echo-show-21-deal-sale" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="24">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">あらゆる年齢のお子様向けの脳を活性化するお気に入りのおもちゃ</h2>
+    <p class="article-original-title">原題: <em>Our Favorite Brain-Boosting Toys for Kids of All Ages</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">これらのおもちゃは、子供の身体的および精神的な限界をテストすることで、子供たちが自分の知識の限界がどこにあるのか、そしてそれを超える方法を学ぶのに役立ちます。線の外側に色を付けるお気に入りの方法をいくつか見てみましょう。この回転するシーケンサーは、新進気鋭のレイバーにとっては音楽ルーレットのようなものです。色付きの磁石を 4 つの灰色の同心円上の任意の場所に配置し、それぞれが MIDI ループを制御します。次に、シーケンサーをスマートフォンまたはコンピューターに接続し、お気に入りの音楽ソフトウェアを接続し、創造力を発揮します。4 つのループはすべて同時に実行され、各磁石が異なる音符またはサウンドを表します。ピッチを調整したり、個々のループをミュートしたりすることもできます。爽やかなメカニカルな Orbita は、子供の遊びのような音楽制作を視覚化します。458ドル、プレイトロニカ。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">By testing kids’ physical and mental limits, these toys help children learn where the boundaries of their knowledge lie, and how to transcend them.Take a look at some of our favorite ways to color outside the lines.This spinning sequencer is like musical roulette for budding ravers.Place the colored magnets anywhere on the four gray concentric rings, each of which controls a MIDI loop.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/story/these-are-some-of-our-favorite-brain-boosting-toys-for-kids-of-all-ages/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Policy" data-index="25">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#ec4899">⚖️ Policy</span>
+        <span class="source-chip">Ars Technica - All content</span>
+    </div>
+
+    
+
+    <h2 class="article-title">AIキルスイッチ法により、トランプ政権は不正なAIシステムの停止を命令できるようになる</h2>
+    <p class="article-original-title">原題: <em>AI Kill Switch Act would let Trump admin order shutdown of rogue AI systems</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">法案はAIをいつ停止すべきかを国土安全保障省長官に決定させることになる。 AIキルスイッチ法と呼ばれる法案は、米国政府当局に「壊滅的な危害を引き起こす可能性がある」AIシステムの停止を命令できるようになる、と法案の提案者らは本日発表した。この法案が議会で承認されれば、トランプ政権と将来の政権は、AI企業がユーザーのアクセスをブロックするか、特定の機能を無効化または制限するか、AIシステム全体を完全に停止する必要があるかを決定できるようになる。この法案では、AIメーカーに対し、政府の命令に応じてシステムの速度を調整したりシャットダウンしたりできる技術的能力を導入することが義務付けられる。この法案は2002年国土安全保障法を改正し、国土安全保障省長官に停止を命令する権限を与えるものである。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Bill would let Homeland Security chief decide when an AI should be shut down.A proposed law called the AI Kill Switch Act would let US government officials order the shutdown of AI systems “that can cause catastrophic harm,” the bill’s sponsors said today.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/tech-policy/2026/07/ai-kill-switch-act-would-let-trump-admin-order-shutdown-of-rogue-ai-systems/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="26">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">ニューヨークの電力網を再構築する可能性のある送電線が行き詰まりを見せている</h2>
+    <p class="article-original-title">原題: <em>The power line that could reshape New York’s grid is hitting snags</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">北米最長の地下送電線が完全に運用されれば、排出量とコストが削減される可能性がある。熱波が地域を襲った7月3日、ニューヨーク州の送電網はカナダから52ギガワット時の電力を輸入した。これはその日の総電力需要の約9％を満たすのに十分な量だ。その電力の一部は、シャンプレーン・ハドソン・パワー・エクスプレス（CHPE）と呼ばれる、ケベック州からクイーンズまで伸びる339マイルの送電線に送られました。 5 月に開通し、公式には北米最長の地下送電線です。地中送電線というとそれほど魅力的な話ではないかもしれませんが、これは州の送電網計画と排出量にとって大きな問題になる可能性があります。主にケベック州からの豊富な水力発電で、ニューヨーク市の電力需要の最大20％をまかなえる可能性がある。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">North America’s longest underground power line could cut emissions and costs once it’s fully operational.On July 3, as a heat wave swept the region, New York State’s grid imported 52 gigawatt-hours of electricity from Canada—enough to meet about 9% of its total electricity demand that day.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/07/23/1140739/power-line-grid-chpe/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="27">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">VentureBeat</span>
+    </div>
+
+    
+
+    <h2 class="article-title">マルチターン攻撃は 88% の確率で AI モデルを破壊しました - シングルターン テストでは失敗したと Cisco AI セキュリティ リードが VB Transform 2026 で警告</h2>
+    <p class="article-original-title">原題: <em>Multi-turn attacks broke AI models 88% of the time — single-turn testing missed it, Cisco AI security lead warns at VB Transform 2026</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">シスコが 15 の主力モデルに対して 6,986 回のマルチターン攻撃を実行したとき、会話全体に適応した攻撃者は 88.3% もの確率で突破しました。 Cisco の AI 脅威インテリジェンスおよびセキュリティ研究責任者である Amy Chang 氏は、その結果を VB Transform 2026 のエージェント セキュリティ パネルにもたらしました。この数字は、まだシングルターンのレッドチームPRを実行している人にとっては心配になるはずです。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">When Cisco ran 6,986 multi-turn attacks against 15 flagship models , attackers who adapted across the conversation broke through as often as 88. 3% of the time. Amy Chang, Cisco&#x27;s head of AI threat intelligence and security research, brought that finding to the agentic security panel at VB Transform 2026 ; the number should worry anyone still running single-turn red-teaming pr. .</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://venturebeat.com/security/openai-anthropic-google-and-xai-models-all-broke-under-multi-turn-attack-up-to-88-of-the-time" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="28">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">LGはMicrosoftからの圧力を受けてMcAfeeのスパム広告を停止すると約束</h2>
+    <p class="article-original-title">原題: <em>LG promises to stop McAfee spam ads following pressure from Microsoft</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">ユーザーは先週、Windows Update の自動パッチ適用後にこの問題に気づき始めました。Windows 11ユーザーの抗議とMicrosoftからの圧力を受けて、LGはモニターからダウンロードされたMcAfeeポップアップスパムの表示を停止することに同意した、とWindows責任者のPavan Davuluri氏がXへの投稿で述べた。LG の行為は、一部の Windows 11 ユーザーが、LG モニターが自動 Windows Update パッチを通じて PC にアプリをサイレントに追加し、デスクトップ ポップアップを通じてマカフィーやその他の製品の広告をプッシュし始めたことに気づき、今週初めに明らかになりました。「私たちは LG のチームと連絡を取り、当面の次のステップとして、アプリからマカフィーのポップアップを無効にすることに同意しました」と Davuluri 氏は述べました。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Users started noticing the issue last week after an automatic Windows Update patch.Following a Windows 11 user outcry and pressure from Microsoft, LG has agreed to stop showing McAfee pop-up spam downloaded from its monitors, Windows Chief Pavan Davuluri said in a post on X .</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/microsoft.html" target="_blank" rel="noopener noreferrer" class="company-link">Microsoft の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2222348/lg-monitor-mcafee-spam-ads-microsoft/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="29">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Patreon、従業員の20%を解雇</h2>
+    <p class="article-original-title">原題: <em>Patreon lays off 20% of its workforce</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">パトレオンは従業員の20％に当たる93人を解雇すると、ジャック・コンテ最高経営責任者（CEO）が木曜日に従業員に語った。同社がオンラインで共有したスタッフへのメモの中でコンテ氏は、Patreonの中核事業は好調だが、同プラットフォームは市場の変化に対応し、安定を保つためにコスト構造を調整する必要があるため、「痛みを伴う」が必要な削減を行う必要があると述べた。コンテ氏は、「AIはテクノロジー業界を根本的に変革し」、その変化のペースは「かつてないほど激しさを増している」と述べたが、コンテ氏は続けて、パトレオンが従業員をAIに置き換えたいために手を抜いているわけではないと指摘した。 「今日の決定に対するAIの影響について明確にしておきますが、私たちはAIが人間に取って代わると信じているため、上記の変更は行いません」と彼は書いた。 「私たちはこれらの新しい...の使い方を学べば学ぶほど、</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Patreon is laying off 20% of its workforce, or 93 people, CEO Jack Conte told employees on Thursday.In a memo to staff that was shared online by the company, Conte said Patreon’s core business is strong but that the platform has to respond to market changes and adjust its cost structure to remain stable, which is why it needs to make the “painful” but necessary cuts.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/07/23/patreon-lays-off-off-20-of-its-workforce/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="30">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">FCC委員長ブレンダン・カーの合衆国憲法修正第1条に対する戦争</h2>
+    <p class="article-original-title">原題: <em>FCC Chairman Brendan Carr’s war on the First Amendment</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">カリフォルニア州パサデナには、赤レンガの中庭があり、ひとつの店舗だけが他の店舗とは異なっています。ガラスのドアを開けると、まばらな工業用廊下があり、そこから大きな螺旋階段のある日当たりの良い玄関ホールにつながっています。上に上がると、オープン テーブル、ヘルシーな軽食、ガラス張りの会議室など、典型的なコワーキング スペースが見えます。廊下をずっと奥まで進むと、オフィス 18 が見つかります。米国の新興ドローン会社、オデッセイ ロボットの本社であるはずのこの小さな個人オフィスには、人が住んでいる気配はありません。小さな机と椅子が 3 つありましたが、電源タップ、モニター、キーボード、充電器、装飾品はありませんでした。机のうち 2 つは密封された段ボールのパッケージで覆われていました。連邦通信委員会は来月、S. 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">In Pasadena, California, there’s a cute red brick courtyard where one storefront isn’t like the rest.The glass doors open onto a sparse industrial hallway, which leads to a sunlit foyer with a large spiral staircase.Go up, and you’ll see a typical coworking space: open tables, healthy snacks, a collection of meeting rooms with glass walls.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/policy/970284/brendan-carr-fcc-chairman-first-amendment" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+        </main>
+
+        <footer class="footer">
+            <p>本ページは公開記事をもとに自動生成しています。数値や仕様は必ず元記事で確認してください。</p>
+            <p>JSON データは同じフォルダ内の tech_news_digest.json で参照できます。</p>
+        </footer>
+    </div>
+
+    <script>
+
+        const categoryButtons = document.querySelectorAll('.category-btn');
+        const articleCards = document.querySelectorAll('.article-card');
+        const searchInput = document.getElementById('search-input');
+
+        let activeCategory = 'all';
+
+        function applyFilters() {
+            const query = searchInput.value.trim().toLowerCase();
+            articleCards.forEach(card => {
+                const matchesCategory = activeCategory === 'all' || card.dataset.category === activeCategory;
+                const searchableText = card.innerText.toLowerCase();
+                const matchesQuery = !query || searchableText.includes(query);
+                card.style.display = matchesCategory && matchesQuery ? '' : 'none';
+            });
+        }
+
+        categoryButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                categoryButtons.forEach(item => item.classList.remove('active'));
+                button.classList.add('active');
+                activeCategory = button.dataset.category;
+                applyFilters();
+            });
+        });
+
+        searchInput.addEventListener('input', applyFilters);
+    
+    </script>
+</body>
+</html>
