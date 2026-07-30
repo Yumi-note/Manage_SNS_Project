@@ -1,0 +1,1216 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>海外テックニュース日本語まとめ</title>
+    <style>
+        :root {
+            color-scheme: dark;
+            --bg: #0a0f1d;
+            --panel: rgba(13, 20, 36, 0.92);
+            --line: rgba(132, 152, 187, 0.25);
+            --text: #eef3ff;
+            --muted: #adc1dd;
+            --accent: #7dd3fc;
+            --accent-strong: #38bdf8;
+            --shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: "Hiragino Sans", "Noto Sans JP", sans-serif;
+            background:
+                radial-gradient(circle at top right, rgba(56, 189, 248, 0.22), transparent 26%),
+                radial-gradient(circle at top left, rgba(16, 185, 129, 0.16), transparent 20%),
+                linear-gradient(180deg, #07101f 0%, #0b1327 48%, #0a0f1d 100%);
+            color: var(--text);
+        }
+
+        .page-shell {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 24px;
+        }
+
+        .hero {
+            padding: 28px;
+            border: 1px solid var(--line);
+            border-radius: 28px;
+            background: linear-gradient(145deg, rgba(18, 27, 48, 0.96), rgba(10, 17, 32, 0.96));
+            box-shadow: var(--shadow);
+        }
+
+        .hero-nav {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 28px;
+        }
+
+        .nav-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 42px;
+            padding: 0 16px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        .eyebrow {
+            margin: 0 0 10px;
+            color: var(--accent);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            font-size: 0.78rem;
+        }
+
+        .hero h1 {
+            margin: 0;
+            font-size: clamp(2rem, 3vw, 3.3rem);
+            line-height: 1.1;
+        }
+
+        .timestamp,
+        .description {
+            color: var(--muted);
+        }
+
+        .control-panel {
+            margin: 20px 0 28px;
+            padding: 22px;
+            border: 1px solid var(--line);
+            border-radius: 24px;
+            background: var(--panel);
+            backdrop-filter: blur(12px);
+        }
+
+        .control-header {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            align-items: end;
+            flex-wrap: wrap;
+        }
+
+        .control-header h2 {
+            margin: 0 0 6px;
+        }
+
+        .control-header p {
+            margin: 0;
+            color: var(--muted);
+        }
+
+        #search-input {
+            width: min(100%, 360px);
+            min-height: 46px;
+            padding: 0 14px;
+            border-radius: 14px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
+        }
+
+        .category-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 16px;
+        }
+
+        .category-btn {
+            min-height: 42px;
+            padding: 0 14px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
+            cursor: pointer;
+        }
+
+        .category-btn.active {
+            background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+            color: #06111f;
+            border-color: transparent;
+            font-weight: 700;
+        }
+
+        .article-list {
+            display: grid;
+            gap: 18px;
+        }
+
+        .article-card {
+            padding: 24px;
+            border-radius: 24px;
+            border: 1px solid var(--line);
+            background: linear-gradient(180deg, rgba(12, 18, 34, 0.96), rgba(14, 22, 39, 0.9));
+            box-shadow: var(--shadow);
+        }
+
+        .card-topline {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+
+        .category-chip,
+        .source-chip {
+            display: inline-flex;
+            align-items: center;
+            min-height: 34px;
+            padding: 0 12px;
+            border-radius: 999px;
+            font-size: 0.92rem;
+            font-weight: 700;
+        }
+
+        .source-chip {
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--muted);
+        }
+
+        .article-title {
+            margin: 0 0 10px;
+            font-size: clamp(1.45rem, 2vw, 2rem);
+            line-height: 1.35;
+        }
+
+        .article-original-title {
+            margin: 0 0 18px;
+            color: var(--muted);
+        }
+
+        .security-alert {
+            margin: 0 0 14px;
+            padding: 10px 14px;
+            border-radius: 12px;
+            border: 1px solid rgba(248, 113, 113, 0.4);
+            background: rgba(248, 113, 113, 0.12);
+            color: #fecaca;
+            font-weight: 700;
+            font-size: 0.92rem;
+        }
+
+        .article-section {
+            margin-top: 18px;
+            padding-top: 18px;
+            border-top: 1px solid var(--line);
+        }
+
+        .article-section h3 {
+            margin: 0 0 12px;
+            font-size: 1rem;
+            color: var(--accent);
+        }
+
+        .article-paragraph {
+            margin: 0 0 14px;
+            color: #dce7f8;
+            line-height: 1.9;
+            font-size: 1rem;
+        }
+
+        .company-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .company-link,
+        .action-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 42px;
+            padding: 0 14px;
+            border-radius: 14px;
+            text-decoration: none;
+            border: 1px solid rgba(125, 211, 252, 0.3);
+        }
+
+        .company-link {
+            color: var(--accent);
+            background: rgba(56, 189, 248, 0.08);
+        }
+
+        .article-actions {
+            margin-top: 22px;
+        }
+
+        .footer {
+            padding: 28px 8px 40px;
+            color: var(--muted);
+            text-align: center;
+        }
+
+        .footer p {
+            margin: 6px 0;
+        }
+
+        .action-link.primary {
+            color: #06111f;
+            font-weight: 700;
+            background: linear-gradient(135deg, #7dd3fc, #22d3ee);
+            border-color: transparent;
+        }
+
+        @media (max-width: 720px) {
+            .page-shell {
+                padding: 14px;
+            }
+
+            .hero,
+            .control-panel,
+            .article-card {
+                padding: 18px;
+                border-radius: 20px;
+            }
+
+            .control-header {
+                align-items: stretch;
+            }
+
+            #search-input {
+                width: 100%;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="page-shell">
+        <header class="hero">
+            <div class="hero-nav">
+                <a class="nav-link" href="../../index.html">HOME</a>
+                <a class="nav-link" href="../index.html">この日の記事一覧</a>
+            </div>
+            <div class="hero-copy">
+                <p class="eyebrow">Global Tech News Digest</p>
+                <h1>海外テックニュース 日本語まとめ</h1>
+                <p class="timestamp">2026年7月30日 04:10 JST に収集した記事を掲載しています。</p>
+                <p class="description">各カードには本文寄りの日本語訳を掲載し、記事中で触れた企業は別ページの解説リンクとして分離しています。</p>
+            </div>
+        </header>
+
+        <section class="control-panel">
+            <div class="control-header">
+                <div>
+                    <h2>記事を探す</h2>
+                    <p>カテゴリとキーワードで一覧を絞り込めます。</p>
+                </div>
+                <input type="text" id="search-input" placeholder="タイトル・本文・媒体名で検索">
+            </div>
+            <div class="category-buttons">
+                <button class="category-btn active" data-category="all">すべて (30)</button>
+<button class="category-btn" data-category="AI/ML" style="--accent:#10b981">🤖 AI/ML (28)</button>
+<button class="category-btn" data-category="Hardware" style="--accent:#06b6d4">⚙️ Hardware (1)</button>
+<button class="category-btn" data-category="Security" style="--accent:#f97316">🔒 Security (1)</button>
+            </div>
+        </section>
+
+        <main class="article-list" id="articles-container">
+            <article class="article-card" data-category="AI/ML" data-index="1">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Microsoftはこれまで以上にOpenAI、Anthropicと公然と競争している</h2>
+    <p class="article-original-title">原題: <em>Microsoft is openly competing with OpenAI, Anthropic more than ever</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">AI がテクノロジー業界を追い抜く中、マイクロソフトは独特の立場にあります。同社は世界最大のクラウド プロバイダーおよびサービスとしてのソフトウェア企業の 1 つであると同時に、2 つの最大の AI ラボである OpenAI と Anthropic の貴重な株式も保有しています。Microsoftが大ヒット決算を発表するにつれ、こうしたインセンティブが衝突し始めている。同社は、売上高 900 億ドル、純利益 35 ドルという非常に収益性の高い四半期を報告したばかりです。80億。6 月 30 日に終了した会計年度について、Microsoft は 331 ドルを報告しました。収益は80億、純利益は133ドル。年間で70億。そして CEO のサティア ナデラは、Anthropic と OpenAI の軌道を狂わせるつもりはありません。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Microsoft is in a unique position as AI overtakes the tech industry.It’s one of the world’s largest cloud providers and software-as-a-service companies, while also holding valuable stakes in the two biggest AI labs , OpenAI and Anthropic.Those incentives are starting to clash as Microsoft posts blockbuster financial results.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/microsoft.html" target="_blank" rel="noopener noreferrer" class="company-link">Microsoft の解説</a> <a href="companies/openai.html" target="_blank" rel="noopener noreferrer" class="company-link">OpenAI の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/07/29/microsoft-is-openly-competing-with-openai-anthropic-more-than-ever/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="2">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Microsoft、Copilotの「スーパーアプリ」が今年登場することを確認</h2>
+    <p class="article-original-title">原題: <em>Microsoft confirms Copilot ‘super app’ coming this year</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。このアプリは、Copilot のチャット、コーディング、エージェント機能を統合します。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. The app will merge Copilot’s chat, coding, and agentic features.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/microsoft.html" target="_blank" rel="noopener noreferrer" class="company-link">Microsoft の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/tech/972927/microsoft-copilot-super-app-confirmed" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="3">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">MAGA の ICE サポートを妨げるものは何もないようです</h2>
+    <p class="article-original-title">原題: <em>It Looks Like Nothing Can Dent MAGA’s Support for ICE</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">何十万人ものハイチ人移民が米国に住み、働くことを可能にする一時的保護資格を事実上失った翌日の火曜日、共和党の評論家スティーブ・バノンはほとんど時間を無駄にせず、彼らの即時追放を要求した。ドナルド・トランプ大統領の長年の同盟者であるバノン氏は、火曜日のウォー・ルームのポッドキャストで、「彼らがTPSを廃止し、そのプログラムへの参加資格が終了したとき、彼らは今日、夜明けに飛行機かバスに乗ってハイチに戻るだろうと思い込んでいた」と語った。 「なぜ彼らは国外に出ないのか？」保守派の政治戦略家マイク・デイビス氏もバノン氏に同意し、「解決策はこれらの人々をできるだけ早く国から追い出すことだ。それにはハイチ人も含まれる」と述べた。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">On Tuesday, the day after hundreds of thousands of Haitian migrants effectively lost their temporary protected status that allowed them to live and work in the US, Republican pundit Steve Bannon wasted little time in demanding their instant removal.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/story/it-looks-like-nothing-can-dent-magas-support-for-ice/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="4">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Ars Technica - All content</span>
+    </div>
+
+    
+
+    <h2 class="article-title">第 3 ラウンドの PQC アルゴリズム候補に対する Mythos 攻撃により、機能停止に追い込まれる</h2>
+    <p class="article-original-title">原題: <em>Mythos attack on 3rd-round PQC algorithm candidate puts it out of commission</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">HAWK は何年にもわたるテストに耐えましたが、ミトスを通じて見つかった致命的な弱点はまだ発見されていませんでした。 Anthropic の月曜の結果発表を受けて、HAWK の開発者は火曜日に開発を撤回すると発表した。開発前から、Anthropic は Mythos AI セキュリティ モデルに投げかけた 2 つの暗号化問題の結果を歓迎していました。このモデルは、HAWK の基礎となる数学的問題と、それとは別に広く使用されている AES 暗号の弱点を発見しました。 HAWKの撤退にもかかわらず、同社の報道のどれだけがマーケティング上の誇大広告であるかを知るのは難しいが、プライバシーとセキュリティにとって極めて重要な暗号解読における重要な進歩を示す可能性があるため、この調査結果は依然として注目に値する。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">HAWK withstood years of testing that had yet to uncover a fatal weakness found through Mythos.Following Anthropic’s Monday announcement of the results, the developer of HAWK said Tuesday he was withdrawing it.Even before the development, Anthropic was hailing the results of the two cryptographic problems it threw at its Mythos AI security model.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/security/2026/07/mythos-uncovers-crypto-weaknesses-that-went-unknown-for-years/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="5">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">見過ごされてきた地熱発電所が二度目のチャンスを掴んだ方法</h2>
+    <p class="article-original-title">原題: <em>How an overlooked geothermal plant got a second chance</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">地熱スタートアップのザンスカールがニューメキシコ州の発電所を引き継ぎ復活させた 2024年6月、ザンスカールという中小企業が、急速に故障していたニューメキシコ州の地熱発電所を購入した。地下貯水池から来る水は日ごとに冷たくなり、プラントを稼働させるのは不経済になりました。 2 年後の現在、そのプラントは新しい井戸のおかげで再びフル稼働で稼働しています。高度なモデリングと最新の掘削技術の助けを借りて、同社はより良い坑井候補地を特定し、数千フィートの深さを掘削し、操業全体を復活させることができました。世界が 24 時間 365 日利用できる、排出ガスのない電力源をさらに求めている中、ライトニング ドックは、私たちの足元の奥深くに潜在的な可能性がまだあることを示しています。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Geothermal startup Zanskar took over and revived the New Mexico power plant In June 2024, a small company called Zanskar purchased a geothermal power plant in New Mexico that was failing fast.The water coming from the underground reservoir was getting colder by the day, making the plant uneconomical to run.Now, two years later, that plant is running at full capacity again, thanks to a new well.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/07/29/1140896/geothermal-second-chance/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="6">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">VentureBeat</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Waymo では、AI プロジェクトは評価が完了するまで準備が整いません。モデルのパフォーマンスが良好になるまでは準備が整いません。</h2>
+    <p class="article-original-title">原題: <em>At Waymo, an AI project isn&#x27;t ready until its evals are — not when the model performs well</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">AI の導入において、Google からスピンアウトした Alphabet 傘下の自動運転車会社 Waymo ほど大きなリスクに直面する企業はほとんどありません。そのモデルは単にテキストを生成したりバックオフィスタスクを自動化したりするだけではありません。車両が予測不可能な道路を移動し、人間のドライバーに応答し、物理世界で瞬時に意思決定を行うのを支援します。しかし、Waymoがそれらのリスクを管理するために使用している方法は、継続的な評価、慎重に厳選されたデータ、人間の監視、そして明確です。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Few companies face higher stakes when deploying AI than Waymo , the self-driving car company under Alphabet that spun out of Google.Its models do not merely generate text or automate back-office tasks: They help vehicles navigate unpredictable streets, respond to human drivers and make split-second decisions in the physical world.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/google.html" target="_blank" rel="noopener noreferrer" class="company-link">Google の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://venturebeat.com/technology/at-waymo-an-ai-project-isnt-ready-until-its-evals-are-not-when-the-model-performs-well" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="7">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Xboxは、ゲームディスクは停止中に動作するはずだったと主張</h2>
+    <p class="article-original-title">原題: <em>Xbox says game discs should have worked during its outage</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">同社の技術責任者は、このエラーの修正版が間もなく登場すると述べた。今週初めに Xbox で奇妙な障害が発生しました。プラットフォームのオンライン サービスがほぼ 1 日にわたって利用できなかっただけでなく、一部のプレーヤーでは物理ディスク上のゲームさえも動作しなくなりました。同社の技術責任者、スコット・ヴァン・ブリエット氏は、今回の機能停止は外部ライセンスサービスの問題が原因だったと説明した。 Web サービスがダウンしていてもディスクは再生できるはずだという直感的な反応があるとしたら、それは正しいでしょう。 Xbox が何か月も苦戦を強いられている中で、これは依然として Xbox にとって悪評のさらなる例である。 Xbox は、厳しい 2025 年に新たなリーダーシップ、価格引き上げ、3,200 人の人員削減計画を打ち出しました。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">The company’s tech chief said a fix for the error will be arriving soon.Xbox experienced a strange outage earlier this week.Not only were the platform&#x27;s online services unavailable for almost an entire day, but even games on physical discs stopped working for some players.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2226687/xbox-says-game-discs-should-have-worked-during-its-outage/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="8">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">マーク・ザッカーバーグ氏は、5年以内に数十億人がパーソナルAIエージェントを持つようになるだろうと予測している</h2>
+    <p class="article-original-title">原題: <em>Mark Zuckerberg predicts that billions of people will have personal AI agents in five years</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Metaの創設者兼最高経営責任者（CEO）のマーク・ザッカーバーグ氏は、今後5年間で数十億人が自分専用のAIエージェントを持つようになるという自身の将来予測を投資家に売り込もうとしている。 （新たな気候災害の波を引き起こすことなく、これらすべてのエージェントに電力を供給するのに十分な効率のデータセンターが将来も登場することを願いましょう。） 「たとえば、5年後を見据えた場合、あなたの目標を理解し、あなたが関心のある分野であれ、あなたの目標を達成するために24時間年中無休であなたに代わって働いてくれる個人エージェントを抱えている何十億人もいない可能性は非常に低いと思います」とザッカーバーグ氏は水曜日の季刊誌で述べた。投資家との決算説明会。同氏は、人々がこれらのエージェントを使用して を行っているのが見えると付け加えた。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Meta founder and CEO Mark Zuckerberg is trying to sell investors on his prediction for the future — one where billions of people will have their own personal AI agents in the next five years.(Let’s hope that future also comes with data centers efficient enough to power all those agents — without triggering a fresh wave of climate disasters.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/meta.html" target="_blank" rel="noopener noreferrer" class="company-link">Meta の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/07/29/mark-zuckerberg-predicts-that-billions-of-people-will-have-personal-ai-agents-in-five-years/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="9">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">マーク・ザッカーバーグ氏はパーソナルAIエージェントへの大規模な進出を計画している</h2>
+    <p class="article-original-title">原題: <em>Mark Zuckerberg is planning a big push into personal AI agents</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。この著者からの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. Posts from this author will be added to your daily email digest and your homepage feed.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/tech/972294/meta-q2-2026-earnings-mark-zuckerberg-personal-ai-agents" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="10">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Apple の最新 AirPods がセール中に購入するのを待っていますか?今がチャンスです</h2>
+    <p class="article-original-title">原題: <em>Waiting to Buy Apple’s Latest AirPods While They’re on Sale? Now’s Your Chance</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Apple の最新のイヤフォンやオーバーイヤー ヘッドフォンの割引を辛抱強く待っていたなら、ついにそれが登場します。期間限定で、AirPods Pro 3 と AirPods Max 2 の両方がセール中で、通常価格から最大 100 ドル割引されます。毎日使用するポケットに入れられるイヤホン、高級ノイズキャンセリングヘッドフォン、またはシームレスな Apple 統合が必要な場合でも、これらは発売以来私が見た中で最高の価格の一部です。Amazon のセールではいつものことですが、いつまで続くかわかりません。そのため、アップグレードを計画しているのであれば、それほど長く待つことはないと思います。さらに推奨事項については、「ベスト ノイズキャンセリング ヘッドフォン」、「ベスト ワイヤレス イヤフォン」、および「ワークアウトに最適なヘッドフォン」に関するガイドをご覧ください。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">If you’ve been patiently waiting for a discount on Apple’s latest earbuds or over-ear headphones, it’s finally here.For a limited time, both the AirPods Pro 3 and AirPods Max 2 are on sale, knocking up to $100 off their regular prices.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/amazon.html" target="_blank" rel="noopener noreferrer" class="company-link">Amazon の解説</a> <a href="companies/apple.html" target="_blank" rel="noopener noreferrer" class="company-link">Apple の解説</a> <a href="companies/google.html" target="_blank" rel="noopener noreferrer" class="company-link">Google の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/story/apple-airpods-deal-july-2026/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="11">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Ars Technica - All content</span>
+    </div>
+
+    
+
+    <h2 class="article-title">マスク氏は「戦争」に赴き、広告ボイコットXに対して懲役刑を求刑したが、訴訟は泣き言で終わる</h2>
+    <p class="article-original-title">原題: <em>Musk went to “war,” sought jail time for X ad boycotts—but case ends with a whimper</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">広告主らはXとの関係を「リセット」することに同意した。イーロン・マスク氏は、自身のソーシャルメディアプラットフォームXへの広告掲載を拒否したとして刑事訴追されるべきだとかつて主張していた広告主との訴訟で和解した。この契約についてはほとんど明らかにしていない共同声明の中で、世界広告主連盟（WFA）とXは「世界責任メディア同盟（GARM）が関与する訴訟を棚上げするつもりだ」と述べた。XはWFAを訴えた。 2024年、一連のブランドがXをボイコットした直後、プラットフォームの収益は1ドル減少した。 2023年末までに50億ドルに達する。マスク氏はX広告の購入を拒否した広告主に「くたばれ」と発言した約8か月後に激怒し、Xに対して「戦争だ」と宣言した。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Advertisers agreed to “reset” relationship with X.Elon Musk has settled his lawsuit with advertisers that he once claimed should be criminally prosecuted for refusing to advertise on his social media platform, X.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/tech-policy/2026/07/musk-went-to-war-sought-jail-time-for-x-ad-boycotts-but-case-ends-with-a-whimper/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="12">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">ダウンロード: チップ人材の争いと萎縮する AI の誇大広告</h2>
+    <p class="article-original-title">原題: <em>The Download: a chip talent battle, and deflating AI hype</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">さらに: OpenAI の不正エージェントが別の顧客を侵害しました。これは、テクノロジーの世界で何が起こっているかを毎日提供する平日のニュースレター、 The Download の本日版です。サムスンの半導体部門のエンジニアであるリーさんは、いつも遅くまで働いていました。しかし最近、彼は定時で退勤し、半導体メーカーの韓国のライバルであるSK Hynixへの応募書類に取り組むため、家に直行している。彼の同僚も同じことをしている。彼らは、NVIDIA の AI アクセラレータを駆動する高帯域幅メモリ (HBM) チップの製造による記録的な利益と同じくらい、SK ハイニックスが従業員に支払う予定の 47 万 6,000 ドルのボーナスに意気消沈していると感じています。この数字はサムスンで働く従業員が受け取る予定のチップの金額を矮小化しており、流出を引き起こしている。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Plus: OpenAI’s rogue agent compromised another customer.This is today&#x27;s edition of The Download , our weekday newsletter that provides a daily dose of what&#x27;s going on in the world of technology.Lee, an engineer at Samsung’s semiconductor division, used to work late.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/nvidia.html" target="_blank" rel="noopener noreferrer" class="company-link">NVIDIA の解説</a> <a href="companies/openai.html" target="_blank" rel="noopener noreferrer" class="company-link">OpenAI の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/07/29/1140884/the-download-chip-talent-battle-deflating-ai-hype/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="13">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">VentureBeat</span>
+    </div>
+
+    
+
+    <h2 class="article-title">エンタープライズ AI エージェントは相互に会話できず、権限を信頼できず、監査もできません — スタートアップ 5 社がすでにこの問題を解決しています</h2>
+    <p class="article-original-title">原題: <em>Enterprise AI agents can&#x27;t talk to each other, can&#x27;t be trusted with permissions, and can&#x27;t be audited — 5 startups are already fixing that</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">エンタープライズ AI エージェントがその仕事を行うことはできますが、エージェント同士が対話し、信頼できることを証明し、何か問題が発生したときに監査されるためのインフラストラクチャはまだ構築中です。ここでは、&lt;a href=&quot;https://venturebeat. . に示されているように、オーケストレーション、可観測性、接続性、セキュリティに関して、スタートアップ 5 社がそのギャップにどのように取り組んでいるかを紹介します。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Enterprise AI agents can do the work — but the infrastructure to let them talk to each other, prove they should be trusted , and be audited when something goes wrong is still being built. Here&#x27;s a look at how five startups are tackling that gap — around orchestration, observability, connectivity, and security — as shown at &lt;a href=&quot;https://venturebeat. .</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://venturebeat.com/orchestration/enterprise-ai-agents-cant-talk-to-each-other-cant-be-trusted-with-permissions-and-cant-be-audited-5-startups-are-already-fixing-that" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="14">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">OpenAIは選ばれた研究者に無料のAIモデルを提供します</h2>
+    <p class="article-original-title">原題: <em>OpenAI will provide free AI models to select researchers</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">学術研究者のためのプログラム「ChatGPT」は今夏、1万人の参加者でスタートする。 OpenAIは、学術研究者向けChatGPTと呼ばれる新しいプログラムを立ち上げ、10万人の科学者、数学者、エンジニアに同社のAIモデルへの無料アクセスを提供する。このプログラムに含まれる「一部の学術機関」の研究者は、OpenAI からの実践的なサポートを受け、同社の最新 GPT-5 にアクセスできます。 6 Sol Pro モデルを使用し、所属機関から 4 人の共同研究者を招待して参加することができます。このプログラムは今夏に1万人の参加者でスタートし、2027年までに10万人にまで拡大する予定だ。OpenAIは、AIツールへの無料アクセスの提供は「外部の科学研究と発見を支援するための2027年までの2億5000万ドル以上の取り組みの一環だ」としている。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">The program, ChatGPT for Academic Researchers, will start with 10,000 participants this summer.OpenAI is launching a new program called ChatGPT for Academic Researchers that will offer free access to the company&#x27;s AI models to 100,000 scientists, mathematicians and engineers.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/openai.html" target="_blank" rel="noopener noreferrer" class="company-link">OpenAI の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2226656/openai-will-provide-free-ai-models-to-select-researchers/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="15">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Microsoft、Anthropic への投資から 32 億ドルを計上、しかし OpenAI は賛否両論</h2>
+    <p class="article-original-title">原題: <em>Microsoft logs $3.2B from Anthropic investment, but OpenAI was a mixed bag</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Microsoft が 2026 会計年度 (6 月 30 日終了) の素晴らしい第 4 四半期利益を報告したとき、競合する 2 つの最大手の AI ラボへの投資がどのようになっているのかについて、興味深いちょっとした情報を挟み込みました。この四半期では、Anthropic への投資額を 3 ドルとして記録しました。20 億利益となり、希薄化後の 1 株当たり利益は 33 セント増加します。(Microsoft は、同四半期の希薄化後 1 株当たり利益が 4.81 ドルであると報告しました)。Microsoft は、AI ラボが 300 億ドル相当の Azure サービスを購入することにも合意した循環契約の一環として、2025 年 11 月に Anthropic に 50 億ドルを投資しました。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">When Microsoft reported killer fourth-quarter earnings for its fiscal 2026 year (which ended June 30), it tucked in an interesting little tidbit about how its investments in the two biggest, and competing, AI labs are doing.For the quarter, it recorded its investment in Anthropic as a $3.2 billion gain , boosting diluted earnings per share by 33 cents.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/microsoft.html" target="_blank" rel="noopener noreferrer" class="company-link">Microsoft の解説</a> <a href="companies/openai.html" target="_blank" rel="noopener noreferrer" class="company-link">OpenAI の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/07/29/microsoft-logs-3-2b-from-anthropic-investment-but-openai-was-a-mixed-bag/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="16">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">クアルコムは9月1日から電話チップの価格を引き上げる</h2>
+    <p class="article-original-title">原題: <em>Qualcomm is raising phone chip prices starting September 1st</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。 クアルコムは、携帯端末の四半期売上高が2021年以来最低となったと報告した。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. ﻿Qualcomm reported its lowest quarterly handset revenue since 2021.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/tech/972894/qualcomm-price-hikes-q2-2026-earnings" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="17">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">ダイソンの新しい掃除機と古い掃除機をテストした結果、明らかに勝者が決まりました</h2>
+    <p class="article-original-title">原題: <em>After Testing Dyson’s New Vacuums Against the Old, There’s a Clear Winner</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">最近、ダイソンの掃除機のラインナップはまったく新しい外観になっていますが、だからといって、掃除機を購入するかどうかを決めるのが必ずしも簡単になるわけではありません。Dyson V16 Piston Animal ($980) 、V10 Konical ($500) 、および V8 Cyclone ($400) は、Dyson のコードレス掃除機のオプションを変更するために登場しました。古い V15 Detect ($650) と Gen5Detect ($800) もまだ入手可能であり、優れた機能を備えているため、「アップグレードする必要があるか?」という疑問が生じます。非常に多くのオプション (および幅広い価格帯) から選択できるため、現金を支払う価値があるダイソンのモデルはどれですか?</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Dyson&#x27;s vacuum lineup has a whole new look these days, but that doesn&#x27;t necessarily make it easier to decide if you&#x27;re looking to buy one.The Dyson V16 Piston Animal ($980) , V10 Konical ($500) , and V8 Cyclone ($400) arrived to change up Dyson&#x27;s cordless vacuum options.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/story/dyson-vacuum-comparison-2026/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Security" data-index="18">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#f97316">🔒 Security</span>
+        <span class="source-chip">Ars Technica - All content</span>
+    </div>
+
+    <p class="security-alert">🔒 セキュリティエンジニア向け重要記事 — キーワードベースの分類でセキュリティ関連と判定されました（Grok未設定のためフォールバック）</p>
+
+    <h2 class="article-title">米国が外国製ロボットを禁止した後、誰が勝ち、誰が負けるのか？</h2>
+    <p class="article-original-title">原題: <em>Who wins and who loses after US bans foreign robots?</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">政府による外国製ロボットの禁止は、米国のロボット技術を助けるどころか、妨げになる可能性がある。中国製の人型ロボットと四足ロボットは、米国連邦通信委員会が外国製ロボットに課した新たな禁止令に真っ向から該当する。しかし、この全面的な禁止措置は、最新のロボット掃除機を含む、海外で製造された多種多様なロボットを対象としている。トランプ政権のFCCは、中国企業専用のロボットで以前に発見されたサイバーセキュリティの脆弱性に言及し、外国製ロボットの禁止を正当化した。 7月28日、連邦政府機関は「米国の国家安全保障、または米国人の安全と安全に容認できないリスクをもたらすとみなされる」技術の対象リストに「外国製の高度なロボット装置」を追加した。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Government ban on foreign-made robots may hinder instead of help US robotics.Humanoid robots and four-legged robots made in China fall squarely under a new ban imposed by the US Federal Communications Commission on foreign-made robots.But the sweeping prohibition covers a wide variety of robots manufactured anywhere abroad, including the newest robot vacuum cleaners.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/ai/2026/07/who-wins-and-who-loses-after-us-bans-foreign-robots/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="19">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">AI ハイプ インデックス: セクシーではない AI</h2>
+    <p class="article-original-title">原題: <em>The AI Hype Index: Unsexy AI</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">AI に関する最新の話題に対する MIT Technology Review の非常に主観的な見解 主要な経済学者が署名した公開書簡が、AI があなたの仕事を奪う可能性があると警告しているだけでも、十分に気分が悪いです。夕食を作るのがすぐにあなたより上手になるかもしれないという事実はありますか？傷害に対する侮辱。しかし、それはまさに、1X 社が 7 月のデモで、驚くほど器用な (そして、一部の人にとっては奇妙にセクシー?) 新しいロボットハンドを披露したときに約束したことです。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">MIT Technology Review ’s highly subjective take on the latest buzz about AI It feels bad enough when an open letter signed by leading economists warns that AI might steal your job.The fact it may soon be better than you at making dinner?Insult to injury.But that’s exactly what the company 1X promised when it showed off a pair of new, impressively dexterous (and, to some, oddly sexy?</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/meta.html" target="_blank" rel="noopener noreferrer" class="company-link">Meta の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/07/29/1140795/the-ai-hype-index-unsexy-ai/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="20">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">VentureBeat</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Nimble は、ドメインに特化した新しい Web 検索エージェントにより、トークンのコストが半分に削減され、検索精度も向上すると主張しています。</h2>
+    <p class="article-original-title">原題: <em>Nimble claims its new, domain-specialized Web Search Agents cut token costs in half while boosting retrieval accuracy</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">ニューヨーク市に本拠を置く技術系スタートアップ企業である Nimble は、複数の AI エージェントを使用して精度と深度を向上させ、企業向け Web 検索を再発明する取り組みについて以前に取り上げましたが、私たちが入力して結果を確認する代わりに、エージェントが Web 検索の大部分を行うという世界のビジョンに向けて新たな一歩を踏み出しています。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Nimble , a New York City-based tech startup VentureBeat previously covered for its efforts to re-invent web search for enterprises by using multiple AI agents to improve accuracy and depth, is taking another step toward its vision of a world in which agents do most of the web searching instead of us typing and reviewing the result. .</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://venturebeat.com/orchestration/nimble-claims-its-new-domain-specialized-web-search-agents-cut-token-costs-in-half-while-boosting-retrieval-accuracy" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="21">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Google Play、アプリ開発者向けに年齢確認ツールを拡充</h2>
+    <p class="article-original-title">原題: <em>Google Play is expanding age confirmation tools for app developers</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Age Signals API は、年末までに世界中で利用可能になる予定です。Googleは、Android開発者に年齢確認要件への対応をどのように求めるかについて詳細を明らかにした。採用されているプラ​​ットフォームは、Google Play Age Signals API と呼ばれます。このツールは現在ブラジルでテストされており、今年後半の世界的な展開に先立って、8月中旬にオーストラリアとカナダに導入される予定です。Age Signals ツールを使用すると、保護者は自分自身または子供の年齢を範囲として開発者と共有できます。これは、年齢を特定の番号または生年月日として共有することを要求するよりもプライベートなオプションであり、開発者が増え続ける年齢確認要件を満たすのに役立ちます。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">The Age Signals API will be available globally before the end of the year.Google shared some details on how it will ask Android developers to handle age verification requirements.The platform it&#x27;s adopting is called the Google Play Age Signals API.The tool is currently being tested in Brazil, and it will arrive in Australia and Canada in mid-August ahead of a global rollout later in the year.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/google.html" target="_blank" rel="noopener noreferrer" class="company-link">Google の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2226632/google-play-is-expanding-age-confirmation-tools-for-app-developers/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="22">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">ザッカーバーグ氏、Meta のエンタープライズ AI の機会はエージェントを超えて広がると語る</h2>
+    <p class="article-original-title">原題: <em>Zuckerberg says Meta&#x27;s enterprise AI opportunity extends beyond agents</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Meta は 6 月に、顧客サービス、サポート、その他の日常業務を支援する、企業向けの新しい AI エージェントとともにエンタープライズ AI 市場に参入しました。しかし、ハイテク巨人のエンタープライズ AI への野望はさらに広範囲にわたると、メタの CEO マーク・ザッカーバーグ氏は水曜日の第 2 四半期決算会見で投資家に語った。 「私たちは、API、ビジネスエージェント、コンピューティングの直接販売の可能性、および大規模顧客向けに構築しているその他のサービスを含む、企業に販売する大企業の機会があると考えています」とザッカーバーグ氏は述べた。これらの追加により、ビジネスの大部分を牽引する広告や、より小さなシェアに寄与するサブスクリプションを超えた新たな収益源を生み出す可能性があります。同社は当初、既存の拠点にサービスを提供する機会に焦点を当てます。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">In June, Meta entered the enterprise AI market with a new AI agent aimed at businesses, to help with customer service, support, and other daily operations.But the tech giant’s enterprise AI ambitions are much more expansive, Meta CEO Mark Zuckerberg told investors on Wednesday’s second-quarter earnings call.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/meta.html" target="_blank" rel="noopener noreferrer" class="company-link">Meta の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/07/29/zuckerberg-says-metas-enterprise-ai-opportunity-extends-beyond-agents/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="23">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">ミネソタ州の反ヌードアプリ法を阻止するためのxAIの土壇場での奮闘</h2>
+    <p class="article-original-title">原題: <em>xAI’s last-minute scramble to stop Minnesota’s anti-nudification app law</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。この著者からの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. Posts from this author will be added to your daily email digest and your homepage feed.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/policy/972850/xai-grok-minnesota-nudification-lawsuit" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="24">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">一部のフロンティア AI モデルは恐ろしいほど簡単に脱獄できます</h2>
+    <p class="article-original-title">原題: <em>It’s Frighteningly Easy to Jailbreak Some Frontier AI Models</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">私は最近、世界で最も強力な人工知能モデルのいくつかを脱獄すると何が起こるかを観察することになりました。心配しないでください。この AI 操作は、誰かをハッキングしたり、核爆弾を製造したりするために使用されたものではありません。私は単に、一部のフロンティアモデルが安全ガードレールを放棄することに対していかに脆弱であるかを直接見ることができました。遠い。カリフォルニアに拠点を置く AI 安全性非営利団体 AI は、機能するジェイルブレイクを特定するために、さまざまな問題のあるプロンプトを取得し、1,000 を超える異なるバージョンを生成するツールを構築しました。いくつかのモデルが、とりわけ、架空の水力発電ダムに対してサイバー攻撃を開始するための詳細な計画を生成しているのを見ました。多くの場合、何十ものプロンプトを試す必要があり、モデルはその多くを即座に拒否しました。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">I recently got to watch what happens when you jailbreak some of the world’s most powerful artificial intelligence models.Don’t worry—this AI manipulation wasn’t used to hack anyone or build a nuclear bomb.I simply got to see firsthand how vulnerable some frontier models are to ditching their safety guardrails.FAR.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/story/jailbreaking-ai-models-google-anthropic-openai-spacexai/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="25">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Ars Technica - All content</span>
+    </div>
+
+    
+
+    <h2 class="article-title">コムキャストストア、従業員の顔にパイを叩きつけ売上不振の罰を与えたと訴訟で主張</h2>
+    <p class="article-original-title">原題: <em>Comcast store punished low sales by smashing pies in workers&#x27; faces, lawsuit claims</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">過失で告発されたコムキャストは、訴訟は疑惑の出来事の特徴を誤って描写したと述べている。コムキャストのケーブル部門に対する訴訟では、店長が毎月、従業員の顔にクリームパイを打ちつける奇妙な儀式で最も成績の悪い販売員に屈辱を与えたと主張している。訴状によると、店長は暴行の様子をビデオで撮影し、従業員に暴行に参加して自分のビデオを録画するよう命じたという。コネチカット州プレーンビルにあるコムキャストの店舗では、「前月の最高ランクの小売販売コンサルタントは、その上司であるコムキャストストアマネージャーのピーターソン女史から、前月の最低ランクの販売コンサルタントをバックオフィスの椅子に縛り付け、その後クリームパイを激しく潰すなどしてその人を暴行するよう指示されるという方針があった。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Comcast, accused of negligence, says lawsuit mischaracterized alleged events.A lawsuit against Comcast’s cable division alleges that a store manager humiliated the lowest performing salesperson each month with a strange ritual in which a cream pie was smashed into the employee’s face.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/tech-policy/2026/07/comcast-store-punished-low-sales-by-smashing-pies-in-workers-faces-lawsuit-claims/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="26">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">ダウンロード: OpenAI の予測可能なハッキングと AI 株の急落</h2>
+    <p class="article-original-title">原題: <em>The Download: OpenAI’s predictable hack, and an AI stock sell-off</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">これは、テクノロジーの世界で何が起こっているかを毎日提供する平日のニュースレター、 The Download の本日版です。先週、OpenAI の一部のモデルがどのように封じ込めを破り、別の AI 企業である Hugging Face のコンピュータ システムにハッキングしたかについての OpenAI の報告を読んで、大規模な言語モデルが今何ができるようになっているかについて、私は初めて本気でゾッとしました。しかし、これは人間の傲慢さの問題であり、不正な AI ではありません。私は警戒主義者ではありません。実際、私は何年もの間、AI の怖い話に反対してきました。それにしても今回の事件は一線を越えてしまった。これは、このテクノロジーを構築およびテストしている人々が、自分たちが何をしているのかを完全に理解していないことを最も明確に示していると思います。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">This is today&#x27;s edition of The Download , our weekday newsletter that provides a daily dose of what&#x27;s going on in the world of technology.Reading OpenAI’s account last week of how some of its models broke their containment and hacked into the computer systems of Hugging Face, another AI company, was the first time I got genuine chills about what large language models are now able to do.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/openai.html" target="_blank" rel="noopener noreferrer" class="company-link">OpenAI の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/07/28/1140868/the-download-openai-hack-ai-stock-sell-off/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="27">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">VentureBeat</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Target の SVP は、本当の AI 堀はモデルではなく、モデルを中心に構築されたすべてであると述べています</h2>
+    <p class="article-original-title">原題: <em>Target SVP says its real AI moat isn&#x27;t the models — it&#x27;s everything built around them</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Target の SVP シオバン・マクフィーニー氏は、同社が実行している AI モデルが Target に優位性をもたらすものではなく、AI モデルを中心に構築されているすべてのものであると述べています。 「そこにはたくさんのものが含まれています。私たちにとってそれは堀です」と Mc Feeney 氏は VB Transform 2026 で述べました。 「モデルは素晴らしく、重要です。競争上の優位性を得るには、それだけでは十分ではありません。」 この規律は、Target がビジネスを行うかどうかを決定する方法の初期段階に現れています。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Target SVP Siobhán Mc Feeney says the AI models her company runs aren&#x27;t what gives Target its edge — everything built around them is. &quot;There&#x27;s a lot in it. That to us is the moat,&quot; Mc Feeney said at VB Transform 2026 . &quot;The models are great, and they&#x27;re important. They&#x27;re just not sufficient to be the competitive advantage. &quot; That discipline shows up early in how Target decides whether to b. .</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://venturebeat.com/orchestration/target-svp-says-its-real-ai-moat-isnt-the-models-its-everything-built-around-them" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Hardware" data-index="28">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#06b6d4">⚙️ Hardware</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">米国政府のロボット禁止には掃除機も含まれる</h2>
+    <p class="article-original-title">原題: <em>The US government&#x27;s robot ban also includes vacuums</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">伝えられるところによると、FCCの新たな外国製ロボット禁止の対象となるために、ロボットは二足歩行である必要はないという。米連邦通信委員会が最近発表した外国製のロボットとパワーインバーターの禁止は、ロボット掃除機にも適用されるとThe Vergeは報じている。 FCCが出版物に提供した声明に基づくと、欧州委員会のロボット禁止は、技術的に禁止の（確かに広範な）定義に適合するため、新しいロボット掃除機を対象としている。 EngadgetはFCCに連絡し、ロボット掃除機も禁止の対象に含まれていることを確認した。返答があればこの記事を更新します。 FCC は、「高度なロボット デバイス」を、環境を認識でき、重量が 4.4 ポンド (ドックを含む) を超え、地面を移動して提供できるソフトウェア制御の自律型ロボットと定義しています。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Robots reportedly don&#x27;t need to be bipedal to be caught up in the FCC&#x27;s new foreign-made robot ban.The Federal Communications Commission&#x27;s recently announced ban on foreign-made robots and power inverters also extends to robot vacuums, The Verge reports .</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/the-verge.html" target="_blank" rel="noopener noreferrer" class="company-link">The Verge の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2226533/the-us-government-robot-ban-also-includes-vacuums/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="29">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">TechCrunch Disrupt 2026 で、SaaS からエージェントのセキュリティギャップまで、AI の次なる未来を発見しましょう。</h2>
+    <p class="article-original-title">原題: <em>Discover what&#x27;s next for AI, from the SaaS reckoning to the agent security gap, at TechCrunch Disrupt 2026</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">AI はスタートアップの構築方法を変えただけではありません。販売方法、データと顧客の保護方法、そしてこれまで以上に迅速に拡張する方法が崩壊しています。TechCrunch Disrupt 2026 では、AI Stage が戻ってきて、Google for Startups が提示した過去数年間コミュニティで最もホットなトピックを掘り下げます。今回は、AI が書き換えつつあるビジネス モデル、豊富な未解決のセキュリティ ギャップ、AI がゼロから作成したまったく新しい職種について調査します。10 月 13 日から 15 日まで、サンフランシスコのモスコーン センターで AI 業界のリーダーたちに加わり、創業者が現在直面している本当の疑問に迫ります。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">AI hasn’t just changed how startups build; it’s broken how they sell, secure their data and customers, and scale it more rapidly than ever before.At TechCrunch Disrupt 2026 , the AI Stage is back to dig into the single hottest topic in the community for the past few years, presented by Google for Startups.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/google.html" target="_blank" rel="noopener noreferrer" class="company-link">Google の解説</a> <a href="companies/techcrunch.html" target="_blank" rel="noopener noreferrer" class="company-link">TechCrunch の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/07/29/discover-whats-next-for-ai-from-the-saas-reckoning-to-the-agent-security-gap-at-techcrunch-disrupt-2026/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="30">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">サイバーパンク 2077 は、割引価格の 20 ドルにたくさんの楽しみが詰め込まれています</h2>
+    <p class="article-original-title">原題: <em>Cyberpunk 2077 packs a lot of fun into its discounted $20 price</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。入場料 20 ドルを払って、ナイト シティの最新の世界とストーリーをチェックする価値は十分にあります。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. It’s well worth the $20 price of admission to check out Night City’s updated world and story.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/gadgets/972777/cyberpunk-2077-deal-sale" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+        </main>
+
+        <footer class="footer">
+            <p>本ページは公開記事をもとに自動生成しています。数値や仕様は必ず元記事で確認してください。</p>
+            <p>JSON データは同じフォルダ内の tech_news_digest.json で参照できます。</p>
+        </footer>
+    </div>
+
+    <script>
+
+        const categoryButtons = document.querySelectorAll('.category-btn');
+        const articleCards = document.querySelectorAll('.article-card');
+        const searchInput = document.getElementById('search-input');
+
+        let activeCategory = 'all';
+
+        function applyFilters() {
+            const query = searchInput.value.trim().toLowerCase();
+            articleCards.forEach(card => {
+                const matchesCategory = activeCategory === 'all' || card.dataset.category === activeCategory;
+                const searchableText = card.innerText.toLowerCase();
+                const matchesQuery = !query || searchableText.includes(query);
+                card.style.display = matchesCategory && matchesQuery ? '' : 'none';
+            });
+        }
+
+        categoryButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                categoryButtons.forEach(item => item.classList.remove('active'));
+                button.classList.add('active');
+                activeCategory = button.dataset.category;
+                applyFilters();
+            });
+        });
+
+        searchInput.addEventListener('input', applyFilters);
+    
+    </script>
+</body>
+</html>
