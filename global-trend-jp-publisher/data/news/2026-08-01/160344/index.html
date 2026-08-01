@@ -1,0 +1,1173 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>海外テックニュース日本語まとめ</title>
+    <style>
+        :root {
+            color-scheme: dark;
+            --bg: #0a0f1d;
+            --panel: rgba(13, 20, 36, 0.92);
+            --line: rgba(132, 152, 187, 0.25);
+            --text: #eef3ff;
+            --muted: #adc1dd;
+            --accent: #7dd3fc;
+            --accent-strong: #38bdf8;
+            --shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: "Hiragino Sans", "Noto Sans JP", sans-serif;
+            background:
+                radial-gradient(circle at top right, rgba(56, 189, 248, 0.22), transparent 26%),
+                radial-gradient(circle at top left, rgba(16, 185, 129, 0.16), transparent 20%),
+                linear-gradient(180deg, #07101f 0%, #0b1327 48%, #0a0f1d 100%);
+            color: var(--text);
+        }
+
+        .page-shell {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 24px;
+        }
+
+        .hero {
+            padding: 28px;
+            border: 1px solid var(--line);
+            border-radius: 28px;
+            background: linear-gradient(145deg, rgba(18, 27, 48, 0.96), rgba(10, 17, 32, 0.96));
+            box-shadow: var(--shadow);
+        }
+
+        .hero-nav {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 28px;
+        }
+
+        .nav-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 42px;
+            padding: 0 16px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        .eyebrow {
+            margin: 0 0 10px;
+            color: var(--accent);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            font-size: 0.78rem;
+        }
+
+        .hero h1 {
+            margin: 0;
+            font-size: clamp(2rem, 3vw, 3.3rem);
+            line-height: 1.1;
+        }
+
+        .timestamp,
+        .description {
+            color: var(--muted);
+        }
+
+        .control-panel {
+            margin: 20px 0 28px;
+            padding: 22px;
+            border: 1px solid var(--line);
+            border-radius: 24px;
+            background: var(--panel);
+            backdrop-filter: blur(12px);
+        }
+
+        .control-header {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            align-items: end;
+            flex-wrap: wrap;
+        }
+
+        .control-header h2 {
+            margin: 0 0 6px;
+        }
+
+        .control-header p {
+            margin: 0;
+            color: var(--muted);
+        }
+
+        #search-input {
+            width: min(100%, 360px);
+            min-height: 46px;
+            padding: 0 14px;
+            border-radius: 14px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
+        }
+
+        .category-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 16px;
+        }
+
+        .category-btn {
+            min-height: 42px;
+            padding: 0 14px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
+            cursor: pointer;
+        }
+
+        .category-btn.active {
+            background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+            color: #06111f;
+            border-color: transparent;
+            font-weight: 700;
+        }
+
+        .article-list {
+            display: grid;
+            gap: 18px;
+        }
+
+        .article-card {
+            padding: 24px;
+            border-radius: 24px;
+            border: 1px solid var(--line);
+            background: linear-gradient(180deg, rgba(12, 18, 34, 0.96), rgba(14, 22, 39, 0.9));
+            box-shadow: var(--shadow);
+        }
+
+        .card-topline {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+
+        .category-chip,
+        .source-chip {
+            display: inline-flex;
+            align-items: center;
+            min-height: 34px;
+            padding: 0 12px;
+            border-radius: 999px;
+            font-size: 0.92rem;
+            font-weight: 700;
+        }
+
+        .source-chip {
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--muted);
+        }
+
+        .article-title {
+            margin: 0 0 10px;
+            font-size: clamp(1.45rem, 2vw, 2rem);
+            line-height: 1.35;
+        }
+
+        .article-original-title {
+            margin: 0 0 18px;
+            color: var(--muted);
+        }
+
+        .security-alert {
+            margin: 0 0 14px;
+            padding: 10px 14px;
+            border-radius: 12px;
+            border: 1px solid rgba(248, 113, 113, 0.4);
+            background: rgba(248, 113, 113, 0.12);
+            color: #fecaca;
+            font-weight: 700;
+            font-size: 0.92rem;
+        }
+
+        .article-section {
+            margin-top: 18px;
+            padding-top: 18px;
+            border-top: 1px solid var(--line);
+        }
+
+        .article-section h3 {
+            margin: 0 0 12px;
+            font-size: 1rem;
+            color: var(--accent);
+        }
+
+        .article-paragraph {
+            margin: 0 0 14px;
+            color: #dce7f8;
+            line-height: 1.9;
+            font-size: 1rem;
+        }
+
+        .company-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .company-link,
+        .action-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 42px;
+            padding: 0 14px;
+            border-radius: 14px;
+            text-decoration: none;
+            border: 1px solid rgba(125, 211, 252, 0.3);
+        }
+
+        .company-link {
+            color: var(--accent);
+            background: rgba(56, 189, 248, 0.08);
+        }
+
+        .article-actions {
+            margin-top: 22px;
+        }
+
+        .footer {
+            padding: 28px 8px 40px;
+            color: var(--muted);
+            text-align: center;
+        }
+
+        .footer p {
+            margin: 6px 0;
+        }
+
+        .action-link.primary {
+            color: #06111f;
+            font-weight: 700;
+            background: linear-gradient(135deg, #7dd3fc, #22d3ee);
+            border-color: transparent;
+        }
+
+        @media (max-width: 720px) {
+            .page-shell {
+                padding: 14px;
+            }
+
+            .hero,
+            .control-panel,
+            .article-card {
+                padding: 18px;
+                border-radius: 20px;
+            }
+
+            .control-header {
+                align-items: stretch;
+            }
+
+            #search-input {
+                width: 100%;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="page-shell">
+        <header class="hero">
+            <div class="hero-nav">
+                <a class="nav-link" href="../../index.html">HOME</a>
+                <a class="nav-link" href="../index.html">この日の記事一覧</a>
+            </div>
+            <div class="hero-copy">
+                <p class="eyebrow">Global Tech News Digest</p>
+                <h1>海外テックニュース 日本語まとめ</h1>
+                <p class="timestamp">2026年8月1日 16:03 JST に収集した記事を掲載しています。</p>
+                <p class="description">各カードには本文寄りの日本語訳を掲載し、記事中で触れた企業は別ページの解説リンクとして分離しています。</p>
+            </div>
+        </header>
+
+        <section class="control-panel">
+            <div class="control-header">
+                <div>
+                    <h2>記事を探す</h2>
+                    <p>カテゴリとキーワードで一覧を絞り込めます。</p>
+                </div>
+                <input type="text" id="search-input" placeholder="タイトル・本文・媒体名で検索">
+            </div>
+            <div class="category-buttons">
+                <button class="category-btn active" data-category="all">すべて (29)</button>
+<button class="category-btn" data-category="AI/ML" style="--accent:#10b981">🤖 AI/ML (24)</button>
+<button class="category-btn" data-category="Hardware" style="--accent:#06b6d4">⚙️ Hardware (2)</button>
+<button class="category-btn" data-category="Mobile" style="--accent:#6366f1">📱 Mobile (1)</button>
+<button class="category-btn" data-category="Other" style="--accent:#6b7280">📰 Other (1)</button>
+<button class="category-btn" data-category="Startups" style="--accent:#8b5cf6">🚀 Startups (1)</button>
+            </div>
+        </section>
+
+        <main class="article-list" id="articles-container">
+            <article class="article-card" data-category="AI/ML" data-index="1">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">この 9 ドルのキーは、最も中毒性の高いアプリを物理的にロックします</h2>
+    <p class="article-original-title">原題: <em>This $9 key physically locks your most addictive apps</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">スクリーンタイム アプリは、最終的には自分の意志の力に依存するため、多くの人にとって効果的ではありません。スクロールを停止するよう通知したり、タイマーを設定したりするよう通知しますが、このような通知は無視しやすいものです。Autonomous Key は、単に物理デバイスであるという点で、この問題に対して異なるアプローチを採用しています。これは、コンパニオン アプリとペアリングして、気が散るアプリをロックできる NFC キーです。そのため、ボタンをタップしてブロックを回避する代わりに、ロックされたアプリへのアクセスを取り戻すには、携帯電話でキーを物理的にスキャンする必要があります。各ロック解除セッションは、アプリが自動的に再びロックされるまで最大 60 分間継続できます。この物理的な要件が、このアイデアを説得力のあるものにしています。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Screen-time apps aren’t effective for many people because, in the end, they depend on your willpower.They remind you to stop scrolling or let you set timers, but such notifications can be easy to ignore.Autonomous Key takes a different approach to this issue simply by being a physical device.It’s an NFC key that pairs with a companion app to let you lock away distracting apps.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/08/01/this-9-key-physically-locks-your-most-addictive-apps/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="2">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">トランプ大統領、ウォーターハッキングはおそらくイランによるものだとしてもティム・ウォルツ氏を非難</h2>
+    <p class="article-original-title">原題: <em>Trump blames Tim Walz for water hacks even though it’s probably Iran</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。いつものように、大統領は思いつきの告発の証拠を何も示さなかった。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. As usual, the president offered no evidence of his off-the-cuff accusations.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/policy/974197/trump-tim-walz-minnesota-water-hacks-iran" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="3">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">70 脚のオフィスチェアをテストして最適なものを選びました</h2>
+    <p class="article-original-title">原題: <em>We Tested 70 Office Chairs to Pick the Best Ones</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">幸せな生活を望むなら、ケチってはいけないものが 3 つあります。それは、良いマットレス、良い靴、そして最高のオフィスチェアです。それぞれが不必要な痛みのない世界への鍵です。適切な人間工学に基づいた椅子を見つけることが、満足で集中力のあるホーム オフィス ライフと、不快感や小さな不満に満ちた慌ただしい 1 日の違いをもたらします。最高のデスクチェアは、ほとんどの場合、調節可能な椅子です。つまり、体の独自の形状に合わせて調整でき、長時間の仕事でも背中の問題を避けるために十分な腰部サポートを提供する椅子です。多くの椅子には体温を放散する素材が使用されているため、背中に汗をかいた状態で Zoom 会議に参加できなくなることはありません。しかし、椅子の選択肢には戸惑う人もいるかもしれません。幸いなことに、『WIRED』のレビューチームはさらに多くの費用を費やしました。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">There Are Three things you don&#x27;t skimp on if you want a happy life: a good mattress , a good pair of shoes , and the best office chair you can find.Each one is key to a world free of unnecessary pain.Finding the right ergonomic chair can be the difference between a satisfying and focused home office life and a squirmy day filled with cricks and small dissatisfactions.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/gallery/best-office-chairs/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="4">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Ars Technica - All content</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Redditの株価が下落する中、CEOはGoogleのAI概要の価値に疑問を呈する</h2>
+    <p class="article-original-title">原題: <em>As Reddit stock falls, CEO questions value of Google&#x27;s AI Overviews</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Redditは依然としてGoogleとのライセンス契約の終了を検討している可能性がある。他の企業と同様に、レディットは四半期ごとの収益を報告しており、その報告の中で CEO のスティーブ・ハフマンが投資家に向けて演説しています。ただし、必ずしも数字を共有するだけではありません。この四半期、ハフマン氏は機会を利用して、ほとんどのユーザーのクエリに対する検索結果を自動的に要約する Google の AI 概要機能について懸念と批判を表明しました。まず、投資家への手紙があり、その中でハフマン氏は AI ツールの急増の中での Reddit の価値提案と一般的な戦略的方向性について自身の物語を紡ぎ出しました。AI によって情報がより豊富になるにつれて、課題はコンテンツを見つけることではなくなり、コンテキスト、個人的な意見、直接の話を見つけることになります。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Reddit may still be considering ending its licensing deal with Google.Like any company, Reddit reports quarterly earnings, and its CEO, Steve Huffman, addresses investors during those reports.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/google.html" target="_blank" rel="noopener noreferrer" class="company-link">Google の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/ai/2026/08/reddit-ceo-on-ai-overviews-were-still-looking-for-that-win-win/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="5">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">ダウンロード: モンタナ州の新しい実験薬物規則</h2>
+    <p class="article-original-title">原題: <em>The Download: Montana’s new experimental drug rules</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">さらに、Anthropic は、自社の AI モデルがテスト中に外部組織をハッキングしたと述べています。これは、テクノロジーの世界で何が起こっているかを毎日提供する平日のニュースレター、 The Download の本日版です。モンタナ州では今週から、医薬品が予備検査（場合によっては10人程度の健康人を対象）を通過したバイオテクノロジー企業は、新設の審査委員会に承認を申請するために1万2500ドルを支払うことができる。その治療法が承認されると、同社は実験的な治療クリニックを通じてそれを販売できるようになり、最初の治療クリニックが今年末頃に稼働する見込みだ。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Plus: Anthropic says its AI models hacked external organizations during testing.This is today&#x27;s edition of The Download , our weekday newsletter that provides a daily dose of what&#x27;s going on in the world of technology.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/07/31/1140999/the-download-montanas-right-to-try-law-anthropic-hacks/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="6">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">VentureBeat</span>
+    </div>
+
+    
+
+    <h2 class="article-title">構造化 AI データ パイプラインのスコアは自由形式コードより 10.9 ポイント低い — DataFlow-Harness がギャップを埋める</h2>
+    <p class="article-original-title">原題: <em>Structured AI data pipelines score 10.9 points below free-form code — DataFlow-Harness closes the gap</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">AI コーディング エージェントに、単一の JSON ファイルを解析するためのスタンドアロン Python スクリプトの作成を依頼すると、おそらく数秒で完璧な答えが得られます。しかし、特定のエンタープライズ スタックに適合する検索拡張生成 (RAG) システム向けに、何千もの乱雑なドキュメントの取り込み、テキストのチャンク化、品質のスコアリング、ノイズのフィルタリングなど、体系的なデータ処理パイプラインの構築を依頼すると、同じエージェントが機能しなくなることがよくあります。大規模言語モデル (LLM) は 1 回限りのコード生成に優れています。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">If you ask an AI coding agent to write a standalone Python script to parse a single JSON file, it will likely give you a perfect answer in seconds.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://venturebeat.com/orchestration/structured-ai-data-pipelines-score-10-9-points-below-free-form-code-dataflow-harness-closes-the-gap" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="7">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">判事、アプリの「裸化」を禁止するミネソタ州法の差し止めを求めるxAIの要請を拒否</h2>
+    <p class="article-original-title">原題: <em>Judge refuses xAI&#x27;s request to stop a Minnesota law banning &#x27;nudify&#x27; apps</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">同意のない親密な画像を生成する可能性のあるアプリやウェブサイトを禁止するミネソタ州の新しい法律は、その施行を阻止しようとしたxAIの土壇場での努力が連邦判事の説得に失敗したことを受けて、本日発効する可能性がある。 NBCニュース によると、米国地方判事のドノバン・フランクは、新法が合衆国憲法修正第1条に違反するとして、xAIの8月1日施行を差し止めるよう訴えを認めなかったという。裁判官の命令に基づくと、裁判官はxAIの行動によって法の執行が即時危害をもたらすとは納得しなかった。同氏は、xAIが2026年7月29日に訴訟を起こしたが、これは法律署名からほぼ3か月後、発効のわずか3日前であると指摘した。 「訴訟や動議の提出がこれほど遅れているということは、危害が直ちに生じないことを示唆している」と同紙は述べた。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">The new Minnesota law that would ban apps and websites that can generate nonconsensual intimate imagery can take effect today, after xAI&#x27;s last-minute effort to stop it from being enforced failed to convince a federal judge.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2228460/judge-refuses-xai-request-to-stop-minnesota-law-banning-nudify-apps/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="8">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Uber は自動運転車帝国を構築中、その実現に利用している全企業を紹介</h2>
+    <p class="article-original-title">原題: <em>Uber is building an autonomous vehicle empire, and here&#x27;s every company it&#x27;s using to do it</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">ウーバーは過去 2 年間で 30 社以上の自動運転車会社と提携し、場合によっては直接投資も行ってきました。そしてそれは世界的なアプローチをとっています。ここでは、TechCrunch がそれらの動きのすべてを 1 か所で追跡しています。まず最初に、歴史について少し説明します。ウーバーはかつて、独自の自動運転車（AV）技術を開発し、テストしていた。当時トラビス・カラニック氏が率いていた同社は、2014年にウーバー・アドバンスト・テクノロジーズ・グループ（ATG）を設立し、カーネギーメロン大学のロボット工学プログラムから数十人の研究者を採用した。2年後、Uberは、元Google自動運転エンジニアのアンソニー・レヴァンドフスキー、リオール・ロン、ドン・バーネット（後にコディアックAIを設立）、クレア・ドロネーによって設立された自動運転トラック会社オットーを買収した。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Uber has partnered with — and in some cases made direct investments in — more than 30 autonomous vehicle companies over the past two years.And it’s taking a global approach.Here, TechCrunch tracks every one of those moves in one place.But first, a bit of history.Uber was, at one time, developing and testing its own autonomous vehicle (AV) technology.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/google.html" target="_blank" rel="noopener noreferrer" class="company-link">Google の解説</a> <a href="companies/techcrunch.html" target="_blank" rel="noopener noreferrer" class="company-link">TechCrunch の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/08/01/ubers-autonomous-vehicle-deal-tracker/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="9">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">The Verge の 2026 年新学期ショッピング ガイド</h2>
+    <p class="article-original-title">原題: <em>The Verge’s 2026 back-to-school shopping guide</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。必需品からあると嬉しいものまで、今年の学校生活を最高のものにしてくれる28商品を集めました。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. From necessities to nice-to-haves, we’ve gathered 28 products that will make this year at school the best it can be.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/the-verge.html" target="_blank" rel="noopener noreferrer" class="company-link">The Verge の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/gadgets/968645/back-to-school-shopping-guide-gifts" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="10">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">最高のオーガニックマットレス</h2>
+    <p class="article-original-title">原題: <em>The Best Organic Mattresses</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">最近、「オーガニック」という言葉の周りで、多くのことがグリーンウォッシュされています。他の何よりも価格を上げる理由のように見えることが多いため、オーガニック製品を購入する場所を慎重に選ぶことが重要です。私はオーガニック製品を購入することに慣れています。何年も毎晩ベッドで寝ることになりますが、それはかなりの量の環境にさらされることになるので、オーガニックマットレスに投資するのは理にかなっていると私は考えています。幸いなことに、これらのほとんどは従来のマットレスよりもそれほど高価ではありません。従来のマットレスには疑わしい素材が含まれていることがよくあります。ホルムアルデヒドや TCEP (難燃剤) を含むポリウレタンフォームからフタル酸エステル類に至るまで、あらゆるものが非有機性マットレスに混入し、ガスが家の中に放出される可能性があります。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">There’s a Lot of greenwashing around the term “organic” these days.It often seems more like a reason to raise prices than anything else, which is why it helps to be selective about where you pony up for organic things.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/story/best-organic-mattress/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="11">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Ars Technica - All content</span>
+    </div>
+
+    
+
+    <h2 class="article-title">騒音の苦情を受け、裁判官がウェイモにサンタモニカでの夜間充電を中止するよう命令</h2>
+    <p class="article-original-title">原題: <em>After noise complaints, judge orders Waymo to stop overnight charging in Santa Monica</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">自動運転車の巨人が住民の睡眠を妨げる。地元の裁判官は、ウェイモが「公共迷惑」を引き起こす可能性があるため、カリフォルニア州サンタモニカで並列充電施設を夜間使用することはできないとの判決を下し、ロサンゼルス高等裁判所のブラッドリー・S・フィリップス判事は今週、サンタモニカ市が自動運転車大手に対して現在進行中の公共迷惑訴訟に対する仮差し止めを求めるサンタモニカ市の申し立てを認めた。市当局者や近隣住民らは、充電ステーションに絶え間なく車両が流入することで光害と騒音公害が発生し、道路や近くの路地に不当な交通渋滞を引き起こし、集団的な迷惑と混乱を引き起こしていると主張している。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Autonomous vehicle giant disturbs residents’ sleep.A local judge has ruled that Waymo can no longer use its side-by-side charging facilities overnight in Santa Monica, California, as these may pose a “public nuisance.” Los Angeles Superior Court Judge Bradley S.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/tech-policy/2026/08/after-noise-complaints-judge-orders-waymo-to-stop-overnight-charging-in-santa-monica/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="12">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">モンタナ州の新しい「裁判の権利」法は、一部の人にとってはすぐには実現できない</h2>
+    <p class="article-original-title">原題: <em>Montana’s new “right to try” law can’t come soon enough for some</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">クリス・デヴォールの幼児は稀な遺伝性疾患を患っています。彼は臨床試験を経ていないにもかかわらず、実験薬を試してみたいと切望しています。彼の息子、ブロディは 2023 年 3 月に生まれました。彼が発達遅延の兆候を示し始めるまでにそれほど時間はかかりませんでした、とデボールト氏は言います。時間が経つにつれて、ブロディはスピーチ、動き、調整における重要なマイルストーンを見逃し始めた、と彼は言います。ブロディが約 2 歳半のとき、遺伝子検査によりクレアチン トランスポーター欠損症が判明しました。これは、脳と筋肉の発達に必要なエネルギーが不足するまれな状態です。ブロディの病気には治療法がありません。しかし、デボールト氏は、効果があるかもしれない薬を開発している会社があることを知った。その薬はまだ開発の初期段階にあり、動物と少数の健康な人々でのみテストされています。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Kris DeVault’s toddler has a rare genetic disease.He’s desperate to try an experimental drug, even though it has not been through clinical trials.His son, Brody, was born in March 2023.It wasn’t long before he started to show signs of developmental delay, says DeVault.As time went on, Brody started missing key milestones in speech, movement, and coordination, he says.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/07/31/1140945/montanas-new-right-to-try-law-cant-come-soon-enough-for-some/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Startups" data-index="13">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#8b5cf6">🚀 Startups</span>
+        <span class="source-chip">VentureBeat</span>
+    </div>
+
+    
+
+    <h2 class="article-title">あなたの企業は AI エージェントのテレメトリをどのように追跡していますか? Groundcover はクラウドを離れるべきではないと考えています</h2>
+    <p class="article-original-title">原題: <em>How is your enterprise tracking AI agent telemetry? Groundcover thinks it should never leave your cloud</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">AI エージェントの可観測性分野は発展しつつありますが、企業はどのような可観測性製品やソリューションが必要であるかをどのように確認できるのでしょうか?可観測性スタートアップの grudcover (意図的に小文字の「g」) は今週、One Peak 主導のラウンドで 1 億ドルを調達し、資金総額は 1 億 6,000 万ドルになったと発表しました。同社によると、有料顧客は 250 社を超え、年間 3 倍に増加しています。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">The AI agent observability space is taking off — but how can enterprises be sure what observability products and solutions they need? Observability startup groudcover (lower case &quot;g&quot; intentional) announced this week that it raised $100 million in a round led by One Peak, bringing its total funding to $160 million. The company says it has more than 250 paying customers, tripled annual . .</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://venturebeat.com/data/how-is-your-enterprise-tracking-ai-agent-telemetry-groundcover-thinks-it-should-never-leave-your-cloud" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="14">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">ホンダは全固体電池技術の進歩に向けた新たなパートナーを獲得</h2>
+    <p class="article-original-title">原題: <em>Honda has a new partner for the advancement of solid-state battery technology</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">ホンダは今年6月、待望の全固体電池システムの生産に向けて大きな一歩を踏み出し、自動車大手をカーボンニュートラルに向けて推進することを期待する新たなパートナーシップを締結した。この発表は、ホンダがホンダ 0 SUV、ホンダ 0 サルーン、アキュラ RSX の 3 つの EV モデルの北米での発売を中止し、同社の約 4 分の 3 世紀で初めての年間財務損失を引き起こしたわずか数か月後に行われました。ホンダが米国の電池開発会社クアンタムスケープと結んだこの新たな提携は、ホンダのEV戦略の転換を示唆するもので、日本のメーカーが既存のEV技術よりも全固体電池の開発を優先する方向を示している可能性がある。 2026 年 6 月に発表されたこの提携は、全固体電池の研究開発に焦点を当てます。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Honda took a major step toward producing its much-anticipated solid-state battery system this June, striking a new partnership that it hopes will propel the automotive giant towards carbon neutrality.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2225030/honda-solid-state-battery-technology-new-partner-quantumscape/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="15">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">運命スクロールから解放され、アクティブになるのに役立つアプリ</h2>
+    <p class="article-original-title">原題: <em>Apps that help you break free from doomscrolling and get active</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Doomscrolling は中毒性があります。何時間もソファに座って何も考えずにフィードをスクロールすることはよくあることですが、そうすると必然的に姿勢が崩れ、最終的には自分自身に嫌な思いをするだけになってしまいます。あなたの目も間違いなく気に入らないでしょう。幸いなことに、ソーシャル メディアに飛び込む前に、立ち上がって動くことを奨励するアプリがいくつかあります。 TikTokやInstagramをスクロールする前に、文字通り外に出て草に触れなければならないものさえあります。そこで、スクリーンタイムを減らしてもう少しアクティブに過ごしたいと考えている人のために、役立つアプリをいくつか紹介します。 Digital キャロットは、毎日のフィットネス、生産性、画面時間の目標を達成するまで、気が散るアプリ、ウェブサイト、ゲームをブロックします。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Doomscrolling can be addictive.It’s common to end up on the couch for hours, mindlessly scrolling through feeds, which inevitably messes up your posture and, in the end, just ends up making you feel bad about yourself.Your eyes definitely don’t like it, either.Fortunately, there are several apps that encourage you to get up and move before you dive into social media.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/08/01/apps-that-help-you-break-free-from-doomscrolling-and-get-active/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="16">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">携帯電話でもっと良い写真が撮れるかもしれません</h2>
+    <p class="article-original-title">原題: <em>You could be taking way better photos on your phone</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。もう少し手間がかかりますが、携帯電話は今やオートフォーカスカメラに匹敵するものになりました。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. It takes a little more work, but phones can now legitimately rival point and shoot cameras.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/tech/973055/how-to-take-better-smartphone-photos" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Other" data-index="17">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#6b7280">📰 Other</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">中国のEV市場は活況を呈している。問題が 1 つだけあります</h2>
+    <p class="article-original-title">原題: <em>China’s EV Market Is Booming. There’s Just One Problem</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">過去 10 年かけて世界最大の電気自動車市場の構築に取り組んできた中国は、その成功の帰結の 1 つに直面しています。それは、耐用年数の終わりに近づくバッテリーの増加の波です。中国における完全電気自動車やプラグインハイブリッドを含むバッテリー駆動車両の年間販売台数は、2018年の約100万台から2025年には1,600万台以上に急増している。EVのバッテリーの寿命は通常約8年であるため、同国はバッテリー廃止の最初の大きな波に突入している。廃棄または再処理が必要なバッテリーの数は、今後数年間で急速に増加すると予想されます。これは、国家にとって廃棄物管理とリサイクルに関する大きな課題となっています。中国は昨年、40万トンのEVバッテリー廃棄物を報告した。中国の研究者と の共同研究。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">After spending the past decade building the world’s largest electric vehicle market, China is confronting one consequence of its success: a growing wave of batteries nearing the end of their service life.Annual sales of battery-powered vehicles in China, including fully electric vehicles and plug-in hybrids, have surged from about 1 million in 2018 to more than 16 million in 2025.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/story/china-millions-of-evs-battery-recycling/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="18">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Ars Technica - All content</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Defcon の新しいバッジは、中に見えるセキュリティ キーです</h2>
+    <p class="article-original-title">原題: <em>Defcon&#x27;s new badge is a security key you can see inside</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">取り外し可能なチップにより、ハッカーはバッジを検査し、デフコン後も使い続けることができます。毎年恒例のデフコン ハッカー カンファレンスの長年の特徴は、参加者が新しいソフトウェアの脆弱性やハッキング技術に関する知識だけでなく、精巧にデザインされたカンファレンス バッジ (多くの場合、複雑なパズル、複雑な暗号チャレンジ、隠されたイースター エッグ、さらには時計の機械式歯車列が埋め込まれた電子傑作) を獲得することです。毎年、バッジの作成者は、これまでのデザインを上回り、感銘を受けるのが難しいハッカーの心を驚かせるよう努めています。しかし、今年のバッジは異なる方向性を持っています。バッジのデザインが主役ではなく、本当に目立つのはハードウェアの内部にあるものです。今年、デフコンは伝説的なハードウェア ハッカーのアンドリュー “バニー” フアン氏に CR を依頼しました。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">A removable chip lets hackers inspect their badge—and keep using it after Defcon.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/security/2026/08/defcons-new-badge-is-a-security-key-you-can-see-inside/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Hardware" data-index="19">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#06b6d4">⚙️ Hardware</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">モンタナ州の実験的医療拠点となる計画が前進した</h2>
+    <p class="article-original-title">原題: <em>Montana’s plan to become an experimental medical hub just pushed forward</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">「試行する権利」を拡大する州の取り組みは進んでおり、最初の薬が見直されようとしている。モンタナ州では今週の時点で、実験薬を開発しているバイオテクノロジー企業は、それを消費者に販売するための明確な道筋を持っている。医薬品が予備検査（場合によっては10人程度の健康人を対象）を通過した企業は、新たに設置された審査委員会に承認を申請するために1万2500ドルを支払うことができる。治療法が承認されると、同社は薬の価格を設定し、実験的な治療クリニックを通じて販売できるようになり、最初の治療クリニックが今年末頃に稼働する見通しだ。モンタナ州の最新の裁判権に関する法律はユニークです。同様の法律を持つ他の管轄区域では、末期疾患を持つ人々の薬物へのアクセスが制限されているが、モンタナ州では理論上、薬物へのアクセスは制限されている。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">The state’s effort to expand the “right to try” is making headway, and the first drugs are about to be reviewed.As of this week in Montana, any biotech company with an experimental drug has a clear path to selling it to consumers.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/07/30/1140942/montana-experimental-medical-hub-pushed-forward-right-to-try/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="20">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">VentureBeat</span>
+    </div>
+
+    
+
+    <h2 class="article-title">OpenAI だけではない: Anthropic は、内部モデルがオンラインになり、他の 3 つの組織がサイバー攻撃を受けたと発表</h2>
+    <p class="article-original-title">原題: <em>Not just OpenAI: Now Anthropic says its internal models got online and cyberattacked 3 other organizations</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">OpenAIが、2つのフロンティアAIモデルが封じ込め措置を逃れ、AIコード共有プラットフォームHugging Faceを自律的にサイバー攻撃したことを明らかにした数日後、OpenAIの米国最大のライバルであるAnthropic社は今夜、驚くべきことに自社のモデルも公開していたことを明らかにした。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Days after OpenAI disclosed that two frontier AI models escaped containment measures and autonomously cyberattacked the AI code sharing platform Hugging Face, OpenAI&#x27;s top U. S. rival Anthropic tonight revealed that — lo and behold — it has also had models surrep. .</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/openai.html" target="_blank" rel="noopener noreferrer" class="company-link">OpenAI の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://venturebeat.com/security/not-just-openai-now-anthropic-says-its-internal-models-got-online-and-cyberattacked-3-other-organizations" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Hardware" data-index="21">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#06b6d4">⚙️ Hardware</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">手持ちのミニ扇風機でおすすめは何ですか？</h2>
+    <p class="article-original-title">原題: <em>What&#x27;s the best handheld mini fan?</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">夏です。汗だくです。前回の前例のない熱波よりもさらにひどい前例のない熱波があります。あなたは不快です。あっという間に汗ばむようになります。職業はなんですか？この苦境は、ますます一般的になってきていますが、まったくひどいものです。しかし、手持ちのミニ扇風機を持っていれば、状況は「まったく恐ろしい」状態から「理想的とは言えない」状態に変わる可能性があります。汗ばむ状況では、それは奇跡です。ここ数年の夏、私はアマゾンや TikTok ショップでミニ扇風機をいくつかランダムに購入しました。これらの 10 ドルから 15 ドルのデバイスは私の夏の財布の定番となっていますが、シャークやダイソンなどの高級ブランドが独自の手持ち扇風機をはるかに高い価格帯 (100 ドルから 150 ドル) で展開していることに気づきました。 SSRI に苦しむ人として、汗をかくのは当然のことです。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">It’s summer.You are sweaty.There’s some unprecedented heat wave that’s even worse than the last unprecedented heat wave.You are uncomfortable.You’re getting sweatier by the second.What do you do?This predicament — one that’s becoming more and more common — just flat out sucks.But if you have a handheld mini fan on you, the situation can change from “actively horrific” to “less than ideal.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/amazon.html" target="_blank" rel="noopener noreferrer" class="company-link">Amazon の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/08/01/whats-the-best-handheld-mini-fan/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="22">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">マーメイドマスクは完璧な休暇中の殺人ミステリーです</h2>
+    <p class="article-original-title">原題: <em>The Mermaid Mask is a perfect vacation murder mystery</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。この著者からの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. Posts from this author will be added to your daily email digest and your homepage feed.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/games/971660/the-mermaid-mask-review" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="23">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">7つの国の水道システムがサイバー攻撃に見舞われ、イランと関係がある可能性が高い</h2>
+    <p class="article-original-title">原題: <em>7 States’ Water Systems Hit by Cyberattacks Likely Tied to Iran</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">今週、『WIRED』はミネソタ州の上下水道施設に対する数十件のサイバー攻撃をイランと結び付けたメモを入手した。これは、約6か月前に始まった戦争の最中に米国を襲った最も影響力のあるサイバー攻撃キャンペーンに対するイランの責任の可能性を示す初の公式文書だ。別のニュースとして、OpenAI の「不正な」AI エージェントによる Hugging Face のプラットフォームへの侵害に関する詳細が明らかになりました。OpenAIは、AIエージェントがHugging Faceの実稼働データベースに侵入しようとして、複数のサードパーティのアカウントとサービスをハッキングしたことを明らかにしました。このデータベースには、OpenAIがエージェントを評価していたサイバーセキュリティテストのソリューションが含まれていました。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">This week, WIRED obtained a memo that tied dozens of cyberattacks against Minnesota water and wastewater utilities to Iran, the first official documentation of Iran’s likely responsibility for the most impactful campaign of cyberattacks to hit the US in the midst of the war that began nearly six months ago.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/openai.html" target="_blank" rel="noopener noreferrer" class="company-link">OpenAI の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/story/security-news-this-week-7-states-water-systems-hit-by-cyberattacks-likely-tied-to-iran/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="24">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Ars Technica - All content</span>
+    </div>
+
+    
+
+    <h2 class="article-title">ショウジョウバエはどのようにして目に見えない匂いのリボンを追いかけて発生源に到達するのか</h2>
+    <p class="article-original-title">原題: <em>How fruit flies chase invisible ribbons of smell to get to their source</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">乱気流の中で匂いを追跡するには、鋭い方向感覚と鋭い記憶力が必要です。腐った果物や仲間を狙うショウジョウバエは、匂いのプルームをたどり、匂いを頼りに移動します。自然界では、乱流の空気がこれらの噴煙を渦巻かせ、混沌とした壊れた風景を作り出します。高密度の化学繊維が長く続くきれいな空気の中を織り交ぜています。発生源を探そうとするハエは、常に方向を変えながら、次の匂いが来るという保証もなく、途切れ途切れに匂いを嗅ぎます。科学者は、ショウジョウバエが針の頭ほどの大きさの脳でこの混沌とし​​た信号をどのように管理しているのかについてほとんど知りませんでした。生物学者は長い間、昆虫が配線された反射神経でこれを解決すると仮定する「サージ＆キャスト」モデルを支持していました。このアイデアは、ハエがその羽毛を嗅覚ニューロンに記録するというものでした。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Tracking smells in turbulent air takes a keen sense of direction and sharp memory.A fruit fly hunting a piece of rotting fruit or a mate navigates by smell, following plumes of odor.Out in the wild, turbulent air swirls these plumes into a chaotic, broken landscape—dense chemical filaments laced through long stretches of clean air.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/science/2026/08/how-fruit-flies-chase-invisible-ribbons-of-smell-to-get-to-their-source/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="25">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">ダウンロード: LLM を騙し、地熱発電所を復活させる</h2>
+    <p class="article-original-title">原題: <em>The Download: tricking LLMs, and reviving geothermal plants</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">さらに、米国政府はルンバを禁止したばかりです。これは、テクノロジーの世界で何が起こっているかを毎日提供する平日のニュースレター、 The Download の本日版です。大規模な言語モデルをハッキングから完全に保護することは不可能である、その仕組みには根本的な欠陥がある、と研究者チームが今月初めに開催されたトップAIカンファレンスで発表された論文の中で主張している。この欠陥は、LLM が指示を与えている人物または内容をどのように特定するかに関するものです。研究者らはこれを利用して、人気のあるLLMに、コカインの合成方法や民間航空機のナビゲーションシステムを妨害する方法など、提供しないよう訓練されていた情報を吐き出させることができた。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Plus: The US government has just banned Roombas.This is today&#x27;s edition of The Download , our weekday newsletter that provides a daily dose of what&#x27;s going on in the world of technology.It is impossible to make large language models fully secure against hacks because of a fundamental flaw in how they work, a team of researchers argue in a paper presented at a top AI conference earlier this month.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/07/30/1140936/the-download-tricking-llms-reviving-geothermal/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="26">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">VentureBeat</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Thinking Machines が、約 1/4 サイズで前世代のパフォーマンスに迫る Inkling Small オープンソース AI モデルをデビュー</h2>
+    <p class="article-original-title">原題: <em>Thinking Machines debuts Inkling Small open source AI model nearing performance of predecessor at about 1/4 size</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Thinking Machines が最初のオープンソース AI 言語モデルである Inkling をリリースしてからわずか 2 週間後、元 OpenAI 最高技術責任者 Mira が率いる資金豊富なスタートアップです。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Just two weeks after Thinking Machines released Inkling , its first open source AI language model, the well-funded startup led by former OpenAI chief technology officer Mira . .</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/openai.html" target="_blank" rel="noopener noreferrer" class="company-link">OpenAI の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://venturebeat.com/technology/thinking-machines-debuts-inkling-small-open-source-ai-model-nearing-performance-of-predecessor-at-about-1-4-size" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Mobile" data-index="27">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#6366f1">📱 Mobile</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">シリコンカーボンバッテリーとは何ですか?スマートフォンのバッテリー寿命の問題に対する答えは何ですか?</h2>
+    <p class="article-original-title">原題: <em>What is a silicon carbon battery and is it the answer to smartphone battery life issues?</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">1 回の充電で携帯電話をより長く動作させることができますが、それほど長くは続かない可能性があります。ここ数年で、シリコンカーボンバッテリーを搭載したスマートフォンが増えていることにお気付きかもしれません。Honor、Oppo、Xiaomi などの中国の大手メーカーがこのテクノロジーを採用して以来、これらはますます一般的になっています。今回、Samsung もこれに加わり、Galaxy Z Fold 8 および 8 Ultra のバッテリーにシリコンカーボン技術を使用しています。シリコンカーボンバッテリーは従来のリチウムイオンよりもはるかに容量が大きく、この技術を使用した一部の携帯電話では実際に 2 日間のバッテリー寿命を誇ります。これらのセルがアジアの携帯電話の標準になるにつれて、西側の携帯電話にもますます多くのセルが搭載される可能性が高くなります。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">It can make a phone run for longer on a single charge, but maybe not last for as long.In the last few years, you may have noticed an increasing number of smartphones shipping with silicon carbon batteries.These are increasingly common after major Chinese manufacturers like Honor, Oppo and Xiaomi embraced the technology.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2227986/silicon-carbon-battery-in-smartphone-explained/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="28">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">OpenAIは、より多くのエージェントが暴走した証拠を発見したと伝えられている</h2>
+    <p class="article-original-title">原題: <em>OpenAI reportedly finds evidence that more of its agents ran amok</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">OpenAI のエージェントの 1 人がサンドボックス化されたテスト環境から侵入し、AI ホスティング プラットフォーム Hugging Face のハッキングを開始したという事件については多くのことが報じられています。OpenAIはその後、事件がどのように発生したのかについて調査を開始しており、現在も調査が続いている。現在、匿名の情報筋がロイターに語ったところによると、OpenAIのエージェントの多くがサンドボックスから脱出したと考えられているという。しかし、ある情報筋は深刻さを軽視し、これらの逃走ではエージェントがOpenAIのネットワークを離れて別の企業にハッキングするようには見えなかったと述べた。TechCrunch は OpenAI に詳細を問い合わせました。奇妙な方法で動作する AI プログラムは、明らかに企業にとって奇妙な、ほとんど自慢のポイントになっています。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Much has been made of the incident in which one of OpenAI’s agents broke out of its sandboxed test environment and proceeded to hack the AI hosting platform Hugging Face.OpenAI has since launched an investigation into how the incident occurred, which is still ongoing.Now, anonymous sources have told Reuters that more of OpenAI’s agents are believed to have escaped their sandboxes.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/openai.html" target="_blank" rel="noopener noreferrer" class="company-link">OpenAI の解説</a> <a href="companies/techcrunch.html" target="_blank" rel="noopener noreferrer" class="company-link">TechCrunch の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/07/31/openai-reportedly-finds-evidence-that-more-of-its-agents-ran-amok/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="29">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">OG 読書アプリが大幅にアップデートされました</h2>
+    <p class="article-original-title">原題: <em>The OG reading app just got a big update</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。さらに、今週のインストーラーでは、スパイダーマンが再び帰ってきた、試してみる価値のある居心地の良いゲーム、イーロン ローストなどを紹介します。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. Plus, in this week’s Installer: Spider-Man is back again, a cozy game worth trying, Elon roasts, and much more.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/tech/973929/instapaper-app-pastebot-spiderman-movie-installer" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+        </main>
+
+        <footer class="footer">
+            <p>本ページは公開記事をもとに自動生成しています。数値や仕様は必ず元記事で確認してください。</p>
+            <p>JSON データは同じフォルダ内の tech_news_digest.json で参照できます。</p>
+        </footer>
+    </div>
+
+    <script>
+
+        const categoryButtons = document.querySelectorAll('.category-btn');
+        const articleCards = document.querySelectorAll('.article-card');
+        const searchInput = document.getElementById('search-input');
+
+        let activeCategory = 'all';
+
+        function applyFilters() {
+            const query = searchInput.value.trim().toLowerCase();
+            articleCards.forEach(card => {
+                const matchesCategory = activeCategory === 'all' || card.dataset.category === activeCategory;
+                const searchableText = card.innerText.toLowerCase();
+                const matchesQuery = !query || searchableText.includes(query);
+                card.style.display = matchesCategory && matchesQuery ? '' : 'none';
+            });
+        }
+
+        categoryButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                categoryButtons.forEach(item => item.classList.remove('active'));
+                button.classList.add('active');
+                activeCategory = button.dataset.category;
+                applyFilters();
+            });
+        });
+
+        searchInput.addEventListener('input', applyFilters);
+    
+    </script>
+</body>
+</html>
