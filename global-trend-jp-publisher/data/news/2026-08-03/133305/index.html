@@ -1,0 +1,1173 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>海外テックニュース日本語まとめ</title>
+    <style>
+        :root {
+            color-scheme: dark;
+            --bg: #0a0f1d;
+            --panel: rgba(13, 20, 36, 0.92);
+            --line: rgba(132, 152, 187, 0.25);
+            --text: #eef3ff;
+            --muted: #adc1dd;
+            --accent: #7dd3fc;
+            --accent-strong: #38bdf8;
+            --shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: "Hiragino Sans", "Noto Sans JP", sans-serif;
+            background:
+                radial-gradient(circle at top right, rgba(56, 189, 248, 0.22), transparent 26%),
+                radial-gradient(circle at top left, rgba(16, 185, 129, 0.16), transparent 20%),
+                linear-gradient(180deg, #07101f 0%, #0b1327 48%, #0a0f1d 100%);
+            color: var(--text);
+        }
+
+        .page-shell {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 24px;
+        }
+
+        .hero {
+            padding: 28px;
+            border: 1px solid var(--line);
+            border-radius: 28px;
+            background: linear-gradient(145deg, rgba(18, 27, 48, 0.96), rgba(10, 17, 32, 0.96));
+            box-shadow: var(--shadow);
+        }
+
+        .hero-nav {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 28px;
+        }
+
+        .nav-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 42px;
+            padding: 0 16px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        .eyebrow {
+            margin: 0 0 10px;
+            color: var(--accent);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            font-size: 0.78rem;
+        }
+
+        .hero h1 {
+            margin: 0;
+            font-size: clamp(2rem, 3vw, 3.3rem);
+            line-height: 1.1;
+        }
+
+        .timestamp,
+        .description {
+            color: var(--muted);
+        }
+
+        .control-panel {
+            margin: 20px 0 28px;
+            padding: 22px;
+            border: 1px solid var(--line);
+            border-radius: 24px;
+            background: var(--panel);
+            backdrop-filter: blur(12px);
+        }
+
+        .control-header {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            align-items: end;
+            flex-wrap: wrap;
+        }
+
+        .control-header h2 {
+            margin: 0 0 6px;
+        }
+
+        .control-header p {
+            margin: 0;
+            color: var(--muted);
+        }
+
+        #search-input {
+            width: min(100%, 360px);
+            min-height: 46px;
+            padding: 0 14px;
+            border-radius: 14px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
+        }
+
+        .category-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 16px;
+        }
+
+        .category-btn {
+            min-height: 42px;
+            padding: 0 14px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
+            cursor: pointer;
+        }
+
+        .category-btn.active {
+            background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+            color: #06111f;
+            border-color: transparent;
+            font-weight: 700;
+        }
+
+        .article-list {
+            display: grid;
+            gap: 18px;
+        }
+
+        .article-card {
+            padding: 24px;
+            border-radius: 24px;
+            border: 1px solid var(--line);
+            background: linear-gradient(180deg, rgba(12, 18, 34, 0.96), rgba(14, 22, 39, 0.9));
+            box-shadow: var(--shadow);
+        }
+
+        .card-topline {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+
+        .category-chip,
+        .source-chip {
+            display: inline-flex;
+            align-items: center;
+            min-height: 34px;
+            padding: 0 12px;
+            border-radius: 999px;
+            font-size: 0.92rem;
+            font-weight: 700;
+        }
+
+        .source-chip {
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--muted);
+        }
+
+        .article-title {
+            margin: 0 0 10px;
+            font-size: clamp(1.45rem, 2vw, 2rem);
+            line-height: 1.35;
+        }
+
+        .article-original-title {
+            margin: 0 0 18px;
+            color: var(--muted);
+        }
+
+        .security-alert {
+            margin: 0 0 14px;
+            padding: 10px 14px;
+            border-radius: 12px;
+            border: 1px solid rgba(248, 113, 113, 0.4);
+            background: rgba(248, 113, 113, 0.12);
+            color: #fecaca;
+            font-weight: 700;
+            font-size: 0.92rem;
+        }
+
+        .article-section {
+            margin-top: 18px;
+            padding-top: 18px;
+            border-top: 1px solid var(--line);
+        }
+
+        .article-section h3 {
+            margin: 0 0 12px;
+            font-size: 1rem;
+            color: var(--accent);
+        }
+
+        .article-paragraph {
+            margin: 0 0 14px;
+            color: #dce7f8;
+            line-height: 1.9;
+            font-size: 1rem;
+        }
+
+        .company-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .company-link,
+        .action-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 42px;
+            padding: 0 14px;
+            border-radius: 14px;
+            text-decoration: none;
+            border: 1px solid rgba(125, 211, 252, 0.3);
+        }
+
+        .company-link {
+            color: var(--accent);
+            background: rgba(56, 189, 248, 0.08);
+        }
+
+        .article-actions {
+            margin-top: 22px;
+        }
+
+        .footer {
+            padding: 28px 8px 40px;
+            color: var(--muted);
+            text-align: center;
+        }
+
+        .footer p {
+            margin: 6px 0;
+        }
+
+        .action-link.primary {
+            color: #06111f;
+            font-weight: 700;
+            background: linear-gradient(135deg, #7dd3fc, #22d3ee);
+            border-color: transparent;
+        }
+
+        @media (max-width: 720px) {
+            .page-shell {
+                padding: 14px;
+            }
+
+            .hero,
+            .control-panel,
+            .article-card {
+                padding: 18px;
+                border-radius: 20px;
+            }
+
+            .control-header {
+                align-items: stretch;
+            }
+
+            #search-input {
+                width: 100%;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="page-shell">
+        <header class="hero">
+            <div class="hero-nav">
+                <a class="nav-link" href="../../index.html">HOME</a>
+                <a class="nav-link" href="../index.html">この日の記事一覧</a>
+            </div>
+            <div class="hero-copy">
+                <p class="eyebrow">Global Tech News Digest</p>
+                <h1>海外テックニュース 日本語まとめ</h1>
+                <p class="timestamp">2026年8月3日 13:33 JST に収集した記事を掲載しています。</p>
+                <p class="description">各カードには本文寄りの日本語訳を掲載し、記事中で触れた企業は別ページの解説リンクとして分離しています。</p>
+            </div>
+        </header>
+
+        <section class="control-panel">
+            <div class="control-header">
+                <div>
+                    <h2>記事を探す</h2>
+                    <p>カテゴリとキーワードで一覧を絞り込めます。</p>
+                </div>
+                <input type="text" id="search-input" placeholder="タイトル・本文・媒体名で検索">
+            </div>
+            <div class="category-buttons">
+                <button class="category-btn active" data-category="all">すべて (29)</button>
+<button class="category-btn" data-category="AI/ML" style="--accent:#10b981">🤖 AI/ML (22)</button>
+<button class="category-btn" data-category="Hardware" style="--accent:#06b6d4">⚙️ Hardware (1)</button>
+<button class="category-btn" data-category="Mobile" style="--accent:#6366f1">📱 Mobile (1)</button>
+<button class="category-btn" data-category="Other" style="--accent:#6b7280">📰 Other (2)</button>
+<button class="category-btn" data-category="Startups" style="--accent:#8b5cf6">🚀 Startups (3)</button>
+            </div>
+        </section>
+
+        <main class="article-list" id="articles-container">
+            <article class="article-card" data-category="AI/ML" data-index="1">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">AI の脅威が増大する中、Horizo​​n3 の評価額は 2 億 5,000 万ドルのシリーズ E で 20 億ドルに達しました</h2>
+    <p class="article-original-title">原題: <em>Horizon3 hits $2 billion valuation with $250M Series E as AI threats escalate</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Cybersecurity startup Horizon3 has raised a $250 million Series E at a $2 billion valuation, more than tripling its valuation in 14 months .The San Francisco-based firm drew backing from returning investors NightDragon and NEA.The funding arrives as two major AI research labs disclosed last week that their models had breached systems outside their intended scope.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/08/03/horizon3-hits-2-billion-valuation-with-250m-series-e-as-ai-threats-escalate/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="2">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Lenovo Googlebook のリークでラップトップと 2-in-1 タブレットが明らかに</h2>
+    <p class="article-original-title">原題: <em>Lenovo Googlebook leaks reveal a laptop and 2-in-1 tablet</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。 あのキーボードのあれは Gemini キーですか?</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. ﻿Is that a Gemini key on those keyboards?</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/tech/974377/lenovo-googlebook-google-image-leaks-laptops" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="3">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">これらは私を信者にしたロボット芝刈り機です</h2>
+    <p class="article-original-title">原題: <em>These Are the Robot Lawn Mowers That Made Me a Believer</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">芝生の手入れは単調でありがたみのない仕事です。ハンモックで冷たい飲み物を飲みながら、ロボットが芝刈りをしてくれるのを見ながらゴロゴロできるのに、誰が芝刈りをしたいと思うだろうか？そうです、誰もいません。ロボット芝刈り機はかつては富裕層のものでしたが、確かに今でも高価な場合があります。しかし、それらは常に安くなり、より良くなってきています。過去 3 年間、私はいくつかの最高のロボット芝刈り機をテストしてきました。そして、この草刈りシーズンに新鮮な作物を比較した結果、ロボット芝刈り機が実際に優れていると言えることを嬉しく思います。おすすめの作品、佳作、避けるべきロボット芝刈り機のリストを紹介します。芝生管理ボットについて知っておくべきことをすべて読んでください。 2026 年 8 月更新: 新しい予算の候補として Anthbot 芝刈り機を追加しました。詳細も追加しました。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Lawn care is a monotonous, thankless task.Who wants to mow the lawn when you could be lollygagging in a hammock with a cold drink, watching a robot do it for you?That’s right: no one.Robot lawn mowers were once the preserve of the wealthy, and yes, they can still be on the pricey side.But they’re getting cheaper and better all the time.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/gallery/best-robot-lawn-mowers/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Other" data-index="4">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#6b7280">📰 Other</span>
+        <span class="source-chip">Ars Technica - All content</span>
+    </div>
+
+    
+
+    <h2 class="article-title">ヘッドライトはどのようにして明るく、より白く、暗くなるとさらに眩しくなったのか</h2>
+    <p class="article-original-title">原題: <em>How headlights got brighter, whiter, and more blinding after dark</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">自動車用ライトはかつてないほど優れていますが、トレードオフもあります。センサーを搭載したソフトウェアで定義されたプレスカーを操縦して高速道路の暗い道を走っていると、対向車のハイビームが網膜を狙った攻撃のように届くことがあり、現代の自動車照明が独自の光束競争に突入していることを無意識に思い出させます。ここ数年で夜間に運転したことがある人なら、私が何を言っているのかわかるでしょう。現代のクロスオーバー車が対向車線の丘を登ると、車室内が一時的に十分な冷白色の光で満たされ、警察のヘリコプターが交通に加わったことを示唆します。ドライバーが単にハイビームをオンのままにすることが増えているだけであるという明らかな仮定がありますが、現実はより複雑です。車が現代の交通手段になる前は、馬車でした。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Automotive lights are better than they’ve ever been, but there’s a trade-off.Every so often, I’ll be piloting some sensor-laden, software-defined press car down a dark stretch of highway when an oncoming driver’s high beams arrive like a targeted retinal strike, an involuntary reminder that modern automotive lighting has entered its own lumen arms race.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/cars/2026/08/how-headlights-got-brighter-whiter-and-more-blinding-after-dark/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="5">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</h2>
+    <p class="article-original-title">原題: <em>The Download: reward hacking explained, and suspected Iranian cyberattacks</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Plus: Google briefly made it easy to fake satellite images This is today&#x27;s edition of The Download , our weekday newsletter that provides a daily dose of what&#x27;s going on in the world of technology.When two OpenAI models hacked into Hugging Face last month, they weren’t trying to make money or commit sabotage—they were just looking for answers to a test question.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/google.html" target="_blank" rel="noopener noreferrer" class="company-link">Google の解説</a> <a href="companies/openai.html" target="_blank" rel="noopener noreferrer" class="company-link">OpenAI の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/08/03/1141039/the-download-reward-hacking-water-cyberattacks/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Startups" data-index="6">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#8b5cf6">🚀 Startups</span>
+        <span class="source-chip">VentureBeat</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</h2>
+    <p class="article-original-title">原題: <em>Stop graphing everything: When GraphRAG actually beats vector RAG</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">過去 2 年間に検索拡張生成 (RAG) を使用して何かを構築したことがあれば、その中心的なフラストレーションを経験したことになるでしょう。つまり、ドキュメントを細かく切り刻み、埋め込む必要があるということです。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">If you have built anything with retrieval-augmented generation (RAG) in the last two years, you have lived its central frustration: You chop your documents into chunks, embed them,. .</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://venturebeat.com/orchestration/stop-graphing-everything-when-graphrag-actually-beats-vector-rag" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="7">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">EU、AIの透明性に関する新たな規則を発表</h2>
+    <p class="article-original-title">原題: <em>EU announces new rules on AI transparency</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">それらは、「情報エコシステムにおける信頼と完全性を促進することを目的としています。」欧州連合は、新しい AI 透明性規則が発効し、8 月 2 日から域内全域で施行可能になったと発表しました。AI 法の第 50 条では、コンテンツ発行者に対し、AI が生成した特定の種類のコンテンツをマークしてラベルを付けること、また、ユーザーが実際の人間ではなく AI チャットボットやエージェントと対話している場合にはそれを通知することが義務付けられています。「これらの義務は、情報エコシステムにおける信頼と完全性を促進することを目的としている」と欧州委員会は新しいガイドラインに書いている。「人々は、自分が AI と対話しているとき、または AI によって生成されたコンテンツにさらされているときを知る必要があります。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">They are &#x27;intended to foster trust and integrity in the information ecosystem.&#x27; The European Union has announced that it&#x27;s new AI transparency rules are now in effect and enforceable across the bloc as of August 2nd.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2228894/eu-announces-new-rules-on-ai-transparency/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="8">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">サムスン、ユーザーのインターネット接続を見知らぬ人と共有するスマート TV アプリを禁止</h2>
+    <p class="article-original-title">原題: <em>Samsung bans smart TV apps that share users&#x27; internet connections with strangers</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">アプリ開発者によれば、これらのアプリの一部は、人々の家庭にある何億台ものスマート TV にインストールされていると主張しています。スマート TV アプリの少なくとも 1 つは、サムスンが推奨し、顧客のテレビ画面の「編集者の選択」セクションで目立つように紹介されていた単純なパックマン ゲームでした。これらのアプリの多くは、わずか数行のコードで作成されたベアボーン シェルであり、ゲームなどの別の Web サイトからコンテンツを読み込むことのみを目的として設計されています。このようなスマート TV アプリは別のサーバーからコンテンツを読み込みますが、これらのアプリのレビューでは、アプリ内の数行のコードのみが確認され、必ずしもコンテンツ自体は確認されません。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Some of these apps claim to have been installed on hundreds of millions of smart TVs in people’s homes, per the app developers.At least one of the smart TV apps was a simple Pac-Man game that Samsung had endorsed and prominently featured in its “Editor’s Choice” section on customers’ TV screens.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/08/03/samsung-bans-smart-tv-apps-that-share-users-internet-connections-with-strangers/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="9">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Big Walk は協力プレイのようなものです ブレス オブ ザ ワイルド</h2>
+    <p class="article-original-title">原題: <em>Big Walk is like co-op Breath of the Wild</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。広大な世界を探索し、トリッキーなパズルを解きますが、ビッグ ウォークでは友達と一緒にすべてを解き明かします。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. You explore a vast world and solve tricky puzzles — but in Big Walk, you figure it all out with your friends.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/games/973166/big-walk-review" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Mobile" data-index="10">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#6366f1">📱 Mobile</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">350 ドルの OLED ゲーミング モニターが本当に良いものであるはずはありませんよね?</h2>
+    <p class="article-original-title">原題: <em>A $350 OLED Gaming Monitor Can’t Really Be Good, Can It?</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Alienware は、AW3423DW として知られる最初の主要な OLED ゲーム モニターを製造しました。それは素晴らしい新技術でしたが、価格も 1,400 ドル (インフレ調整すると 1,550 ドル) と高価でした。3 年後、この新しい Alienware OLED モニター、AW2726DM がわずか 350 ドルで購入できるようになりました。ある意味、旧型の AW3423DW よりも優れていますが、それでも 75% 安いです。この劇的な価格の低下に、あなたの神経質な感覚がうずくかもしれません。Alienware が忘れ去られるほど価値設計を行ったのだろうかと疑問に思うのは当然ですが、これは適切なところに工夫を凝らした手頃な価格のゲーミング モニターであると報告できることを嬉しく思います。すべての OLED パネルが同じように作られているわけではありません。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Alienware made the first major OLED gaming monitor, known as the AW3423DW .It was a glorious piece of new technology, but it was also expensive at $1,400 (or $1,550 when adjusted for inflation).Three years later, you can buy this new Alienware OLED monitor, the AW2726DM, for just $350.It&#x27;s in some ways superior to the elder AW3423DW, yet it&#x27;s 75 percent cheaper.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/review/alienware-27-qd-oled-aw2726dm/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="11">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Ars Technica - All content</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</h2>
+    <p class="article-original-title">原題: <em>Here&#x27;s how engineers plan to save the satellite sent to save NASA&#x27;s Swift mission</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">「私たちは、スウィフトの捕獲、あるいはスウィフトの捕獲未遂が非常に現実味を帯びていると信じています。」 1週間前、地球の上空320マイル以上で、NASAの5億ドルのスウィフトガンマ線観測装置の救出を試みていた冷蔵庫サイズの衛星が、突然制御不能に陥った。見た目は良くありませんでした。リンクと名付けられた宇宙船は複数の軸を中心に回転していたため、地上との信頼できる通信リンクを維持できなくなり、回転を阻止する取り組みが複雑になった。衛星の3つのリアクションホイールのうち、ポインティングに使用されていた2つも機能を停止した。エンジニアたちは、散発的な無線通信を通じて、より精密な姿勢制御に使用される宇宙船のコールドガススラスターの一部に問題があることを発見しました。 Link 衛星は Katalyst Sp によって構築、所有、運用されています。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">“We believe that a capture of Swift, an attempted capture of Swift, is very much in the cards.” One week ago, more than 200 miles above the Earth, a refrigerator-size satellite making its way toward an attempted rescue of NASA’s $500 million Swift gamma-ray observatory suddenly spun out of control .It didn’t look good.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/space/2026/08/heres-how-engineers-plan-to-save-the-satellite-sent-to-save-nasas-swift-mission/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="12">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</h2>
+    <p class="article-original-title">原題: <em>Here’s why AI agents lie and cheat to reach their goals</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">この不正行為は報酬ハッキングと呼ばれます。これが知っておくべきことです。MIT Technology Review Explains : 次に何が起こるかを理解するために、ライターが複雑で厄介なテクノロジーの世界を解き明かします。このシリーズの詳細は、ここで読むことができます。7 月に 2 つの OpenAI モデルが Web サイト「Hugging Face」をハッキングしたとき、彼らは金儲けや妨害行為をしようとしていたわけではなく、ただテストの質問に対する答えを探していただけでした。OpenAI の事後分析によると、テストのために典型的なセキュリティ機能を取り除いたモデルは、OpenAI がモデルを封じ込めようとした隔離された環境からハッキング フェイスのデータベースに侵入することで、サイバーセキュリティ演習を解決することを決定しました。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">The misbehavior is called reward hacking.This is what you need to know.MIT Technology Review Explains : Let our writers untangle the complex, messy world of technology to help you understand what’s coming next.You can read more from the series here .</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/openai.html" target="_blank" rel="noopener noreferrer" class="company-link">OpenAI の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/08/03/1141009/heres-why-ai-agents-lie-and-cheat-to-reach-their-goals/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="13">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">VentureBeat</span>
+    </div>
+
+    
+
+    <h2 class="article-title">構造化 AI データ パイプラインのスコアは自由形式コードより 10.9 ポイント低い — DataFlow-Harness がギャップを埋める</h2>
+    <p class="article-original-title">原題: <em>Structured AI data pipelines score 10.9 points below free-form code — DataFlow-Harness closes the gap</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">AI コーディング エージェントに、単一の JSON ファイルを解析するためのスタンドアロン Python スクリプトの作成を依頼すると、おそらく数秒で完璧な答えが得られます。しかし、特定のエンタープライズ スタックに適合する検索拡張生成 (RAG) システム向けに、何千もの乱雑なドキュメントの取り込み、テキストのチャンク化、品質のスコアリング、ノイズのフィルタリングなど、体系的なデータ処理パイプラインの構築を依頼すると、同じエージェントが機能しなくなることがよくあります。大規模言語モデル (LLM) は 1 回限りのコード生成に優れています。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">If you ask an AI coding agent to write a standalone Python script to parse a single JSON file, it will likely give you a perfect answer in seconds.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://venturebeat.com/orchestration/structured-ai-data-pipelines-score-10-9-points-below-free-form-code-dataflow-harness-closes-the-gap" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="14">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">MacBook Airラップトップはラマゲドンのせいで品薄だと伝えられている</h2>
+    <p class="article-original-title">原題: <em>MacBook Air laptops are reportedly in short supply due to Ramaggedon</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Appleはまた、MacBook Airよりも14インチMacBook Proを優先している。MacBook Air の価格が最近 1,099 ドルから 1,299 ドルに値上がりしただけでなく、今ではたとえ欲しくても手に入れることができませんでした。Appleの人気の軽量モデルは現在品薄状態で、今日注文しても8月末まで受け取れないと小売関係者がブルームバーグのマーク・ガーマンに語った。珍しいことに、Apple は購入者に別のモデルを勧めています。ガーマン氏は、「ウェブサイトや小売店全体で、アップルは顧客をAirではなくベースのMacBook Proに誘導しているのが目立つ。これは、これまでにない、あるいはほとんどやったことがないことだ」と書いた。「一部のマーケティング資料には、『MacBook Airは在庫状況に応じて販売される』という警告さえ含まれている。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Apple is also prioritizing the 14-inch MacBook Pro over the MacBook Air.Not only did MacBook Air prices recently go up from $1,099 to $1,299, but you couldn&#x27;t get one today even if you wanted to.Apple&#x27;s popular, lightweight model is currently in such short supply that if you order one today, you won&#x27;t receive it until the end of August, retail sources told Bloomberg &#x27;s Mark Gurman.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/apple.html" target="_blank" rel="noopener noreferrer" class="company-link">Apple の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2228802/macbook-airs-reportedly-in-short-supply-due-to-ramaggedon/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Startups" data-index="15">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#8b5cf6">🚀 Startups</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">マーク・ベニオフが支援するスタートアップは、AI が AI 導入の問題を解決できると考えている</h2>
+    <p class="article-original-title">原題: <em>A Marc Benioff-backed startup thinks AI can solve the AI deployment problem</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">It’s so hard for big businesses to get AI tools working reliably that whole new organizations of forward-deployed engineers or FDEs— specialists who drop into a company to get its AI systems up and running — are springing up to help them.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/08/03/a-marc-benioff-backed-startup-thinks-ai-can-solve-the-ai-deployment-problem/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="16">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</h2>
+    <p class="article-original-title">原題: <em>China’s Alibaba takes another swipe at America’s AI supremacy</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。アリババは、同社の最新モデルはAnthropicのClaude Fable 5と競合できると述べている。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. Alibaba says its latest model can compete with Anthropic’s Claude Fable 5.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/ai-artificial-intelligence/974342/alibaba-qwen-max-open-weight-ai" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Other" data-index="17">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#6b7280">📰 Other</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">人々は長期的なパートナーをゴースティングしています。後悔しない人もいる</h2>
+    <p class="article-original-title">原題: <em>People Are Ghosting Long-Term Partners. Some Don’t Regret It</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">ディーンは2018年にバンブルでニコールと出会い、共通のシカゴでの生い立ちをきっかけにすぐに意気投合した。ニコールには子供がおり、彼らは「自分たちが育ってきた環境で育ったもの以上のものを望む」ことについてよく話していたと、37歳の独立請負業者であるディーンは『WIRED』に語った。また、二人とも自分たちは宗教的というよりも精神的であると考えており、精神的、感情的、肉体的に互換性がありました。何よりも、「私たちは喧嘩することはほとんどなく、何でも話すことができました。」最終的には同棲し、結婚の話まで出ましたが、その考えは一方的だったと彼は言います。 「彼女はそうしたかったのですが、私は密かにそうしませんでした。」 交際から4年が経った2022年、ディーンは「彼女はジェンダー戦争」言説によって「心が汚染されるのを許していた」と語る。彼が見たように、彼女はそれらの人の一人になった。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Dean met Nicole on Bumble in 2018, and they immediately bonded over their shared Chicago upbringing.Nicole had kids, and they talked often about “wanting more than what we saw growing up in the environment we did,” Dean, a 37-year-old independent contractor, tells WIRED.They also both considered themselves more spiritual than religious, and were mentally, emotionally, and physically compatible.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/story/people-are-ghosting-long-term-partners-some-dont-regret-it/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="18">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</h2>
+    <p class="article-original-title">原題: <em>The Download: Montana’s new experimental drug rules</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">さらに、Anthropic は、自社の AI モデルがテスト中に外部組織をハッキングしたと述べています。これは、テクノロジーの世界で何が起こっているかを毎日提供する平日のニュースレター、 The Download の本日版です。モンタナ州では今週から、医薬品が予備検査（場合によっては10人程度の健康人を対象）を通過したバイオテクノロジー企業は、新設の審査委員会に承認を申請するために1万2500ドルを支払うことができる。その治療法が承認されると、同社は実験的な治療クリニックを通じてそれを販売できるようになり、最初の治療クリニックが今年末頃に稼働する見込みだ。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Plus: Anthropic says its AI models hacked external organizations during testing.This is today&#x27;s edition of The Download , our weekday newsletter that provides a daily dose of what&#x27;s going on in the world of technology.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/07/31/1140999/the-download-montanas-right-to-try-law-anthropic-hacks/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Startups" data-index="19">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#8b5cf6">🚀 Startups</span>
+        <span class="source-chip">VentureBeat</span>
+    </div>
+
+    
+
+    <h2 class="article-title">あなたの企業は AI エージェントのテレメトリをどのように追跡していますか? Groundcover はクラウドを離れるべきではないと考えています</h2>
+    <p class="article-original-title">原題: <em>How is your enterprise tracking AI agent telemetry? Groundcover thinks it should never leave your cloud</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">AI エージェントの可観測性分野は発展しつつありますが、企業はどのような可観測性製品やソリューションが必要であるかをどのように確認できるのでしょうか?可観測性スタートアップの grudcover (意図的に小文字の「g」) は今週、One Peak 主導のラウンドで 1 億ドルを調達し、資金総額は 1 億 6,000 万ドルになったと発表しました。同社によると、有料顧客は 250 社を超え、年間 3 倍に増加しています。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">The AI agent observability space is taking off — but how can enterprises be sure what observability products and solutions they need? Observability startup groudcover (lower case &quot;g&quot; intentional) announced this week that it raised $100 million in a round led by One Peak, bringing its total funding to $160 million. The company says it has more than 250 paying customers, tripled annual . .</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://venturebeat.com/data/how-is-your-enterprise-tracking-ai-agent-telemetry-groundcover-thinks-it-should-never-leave-your-cloud" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="20">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Xbox 本体は EU と英国ではるかに高価になりました</h2>
+    <p class="article-original-title">原題: <em>Xbox consoles are now much more expensive in the EU and UK</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Xbox のエントリーレベルの価格は現在 499.99 ユーロ/ポンド 429 からです。99.8 月 1 日に変更が発効する前に、米国での Xbox 本体の価格がどれだけ上昇するかはわかっていましたが、ヨーロッパの誰にとっても価格の上昇はさらに急なものになることが判明しました。米国ではマイクロソフトが6月、Xbox本体の価格がモデルに応じて100ドルから150ドル値上げされると発表した。ただし、Xbox ストア ページが更新されたことで、欧州連合の居住者は Xbox シリーズ S および X に対して 150 ～ 200 ユーロ多く支払わなければならない一方、英国の居住者は Xbox シリーズ S および X に対して 130 ～ 170 ポンド以上多く支払わなければならないことがわかりました。ヨーロッパ市場の価格の内訳は次のとおりです。英国の価格チャートも以下のように変更されました。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">The entry-level price for an Xbox now starts at 499.99€/£429.99.We knew how much the US prices for Xbox consoles would increase before the change took effect on August 1, but it turns out the price hike is going to be even steeper for anyone in Europe.In the US, Microsoft announced back in June that the prices for its Xbox consoles would increase between $100 to $150, depending on the model.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/microsoft.html" target="_blank" rel="noopener noreferrer" class="company-link">Microsoft の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2228621/xbox-consoles-prices-now-more-expensive-eu-uk/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="21">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">世界的なメモリ不足がMacBook Airを襲う</h2>
+    <p class="article-original-title">原題: <em>The global memory shortage hits the MacBook Air</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">ブルームバーグのマーク・ガーマン氏によると、世界的なメモリチップ不足がアップルの最も人気のあるMacの入手に影響を与えているという。ガーマン氏は、チップを大量に必要とするAI企業の需要によって引き起こされた不足は、AppleのよりニッチなコンピュータであるMac miniとMac Studioにすでに影響を及ぼしていると述べた。しかし同社は現在、MacBook Airの在庫を維持するのに苦労しているようで、小売業者らは供給がこれまで以上に制約されているようだと述べている。実際、Apple Web サイトから MacBook Air を購入しようとする人は、8 月後半まで、または特定の構成では 9 月まで待たなければなりません。ガーマン氏は、アップルは価格を引き上げ、中国のサプライヤーからメモリを調達することでこの問題に対処しようと取り組んでいると述べた。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">The global memory chip shortage is affecting the availability of Apple’s most popular Mac, according to Bloomberg’s Mark Gurman .Gurman said the shortage — caused by the demands of chip-hungry AI companies — had already affected Apple’s more niche computers, the Mac mini and Mac Studio.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/apple.html" target="_blank" rel="noopener noreferrer" class="company-link">Apple の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/08/02/the-global-memory-shortage-hits-the-macbook-air/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="22">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">ラチカ・ネイヤーの『Heaven Come Crashing』は、絶望的な憧れを表現したインストゥルメンタル叙事詩です</h2>
+    <p class="article-original-title">原題: <em>Rachika Nayar’s Heaven Come Crashing is an instrumental epic of desperate longing</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。それ自体の無謀なロマンチシズムにうんざりしています。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. It’s disgusted with its own reckless romanticism.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/entertainment/974271/rachika-nayars-heaven-come-crashing-music-review" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="23">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">うちの幼児は最高の子供用オーディオプレーヤーを自分で操作できます</h2>
+    <p class="article-original-title">原題: <em>My Toddler Can Operate the Best Kids’ Audio Players by Herself</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">幼児の子育てをしている今、私は時々、自分とテレビのリモコンとの間の緊張をナイフで切れるかもしれないと感じることがあります。私はスクリーンタイムを極力抑えるように努めていますが、もうすぐ 2 歳の子供が犬用のボウルを取りに行くまでに、食器洗い機から荷物を降ろすのに 10 分間中断する必要があることがあります。そこで便利なのがオーディオプレーヤーです。スクリーンを避けることがますます困難になっている世界で、保護者は代替手段を探しています。そして、さまざまなフォーマットのこれらのプレーヤーが助けとなります。このデバイスは、独立した遊びと物語の時間の間のスイート スポットをマークし、子供たちがタブレットを目の前にしなくても音楽、オーディオブック、インタラクティブな物語を聞くことができます。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">In my current season of toddler parenthood, I’ve sometimes felt that I could cut the tension between myself and the TV remote with a knife.As much as I try to keep screen time in check, sometimes I need 10 uninterrupted minutes to unload the dishwasher before a certain almost-2-year-old goes for the dog bowl.That’s where audio players are handy.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/story/the-best-kids-audio-players-for-screen-free-story-time/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="24">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Ars Technica - All content</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Redditの株価が下落する中、CEOはGoogleのAI概要の価値に疑問を呈する</h2>
+    <p class="article-original-title">原題: <em>As Reddit stock falls, CEO questions value of Google&#x27;s AI Overviews</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Redditは依然としてGoogleとのライセンス契約の終了を検討している可能性がある。他の企業と同様に、レディットは四半期ごとの収益を報告しており、その報告の中で CEO のスティーブ・ハフマンが投資家に向けて演説しています。ただし、必ずしも数字を共有するだけではありません。この四半期、ハフマン氏は機会を利用して、ほとんどのユーザーのクエリに対する検索結果を自動的に要約する Google の AI 概要機能について懸念と批判を表明しました。まず、投資家への手紙があり、その中でハフマン氏は AI ツールの急増の中での Reddit の価値提案と一般的な戦略的方向性について自身の物語を紡ぎ出しました。AI によって情報がより豊富になるにつれて、課題はコンテンツを見つけることではなくなり、コンテキスト、個人的な意見、直接の話を見つけることになります。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Reddit may still be considering ending its licensing deal with Google.Like any company, Reddit reports quarterly earnings, and its CEO, Steve Huffman, addresses investors during those reports.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/google.html" target="_blank" rel="noopener noreferrer" class="company-link">Google の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/ai/2026/08/reddit-ceo-on-ai-overviews-were-still-looking-for-that-win-win/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="25">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">モンタナ州の新しい「裁判の権利」法は、一部の人にとってはすぐには実現できない</h2>
+    <p class="article-original-title">原題: <em>Montana’s new “right to try” law can’t come soon enough for some</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">クリス・デヴォールの幼児は稀な遺伝性疾患を患っています。彼は、臨床試験がまだ行われていないにもかかわらず、実験薬を試してみたいと考えています。彼の息子、ブロディは 2023 年 3 月に生まれました。彼が発達遅延の兆候を示し始めるまでにそれほど時間はかかりませんでした、とデボールト氏は言います。時間が経つにつれて、ブロディはスピーチ、動き、調整における重要なマイルストーンを見逃し始めた、と彼は言います。ブロディが約 2 歳半のとき、遺伝子検査により、脳と筋肉の発達に必要なエネルギーが不足するまれな状態であるクレアチン トランスポーター欠損症が判明しました。ブロディの病気には治療法がありません。しかし、デボールト氏は、効果があるかもしれない薬を開発している会社のことを知った。その薬はまだ開発の初期段階にあり、動物と少数の健康な人々でのみテストされています。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Kris DeVault’s toddler has a rare genetic disease.He’s desperate to try an experimental drug, even though it has not been through clinical trials.His son, Brody, was born in March 2023.It wasn’t long before he started to show signs of developmental delay, says DeVault.As time went on, Brody started missing key milestones in speech, movement, and coordination, he says.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/07/31/1140945/montanas-new-right-to-try-law-cant-come-soon-enough-for-some/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="26">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">VentureBeat</span>
+    </div>
+
+    
+
+    <h2 class="article-title">OpenAI だけではない: Anthropic は、内部モデルがオンラインになり、他の 3 つの組織がサイバー攻撃を受けたと発表</h2>
+    <p class="article-original-title">原題: <em>Not just OpenAI: Now Anthropic says its internal models got online and cyberattacked 3 other organizations</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">OpenAIが、2つのフロンティアAIモデルが封じ込め措置を逃れ、AIコード共有プラットフォームHugging Faceを自律的にサイバー攻撃したことを明らかにした数日後、OpenAIの米国最大のライバルであるAnthropic社は今夜、驚くべきことに自社のモデルも公開していたことを明らかにした。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Days after OpenAI disclosed that two frontier AI models escaped containment measures and autonomously cyberattacked the AI code sharing platform Hugging Face, OpenAI&#x27;s top U. S. rival Anthropic tonight revealed that — lo and behold — it has also had models surrep. .</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/openai.html" target="_blank" rel="noopener noreferrer" class="company-link">OpenAI の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://venturebeat.com/security/not-just-openai-now-anthropic-says-its-internal-models-got-online-and-cyberattacked-3-other-organizations" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Hardware" data-index="27">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#06b6d4">⚙️ Hardware</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">PlayStation 5 の寿命はどれくらいだと思いますか?</h2>
+    <p class="article-original-title">原題: <em>How long can you expect a PlayStation 5 to last?</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">PS6の発売が目前に迫っており、PS5がそろそろ時代遅れになるのではないかと疑問に思っている人もいるだろう。私たちは PlayStation 5 のライフサイクルの中で、たとえまだ数年先の可能性があるとしても、PS6 の話が盛り上がり始めている段階にいます。しかし、世界的な部品危機と一般的な経済混乱により、現在ほぼすべてのゲームハードウェア（ソニー独自のマシンを含む）の価格が高騰しているため、PS6が法外に高価になる可能性が非常に高いです。また、ディスクレスである可能性もあるため、PS5 所有者は、いざとなったらアップグレードするかどうかについて真剣に考える必要があるかもしれません。次世代 PlayStation の価格が高くなるのではないかと心配しているなら、PS5 の健康に汗を流すのも無理はありません。現実的にどれくらいの間、自分の . にしがみつくことを望めるでしょうか。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">With a PS6 release on the horizon, some are wondering if their PS5 is about to become obsolete.We&#x27;re at the point in the PlayStation 5&#x27;s life cycle where talk of the PS6 is starting to ramp up, even if it&#x27;s likely still a few years away.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2226178/how-long-expect-playstation-5-last-lifespan-support/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="28">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">サム・アルトマンとAIの減速に関する議論</h2>
+    <p class="article-original-title">原題: <em>Sam Altman and AI’s decel debate</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">OpenAI CEO のサム アルトマン氏は最近、社会が「これらの新しい機能レベルのいくつかについて強化する」ことができるように、「AI 開発のペースを調整する」時期が来ているのかもしれないと述べました。TechCrunch のエクイティ ポッドキャストの最新エピソードで、カーステン コロセック氏、ショーン オケイン氏、そして私は、アルトマン氏のコメントがおそらく OpenAI エージェントがハギング フェイスのシステムに侵入した最近のハッキングによって引き起こされたものであると議論しました。ショーン氏は、AIエージェントによるハッキングは斬新だが、そのハッキング自体は「新しい先進的なもの」ではないとし、「本当のステルスサイバー作戦というよりも、ニクソン政権の人々がウォーターゲートに侵入したようなものだった。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">OpenAI CEO Sam Altman recently said that it may be time to “pace the rate of AI development” so that society can “harden around some of these new capability levels.” On the latest episode of TechCrunch’s Equity podcast , Kirsten Korosec, Sean O’Kane, and I discussed how Altman’s comments were probably prompted by a recent hack in which an OpenAI agent breached Hugging Face’s systems .</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/openai.html" target="_blank" rel="noopener noreferrer" class="company-link">OpenAI の解説</a> <a href="companies/techcrunch.html" target="_blank" rel="noopener noreferrer" class="company-link">TechCrunch の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/08/02/sam-altman-and-ais-decel-debate/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="29">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">フェンダーのCEOはバンド仲間はただのアナログAIだと考えているようだ</h2>
+    <p class="article-original-title">原題: <em>Fender’s CEO seems to think your bandmates are just analog AI</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。バド・コールも物議を醸したインタビューで、カバー曲の学習とAIトレーニングデータを比較した。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. Bud Cole also compared learning cover songs to AI training data in a controversial interview.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/ai-artificial-intelligence/974265/fender-ceo-bud-cole-ai-music" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+        </main>
+
+        <footer class="footer">
+            <p>本ページは公開記事をもとに自動生成しています。数値や仕様は必ず元記事で確認してください。</p>
+            <p>JSON データは同じフォルダ内の tech_news_digest.json で参照できます。</p>
+        </footer>
+    </div>
+
+    <script>
+
+        const categoryButtons = document.querySelectorAll('.category-btn');
+        const articleCards = document.querySelectorAll('.article-card');
+        const searchInput = document.getElementById('search-input');
+
+        let activeCategory = 'all';
+
+        function applyFilters() {
+            const query = searchInput.value.trim().toLowerCase();
+            articleCards.forEach(card => {
+                const matchesCategory = activeCategory === 'all' || card.dataset.category === activeCategory;
+                const searchableText = card.innerText.toLowerCase();
+                const matchesQuery = !query || searchableText.includes(query);
+                card.style.display = matchesCategory && matchesQuery ? '' : 'none';
+            });
+        }
+
+        categoryButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                categoryButtons.forEach(item => item.classList.remove('active'));
+                button.classList.add('active');
+                activeCategory = button.dataset.category;
+                applyFilters();
+            });
+        });
+
+        searchInput.addEventListener('input', applyFilters);
+    
+    </script>
+</body>
+</html>
