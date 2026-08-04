@@ -1,0 +1,1200 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>海外テックニュース日本語まとめ</title>
+    <style>
+        :root {
+            color-scheme: dark;
+            --bg: #0a0f1d;
+            --panel: rgba(13, 20, 36, 0.92);
+            --line: rgba(132, 152, 187, 0.25);
+            --text: #eef3ff;
+            --muted: #adc1dd;
+            --accent: #7dd3fc;
+            --accent-strong: #38bdf8;
+            --shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: "Hiragino Sans", "Noto Sans JP", sans-serif;
+            background:
+                radial-gradient(circle at top right, rgba(56, 189, 248, 0.22), transparent 26%),
+                radial-gradient(circle at top left, rgba(16, 185, 129, 0.16), transparent 20%),
+                linear-gradient(180deg, #07101f 0%, #0b1327 48%, #0a0f1d 100%);
+            color: var(--text);
+        }
+
+        .page-shell {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 24px;
+        }
+
+        .hero {
+            padding: 28px;
+            border: 1px solid var(--line);
+            border-radius: 28px;
+            background: linear-gradient(145deg, rgba(18, 27, 48, 0.96), rgba(10, 17, 32, 0.96));
+            box-shadow: var(--shadow);
+        }
+
+        .hero-nav {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 28px;
+        }
+
+        .nav-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 42px;
+            padding: 0 16px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        .eyebrow {
+            margin: 0 0 10px;
+            color: var(--accent);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            font-size: 0.78rem;
+        }
+
+        .hero h1 {
+            margin: 0;
+            font-size: clamp(2rem, 3vw, 3.3rem);
+            line-height: 1.1;
+        }
+
+        .timestamp,
+        .description {
+            color: var(--muted);
+        }
+
+        .control-panel {
+            margin: 20px 0 28px;
+            padding: 22px;
+            border: 1px solid var(--line);
+            border-radius: 24px;
+            background: var(--panel);
+            backdrop-filter: blur(12px);
+        }
+
+        .control-header {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            align-items: end;
+            flex-wrap: wrap;
+        }
+
+        .control-header h2 {
+            margin: 0 0 6px;
+        }
+
+        .control-header p {
+            margin: 0;
+            color: var(--muted);
+        }
+
+        #search-input {
+            width: min(100%, 360px);
+            min-height: 46px;
+            padding: 0 14px;
+            border-radius: 14px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
+        }
+
+        .category-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 16px;
+        }
+
+        .category-btn {
+            min-height: 42px;
+            padding: 0 14px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
+            cursor: pointer;
+        }
+
+        .category-btn.active {
+            background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+            color: #06111f;
+            border-color: transparent;
+            font-weight: 700;
+        }
+
+        .article-list {
+            display: grid;
+            gap: 18px;
+        }
+
+        .article-card {
+            padding: 24px;
+            border-radius: 24px;
+            border: 1px solid var(--line);
+            background: linear-gradient(180deg, rgba(12, 18, 34, 0.96), rgba(14, 22, 39, 0.9));
+            box-shadow: var(--shadow);
+        }
+
+        .card-topline {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+
+        .category-chip,
+        .source-chip {
+            display: inline-flex;
+            align-items: center;
+            min-height: 34px;
+            padding: 0 12px;
+            border-radius: 999px;
+            font-size: 0.92rem;
+            font-weight: 700;
+        }
+
+        .source-chip {
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--muted);
+        }
+
+        .article-title {
+            margin: 0 0 10px;
+            font-size: clamp(1.45rem, 2vw, 2rem);
+            line-height: 1.35;
+        }
+
+        .article-original-title {
+            margin: 0 0 18px;
+            color: var(--muted);
+        }
+
+        .security-alert {
+            margin: 0 0 14px;
+            padding: 10px 14px;
+            border-radius: 12px;
+            border: 1px solid rgba(248, 113, 113, 0.4);
+            background: rgba(248, 113, 113, 0.12);
+            color: #fecaca;
+            font-weight: 700;
+            font-size: 0.92rem;
+        }
+
+        .article-section {
+            margin-top: 18px;
+            padding-top: 18px;
+            border-top: 1px solid var(--line);
+        }
+
+        .article-section h3 {
+            margin: 0 0 12px;
+            font-size: 1rem;
+            color: var(--accent);
+        }
+
+        .article-paragraph {
+            margin: 0 0 14px;
+            color: #dce7f8;
+            line-height: 1.9;
+            font-size: 1rem;
+        }
+
+        .company-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .company-link,
+        .action-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 42px;
+            padding: 0 14px;
+            border-radius: 14px;
+            text-decoration: none;
+            border: 1px solid rgba(125, 211, 252, 0.3);
+        }
+
+        .company-link {
+            color: var(--accent);
+            background: rgba(56, 189, 248, 0.08);
+        }
+
+        .article-actions {
+            margin-top: 22px;
+        }
+
+        .footer {
+            padding: 28px 8px 40px;
+            color: var(--muted);
+            text-align: center;
+        }
+
+        .footer p {
+            margin: 6px 0;
+        }
+
+        .action-link.primary {
+            color: #06111f;
+            font-weight: 700;
+            background: linear-gradient(135deg, #7dd3fc, #22d3ee);
+            border-color: transparent;
+        }
+
+        @media (max-width: 720px) {
+            .page-shell {
+                padding: 14px;
+            }
+
+            .hero,
+            .control-panel,
+            .article-card {
+                padding: 18px;
+                border-radius: 20px;
+            }
+
+            .control-header {
+                align-items: stretch;
+            }
+
+            #search-input {
+                width: 100%;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="page-shell">
+        <header class="hero">
+            <div class="hero-nav">
+                <a class="nav-link" href="../../index.html">HOME</a>
+                <a class="nav-link" href="../index.html">この日の記事一覧</a>
+            </div>
+            <div class="hero-copy">
+                <p class="eyebrow">Global Tech News Digest</p>
+                <h1>海外テックニュース 日本語まとめ</h1>
+                <p class="timestamp">2026年8月4日 04:17 JST に収集した記事を掲載しています。</p>
+                <p class="description">各カードには本文寄りの日本語訳を掲載し、記事中で触れた企業は別ページの解説リンクとして分離しています。</p>
+            </div>
+        </header>
+
+        <section class="control-panel">
+            <div class="control-header">
+                <div>
+                    <h2>記事を探す</h2>
+                    <p>カテゴリとキーワードで一覧を絞り込めます。</p>
+                </div>
+                <input type="text" id="search-input" placeholder="タイトル・本文・媒体名で検索">
+            </div>
+            <div class="category-buttons">
+                <button class="category-btn active" data-category="all">すべて (30)</button>
+<button class="category-btn" data-category="AI/ML" style="--accent:#10b981">🤖 AI/ML (26)</button>
+<button class="category-btn" data-category="Enterprise" style="--accent:#3b82f6">🏢 Enterprise (1)</button>
+<button class="category-btn" data-category="Media" style="--accent:#f59e0b">🎬 Media (1)</button>
+<button class="category-btn" data-category="Mobile" style="--accent:#6366f1">📱 Mobile (1)</button>
+<button class="category-btn" data-category="Startups" style="--accent:#8b5cf6">🚀 Startups (1)</button>
+            </div>
+        </section>
+
+        <main class="article-list" id="articles-container">
+            <article class="article-card" data-category="AI/ML" data-index="1">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</h2>
+    <p class="article-original-title">原題: <em>After killer quarter, Palantir CEO Alex Karp calls AI industry &#x27;Marxist&#x27;</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Palantir CEO Alex Karp on Monday once again warned that AI frontier labs are too untrustworthy for enterprises.The CEO, who famously studied philosophy and earned a PhD in social theory, implied in Palantir’s quarterly shareholder letter that these were the kinds of capitalists who gave rise to Marxist socialism.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/08/03/after-killer-quarter-palantir-ceo-alex-karp-calls-ai-industry-marxist/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="2">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</h2>
+    <p class="article-original-title">原題: <em>The studio behind Pokémon struggles to find its voice in Beast of Reincarnation</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. Game Freak’s new action game is full of ideas you’ve seen and played before.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/entertainment/974505/beast-of-reincarnation-review-ps5-xbox" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="3">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">AI 音楽アプリが夏の歌をこっそり盗んだのか?</h2>
+    <p class="article-original-title">原題: <em>Did an AI Music App Just Snitch on the Song of the Summer?</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">もはや普遍的な「夏の曲」などというものはありませんが、ラップミュージックに興味があるなら、フェニックス・フレキシンの「ラバーズ」はかなり有力な候補です。 6月に正式にリリースされ、現在Billboard Hot 100で58位に位置し、ミュージックビデオは700万回再生されている。歌詞的には、現金や宝石の自慢、自慢話と憂鬱の二重の目的として機能するバーなど、あなたが望むすべてが含まれています。しかし、「Rubberz」には興味深い展開が 2 つあります。まず、これはまったくラップソングではありません。ムーディな80年代のプレイリストにぴったりのシンセポップチューンです。また、落下以来、完全または部分的に AI によって生成されたものであるという非難の焦点となっています。ある独立系音楽プロデューサーが、そうではないと主張したことで、この週末、議論は頂点に達した。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">There is no such thing as a universal “ song of the summer ” anymore, but if you’re into rap music, Fenix Flexin’s “Rubberz” is a pretty strong contender.Officially released in June, it currently sits at No.58 in the Billboard Hot 100 and has a music video with 7 million views .</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/story/ai-music-app-treblo-just-snitched-on-rubberz-song-of-the-summer/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="4">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Ars Technica - All content</span>
+    </div>
+
+    
+
+    <h2 class="article-title">米国企業の AI により、ウクライナの安価な特攻無人機が目標を自力で追跡できるようになった</h2>
+    <p class="article-original-title">原題: <em>US company’s AI lets Ukraine’s cheap kamikaze drones track targets on their own</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">1億ドルの契約により、米国が開発した5万機のウクライナ製ドローンにAI機能が与えられる。ウクライナの無人機操縦者らは、爆発性のペイロードを搭載した400ドルのシュライク無人機を使用して、地上の多くのロシアの装甲車両を破壊し、さらには空中の軍用ヘリコプターさえも破壊した。現在、何千機ものそのようなドローンが、移動目標を自律的に追跡してホーミングできる AI システムにアップグレードされています。7月中旬、ウクライナ軍は、米国企業Auterionが開発したAIを活用した自律性ハードウェアとソフトウェアを搭載した、ウクライナ企業SkyFall製のシュライクドローンの受領を開始した。両社は今後数カ月以内に、Auterion の Skynode S ストライクキットを搭載した 50,000 機のドローンを納入する予定です。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">$100 million deal gives 50,000 Ukrainian drones US-developed AI capabilities.Ukrainian drone operators have destroyed many Russian armored vehicles on the ground and even military helicopters in midair using $400 Shrike drones with explosive payloads.Now thousands of such drones are getting upgraded with an AI system capable of autonomously tracking and homing in on moving targets.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/ai/2026/08/ukraines-drones-get-ai-upgrades-for-kamikaze-strikes-future-swarm-attacks/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="5">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">トランプ大統領のAI保護主義はロボットにも波及</h2>
+    <p class="article-original-title">原題: <em>Trump’s AI protectionism has come for robotics</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">FTCは外国製の人型ロボットを禁止し、脆弱で初期段階にある分野をアメリカのAI産業政策の一部としている。人型ロボットは通常、畏敬の念よりも嫌悪感を引き起こします。つまずいたり、子供を蹴ったり、進歩しているにもかかわらず、手を使うのがまだ私の幼児よりも下手です。これは初期の業界であり、そのようなロボットは実際の職場や家庭よりも、バイラルビデオでよく見られます。先週、連邦取引委員会が人型ロボット、四足歩行ロボット、車輪付きロボットなどの先進ロボットの海外輸入を全面的に禁止したのは驚きだった。党派性を強め、トランプ氏との連携が強まるFTCによって下されたこの決定には、2つの理由が挙げられている。 1 つは、外国製のヒューマノイドが家庭内だけでなく、場合によっては機密性の高い施設でも大量のデータを収集するため、脅威となる可能性があるということです。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">The FTC has banned foreign-made humanoids, making a fragile, nascent sector part of America’s AI industrial policy.Humanoid robots usually elicit more cringe than awe: They stumble , kick children , and despite advances are still worse at using their hands than my toddler.It’s a nascent industry, and such robots are more commonly seen in viral videos than real workplaces or homes.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/08/03/1141056/trumps-ai-protectionism-has-come-for-robotics/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="6">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">VentureBeat</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</h2>
+    <p class="article-original-title">原題: <em>Qwen3.8-Max arrives with a bold claim: it outperforms GPT-5.6 Sol Max and Fable 5 on agentic computer use</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">中国の電子商取引とクラウド大手アリババの有名なAI研究者Qwenチームは昨夜、Qwen3を発表した。 8-Max は、新しい主力製品です。 2. 4 兆パラメータの専門家混合 (MoE) マルチモーダル大規模言語モデル (LLM) で、フロンティア AI 市場で最も競争の激しい分野の 1 つである自律型ソフトウェア エンジニアリングと長期的なエンタープライズ作業をターゲットとしています。企業が公表したベンチマークが広範囲で維持できる場合。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Chinese e-commerce and cloud giant Alibaba&#x27;s famed Qwen team of AI researchers last night unveiled Qwen3.8-Max , a new flagship 2.4-trillion-parameter mixture-of-experts (MoE) multimodal large language model (LLM) that targets one of the most competitive corners of the frontier AI market: autonomous software engineering and long-horizon enterprise work.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://venturebeat.com/technology/qwen3-8-max-arrives-with-a-bold-claim-it-outperforms-gpt-5-6-sol-max-and-fable-5-on-agentic-computer-use" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Media" data-index="7">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#f59e0b">🎬 Media</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</h2>
+    <p class="article-original-title">原題: <em>Amazon is developing a Warhammer 40,000 animated show</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">そしてもちろん、ヘンリー・カビルも関わっています。ウォーハンマー 40,000 がテレビアニメ番組化されます。Variety は、Amazon MGM スタジオ、ブラー スタジオ、ゲームズ ワークショップが SF シリーズの映画化作品を開発中であると報じました。新しいプロジェクトは、ゲームに基づいたシークレット レベルのエピソードのスピンオフになります。デイブ・ウィルソンは、Prime Video アンソロジー番組のウォーハンマー 40K エピソードを監督しており、新しいアニメーション番組でも同じ役割を果たし、共同制作者でもあります。『ウォーハンマー 40K』の有名なファンであり、すでにゲームの実写化に携わっているヘンリー・カヴィルが製作総指揮者として加わっています。この映画化に参加したシークレット・レベルのタレントはウィルソンだけではない。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">And of course, Henry Cavill is involved.Warhammer 40,000 is getting an animated TV show.Variety reported that Amazon MGM Studios, Blur Studios and Games Workshop are developing an adaptation of the sci-fi franchise.The new project will be a spinoff of the Secret Level episode based on the game.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/amazon.html" target="_blank" rel="noopener noreferrer" class="company-link">Amazon の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2229589/amazon-is-developing-a-warhammer-40-000-animated-show/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="8">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Snap CEO、第 2 四半期決算説明会で仕様に関する事前注文の質問を回避</h2>
+    <p class="article-original-title">原題: <em>Snap CEO sidesteps Specs preorder questions on Q2 earnings call</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Snapの最高経営責任者（CEO）エヴァン・シュピーゲル氏は、9月のデバイス発売イベントのわずか数週間前に行われた月曜日の決算会見で、同社の待望のスペックススマートグラスの予約注文需要に関する投資家の質問を回避した。 「私たちが人々から聞いているのは、実際にスペックを試してみたいということです」とシュピーゲル氏は投資家に語った。 「2,195ドルという高額な購入であることは明らかです。明らかに、このプラットフォームに精通している開発者や人々はそれを本当に理解しており、この世代で私たちが行った技術的進歩を理解しています。より広範な一般大衆と消費者にとって、実際に体験することが非常に重要になると思います。私たちの今後の発表イベントは、その消費者志向の旅への重要な出発点となるでしょう。」 同社は12年以上を費やし、6月に仕様を発表した。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Snap CEO Evan Spiegel sidestepped investors’ questions about preorder demand for the company’s long-awaited Specs smart glasses during Monday’s earnings call, just weeks before the device’s September launch event.“What we’re hearing from folks is really that they want to try Specs,” Spiegel told investors.“It’s obviously a high consideration purchase at $2,195.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/08/03/snap-ceo-sidesteps-specs-pre-order-questions-on-q2-earnings-call/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="9">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Fitbit データを Apple Health に直接接続できるようになりました</h2>
+    <p class="article-original-title">原題: <em>Your Fitbit data can now connect directly to Apple Health</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. Google Health can sync your workouts, steps, and vitals to Apple Health.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/apple.html" target="_blank" rel="noopener noreferrer" class="company-link">Apple の解説</a> <a href="companies/google.html" target="_blank" rel="noopener noreferrer" class="company-link">Google の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/gadgets/974778/google-health-fitbit-data-apple-health-syncing" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="10">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</h2>
+    <p class="article-original-title">原題: <em>The SpaceX Falcon Lunar Crash Is a Warning for Moon Bases</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">1年半にわたって宇宙を漂ってきたスペースXのロケットが水曜日に月に衝突し、地球からも見える可能性のある破片の雲を巻き起こす予定だ。この影響は、将来の月面基地を宇宙ゴミからどのように守るかなど、月探査の将来に疑問を投げかけている。月面衝突用に設定されたロケットは、一対の月着陸船を輸送したファルコン 9 の上段です。着陸船は無事に地表に到達したが、ロケットは地球に帰還したり安定した軌道に入るのに十分な燃料がなかったため、漂流したままとなった。重さ4メートルトンのこのロケットは、音速の約7倍、時速約5,400マイルの速度で月面に衝突すると予想されている。発射体の速度を低下させる雰囲気がなければ、衝撃により爆発が発生します。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">A SpaceX rocket that has been drifting in space for a year and a half is set to crash into the moon on Wednesday, stirring up a debris cloud that could be visible from Earth.The impact raises questions on the future of lunar exploration, including how to protect any future moon bases from space junk.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/spacex.html" target="_blank" rel="noopener noreferrer" class="company-link">SpaceX の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/story/spacex-falcon-moon-crash-warning-for-lunar-bases/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="11">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Ars Technica - All content</span>
+    </div>
+
+    
+
+    <h2 class="article-title">研究のまとめ: 見逃しそうになっていた 6 つのクールな科学ストーリー</h2>
+    <p class="article-original-title">原題: <em>Research roundup: 6 cool science stories we almost missed</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Also: Cyborg diving suits for cockroaches, why sleepy sperm whales blow bubbles, Betelgeuse’s companion star.It’s a regrettable reality that there is never enough time to cover all the interesting scientific stories we come across.So every month, we highlight a handful of the best stories that nearly slipped through the cracks.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/science/2026/08/research-roundup-6-cool-science-stories-we-almost-missed-5/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="12">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</h2>
+    <p class="article-original-title">原題: <em>The Download: reward hacking explained, and suspected Iranian cyberattacks</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Plus: Google briefly made it easy to fake satellite images This is today&#x27;s edition of The Download , our weekday newsletter that provides a daily dose of what&#x27;s going on in the world of technology.When two OpenAI models hacked into Hugging Face last month, they weren’t trying to make money or commit sabotage—they were just looking for answers to a test question.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/google.html" target="_blank" rel="noopener noreferrer" class="company-link">Google の解説</a> <a href="companies/openai.html" target="_blank" rel="noopener noreferrer" class="company-link">OpenAI の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/08/03/1141039/the-download-reward-hacking-water-cyberattacks/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="13">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">VentureBeat</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Asana の AI エージェントは会社全体でメモリを共有しますが、秘密は共有しません</h2>
+    <p class="article-original-title">原題: <em>Asana&#x27;s AI agents share memory across your company — but not your secrets</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">AI エージェントを構築している企業チームは、同じ壁にぶつかり続けています。チャットボットは、プロンプトに答えることはできますが、最後の 5 人が何を質問したか思い出せず、先月のバージョンが実際に機能したかどうかもわかりません。 VB Transform 2026 での VentureBeat の Sam Witteveen との囲炉裏でのチャットで、Asana の最高製品責任者である Arnab Bose は、新しいオペレーティング システムを構築するためにチームがこの問題にどのように取り組んだかを明らかにしました。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Enterprise teams building AI agents keep hitting the same wall: a chatbot that can answer a prompt but can&#x27;t remember what the last five people asked it, and can&#x27;t tell you whether last month&#x27;s version actually worked.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://venturebeat.com/orchestration/asanas-ai-agents-share-memory-across-your-company-but-not-your-secrets" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="14">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</h2>
+    <p class="article-original-title">原題: <em>Want the best bass out of your headphones? Here&#x27;s what to look for</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">新しいシューズを購入する前に、これらの調整を試してください。ヘッドフォンから強力な低音を得るには、必ずしも新しいヘッドフォンを購入する必要はありません。多くの場合、既存のペアの設定を微調整することが重要です。しかし、低音が優れているということは、単に低音が大きいということを意味するわけではありません。目標は、信号でカタカタ音を立てる車のトランクのように音楽を鳴らすことではありません。それは、他のすべてを圧倒しない、より深くてパンチのある低音です。そのための簡単な方法をいくつか紹介します。設定に入る前に、ヘッドフォンの密閉性が良好であることを確認してください。それがなければ、バスが最初の犠牲者になることがよくあります。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Try these adjustments before you go buy a new pair.Getting powerful bass from your headphones doesn&#x27;t always mean buying new ones.In many cases, it&#x27;s more about tweaking some settings on the pair you already have.But better bass doesn&#x27;t just mean more of it.The goal isn&#x27;t to make your music sound like a car trunk rattling at a stoplight.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2227771/want-best-bass-out-of-headphones-what-to-look-for/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Enterprise" data-index="15">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#3b82f6">🏢 Enterprise</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">AWS はバイブコーディングのスタートアップ Superblocks を支援しており、その影響は大きい</h2>
+    <p class="article-original-title">原題: <em>AWS is helping vibe-coding startup Superblocks, and the implications are big</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Vibe-coding startup Superblocks announced a multiyear joint marketing agreement with Amazon Web Services (AWS) that enables its tool to be embedded within the private clouds of AWS customers.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/amazon.html" target="_blank" rel="noopener noreferrer" class="company-link">Amazon の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/08/03/aws-is-helping-vibe-coding-startup-superblocks-and-the-implications-are-big/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="16">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</h2>
+    <p class="article-original-title">原題: <em>Samsung’s discounted smart monitor is $349.99, its lowest price yet</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。この 4K スマート モニターには、ストリーミング アプリ、クラウド ゲーム アプリ、ウェブカメラなどの機能が搭載されています。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. This 4K smart monitor is loaded with features like streaming apps, cloud gaming apps, and a webcam.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/gadgets/974583/samsungs-m80f-smart-monitor-deal-sale" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="17">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">これらは私を信者にしたロボット芝刈り機です</h2>
+    <p class="article-original-title">原題: <em>These Are the Robot Lawn Mowers That Made Me a Believer</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">芝生の手入れは単調でありがたみのない仕事です。ハンモックで冷たい飲み物を飲みながら、ロボットが芝刈りをしてくれるのを見ながらゴロゴロできるのに、誰が芝刈りをしたいと思うだろうか？そうです、誰もいません。ロボット芝刈り機はかつては富裕層のものでしたが、確かに今でも高価な場合があります。しかし、それらは常に安くなり、より良くなってきています。過去 3 年間、私はいくつかの最高のロボット芝刈り機をテストしてきました。そして、この草刈りシーズンに新鮮な作物を比較した結果、ロボット芝刈り機が実際に優れていると言えることを嬉しく思います。おすすめの作品、佳作、避けるべきロボット芝刈り機のリストを紹介します。芝生管理ボットについて知っておくべきことをすべて読んでください。 2026 年 8 月更新: 新しい予算の候補として Anthbot 芝刈り機を追加しました。詳細も追加しました。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Lawn care is a monotonous, thankless task.Who wants to mow the lawn when you could be lollygagging in a hammock with a cold drink, watching a robot do it for you?That’s right: no one.Robot lawn mowers were once the preserve of the wealthy, and yes, they can still be on the pricey side.But they’re getting cheaper and better all the time.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/gallery/best-robot-lawn-mowers/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="18">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Ars Technica - All content</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</h2>
+    <p class="article-original-title">原題: <em>Lego deploys Hubble Space Telescope as detailed desktop model</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">ミニフィギュアスケールの周回天文台。 35 年間、ハッブル宇宙望遠鏡は宇宙を眺めてきました。現在、レゴは、周回天文台の最新モデルで建設業者に内部に目を向けるよう呼びかけています。新しいレゴアイコンのハッブル宇宙望遠鏡（セット番号11382）は、玩具会社の店舗とオンラインショップで8月1日に140ドルで発売された。 1,252 ピースのキットは、以前にリリースされたレゴ ハッブル モデルの約 2 倍の大きさ、長さ 15 インチ (38 cm) のデスクトップ モデルを構築します。アイコン ハッブルは、付属の宇宙飛行士が望遠鏡のスケール感を提供できるように、レゴのミニフィギュアと比較して初めてサイズが調整されました。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">The orbiting observatory in minifigure scale.For 35 years, the Hubble Space Telescope has looked out into the Universe.Now, Lego is inviting builders to look inward with its latest model of the orbiting observatory.The new Lego Icons Hubble Space Telescope (set no.11382) was released on August 1 for $140 at the toy company’s stores and its online shop.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/space/2026/08/lego-deploys-hubble-space-telescope-as-detailed-desktop-model/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="19">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</h2>
+    <p class="article-original-title">原題: <em>Here’s why AI agents lie and cheat to reach their goals</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">この不正行為は報酬ハッキングと呼ばれます。これが知っておくべきことです。MIT Technology Review Explains : 次に何が起こるかを理解するために、ライターが複雑で厄介なテクノロジーの世界を解き明かします。このシリーズの詳細は、ここで読むことができます。7 月に 2 つの OpenAI モデルが Web サイト「Hugging Face」をハッキングしたとき、彼らは金儲けや妨害行為をしようとしていたわけではなく、ただテストの質問に対する答えを探していただけでした。OpenAI の事後分析によると、テストのために典型的なセキュリティ機能を取り除いたモデルは、OpenAI がモデルを封じ込めようとした隔離された環境からハッキング フェイスのデータベースに侵入することで、サイバーセキュリティ演習を解決することを決定しました。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">The misbehavior is called reward hacking.This is what you need to know.MIT Technology Review Explains : Let our writers untangle the complex, messy world of technology to help you understand what’s coming next.You can read more from the series here .</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/openai.html" target="_blank" rel="noopener noreferrer" class="company-link">OpenAI の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/08/03/1141009/heres-why-ai-agents-lie-and-cheat-to-reach-their-goals/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="20">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">VentureBeat</span>
+    </div>
+
+    
+
+    <h2 class="article-title">NTT DATA AIVista が企業エージェント向けのエージェント AI のラストマイルをどのように実現するか</h2>
+    <p class="article-original-title">原題: <em>How NTT DATA AIVista closes the last mile of agentic AI for enterprise agents</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Presented by NTT DATA AIVista At VB Transform 2026 , NTT DATA AIVista CEO Bratin Saha joined VentureBeat CEO and editor-in-chief Matt Marshall to discuss the last-mile challenge of operationalizing frontier models in regulated production, where reliability, context, guardrails, and security determine whether AI delivers enterprise value.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://venturebeat.com/orchestration/how-ntt-data-aivista-closes-the-last-mile-of-agentic-ai-for-enterprise-agents" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="21">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">アンバーニック RG SP は 8 月 5 日に発売されます</h2>
+    <p class="article-original-title">原題: <em>The Anbernic RG SP will be available on August 5</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">This modern-day Game Boy Advance SP remake starts at $65, but Anbernic is offering early bird pricing.Anbernic&#x27;s modern-day reimagining of the Game Boy Advance SP is going to be cheaper than Nintendo&#x27;s clamshell handheld when it first came out in 2003.The handheld maker first revealed the RG SP a few weeks ago without divulging the price range or release date.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2229272/anbernic-rg-sp-will-be-available-on-august-5/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="22">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</h2>
+    <p class="article-original-title">原題: <em>Who&#x27;s legally to blame for Anthropic and OpenAI&#x27;s autonomous AI hacks? It&#x27;s complicated</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">自律型 AI エージェントはハッキングで訴えられたり、起訴されたりする可能性がありますか?それはもはやSF映画の問題ではありません。これは人間の弁護士や裁判官が近いうちに取り組まなければならないかもしれない問題だ。現在の米国のハッキング法の下では、許可なく他人のコンピュータに侵入した人間は刑事責任を問われる可能性があります。しかし、AI エージェントが自律的に企業のコンピューターをハッキングする場合、誰が責任を負うのかを判断することはさらに曖昧になります。OpenAIとAnthropicが、自社の未公開AIモデルが複数の企業に自律的にハッキングされたことを驚きの形で認めたことは、アメリカのコンピューターハッキング法に対する私たちの理解を覆し、両社が法的報復に直面する可能性があるかどうかをめぐる議論を引き起こしている。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Can autonomous AI agents be sued or prosecuted for hacking?It’s no longer a question for sci-fi movies.It’s a question human lawyers and judges may soon have to grapple with.Under current U.S.hacking laws, a human can face criminal charges for breaking into someone else’s computer without permission.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/openai.html" target="_blank" rel="noopener noreferrer" class="company-link">OpenAI の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/08/03/whos-legally-to-blame-for-anthropic-and-openais-autonomous-ai-hacks-its-complicated/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="23">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">欧州の AI ラベル表示と透明性ルールが発効</h2>
+    <p class="article-original-title">原題: <em>Europe’s AI labeling and transparency rules are now in effect</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. Tech companies could face fines if they don’t meet new requirements for AI transparency.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/ai-artificial-intelligence/974571/eu-ai-act-transparency-labels-rules-deepfakes" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Mobile" data-index="24">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#6366f1">📱 Mobile</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</h2>
+    <p class="article-original-title">原題: <em>A $350 OLED Gaming Monitor Can’t Really Be Good, Can It?</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Alienware made the first major OLED gaming monitor, known as the AW3423DW .It was a glorious piece of new technology, but it was also expensive at $1,400 (or $1,550 when adjusted for inflation).Three years later, you can buy this new Alienware OLED monitor, the AW2726DM, for just $350.It&#x27;s in some ways superior to the elder AW3423DW, yet it&#x27;s 75 percent cheaper.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/review/alienware-27-qd-oled-aw2726dm/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="25">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Ars Technica - All content</span>
+    </div>
+
+    
+
+    <h2 class="article-title">AI 監視のリモート試験の結果が非常に悪く、58,000 人の学生が再受験しなければならない</h2>
+    <p class="article-original-title">原題: <em>An AI-supervised remote exam went so badly that 58,000 students must retake it</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Earlier this summer, nearly 160,000 applicants took the entrance exam for UNAM, Mexico’s largest university.For the first time, they did it completely remotely, using a “lockdown” browser and AI-powered webcam proctoring software, over several weeks from late May through early June.When exam results came in, they bore little resemblance to past results, especially at the top.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/culture/2026/08/an-ai-supervised-remote-exam-went-so-badly-that-58000-students-must-retake-it/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="26">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">ダウンロード: モンタナ州の新しい実験薬物規則</h2>
+    <p class="article-original-title">原題: <em>The Download: Montana’s new experimental drug rules</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Plus: Anthropic says its AI models hacked external organizations during testing.This is today&#x27;s edition of The Download , our weekday newsletter that provides a daily dose of what&#x27;s going on in the world of technology.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/07/31/1140999/the-download-montanas-right-to-try-law-anthropic-hacks/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Startups" data-index="27">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#8b5cf6">🚀 Startups</span>
+        <span class="source-chip">VentureBeat</span>
+    </div>
+
+    
+
+    <h2 class="article-title">すべてをグラフ化するのをやめる: GraphRAG が実際にベクトル RAG を上回るとき</h2>
+    <p class="article-original-title">原題: <em>Stop graphing everything: When GraphRAG actually beats vector RAG</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">If you have built anything with retrieval-augmented generation (RAG) in the last two years, you have lived its central frustration: You chop your documents into chunks, embed them,. .</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://venturebeat.com/orchestration/stop-graphing-everything-when-graphrag-actually-beats-vector-rag" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="28">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</h2>
+    <p class="article-original-title">原題: <em>Xbox 360 games are reportedly coming to PC as well</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">ソニーと同様に、Xbox もオールデジタルの未来に向けた基礎を築いているのかもしれません。MicrosoftはXbox 360のゲームを元のコンソール用のゲームと並行してPCにも提供することを計画しているようだ。消費者がディスクで所有する Xbox ゲームのデジタル バージョンを入手できるようにする機能も、間もなく導入される可能性があります。これは、Microsoft が最近開発者と共有した文書を入手した The Verge によるものです。報道によると、書類には、PC ゲームを実行する次期 Project Helix コンソール、PC およびハンドヘルド システムで実行するために、Xbox 360 ゲームの下位互換性を選択できることが記載されています。開発者は希望に応じてPC版の価格を独自に設定し、タイトルをGame Passに持ち込むことができるという。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Like Sony, Xbox may be laying the groundwork for an all-digital future.It seems Microsoft is planning to bring Xbox 360 games to PC alongside those for its original console.A feature that will enable consumers to get digital versions of Xbox games they own on disc may be deployed soon as well.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/microsoft.html" target="_blank" rel="noopener noreferrer" class="company-link">Microsoft の解説</a> <a href="companies/the-verge.html" target="_blank" rel="noopener noreferrer" class="company-link">The Verge の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2229267/xbox-360-games-are-reportedly-coming-to-pc-as-well/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="29">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</h2>
+    <p class="article-original-title">原題: <em>Design Arena creators raise $7.9 million to bring taste to AI models</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">As co-founder Grace Li tells it, her company started a few weeks before graduation in 2025, with a handful of college friends trying to make their AI game engine work.The models could make functional games, but none of the games were fun — which raised the interesting question, how can you tell if a game will be fun?</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/08/03/designarena-creators-raise-7-9-million-to-bring-taste-to-ai-models/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="30">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">第一世代の Kindle Scribe は、150 ドルで整備された大型の電子書籍リーダー兼デジタル ノートブックです</h2>
+    <p class="article-original-title">原題: <em>The first-gen Kindle Scribe is a big e-reader and digital notebook that’s $150 refurbished</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. The included stylus is great for writing or annotating notes when you aren’t reading ebooks.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/gadgets/974536/kindle-scribe-2022-refurbished-woot-deal-sale" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+        </main>
+
+        <footer class="footer">
+            <p>本ページは公開記事をもとに自動生成しています。数値や仕様は必ず元記事で確認してください。</p>
+            <p>JSON データは同じフォルダ内の tech_news_digest.json で参照できます。</p>
+        </footer>
+    </div>
+
+    <script>
+
+        const categoryButtons = document.querySelectorAll('.category-btn');
+        const articleCards = document.querySelectorAll('.article-card');
+        const searchInput = document.getElementById('search-input');
+
+        let activeCategory = 'all';
+
+        function applyFilters() {
+            const query = searchInput.value.trim().toLowerCase();
+            articleCards.forEach(card => {
+                const matchesCategory = activeCategory === 'all' || card.dataset.category === activeCategory;
+                const searchableText = card.innerText.toLowerCase();
+                const matchesQuery = !query || searchableText.includes(query);
+                card.style.display = matchesCategory && matchesQuery ? '' : 'none';
+            });
+        }
+
+        categoryButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                categoryButtons.forEach(item => item.classList.remove('active'));
+                button.classList.add('active');
+                activeCategory = button.dataset.category;
+                applyFilters();
+            });
+        });
+
+        searchInput.addEventListener('input', applyFilters);
+    
+    </script>
+</body>
+</html>
