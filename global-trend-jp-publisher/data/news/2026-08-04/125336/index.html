@@ -1,0 +1,1200 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>海外テックニュース日本語まとめ</title>
+    <style>
+        :root {
+            color-scheme: dark;
+            --bg: #0a0f1d;
+            --panel: rgba(13, 20, 36, 0.92);
+            --line: rgba(132, 152, 187, 0.25);
+            --text: #eef3ff;
+            --muted: #adc1dd;
+            --accent: #7dd3fc;
+            --accent-strong: #38bdf8;
+            --shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: "Hiragino Sans", "Noto Sans JP", sans-serif;
+            background:
+                radial-gradient(circle at top right, rgba(56, 189, 248, 0.22), transparent 26%),
+                radial-gradient(circle at top left, rgba(16, 185, 129, 0.16), transparent 20%),
+                linear-gradient(180deg, #07101f 0%, #0b1327 48%, #0a0f1d 100%);
+            color: var(--text);
+        }
+
+        .page-shell {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 24px;
+        }
+
+        .hero {
+            padding: 28px;
+            border: 1px solid var(--line);
+            border-radius: 28px;
+            background: linear-gradient(145deg, rgba(18, 27, 48, 0.96), rgba(10, 17, 32, 0.96));
+            box-shadow: var(--shadow);
+        }
+
+        .hero-nav {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 28px;
+        }
+
+        .nav-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 42px;
+            padding: 0 16px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        .eyebrow {
+            margin: 0 0 10px;
+            color: var(--accent);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            font-size: 0.78rem;
+        }
+
+        .hero h1 {
+            margin: 0;
+            font-size: clamp(2rem, 3vw, 3.3rem);
+            line-height: 1.1;
+        }
+
+        .timestamp,
+        .description {
+            color: var(--muted);
+        }
+
+        .control-panel {
+            margin: 20px 0 28px;
+            padding: 22px;
+            border: 1px solid var(--line);
+            border-radius: 24px;
+            background: var(--panel);
+            backdrop-filter: blur(12px);
+        }
+
+        .control-header {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            align-items: end;
+            flex-wrap: wrap;
+        }
+
+        .control-header h2 {
+            margin: 0 0 6px;
+        }
+
+        .control-header p {
+            margin: 0;
+            color: var(--muted);
+        }
+
+        #search-input {
+            width: min(100%, 360px);
+            min-height: 46px;
+            padding: 0 14px;
+            border-radius: 14px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
+        }
+
+        .category-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 16px;
+        }
+
+        .category-btn {
+            min-height: 42px;
+            padding: 0 14px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
+            cursor: pointer;
+        }
+
+        .category-btn.active {
+            background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+            color: #06111f;
+            border-color: transparent;
+            font-weight: 700;
+        }
+
+        .article-list {
+            display: grid;
+            gap: 18px;
+        }
+
+        .article-card {
+            padding: 24px;
+            border-radius: 24px;
+            border: 1px solid var(--line);
+            background: linear-gradient(180deg, rgba(12, 18, 34, 0.96), rgba(14, 22, 39, 0.9));
+            box-shadow: var(--shadow);
+        }
+
+        .card-topline {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+
+        .category-chip,
+        .source-chip {
+            display: inline-flex;
+            align-items: center;
+            min-height: 34px;
+            padding: 0 12px;
+            border-radius: 999px;
+            font-size: 0.92rem;
+            font-weight: 700;
+        }
+
+        .source-chip {
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--muted);
+        }
+
+        .article-title {
+            margin: 0 0 10px;
+            font-size: clamp(1.45rem, 2vw, 2rem);
+            line-height: 1.35;
+        }
+
+        .article-original-title {
+            margin: 0 0 18px;
+            color: var(--muted);
+        }
+
+        .security-alert {
+            margin: 0 0 14px;
+            padding: 10px 14px;
+            border-radius: 12px;
+            border: 1px solid rgba(248, 113, 113, 0.4);
+            background: rgba(248, 113, 113, 0.12);
+            color: #fecaca;
+            font-weight: 700;
+            font-size: 0.92rem;
+        }
+
+        .article-section {
+            margin-top: 18px;
+            padding-top: 18px;
+            border-top: 1px solid var(--line);
+        }
+
+        .article-section h3 {
+            margin: 0 0 12px;
+            font-size: 1rem;
+            color: var(--accent);
+        }
+
+        .article-paragraph {
+            margin: 0 0 14px;
+            color: #dce7f8;
+            line-height: 1.9;
+            font-size: 1rem;
+        }
+
+        .company-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .company-link,
+        .action-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 42px;
+            padding: 0 14px;
+            border-radius: 14px;
+            text-decoration: none;
+            border: 1px solid rgba(125, 211, 252, 0.3);
+        }
+
+        .company-link {
+            color: var(--accent);
+            background: rgba(56, 189, 248, 0.08);
+        }
+
+        .article-actions {
+            margin-top: 22px;
+        }
+
+        .footer {
+            padding: 28px 8px 40px;
+            color: var(--muted);
+            text-align: center;
+        }
+
+        .footer p {
+            margin: 6px 0;
+        }
+
+        .action-link.primary {
+            color: #06111f;
+            font-weight: 700;
+            background: linear-gradient(135deg, #7dd3fc, #22d3ee);
+            border-color: transparent;
+        }
+
+        @media (max-width: 720px) {
+            .page-shell {
+                padding: 14px;
+            }
+
+            .hero,
+            .control-panel,
+            .article-card {
+                padding: 18px;
+                border-radius: 20px;
+            }
+
+            .control-header {
+                align-items: stretch;
+            }
+
+            #search-input {
+                width: 100%;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="page-shell">
+        <header class="hero">
+            <div class="hero-nav">
+                <a class="nav-link" href="../../index.html">HOME</a>
+                <a class="nav-link" href="../index.html">この日の記事一覧</a>
+            </div>
+            <div class="hero-copy">
+                <p class="eyebrow">Global Tech News Digest</p>
+                <h1>海外テックニュース 日本語まとめ</h1>
+                <p class="timestamp">2026年8月4日 12:53 JST に収集した記事を掲載しています。</p>
+                <p class="description">各カードには本文寄りの日本語訳を掲載し、記事中で触れた企業は別ページの解説リンクとして分離しています。</p>
+            </div>
+        </header>
+
+        <section class="control-panel">
+            <div class="control-header">
+                <div>
+                    <h2>記事を探す</h2>
+                    <p>カテゴリとキーワードで一覧を絞り込めます。</p>
+                </div>
+                <input type="text" id="search-input" placeholder="タイトル・本文・媒体名で検索">
+            </div>
+            <div class="category-buttons">
+                <button class="category-btn active" data-category="all">すべて (30)</button>
+<button class="category-btn" data-category="AI/ML" style="--accent:#10b981">🤖 AI/ML (23)</button>
+<button class="category-btn" data-category="Enterprise" style="--accent:#3b82f6">🏢 Enterprise (1)</button>
+<button class="category-btn" data-category="Mobile" style="--accent:#6366f1">📱 Mobile (2)</button>
+<button class="category-btn" data-category="Other" style="--accent:#6b7280">📰 Other (1)</button>
+<button class="category-btn" data-category="Startups" style="--accent:#8b5cf6">🚀 Startups (3)</button>
+            </div>
+        </section>
+
+        <main class="article-list" id="articles-container">
+            <article class="article-card" data-category="Startups" data-index="1">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#8b5cf6">🚀 Startups</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">EON はデータのスーパーハイウェイを海洋ファイバーから宇宙レーザーに移行したいと考えています</h2>
+    <p class="article-original-title">原題: <em>EON wants to move the data superhighway from ocean fiber to space lasers</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">ハイパースケーラーが世界中にデータセンターを構築する際には、ビットを前後に移動させる必要がありますが、それは多くの場合、海を縦横に走る海底光ファイバーケーブルのやや脆弱なネットワークに依存しています。これらのケーブルは、アクセスしたり修理したりするのが難しく、ましてや設置するのが困難です。しかし、代替手段を見つけるのは簡単ではありません。無線送信には帯域幅がないため、地上や軌道上でのほとんどの無線アプローチは不可能です。しかし今では、おそらくレーザーがその仕事を行うことができるでしょう。Endeavor Optical Networks は、5 月に設立され、現在 10 ドルでステルスから浮上している新興企業です。General Catalyst と Andreessen Horowitz からの 7,500 万ドルのシード資金が、その計画に賭けられています。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">As hyperscalers build out data centers around the world, they need to move the bits back and forth, and that often relies on a somewhat brittle network of undersea fiberoptic cables crisscrossing the oceans.Those cables are tricky to access and repair , much less install.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/08/04/eon-wants-to-move-the-data-superhighway-from-ocean-fiber-to-space-lasers/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="2">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">OpenAI、Appleの訴訟を世論の法廷に持ち込む</h2>
+    <p class="article-original-title">原題: <em>OpenAI drags Apple’s lawsuit into the court of public opinion</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。 ChatGPT の作成者は、「Apple がこれを間違っている」という証拠としてメッセージ交換を公開しました。 』</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. ﻿The ChatGPT maker has published message exchanges as evidence that ‘Apple is getting this wrong. ’</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/apple.html" target="_blank" rel="noopener noreferrer" class="company-link">Apple の解説</a> <a href="companies/openai.html" target="_blank" rel="noopener noreferrer" class="company-link">OpenAI の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/ai-artificial-intelligence/974914/openai-blog-response-apple-lawsuit-messages" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Mobile" data-index="3">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#6366f1">📱 Mobile</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">数十のゲーミングマウスをテストした結果、購入できる絶対に最高のものを見つけました</h2>
+    <p class="article-original-title">原題: <em>After Testing Dozens of Gaming Mice, I Found the Absolute Best You Can Buy</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">ゲーミングマウスを選ぶのは難しいかもしれません。考慮すべき指標は無数にあり、何が最善であるかを定義する独自のアプローチを持つほぼ無制限の数のマウスが存在します。正直に言うと、分析麻痺が定着する機会が市場には溢れています。だからこそ、私は時間をかけて数え切れないほどのゲーミング マウスをテストし、何が機能し、何が機能しないのかを明らかにしています。どのマウスがあなたに合うか正確に言うことはできません。それは技術的な仕様だけでなく、あなたの好み、ニーズ、予算、手の大きさによって決まります。しかし、できれば、世の中のトップオプション、特定のタイプのゲーマーにとって何が最適か、そして私がそれらを選んだ理由についての洞察を提供できれば幸いです。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Picking a gaming mouse can be difficult.There are countless metrics to factor in and a nearly unlimited number of mice with unique approaches in defining what&#x27;s best.Quite honestly, it’s a market rife with opportunities for analysis paralysis to take hold.That’s why I take the time to test countless gaming mice—to tell you what works and what doesn’t.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/gallery/best-gaming-mouse/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="4">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Ars Technica - All content</span>
+    </div>
+
+    
+
+    <h2 class="article-title">米国企業の AI により、ウクライナの安価な特攻無人機が目標を自力で追跡できるようになった</h2>
+    <p class="article-original-title">原題: <em>US company’s AI lets Ukraine’s cheap kamikaze drones track targets on their own</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">1億ドルの契約により、米国が開発した5万機のウクライナ製ドローンにAI機能が与えられる。ウクライナの無人機操縦者らは、爆発性のペイロードを搭載した400ドルのシュライク無人機を使用して、地上の多くのロシアの装甲車両を破壊し、さらには空中の軍用ヘリコプターさえも破壊した。現在、何千機ものそのようなドローンが、移動目標を自律的に追跡してホーミングできる AI システムにアップグレードされています。7月中旬、ウクライナ軍は、米国企業Auterionが開発したAIを活用した自律性ハードウェアとソフトウェアを搭載した、ウクライナ企業SkyFall製のシュライクドローンの受領を開始した。両社は今後数カ月以内に、Auterion の Skynode S ストライクキットを装備した 50,000 機のドローンを納入する予定です。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">$100 million deal gives 50,000 Ukrainian drones US-developed AI capabilities.Ukrainian drone operators have destroyed many Russian armored vehicles on the ground and even military helicopters in midair using $400 Shrike drones with explosive payloads.Now thousands of such drones are getting upgraded with an AI system capable of autonomously tracking and homing in on moving targets.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/ai/2026/08/ukraines-drones-get-ai-upgrades-for-kamikaze-strikes-future-swarm-attacks/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="5">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">ダウンロード: 米国のロボット規制とICEのDNA奪取</h2>
+    <p class="article-original-title">原題: <em>The Download: US robot restrictions, and ICE’s DNA grab</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">これは、テクノロジーの世界で何が起こっているかを毎日提供する平日のニュースレター、 The Download の本日版です。人型ロボットは通常、畏敬の念よりも嫌悪感を引き起こします。つまずいたり、子供を蹴ったり、進歩しているにもかかわらず、手を使うのがまだ私の幼児よりも下手です。これは初期の業界であり、そのようなロボットは実際の職場や家庭よりも、バイラルビデオでよく見られます。先週、連邦取引委員会が人型ロボット、四足歩行ロボット、車輪付きロボットなどの先進ロボットの海外輸入を全面的に禁止したのは驚きだった。この決定は、古い中国貿易戦略の新たな章として理解されるべきではなく、トランプ政権が今日の主要なLAを超えてAI産業の保護を拡大している証拠として理解されるべきである。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">This is today&#x27;s edition of The Download , our weekday newsletter that provides a daily dose of what&#x27;s going on in the world of technology.Humanoid robots usually elicit more cringe than awe: They stumble , kick children , and despite advances are still worse at using their hands than my toddler.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/08/04/1141098/the-download-robot-restrictions-ice-dna/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="6">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">VentureBeat</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Qwen3.8-Max は、エージェント コンピュータの使用において GPT-5.6 Sol Max および Fable 5 を上回るという大胆な主張を掲げて登場しました。</h2>
+    <p class="article-original-title">原題: <em>Qwen3.8-Max arrives with a bold claim: it outperforms GPT-5.6 Sol Max and Fable 5 on agentic computer use</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">中国の電子商取引とクラウド大手アリババの有名なAI研究者Qwenチームは昨夜、Qwen3を発表した。 8-Max は、新しい主力製品です。 2. 4 兆パラメータの専門家混合 (MoE) マルチモーダル大規模言語モデル (LLM) で、フロンティア AI 市場で最も競争の激しい分野の 1 つである自律型ソフトウェア エンジニアリングと長期的なエンタープライズ作業をターゲットとしています。企業が公表しているベンチマークが広範囲で維持できる場合。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Chinese e-commerce and cloud giant Alibaba&#x27;s famed Qwen team of AI researchers last night unveiled Qwen3.8-Max , a new flagship 2.4-trillion-parameter mixture-of-experts (MoE) multimodal large language model (LLM) that targets one of the most competitive corners of the frontier AI market: autonomous software engineering and long-horizon enterprise work.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://venturebeat.com/technology/qwen3-8-max-arrives-with-a-bold-claim-it-outperforms-gpt-5-6-sol-max-and-fable-5-on-agentic-computer-use" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="7">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">DJI の Mic Mini 2S は、オーディオを内部に録音できる Mini ラインナップの中で最初のものです。</h2>
+    <p class="article-original-title">原題: <em>DJI&#x27;s Mic Mini 2S is the first in its Mini lineup that can record your audio internally</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">この機能はバックアップを提供し、音声がクリップされた場合にベーコンを保存できます。DJI の Mic Mini ラインナップはクリエイターの間で人気がありますが、欠けている機能が 1 つあり、プロを遠ざけてきました。Mic Mini 2S は、32 ビット フロートの内部記録を追加することでその問題を解決し、ビデオ撮影者にカメラやスマートフォンの記録の高品質で信頼性の高いバックアップを提供します。Mic Mini 2S を数日間使用しましたが、今のところ感銘を受けています。Mic Mini 2 と合わせて、DJI ワイヤレス マイクの中で最も軽量で目立たず、非常に優れた (ただし驚異的ではない) 音質を提供します。内部 32 ビット浮動小数点設定は、特にバックアップが必要で、音声レベルを完璧に設定できる音響担当者がいない独立系ビデオグラファーにとっては天の恵みです。マイクミニ2です。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">The feature provides a backup and can save your bacon if any of your audio is clipped.DJI&#x27;s Mic Mini lineup has been popular with creators, but one missing feature has been keeping professionals away.The Mic Mini 2S solves that problem with addition of 32-bit float internal recording, giving video shooters a high-quality and reliable backup for their camera or smartphone recordings.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2229755/dji-mic-mini-2s-internal-recording/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Startups" data-index="8">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#8b5cf6">🚀 Startups</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Bending SpoonsがAirtableを12億8000万ドルで買収へ</h2>
+    <p class="article-original-title">原題: <em>Bending Spoons to buy Airtable for $1.28B</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">ベンディング・スプーンズは火曜日、先月の上場以来初の買収で、スプレッドシートとデータベースの新興企業エアテーブルを1ドルで買収することに合意したと発表した。現金280億。2013年に設立されたAirtableは、これまでに1ドル以上を調達している。複数の資金調達ラウンドで40億ドル。2021年の好況期のピーク時には、同社の評価額は110億ドルを超えたが、今年初め、同社の株式は流通市場で評価額40億ドルで取引されていたと言われている。現在の現金および現金同等物の純残高では、Airtable の価値は約 2 ドルです。ベンディングスプーンズ氏によると、250億ドルだという。「Airtable は、チームがデータを整理し、重要なワークフローを管理する方法を再構築する先駆的なブランドです。提供される価値は、年間経常収益が前年比 20% 以上増加して約 4 億 8,000 万ドルに反映されています。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">In its first acquisition since going public last month, Bending Spoons on Tuesday said that it has agreed to buy spreadsheet and database startup Airtable for $1.28 billion in cash.Founded in 2013, Airtable has so far raised over $1.4 billion over multiple funding rounds.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/08/04/bending-spoons-to-buy-airtable-for-1-28b/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="9">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</h2>
+    <p class="article-original-title">原題: <em>The next Xbox could play every Xbox game ever made</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. A leaked memo shows Microsoft asking publishers nicely to let it.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/microsoft.html" target="_blank" rel="noopener noreferrer" class="company-link">Microsoft の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/games/974773/xbox-helix-disc-digital-backwards-compatibility-leaked-memo-opt-in" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Other" data-index="10">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#6b7280">📰 Other</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">私は雑食動物です。この植物ベースのミールキットは、私が試した中で最もおいしいものの 1 つです</h2>
+    <p class="article-original-title">原題: <em>I’m an Omnivore. This Plant-Based Meal Kit Is One of the Tastiest I’ve Tried</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">ビーガンミールキット パープルキャロットで作った食事には、これまでの食事宅配サービスで作ったものの中で最も美味しい食事が含まれています。これは決して小さな発言ではありません。私は雑食性で長年料理評論家として活動しており、過去 2 年間に存在するほぼすべての食事宅配サービスをテストしてきました。したがって、私がパープル キャロットがおいしい料理を提供していると言うとき、私は曲線に基づいて格付けしているわけではありません。今年の 7 月に作った、パープル キャロットのピーカン ナッツをトッピングした、5 スパイスのバターナッツ スカッシュ ダンプリングは、その 1 か月間で自分のために作った食事の中で最も贅沢な食事の 1 つでした。準備は大掛かりで、週末の夜以外にいつもやるよりも多かったですが、結果は健康的で、素晴らしいビストロ料理に匹敵するものでした。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">The meals I made with vegan meal kit Purple Carrot include some of the best-tasting food I&#x27;ve made with any meal delivery service.This is no small statement.I&#x27;m an omnivore and longtime food critic who’s tested pretty much every meal delivery service in existence over the past two years.And so when I say Purple Carrot offers good cooking, I&#x27;m not grading on a curve.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/review/purple-carrot-meal-kit-2026/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="11">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Ars Technica - All content</span>
+    </div>
+
+    
+
+    <h2 class="article-title">研究のまとめ: 見逃しそうになっていた 6 つのクールな科学ストーリー</h2>
+    <p class="article-original-title">原題: <em>Research roundup: 6 cool science stories we almost missed</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">また、ゴキブリ用のサイボーグダイビングスーツ、眠そうなマッコウクジラが泡を吹く理由、ベテルギウスの伴星。残念ながら、私たちが遭遇する興味深い科学的ストーリーをすべて取り上げるのに十分な時間がないのは現実です。そこで、私たちは毎月、ほとんど見逃されていたいくつかの最高のストーリーを特集します。 7月のリストには、浸水した地形を移動できるようにサイボーグゴキブリに小さな潜水服を着せることが含まれている。メディチ公爵が毒物ではなくマラリアで亡くなったことが確認された。ベテルギウスが伴星によって周回されているというこれまでの最良の証拠。そして、古代エジプトの王女の中には熟練した射手だったという証拠もあります。クレジット: 行政アーカイブ、イキケ地方博物館 – コルムデシ クレジット: 行政アーカイブ、イキケ地方博物館 – コルムデシ。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Also: Cyborg diving suits for cockroaches, why sleepy sperm whales blow bubbles, Betelgeuse’s companion star.It’s a regrettable reality that there is never enough time to cover all the interesting scientific stories we come across.So every month, we highlight a handful of the best stories that nearly slipped through the cracks.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/science/2026/08/research-roundup-6-cool-science-stories-we-almost-missed-5/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="12">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">トランプ大統領のAI保護主義はロボットにも波及</h2>
+    <p class="article-original-title">原題: <em>Trump’s AI protectionism has come for robotics</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">FTCは外国製の人型ロボットを禁止し、脆弱で初期段階にある分野をアメリカのAI産業政策の一部としている。人型ロボットは通常、畏敬の念よりも嫌悪感を引き起こします。つまずいたり、子供を蹴ったり、進歩しているにもかかわらず、手を使うのがまだ私の幼児よりも下手です。これは初期の業界であり、そのようなロボットは実際の職場や家庭よりも、バイラルビデオでよく見られます。先週、連邦取引委員会が人型ロボット、四足歩行ロボット、車輪付きロボットなどの先進ロボットの海外輸入を全面的に禁止したのは驚きだった。ますます党派的でトランプ氏との連携が強まるFTCによって下されたこの決定には、2つの理由が挙げられている。 1 つは、外国製のヒューマノイドが家庭内だけでなく、場合によっては機密性の高い施設でも大量のデータを収集するため、脅威となる可能性があるということです。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">The FTC has banned foreign-made humanoids, making a fragile, nascent sector part of America’s AI industrial policy.Humanoid robots usually elicit more cringe than awe: They stumble , kick children , and despite advances are still worse at using their hands than my toddler.It’s a nascent industry, and such robots are more commonly seen in viral videos than real workplaces or homes.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/08/03/1141056/trumps-ai-protectionism-has-come-for-robotics/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="13">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">VentureBeat</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Asana の AI エージェントは会社全体でメモリを共有しますが、秘密は共有しません</h2>
+    <p class="article-original-title">原題: <em>Asana&#x27;s AI agents share memory across your company — but not your secrets</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Enterprise teams building AI agents keep hitting the same wall: a chatbot that can answer a prompt but can&#x27;t remember what the last five people asked it, and can&#x27;t tell you whether last month&#x27;s version actually worked.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://venturebeat.com/orchestration/asanas-ai-agents-share-memory-across-your-company-but-not-your-secrets" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="14">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">ファイアーエムブレム フォーチュンウィーブのNintendo Directを視聴する方法は次のとおりです。</h2>
+    <p class="article-original-title">原題: <em>Here&#x27;s how to watch the Nintendo Direct for Fire Emblem: Fortune&#x27;s Weave</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">ライブストリームは本日東部時間午前 10 時/太平洋時間午前 7 時に開始されます。ファイアーエムブレム フランチャイズの次の主要な作品は 9 月 17 日にリリースされる予定ですが、そのリリースに先立って、任天堂はフォーチュンズ ウィーブに関するより詳細な情報を紹介するライブストリームを主催しています。自分で見る方法は次のとおりです。『ファイアーエムブレム フォーチュン ウィーブ』の Nintendo Direct は、本日東部時間午前 10 時/太平洋時間午前 7 時に YouTube で開始される予定です。所要時間は約 20 分になる予定で、任天堂はこの時間を使ってゲームのまったく新しい詳細を明らかにする予定です。あるいは、このストーリーの最後にライブストリームを埋め込んでいますので、適切なときにここに戻って確認することもできます。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">The livestream starts today at 10AM ET/7AM PT.The next major installment in the Fire Emblem franchise is due out September 17 , but ahead of its release, Nintendo is hosting a livestream to showcase more in-depth information about Fortune&#x27;s Weave .Here&#x27;s how to watch it for yourself.The Nintendo Direct for Fire Emblem: Fortune&#x27;s Weave is set to begin today at 10AM ET/7AM PT on YouTube .</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2229520/here-s-how-to-watch-the-nintendo-direct-for-fire-emblem-fortune-s-weave/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="15">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">キラー四半期の後、パランティアのCEOアレックス・カープ氏はAI業界を「マルクス主義者」と呼ぶ</h2>
+    <p class="article-original-title">原題: <em>After killer quarter, Palantir CEO Alex Karp calls AI industry &#x27;Marxist&#x27;</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Palantir CEO Alex Karp on Monday once again warned that AI frontier labs are too untrustworthy for enterprises.The CEO, who famously studied philosophy and earned a PhD in social theory, implied in Palantir’s quarterly shareholder letter that these were the kinds of capitalists who gave rise to Marxist socialism.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/08/03/after-killer-quarter-palantir-ceo-alex-karp-calls-ai-industry-marxist/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="16">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Reddit は AI SEO スパムの新たな波をかわすことができるでしょうか?</h2>
+    <p class="article-original-title">原題: <em>Can Reddit fend off a new wave of AI SEO spam?</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。 AI を活用した検索の時代により、Reddit のメンションは非常に価値のあるものになりました。 Subredditのモデレーターは、それを利用しようとしているブランドを捕まえています。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. ﻿The era of AI-powered search has made Reddit mentions highly valuable. Subreddit moderators are catching brands trying to take advantage.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/ai-artificial-intelligence/973098/reddit-ai-search-seo-marketing-brands-spam" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="17">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">何十ものスティック掃除機を試してきましたが、これらは最高の中の最高のものです</h2>
+    <p class="article-original-title">原題: <em>I’ve Tried Dozens of Stick Vacuums—These Are the Best of the Best</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">最高のコードレス掃除機があなたの生活を改善すると主張すると、大げさに聞こえるかもしれません。しかし、彼らはその力を持っています。必要だと思っていなかった自由を提供するだけでなく、コードをほどいたり、掃除機で重い引きずりをしたりする必要もなく、数分で家がきれいに整頓されます。 3 階建ての家に住んでいる私にとって、これらのマシンは特に便利です。昔ながらの直立掃除機を担いで階段を上り下りするという考えさえ、私にはその雑用をやりそうにありません。そして、家全体を掃除するためにロボット掃除機を別の階に持っていくことを決して思い出せないようです。でもスティック掃除機？形状が軽くて動きやすいので、これらの掃除機をあらゆる階に簡単に持ち運べ、2 つの階段で使用できます。その際にかいた汗はほんの少しだけです。アフター。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">It may sound hyperbolic to claim the best cordless vacuums can improve your life.But they do hold that power.In addition to providing you the freedom you didn&#x27;t know you needed, they also leave your home clean and tidy in a matter of minutes with no cord unraveling or heavy vacuum dragging required.These machines are especially handy for me, as I live in a three-story home.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/gallery/the-best-cordless-vacuum/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="18">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Ars Technica - All content</span>
+    </div>
+
+    
+
+    <h2 class="article-title">レゴ、ハッブル宇宙望遠鏡を詳細なデスクトップモデルとして展開</h2>
+    <p class="article-original-title">原題: <em>Lego deploys Hubble Space Telescope as detailed desktop model</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">The orbiting observatory in minifigure scale.For 35 years, the Hubble Space Telescope has looked out into the Universe.Now, Lego is inviting builders to look inward with its latest model of the orbiting observatory.The new Lego Icons Hubble Space Telescope (set no.11382) was released on August 1 for $140 at the toy company’s stores and its online shop.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/space/2026/08/lego-deploys-hubble-space-telescope-as-detailed-desktop-model/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="19">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</h2>
+    <p class="article-original-title">原題: <em>The Download: reward hacking explained, and suspected Iranian cyberattacks</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">さらに: Google は一時的に衛星画像の偽装を容易にしました。これは、テクノロジーの世界で何が起こっているかを毎日提供する平日のニュースレター、The Download の今日の版です。先月、2 つの OpenAI モデルが Hugging Face をハッキングしたとき、彼らは金儲けや妨害行為をしようとしていたわけではなく、ただテストの質問に対する答えを探していただけでした。 OpenAI によると、モデルたちは、OpenAI がモデルを封じ込めようとした環境からハッキング フェイスのデータベースに侵入することで、サイバーセキュリティ演習を解決することを決定しました。そこには、問題に対する正しい答えが保存されている可能性があると彼らは推論しました。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Plus: Google briefly made it easy to fake satellite images This is today&#x27;s edition of The Download , our weekday newsletter that provides a daily dose of what&#x27;s going on in the world of technology.When two OpenAI models hacked into Hugging Face last month, they weren’t trying to make money or commit sabotage—they were just looking for answers to a test question.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/google.html" target="_blank" rel="noopener noreferrer" class="company-link">Google の解説</a> <a href="companies/openai.html" target="_blank" rel="noopener noreferrer" class="company-link">OpenAI の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/08/03/1141039/the-download-reward-hacking-water-cyberattacks/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="20">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">VentureBeat</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</h2>
+    <p class="article-original-title">原題: <em>How NTT DATA AIVista closes the last mile of agentic AI for enterprise agents</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Presented by NTT DATA AIVista At VB Transform 2026 , NTT DATA AIVista CEO Bratin Saha joined VentureBeat CEO and editor-in-chief Matt Marshall to discuss the last-mile challenge of operationalizing frontier models in regulated production, where reliability, context, guardrails, and security determine whether AI delivers enterprise value.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://venturebeat.com/orchestration/how-ntt-data-aivista-closes-the-last-mile-of-agentic-ai-for-enterprise-agents" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="21">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">OpenAI、企業秘密訴訟を受けてAppleは「誤解している」と発言</h2>
+    <p class="article-original-title">原題: <em>OpenAI says Apple &#x27;is getting this wrong&#x27; after trade secret lawsuit</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">OpenAI has published chat logs and emails to defend itself against Apple’s allegations.OpenAI calls the trade secret theft lawsuit Apple filed against it &quot;careless, aggressive and oddly personal.&quot; It also denies any wrongdoing in its scathing response to the lawsuit and claims Apple got it wrong when it accused OpenAI of hiring its employees to get confidential company information.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/apple.html" target="_blank" rel="noopener noreferrer" class="company-link">Apple の解説</a> <a href="companies/openai.html" target="_blank" rel="noopener noreferrer" class="company-link">OpenAI の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2229768/open-ai-says-apple-is-wrong-in-trade-secret-lawsuit/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="22">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Snap CEO、第 2 四半期決算説明会で仕様に関する事前注文の質問を回避</h2>
+    <p class="article-original-title">原題: <em>Snap CEO sidesteps Specs preorder questions on Q2 earnings call</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Snapの最高経営責任者（CEO）エヴァン・シュピーゲル氏は、9月のデバイス発売イベントのわずか数週間前に行われた月曜日の決算会見で、同社の待望のスペックススマートグラスの予約注文需要に関する投資家の質問を回避した。 「私たちが人々から聞いているのは、実際にスペックを試してみたいということです」とシュピーゲル氏は投資家に語った。 「2,195ドルという高額な購入であることは明らかです。明らかに、このプラットフォームに精通している開発者や人々はそれを本当に理解しており、この世代で私たちが行った技術的進歩を理解しています。より広範な一般大衆と消費者にとって、実際に体験することが非常に重要になると思います。私たちの今後の発表イベントは、その消費者志向の旅への重要な出発点となるでしょう。」 同社は12年以上を費やし、6月に仕様を発表した。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Snap CEO Evan Spiegel sidestepped investors’ questions about preorder demand for the company’s long-awaited Specs smart glasses during Monday’s earnings call, just weeks before the device’s September launch event.“What we’re hearing from folks is really that they want to try Specs,” Spiegel told investors.“It’s obviously a high consideration purchase at $2,195.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/08/03/snap-ceo-sidesteps-specs-pre-order-questions-on-q2-earnings-call/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="23">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">『ポケットモンスター』の制作スタジオ、『Beast of Reination』で自らの声を見つけるのに苦心</h2>
+    <p class="article-original-title">原題: <em>The studio behind Pokémon struggles to find its voice in Beast of Reincarnation</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。ゲームフリークの新しいアクションゲームには、これまでに見たことやプレイしたことのあるアイデアが満載です。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. Game Freak’s new action game is full of ideas you’ve seen and played before.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/entertainment/974505/beast-of-reincarnation-review-ps5-xbox" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="24">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">このポーカー プレイヤーはブラフをしているでしょうか? AIはそう考える</h2>
+    <p class="article-original-title">原題: <em>Is This Poker Player Bluffing? The AI Thinks So</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">本格的なポーカー プレイヤーにとって、対戦相手の意図を明らかにする「テル」を嗅ぎ分ける能力は、カードそのものと同じくらい勝利にとって重要です。多くのギャンブラーは、この不完全な情報のゲームで優位に立つ方法として、テーブルで他のプレイヤーが行うことすべての意味（意識的な動き、ボディランゲージ、無意識のチックなど）を解読する能力をキャリアにして、戦略を明らかにする可能性があります。したがって、2026 年ワールド シリーズ オブ ポーカーのメインイベント放送中に ESPN が新しい「AI テル検出」ツールを使用したことが、ポーカー コミュニティ内で深刻な議論を引き起こしたことは理解できます。このツールは、7 月初旬のトーナメントのライブ放送の最初の数日間に定期的に表示され始めました。テキストオーバーレイ表示。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">For serious poker players, the ability to sniff out the “tells” that expose an opponent’s intentions is nearly as important to winning as the cards themselves.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/story/ai-tells-detection-world-series-of-poker-espn/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="25">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Ars Technica - All content</span>
+    </div>
+
+    
+
+    <h2 class="article-title">AI 監視のリモート試験の結果が非常に悪く、58,000 人の学生が再受験しなければならない</h2>
+    <p class="article-original-title">原題: <em>An AI-supervised remote exam went so badly that 58,000 students must retake it</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">この夏の初め、メキシコ最大の大学であるUNAMの入学試験には16万人近い志願者が受験した。初めて、彼らは「ロックダウン」ブラウザと AI を活用したウェブカメラ監視ソフトウェアを使用して、5 月下旬から 6 月上旬にかけての数週間にわたって、完全にリモートでこの作業を行いました。試験結果が届いたとき、特に上位の結果は過去の結果とほとんど似ていませんでした。2021 年から 2025 年の間に、受験者の 3.5 パーセントが 120 問の UNAM テストで 100 点以上のスコアを獲得しました。今年は16.3％がそうした。ハイエンドの最高レベルではさらにひどい話でした。2021 年から 2025 年の間に、110 点以上のスコアを獲得した受験者は 0.9 パーセントでした。今年は5.5％がそうした。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Earlier this summer, nearly 160,000 applicants took the entrance exam for UNAM, Mexico’s largest university.For the first time, they did it completely remotely, using a “lockdown” browser and AI-powered webcam proctoring software, over several weeks from late May through early June.When exam results came in, they bore little resemblance to past results, especially at the top.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/culture/2026/08/an-ai-supervised-remote-exam-went-so-badly-that-58000-students-must-retake-it/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="26">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">AI エージェントが目標を達成するために嘘をついたり不正行為をしたりする理由は次のとおりです</h2>
+    <p class="article-original-title">原題: <em>Here’s why AI agents lie and cheat to reach their goals</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">この不正行為は報酬ハッキングと呼ばれます。これが知っておくべきことです。MIT Technology Review Explains : 次に何が起こるかを理解するために、ライターが複雑で厄介なテクノロジーの世界を解き明かします。このシリーズの詳細は、ここで読むことができます。7 月に 2 つの OpenAI モデルが Web サイト「Hugging Face」をハッキングしたとき、彼らは金儲けや妨害行為をしようとしていたわけではなく、ただテストの質問に対する答えを探していただけでした。OpenAI の事後分析によると、テストのために典型的なセキュリティ機能を取り除いたモデルは、OpenAI がモデルを封じ込めようとした隔離された環境からハッキング フェイスのデータベースに侵入することで、サイバーセキュリティ演習を解決することを決定しました。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">The misbehavior is called reward hacking.This is what you need to know.MIT Technology Review Explains : Let our writers untangle the complex, messy world of technology to help you understand what’s coming next.You can read more from the series here .</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/openai.html" target="_blank" rel="noopener noreferrer" class="company-link">OpenAI の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/08/03/1141009/heres-why-ai-agents-lie-and-cheat-to-reach-their-goals/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Startups" data-index="27">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#8b5cf6">🚀 Startups</span>
+        <span class="source-chip">VentureBeat</span>
+    </div>
+
+    
+
+    <h2 class="article-title">すべてをグラフ化するのをやめる: GraphRAG が実際に Vector RAG を上回るとき</h2>
+    <p class="article-original-title">原題: <em>Stop graphing everything: When GraphRAG actually beats vector RAG</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">過去 2 年間に検索拡張生成 (RAG) を使用して何かを構築したことがあれば、その中心的なフラストレーションを経験したことになるでしょう。つまり、ドキュメントを細かく切り刻み、埋め込む必要があるということです。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">If you have built anything with retrieval-augmented generation (RAG) in the last two years, you have lived its central frustration: You chop your documents into chunks, embed them,. .</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://venturebeat.com/orchestration/stop-graphing-everything-when-graphrag-actually-beats-vector-rag" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Mobile" data-index="28">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#6366f1">📱 Mobile</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Apple は、iPhone と Windows PC 間のシームレスなコピー＆ペースト エクスペリエンスに取り組んでいます</h2>
+    <p class="article-original-title">原題: <em>Apple is working on a seamless copy-paste experience between iPhones and Windows PCs</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">同社は、2027 年秋までに開発を完了したいと考えています。同社のユニバーサル クリップボード機能を使用すると、ある Apple デバイスから別の Apple デバイスにコンテンツをコピー アンド ペーストするのが簡単です。たとえば iPhone 上で画像またはテキストのブロックをハイライトし、MacBook 上の目的の場所をタップしてから、[貼り付け] をクリックするだけです。Microsoft は iPhone と Windows PC の間で同様のシームレスなエクスペリエンスを実現したいと考えており、MacRumors が発見したように、同社は開発者向けの EU 相互運用性リクエスト システムに基づいて Apple にそれを求めました。Appleは欧州連合のデジタル市場法を遵守するためにリクエストシステムを開始した。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">The company is hoping to finish its development by fall 2027.It&#x27;s easy to copy-paste content from one Apple device to another using the company&#x27;s universal clipboard feature.You simply just highlight an image or a block of text on, say, an iPhone, and then tap on where you want it on your MacBook before clicking paste.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/apple.html" target="_blank" rel="noopener noreferrer" class="company-link">Apple の解説</a> <a href="companies/microsoft.html" target="_blank" rel="noopener noreferrer" class="company-link">Microsoft の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2229725/apple-developing-seamless-copy-paste-experience-iphones-windows-pcs/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Enterprise" data-index="29">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#3b82f6">🏢 Enterprise</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</h2>
+    <p class="article-original-title">原題: <em>AWS is helping vibe-coding startup Superblocks, and the implications are big</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Vibe コーディングのスタートアップ Superblocks は、アマゾン ウェブ サービス (AWS) と複数年間の共同マーケティング契約を締結し、同社のツールを AWS 顧客のプライベート クラウド内に組み込むことが可能になると発表しました。つまり、Superblocks を購読している AWS 上の企業は、企業のビジネス ユーザーにバイブ コーディングを提供でき、それらのアプリはデータや情報を外部のモデル プロバイダーやデータベースに送信しません。このアプリは、たとえば、バイブコーディング データベースとして最適な外部の Supabase データベースを作成するのではなく、会社のプライベート クラウド内で Amazon Aurora データベースを起動します。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Vibe-coding startup Superblocks announced a multiyear joint marketing agreement with Amazon Web Services (AWS) that enables its tool to be embedded within the private clouds of AWS customers.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/amazon.html" target="_blank" rel="noopener noreferrer" class="company-link">Amazon の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/08/03/aws-is-helping-vibe-coding-startup-superblocks-and-the-implications-are-big/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="30">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Fitbit データを Apple Health に直接接続できるようになりました</h2>
+    <p class="article-original-title">原題: <em>Your Fitbit data can now connect directly to Apple Health</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。 Google Health は、ワークアウト、歩数、バイタル情報を Apple Health に同期できます。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. Google Health can sync your workouts, steps, and vitals to Apple Health.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/apple.html" target="_blank" rel="noopener noreferrer" class="company-link">Apple の解説</a> <a href="companies/google.html" target="_blank" rel="noopener noreferrer" class="company-link">Google の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/gadgets/974778/google-health-fitbit-data-apple-health-syncing" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+        </main>
+
+        <footer class="footer">
+            <p>本ページは公開記事をもとに自動生成しています。数値や仕様は必ず元記事で確認してください。</p>
+            <p>JSON データは同じフォルダ内の tech_news_digest.json で参照できます。</p>
+        </footer>
+    </div>
+
+    <script>
+
+        const categoryButtons = document.querySelectorAll('.category-btn');
+        const articleCards = document.querySelectorAll('.article-card');
+        const searchInput = document.getElementById('search-input');
+
+        let activeCategory = 'all';
+
+        function applyFilters() {
+            const query = searchInput.value.trim().toLowerCase();
+            articleCards.forEach(card => {
+                const matchesCategory = activeCategory === 'all' || card.dataset.category === activeCategory;
+                const searchableText = card.innerText.toLowerCase();
+                const matchesQuery = !query || searchableText.includes(query);
+                card.style.display = matchesCategory && matchesQuery ? '' : 'none';
+            });
+        }
+
+        categoryButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                categoryButtons.forEach(item => item.classList.remove('active'));
+                button.classList.add('active');
+                activeCategory = button.dataset.category;
+                applyFilters();
+            });
+        });
+
+        searchInput.addEventListener('input', applyFilters);
+    
+    </script>
+</body>
+</html>
