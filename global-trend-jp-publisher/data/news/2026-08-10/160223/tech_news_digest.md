@@ -1,0 +1,623 @@
+# 🌐 海外テックニュース 日本語まとめ
+
+**生成日時:** 2026年8月10日  16:02 JST
+
+> 世界の有力テックメディア（TechCrunch・The Verge・Wired・Ars Technica・MIT Tech Review・VentureBeat・Engadget）から注目記事を自動収集し、日本の読者向けに翻訳・要約しました。
+
+---
+
+## 目次
+
+1. [軍がより多くのバッテリーを要求する中、シラは国防総省から14億ドルの融資を受ける](#記事-1--軍がより多くのバッテリーを要求する中、シラは国防総省から14億ドルの融資を受ける)
+2. [マーク・ザッカーバーグの大規模な AI マニフェストから得られる 4 つのポイント](#記事-2--マーク・ザッカーバーグの大規模な-ai-マニフェストから得られる-4-つのポイント)
+3. [オレンジ クラッシュ: タグ・ホイヤーがオリジナルのメタル製 F1 ウォッチを鮮やかに改良](#記事-3--オレンジ-クラッシュ-タグ・ホイヤーがオリジナルのメタル製-f1-ウォッチを鮮やかに改良)
+4. [中国の主力ロケットの1つが飛行中に爆発した](#記事-4--中国の主力ロケットの1つが飛行中に爆発した)
+5. [ダウンロード: 科学のための AI エージェントと「検閲と産業の複合体」](#記事-5--ダウンロード-科学のための-ai-エージェントと「検閲と産業の複合体」)
+6. [トークン最大化は廃止されました。次に来るのはエージェント記憶です。](#記事-6--トークン最大化は廃止されました。次に来るのはエージェント記憶です。)
+7. [Roku リモコンをペアリングする方法は次のとおりです。](#記事-7--roku-リモコンをペアリングする方法は次のとおりです。)
+8. [アーチャー、元ライバルのウィスク・エアロを買収](#記事-8--アーチャー、元ライバルのウィスク・エアロを買収)
+9. [野球ファン向けのその他の Vision Pro コンテンツ](#記事-9--野球ファン向けのその他の-vision-pro-コンテンツ)
+10. [ゼロから薬を作る方法を人々に教える無法者の化学者](#記事-10--ゼロから薬を作る方法を人々に教える無法者の化学者)
+11. [犬はあなたが怖がっているのか悲しいのかを知ることができます](#記事-11--犬はあなたが怖がっているのか悲しいのかを知ることができます)
+12. [科学用 AI にはデータだけではなく推論が必要です](#記事-12--科学用-ai-にはデータだけではなく推論が必要です)
+13. [あなたのエージェントは幻覚を見せませんでした。それはその権限を超えた](#記事-13--あなたのエージェントは幻覚を見せませんでした。それはその権限を超えた)
+14. [ヨーロッパの Steam ハードウェア顧客のデータが「侵害された可能性がある」と Valve が発表](#記事-14--ヨーロッパの-steam-ハードウェア顧客のデータが「侵害された可能性がある」と-valve-が発表)
+15. [海運大手 Ceva Logistics でのデータ侵害が銀行、小売店、Steam ゲーマーなどに波及](#記事-15--海運大手-ceva-logistics-でのデータ侵害が銀行、小売店、steam-ゲーマーなどに波及)
+16. [Keychronのワイヤレスホール効果キーボードが最安値に戻った](#記事-16--keychronのワイヤレスホール効果キーボードが最安値に戻った)
+17. [私はポータブルソーラーパネルを何年もテストして、どのモデルが無料で電力を供給するのに最適かを確認しました](#記事-17--私はポータブルソーラーパネルを何年もテストして、どのモデルが無料で電力を供給するのに最適かを確認しました)
+18. [2026 スバル アウトバック リミテッド レビュー: 外側はボクシー、内側はほぼプレミアム](#記事-18--2026-スバル-アウトバック-リミテッド-レビュー-外側はボクシー、内側はほぼプレミアム)
+19. [これらのスタートアップは LLM の次の大きなものを追いかけています](#記事-19--これらのスタートアップは-llm-の次の大きなものを追いかけています)
+20. [リアルタイムで連携する 4 つの AI エージェントは、エンタープライズ コーディング タスクにおいて Claude Opus 4.8 を上回りました。](#記事-20--リアルタイムで連携する-4-つの-ai-エージェントは、エンタープライズ-コーディング-タスクにおいて-claude-opus-48-を上回りました。)
+21. [Bluetooth、Wi-Fi、2.4G ワイヤレス デバイスの違いは何ですか?](#記事-21--bluetooth、wi-fi、24g-ワイヤレス-デバイスの違いは何ですか)
+22. [Klaviyoに登録しましたか？数十の広告主があなたのパスワードを見た可能性があります](#記事-22--klaviyoに登録しましたか数十の広告主があなたのパスワードを見た可能性があります)
+23. [Bose CEO ライラ・スナイダー氏、高品質オーディオをめぐる戦いについて語る](#記事-23--bose-ceo-ライラ・スナイダー氏、高品質オーディオをめぐる戦いについて語る)
+24. [AIスロップの反発が実際に影響を及ぼしている](#記事-24--aiスロップの反発が実際に影響を及ぼしている)
+25. [研究者がnoreply.netを購入しました。企業は彼に秘密を送り始めた。](#記事-25--研究者がnoreplynetを購入しました。企業は彼に秘密を送り始めた。)
+26. [ダウンロード: 検閲陰謀論と AI によって作成された最初のウイルス](#記事-26--ダウンロード-検閲陰謀論と-ai-によって作成された最初のウイルス)
+27. [スタンフォード大学は仮想バイオテクノロジーとして 37,000 人の AI エージェントを実行しています - そしてその医薬品設計の 1 つはメルクによって独自に確認されました](#記事-27--スタンフォード大学は仮想バイオテクノロジーとして-37000-人の-ai-エージェントを実行しています---そしてその医薬品設計の-1-つはメルクによって独自に確認されました)
+28. [Android アプリ ストアの競合他社が Play ストアで入手可能](#記事-28--android-アプリ-ストアの競合他社が-play-ストアで入手可能)
+29. [Discovered Materials は AI もぐらたたきをして、より優れたチップを探しています](#記事-29--discovered-materials-は-ai-もぐらたたきをして、より優れたチップを探しています)
+30. [ボーイングがエアタクシーのスタートアップをアーチャー・アビエーションに売却](#記事-30--ボーイングがエアタクシーのスタートアップをアーチャー・アビエーションに売却)
+
+---
+
+## 記事 1  ｜  TechCrunch
+
+### 軍がより多くのバッテリーを要求する中、シラは国防総省から14億ドルの融資を受ける
+
+> 原題: *Sila lands $1.4B Pentagon loan as militaries demand more batteries*
+
+#### 📝 記事の日本語要約
+
+シラは 1 ドルを獲得しました。米国を拠点とする新興企業のシリコンカーボン電池材料の生産拡大を支援するために、米国国防総省から40億円の融資。金曜日に発表されたこの融資は、自動車会社から防衛請負業者まで米国の電池購入者が中国国外で製造された電池材料の調達に苦戦している中で実現した。現在のリチウムイオン電池の負極のほとんどは黒鉛を使用しており、その材料のサプライチェーンは中国企業によって独占されています。 Group14 や Amprius を含む多くの企業がシリコン陽極を追求しています。この材料は、グラファイト陽極よりも 20% ～ 40% 多くの電気を蓄えることが約束されています。エネルギー密度の向上により、より長持ちするセルや小型軽量のバッテリーへの道が開かれる可能性があります。どちらも防御と機動性のアプリケーションにとって魅力的な特性です。 。
+
+#### 🇺🇸 English Summary
+
+Sila has landed a $1.4 billion loan from the U.S.Department of Defense to help the U.-based startup expand production of its silicon-carbon battery material.The loan, which was announced Friday, arrives as U.battery buyers, from automotive companies to defense contractors, struggle to procure battery materials that are made outside of China.
+
+🔗 [元記事を読む](https://techcrunch.com/2026/08/10/sila-lands-1-4b-pentagon-loan-as-militaries-demand-more-batteries/)
+
+---
+
+## 記事 2  ｜  The Verge
+
+### マーク・ザッカーバーグの大規模な AI マニフェストから得られる 4 つのポイント
+
+> 原題: *Four takeaways from Mark Zuckerberg’s massive AI manifesto*
+
+#### 📝 記事の日本語要約
+
+このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。 メタ CEO はパンドラの箱を解き放つことを主張します。
+
+#### 🇺🇸 English Summary
+
+Posts from this topic will be added to your daily email digest and your homepage feed. ﻿The Meta CEO makes a case for unleashing Pandora’s box.
+
+#### 🏢 企業解説リンク
+
+- [Meta](companies/meta.html)
+
+🔗 [元記事を読む](https://www.theverge.com/tech/977395/meta-mark-zuckerberg-superintelligent-ai-ramble)
+
+---
+
+## 記事 3  ｜  Wired
+
+### オレンジ クラッシュ: タグ・ホイヤーがオリジナルのメタル製 F1 ウォッチを鮮やかに改良
+
+> 原題: *Orange Crush: TAG Heuer Drops a Bright Revamp of the Original Metal F1 Watch*
+
+#### 📝 記事の日本語要約
+
+WIREDが昨年、タグ・ホイヤーがクラシックなF1ウォッチシリーズをどのようにリメイクしたかについて報じて以来、私たちは特定のモデルがTAGの新たな大型のソーラーパワーの装いで刷新されるのを待ち望んでいた。象徴的な明るいオレンジ色の 373.513 は、後にモデル番号 WA1213 が付けられましたが、1986 年に発表された最初の 3 つの時計の F1 リリースのものではありませんでしたが、その直後に続き、グリーン、ブラック、ブルーのモデルとともに、F1 用初の金属製ケースが採用されました。最後に、TAG の 2025 年のシリーズ再始動に加わって、373.513 がソーラーグラフ F1 の一部として戻ってきます。
+
+#### 🇺🇸 English Summary
+
+Ever since WIRED reported last year on how TAG Heuer remade its classic Formula 1 watch series , we've been waiting for a particular model to be revamped in TAG's new larger, solar-powered guise.The iconic bright orange 373.
+
+🔗 [元記事を読む](https://www.wired.com/story/orange-crush-tag-heuer-drops-a-bright-revamp-of-the-original-metal-f1-watch/)
+
+---
+
+## 記事 4  ｜  Ars Technica
+
+### 中国の主力ロケットの1つが飛行中に爆発した
+
+> 原題: *One of China's workhorse rockets just exploded in flight*
+
+#### 📝 記事の日本語要約
+
+もし故障がYF-100エンジンに関係していれば、中国の宇宙計画に対する懸念がさらに広がることになる。中国で最も使用されているロケットの一つである長征7A号は、現地時間月曜日の夜、打ち上げ後1分少々で爆発した。中型ロケットのペイロードは機密扱いであったが、軍事通信衛星であると考えられていた。文昌宇宙発射場からのロケットの打ち上げは名目上だったが、公開されたビデオ（この動画など）では、ロケットの第1段が飛行開始から約1分20秒で爆発したことが示されている。長征 7A ロケットは中国航天科技公司によって開発され、国家宇宙局によって運用されている。中国では月曜夜の時点で州当局は爆発についてコメントしていない。
+
+#### 🇺🇸 English Summary
+
+If the failure involved the YF-100 engine, there are broader concerns for China’s space program.One of China’s most used rockets, the Long March 7A, exploded a little more than a minute after lifting off on Monday evening, local time.The medium-lift rocket’s payload was classified, but it was believed to be a military communications satellite.
+
+🔗 [元記事を読む](https://arstechnica.com/space/2026/08/one-of-chinas-workhorse-rockets-just-exploded-in-flight/)
+
+---
+
+## 記事 5  ｜  MIT Tech Review
+
+### ダウンロード: 科学のための AI エージェントと「検閲と産業の複合体」
+
+> 原題: *The Download: AI agents for science, and the “censorship-industrial complex”*
+
+#### 📝 記事の日本語要約
+
+さらに、Amazon の新しいデータセンターは、米国で最も汚染の多い発電所になる可能性があります。これは、テクノロジーの世界で何が起こっているかを毎日提供する平日のニュースレター、 The Download の本日版です。—Googleの元最高経営責任者（CEO）でシュミット・サイエンシズの共同創設者であるエリック・シュミット氏と、シュミット・サイエンシズAIセンターで科学研究用AIを率いるスハス・マヘシュ氏 2024年、Google DeepMindの科学者らは、タンパク質の構造を予測するニューラルネットワーク「AlphaFold」でノーベル化学賞を共同受賞した。これは、AI が画期的な科学的発見を行える可能性があることを示しましたが、AlphaFold は科学を加速するための最適なテンプレートではない可能性があります。
+
+#### 🇺🇸 English Summary
+
+Plus: A new Amazon data center could become the US’s most polluting power plant.This is today's edition of The Download , our weekday newsletter that provides a daily dose of what's going on in the world of technology.
+
+#### 🏢 企業解説リンク
+
+- [Amazon](companies/amazon.html)
+- [Google](companies/google.html)
+
+🔗 [元記事を読む](https://www.technologyreview.com/2026/08/10/1141526/the-download-ai-agents-science-censorship-industrial-complex/)
+
+---
+
+## 記事 6  ｜  VentureBeat
+
+### トークン最大化は廃止されました。次に来るのはエージェント記憶です。
+
+> 原題: *Token-maxxing is dead. Agentic memory is what comes next.*
+
+#### 📝 記事の日本語要約
+
+MongoDB による提供 当社は、約 60 年間にわたって業界としてデータベースを構築してきました。私たちは、約 18 か月間、今日ほとんどの人がこの言葉を言うときに意味する形式の AI エージェントを構築してきました。この比率は、現在のエージェント開発の状態についてほぼすべてを説明しているため、少しの間この比率に注目してください。 60年対1年半。私たちはこの学習の途中ではありません。 。
+
+#### 🇺🇸 English Summary
+
+Presented by MongoDB We have been building databases as an industry for roughly 60 years .We have been building AI agents, in the form most people mean when they say the word today, for about 18 months.Sit with that ratio for a second, because it explains almost everything about the state of agentic development right now.Six decades versus a year and a half.
+
+🔗 [元記事を読む](https://venturebeat.com/data/token-maxxing-is-dead-agentic-memory-is-what-comes-next)
+
+---
+
+## 記事 7  ｜  Engadget
+
+### Roku リモコンをペアリングする方法は次のとおりです。
+
+> 原題: *Here's how to pair your Roku remote*
+
+#### 📝 記事の日本語要約
+
+リモコンを紛失し、新しいリモコンを入手したばかりの場合は、これが最適です。Amazon Fire TV Stick や Google TV Streamer などのストリーミング デバイスを購入することは、古いテレビに新しい命を吹き込むための費用対効果の高い方法です。Roku のストリーミング スティックとボックスのフリートは、手頃な価格でセットアップが簡単で、Android TV よりも肥大化していないエクスペリエンスを提供するという評判を得ています。他のストリーミング デバイスと同様に、Roku のすべてのモデルには、メディアの再生やその他のアクションを制御できるリモコンが付属しています。ただし、テレビの赤外線リモコンとは異なり、最新の Roku デバイスのほとんどは、Wi-Fi Direct や Bluetooth などの新しいテクノロジーを介してリモコンと通信します。
+
+#### 🇺🇸 English Summary
+
+If you lost your remote and just got your new one, this is for you.Picking up a streaming device like an Amazon Fire TV Stick or the Google TV Streamer is a cost-effective way to breathe new life into an older television.Roku's fleet of streaming sticks and boxes enjoys a reputation for being affordable, easy to set up and offering a less bloated experience than Android TV.
+
+#### 🏢 企業解説リンク
+
+- [Amazon](companies/amazon.html)
+- [Google](companies/google.html)
+
+🔗 [元記事を読む](https://www.engadget.com/2230985/how-to-pair-roku-remote/)
+
+---
+
+## 記事 8  ｜  TechCrunch
+
+### アーチャー、元ライバルのウィスク・エアロを買収
+
+> 原題: *Archer buys former rival Wisk Aero*
+
+#### 📝 記事の日本語要約
+
+営業秘密訴訟の和解から 3 年後、電気航空機会社アーチャー アビエーションは現在、かつてのライバルであるウィスク エアロを所有しています。月曜に発表された規制当局への提出書類によると、ボーイングは取引条件に基づき、同社の所有権と引き換えにウィスク・エアロと他の2つの子会社をアーチャーに売却することに同意したという。他の子会社には、デジタル空域および航空交通管理ソフトウェア会社である SkyGrid とドローンメーカー Insitu があります。規制当局への提出書類と事情に詳しい関係者によると、ボーイングはクロージング直前にアーチャーの発行済み株式の19.75％に相当する新たに発行されるアーチャー株を受け取ることになり、取引後は同社の約16.5％の株式を取得することになる。この買収は、かつては険悪だった両社の関係に終止符を打つものである。 。
+
+#### 🇺🇸 English Summary
+
+Three years after settling a trade secret lawsuit, electric aircraft company Archer Aviation now owns its former rival, Wisk Aero .Under the terms of the deal, Boeing has agreed to sell Wisk Aero and two other subsidiaries to Archer in exchange for an ownership stake in the company, according to a regulatory filing released Monday.
+
+🔗 [元記事を読む](https://techcrunch.com/2026/08/10/archer-buys-former-rival-wisk-aero/)
+
+---
+
+## 記事 9  ｜  The Verge
+
+### 野球ファン向けのその他の Vision Pro コンテンツ
+
+> 原題: *Some more Vision Pro content for Baseball fans*
+
+#### 📝 記事の日本語要約
+
+このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。ゲームは 4 週間毎週金曜日にストリーミングされます
+
+#### 🇺🇸 English Summary
+
+Posts from this topic will be added to your daily email digest and your homepage feed. Games will stream every Friday for four weeks
+
+🔗 [元記事を読む](https://www.theverge.com/tech/977199/apple-will-stream-friday-night-baseball-live-in-vision-pro)
+
+---
+
+## 記事 10  ｜  Wired
+
+### ゼロから薬を作る方法を人々に教える無法者の化学者
+
+> 原題: *The Outlaw Chemist Teaching People How to Make Drugs From Scratch*
+
+#### 📝 記事の日本語要約
+
+「これはおそらく私がこれまでに制作した中で最も重要なビデオです」とウィリアム・“ウィリー”・マイコは約2,500人のPatreon有料購読者に語った。 2024年のハロウィーンに投稿されたこのビデオは、彼が主張する「100パーセント純粋なLSD」の作り方を視聴者に段階的に説明している。坊主頭の上に「マイセリウム・ファミリア」と書かれた野球帽をかぶり、マスクの下から茶色のひげをのぞかせた彼は、3日間かけてサイケデリックな物質を合成するチュートリアルを「世界初」であると宣言している。このプロセスを記録しておくと、誰もが必要な科学的知識を得ることができます」とマイコはビデオの中で語ります。これは真菌学者、真菌を研究する科学者の略称です。 （彼は本当の姓を明かしておらず、話さないという条件で『WIRED』にインタビューした。
+
+#### 🇺🇸 English Summary
+
+“This is probably the most important video I have ever done,” William “Willy” Myco tells his nearly 2,500 paying Patreon subscribers.The video, posted on Halloween 2024, offers viewers step-by-step instructions on how to produce what he claimed is “100 percent pure LSD .
+
+🔗 [元記事を読む](https://www.wired.com/story/the-outlaw-chemist-teaching-people-how-to-make-drugs-from-scratch/)
+
+---
+
+## 記事 11  ｜  Ars Technica
+
+### 犬はあなたが怖がっているのか悲しいのかを知ることができます
+
+> 原題: *Dogs can tell if you're scared or sad*
+
+#### 📝 記事の日本語要約
+
+fMRIスキャンにより、犬の脳では幸福、恐怖、怒り、悲しみが明確な脳活動パターンを持っていることが分かりました。犬の飼い主なら誰でも、彼らの仲間の犬は人間の感情状態に同調しており、それに応じて反応すると言うでしょう。 iScience誌に掲載された新しい論文によると、科学者たちは犬のfMRIスキャンを実施し、笑顔など人間の幸せな表情を処理する特定の脳領域を特定した。また、犬はネガティブな表情、特に怒り、悲しみ、恐怖の違いを区別できることも判明した。 「人間は顔の細かい部分を認識するのが非常に得意であり、犬も同様です」と共著者であるウィーン大学のラウール・エルナンデス・ペレス氏は言う。 「これは犬を非常に興味深いものにしています。犬の脳を研究することで、どのような適応をしているのかを理解することができます。
+
+#### 🇺🇸 English Summary
+
+fMRI scans show happiness, fear, anger, and sadness have distinct brain activity patterns in doggy brains.Any dog owner would tell you that their canine companions are attuned to their humans’ emotional state and respond accordingly.
+
+🔗 [元記事を読む](https://arstechnica.com/science/2026/08/dogs-can-tell-if-youre-scared-or-sad/)
+
+---
+
+## 記事 12  ｜  MIT Tech Review
+
+### 科学用 AI にはデータだけではなく推論が必要です
+
+> 原題: *AI for science needs reasoning, not just data*
+
+#### 📝 記事の日本語要約
+
+人間の研究プロセスをモデル化できる AI エージェントは、科学における発見を加速します。数十年ごとに、誰かが科学が終焉を迎えたと発表します。 1903 年、尊敬される物理学者のアルバート マイケルソンは、「物理科学の事実はすべて発見された」と書きました。1980 年代、スティーブン ホーキング博士は、理論物理学は今世紀末までに完成するかもしれないと予測しました。人工知能の爆発的な到来により、その感情が再び漂い、今度はノーベル賞も伴います。 2024 年、Google DeepMind のデミス・ハサビス氏とジョン・ジャンパー氏は、実験的に測定された何千もの形状から学習してタンパク質の三次元構造を予測するニューラル ネットワーク AlphaFold により、化学分野でノーベル賞の一部を受賞しました。この悪魔的な問題。 。
+
+#### 🇺🇸 English Summary
+
+AI agents that can model the human process of research will accelerate discoveries in science.Every few decades, someone announces that science has reached its end.In 1903, the revered physicist Albert Michelson wrote that the “facts of physical science have all been discovered.” In the 1980s, Stephen Hawking predicted that theoretical physics might be finished by the end of the century.
+
+#### 🏢 企業解説リンク
+
+- [Google](companies/google.html)
+
+🔗 [元記事を読む](https://www.technologyreview.com/2026/08/10/1141384/ai-agents-for-science/)
+
+---
+
+## 記事 13  ｜  VentureBeat
+
+### あなたのエージェントは幻覚を見せませんでした。それはその権限を超えた
+
+> 原題: *Your agent didn’t hallucinate; it exceeded its authority*
+
+#### 📝 記事の日本語要約
+
+コンテンツ フィルターは、安全でない出力をブロックできます。代理店がその返金を行う権限を持っているかどうか、実稼働システムにアクセスしているか、または会社に外部のアクションを実行させる権限を与えられているかどうかを知ることはできません。これらは別の問題であり、ほとんどの企業は最初の問題のみを解決しています。 AI エージェントはその指示に完全に従いながら、企業が決して許可していないアクションを実行することもできます。コマース環境では、このパターンが実際に現れるのを私は見てきました。サービス ワークフローの計算。 。
+
+#### 🇺🇸 English Summary
+
+Content filters can block unsafe output.They cannot tell you whether an agent was authorized to issue that refund, touch that production system, or commit the company to an external action.Those are different problems, and most enterprises are only solving the first one.An AI agent can follow its instructions perfectly and still take an action the business never sanctioned.
+
+🔗 [元記事を読む](https://venturebeat.com/technology/your-agent-didnt-hallucinate-it-exceeded-its-authority)
+
+---
+
+## 記事 14  ｜  Engadget
+
+### ヨーロッパの Steam ハードウェア顧客のデータが「侵害された可能性がある」と Valve が発表
+
+> 原題: *Data of European Steam hardware customers 'likely compromised', Valve says*
+
+#### 📝 記事の日本語要約
+
+ゲーム大手は、データ侵害に続いて詐欺メールが送信される可能性があると警告しました。 Valve が一部の顧客の個人情報がサイバー攻撃で流出したと発表したことを受けて、ヨーロッパの Steam ハードウェア所有者は近い将来、詐欺メッセージに注意する必要があります。 Valveは、影響を受けた顧客に送信した電子メールの中で、Steamハードウェア製品をヨーロッパのユーザーに出荷しているCEVA Logisticsという会社が、7月29日から8月1日の間にデータ侵害に見舞われたと述べた。Valveは、8月7日にサイバー攻撃によりSteam顧客に関する一部の個人情報が「侵害された可能性がある」ことを知ったと述べた。Valveによると、盗まれた情報には名前、住所、電話番号、電子メール、注文の詳細が含まれているという。しかし、同社はCEVAがcusにアクセスできないことを明らかにした。 。
+
+#### 🇺🇸 English Summary
+
+The gaming giant warned that scam emails will potentially follow the data breach.Any Steam hardware owners in Europe should be on the lookout for scam messages in the near future after Valve said that personal data of some of its customers were exposed in a cyberattack.
+
+🔗 [元記事を読む](https://www.engadget.com/2233502/data-of-european-steam-hardware-customers-likely-compromised-valve-says/)
+
+---
+
+## 記事 15  ｜  TechCrunch
+
+### 海運大手 Ceva Logistics でのデータ侵害が銀行、小売店、Steam ゲーマーなどに波及
+
+> 原題: *A data breach at shipping giant Ceva Logistics is rippling across banks, retailers, Steam gamers, and beyond*
+
+#### 📝 記事の日本語要約
+
+世界最大の運送・物流大手の Ceva Logistics がハッキングされました。顧客への製品の発送を Ceva に依存しているいくつかの企業は、個人情報もこの侵害で盗まれたと述べています。 Ceva社に対するサイバー攻撃は、欧州大陸全土に商品を輸送するために使用される少なくとも8つの倉庫に影響を与えていると同社はTechCrunchに語った。業界ニュースサイトFreightWavesは、ハッキングは7月29日に始まり、影響を受けた倉庫内の多くの商品の出荷に遅れが生じていると報じた。 Ceva は、フランスに本社を置く輸送および物流大手で、世界中の企業が組立ラインから顧客の自宅まで商品を配送する際に利用しています。同社は18ドルをもたらした。 2025 年に収益は 30 億、倉庫数は 1,000 を超えます。 。
+
+#### 🇺🇸 English Summary
+
+Ceva Logistics, one of the world’s largest shipping and logistics giants, has been hacked.Several companies that rely on Ceva for shipping their products to their customers say that their personal information was also stolen in the breach.The cyberattack on Ceva is affecting at least eight warehouses across Europe used for shipping goods across the continent, the company told TechCrunch.
+
+#### 🏢 企業解説リンク
+
+- [TechCrunch](companies/techcrunch.html)
+
+🔗 [元記事を読む](https://techcrunch.com/2026/08/10/a-data-breach-at-shipping-giant-ceva-logistics-is-rippling-across-banks-retailers-steam-gamers-and-beyond/)
+
+---
+
+## 記事 16  ｜  The Verge
+
+### Keychronのワイヤレスホール効果キーボードが最安値に戻った
+
+> 原題: *Keychron’s wireless Hall effect keyboard is back to its lowest price*
+
+#### 📝 記事の日本語要約
+
+このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。また、1,099 ドルで優れたゲーミング ラップトップを見つけたほか、ソニーの最新の有線および無線 InZone ヘッドセットのセールも見つかりました。
+
+#### 🇺🇸 English Summary
+
+Posts from this topic will be added to your daily email digest and your homepage feed. We also found a good gaming laptop for $1,099, plus deals on Sony’s latest wired and wireless InZone headsets.
+
+🔗 [元記事を読む](https://www.theverge.com/gadgets/977300/keychron-hall-effect-sony-inzone-headsets-gaming-laptop-deal-sale)
+
+---
+
+## 記事 17  ｜  Wired
+
+### 私はポータブルソーラーパネルを何年もテストして、どのモデルが無料で電力を供給するのに最適かを確認しました
+
+> 原題: *I Tested Portable Solar Panels for Years to See Which Models Best Deliver Free Electricity*
+
+#### 📝 記事の日本語要約
+
+恒久的なソーラーパネルの設置は高価であり、操作が難しい場合があり、一部の住宅や賃貸人にとっては実行可能な選択肢ではありません。しかし、最高のポータブルソーラーパネルは、どんな状況でも太陽光を利用できます。自宅でバックアップ電源が必要な場合でも、キャビン、RV、またはキャンプ場でオフグリッドの電力を集めたい場合でも、ポータブル ソーラー パネルは仕事を完了するための良い方法です。私はここ数年、ポータブル ソーラー パネルをテストしてきました。これらはさまざまなシナリオにお勧めするものです。これらは、最高の太陽光発電機またはポータブル発電所の 1 つと組み合わせるのが最適です。ソーラー パネルに関するヒントも FAQ で紹介します。現在、市場には優れたポータブルソーラーパネルがたくさんありますが、必要なものによって大きく異なります。供給できる最大ワット数を考慮する必要があります。 。
+
+#### 🇺🇸 English Summary
+
+A permanent solar panel installation can be expensive and tricky to navigate, and for some homes and renters it’s not a viable option.But the best portable solar panels can put the sun’s rays to use in any situation.Whether you want some backup power at home or collect some off-grid juice for a cabin, RV, or campsite, portable solar panels are a good way to get the job done.
+
+🔗 [元記事を読む](https://www.wired.com/story/best-portable-solar-panels/)
+
+---
+
+## 記事 18  ｜  Ars Technica
+
+### 2026 スバル アウトバック リミテッド レビュー: 外側はボクシー、内側はほぼプレミアム
+
+> 原題: *2026 Subaru Outback Limited review: Boxy outside, almost premium inside*
+
+#### 📝 記事の日本語要約
+
+最新のアウトバックは脚本に忠実です。アウトバックが好きならそれは悪いことではありません。ステーションワゴンがビニールの屋根とオペラの窓と同じ老人ホームに向かったとき、スバルはその賢明なレガシィワゴンを見て、別のアイデアを思いつきました。車の高さを数インチ上げ、下半身をプラスチックの外装で包み、オーストラリアの低木にちなんで名付けた。郊外の家族連れは、川を渡ったり砂丘を登ったりする姿を想像しながらサッカーの練習に車で向かうだろう。1995 年にレガシィ アウトバックを誕生させるにあたり、スバルは多かれ少なかれ、現代的で冒険心を持ち、オフロードをテーマにしたクロスオーバーのテンプレートを作成しました。2000年モデルまでにアウトバックはトリムレベルからスタンドアロンモデルへと卒業し、それ以来スバルの請求額の大部分をアウトバックが支払っている。
+
+#### 🇺🇸 English Summary
+
+The newest Outback sticks to the script; that’s no bad thing if you like Outbacks.When station wagons headed for the same retirement home as the vinyl roof and the opera window, Subaru looked at its sensible Legacy wagon and had a different idea.
+
+🔗 [元記事を読む](https://arstechnica.com/cars/2026/08/2026-subaru-outback-limited-review-boxy-outside-almost-premium-inside/)
+
+---
+
+## 記事 19  ｜  MIT Tech Review
+
+### これらのスタートアップは LLM の次の大きなものを追いかけています
+
+> 原題: *These startups are chasing the next big thing in LLMs*
+
+#### 📝 記事の日本語要約
+
+AI 巨人の後を追う新しい子供たちを紹介します。MIT Technology Review の What's Next シリーズでは、業界、トレンド、テクノロジーを横断的に取り上げ、将来の展望を提供します。残りの部分はここで読むことができます。はるか昔の 2017 年の夏、Google の AI 研究者たちは、トランスフォーマーと呼ばれる新しいタイプのニューラル ネットワークについて説明した「Attending Is All You Need」という論文を発表しました。長いデータシーケンス、特にテキストの処理に非常に優れていることが判明しました。9 年後、トランスフォーマーは、市場にあるすべての主要な大規模言語モデル内のエンジンとなっています。
+
+#### 🇺🇸 English Summary
+
+Meet the new kids nipping at the heels of the AI giants.MIT Technology Review ’s What’s Next series looks across industries, trends, and technologies to give you a first look at the future.You can read the rest of them here .
+
+#### 🏢 企業解説リンク
+
+- [Google](companies/google.html)
+
+🔗 [元記事を読む](https://www.technologyreview.com/2026/08/10/1141511/these-startups-are-chasing-the-next-big-thing-in-llms/)
+
+---
+
+## 記事 20  ｜  VentureBeat
+
+### リアルタイムで連携する 4 つの AI エージェントは、エンタープライズ コーディング タスクにおいて Claude Opus 4.8 を上回りました。
+
+> 原題: *Four AI agents coordinating in real time outperformed Claude Opus 4.8 on enterprise coding tasks*
+
+#### 📝 記事の日本語要約
+
+エンタープライズ コードベースが拡大するにつれて、コードベースの分析を任された AI エージェントは、複数の対話とツール呼び出しを必要とする長期的なタスクの重みに耐えることができています。エージェントのチーム間で作業を分割することは明白な解決策のように思えますが、これには致命的な欠陥が生じます。ほとんどのマルチエージェント システムは、タスクの途中でリアルタイムにエージェント間で調整できるように設計されていません。これを解決するために、Coral AI Labs と複数の大学の研究者は <a href="https://arxiv. org/a. .
+
+#### 🇺🇸 English Summary
+
+As enterprise codebases grow, AI agents tasked with analyzing them are buckling under the weight of long-horizon tasks that require multiple interactions and tool calls.Dividing the work among a team of agents seems like the obvious fix, but it introduces a fatal flaw: most multi-agent systems are not designed for agents to coordinate among themselves mid-task and in real time.
+
+🔗 [元記事を読む](https://venturebeat.com/orchestration/four-ai-agents-coordinating-in-real-time-outperformed-claude-opus-4-8-on-enterprise-coding-tasks)
+
+---
+
+## 記事 21  ｜  Engadget
+
+### Bluetooth、Wi-Fi、2.4G ワイヤレス デバイスの違いは何ですか?
+
+> 原題: *What are the differences between Bluetooth, Wi-Fi and 2.4G wireless devices?*
+
+#### 📝 記事の日本語要約
+
+ワイヤレス接続にはさまざまな種類があります。Bluetooth や 2.4G と比較した Wi-Fi の最大の違いは、ネットワーク接続をサポートする唯一の接続タイプであることです。Wi-Fi は、一度に数十の接続をサポートできるローカル ワイヤレス ネットワークを作成し、Bluetooth や 2.4G よりも広い信号範囲を提供します (後者の 2 つの最大範囲は 50m に対して、最大 30m)。Wi-Fi の電力使用量はかなり高くなりますが、これは Wi-Fi の方がかなり高速で帯域幅がはるかに大きいためです。Wi-Fi 7 では数 Gbps に達しますが、Bluetooth ではわずか 3 Mbps 程度、2.4G では通常 10 Mbps 未満です。Bluetooth と 2.4G はどちらも短距離データ転送を提供しますが、本質的には異なります。
+
+#### 🇺🇸 English Summary
+
+Wireless connectivity comes in many different flavors.The biggest difference between Wi-Fi compared to Bluetooth or 2.4G is that it's the only connection type that supports network connections.Wi-Fi creates a local wireless network that can support dozens of connections at once, offering greater signal range than either Bluetooth or 2.4G (up to 50m vs a max 30m range for the latter two).
+
+🔗 [元記事を読む](https://www.engadget.com/2230983/differences-between-bluetooth-wifi-2-4g-wireless-explained/)
+
+---
+
+## 記事 22  ｜  TechCrunch
+
+### Klaviyoに登録しましたか？数十の広告主があなたのパスワードを見た可能性があります
+
+> 原題: *Signed up for Klaviyo? Dozens of advertisers may have seen your password*
+
+#### 📝 記事の日本語要約
+
+新たに明らかになったセキュリティ調査で、マーケティングテクノロジー大手のKlaviyoが最近まで、パスワードを含む新規顧客のサインアップ情報を誤って外部の広告主と共有していたことが判明した。セキュリティ研究者であり、サイバーセキュリティスタートアップ Melurna の共同創設者である Sam Jadali 氏は、TechCrunch に対し、Klaviyo のサインアップ ページの Web フォームは、少なくとも 2024 年 2 月から 2025 年 11 月までの間に誤って設定されていたと語った。このスタートアップのテストでは、誤って設定されたフォームを使用して Klaviyo にサインアップした人は誰でも、そのトラッカーが同社の Web サイトに埋め込まれているサードパーティのテクノロジー大手や広告主とサインアップ情報を共有された可能性があることが判明しました。
+
+#### 🇺🇸 English Summary
+
+Newly revealed security research found that until recently, marketing tech giant Klaviyo was inadvertently sharing the sign-up information of its new customers, including their passwords, with outside advertisers.
+
+#### 🏢 企業解説リンク
+
+- [TechCrunch](companies/techcrunch.html)
+
+🔗 [元記事を読む](https://techcrunch.com/2026/08/10/signed-up-for-klaviyo-dozens-of-advertisers-may-have-seen-your-password/)
+
+---
+
+## 記事 23  ｜  The Verge
+
+### Bose CEO ライラ・スナイダー氏、高品質オーディオをめぐる戦いについて語る
+
+> 原題: *Bose CEO Lila Snyder on the fight for high-quality audio*
+
+#### 📝 記事の日本語要約
+
+このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。スナイダー氏は、同社の高級オーディオへの移行、Bose ブランドのライセンス供与、そして AI 時代の優れたサウンドに何が起こるかについて語ります。
+
+#### 🇺🇸 English Summary
+
+Posts from this topic will be added to your daily email digest and your homepage feed. Snyder on the company’s move into luxury audio, licensing the Bose brand, and what happens to great sound in the AI era.
+
+🔗 [元記事を読む](https://www.theverge.com/podcast/975732/bose-ceo-lila-snyder-ai-wearables-licensing-headphones-audio)
+
+---
+
+## 記事 24  ｜  Wired
+
+### AIスロップの反発が実際に影響を及ぼしている
+
+> 原題: *The AI Slop Backlash Is Actually Having an Impact*
+
+#### 📝 記事の日本語要約
+
+私は最近、Instagram の設定を調べて、同意なしに誰でも私の AI ディープフェイクを作成できる Meta の今は廃止された機能を無効にしようとしていました。カフカ風のオプトアウト プロセスを実行していると、心の中で怒りが湧き上がってきました。私は携帯電話を部屋の向こう側に投げつけるのではなく、サンフランシスコを捨てて、オフグリッドの羊飼いになるべきだとパートナーに口走ったのです。何かアナログ。その瞬間、この進行中の生成型 AI による地獄よりも優れたものは何もありませんでした。多くのアメリカ人は、日常生活における生成型 AI の普及に対して同様の反応を示しています。
+
+#### 🇺🇸 English Summary
+
+I was recently digging through my Instagram settings, trying to disable Meta’s now-defunct feature that allowed anyone to create AI deepfakes of me without consent.Anger bubbled up inside as I tapped through the Kafkaesque opt-out process .Rather than throwing my phone across the room, I blurted to my partner that we should leave San Francisco behind and be off-grid sheep farmers.
+
+#### 🏢 企業解説リンク
+
+- [Meta](companies/meta.html)
+
+🔗 [元記事を読む](https://www.wired.com/story/the-ai-slop-backlash-is-actually-having-an-impact/)
+
+---
+
+## 記事 25  ｜  Ars Technica
+
+### 研究者がnoreply.netを購入しました。企業は彼に秘密を送り始めた。
+
+> 原題: *A researcher bought noreply.net. Companies started sending him secrets.*
+
+#### 📝 記事の日本語要約
+
+企業は、リスクがあるにもかかわらず、一部の電子メール ドメインをデジタルゴミ箱として扱います。Cory Solovewicz は、あなたよりも多くの迷惑メールを受信して​​います。真剣に言うと、それはもっとたくさんあります。2024 年 12 月以降、セキュリティ研究者が電子メールを受信するドメインの 1 つには 401,796 件のメッセージが登録されています。彼の計算によれば、これは 1 日あたり平均 699.99 ping に相当します。この大洪水は、多くの人々の受信箱を埋める、通常のスパム、ニュースレター、不要な取引の洪水ではありません。その代わりに、企業やその他の組織が、誤ってソロヴェヴィッチ氏に他人の個人情報や企業秘密を送信しているのです。ここ数年、彼は市政府からの負傷報告、人々のピザ注文の確認、学校プラットフォームからのアカウント設定メールを受け取りました。
+
+#### 🇺🇸 English Summary
+
+Companies treat some email domains as digital trash cans, despite the risks.Cory Solovewicz receives more unwanted emails than you.Seriously—it’s a lot more.Since December 2024, one of the domains at which the security researcher receives email has registered 401,796 messages—by his calculations that’s an average of 699.99 pings per day.
+
+🔗 [元記事を読む](https://arstechnica.com/security/2026/08/a-researcher-bought-noreply-net-companies-started-sending-him-secrets/)
+
+---
+
+## 記事 26  ｜  MIT Tech Review
+
+### ダウンロード: 検閲陰謀論と AI によって作成された最初のウイルス
+
+> 原題: *The Download: a censorship conspiracy theory and the first virus created by AI*
+
+#### 📝 記事の日本語要約
+
+さらに、AI は初めて新しいウイルスをゼロから設計しました。これは、テクノロジーの世界で何が起こっているかを毎日提供する平日のニュースレター、 The Download の本日版です。何年もの間、「検閲と産業の複合体」についての物語が右翼サークルで広まった。この理論は、偽情報との闘いを装って​​、政府機関、学者、市民社会団体、ビッグテックプラットフォームからなる広大な集団がオンライン上で保守的でポピュリスト的な言論を抑圧していると主張した。極右による比較的ニッチな陰謀論として始まったこの理論は、第二次トランプ政権の幅広い行動に影響を与えることができ、そして今も影響を与え続けている。検閲と産業の複合体 (CIC) の考え方は、さまざまな方法でその背後にある論理を説明します。 。
+
+#### 🇺🇸 English Summary
+
+Plus: AI has designed new viruses from scratch for the first time.This is today's edition of The Download , our weekday newsletter that provides a daily dose of what's going on in the world of technology.For years, narratives about a “censorship-industrial complex” spread in right-wing circles.
+
+🔗 [元記事を読む](https://www.technologyreview.com/2026/08/07/1141389/the-download-censorship-conspiracy-theory-first-ai-virus/)
+
+---
+
+## 記事 27  ｜  VentureBeat
+
+### スタンフォード大学は仮想バイオテクノロジーとして 37,000 人の AI エージェントを実行しています - そしてその医薬品設計の 1 つはメルクによって独自に確認されました
+
+> 原題: *Stanford is running 37,000 AI agents as a virtual biotech — and one of its drug designs got independently confirmed by Merck*
+
+#### 📝 記事の日本語要約
+
+開発者にとって、運用の前提は 1 人のエンジニア、1 人のエージェント、つまりモデルの Claude Code と同様のツールでした。 VB Transform 2026 で、スタンフォード大学生物医学データサイエンス准教授の James Zou 氏は、その想定が崩れようとしていると主張しました。次のフロンティアは、より有能な単一のエージェントではなく、何万人ものエージェントが協力しているのです。開発者と製品ビルダーにとって、最も重要なポイントは次のとおりです。 。
+
+#### 🇺🇸 English Summary
+
+For developers, the operating assumption has been one engineer, one agent — the model Claude Code and similar tools.At VB Transform 2026 , James Zou, associate professor of biomedical data science at Stanford University, argued that assumption is about to break: the next frontier isn't a single, more capable agent, it's tens of thousands of them collaborating.
+
+🔗 [元記事を読む](https://venturebeat.com/orchestration/stanford-is-running-37-000-ai-agents-as-a-virtual-biotech-and-one-of-its-drug-designs-got-independently-confirmed-by-merck)
+
+---
+
+## 記事 28  ｜  Engadget
+
+### Android アプリ ストアの競合他社が Play ストアで入手可能
+
+> 原題: *An Android app store competitor is available in the Play Store*
+
+#### 📝 記事の日本語要約
+
+米国では現在、Aptoide Games をダウンロードできます。本日、Google が長年にわたって激しく戦ってきた開発がもたらされました。ライバルの Android アプリ ストアが Google Play で正式に利用可能になりました。Aptoide は、米国の Android ユーザー向けに Aptoide Games が Google Play からダウンロードできるようになったと発表しました。同社はモバイル ゲームを専門としていますが、以前はプレインストールまたはサイドローディングを通じてのみ利用可能でした。Googleは、Androidユーザーにとって使いやすいアプリストアの唯一の選択肢となるよう戦ってきた。
+
+#### 🇺🇸 English Summary
+
+You can download Aptoide Games now in the US.Today brings a development Google has fought long and hard against: A rival Android app store is officially available in Google Play.Aptoide has announced that Aptoide Games is now downloadable through Google Play for Android users in the United States.
+
+#### 🏢 企業解説リンク
+
+- [Google](companies/google.html)
+
+🔗 [元記事を読む](https://www.engadget.com/2233395/an-android-app-store-competitor-is-available-in-the-play-store/)
+
+---
+
+## 記事 29  ｜  TechCrunch
+
+### Discovered Materials は AI もぐらたたきをして、より優れたチップを探しています
+
+> 原題: *Discovered Materials is playing AI whack-a-mole to hunt cooler chips*
+
+#### 📝 記事の日本語要約
+
+AI ワークロードを実行するチップは熱くなりすぎます。これが、データセンターが大量の電力を消費し、冷却システムを必要とする理由の 1 つです。そして必然的に、起業家は AI が引き起こす問題を解決するために AI に注目するようになります。Discovered Materials は最新のもので、AI エージェントの群れを使用して、より効率的な集積回路を構築するために使用できる新しい材料を見つける計画があります。同社は最近、Y Combinatorから脱却し、Peak XV Partnersとエンジェル投資家のPaul Graham氏、Gokul Rajaram氏、Thariq Shihipar氏の投資を受けてLightspeed India Partnersから900万ドルのシードラウンドを完了したと発表した。
+
+#### 🇺🇸 English Summary
+
+Chips running AI workloads are too hot: That’s one reason why data centers consume so much electricity and require cooling systems.And, inevitably, entrepreneurs are turning to AI to solve the problem it created.Discovered Materials is the latest, with plans to use swarms of AI agents to find new materials that can be used to build more efficient integrated circuits.
+
+🔗 [元記事を読む](https://techcrunch.com/2026/08/10/discovered-materials-is-playing-ai-whack-a-mole-to-hunt-cooler-chips/)
+
+---
+
+## 記事 30  ｜  The Verge
+
+### ボーイングがエアタクシーのスタートアップをアーチャー・アビエーションに売却
+
+> 原題: *Boeing is selling its air taxi startups to Archer Aviation*
+
+#### 📝 記事の日本語要約
+
+このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。アーチャーはウィスク・エアロを含む子会社3社を金額非公開で買収する。ボーイングもアーチャー社に出資する予定だ。
+
+#### 🇺🇸 English Summary
+
+Posts from this topic will be added to your daily email digest and your homepage feed. Archer will acquire the three subsidiaries, including Wisk Aero, for an undisclosed sum. Boeing will also take a stake in Archer.
+
+🔗 [元記事を読む](https://www.theverge.com/transportation/977306/boeing-selling-evtol-archer-wisk-air-taxi)
+
+---
+
+
+> ⚠️ 本まとめは自動生成です。数値・固有名詞などの事実は元記事でご確認ください。
