@@ -1,0 +1,620 @@
+# 🌐 海外テックニュース 日本語まとめ
+
+**生成日時:** 2026年8月11日  16:03 JST
+
+> 世界の有力テックメディア（TechCrunch・The Verge・Wired・Ars Technica・MIT Tech Review・VentureBeat・Engadget）から注目記事を自動収集し、日本の読者向けに翻訳・要約しました。
+
+---
+
+## 目次
+
+1. [デルタ航空、何者かが飛行中に偽のWi-Fiネットワークをセットアップした件で調査中](#記事-1--デルタ航空、何者かが飛行中に偽のwi-fiネットワークをセットアップした件で調査中)
+2. [20 未満の AI プロンプトを使用して「Zoomsday」ハッキングが発覚](#記事-2--20-未満の-ai-プロンプトを使用して「zoomsday」ハッキングが発覚)
+3. [ゲーミングマウスにもっと多くのボタンがあった頃のことを覚えていますか? Razer Naga V3 Pro は次のことを行います](#記事-3--ゲーミングマウスにもっと多くのボタンがあった頃のことを覚えていますか-razer-naga-v3-pro-は次のことを行います)
+4. [ダウンロード: LLM の次の大きな要素と AI 学術研究の変化](#記事-4--ダウンロード-llm-の次の大きな要素と-ai-学術研究の変化)
+5. [AI 主導の購入意図が販売完了となることが非常に少ない理由](#記事-5--ai-主導の購入意図が販売完了となることが非常に少ない理由)
+6. [イングランドとウェールズはメタグラスを法廷から禁止](#記事-6--イングランドとウェールズはメタグラスを法廷から禁止)
+7. [2025 年に最もダウンロードされたゲーム、Block Blast! が Apple Arcade で広告なしになる](#記事-7--2025-年に最もダウンロードされたゲーム、block-blast-が-apple-arcade-で広告なしになる)
+8. [Amazonの注文確認メールが役に立たなくなった理由](#記事-8--amazonの注文確認メールが役に立たなくなった理由)
+9. [AI は化石燃料会社の排出量増加に貢献する可能性がある](#記事-9--ai-は化石燃料会社の排出量増加に貢献する可能性がある)
+10. [新しい監視技術で携帯電話をナンバープレートにリンク](#記事-10--新しい監視技術で携帯電話をナンバープレートにリンク)
+11. [AI 教授が学術研究の新たな現実について交渉中](#記事-11--ai-教授が学術研究の新たな現実について交渉中)
+12. [Mistral AI は、2030 年までにヨーロッパで 1 ギガワットのコンピューティングを構築し、今すぐ顧客を囲い込みたいと考えています。](#記事-12--mistral-ai-は、2030-年までにヨーロッパで-1-ギガワットのコンピューティングを構築し、今すぐ顧客を囲い込みたいと考えています。)
+13. [運転中にヘッドフォンを着けても大丈夫ですか？州によって異なります](#記事-13--運転中にヘッドフォンを着けても大丈夫ですか州によって異なります)
+14. [Rivian の CEO、RJ Scaringe は、EV、ロボット、自動運転を同時に実現することに賭けています。その理由については Disrupt 2026 で説明します](#記事-14--rivian-の-ceo、rj-scaringe-は、ev、ロボット、自動運転を同時に実現することに賭けています。その理由については-disrupt-2026-で説明します)
+15. [GuliKit の新しい Switch コントローラーは、次世代のドリフト防止サムスティックを備えています](#記事-15--gulikit-の新しい-switch-コントローラーは、次世代のドリフト防止サムスティックを備えています)
+16. [Zoom の画面共有バグにより、通話中に誰でも他のデバイスを引き継ぐことができる](#記事-16--zoom-の画面共有バグにより、通話中に誰でも他のデバイスを引き継ぐことができる)
+17. [新しい Pass-ta-key 攻撃により、パスキーについて私たちが知らなかったことがすべて明らかになります](#記事-17--新しい-pass-ta-key-攻撃により、パスキーについて私たちが知らなかったことがすべて明らかになります)
+18. [ダウンロード: 科学のための AI エージェントと「検閲と産業の複合体」](#記事-18--ダウンロード-科学のための-ai-エージェントと「検閲と産業の複合体」)
+19. [LTX-2.5 は、Nvidia スーパーチップ上で画像から 10 秒の AI ビデオをわずか 6.8 秒で生成でき、オープンウェイトです](#記事-19--ltx-25-は、nvidia-スーパーチップ上で画像から-10-秒の-ai-ビデオをわずか-68-秒で生成でき、オープンウェイトです)
+20. [Bluetooth ヘッドフォンを PS5 に接続する方法](#記事-20--bluetooth-ヘッドフォンを-ps5-に接続する方法)
+21. [FlightAware、欠航予測市場を巡りカルシを訴訟](#記事-21--flightaware、欠航予測市場を巡りカルシを訴訟)
+22. [バンブルは男性に最初の行動を起こさせるようになりました](#記事-22--バンブルは男性に最初の行動を起こさせるようになりました)
+23. [最高の赤光療法マスクはTikTokのものではない](#記事-23--最高の赤光療法マスクはtiktokのものではない)
+24. [Ars Live: ロス・スコットがストップ・キリング・ゲーム運動について語る](#記事-24--ars-live-ロス・スコットがストップ・キリング・ゲーム運動について語る)
+25. [科学用 AI にはデータだけではなく推論が必要です](#記事-25--科学用-ai-にはデータだけではなく推論が必要です)
+26. [Nvidia の Switchyard ルーターはタスクの途中で AI モデルを再シャッフルし、独自のテストでタスクのコストを 3 分の 1 に削減](#記事-26--nvidia-の-switchyard-ルーターはタスクの途中で-ai-モデルを再シャッフルし、独自のテストでタスクのコストを-3-分の-1-に削減)
+27. [サムスンは、補聴器機能が今年後半にGalaxy Budsに搭載される予定だと発表](#記事-27--サムスンは、補聴器機能が今年後半にgalaxy-budsに搭載される予定だと発表)
+28. [独占：京都フュージョニアリングが核融合発電プラントの主要装置の作業を開始](#記事-28--独占京都フュージョニアリングが核融合発電プラントの主要装置の作業を開始)
+29. [Spotify、「AI ペルソナ」の音楽は推奨しないと発表](#記事-29--spotify、「ai-ペルソナ」の音楽は推奨しないと発表)
+
+---
+
+## 記事 1  ｜  TechCrunch
+
+### デルタ航空、何者かが飛行中に偽のWi-Fiネットワークをセットアップした件で調査中
+
+> 原題: *Delta investigating after someone set up fake Wi-Fi network mid-flight*
+
+#### 📝 記事の日本語要約
+
+航空会社と機内からの公共放送によると、身元不明の乗客が月曜、ラスベガス発アトランタ行きのデルタ航空機内で偽のWi-Fiネットワークを構築したとされ、パイロットが航空管制に警告した。デルタ航空の広報担当モーガン・デュラント氏はTechCrunchに対し、「飛行の安全性が問題になったことは一度もなく、航空機のオペレーティングシステムにも影響はなかった」と述べ、機内ネットワークは侵害されていなかったと付け加えた。同報道官は「完全な事実を収集するため徹底的に捜査しているが、それには時間がかかる。連邦法執行機関や航空規制当局と協力して事件を徹底的に捜査する」と述べた。この事件のため、乗務員は航空機の正規のWi-Fiネットワークを約30分間遮断した。
+
+#### 🇺🇸 English Summary
+
+An unidentified passenger allegedly created a fake Wi-Fi network on a Delta flight from Las Vegas to Atlanta on Monday, prompting pilots to alert air traffic control, according to the airline and public broadcasts from the plane.
+
+#### 🏢 企業解説リンク
+
+- [TechCrunch](companies/techcrunch.html)
+
+🔗 [元記事を読む](https://techcrunch.com/2026/08/11/delta-investigating-after-someone-set-up-fake-wi-fi-network-mid-flight/)
+
+---
+
+## 記事 2  ｜  The Verge
+
+### 20 未満の AI プロンプトを使用して「Zoomsday」ハッキングが発覚
+
+> 原題: *‘Zoomsday’ hack uncovered using fewer than 20 AI prompts*
+
+#### 📝 記事の日本語要約
+
+このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。セキュリティ研究者らによると、Zoomの脆弱性により、ハッカーが通話中の全員のデバイスを乗っ取ることができたという。
+
+#### 🇺🇸 English Summary
+
+Posts from this topic will be added to your daily email digest and your homepage feed. The Zoom vulnerability allowed hackers to take over everyone’s device on a call, security researchers say.
+
+🔗 [元記事を読む](https://www.theverge.com/ai-artificial-intelligence/977909/zoom-vulnerability-ai-attack)
+
+---
+
+## 記事 3  ｜  Wired
+
+### ゲーミングマウスにもっと多くのボタンがあった頃のことを覚えていますか? Razer Naga V3 Pro は次のことを行います
+
+> 原題: *Remember When Gaming Mice Had More Buttons? The Razer Naga V3 Pro Does*
+
+#### 📝 記事の日本語要約
+
+私の最初のゲーミング マウスの 1 つは、オリジナルの Razer Naga Epic でした。これは、10 代のときに最初のゲーミング PC と一緒にプレゼントされました。過去 15 年間でゲームは大きく変わりましたが、Razer Naga の製品ラインはあまり変わっていません。全体的な形状と機能は驚くほど一貫したままです。PC ゲームでは、ペースの速いシューティングゲーム向けに設計された超軽量で競技力の高いマウスが重視されるようになりましたが、それがすべての人にとって好みというわけではありません。もしあなたが、より快適なマウス (おそらく追加のボタンを備えた) を好む PC ゲーマーなら、新しい Naga V3 Pro が最適なゲーミング マウスになるかもしれません。
+
+#### 🇺🇸 English Summary
+
+One of my first gaming mice was the original Razer Naga Epic, which I was gifted as a teenager alongside my first gaming PC.Gaming has changed a lot in the past 15 years, and yet, the Razer Naga line hasn't changed much.It's general shape and function have remained remarkable consistent.
+
+🔗 [元記事を読む](https://www.wired.com/review/razer-naga-v3-pro/)
+
+---
+
+## 記事 4  ｜  MIT Tech Review
+
+### ダウンロード: LLM の次の大きな要素と AI 学術研究の変化
+
+> 原題: *The Download: the next big thing in LLMs and how AI academic research is shifting*
+
+#### 📝 記事の日本語要約
+
+さらに、Nvidia は AI インフラストラクチャのためにウォール街から 5,000 億ドルを確保しました。これは、テクノロジーの世界で何が起こっているかを毎日提供する平日のニュースレター、 The Download の本日版です。 Google の研究者がトランスフォーマーを導入してから 9 年後、このニューラル ネットワークのファミリーは、すべての主要な大規模言語モデル内のエンジンになりました。しかし、トランスフォーマーは老朽化を見せ始めています。 LLM が大きくなり性能が向上するにつれて、変圧器がボトルネックになってきました。彼らの高密度の注意メカニズムは、テキストの量が増えるにつれてますます高価になり、一度に多くの情報を追跡するのが得意ではありません。
+
+#### 🇺🇸 English Summary
+
+Plus: Nvidia has secured $500 billion from Wall Street for AI infrastructure.This is today's edition of The Download , our weekday newsletter that provides a daily dose of what's going on in the world of technology.Nine years after Google researchers introduced the transformer, this family of neural networks has become the engine inside every major large language model.
+
+#### 🏢 企業解説リンク
+
+- [Google](companies/google.html)
+- [NVIDIA](companies/nvidia.html)
+
+🔗 [元記事を読む](https://www.technologyreview.com/2026/08/11/1141610/the-download-next-big-thing-llms-ai-academic-research-shifting/)
+
+---
+
+## 記事 5  ｜  VentureBeat
+
+### AI 主導の購入意図が販売完了となることが非常に少ない理由
+
+> 原題: *Why AI-driven purchase intent so rarely becomes a completed sale*
+
+#### 📝 記事の日本語要約
+
+Rezolve Ai が提供 AI アシスタントが製品やブランドを推奨すると、価値あるもの、つまり購入意欲が高く、意思決定に抵抗が少ない消費者が生成されます。その消費者はすでにオプションを比較し、追加の質問をし、結論に達しています。彼らは買いたいのです。次に彼らが遭遇するのは、彼ら向けに設計されていないコマース インフラストラクチャです。推奨と購入のギャップ 典型的な企業。 。
+
+#### 🇺🇸 English Summary
+
+Presented by Rezolve Ai When an AI assistant recommends a product or brand, it generates something valuable: a purchase-ready consumer with high intent and low friction in their decision.That consumer has already compared options, asked follow-up questions, and arrived at a conclusion.They want to buy.What they encounter next is a commerce infrastructure that was not designed for them.
+
+🔗 [元記事を読む](https://venturebeat.com/technology/why-ai-driven-purchase-intent-so-rarely-becomes-a-completed-sale)
+
+---
+
+## 記事 6  ｜  Engadget
+
+### イングランドとウェールズはメタグラスを法廷から禁止
+
+> 原題: *England and Wales ban Meta Glasses from courtrooms*
+
+#### 📝 記事の日本語要約
+
+ニューヨーク州も同様の動きをしたばかりだ。ガーディアン紙の報道によると、イングランドとウェールズの裁判所はメタグラスを正式に禁止したという。メガネをかけて裁判所の建物に入ろうとする者は没収され、退出時に返却される。この決定の背後には、すべての刑事、民事、家庭裁判所を管轄する国王裁判所・法廷局（HMCTS）が関与している。この動きには大きな理由が 1 つあり、それは明白です。法廷でのカメラの使用は禁止されており、メタグラスにはカメラが搭載されています。 Meta Glasses はさらに一歩進んで、ユーザーは誰にも知られずに映像を録画できます。これは、理論的には、誰よりも賢明でなくても、誰かが裁判の全過程を座って記録することができることを意味します。 「画像やビデオの撮影には明確な制限があります。
+
+#### 🇺🇸 English Summary
+
+New York state just made a similar move.Courts in England and Wales have officially banned Meta glasses, according to a report by The Guardian .Anyone trying to enter court buildings with the glasses will have them confiscated and returned when they leave.His Majesty's Courts & Tribunals Service (HMCTS), which is responsible for all criminal, civil and family courts, is behind the decision.
+
+#### 🏢 企業解説リンク
+
+- [Meta](companies/meta.html)
+
+🔗 [元記事を読む](https://www.engadget.com/2234606/england-and-wales-ban-meta-glasses-from-courtrooms/)
+
+---
+
+## 記事 7  ｜  TechCrunch
+
+### 2025 年に最もダウンロードされたゲーム、Block Blast! が Apple Arcade で広告なしになる
+
+> 原題: *2025's most downloaded game, Block Blast!, is going ad-free on Apple Arcade*
+
+#### 📝 記事の日本語要約
+
+昨年最もダウンロードされたモバイル ゲームが、Apple のサブスクリプション ゲーム サービスである Apple Arcade に登場しました。火曜日、Apple は Block Blast!の追加を発表しました。+ は、アプリ インテリジェンス プロバイダー Appfigures によると、生涯インストール数が約 7 億 2,500 万である人気のパズル ゲームの広告なしバージョンです。他の推定では、この数字はさらに高く、インストール数は 8 億 6,800 万となっています。このゲームは、2025 App Store Award を受賞した Art of Fauna: Cozy Puzzles+ などとともに、9 月 3 日に Apple Arcade でリリースされます。Apple の内部データによると、Block Blast!
+
+#### 🇺🇸 English Summary
+
+The most downloaded mobile game last year has just landed on Apple’s subscription gaming service, Apple Arcade.On Tuesday, Apple announced the addition of Block Blast!+ , an ad-free version of the popular puzzle game that has around 725 million lifetime installs, according to app intelligence provider Appfigures .Other estimates put that figure even higher, at 868 million installs.
+
+#### 🏢 企業解説リンク
+
+- [Apple](companies/apple.html)
+
+🔗 [元記事を読む](https://techcrunch.com/2026/08/11/2025s-most-downloaded-game-block-blast-is-going-ad-free-on-apple-arcade/)
+
+---
+
+## 記事 8  ｜  The Verge
+
+### Amazonの注文確認メールが役に立たなくなった理由
+
+> 原題: *Why your Amazon order confirmation emails have become so unhelpful*
+
+#### 📝 記事の日本語要約
+
+このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。 朗報です！美容品と電化製品は明日到着します。
+
+#### 🇺🇸 English Summary
+
+Posts from this topic will be added to your daily email digest and your homepage feed. ﻿Good news! Your Beauty and Electronics items are arriving tomorrow!
+
+#### 🏢 企業解説リンク
+
+- [Amazon](companies/amazon.html)
+
+🔗 [元記事を読む](https://www.theverge.com/ai-artificial-intelligence/977733/amazon-order-emails-google-gmail-ai-agents-data)
+
+---
+
+## 記事 9  ｜  Wired
+
+### AI は化石燃料会社の排出量増加に貢献する可能性がある
+
+> 原題: *AI Could Help Fossil Fuel Companies Create More Emissions*
+
+#### 📝 記事の日本語要約
+
+データセンターの電力供給による排出は、当然のことながら多くの注目を集めます。しかし、マイクロソフトの元サステナビリティ担当者らによる新たな研究では、人工知能が石油・ガス業界の生産性を向上させる方法は、地球にさらに大きなダメージを与える可能性があると警告している。雑誌「npj Climate Action」に先週掲載されたこの研究では、AIの利用により、化石燃料産業がより多くの石油とガスを生産できるようになるだけで、世界のエネルギー排出量が大幅に増加する可能性があることが判明した。研究では、年間追加排出量が下限ではメキシコの排出量に匹敵する可能性があることが判明しています。ハイエンドでは、化石燃料産業を促進する AI によって、世界第 4 位の排出国であるロシアと同量の温室効果ガス排出量が増加する可能性があります。この論文によれば、排出量の増加は利益 A を上回っています。
+
+#### 🇺🇸 English Summary
+
+The emissions from powering data centers rightly get a lot of attention .But new research from former Microsoft sustainability workers cautions that the way artificial intelligence enhances productivity in the oil and gas industry could be much more damaging to the planet.
+
+#### 🏢 企業解説リンク
+
+- [Microsoft](companies/microsoft.html)
+
+🔗 [元記事を読む](https://www.wired.com/story/ai-could-help-fossil-fuel-companies-create-more-emissions/)
+
+---
+
+## 記事 10  ｜  Ars Technica
+
+### 新しい監視技術で携帯電話をナンバープレートにリンク
+
+> 原題: *New surveillance tech links your phone to your license plate*
+
+#### 📝 記事の日本語要約
+
+電話と Bluetooth の信号により、路側カメラがより充実した追跡ツールに変わる可能性があります。十分な旅行の後、ソフトウェアはこれらのデバイスの一部を車両に関連付けられた定期的な電子署名として扱うことがあります。数週間後、同じデバイスの信号の 1 つが、調査に接続されている別の車の横に表示されます。信号自体には所有者の名前が含まれていない可能性がありますが、既知の車両との以前の関連付けにより、捜査官は誰が装置を運んでいたかを解明するために使用できる別の手がかりを得ることができます。私は、データ ガバナンス、デジタル テクノロジー、監視テクノロジーを含む政府の交差点を研究する研究者です。 SignalTrace によって、警察の捜査方法がさらに変化し、人々の動きやその前の結社に重点が置かれる可能性があると私は見ています。 。
+
+#### 🇺🇸 English Summary
+
+Phone and Bluetooth signals could turn roadside cameras into far richer tracking tools.After enough trips, software may treat some of those devices as a recurring electronic signature associated with the vehicle.Weeks later, one of the same device signals appears alongside a different car connected to an investigation.
+
+🔗 [元記事を読む](https://arstechnica.com/security/2026/08/new-surveillance-tech-links-your-phone-to-your-license-plate/)
+
+---
+
+## 記事 11  ｜  MIT Tech Review
+
+### AI 教授が学術研究の新たな現実について交渉中
+
+> 原題: *AI professors are negotiating the new realities of academic research*
+
+#### 📝 記事の日本語要約
+
+Schmidt Sciences AI2050 プログラムの会合で、私は学術研究者たちが AI 時代の課題にどのように立ち向かっているかを目にしました。先週、私は世界で最も熟練した、そして最も有望な AI 研究者たちに加わるために、サンフランシスコから 30 マイル南にあるカリフォルニア州マウンテンビューのホテルに向かった。私は、エリック・シュミットとウェンディ・シュミットが資金提供し、AI に関わる研究を行う学者を支援する取り組みであるシュミット・サイエンス AI2050 プログラムの招集に向けて、ラウンドテーブル・インタビューを主催したりメディアトレーニングで講演したりしていました。フェローのリストは AI の著名人の名簿であり、全員が湾に到着したわけではありませんが、角を曲がるたびに、以前にインタビューしたことのある科学者や、その研究を賞賛した科学者が見えました。
+
+#### 🇺🇸 English Summary
+
+At a convening for the Schmidt Sciences AI2050 program, I saw how academic researchers are facing up to the challenges of the AI era.Last week, I headed 30 miles south of San Francisco to a hotel in Mountain View, California, to join some of the most accomplished, and some of the most promising, AI researchers in the world.
+
+🔗 [元記事を読む](https://www.technologyreview.com/2026/08/10/1141597/ai-professors-are-negotiating-the-new-realities-of-academic-research/)
+
+---
+
+## 記事 12  ｜  VentureBeat
+
+### Mistral AI は、2030 年までにヨーロッパで 1 ギガワットのコンピューティングを構築し、今すぐ顧客を囲い込みたいと考えています。
+
+> 原題: *Mistral AI wants to build 1 gigawatt of European compute by 2030 — and lock in customers now.*
+
+#### 📝 記事の日本語要約
+
+Mistral AI は、欧州の AI の主権を単なる話題から製品、つまりサービス レベル アグリーメントを伴う製品に変えたいと考えています。フランスの人工知能企業は火曜日、インフラストラクチャ ビジネスの 3 つの部分からなる拡張を発表しました。1 つは顧客が AI ワークロードを欧州または米国のどちらで実行するかを選択できる地域推論エンドポイント、ミッションクリティカルな展開の稼働時間保証に裏付けられた新しい「優先層」です。 。
+
+#### 🇺🇸 English Summary
+
+Mistral AI wants to turn European AI sovereignty from a talking point into a product — one with a service-level agreement attached.
+
+🔗 [元記事を読む](https://venturebeat.com/infrastructure/mistral-ai-wants-to-build-1-gigawatt-of-european-compute-by-2030-and-lock-in-customers-now)
+
+---
+
+## 記事 13  ｜  Engadget
+
+### 運転中にヘッドフォンを着けても大丈夫ですか？州によって異なります
+
+> 原題: *Can you wear your headphones while driving? It depends on the state*
+
+#### 📝 記事の日本語要約
+
+ハイエンドのヘッドフォンなど、おしゃれな新しいテクノロジーを手に入れたとき、たとえ一瞬でも手放したくない場合があります。しかし、ドライブに行くときはどうでしょうか？運転中にヘッドフォンを着用することの合法性は、どのような州にいるか、ヘッドフォンが両耳を覆っているかどうか、およびヘッドフォンの使用が危険であるとみなされるかどうかによって大きく異なります。驚くべきことに、運転中のヘッドフォンの使用を完全に禁止する法律を制定している州はありません。アリゾナ、テキサス、アラバマ、その他多くの州では、両耳を覆っている場合でも、ヘッドフォンの使用にまったく制限がありません。ただし、明確なヘッドフォンの制限はありませんが、使用が運転中の携帯電話の使用と重なった場合は、脇見運転法違反でひどい目に遭う可能性があります。 。
+
+#### 🇺🇸 English Summary
+
+Sometimes, when you've gotten a snazzy new piece of tech, like a pair of high-end headphones , it can be hard to want to part with it even for a minute.But what about when you're going for a drive?The legality of wearing headphones while driving can vary drastically based on what state you're in, whether they're covering both ears and if your usage of them is deemed dangerous.
+
+🔗 [元記事を読む](https://www.engadget.com/2230991/can-you-wear-headphones-while-driving-car-it-depends/)
+
+---
+
+## 記事 14  ｜  TechCrunch
+
+### Rivian の CEO、RJ Scaringe は、EV、ロボット、自動運転を同時に実現することに賭けています。その理由については Disrupt 2026 で説明します
+
+> 原題: *Rivian CEO RJ Scaringe is betting on EVs, robots, and autonomy all at once — he'll explain why at Disrupt 2026*
+
+#### 📝 記事の日本語要約
+
+会社を作るのは大変です。しかし、サプライチェーンの懸念が山積している中で、工場現場から大規模なハードウェアの設計、製造、納品も行うシステムを構築することは、また別の困難を伴います。そして、Rivian の CEO、RJ Scaringe が TechCrunch Disrupt 2026 で講演し、その旅とそこから得られた教訓について詳しく説明しています。Rivian は、AI、ソフトウェア、ロボット工学、製造、輸送の交差点に位置しています。そしてスカリンジ氏は、交差点がただ生き残れるだけではないことを証明するために 20 年の大部分を費やしてきました。彼はまた、これからさらに混雑するだろうと考えている。
+
+#### 🇺🇸 English Summary
+
+Building a company is hard.But building one that also designs, manufactures, and delivers hardware at scale, from a factory floor, with supply chain concerns galore is another order of difficulty.And Rivian’s CEO RJ Scaringe is speaking at TechCrunch Disrupt 2026 to detail that journey and the lessons it’s bestowed.
+
+#### 🏢 企業解説リンク
+
+- [TechCrunch](companies/techcrunch.html)
+
+🔗 [元記事を読む](https://techcrunch.com/2026/08/11/rivian-ceo-rj-scaringe-is-betting-on-evs-robots-and-autonomy-all-at-once-hell-explain-why-at-disrupt-2026/)
+
+---
+
+## 記事 15  ｜  The Verge
+
+### GuliKit の新しい Switch コントローラーは、次世代のドリフト防止サムスティックを備えています
+
+> 原題: *GuliKit’s new Switch controller features next-generation anti-drift thumbsticks*
+
+#### 📝 記事の日本語要約
+
+このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。 ES Max は、より応答性が高く正確な新しい種類のトンネル磁気抵抗サムスティックを使用しています。
+
+#### 🇺🇸 English Summary
+
+Posts from this topic will be added to your daily email digest and your homepage feed. ﻿The ES Max uses a new kind of tunneling magnetoresistance thumbsticks that are more responsive and precise.
+
+🔗 [元記事を読む](https://www.theverge.com/tech/976972/gulikit-es-max-anti-drift-tmr-switch-2-wireless-controller-price-availability)
+
+---
+
+## 記事 16  ｜  Wired
+
+### Zoom の画面共有バグにより、通話中に誰でも他のデバイスを引き継ぐことができる
+
+> 原題: *A Zoom Screen-Sharing Bug Let Anyone Take Over Other Devices on a Call*
+
+#### 📝 記事の日本語要約
+
+AI モデルがソフトウェアの脆弱性を発見し、それらを悪用する方法を開発し、自律的なハッキング行為を実行する高度な機能を獲得するにつれて、研究者らは火曜日に、ターゲットのデバイスを乗っ取るために悪用された可能性があるビデオ会議プラットフォーム Zoom の脆弱性を明らかにした、驚くべき新しい例を提示しました。参加者であれ主催者であれ、画面共有を伴う通話に参加している人は誰でも、被害者からの指示や対話なしに実行されるサイレント攻撃に対して脆弱になる可能性があります。デジタル防衛企業 A Security の研究者らによると、このバグは一般に公開されている AI モデルを使用して 6 月初旬に発見され、脆弱性を発見して有効な攻撃を作成するまでに 20 回のプロンプトも要らなかったと述べています。 Zoomは証券aを発行しました。 。
+
+#### 🇺🇸 English Summary
+
+As AI models gain advanced capabilities to find vulnerabilities in software, develop ways to exploit them , and even carry out autonomous hacking sprees , researchers offered a sobering new example on Tuesday, disclosing vulnerabilities in the video conferencing platform Zoom that could have been exploited to take over targets’ devices.
+
+🔗 [元記事を読む](https://www.wired.com/story/a-zoom-screen-sharing-bug-let-anyone-take-over-other-devices-on-a-call/)
+
+---
+
+## 記事 17  ｜  Ars Technica
+
+### 新しい Pass-ta-key 攻撃により、パスキーについて私たちが知らなかったことがすべて明らかになります
+
+> 原題: *New Pass-ta-key attack reveals all the things we didn't know about passkeys*
+
+#### 📝 記事の日本語要約
+
+パスキー アプリが Windows を他のオペレーティング システムとは異なって扱う理由。先週、研究者は、パスワードベースの方法よりも安全な代替手段を提供する新しい認証パラダイムであるパスキーの「新たな攻撃対象領域」について概説しました。実際、この投稿で実証された攻撃は目新しいものでも、パスキーに特有のものでもありません。この調査により、この新しいメカニズムが本当に安全に使用できるかどうかを評価するエンドユーザーやセキュリティ専門家に混乱が生じたため、この区別は重要です。この攻撃は「Pass-ta-key」と呼ばれています。これは、パスキーという言葉と「キーを渡す」というフレーズと、パスタの皿を連想させる言葉を組み合わせたものです。
+
+#### 🇺🇸 English Summary
+
+Why passkey apps treat Windows differently than other operating systems.Last week a researcher outlined what he said was a “novel attack surface” in passkeys, the new authentication paradigm that offers a more secure alternative over password-based methods.In fact, the attacks demonstrated in the post are neither novel nor unique to passkeys.
+
+🔗 [元記事を読む](https://arstechnica.com/security/2026/08/heres-why-the-new-pass-ta-key-attack-is-mostly-a-nothingburger/)
+
+---
+
+## 記事 18  ｜  MIT Tech Review
+
+### ダウンロード: 科学のための AI エージェントと「検閲と産業の複合体」
+
+> 原題: *The Download: AI agents for science, and the “censorship-industrial complex”*
+
+#### 📝 記事の日本語要約
+
+さらに、Amazon の新しいデータセンターは、米国で最も汚染の多い発電所になる可能性があります。これは、テクノロジーの世界で何が起こっているかを毎日提供する平日のニュースレター、 The Download の本日版です。—Googleの元最高経営責任者（CEO）でシュミット・サイエンシズの共同創設者であるエリック・シュミット氏と、シュミット・サイエンシズAIセンターで科学研究用AIを率いるスハス・マヘシュ氏 2024年、Google DeepMindの科学者らは、タンパク質の構造を予測するニューラルネットワーク「AlphaFold」でノーベル化学賞を共同受賞した。これは、AI が画期的な科学的発見を行える可能性があることを示しましたが、AlphaFold は科学を加速するための最適なテンプレートではない可能性があります。
+
+#### 🇺🇸 English Summary
+
+Plus: A new Amazon data center could become the US’s most polluting power plant.This is today's edition of The Download , our weekday newsletter that provides a daily dose of what's going on in the world of technology.
+
+#### 🏢 企業解説リンク
+
+- [Amazon](companies/amazon.html)
+- [Google](companies/google.html)
+
+🔗 [元記事を読む](https://www.technologyreview.com/2026/08/10/1141526/the-download-ai-agents-science-censorship-industrial-complex/)
+
+---
+
+## 記事 19  ｜  VentureBeat
+
+### LTX-2.5 は、Nvidia スーパーチップ上で画像から 10 秒の AI ビデオをわずか 6.8 秒で生成でき、オープンウェイトです
+
+> 原題: *LTX-2.5 can generate a 10-second AI video from an image in just 6.8 seconds on Nvidia superchips — and it's open weights*
+
+#### 📝 記事の日本語要約
+
+Lightricks からスピンアウトしたオープンワールド モデル会社 LTX は本日、LTX-2 をリリースしました。 5 は、同社のオープンウェイト ビデオおよび「ワールド」モデルの最新バージョンであり、両社間の戦略的な初日立ち上げパートナーシップを通じて、オープン ジェネレーティブ メディアの事実上のプロトタイピング環境となったノードベースのワークフロー ツールである ComfyUI にネイティブに統合されます。このモデルはオープンウィーとして現在入手可能です。 。
+
+#### 🇺🇸 English Summary
+
+LTX , the open world model company spun out of Lightricks, today released LTX-2.5, the newest version of its open-weights video and "world" model and it arrives natively integrated into ComfyUI , the node-based workflow tool that has become the de facto prototyping environment for open generative media, through a strategic day-one launch partnership between the two companies.
+
+#### 🏢 企業解説リンク
+
+- [NVIDIA](companies/nvidia.html)
+
+🔗 [元記事を読む](https://venturebeat.com/technology/ltx-2-5-can-generate-a-10-second-ai-video-from-an-image-in-just-6-8-seconds-on-nvidia-superchips-and-its-open-weights)
+
+---
+
+## 記事 20  ｜  Engadget
+
+### Bluetooth ヘッドフォンを PS5 に接続する方法
+
+> 原題: *How to connect Bluetooth headphones to your PS5*
+
+#### 📝 記事の日本語要約
+
+PS5 は Bluetooth オーディオを直接サポートしていない可能性がありますが、回避策はあります。リンクからの購入に対して手数料を受け取る場合があります。PS5 は素晴らしいコンソールですが、ハイエンドの 4K ゲームを処理できるにもかかわらず、Bluetooth オーディオをサポートしていません。まあ、サードパーティのアクセサリを使用する回避策がないわけではありません。可能な限り最高のオーディオ体験を求める人は、間違いなく最高のゲーミング ヘッドセットを購入する必要があります。それでも、PS5 と Bluetooth ヘッドフォンをペアリングすることに本気で取り組んでいるのであれば、USB アダプターを使用して、ゲーム機を最大限に活用する方法があります。
+
+#### 🇺🇸 English Summary
+
+The PS5 may not support Bluetooth audio directly, but there are workarounds.We may receive a commission on purchases made from links.The PS5 is one heck of a console, yet despite it being able to handle high-end 4K gaming, it doesn't support Bluetooth audio.Well, not without a workaround method involving a third-party accessory.
+
+🔗 [元記事を読む](https://www.engadget.com/2230993/how-to-connect-bluetooth-headphones-to-ps5/)
+
+---
+
+## 記事 21  ｜  TechCrunch
+
+### FlightAware、欠航予測市場を巡りカルシを訴訟
+
+> 原題: *FlightAware sues Kalshi over flight cancellation prediction markets*
+
+#### 📝 記事の日本語要約
+
+リアルタイムのフライト追跡会社FlightAwareは、ギャンブル市場を主催するために自社のデータを使用したとして、予測市場のKalshiを訴えている。カルシは約 1 か月前に、米国内または特定の空港でキャンセルされたフライトの数にユーザーが賭けられるようにし始めました。FlightAware によると、カルシはフライトトラッカーがカルシに停止を要求した後でも、FlightAware のデータと名前を許可なく使用し、FlightAware のブランドと情報を表示しました。「カルシは、これらの賭博市場の結果を決定するためにFlightAwareのデータに依存することをFlightAwareに決して通知しなかった」と訴状には記載されている。
+
+#### 🇺🇸 English Summary
+
+The real-time flight tracker FlightAware is suing the prediction market Kalshi for allegedly using its data to host gambling markets.Kalshi started letting users bet on the number of flights cancelled in the U.S., or at a given airport, about a month ago .
+
+#### 🏢 企業解説リンク
+
+- [TechCrunch](companies/techcrunch.html)
+
+🔗 [元記事を読む](https://techcrunch.com/2026/08/11/flightaware-sues-kalshi-over-flight-cancellation-prediction-markets/)
+
+---
+
+## 記事 22  ｜  The Verge
+
+### バンブルは男性に最初の行動を起こさせるようになりました
+
+> 原題: *Bumble now lets men make the first move*
+
+#### 📝 記事の日本語要約
+
+このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。 メッセージの受信者は、24 時間ではなく 72 時間以内に応答できるようになりました。
+
+#### 🇺🇸 English Summary
+
+Posts from this topic will be added to your daily email digest and your homepage feed. ﻿Message recipients also now have 72 hours to respond instead of just 24 hours.
+
+🔗 [元記事を読む](https://www.theverge.com/tech/977804/bumble-dating-app-men-message-first-update)
+
+---
+
+## 記事 23  ｜  Wired
+
+### 最高の赤光療法マスクはTikTokのものではない
+
+> 原題: *The Best Red-Light Therapy Mask Isn’t the One on TikTok*
+
+#### 📝 記事の日本語要約
+
+肌が助けを求めているが、10ステップのルーチンを行うには疲れすぎている（またはハイテクフェイシャルに何百ドルも費やしたくない）場合は、レッドライトセラピーマスクが最も簡単な偽装ハックです。私たちの一番おすすめの Shark CryoGlow LED フェイス マスク ($350) のような赤色光治療装置を着用しながら、ソーシャル メディアで人々が最高のハンニバル レクターをチャネリングしているのを見たことがあるかもしれません。しかし、彼らはキャンティを飲んでいるのではなく、赤光療法のおかげでしわや小じわが消えたと主張しています。老化には何の問題もありませんが、これらのデバイスの誇大広告を見て、その背後にあるテクノロジーが実際に肌を改善できるかどうかを調査したいと思いました。ホームセンターで売っている赤色 LED だけでは同じ効果は得られません。 lの場合。 。
+
+#### 🇺🇸 English Summary
+
+If your skin is crying out for help, but you're too tired to do a 10-step routine (or don't want to spend hundreds on a high-tech facial), a red-light therapy mask is the easiest fake-it-till-you-make-it hack around.
+
+🔗 [元記事を読む](https://www.wired.com/story/led-face-masks-and-red-light-therapy/)
+
+---
+
+## 記事 24  ｜  Ars Technica
+
+### Ars Live: ロス・スコットがストップ・キリング・ゲーム運動について語る
+
+> 原題: *Ars Live: Ross Scott discusses the Stop Killing Games movement*
+
+#### 📝 記事の日本語要約
+
+私たちのディスカッションは、8 月 11 日午後 2 時 30 分（東部標準時間）にライブで行われます。集中オンライン サーバーがシャットダウンされるとお気に入りのタイトルがプレイできなくなったり、デジタル登録が解除され、往年の批評家から絶賛されたタイトルを購入してダウンロードできなくなったりすることは、真剣なゲーマーなら誰でも知っていることでしょう。このビデオゲームの保存問題について何かできることはないでしょうか?その質問に答えるために、Ars Live シリーズの一環として、東部標準時間の 8 月 11 日午後 2 時 30 分に、Stop Killing Games キャンペーンの創設者である Ross Scott 氏とのライブ会話を開催します。Ars の上級ゲーム編集者として、私はかつて活気に満ちたゲームがクリエイターによって放置されている無数の例を記録してきました。
+
+#### 🇺🇸 English Summary
+
+Our discussion takes place live on August 11 at 2:30 pm ET.By now, any serious gamer is familiar with a favorite title becoming unplayable after a centralized online server gets shut down, or being unable to purchase and download a digitally delisted, critically acclaimed title from yesteryear.Can anything be done about this video game preservation problem?
+
+🔗 [元記事を読む](https://arstechnica.com/gaming/2026/08/ars-live-ross-scott-discusses-the-stop-killing-games-movement/)
+
+---
+
+## 記事 25  ｜  MIT Tech Review
+
+### 科学用 AI にはデータだけではなく推論が必要です
+
+> 原題: *AI for science needs reasoning, not just data*
+
+#### 📝 記事の日本語要約
+
+人間の研究プロセスをモデル化できる AI エージェントは、科学における発見を加速します。数十年ごとに、誰かが科学が終焉を迎えたと発表します。 1903 年、尊敬される物理学者のアルバート マイケルソンは、「物理科学の事実はすべて発見された」と書きました。1980 年代、スティーブン ホーキング博士は、理論物理学は今世紀末までに完成するかもしれないと予測しました。人工知能の爆発的な到来により、その感情が再び漂い、今度はノーベル賞も伴います。 2024 年、Google DeepMind のデミス・ハサビス氏とジョン・ジャンパー氏は、実験的に測定された何千もの形状から学習してタンパク質の三次元構造を予測するニューラル ネットワーク AlphaFold により、化学分野でノーベル賞の一部を受賞しました。この悪魔的な問題。 。
+
+#### 🇺🇸 English Summary
+
+AI agents that can model the human process of research will accelerate discoveries in science.Every few decades, someone announces that science has reached its end.In 1903, the revered physicist Albert Michelson wrote that the “facts of physical science have all been discovered.” In the 1980s, Stephen Hawking predicted that theoretical physics might be finished by the end of the century.
+
+#### 🏢 企業解説リンク
+
+- [Google](companies/google.html)
+
+🔗 [元記事を読む](https://www.technologyreview.com/2026/08/10/1141384/ai-agents-for-science/)
+
+---
+
+## 記事 26  ｜  VentureBeat
+
+### Nvidia の Switchyard ルーターはタスクの途中で AI モデルを再シャッフルし、独自のテストでタスクのコストを 3 分の 1 に削減
+
+> 原題: *Nvidia's Switchyard router reshuffles AI models mid-task, cutting task costs to a third in its own tests*
+
+#### 📝 記事の日本語要約
+
+常時稼働の AI エージェントを実行している企業は、同じトレードオフに直面し続けています。すべてのタスクをフロンティア モデルに送信すると、請求額が急速に上昇します。カスタム ルーティング ロジックを構築して簡単なタスクを安価なモデルに送信すると、それが独自のエンジニアリング プロジェクトとなり、ワークフローが変更されるたびに維持する必要があります。 Nvidia は、この問題の両端に同時に触れる修正を提案しています。同社は火曜日に、300 億パラメータのオープン専門家混合モデルである Nemotron 3.5 Lightning を発表しました。 。
+
+#### 🇺🇸 English Summary
+
+Enterprises running always-on AI agents keep hitting the same tradeoff.Send every task to a frontier model and the bill climbs fast.Build custom routing logic to send easy tasks to cheaper models and that becomes its own engineering project, one that has to be maintained every time a workflow changes.Nvidia is proposing a fix that touches both ends of that problem at once.
+
+#### 🏢 企業解説リンク
+
+- [NVIDIA](companies/nvidia.html)
+
+🔗 [元記事を読む](https://venturebeat.com/orchestration/nvidias-switchyard-router-reshuffles-ai-models-mid-task-cutting-task-costs-to-a-third-in-its-own-tests)
+
+---
+
+## 記事 27  ｜  Engadget
+
+### サムスンは、補聴器機能が今年後半にGalaxy Budsに搭載される予定だと発表
+
+> 原題: *Samsung says a hearing aid feature is coming to Galaxy Buds later this year*
+
+#### 📝 記事の日本語要約
+
+FDAはサムスンのGalaxy Buds補聴器機能を承認し、間もなく聴力検査と並行して利用できるようになる。 Samsungは、食品医薬品局がGalaxy Budsの補聴器機能を許可したと発表した。そのため同社は、今年後半に米国およびその他の一部の市場で、Galaxy Buds 3 ProおよびGalaxy Buds 4 Proでこの機能と聴力検査ツールを利用できるようにする予定だ。補聴器機能は、Apple の AirPods Pro にあるものと似ています。軽度から中度の難聴を持つ 18 歳以上の人々に、市販の補聴器ソリューションを提供するように設計されています。一方、聴力検査はわずか5分で医療グレードの結果が得られると言われている。互換性のある Galaxy スマートフォンの Galaxy Buds 設定からテストを開始できます。それぞれの耳について、テストは行われます。 。
+
+#### 🇺🇸 English Summary
+
+The FDA approved Samsung's Galaxy Buds hearing aid feature, which will soon be available alongside a hearing test.Samsung says the Food and Drug Administration has cleared its hearing aid feature for Galaxy Buds.As such, the company plans to make the feature and a hearing test tool available on Galaxy Buds 3 Pro and Galaxy Buds 4 Pro in the US and some other markets later this year.
+
+#### 🏢 企業解説リンク
+
+- [Apple](companies/apple.html)
+
+🔗 [元記事を読む](https://www.engadget.com/2234489/samsung-says-a-hearing-aid-feature-is-coming-to-galaxy-buds-later-this-year/)
+
+---
+
+## 記事 28  ｜  TechCrunch
+
+### 独占：京都フュージョニアリングが核融合発電プラントの主要装置の作業を開始
+
+> 原題: *Exclusive: Kyoto Fusioneering starts work on key fusion power plant device*
+
+#### 📝 記事の日本語要約
+
+核融合発電の世界では、原子が融合して膨大なエネルギーを放出する原子炉自体に注目が集まっています。しかし、核融合炉は他の多くの設備がなければ長時間稼働できず、核融合炉の建設にはそれだけで十分な費用がかかります。多くのスタートアップは、残りのことを他の人に任せることをいとわない。新興核融合発電サプライチェーンに数十社ある企業の中で、京都フュージョニアリングほど大きな専門企業はほとんどありません。 FusionX によると、日本に本拠を置く同社は、コミットメント資本として 1 億 2,100 万ドルを調達したという。現在、オークリッジ国立研究所（ORNL）で燃料増殖装置のプロトタイプを構築するため、米国エネルギー省とテネシー州から補助金を獲得した。この発表と併せて、京都フュージョニアリングが独占的に伝えた。 。
+
+#### 🇺🇸 English Summary
+
+In the fusion power world, most of the attention gets lavished on the reactors themselves, where atoms fuse to unleash enormous amounts of energy.But a fusion reactor can’t run for long without a lot of other equipment, and building a fusion reactor is expensive enough on its own.Plenty of startups are happy to let someone else handle the rest .
+
+🔗 [元記事を読む](https://techcrunch.com/2026/08/11/kyoto-fusioneering-starts-work-on-key-fusion-power-plant-device/)
+
+---
+
+## 記事 29  ｜  The Verge
+
+### Spotify、「AI ペルソナ」の音楽は推奨しないと発表
+
+> 原題: *Spotify says it won’t recommend music from ‘AI Personas’*
+
+#### 📝 記事の日本語要約
+
+このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。 Spotify は、「実在の人物を表していない」プロフィールに「AI ペルソナ」バッジを適用します。 』
+
+#### 🇺🇸 English Summary
+
+Posts from this topic will be added to your daily email digest and your homepage feed. Spotify will apply an ‘AI Persona’ badge to profiles that do ‘not represent a real person. ’
+
+🔗 [元記事を読む](https://www.theverge.com/entertainment/977815/spotify-ai-persona-label-recommendations)
+
+---
+
+
+> ⚠️ 本まとめは自動生成です。数値・固有名詞などの事実は元記事でご確認ください。
