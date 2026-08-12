@@ -1,0 +1,614 @@
+# 🌐 海外テックニュース 日本語まとめ
+
+**生成日時:** 2026年8月12日  03:26 JST
+
+> 世界の有力テックメディア（TechCrunch・The Verge・Wired・Ars Technica・MIT Tech Review・VentureBeat・Engadget）から注目記事を自動収集し、日本の読者向けに翻訳・要約しました。
+
+---
+
+## 目次
+
+1. [Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.](#記事-1--error-500-server-error1500thats-an-errorthere-was-an-error-please-try-again-laterthats-all-we-know)
+2. [Sabreは、Rideshare StimulatorのライターをChatGPTに置き換えることを否定しています](#記事-2--sabreは、rideshare-stimulatorのライターをchatgptに置き換えることを否定しています)
+3. [レタスをまだ食べても安全ですか?](#記事-3--レタスをまだ食べても安全ですか)
+4. [デルタ航空への偽のホットスポット攻撃でDEF CONの群衆が疑われる](#記事-4--デルタ航空への偽のホットスポット攻撃でdef-conの群衆が疑われる)
+5. [「検閲と産業の複合体」がインターネットと米国の政策をどのように変えているか](#記事-5--「検閲と産業の複合体」がインターネットと米国の政策をどのように変えているか)
+6. [SpaceXAI の Grok Bot は、エージェントを月額 120 ドルでアプリを操作できる永続的なデジタル同僚に変えます](#記事-6--spacexai-の-grok-bot-は、エージェントを月額-120-ドルでアプリを操作できる永続的なデジタル同僚に変えます)
+7. [政府職員は正式にTikTokを再びスクロールして時間を無駄にすることができる](#記事-7--政府職員は正式にtiktokを再びスクロールして時間を無駄にすることができる)
+8. [アクセル、前回の設立から19か月後、数週間以内に募集超過の5億5,000万ドルのインドファンドを閉鎖](#記事-8--アクセル、前回の設立から19か月後、数週間以内に募集超過の5億5000万ドルのインドファンドを閉鎖)
+9. [Xbox Elite 3 のプロトタイプパッドが小さな内蔵スクリーンでリーク](#記事-9--xbox-elite-3-のプロトタイプパッドが小さな内蔵スクリーンでリーク)
+10. [今週ペルセウス座流星群をいつどのように見るか](#記事-10--今週ペルセウス座流星群をいつどのように見るか)
+11. [トランプ大統領は大手製薬会社がMMRワクチンを分割することを望んでいる。大手製薬会社はそれが愚かだと考えている](#記事-11--トランプ大統領は大手製薬会社がmmrワクチンを分割することを望んでいる。大手製薬会社はそれが愚かだと考えている)
+12. [Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.](#記事-12--error-500-server-error1500thats-an-errorthere-was-an-error-please-try-again-laterthats-all-we-know)
+13. [AI 主導の購入意図が販売完了となることが非常に少ない理由](#記事-13--ai-主導の購入意図が販売完了となることが非常に少ない理由)
+14. [ウーバーが全株式を売却してロボット企業サーブを驚かせた](#記事-14--ウーバーが全株式を売却してロボット企業サーブを驚かせた)
+15. [Sonos Ace Ultraヘッドフォンが登場する可能性がある](#記事-15--sonos-ace-ultraヘッドフォンが登場する可能性がある)
+16. [ゲーミングマウスにもっと多くのボタンがあった頃のことを覚えていますか? Razer Naga V3 Pro は次のことを行います](#記事-16--ゲーミングマウスにもっと多くのボタンがあった頃のことを覚えていますか-razer-naga-v3-pro-は次のことを行います)
+17. [欧州の重要な海洋ガス田付近でロシアの無人機が発見、爆破される](#記事-17--欧州の重要な海洋ガス田付近でロシアの無人機が発見、爆破される)
+18. [AI 教授が学術研究の新たな現実について交渉中](#記事-18--ai-教授が学術研究の新たな現実について交渉中)
+19. [Mistral AI は、2030 年までにヨーロッパで 1 ギガワットのコンピューティングを構築し、今すぐ顧客を囲い込みたいと考えています。](#記事-19--mistral-ai-は、2030-年までにヨーロッパで-1-ギガワットのコンピューティングを構築し、今すぐ顧客を囲い込みたいと考えています。)
+20. [Zoom の画面共有のバグにより、通話中に他のデバイスが完全に引き継がれてしまう](#記事-20--zoom-の画面共有のバグにより、通話中に他のデバイスが完全に引き継がれてしまう)
+21. [FBI、サイバー犯罪者が被害者のオンラインアカウントをハッキングして親密な写真を盗んでいると発表](#記事-21--fbi、サイバー犯罪者が被害者のオンラインアカウントをハッキングして親密な写真を盗んでいると発表)
+22. [ChatGPT と Gemini はどちらもユーザー数 10 億人を突破しました](#記事-22--chatgpt-と-gemini-はどちらもユーザー数-10-億人を突破しました)
+23. [AI は化石燃料会社の排出量増加に貢献する可能性がある](#記事-23--ai-は化石燃料会社の排出量増加に貢献する可能性がある)
+24. [Chrome はアカウント乗っ取りに対してこれまでで最も優れた保護策を採用しています](#記事-24--chrome-はアカウント乗っ取りに対してこれまでで最も優れた保護策を採用しています)
+25. [ダウンロード: 科学のための AI エージェントと「検閲と産業の複合体」](#記事-25--ダウンロード-科学のための-ai-エージェントと「検閲と産業の複合体」)
+26. [LTX-2.5 は、Nvidia スーパーチップ上で画像から 10 秒の AI ビデオをわずか 6.8 秒で生成でき、オープンウェイトです](#記事-26--ltx-25-は、nvidia-スーパーチップ上で画像から-10-秒の-ai-ビデオをわずか-68-秒で生成でき、オープンウェイトです)
+27. [アボットは AI を活用した血糖値モニタリングで Google Health と提携](#記事-27--アボットは-ai-を活用した血糖値モニタリングで-google-health-と提携)
+28. [OpenAI が Linux 用 ChatGPT デスクトップ アプリを開始](#記事-28--openai-が-linux-用-chatgpt-デスクトップ-アプリを開始)
+29. [Threads には VR アプリが登場しました](#記事-29--threads-には-vr-アプリが登場しました)
+
+---
+
+## 記事 1  ｜  TechCrunch
+
+### Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.
+
+> 原題: *Phoebe Gates and Sophia Kianni reportedly knew Phia was 'cookie stuffing' for months*
+
+#### 📝 記事の日本語要約
+
+フィービー・ゲイツ氏とソフィア・キアニ氏が共同設立したショッピングスタートアップのフィアが、商慣行疑惑で再び非難を浴びている。この最新の問題は、今年初めにブルームバーグが、クッキー・スタッフィングとして知られる、生成に役立たなかったアフィリエイト購入のクレジットと手数料をフィアがどのように受け取っていたかを明らかにする調査結果を発表したことに端を発している。これは、他のアフィリエイトマーケターから紹介収入を奪っているとみなされるため、スタートアップ企業が訴訟される可能性がある物議を醸す行為です。通常、Phia のようなアフィリエイト プラットフォームがマーケットプレイスで活動するためにサインオンする場合、クッキー スタッフィングは不公平であるため禁止するという契約に署名します。
+
+#### 🇺🇸 English Summary
+
+Phia, the shopping startup co-founded by Phoebe Gates and Sophia Kianni, is once again under fire for its alleged business practices.The latest issue stems from earlier this year when Bloomberg published an investigation that mapped out how Phia was taking credit and commission for affiliate purchases it did not help to generate, known as cookie stuffing.
+
+🔗 [元記事を読む](https://techcrunch.com/2026/08/11/phoebe-gates-and-sophia-kianni-reportedly-knew-phia-was-cookie-stuffing-for-months/)
+
+---
+
+## 記事 2  ｜  The Verge
+
+### Sabreは、Rideshare StimulatorのライターをChatGPTに置き換えることを否定しています
+
+> 原題: *Saber denies replacing Rideshare Stimulator’s writers with ChatGPT*
+
+#### 📝 記事の日本語要約
+
+このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。 セイバーの CEO は、ゲームのストーリーは 1 つの実験モードを除いて「すべて実際の人々によって書かれた」と述べています。
+
+#### 🇺🇸 English Summary
+
+Posts from this topic will be added to your daily email digest and your homepage feed. ﻿Saber’s CEO says the game’s story was ‘written entirely by real people’ except for one experimental mode.
+
+🔗 [元記事を読む](https://www.theverge.com/games/978558/rideshare-stimulator-writer-ai-saber-interactive)
+
+---
+
+## 記事 3  ｜  Wired
+
+### レタスをまだ食べても安全ですか?
+
+> 原題: *Is It Safe to Eat Lettuce Yet?*
+
+#### 📝 記事の日本語要約
+
+しばらくの間、下痢を引き起こす寄生虫シクロスポラがいたるところに存在しているように思えました。確定症例と疑い症例は15州で2万2000人以上に上り、517人が入院を必要としている。ミシガン州では２人が死亡した。しかし現在、感染拡大が鈍化しつつある兆候を受けて、専門家らはレタスはおそらく再び安全に食べられるだろうと述べている。理由？汚染された農産物のほとんどはもう入手できません。連邦保健当局は、今回の感染拡大を、メキシコ中部産でテイラー・ファームズがタコベル・レストランなどに流通させたアイスバーグ・レタスと関連付けている。 7月17日、テイラー・ファームズは、8月3日までの「賞味期限」を期限とする細切りアイスバーグレタスとサラダミックスのリコールを発表し、消費者に対象製品を直ちに廃棄するよう勧告した。食料品店と R. 。
+
+#### 🇺🇸 English Summary
+
+For a while it seemed like the diarrhea-inducing parasite cyclospora was everywhere .Confirmed and suspected cases number more than 22,000 across 15 states, with 517 people requiring hospitalization.Two people in Michigan died.But now, with signs that the outbreak is slowing down, experts say lettuce is probably safe to eat again.The reason?Most of the contaminated produce is no longer available.
+
+🔗 [元記事を読む](https://www.wired.com/story/is-it-safe-to-eat-lettuce-yet/)
+
+---
+
+## 記事 4  ｜  Ars Technica
+
+### デルタ航空への偽のホットスポット攻撃でDEF CONの群衆が疑われる
+
+> 原題: *DEF CON crowd suspected in fake-hotspot attack on Delta flight*
+
+#### 📝 記事の日本語要約
+
+FBIアトランタはこの事件を捜査中であることを認めたが、逮捕者は出ていない。月曜日、ラスベガス発アトランタ行きデルタ航空591便の乗客が機内Wi-Fiを偽装した疑いがあり、連邦法執行機関の注目を集めた。この事件は、ラスベガスでの DEF CON 安全保障会議が閉幕した翌日に発生し、ACARS として知られる、公開されている空対地メッセージを追跡するソーシャル メディア アカウントで最初に説明されました。 「ACARSドラマ」のアカウントによると、飛行機からパイロットによって次のようなメッセージが送信されたという。「今のところ情報はない。ラスでのサイバー会議に参加していた大勢の乗客が我々のWi-Fiを妨害し、信号を送信することができた。」
+
+#### 🇺🇸 English Summary
+
+FBI Atlanta confirms it’s looking into the incident, no arrests made.On Monday, passengers aboard Delta flight 591 going from Las Vegas to Atlanta allegedly spoofed the onboard Wi-Fi, raising the attention of federal law enforcement.
+
+🔗 [元記事を読む](https://arstechnica.com/information-technology/2026/08/def-con-crowd-suspected-in-fake-hotspot-attack-on-delta-flight/)
+
+---
+
+## 記事 5  ｜  MIT Tech Review
+
+### 「検閲と産業の複合体」がインターネットと米国の政策をどのように変えているか
+
+> 原題: *How the “censorship-industrial complex” is changing the Internet and US policy*
+
+#### 📝 記事の日本語要約
+
+私が初めて「検閲・産業複合体」という言葉を聞いたのは、2025年4月15日のことだった。ロシア、イラン、中国などからの外国の偽情報の監視と対策に重点を置いた米国国務省の小さな事務所が、翌日、差し迫った閉鎖に直面しているという情報を私が得たのはその時だった。そしてその理由は？ R/FIMIと呼ばれるこの事務所は、いわゆる検閲産業複合体において国務省の中心拠点として機能していると非難された。この複合体は、偽情報との闘いを名目にオンラインでの保守的でポピュリスト的な言論を抑圧するために共謀しているとされる、政府機関、学者、市民社会団体、ビッグテックプラットフォームの不規則な集団である。しかし、これは単なる政策の話ではありません。検閲に関する考え方の武器化も、何十億もの人々に影響を与えます。 。
+
+#### 🇺🇸 English Summary
+
+I first heard the term “censorship-industrial complex” on April 15, 2025.That’s when I got the tip that a small office in the U.S.State Department, which focused on monitoring and countering foreign disinformation from the likes of Russia, Iran, and China, was facing imminent shutdown—the next day.And the reason?
+
+🔗 [元記事を読む](https://www.technologyreview.com/2026/08/11/1141635/how-the-censorship-industrial-complex-is-changing-the-internet-and-us-policy/)
+
+---
+
+## 記事 6  ｜  VentureBeat
+
+### SpaceXAI の Grok Bot は、エージェントを月額 120 ドルでアプリを操作できる永続的なデジタル同僚に変えます
+
+> 原題: *SpaceXAI's Grok Bot turns agents into persistent digital coworkers that can operate your apps for $120-per-month*
+
+#### 📝 記事の日本語要約
+
+Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.
+
+#### 🇺🇸 English Summary
+
+SpaceXAI, the division of SpaceX f ormerly known as xAI , is launching an early beta version of Grok Bot , a new agent designed to move AI assistants beyond answering prompts and toward continuously executing work across the software employees already use. The central idea is straightforward: instead of opening an AI assistant whenever a task arises, users create persistent Bots w. .
+
+#### 🏢 企業解説リンク
+
+- [SpaceX](companies/spacex.html)
+
+🔗 [元記事を読む](https://venturebeat.com/orchestration/spacexais-grok-bot-turns-agents-into-persistent-digital-coworkers-that-can-operate-your-apps-for-120-per-month)
+
+---
+
+## 記事 7  ｜  Engadget
+
+### 政府職員は正式にTikTokを再びスクロールして時間を無駄にすることができる
+
+> 原題: *Government workers can officially waste time scrolling TikTok again*
+
+#### 📝 記事の日本語要約
+
+同アプリは2022年に政府の端末から禁止された。行政管理予算局（OMB）の新たなメモによると、トランプ政権当局者は現在、TikTokを自由に投稿したり、際限なくスクロールしたりできるという。このメモは、ほとんどの政府発行デバイスからアプリを禁止する2022年の法律を正式に取り消す連邦政府の最新の動きであり、このメモはTikTok禁止の最後の名残に終止符を打つものである。このアプリは、親会社と中国との関係に対する懸念が高まる中、2022年にほとんどの連邦政府の端末から禁止された。クリス・レイFBI長官を含む、当時のジョー・バイデン大統領の下で政府当局者らは、このアプリは国家安全保障上の脅威をもたらすと述べたが、そのリスクの正確な性質は激しい議論の対象となった。このアプリは昨年、ピ大統領の後、米国で一時的に利用を停止した。 。
+
+#### 🇺🇸 English Summary
+
+The app was banned from government devices in 2022.Trump administration officials are now free to post and endlessly scroll TikTok, a new memo from the Office of Management and Budget (OMB) says.The memo is the latest move from the federal government formally undoing a 2022 law that banned the app from most government-issued devices, The memo ends what's among the last vestiges of the TikTok bans.
+
+🔗 [元記事を読む](https://www.engadget.com/2235010/government-workers-can-officially-waste-time-scrolling-tiktok-again/)
+
+---
+
+## 記事 8  ｜  TechCrunch
+
+### アクセル、前回の設立から19か月後、数週間以内に募集超過の5億5,000万ドルのインドファンドを閉鎖
+
+> 原題: *Accel closes oversubscribed $550M India fund within weeks, 19 months after its last*
+
+#### 📝 記事の日本語要約
+
+アクセルは、前回インドに特化した車両を調達してから2年も経たないうちに、協調3ドルの一環として新たに5億5,000万ドルのインド基金を閉鎖した。世界規模で50億ドルの募金活動。事情に詳しい関係者がTechCrunchに語ったところによると、この新しいインド基金は申し込みを超過し、数週間以内に閉鎖されたという。関係者らによると、アクセルは以前の6億5000万ドルのインドファンドの55％以上がまだ投資に利用可能であり、以前の事業に十分な資本が残っていたにもかかわらず今回の資金調達が行われたことを強調した。「私たちが常に投資してきたカテゴリー、つまりAI、消費者、フィンテック、そして現在は先進的な製造業、ディープテックなどへの初期段階の投資に利用できる多額の資金が市場に存在します」とAccelのパートナー、シェカール・キラニ氏はTechCrunchに語った。「私たちは今後も投資を続けていきます。
+
+#### 🇺🇸 English Summary
+
+Accel has closed a new $550 million India fund, less than two years after raising its previous India-focused vehicle, as part of a coordinated $3.5 billion global fundraising effort.The new India fund was oversubscribed and closed within weeks, people familiar with the matter told TechCrunch.
+
+#### 🏢 企業解説リンク
+
+- [TechCrunch](companies/techcrunch.html)
+
+🔗 [元記事を読む](https://techcrunch.com/2026/08/11/accel-closes-oversubscribed-550m-india-fund-within-weeks-19-months-after-its-last/)
+
+---
+
+## 記事 9  ｜  The Verge
+
+### Xbox Elite 3 のプロトタイプパッドが小さな内蔵スクリーンでリーク
+
+> 原題: *Xbox Elite 3 prototype pad leaks with tiny built-in screen*
+
+#### 📝 記事の日本語要約
+
+Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.
+
+#### 🇺🇸 English Summary
+
+Posts from this topic will be added to your daily email digest and your homepage feed. Will Microsoft reveal this Elite pad at Gamescom?
+
+#### 🏢 企業解説リンク
+
+- [Microsoft](companies/microsoft.html)
+
+🔗 [元記事を読む](https://www.theverge.com/games/978374/xbox-elite-3-prototype-pad-leaks-with-tiny-built-in-screen)
+
+---
+
+## 記事 10  ｜  Wired
+
+### 今週ペルセウス座流星群をいつどのように見るか
+
+> 原題: *How and When to View the Perseid Meteor Shower This Week*
+
+#### 📝 記事の日本語要約
+
+8 月には、歴史的な皆既日食に加えて、一年で最も壮観な流星群の 1 つが見られます。 8 月 12 日の夜から 8 月 13 日の早朝にかけて、北半球と南半球の一部の天文愛好家は、特に有利な観察窓でペルセウス座流星群を鑑賞することができます。時折、地球は、彗星が太陽系を通過する際に残した粒子の軌跡を通過します。これらの小さな破片が地球の大気中に突入すると、空気との摩擦により燃え尽きるまで加熱されます。下から見ると、空が高速で光る閃光で満たされているように見えます。これらは流星群です。年間を通じていくつかありますが、8 月に開催されるのは cal. 。
+
+#### 🇺🇸 English Summary
+
+In addition to a historic total solar eclipse, August also features one of the most spectacular meteor showers of the year.On the night of August 12 and into the early morning of August 13, astronomy enthusiasts in the northern hemisphere and parts of the southern hemisphere will be able to admire the Perseids during a particularly favorable viewing window.
+
+🔗 [元記事を読む](https://www.wired.com/story/how-and-when-to-view-the-perseid-meteor-shower-august-2026/)
+
+---
+
+## 記事 11  ｜  Ars Technica
+
+### トランプ大統領は大手製薬会社がMMRワクチンを分割することを望んでいる。大手製薬会社はそれが愚かだと考えている
+
+> 原題: *Trump wants Big Pharma to split MMR vaccine; Big Pharma thinks it's idiotic*
+
+#### 📝 記事の日本語要約
+
+大手製薬会社がこの勧告を拒否するまでに、わずか数時間しかかかりませんでした。月曜日のトランプ大統領のワクチン命令に対する反発は急速かつ鋭く、さまざまな公衆衛生・医療機関や独立した専門家らが「危険」「非科学的」「虚偽で誤解を招く」「非常に間違っている」と呼び、「子どもたちの健康を危険にさらしている」と述べた。医学界と保健界は一貫して、トランプ大統領と、科学、医学、公衆衛生の背景のないロバート・F・ケネディ・ジュニア保健長官が推進する反ワクチン、反科学の政策と戦ってきた。この命令を「落胆するだけでなく危険」と呼んだ米国小児科学会は、連邦小児ワクチン接種に対する以前の変更に対する訴訟を主導している。 。
+
+#### 🇺🇸 English Summary
+
+It took just hours for the leading pharma group to reject the recommendations.Backlash to Trump’s vaccine order on Monday has been swift and sharp, with various public health and medical organizations and independent experts calling it “dangerous,” “ unscientific ,” “ false and misleading ,” “ so wrong ,” and saying it is “ putting children’s health at risk .
+
+🔗 [元記事を読む](https://arstechnica.com/health/2026/08/trump-wants-big-pharma-to-split-mmr-vaccine-big-pharma-thinks-its-idiotic/)
+
+---
+
+## 記事 12  ｜  MIT Tech Review
+
+### Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.
+
+> 原題: *The Download: the next big thing in LLMs and how AI academic research is shifting*
+
+#### 📝 記事の日本語要約
+
+さらに、Nvidia は AI インフラストラクチャのためにウォール街から 5,000 億ドルを確保しました。これは、テクノロジーの世界で何が起こっているかを毎日提供する平日のニュースレター、 The Download の本日版です。 Google の研究者がトランスフォーマーを導入してから 9 年後、このニューラル ネットワークのファミリーは、すべての主要な大規模言語モデル内のエンジンになりました。しかし、トランスフォーマーは老朽化を見せ始めています。 LLM が大きくなり性能が向上するにつれて、変圧器がボトルネックになってきました。彼らの高密度の注意メカニズムは、テキストの量が増えるにつれてますます高価になり、一度に多くの情報を追跡するのが得意ではありません。
+
+#### 🇺🇸 English Summary
+
+Plus: Nvidia has secured $500 billion from Wall Street for AI infrastructure.This is today's edition of The Download , our weekday newsletter that provides a daily dose of what's going on in the world of technology.Nine years after Google researchers introduced the transformer, this family of neural networks has become the engine inside every major large language model.
+
+#### 🏢 企業解説リンク
+
+- [Google](companies/google.html)
+- [NVIDIA](companies/nvidia.html)
+
+🔗 [元記事を読む](https://www.technologyreview.com/2026/08/11/1141610/the-download-next-big-thing-llms-ai-academic-research-shifting/)
+
+---
+
+## 記事 13  ｜  VentureBeat
+
+### AI 主導の購入意図が販売完了となることが非常に少ない理由
+
+> 原題: *Why AI-driven purchase intent so rarely becomes a completed sale*
+
+#### 📝 記事の日本語要約
+
+Rezolve Ai が提供 AI アシスタントが製品やブランドを推奨すると、価値あるもの、つまり購入意欲が高く、意思決定に抵抗が少ない消費者が生成されます。その消費者はすでにオプションを比較し、追加の質問をし、結論に達しています。彼らは買いたいのです。次に彼らが遭遇するのは、彼ら向けに設計されていないコマース インフラストラクチャです。推奨と購入のギャップ 典型的な企業。 。
+
+#### 🇺🇸 English Summary
+
+Presented by Rezolve Ai When an AI assistant recommends a product or brand, it generates something valuable: a purchase-ready consumer with high intent and low friction in their decision.That consumer has already compared options, asked follow-up questions, and arrived at a conclusion.They want to buy.What they encounter next is a commerce infrastructure that was not designed for them.
+
+🔗 [元記事を読む](https://venturebeat.com/technology/why-ai-driven-purchase-intent-so-rarely-becomes-a-completed-sale)
+
+---
+
+## 記事 14  ｜  TechCrunch
+
+### ウーバーが全株式を売却してロボット企業サーブを驚かせた
+
+> 原題: *Uber surprised robotics company Serve by selling its entire stake*
+
+#### 📝 記事の日本語要約
+
+Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.
+
+#### 🇺🇸 English Summary
+
+Uber has sold off its entire stake in Serve Robotics, the autonomous delivery robot company that spun out of the ride-hailing company more than five years ago.Uber made the disclosure in a regulatory filing that was first reported by Bloomberg.Uber’s exit from Serve Robotics has been brewing for at least a year, according to regulatory filings that show the company reduced its stake in 2025.
+
+🔗 [元記事を読む](https://techcrunch.com/2026/08/11/uber-surprised-robotics-company-serve-by-selling-its-entire-stake/)
+
+---
+
+## 記事 15  ｜  The Verge
+
+### Sonos Ace Ultraヘッドフォンが登場する可能性がある
+
+> 原題: *Sonos Ace Ultra headphones could be on the horizon*
+
+#### 📝 記事の日本語要約
+
+このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。 最近公開された FCC 文書の一部には、ブランド初のヘッドフォンの潜在的な後継者として Sonos Ace Ultra の名前が含まれています。
+
+#### 🇺🇸 English Summary
+
+Posts from this topic will be added to your daily email digest and your homepage feed. ﻿Some recently released FCC documents include the name Sonos Ace Ultra as potential successors to the brand’s first headphones.
+
+🔗 [元記事を読む](https://www.theverge.com/tech/978355/sonos-headphones-fcc-filing)
+
+---
+
+## 記事 16  ｜  Wired
+
+### ゲーミングマウスにもっと多くのボタンがあった頃のことを覚えていますか? Razer Naga V3 Pro は次のことを行います
+
+> 原題: *Remember When Gaming Mice Had More Buttons? The Razer Naga V3 Pro Does*
+
+#### 📝 記事の日本語要約
+
+私の最初のゲーミング マウスの 1 つは、オリジナルの Razer Naga Epic でした。これは、10 代のときに最初のゲーミング PC と一緒にプレゼントされました。過去 15 年間でゲームは大きく変わりましたが、Razer Naga の製品ラインはあまり変わっていません。全体的な形状と機能は驚くほど一貫したままです。PC ゲームでは、ペースの速いシューティングゲーム向けに設計された超軽量で競技力の高いマウスが重視されるようになりましたが、それがすべての人にとって好みというわけではありません。もしあなたが、より快適なマウス (おそらく追加のボタンを備えた) を好む PC ゲーマーなら、新しい Naga V3 Pro が最適なゲーミング マウスになるかもしれません。
+
+#### 🇺🇸 English Summary
+
+One of my first gaming mice was the original Razer Naga Epic, which I was gifted as a teenager alongside my first gaming PC.Gaming has changed a lot in the past 15 years, and yet, the Razer Naga line hasn't changed much.It's general shape and function have remained remarkable consistent.
+
+🔗 [元記事を読む](https://www.wired.com/review/razer-naga-v3-pro/)
+
+---
+
+## 記事 17  ｜  Ars Technica
+
+### 欧州の重要な海洋ガス田付近でロシアの無人機が発見、爆破される
+
+> 原題: *Russian drones found near vital European offshore gas site, get blown up*
+
+#### 📝 記事の日本語要約
+
+これはルーマニアへの多数の無人機侵入とドイツでの攻撃失敗に続くものである。 NATO加盟国の国防大臣によると、ルーマニア最大の天然ガスプロジェクト近くの黒海で浮遊しているのが発見されたロシア製無人機2機を、ルーマニア軍ダイバーが爆発物を使用して破壊した。ロイター通信やその他の報道機関が報じたところによると、ラドゥ・ミルシュ国防大臣は、8月11日にルーマニア軍の爆発物処理ダイバーによって水中でドローン1機が爆破される様子を映したとされるフェイスブック動画を投稿した。ドローンは、ルーマニアを欧州連合最大のガス生産国にする黒海で開発中の海洋ガスプロジェクトであるネプチューン海淵の近くで作業中の船によって水中で最初に発見された。 arで応答したルーマニア沿岸警備隊の船。 。
+
+#### 🇺🇸 English Summary
+
+This follows many drone incursions into Romania and a failed attack in Germany.Romanian army divers used explosives to destroy two Russian-made drones found floating in the Black Sea near Romania’s largest natural gas project, according to the NATO member country’s defense minister.
+
+🔗 [元記事を読む](https://arstechnica.com/gadgets/2026/08/romania-destroys-russian-drones-drifting-near-vital-european-offshore-gas-site/)
+
+---
+
+## 記事 18  ｜  MIT Tech Review
+
+### AI 教授が学術研究の新たな現実について交渉中
+
+> 原題: *AI professors are negotiating the new realities of academic research*
+
+#### 📝 記事の日本語要約
+
+Schmidt Sciences AI2050 プログラムの会合で、私は学術研究者たちが AI 時代の課題にどのように立ち向かっているかを目にしました。先週、私は世界で最も熟練した、そして最も有望な AI 研究者たちに加わるために、サンフランシスコから 30 マイル南にあるカリフォルニア州マウンテンビューのホテルに向かった。私は、エリック・シュミットとウェンディ・シュミットが資金提供し、AI に関わる研究を行う学者を支援する取り組みであるシュミット・サイエンス AI2050 プログラムの招集に向けて、ラウンドテーブル・インタビューを主催したりメディアトレーニングで講演したりしていました。フェローのリストは AI の著名人の名簿であり、全員が湾に到着したわけではありませんが、角を曲がるたびに、以前にインタビューしたことのある科学者や、その研究を賞賛した科学者が見えました。
+
+#### 🇺🇸 English Summary
+
+At a convening for the Schmidt Sciences AI2050 program, I saw how academic researchers are facing up to the challenges of the AI era.Last week, I headed 30 miles south of San Francisco to a hotel in Mountain View, California, to join some of the most accomplished, and some of the most promising, AI researchers in the world.
+
+🔗 [元記事を読む](https://www.technologyreview.com/2026/08/10/1141597/ai-professors-are-negotiating-the-new-realities-of-academic-research/)
+
+---
+
+## 記事 19  ｜  VentureBeat
+
+### Mistral AI は、2030 年までにヨーロッパで 1 ギガワットのコンピューティングを構築し、今すぐ顧客を囲い込みたいと考えています。
+
+> 原題: *Mistral AI wants to build 1 gigawatt of European compute by 2030 — and lock in customers now.*
+
+#### 📝 記事の日本語要約
+
+Mistral AI は、欧州の AI の主権を単なる話題から製品、つまりサービス レベル アグリーメントを伴う製品に変えたいと考えています。フランスの人工知能企業は火曜日、インフラストラクチャ ビジネスの 3 つの部分からなる拡張を発表しました。1 つは顧客が AI ワークロードを欧州または米国のどちらで実行するかを選択できる地域推論エンドポイント、ミッション クリティカルな展開の稼働時間保証に裏付けられた新しい「優先層」です。 。
+
+#### 🇺🇸 English Summary
+
+Mistral AI wants to turn European AI sovereignty from a talking point into a product — one with a service-level agreement attached.
+
+🔗 [元記事を読む](https://venturebeat.com/infrastructure/mistral-ai-wants-to-build-1-gigawatt-of-european-compute-by-2030-and-lock-in-customers-now)
+
+---
+
+## 記事 20  ｜  Engadget
+
+> 🔒 **セキュリティエンジニア向け重要記事** — キーワードベースの分類でセキュリティ関連と判定されました（Grok未設定のためフォールバック）
+
+### Zoom の画面共有のバグにより、通話中に他のデバイスが完全に引き継がれてしまう
+
+> 原題: *Zoom screen-sharing bug let people fully take over other devices on a call*
+
+#### 📝 記事の日本語要約
+
+ありがたいことに、プラットフォームは修正を発行しました。サイバーセキュリティ研究者は、文字通り他人のデバイスを制御できるようになる、Zoom のかなり潜行的なバグを発見しました。これは、画面共有機能の欠陥を悪用して行われます。この脆弱性は、Windows、Mac、iOS、Android、Linux 用の Zoom Workspace アプリで発見されました。攻撃では被害者は何もする必要がなく、目に見える警告もありません。誰かが画面共有中に注釈ツールを起動すると、この脆弱性により、悪意のある攻撃者がリモートから悪意のあるコードを実行してアクセスできるようになります。ただし、この脆弱性が実際に使用されたことがあるかどうかはまだ不明です。 AI が使用されていることを発見した研究者は、画面共有エクスプロイトを 24 時間以内に開発するよう促し、AI がどのように支援できるかを示しました。
+
+#### 🇺🇸 English Summary
+
+The platform has, thankfully, issued a fix.Cybersecurity researchers discovered a fairly insidious bug in Zoom that lets people quite literally take control of someone else's device.This is done by exploiting a flaw in the screen-sharing function.The vulnerability has been found in the Zoom Workspace app for Windows, Mac, iOS Android and Linux.
+
+🔗 [元記事を読む](https://www.engadget.com/2234871/zoom-screen-sharing-bug-let-people-fully-take-over-other-devices-on-a-call/)
+
+---
+
+## 記事 21  ｜  TechCrunch
+
+### FBI、サイバー犯罪者が被害者のオンラインアカウントをハッキングして親密な写真を盗んでいると発表
+
+> 原題: *FBI says cybercriminals are hacking into victims' online accounts to steal their intimate pictures*
+
+#### 📝 記事の日本語要約
+
+Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.
+
+#### 🇺🇸 English Summary
+
+The FBI is warning that cybercriminals are hacking into the social media accounts of adults and children to steal their intimate explicit images and videos.The perpetrators rely largely on social engineering tactics to target people, the alert said, and victims are often extorted, or their stolen content published online.
+
+🔗 [元記事を読む](https://techcrunch.com/2026/08/11/fbi-says-cybercriminals-are-hacking-into-victims-online-accounts-to-steal-their-intimate-pictures/)
+
+---
+
+## 記事 22  ｜  The Verge
+
+### ChatGPT と Gemini はどちらもユーザー数 10 億人を突破しました
+
+> 原題: *ChatGPT and Gemini both just passed 1 billion users*
+
+#### 📝 記事の日本語要約
+
+このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。 OpenAI は依然としてチャットボットのリーダーですが、競争は急速に激化しているようです。
+
+#### 🇺🇸 English Summary
+
+Posts from this topic will be added to your daily email digest and your homepage feed. OpenAI’s still the chatbot leader, but the race appears to be tightening fast.
+
+#### 🏢 企業解説リンク
+
+- [OpenAI](companies/openai.html)
+
+🔗 [元記事を読む](https://www.theverge.com/ai-artificial-intelligence/978113/chatgpt-gemini-1-billion-users)
+
+---
+
+## 記事 23  ｜  Wired
+
+### AI は化石燃料会社の排出量増加に貢献する可能性がある
+
+> 原題: *AI Could Help Fossil Fuel Companies Create More Emissions*
+
+#### 📝 記事の日本語要約
+
+データセンターの電力供給による排出は、当然のことながら多くの注目を集めます。しかし、マイクロソフトの元サステナビリティ担当者らによる新たな研究では、人工知能が石油・ガス業界の生産性を向上させる方法は、地球にさらに大きなダメージを与える可能性があると警告している。雑誌「npj Climate Action」に先週掲載されたこの研究では、AIの利用により、化石燃料産業がより多くの石油とガスを生産できるようになるだけで、世界のエネルギー排出量が大幅に増加する可能性があることが判明した。研究では、年間追加排出量が下限ではメキシコの排出量に匹敵する可能性があることが判明しています。ハイエンドでは、化石燃料産業を促進する AI によって、世界第 4 位の排出国であるロシアと同量の温室効果ガス排出量が増加する可能性があります。この論文によれば、排出量の増加は利益 A を上回っています。
+
+#### 🇺🇸 English Summary
+
+The emissions from powering data centers rightly get a lot of attention .But new research from former Microsoft sustainability workers cautions that the way artificial intelligence enhances productivity in the oil and gas industry could be much more damaging to the planet.
+
+#### 🏢 企業解説リンク
+
+- [Microsoft](companies/microsoft.html)
+
+🔗 [元記事を読む](https://www.wired.com/story/ai-could-help-fossil-fuel-companies-create-more-emissions/)
+
+---
+
+## 記事 24  ｜  Ars Technica
+
+### Chrome はアカウント乗っ取りに対してこれまでで最も優れた保護策を採用しています
+
+> 原題: *Chrome adopts what may be the best protection yet against account takeovers*
+
+#### 📝 記事の日本語要約
+
+デバイスにバインドされたセッション資格情報は、ますます一般的になっているアカウント乗っ取りを阻止します。Google の Chrome ブラウザには、ユーザーが 2 要素認証、パスキー、および同様の保護を採用するにつれてますます一般的になっている、ある種のアカウント乗っ取りを防ぐのに大いに役立つ可能性のある新機能が追加されました。新しい Chrome 保護は、デバイス バインド セッション認証情報 (DBSC) として知られています。この対策では、ブラウザを実行しているデバイスに組み込まれたシリコン常駐の要塞に、一意の暗号化キーが保存されます。Windows マシンでは、この要塞は TPM (Trusted Platform Module の略) と呼ばれます。macOS と iOS では、これは安全なエンクレーブとして知られています。
+
+#### 🇺🇸 English Summary
+
+Device-bound session credentials thwart an increasingly common form of account takeover.Google’s Chrome browser has added a new feature that could go a long way in preventing a form of account takeover that’s grown increasingly common as users adopt two-factor authentication, passkeys, and similar protections.The new Chrome protection is known as device-bound session credentials (DBSCs).
+
+#### 🏢 企業解説リンク
+
+- [Google](companies/google.html)
+
+🔗 [元記事を読む](https://arstechnica.com/security/2026/08/chrome-adopts-what-may-be-the-best-protection-yet-against-account-takeovers/)
+
+---
+
+## 記事 25  ｜  MIT Tech Review
+
+### ダウンロード: 科学のための AI エージェントと「検閲と産業の複合体」
+
+> 原題: *The Download: AI agents for science, and the “censorship-industrial complex”*
+
+#### 📝 記事の日本語要約
+
+さらに、Amazon の新しいデータセンターは、米国で最も汚染の多い発電所になる可能性があります。これは、テクノロジーの世界で何が起こっているかを毎日提供する平日のニュースレター、 The Download の本日版です。—Googleの元最高経営責任者（CEO）でシュミット・サイエンシズの共同創設者であるエリック・シュミット氏と、シュミット・サイエンシズAIセンターで科学研究用AIを率いるスハス・マヘシュ氏 2024年、Google DeepMindの科学者らは、タンパク質の構造を予測するニューラルネットワーク「AlphaFold」でノーベル化学賞を共同受賞した。これは、AI が画期的な科学的発見を行える可能性があることを示しましたが、AlphaFold は科学を加速するための最適なテンプレートではない可能性があります。
+
+#### 🇺🇸 English Summary
+
+Plus: A new Amazon data center could become the US’s most polluting power plant.This is today's edition of The Download , our weekday newsletter that provides a daily dose of what's going on in the world of technology.
+
+#### 🏢 企業解説リンク
+
+- [Amazon](companies/amazon.html)
+- [Google](companies/google.html)
+
+🔗 [元記事を読む](https://www.technologyreview.com/2026/08/10/1141526/the-download-ai-agents-science-censorship-industrial-complex/)
+
+---
+
+## 記事 26  ｜  VentureBeat
+
+### LTX-2.5 は、Nvidia スーパーチップ上で画像から 10 秒の AI ビデオをわずか 6.8 秒で生成でき、オープンウェイトです
+
+> 原題: *LTX-2.5 can generate a 10-second AI video from an image in just 6.8 seconds on Nvidia superchips — and it's open weights*
+
+#### 📝 記事の日本語要約
+
+Lightricks からスピンアウトしたオープンワールド モデル会社 LTX は本日、LTX-2 をリリースしました。 5 は、同社のオープンウェイト ビデオおよび「ワールド」モデルの最新バージョンであり、両社間の戦略的な初日立ち上げパートナーシップを通じて、オープン ジェネレーティブ メディアの事実上のプロトタイピング環境となったノードベースのワークフロー ツールである ComfyUI にネイティブに統合されます。このモデルはオープンウィーとして現在入手可能です。 。
+
+#### 🇺🇸 English Summary
+
+LTX , the open world model company spun out of Lightricks, today released LTX-2.5, the newest version of its open-weights video and "world" model and it arrives natively integrated into ComfyUI , the node-based workflow tool that has become the de facto prototyping environment for open generative media, through a strategic day-one launch partnership between the two companies.
+
+#### 🏢 企業解説リンク
+
+- [NVIDIA](companies/nvidia.html)
+
+🔗 [元記事を読む](https://venturebeat.com/technology/ltx-2-5-can-generate-a-10-second-ai-video-from-an-image-in-just-6-8-seconds-on-nvidia-superchips-and-its-open-weights)
+
+---
+
+## 記事 27  ｜  Engadget
+
+### アボットは AI を活用した血糖値モニタリングで Google Health と提携
+
+> 原題: *Abbott partners with Google Health for AI-powered glucose monitoring*
+
+#### 📝 記事の日本語要約
+
+ただし、データが増えても、必ずしも非糖尿病患者にとってのメリットが増えるとは限りません。ヘルスケア企業の Abbott は、Google Health を自社の Lingo 持続血糖モニター (CGM) に接続するパートナーシップを締結しました。プレスリリースによると、この複数年にわたる提携により、店頭のLingoデバイスのユーザーはGoogle Healthアプリ内で自分の代謝データを確認できるようになり、人が「その瞬間により良いライフスタイルと栄養の選択をする」のに役立つ可能性があるという。Lingoのデータは、個人の情報に基づいてAI主導の推奨事項を提供するGoogle Health Coachと共有することもできる。Lingo は、インスリンを使用していない成人を対象としていることが明示されています。
+
+#### 🇺🇸 English Summary
+
+However, more data doesn’t necessarily mean more benefits for non-diabetics.Health care company Abbott has entered into a partnership to connect Google Health to its Lingo continuous glucose monitor (CGM).
+
+#### 🏢 企業解説リンク
+
+- [Google](companies/google.html)
+
+🔗 [元記事を読む](https://www.engadget.com/2234851/abbott-partners-with-google-health-for-ai-powered-glucose-monitoring/)
+
+---
+
+## 記事 28  ｜  TechCrunch
+
+### OpenAI が Linux 用 ChatGPT デスクトップ アプリを開始
+
+> 原題: *OpenAI launches ChatGPT desktop app for Linux*
+
+#### 📝 記事の日本語要約
+
+ChatGPT は世界中のデスクトップにありますが、欠けている場所が 1 つあります。それは、Linux コミュニティです。オープンソース開発者コミュニティの特定のセクターは、OpenAI のチャットボットを自分たちの首席に導入するよう求めています。今週の時点で、OpenAI はこの見落としを修正し、Linux 用の専用 ChatGPT アプリをリリースしました。「Linux は、デスクトップ アプリに対して最もリクエストの多いプラットフォームの 1 つであり、今回のリリースにより、ChatGPT と Codex がすべての主要なデスクトップ オペレーティング システムに拡張される」と同社は火曜日に述べた。
+
+#### 🇺🇸 English Summary
+
+ChatGPT is on desktops across the world, but there’s been one place where it’s been lacking: the Linux community.Certain sectors of the open source developer community have been clamoring for OpenAI to bring its chatbot to their neck of the woods.As of this week, OpenAI has rectified this oversight, launching a dedicated ChatGPT app for Linux.
+
+#### 🏢 企業解説リンク
+
+- [OpenAI](companies/openai.html)
+
+🔗 [元記事を読む](https://techcrunch.com/2026/08/11/openai-launches-chatgpt-desktop-app-for-linux/)
+
+---
+
+## 記事 29  ｜  The Verge
+
+### Threads には VR アプリが登場しました
+
+> 原題: *Threads has a VR app now*
+
+#### 📝 記事の日本語要約
+
+このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。この著者からの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。
+
+#### 🇺🇸 English Summary
+
+Posts from this topic will be added to your daily email digest and your homepage feed. Posts from this author will be added to your daily email digest and your homepage feed.
+
+🔗 [元記事を読む](https://www.theverge.com/tech/978181/meta-threads-quest-vr-app)
+
+---
+
+
+> ⚠️ 本まとめは自動生成です。数値・固有名詞などの事実は元記事でご確認ください。
