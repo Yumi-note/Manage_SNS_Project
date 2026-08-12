@@ -1,0 +1,1219 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>海外テックニュース日本語まとめ</title>
+    <style>
+        :root {
+            color-scheme: dark;
+            --bg: #0a0f1d;
+            --panel: rgba(13, 20, 36, 0.92);
+            --line: rgba(132, 152, 187, 0.25);
+            --text: #eef3ff;
+            --muted: #adc1dd;
+            --accent: #7dd3fc;
+            --accent-strong: #38bdf8;
+            --shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: "Hiragino Sans", "Noto Sans JP", sans-serif;
+            background:
+                radial-gradient(circle at top right, rgba(56, 189, 248, 0.22), transparent 26%),
+                radial-gradient(circle at top left, rgba(16, 185, 129, 0.16), transparent 20%),
+                linear-gradient(180deg, #07101f 0%, #0b1327 48%, #0a0f1d 100%);
+            color: var(--text);
+        }
+
+        .page-shell {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 24px;
+        }
+
+        .hero {
+            padding: 28px;
+            border: 1px solid var(--line);
+            border-radius: 28px;
+            background: linear-gradient(145deg, rgba(18, 27, 48, 0.96), rgba(10, 17, 32, 0.96));
+            box-shadow: var(--shadow);
+        }
+
+        .hero-nav {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 28px;
+        }
+
+        .nav-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 42px;
+            padding: 0 16px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        .eyebrow {
+            margin: 0 0 10px;
+            color: var(--accent);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            font-size: 0.78rem;
+        }
+
+        .hero h1 {
+            margin: 0;
+            font-size: clamp(2rem, 3vw, 3.3rem);
+            line-height: 1.1;
+        }
+
+        .timestamp,
+        .description {
+            color: var(--muted);
+        }
+
+        .control-panel {
+            margin: 20px 0 28px;
+            padding: 22px;
+            border: 1px solid var(--line);
+            border-radius: 24px;
+            background: var(--panel);
+            backdrop-filter: blur(12px);
+        }
+
+        .control-header {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            align-items: end;
+            flex-wrap: wrap;
+        }
+
+        .control-header h2 {
+            margin: 0 0 6px;
+        }
+
+        .control-header p {
+            margin: 0;
+            color: var(--muted);
+        }
+
+        #search-input {
+            width: min(100%, 360px);
+            min-height: 46px;
+            padding: 0 14px;
+            border-radius: 14px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
+        }
+
+        .category-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 16px;
+        }
+
+        .category-btn {
+            min-height: 42px;
+            padding: 0 14px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
+            cursor: pointer;
+        }
+
+        .category-btn.active {
+            background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+            color: #06111f;
+            border-color: transparent;
+            font-weight: 700;
+        }
+
+        .article-list {
+            display: grid;
+            gap: 18px;
+        }
+
+        .article-card {
+            padding: 24px;
+            border-radius: 24px;
+            border: 1px solid var(--line);
+            background: linear-gradient(180deg, rgba(12, 18, 34, 0.96), rgba(14, 22, 39, 0.9));
+            box-shadow: var(--shadow);
+        }
+
+        .card-topline {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+
+        .category-chip,
+        .source-chip {
+            display: inline-flex;
+            align-items: center;
+            min-height: 34px;
+            padding: 0 12px;
+            border-radius: 999px;
+            font-size: 0.92rem;
+            font-weight: 700;
+        }
+
+        .source-chip {
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--muted);
+        }
+
+        .article-title {
+            margin: 0 0 10px;
+            font-size: clamp(1.45rem, 2vw, 2rem);
+            line-height: 1.35;
+        }
+
+        .article-original-title {
+            margin: 0 0 18px;
+            color: var(--muted);
+        }
+
+        .security-alert {
+            margin: 0 0 14px;
+            padding: 10px 14px;
+            border-radius: 12px;
+            border: 1px solid rgba(248, 113, 113, 0.4);
+            background: rgba(248, 113, 113, 0.12);
+            color: #fecaca;
+            font-weight: 700;
+            font-size: 0.92rem;
+        }
+
+        .article-section {
+            margin-top: 18px;
+            padding-top: 18px;
+            border-top: 1px solid var(--line);
+        }
+
+        .article-section h3 {
+            margin: 0 0 12px;
+            font-size: 1rem;
+            color: var(--accent);
+        }
+
+        .article-paragraph {
+            margin: 0 0 14px;
+            color: #dce7f8;
+            line-height: 1.9;
+            font-size: 1rem;
+        }
+
+        .company-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .company-link,
+        .action-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 42px;
+            padding: 0 14px;
+            border-radius: 14px;
+            text-decoration: none;
+            border: 1px solid rgba(125, 211, 252, 0.3);
+        }
+
+        .company-link {
+            color: var(--accent);
+            background: rgba(56, 189, 248, 0.08);
+        }
+
+        .article-actions {
+            margin-top: 22px;
+        }
+
+        .footer {
+            padding: 28px 8px 40px;
+            color: var(--muted);
+            text-align: center;
+        }
+
+        .footer p {
+            margin: 6px 0;
+        }
+
+        .action-link.primary {
+            color: #06111f;
+            font-weight: 700;
+            background: linear-gradient(135deg, #7dd3fc, #22d3ee);
+            border-color: transparent;
+        }
+
+        @media (max-width: 720px) {
+            .page-shell {
+                padding: 14px;
+            }
+
+            .hero,
+            .control-panel,
+            .article-card {
+                padding: 18px;
+                border-radius: 20px;
+            }
+
+            .control-header {
+                align-items: stretch;
+            }
+
+            #search-input {
+                width: 100%;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="page-shell">
+        <header class="hero">
+            <div class="hero-nav">
+                <a class="nav-link" href="../../index.html">HOME</a>
+                <a class="nav-link" href="../index.html">この日の記事一覧</a>
+            </div>
+            <div class="hero-copy">
+                <p class="eyebrow">Global Tech News Digest</p>
+                <h1>海外テックニュース 日本語まとめ</h1>
+                <p class="timestamp">2026年8月12日 16:01 JST に収集した記事を掲載しています。</p>
+                <p class="description">各カードには本文寄りの日本語訳を掲載し、記事中で触れた企業は別ページの解説リンクとして分離しています。</p>
+            </div>
+        </header>
+
+        <section class="control-panel">
+            <div class="control-header">
+                <div>
+                    <h2>記事を探す</h2>
+                    <p>カテゴリとキーワードで一覧を絞り込めます。</p>
+                </div>
+                <input type="text" id="search-input" placeholder="タイトル・本文・媒体名で検索">
+            </div>
+            <div class="category-buttons">
+                <button class="category-btn active" data-category="all">すべて (30)</button>
+<button class="category-btn" data-category="AI/ML" style="--accent:#10b981">🤖 AI/ML (23)</button>
+<button class="category-btn" data-category="Media" style="--accent:#f59e0b">🎬 Media (1)</button>
+<button class="category-btn" data-category="Mobile" style="--accent:#6366f1">📱 Mobile (3)</button>
+<button class="category-btn" data-category="Policy" style="--accent:#ec4899">⚖️ Policy (1)</button>
+<button class="category-btn" data-category="Security" style="--accent:#f97316">🔒 Security (1)</button>
+<button class="category-btn" data-category="Startups" style="--accent:#8b5cf6">🚀 Startups (1)</button>
+            </div>
+        </section>
+
+        <main class="article-list" id="articles-container">
+            <article class="article-card" data-category="AI/ML" data-index="1">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Facebook、クリエイター向けAIツールを備えたスタンドアロンのクリエイタースタジオアプリを正式に公開</h2>
+    <p class="article-original-title">原題: <em>Facebook officially rolls out its standalone Creator Studio app with AI tools for creators</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Facebookは水曜日、スタンドアロンのクリエイタースタジオアプリを展開すると発表した。これはクリエイターに視聴者を増やすためのパーソナライズされたヒントと、コミュニティと交流するための新しいツールを提供するAI搭載アプリだ。iOS への正式公開は、Facebook が選ばれたクリエイターを対象にアプリのテストを開始してから数週間後に行われます。Facebook の AI クリエイター アシスタントが新しいアプリに組み込まれており、コンテンツ スタイル、パフォーマンス、視聴者のエンゲージメント、目標に基づいて、クリエイターにパーソナライズされた推奨事項を提供します。クリエイターは自分のパフォーマンスを理解するためにチャートやダッシュボードを精査する必要があることがよくありますが、AI アシスタントを使用すると、「いつ投稿すればよいですか?」や「私のコメントで人々は何と言っていますか?</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Facebook announced on Wednesday that it’s rolling out a standalone Creator Studio app , an AI-powered app that gives creators personalized tips to grow their audiences and new tools to engage with their communities.The official iOS rollout comes a few weeks after Facebook began testing the app with select creators.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/08/12/facebook-officially-rolls-out-its-standalone-creator-studio-app-with-ai-tools-for-creators/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="2">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Pixel 11 Pro Fold と Galaxy Z Fold 8 の比較</h2>
+    <p class="article-original-title">原題: <em>How the Pixel 11 Pro Fold compares to the Galaxy Z Fold 8</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。 HiLight、高速ワイヤレス充電、Tensor G6、および新しいソフトウェア機能により、世代を超えて最大の改善が行われています。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. HiLight, faster wireless charging, Tensor G6, and new software features make for the biggest gen-over-gen improvements.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/tech/972498/google-pixel-11-pro-fold-samsung-galaxy-z-fold-8-ultra-specs-comparison" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Mobile" data-index="3">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#6366f1">📱 Mobile</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">GoogleのPixel Watch 5は呼吸の緊急事態を検出できるようになりました</h2>
+    <p class="article-original-title">原題: <em>Google’s Pixel Watch 5 Can Now Detect Breathing Emergencies</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Google の最初のスマートウォッチはわずか 4 年前にデビューしましたが、当時、同社は Pixel Watch の心拍数センサーの精度を強調するために多大な努力を払ってきました。たとえGoogleがAppleやSamsungなどの同業他社に比べてウェアラブル分野に遅れていたとしても、心拍数への注力は、競合製品にはまだ見られない新機能によって報われているようだ。水曜日、Google はスマートウォッチの最新世代である Pixel Watch 5 (Pixel 11 スマートフォン ファミリと並んで) を発表しました。話題の新しい健康機能?呼吸の緊急検知。 Pixel Watch 3 に導入された初の脈拍喪失検出機能と同様に、この新しい機能は、薬物毒性、事故、重度の肺炎、窒息などのさまざまな要因によってトリガーされる可能性があります。この機能。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Google&#x27;s first smartwatch debuted just four years ago, and at the time, the company went to great lengths to stress the accuracy of the Pixel Watch&#x27;s heart rate sensor .Even if Google was late to the wearable party compared to peers like Apple and Samsung, that focus on heart rate seems to be paying off with new features that are yet to be seen on competing products.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/apple.html" target="_blank" rel="noopener noreferrer" class="company-link">Apple の解説</a> <a href="companies/google.html" target="_blank" rel="noopener noreferrer" class="company-link">Google の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/story/googles-pixel-watch-5-can-now-detect-breathing-emergencies/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="4">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Ars Technica - All content</span>
+    </div>
+
+    
+
+    <h2 class="article-title">書店員らはAI企業が希少本を購入し、廃棄しているのではないかと疑っている</h2>
+    <p class="article-original-title">原題: <em>Booksellers suspect AI firms are buying and then destroying rare books</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">AI企業は希少本を密かに大量購入しているが、書店員の抵抗に直面している。もしあなたが古い本を真に評価できるなら、そしてもしかしたらその壊れやすい黄ばんだページに、人々が周囲の世界を理解しようとした初期の方法がどのように含まれているかに驚嘆さえできるかもしれない――そのとき、AIを訓練するために本を破壊しているテクノロジー企業についての見出しは、おそらくあなたの魂の繊細な部分を苦しめるだろう。切り取られたページが切り取られ、スキャンされ、ゴミ箱に捨てられている間、木材チッパーに供給されるのを待っている本の背の山を想像するのは本当に憂鬱です。しかし、これは書籍をできるだけ早くスキャンするための最も安価で簡単な方法であり、AI 企業は書籍でのみ見られる魅力的で高品質な長文テキストをトレーニングすることでモデルを進化させようと競い合っています。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">AI firms quietly bulk buying rare books face resistance from booksellers.If you can truly appreciate an old book—and maybe even marvel at how its fragile, yellowing pages contain some of the earliest ways that people tried to make sense of the world around them—then headlines about tech companies that are destroying books to train AI likely torture a tender part of your soul.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/tech-policy/2026/08/heres-a-balm-if-the-idea-of-destroying-books-to-train-ai-breaks-your-heart/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="5">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">ダウンロード: 35 人の若いイノベーターと「検閲と産業の複合体」</h2>
+    <p class="article-original-title">原題: <em>The Download: our 35 young innovators and the “censorship-industrial complex”</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">さらに: 中国関連のハッカーが「前例のない」AI 攻撃で台湾を襲った これは、テクノロジーの世界で何が起こっているかを毎日提供する平日のニュースレター、 The Download の今日の版です。 9 月 8 日、MIT Technology Review は 2026 年の 35 歳以下のイノベーター リストを発表し、画期的な科学的研究に取り組み、厄介な問題に対する賢明な技術的修正を構築している世界中の 35 人の若者を表彰します。世界のトップの若手イノベーターを見つけ、彼らが仕事で何に重点を置いているかを知ることで、今後数年間にどのような進歩が期待できるかを読者に感じてもらうことを目指しています。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Plus: China-linked hackers have hit Taiwan in an “unprecedented” AI attack This is today&#x27;s edition of The Download , our weekday newsletter that provides a daily dose of what&#x27;s going on in the world of technology.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/08/12/1141714/the-download-innovators-under-35-censorship-industrial-complex/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Startups" data-index="6">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#8b5cf6">🚀 Startups</span>
+        <span class="source-chip">VentureBeat</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Skan AI は、従業員が実際にどのように働いているかを観察することがエンタープライズ AI に欠けている層であることに賭けて 6,300 万ドルを調達</h2>
+    <p class="article-original-title">原題: <em>Skan AI raises $63 million betting that watching how employees actually work is the missing layer of enterprise AI</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Skan AI は、エンタープライズ ソフトウェア全体で従業員が実際にどのように仕事を遂行するかを観察することで、いわゆる「仕事のコンテキスト グラフ」を構築するスタートアップで、Cathay Innovation と Dell Technologies Capital が共同主導するシリーズ C 資金で 6,300 万ドルを調達したと同社が Wedne で発表しました。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Skan AI , a startup that builds what it calls a &quot; context graph of work &quot; by observing how employees actually perform their jobs across enterprise software, has raised $63 million in Series C funding co-led by Cathay Innovation and Dell Technologies Capital , the company announced Wedne. .</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://venturebeat.com/data/skan-ai-raises-63-million-betting-that-watching-how-employees-actually-work-is-the-missing-layer-of-enterprise-ai" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="7">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">デジタルウォレットを使用するメリットとデメリット</h2>
+    <p class="article-original-title">原題: <em>The pros and cons of using a digital wallet</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">デジタルウォレットは完璧ではありませんが、だからといって使用しないわけにはいきません。約 10 年の間に、Apple Pay や Google ウォレットのようなデジタル ウォレットは、最先端の企業でのニッチな選択肢から、ほぼどこでも受け入れられる支払い方法になりました。新しい携帯電話をセットアップするときは、仮想ウォレットにクレジット カードを入れることが推奨されており、ほぼすべての主要なカード会社が参加しています。使用できるデジタルウォレットはデバイスによって異なるため、使用するのに「最適な」デジタルウォレットはありません。Apple Pay は同社のプラットフォームのオプションです。Android では、Google ウォレットです。Samsung デバイスの所有者は、Samsung Pay を試すこともできます。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Digital wallets aren’t perfect, but that shouldn’t keep you from using them.In roughly a decade, digital wallets like Apple Pay and Google Wallet have gone from niche options at cutting-edge businesses to accepted payment methods almost everywhere.You&#x27;re encouraged to fill your virtual wallet with credit cards when setting up a new phone, and nearly every major card company participates.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/apple.html" target="_blank" rel="noopener noreferrer" class="company-link">Apple の解説</a> <a href="companies/google.html" target="_blank" rel="noopener noreferrer" class="company-link">Google の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2231530/digital-wallet-biggest-disadvantages/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="8">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">2億5,000万ドルの買収が詐欺と署名偽造の疑惑にどのように崩壊したか</h2>
+    <p class="article-original-title">原題: <em>How a $250 million acquisition collapsed into allegations of fraud and forged signatures</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">VideoVerse が 2025 年 9 月に買収を発表したとき、それはインド全土のスタートアップにとって勝利のように感じられました。VideoVerse は単純なクリッピング サービスでしたが、長年のスタートアップ インキュベーターとクライアントへの売り込みを経て、同社は 2 億 5,000 万ドルの撤退を成功させました。買収者は、ニューヨークとテルアビブに分かれた国際的なスポーツ出版社である Minute Media で、VideoVerse のクリッピング ソフトウェアをインドのニッチ市場を超えて、収益性の高い国際スポーツの世界に拡大する計画を立てています。発表から1年も経たないうちに、この契約は解消された。投資家は依然として2億5,000万ドルの利益の分け前を待っており、創設者のビナヤック・シュリバスタブ氏は現在、複数の訴訟の中心人物となっている。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">When VideoVerse announced its acquisition in September 2025, it felt like a victory for startups across India.VideoVerse was a simple clipping service, but after years of startup incubators and pitching clients, the company had pulled off a $250 million exit.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/08/12/how-a-250-million-acquisition-collapsed-into-allegations-of-fraud-and-forged-signatures/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="9">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">ギター会社ダダリオ、プロモーションビデオにAI音楽が使用されたことを認める</h2>
+    <p class="article-original-title">原題: <em>Guitar company D’Addario admits that AI music was used in a promotional video</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。同社は当初は否定していたが、現在はストリングデモビデオがSunoで作られたことを認めている。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. After initially denying it, the company now admits that its string demo video was made with Suno.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/ai-artificial-intelligence/978982/daddario-guitar-ai-music-suno" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Mobile" data-index="10">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#6366f1">📱 Mobile</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Google が Made by Google 2026 イベントで発表したすべて</h2>
+    <p class="article-original-title">原題: <em>Everything Google Announced at Its Made by Google 2026 Event</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Google は今年、Pixel スマートフォンで物事を最大 11 まで進めています。ニューヨーク市で開催される毎年恒例の Made by Google イベントに先立ち、同社は Pixel Watch 5 スマートウォッチとともに、Pixel 11、Pixel 11 Pro、Pixel 11 Pro XL、Pixel 11 Pro Fold を含む Pixel 11 スマートフォン ファミリを公開しました。新しいハードウェアの追加もあります。Pixel Tag です。これは、Android 世界の AirTag として設計されているようです。Google の最新デバイスのハードウェアの変更とソフトウェアのアップグレードについて知っておくべきことはすべてここにあります。本日から予約注文が開始され、携帯電話と時計は 8 月 20 日に発売されます。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Google is dialing things up to 11 this year with its Pixel phones .Ahead of its annual Made by Google event in New York City, the company unwrapped the Pixel 11 smartphone family—which includes the Pixel 11, Pixel 11 Pro, Pixel 11 Pro XL, and Pixel 11 Pro Fold—alongside the Pixel Watch 5 smartwatch .</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/google.html" target="_blank" rel="noopener noreferrer" class="company-link">Google の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/story/pixel-11-pixel-watch-5-pixel-tag-everything-google-announced-at-its-made-by-google-2026-event/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="11">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Ars Technica - All content</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Google、2026年のハードウェアラインナップを発表：Pixel 11、Pixel Watch 5、Pixel Tag</h2>
+    <p class="article-original-title">原題: <em>Google reveals 2026 hardware lineup: Pixel 11, Pixel Watch 5, and Pixel Tag</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Google は 2026 年にスペックのアップグレードよりも AI と厳選されたエクスペリエンスに重点を置いています。Google は 2026 年の Pixel スマートフォン ハードウェアを発表しましたが、驚かないでしょう。Pixel 11 シリーズは、昨年のラインナップによく似ており、Google が Pixel 9 で採用したデザインの進化を特徴としています。いくつかのマイナーな調整、いくつかの新しいハードウェア機能、そしてはい、Gemini を活用した AI がさらに追加されています。新しいスマートフォンには、ほぼ同じ内容の更新された Pixel Watch 5 と、Google 初の社内トラッカー デバイスである Pixel Tag が加わりました。そして、Google のすべての新しいハードウェアを今すぐ注文できます。Pixel 11 シリーズが主役であることは明らかです。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Google focuses more on AI and curated experiences than spec upgrades in 2026.Google has revealed its Pixel phone hardware for 2026, and you won’t be surprised.The Pixel 11 series looks a lot like last year’s lineup , featuring an evolution of the design Google adopted with the Pixel 9.There are some minor tweaks, a few new hardware goodies, and yes, even more Gemini-powered AI.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/google.html" target="_blank" rel="noopener noreferrer" class="company-link">Google の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/gadgets/2026/08/google-reveals-2026-hardware-lineup-pixel-11-pixel-watch-5-and-pixel-tag/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="12">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">世界のトップの若手科学者とエンジニア 35 人をどのように選出したか</h2>
+    <p class="article-original-title">原題: <em>How we picked 35 of the world’s top young scientists and engineers</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">2026 年の 35 歳未満のイノベーター リストは間もなく発表されます。世界中からの 550 件のノミネートを審査した結果、私たちが探したものは次のとおりです。来月の9月8日、MIT Technology Reviewは2026年の35歳以下のイノベーターリストを発表し、画期的な科学的研究に取り組み、やっかいな問題に対する巧妙な技術的修正を構築している世界中の若者35人を表彰する予定だ。世界のトップの若手イノベーターを見つけ、彼らが仕事で何に重点を置いているかを知ることで、今後数年間にどのような進歩が期待できるかを読者に感じてもらうことを目指しています。また、ニュース編集室として、私たちはこの演習を、新進気鋭の才能を発掘し、私たちがカバーする分野で優秀な若手研究者と知り合いになるためにも活用しています。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Our 2026 Innovators Under 35 list will be out soon.Here’s what we looked for as we sifted through 550 nominations from around the world.Next month, on September 8, MIT Technology Review will reveal its 2026 list of Innovators Under 35, recognizing 35 young people from around the world who are doing groundbreaking scientific work and building clever technical fixes for sticky problems.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/08/12/1141605/2026-innovators-under-35-top-young-scientists-engineers/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="13">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">VentureBeat</span>
+    </div>
+
+    
+
+    <h2 class="article-title">インフラストラクチャとコンピューティング: 企業はコストを無視してスピードを求めて AI コンピューティングを購入しています。</h2>
+    <p class="article-original-title">原題: <em>Infrastructure and compute: Enterprises are buying AI compute for speed while flying blind on what it costs</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">170 社の企業にわたって、AI インフラストラクチャが実稼働環境に決定的に移行しました。現在、3 分の 2 が AI ワークロードをライブで実行し、10 社中 3 社が大規模に実行しています。その一方で、インフラストラクチャのコストを考慮する能力は追いついていません。企業は、購入の意思決定においてひそかにコストを引き下げてきました。成功の尺度として、パフォーマンスと GPU の可用性が総所有コストを上回り、信頼性が価格を上回るようになりました。この順序変更は、制作のプレッシャーにさらされているチームにとっては合理的ですが、i. 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Across 170 enterprises, AI infrastructure has moved decisively into production — two-thirds now run AI workloads live and three in 10 run them at scale — while the ability to account for what that infrastructure costs has not kept pace.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://venturebeat.com/resources/infrastructure-and-compute-enterprises-are-buying-ai-compute-for-speed-while-flying-blind-on-what-it-costs" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Media" data-index="14">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#f59e0b">🎬 Media</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Ghost of Yorei Complete Edition は 10 月 1 日にリリースされ、新しいストーリー アークが含まれます</h2>
+    <p class="article-original-title">原題: <em>Ghost of Yōtei Complete Edition arrives October 1 and includes a new story arc</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">ローグライクゲームからインスピレーションを得たシングルプレイヤーモードもあります。『Ghost of Yorei Complete Edition』はPS5向けに10月1日に発売されます。これは、基本ゲームのリリースからほぼちょうど 1 年後です。Complete Edition は、多数の新しいコンテンツを備えた実質的なアップグレードです。まず第一に、「Echoes ofsekigahara」と呼ばれる新しい物語の拡張があります。これは 2 つの異なる時代を舞台に、主人公アツの過去に迫る物語です。探索する新しいエリアがあり、もちろん、武器、敵、防具セット、染料などが更新されています。このアップデートでは、「Most Wanted」と呼ばれるものへのアクセスも提供されます。これは、開発者が「ローグライクのスピン」と呼んでいるシングルプレイヤー戦闘サバイバル モードです。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">There&#x27;s also a single-player mode that was inspired by roguelikes.Ghost of Yōtei Complete Edition will be released for PS5 on October 1 .This is almost exactly one year after the base game came out .The Complete Edition is a real-deal upgrade with plenty of new content.First of all, there&#x27;s a new narrative expansion called Echoes of Sekigahara .</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2235449/ghost-of-ytei-complete-edition-arrives-october-1-and-includes-a-new-story-arc/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Security" data-index="15">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#f97316">🔒 Security</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    <p class="security-alert">🔒 セキュリティエンジニア向け重要記事 — キーワードベースの分類でセキュリティ関連と判定されました（Grok未設定のためフォールバック）</p>
+
+    <h2 class="article-title">Microsoftが法的措置を示唆した後、セキュリティ研究者がWindowsの新たなゼロデイバグを公開</h2>
+    <p class="article-original-title">原題: <em>After Microsoft threatened legal action, a security researcher publishes a new Windows zero-day bug</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">セキュリティ研究者は、数週間前に未知のソフトウェア欠陥の公開をめぐってマイクロソフトから法的脅威にさらされていたにもかかわらず、最新バージョンの Windows に存在する新たな脆弱性の詳細を発表しました。この脆弱性により、ハッカーはユーザーのデバイスとデータにシステム全体からアクセスできるようになります。ShieldBreakと呼ばれるこの新しいバグは、セキュリティ研究者のNightmare Eclipse氏による最新の開示であり、同氏はここ数カ月間、Windowsを含むMicrosoft製品に影響を及ぼすいくつかのバグの詳細を公開している。Nightmare Eclipse の投稿によると、ShieldBreak は、Windows に組み込まれているマルウェア対策およびセキュリティ エンジンである Windows Defender の欠陥を利用します。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">A security researcher has published details of a new vulnerability in the latest versions of Windows that allows hackers to gain system-wide access to the user’s device and data, despite facing a legal threat from Microsoft weeks earlier over the release of previously unknown software flaws.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/microsoft.html" target="_blank" rel="noopener noreferrer" class="company-link">Microsoft の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/08/12/after-microsoft-threatened-legal-action-a-security-researcher-publishes-a-new-windows-zero-day-bug/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="16">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Google、Pixel 11 Creator Suiteでインフルエンサーを目指す</h2>
+    <p class="article-original-title">原題: <em>Google aims for influencers with the Pixel 11 Creator Suite</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。新しい携帯電話には、急成長するインフルエンサーがコンテンツの撮影と編集を支援するように設計された一連の機能が搭載されています。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. The new phones are getting a bundle of features designed to help burgeoning influencers film and edit content.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/google.html" target="_blank" rel="noopener noreferrer" class="company-link">Google の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/tech/977888/pixel-creator-suite-influencer-camera-features" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="17">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Google の最新 Pixel 11 スマートフォンの 4 つの新しいカメラ トリック</h2>
+    <p class="article-original-title">原題: <em>4 New Camera Tricks on Google’s Latest Pixel 11 Smartphones</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">GoogleのPixel Camera責任者であるアイザック・レイノルズ氏は、スマートフォンのカメラの毎年のアップグレードは時代遅れだと考える人もいるが、依然として重要だと考えている。「カジュアルな写真家で、熱心に趣味として活動したいと考えている人は、ツールを与えない限り、決してその上限を突破することはできません」と彼は言います。「他の人が『まあ』と呼ぶ機能。人によっては、それらの機能は人生を変えるものです。」 2022 年に発売された Pixel 7 Pro の 30 倍超解像度ズームを例に挙げます。これは、機械学習を使用して、デジタル ズームされた写真内の複数のフレームをつなぎ合わせ、これまでよりもはるかに鮮明な結果を提供します。レイノルズ氏によると、この機能のおかげで、Google では以前よりも劇的に 30 倍ズームを使用する人が増えているという。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Google&#x27;s Pixel Camera chief, Isaac Reynolds, thinks year-to-year upgrades to smartphone cameras are still critical , even though some detractors think they’re passé.“A person who is a casual photographer and desperately wants to be a hobbyist—they&#x27;re never going to break that ceiling unless you give them the tools,&quot; he says.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/google.html" target="_blank" rel="noopener noreferrer" class="company-link">Google の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/story/new-camera-tricks-on-google-latest-pixel-11-smartphones/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="18">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Ars Technica - All content</span>
+    </div>
+
+    
+
+    <h2 class="article-title">研究者らはZoomの画面共有を通じてデバイスをハイジャックする方法を発見した</h2>
+    <p class="article-original-title">原題: <em>Researchers found a way to hijack devices through Zoom screen sharing</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">公開されている AI ツールは、20 件未満のプロンプトで Zoom の危険な欠陥を発見しました。 AI モデルがソフトウェアの脆弱性を発見し、それらを悪用する方法を開発し、自律的なハッキング行為を実行する高度な機能を獲得する中、研究者らは火曜日に、ターゲットのデバイスを乗っ取るために悪用される可能性があるビデオ会議プラットフォーム Zoom の脆弱性を明らかにするという、驚くべき新たな例を提示した。参加者であれ主催者であれ、画面共有を伴う通話に参加している人は誰でも、被害者からの指示や対話なしに実行されるサイレント攻撃に対して脆弱になる可能性があります。デジタル防衛企業 A Security の研究者らによると、このバグは一般公開されている AI モデルを使用して 6 月初旬に発見され、v.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">A public AI tool found the dangerous Zoom flaw in under 20 prompts.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/security/2026/08/researchers-found-a-way-to-hijack-devices-through-zoom-screen-sharing/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Policy" data-index="19">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#ec4899">⚖️ Policy</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">「検閲と産業の複合体」がインターネットと米国の政策をどのように変えているか</h2>
+    <p class="article-original-title">原題: <em>How the “censorship-industrial complex” is changing the internet and US policy</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">私が初めて「検閲・産業複合体」という言葉を聞いたのは、2025年4月15日のことだった。ロシア、イラン、中国などからの外国の偽情報の監視と対策に重点を置いた米国国務省の小さな事務所が、翌日、差し迫った閉鎖に直面しているという情報を私が得たのはその時だった。そしてその理由は？ R/FIMIと呼ばれるこの事務所は、いわゆる検閲産業複合体において国務省の中心拠点として機能していると非難された。この複合体は、偽情報との闘いを名目にオンラインでの保守的でポピュリスト的な言論を抑圧するために共謀しているとされる、政府機関、学者、市民社会団体、ビッグテックプラットフォームの不規則な集団である。しかし、これは単なる政策の話ではありません。検閲に関する考え方の武器化も、何十億もの人々に影響を与えます。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">I first heard the term “censorship-industrial complex” on April 15, 2025.That’s when I got the tip that a small office in the U.S.State Department, which focused on monitoring and countering foreign disinformation from the likes of Russia, Iran, and China, was facing imminent shutdown—the next day.And the reason?</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/08/11/1141635/how-the-censorship-industrial-complex-is-changing-the-internet-and-us-policy/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="20">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">VentureBeat</span>
+    </div>
+
+    
+
+    <h2 class="article-title">エージェントの信頼性と評価 : 悪い評価によって失敗した企業は、人間をループから排除する可能性が最も高くなります。</h2>
+    <p class="article-original-title">原題: <em>Agentic reliability and evaluations : Enterprises that got burned by a bad eval are the most likely to remove humans from the loop, not the least</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">108 社の企業にわたって、自動エージェント評価に対する信頼が 7 月に急激に高まりましたが、予測されるはずの失敗率はまったく変化しませんでした。自動評価を完全に信頼している組織の割合は 6 月の 5% から 13% とほぼ 3 倍に増加し、評価が現実世界の結果と一致しないという苦情は 10 ポイント減少しました。それでも、先月と同じシェア (半分弱) で、評価に合格したエージェントが顧客に出荷されました。理由はクロス集計でわかります。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Across 108 enterprises, trust in automated agent evaluation rose sharply in July — and the failure rate it is supposed to predict did not move at all.The share of organizations that fully trust automated evaluation nearly tripled, from 5% in June to 13%, and the complaint that evaluations don’t match real-world outcomes fell 10 points.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://venturebeat.com/resources/agentic-reliability-and-evaluations-enterprises-that-got-burned-by-a-bad-eval-are-the-most-likely-to-remove-humans-from-the-loop-not-the-least" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="21">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Google の最新の Pixel Watch 機能は血圧とインスリン抵抗性を監視できます</h2>
+    <p class="article-original-title">原題: <em>Google&#x27;s newest Pixel Watch feature can monitor your blood pressure and insulin resistance</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Google の Health Guardian 機能は、他のウェアラブルでは監視できないものを監視できると約束しています。Pixel Watch 5 の発売に際し、Google は健康状態を監視するための新しいツール スイートである Health Guardian を発表しました。それは、他のすべてのウェアラブルが行うことができる信号を監視するだけではなく、潜在的にはるかに影響力のあるものです。Googleによれば、その新しいプラットフォームは血圧、呼吸、そして最も興味深いことにインスリン抵抗性に関する傾向を確認できるようになるという。後者を達成できた場合、その結果は驚くべきものになる可能性があります。ハイエンドのウェアラブル機器ではカフレス血圧モニタリングがますます一般的になってきていますが、精度に関しては多くの注意点があります。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Google’s Health Guardian feature promises to monitor what other wearables can’t.At the launch of the Pixel Watch 5, Google announced Health Guardian, a new suite of tools to keep an eye on your health.It&#x27;s not just watching the signals that every other wearable can, but something potentially much more impactful.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/google.html" target="_blank" rel="noopener noreferrer" class="company-link">Google の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2235228/google-health-guardian-pixel-watch-5-blood-pressure-insulin-resistance/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="22">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Silkroad Innovation Hub の Road to Battlefield コンテストは継続中</h2>
+    <p class="article-original-title">原題: <em>Silkroad Innovation Hub’s Road to Battlefield competition continues</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">シルクロード イノベーション ハブが TechCrunch、Freedom Holding、Astana Hub、IT Park Uzbekistan と提携して主催する Road to Battlefield コンテストは、今年で 2 年目を迎えます。その目的は発足以来変わっていません。サンフランシスコで 10 月 13 日から 15 日まで開催される今年の Disrupt 期間中に、中央ユーラシア各地の創業者に TechCrunch Startup Battlefield 200 への直接ルートを提供します。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">The Road to Battlefield competition , organized by Silkroad Innovation Hub in partnership with TechCrunch, Freedom Holding, Astana Hub, IT Park Uzbekistan, is now in its second year.Its purpose hasn’t changed since it launched: Give founders across Central Eurasia a direct route to TechCrunch Startup Battlefield 200 during this year’s Disrupt from October 13 – 15 in San Francisco.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/techcrunch.html" target="_blank" rel="noopener noreferrer" class="company-link">TechCrunch の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/08/12/silkroad-innovation-hubs-road-to-battlefield-competition-continues/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="23">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Google Pixel 11 発売に関する 7 つの最大の発表</h2>
+    <p class="article-original-title">原題: <em>The 7 biggest announcements of Google’s Pixel 11 launch</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。 今年の Made by Google イベントでは、Pixel スマートフォンの新しいラインナップと Pixel Watch と Buds のアップデートが紹介されました。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. ﻿This year’s Made by Google event featured a new lineup of Pixel phones and updates to the Pixel Watch and Buds.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/google.html" target="_blank" rel="noopener noreferrer" class="company-link">Google の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/tech/978712/google-pixel-11-event-everything-announced" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="24">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Honor のロボットフォンにはビデオブロガー向けのジンバル駆動カメラが搭載されています</h2>
+    <p class="article-original-title">原題: <em>Honor&#x27;s Robot Phone Has a Gimbal-Powered Camera for Vloggers</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">「スマートフォンは頭打ちになった」という声をよく耳にします。バッテリー寿命がわずかに向上し、カメラが若干アップグレードされました。当社のガラス板は年ごとにそれほど変化していないようです。それはまさに、Honor が上部から飛び出す電動カメラを備えたロボットフォンで対抗したいと考えている種類の感情です。オナーは 2025 年後半から電話をからかい続けています。同社は水曜日、中国の購入者がロボットフォンを正式に利用できるようにした。 Honor はもともと Huawei の子会社でしたが、現在は完全に独立した会社です。同社の Android スマートフォンは英国、ヨーロッパ、アフリカ、ラテンアメリカなどの地域で利用可能ですが、米国では存在感がなく、ロボットフォンは今のところ中国限定のままです。価格は9,999人民元（約1,482ドル）です。オナーはロボットフォンに電話をかけます。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">You hear it often: Smartphones have plateaued .A small boost to battery life here, a minor camera upgrade there—our glass slabs don&#x27;t seem to change all that much from year to year.That&#x27;s exactly the kind of sentiment Honor wants to counter with the Robot Phone, which has a motorized camera that pops up out of the top.Honor has been teasing the phone since late 2025 .</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/story/honor-robot-phone/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="25">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Ars Technica - All content</span>
+    </div>
+
+    
+
+    <h2 class="article-title">フォーミュラ E が Disney+、ESPN+ に新たな拠点を見つける</h2>
+    <p class="article-original-title">原題: <em>Formula E finds a new home on Disney+, ESPN+</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">この契約は、今年12月のGEN4マシンと2026/2027シーズンの登場から始まる。フォーミュラEは、今年12月にシーズン12が始まると、認知度の点で大きな変化を起こす予定だ。同社は、Disney+ と ESPN+ でこのスポーツを 144 か国で放送するための新たな複数年契約を締​​結し、練習から予選、レースに至るまでの各 ePrix 全体をライブ中継しました。新しいメディア契約は、ここ米国では来シーズンからフォーミュラEがESPN+で放映されることを意味する。2023 年以降、このスポーツは Roku でライブ放送されています。フォーミュラEのジェフ・ドッズCEOは、「これはフォーミュラEにとって画期的な瞬間であり、我々のチャンピオンシップの背後にある信じられないほどの勢いを反映している」と語った。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">The deal starts with the arrival of the GEN4 car and 2026/2027 season this December.Formula E is set to make a big change in terms of visibility when season 12 gets underway this December.It has signed a new multiyear deal to broadcast the sport on Disney+ and ESPN+ in 144 countries, with live coverage of each entire ePrix, from practice through qualifying to the race.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/cars/2026/08/formula-e-finds-a-new-home-on-disney-espn/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="26">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">ダウンロード: LLM の次の大きな要素と AI 学術研究の変化</h2>
+    <p class="article-original-title">原題: <em>The Download: the next big thing in LLMs and how AI academic research is shifting</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">さらに、Nvidia は AI インフラストラクチャのためにウォール街から 5,000 億ドルを確保しました。これは、テクノロジーの世界で何が起こっているかを毎日提供する平日のニュースレター、 The Download の本日版です。 Google の研究者がトランスフォーマーを導入してから 9 年後、このニューラル ネットワークのファミリーは、すべての主要な大規模言語モデル内のエンジンになりました。しかし、トランスフォーマーは老朽化を見せ始めています。 LLM が大きくなり性能が向上するにつれて、変圧器がボトルネックになってきました。彼らの高密度の注意メカニズムは、テキストの量が増えるにつれてますます高価になり、一度に多くの情報を追跡するのが得意ではありません。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Plus: Nvidia has secured $500 billion from Wall Street for AI infrastructure.This is today&#x27;s edition of The Download , our weekday newsletter that provides a daily dose of what&#x27;s going on in the world of technology.Nine years after Google researchers introduced the transformer, this family of neural networks has become the engine inside every major large language model.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/google.html" target="_blank" rel="noopener noreferrer" class="company-link">Google の解説</a> <a href="companies/nvidia.html" target="_blank" rel="noopener noreferrer" class="company-link">NVIDIA の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/08/11/1141610/the-download-next-big-thing-llms-ai-academic-research-shifting/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="27">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">VentureBeat</span>
+    </div>
+
+    
+
+    <h2 class="article-title">エージェント コンテキスト レイヤー: AI データを管理している企業は、そうでない企業に比べて 2 倍多くの悪い回答をキャッチしています。</h2>
+    <p class="article-original-title">原題: <em>Agent context layers: Enterprises governing their AI data are catching twice as many bad answers as the ones who aren&#x27;t</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">101 の企業全体で、コンテキスト フィード AI エージェントが頻繁に繰り返し失敗しています。 68% が過去 6 か月間に、ビジネス コンテキストの欠落または一貫性の欠如に対するエージェントの自信に満ちた間違った回答を追跡しており、最も一般的な回答は「1 回」ではなく「複数回」でした。直観に反する部分は、どの企業がそれを報告したかです。管理されたセマンティック レイヤー (企業固有の定義と関係のレイヤー) を構築または実行している企業は、recu を報告します。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Across 101 enterprises, the context feeding AI agents is failing often and repeatedly.Sixty-eight percent have traced a confident but wrong agent answer to missing or inconsistent business context in the past six months, and the single most common answer is not &quot;once&quot; but &quot;more than once.&quot; The counterintuitive part is which companies report it.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://venturebeat.com/resources/agent-context-layers-enterprises-governing-their-ai-data-are-catching-twice-as-many-bad-answers-as-the-ones-who-arent" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Mobile" data-index="28">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#6366f1">📱 Mobile</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Pixel 11 Pro vs Galaxy S26 Ultra: カメラ、ディスプレイ、バッテリー、スペックの比較</h2>
+    <p class="article-original-title">原題: <em>Pixel 11 Pro vs Galaxy S26 Ultra: Comparing their cameras, display, battery and specs</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Googleの最も強力な主力製品がサムスンの王座を狙う。Googleは本日、最新のPixel 11スマートフォンを発表し、9月のiPhone 18ラインナップの発売に向けて秋のテクノロジーシーズンの幕開けを告げた。しかし、今年の象はすでに部屋にあり、トップエンドのPixel 11 ProとPro XLが、非常に人気のあるSamsung Galaxy S26 Ultraと対決することになります。Google の新しいデバイスが実際の使用にどのように耐えられるかを確認するには、Google の新しいデバイスを完全にレビューする必要がありますが、紙上の比較は有望です。Google のスマートフォンは、売上高では Apple と Samsung に遠く離れた 3 分の 1 を占めるかもしれませんが、Android エコシステムでは重要な役割を果たしています。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Google&#x27;s most powerful flagships take aim at Samsung&#x27;s crown.Google announced its brand-new Pixel 11 smartphones today, kicking off the autumn tech season as we head toward the launch of the iPhone 18 lineup in September.But this year&#x27;s elephant is already in the room, and the top-end Pixel 11 Pro and Pro XL will face off against the extremely popular Samsung Galaxy S26 Ultra .</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/apple.html" target="_blank" rel="noopener noreferrer" class="company-link">Apple の解説</a> <a href="companies/google.html" target="_blank" rel="noopener noreferrer" class="company-link">Google の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2235132/pixel-11-pro-vs-galaxy-s26-ultra-specs-compared/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="29">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Made by Google &#x27;26 で発表されたすべて: Pixel 11、Pixel Watch 5、Pixel Tag、および多数の Gemini 機能</h2>
+    <p class="article-original-title">原題: <em>Everything announced at Made by Google &#x27;26: Pixel 11, Pixel Watch 5, Pixel Tag, and tons of Gemini features</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Googleは水曜日にMade by Google 2026イベントを開催し、Pixel 11シリーズ、Pixel Watch 5、さらにはAppleのAirTagの競合製品も発表する。テクノロジー大手はまた、このイベントを利用して、自社デバイスの Gemini を活用した新しい機能を披露しました。Googleはイベントの大部分をGeminiや同社のデバイスに搭載される他のAI機能について話すことに費やした。最も注目すべきアクセシビリティのアップデートの 1 つは、アメリカ手話をサポートするための「Live Transcribe」の拡張です。Pixel カメラを使用すると、ユーザーは手話をテキストに翻訳できるため、タイピングに頼らずにコミュニケーションをとる別の方法が得られます。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Google is holding its Made by Google 2026 event on Wednesday, unveiling the Pixel 11 series, the Pixel Watch 5, and even a competitor to Apple’s AirTag.The tech giant also used the event to show off new Gemini-powered features across its devices.Google spent a good portion of the event talking about Gemini and other AI features coming to its devices.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/apple.html" target="_blank" rel="noopener noreferrer" class="company-link">Apple の解説</a> <a href="companies/google.html" target="_blank" rel="noopener noreferrer" class="company-link">Google の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/08/12/google-unveils-pixel-11-lineup-new-airtag-rival-and-gemini-features-at-made-by-google-2026/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="30">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">GoogleのPixel 11シリーズは、少し新しいハードウェアと多くの新しいソフトウェアを組み合わせています</h2>
+    <p class="article-original-title">原題: <em>Google’s Pixel 11 series pairs a little new hardware with a lot of new software</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。この著者からの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. Posts from this author will be added to your daily email digest and your homepage feed.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/google.html" target="_blank" rel="noopener noreferrer" class="company-link">Google の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/tech/978013/google-pixel-11-series-hands-on-hardware-software" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+        </main>
+
+        <footer class="footer">
+            <p>本ページは公開記事をもとに自動生成しています。数値や仕様は必ず元記事で確認してください。</p>
+            <p>JSON データは同じフォルダ内の tech_news_digest.json で参照できます。</p>
+        </footer>
+    </div>
+
+    <script>
+
+        const categoryButtons = document.querySelectorAll('.category-btn');
+        const articleCards = document.querySelectorAll('.article-card');
+        const searchInput = document.getElementById('search-input');
+
+        let activeCategory = 'all';
+
+        function applyFilters() {
+            const query = searchInput.value.trim().toLowerCase();
+            articleCards.forEach(card => {
+                const matchesCategory = activeCategory === 'all' || card.dataset.category === activeCategory;
+                const searchableText = card.innerText.toLowerCase();
+                const matchesQuery = !query || searchableText.includes(query);
+                card.style.display = matchesCategory && matchesQuery ? '' : 'none';
+            });
+        }
+
+        categoryButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                categoryButtons.forEach(item => item.classList.remove('active'));
+                button.classList.add('active');
+                activeCategory = button.dataset.category;
+                applyFilters();
+            });
+        });
+
+        searchInput.addEventListener('input', applyFilters);
+    
+    </script>
+</body>
+</html>
