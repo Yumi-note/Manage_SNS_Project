@@ -1,0 +1,591 @@
+# 🌐 海外テックニュース 日本語まとめ
+
+**生成日時:** 2026年8月17日  02:21 JST
+
+> 世界の有力テックメディア（TechCrunch・The Verge・Wired・Ars Technica・MIT Tech Review・VentureBeat・Engadget）から注目記事を自動収集し、日本の読者向けに翻訳・要約しました。
+
+---
+
+## 目次
+
+1. [Stripe が AI ゲートウェイのスタートアップ OpenRouter を 70 億ドル以上で買収すると報じられている](#記事-1--stripe-が-ai-ゲートウェイのスタートアップ-openrouter-を-70-億ドル以上で買収すると報じられている)
+2. [Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.](#記事-2--error-500-server-error1500thats-an-errorthere-was-an-error-please-try-again-laterthats-all-we-know)
+3. [Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.](#記事-3--error-500-server-error1500thats-an-errorthere-was-an-error-please-try-again-laterthats-all-we-know)
+4. [Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.](#記事-4--error-500-server-error1500thats-an-errorthere-was-an-error-please-try-again-laterthats-all-we-know)
+5. [ダウンロード: フロックの新しいルール、クローン作成の未来、そして子供の細胞](#記事-5--ダウンロード-フロックの新しいルール、クローン作成の未来、そして子供の細胞)
+6. [RAG 推論コストを 6 分の 1 に削減するには、LLM に到達しないものを決定することから始まります](#記事-6--rag-推論コストを-6-分の-1-に削減するには、llm-に到達しないものを決定することから始まります)
+7. [Android スマートフォンを盗難から保護するには、これらの設定をオンにしてください](#記事-7--android-スマートフォンを盗難から保護するには、これらの設定をオンにしてください)
+8. [マーク・ザッカーバーグのAIの未来を人々が買わない理由](#記事-8--マーク・ザッカーバーグのaiの未来を人々が買わない理由)
+9. [オープン・マイク・イーグルとケニー・シーガルがヒップホップ・ブレイクアップの傑作を作り上げた](#記事-9--オープン・マイク・イーグルとケニー・シーガルがヒップホップ・ブレイクアップの傑作を作り上げた)
+10. [天文学者がブラックホール星の存在を発見](#記事-10--天文学者がブラックホール星の存在を発見)
+11. [ビジョンクエストのトレーラーがディズニーの D23 ファンイベントを開始](#記事-11--ビジョンクエストのトレーラーがディズニーの-d23-ファンイベントを開始)
+12. [この科学者は失われた幼少期の地図の作成に協力しています](#記事-12--この科学者は失われた幼少期の地図の作成に協力しています)
+13. [DeepSeek のトップランクの V4 Flash、価格高騰で実際のエージェントのタスクでつまずく](#記事-13--deepseek-のトップランクの-v4-flash、価格高騰で実際のエージェントのタスクでつまずく)
+14. [2026 年に OnePlus スマートフォンを購入するのはまだ良い考えですか?](#記事-14--2026-年に-oneplus-スマートフォンを購入するのはまだ良い考えですか)
+15. [Anthropic CEO、AIの反発は「根本的に信頼の危機」だと語る](#記事-15--anthropic-ceo、aiの反発は「根本的に信頼の危機」だと語る)
+16. [アマゾンは集団訴訟が始まる前に潰そうとしている](#記事-16--アマゾンは集団訴訟が始まる前に潰そうとしている)
+17. [次の 2 つの日食の計画を始めるのに早すぎるということはありません](#記事-17--次の-2-つの日食の計画を始めるのに早すぎるということはありません)
+18. [Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.](#記事-18--error-500-server-error1500thats-an-errorthere-was-an-error-please-try-again-laterthats-all-we-know)
+19. [評価ハーネスは、定性的レビューではできなかったことを発見しました: AI モデルは間違っているときに最も自信を持っています](#記事-19--評価ハーネスは、定性的レビューではできなかったことを発見しました-ai-モデルは間違っているときに最も自信を持っています)
+20. [Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.](#記事-20--error-500-server-error1500thats-an-errorthere-was-an-error-please-try-again-laterthats-all-we-know)
+21. [TechCrunch Mobility: 電動エアタクシーの飛行経路の変化](#記事-21--techcrunch-mobility-電動エアタクシーの飛行経路の変化)
+22. [Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.](#記事-22--error-500-server-error1500thats-an-errorthere-was-an-error-please-try-again-laterthats-all-we-know)
+23. [誰かがついに Mac へのアプリのインストールを修正した](#記事-23--誰かがついに-mac-へのアプリのインストールを修正した)
+24. [Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.](#記事-24--error-500-server-error1500thats-an-errorthere-was-an-error-please-try-again-laterthats-all-we-know)
+25. [クローン作成は種の保存、あるいは人間の「臓器袋」の作成に利用できる可能性がある](#記事-25--クローン作成は種の保存、あるいは人間の「臓器袋」の作成に利用できる可能性がある)
+26. [GLM-5.3 は高度なサイバー機能を備えています - そして伝えられるところによると、Cursor にはすでに「重大な脆弱性」が発見されています](#記事-26--glm-53-は高度なサイバー機能を備えています---そして伝えられるところによると、cursor-にはすでに「重大な脆弱性」が発見されています)
+27. [レトロゲームが古いブラウン管テレビでよりよく見える理由は次のとおりです](#記事-27--レトロゲームが古いブラウン管テレビでよりよく見える理由は次のとおりです)
+28. [女性は、継父が幼少期の写真を露骨な画像に変換するためにGrokを使用したと主張している](#記事-28--女性は、継父が幼少期の写真を露骨な画像に変換するためにgrokを使用したと主張している)
+29. [ローグ AI はもはや SF ではありません](#記事-29--ローグ-ai-はもはや-sf-ではありません)
+
+---
+
+## 記事 1  ｜  TechCrunch
+
+### Stripe が AI ゲートウェイのスタートアップ OpenRouter を 70 億ドル以上で買収すると報じられている
+
+> 原題: *Stripe will reportedly acquire AI gateway startup OpenRouter for $7B+*
+
+#### 📝 記事の日本語要約
+
+Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.
+
+#### 🇺🇸 English Summary
+
+Stripe has finalized a deal to acquire OpenRouter, according to a new report in Bloomberg .OpenRouter helps customers to select different AI models to perform different tasks, depending on their specific needs and budget.The company announced in May that it had raised a $113 million Series B , at a reported $1.3 billion valuation.
+
+🔗 [元記事を読む](https://techcrunch.com/2026/08/16/stripe-will-reportedly-acquire-ai-gateway-startup-openrouter-for-7b/)
+
+---
+
+## 記事 2  ｜  The Verge
+
+### Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.
+
+> 原題: *OpenAI reportedly disbanded its preparedness team*
+
+#### 📝 記事の日本語要約
+
+Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.
+
+#### 🇺🇸 English Summary
+
+Posts from this topic will be added to your daily email digest and your homepage feed. It’s just the latest shakeup of its safety teams as it heads towards an IPO.
+
+#### 🏢 企業解説リンク
+
+- [OpenAI](companies/openai.html)
+
+🔗 [元記事を読む](https://www.theverge.com/ai-artificial-intelligence/980817/openai-disbands-preparedness-team)
+
+---
+
+## 記事 3  ｜  Wired
+
+### Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.
+
+> 原題: *Turns Out, a New Shape Is Exactly What Samsung Needed for Its Folding Phone*
+
+#### 📝 記事の日本語要約
+
+サムスンは、おそらく折りたたみ式携帯電話には新しい形状が必要であると認識するまでに 10 年近くかかりました。あまりにも長い間、同社の Fold および Flip スマートフォンは、私たちがよく知っている伝統的なキャンディーバーの形状を中心にデザインされてきました。フリップでは、キャンディーバーを半分に折りたたんでさらにポケットに入れやすくし、フォールドでは、最初の板に同様に細長い板を 2 つ追加して、本のような体験を提供します。新しい Galaxy Z Fold8 は、ぴったりと専用に設計された新しいプロポーションを採用しています。このデバイスは、これまでの Folds よりも短く、幅が広くなっていますが、開いたときは、以前の Folds よりもさらにタブレットらしく感じられます。
+
+#### 🇺🇸 English Summary
+
+It took Samsung nearly a decade to realize that maybe folding phones deserve a new shape.For too long, its Fold and Flip smartphones have been designed around the traditional candy bar shape we've all come to know.The Flip folds that candy bar in half to make it even more pocketable, and the Fold adds a second, similarly long and narrow slab to the first for a booklike experience.
+
+🔗 [元記事を読む](https://www.wired.com/review/samsung-galaxy-z-fold8-and-z-fold8-ultra/)
+
+---
+
+## 記事 4  ｜  Ars Technica
+
+### Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.
+
+> 原題: *Wildfire smoke now bigger prenatal threat than human sources of air pollution*
+
+#### 📝 記事の日本語要約
+
+規制により、出生前における有害な排出物への曝露は減少しましたが、山火事の煙によってその増加が消失しています。 1965年、大統領諮問委員会は、蔓延する化学物質と炭素汚染が環境衛生に悪影響を及ぼし、気候を変化させていると警告する報告書を発表した。 5年後、リチャード・ニクソン大統領は大気浄化法に署名した。 1970 年の法律とその修正案が可決されて以来、車両および産業発生源からの 6 種類の有害な大気汚染物質の合計排出量は、80% 近く減少しました。しかし、山火事の煙による汚染がこれらの大気質の向上を覆い隠していることを示す証拠が増えています。化石燃料の野放しな燃焼は、より暖かく乾燥した環境を生み出し、山火事の激しさと破壊性を高め、地域社会を有害な煙で覆い尽くしています。 。
+
+#### 🇺🇸 English Summary
+
+Regulations reduced prenatal exposure to harmful emissions, but wildfire smoke is erasing gains.In 1965, a presidential advisory panel issued a report warning that pervasive chemical and carbon pollution was harming environmental health and changing the climate.Five years later, President Richard Nixon signed the Clean Air Act.
+
+🔗 [元記事を読む](https://arstechnica.com/science/2026/08/wildfire-smoke-now-bigger-prenatal-threat-than-human-sources-of-air-pollution/)
+
+---
+
+## 記事 5  ｜  MIT Tech Review
+
+### ダウンロード: フロックの新しいルール、クローン作成の未来、そして子供の細胞
+
+> 原題: *The Download: Flock’s new rules, cloning’s future, and children’s cells*
+
+#### 📝 記事の日本語要約
+
+さらに、ウクライナの無人機が軍事演習で米軍を破った。これは、テクノロジーの世界で何が起こっているかを毎日提供する平日のニュースレター、 The Download の本日版です。これに対抗するため、同社はデータベースを検索する前に刑事事件番号の入力を義務付け、不審な検索の自動監査を拡大する予定だ。しかし、フロックはこれらの症例番号を確認しないため、警察官は依然として安全策を回避する方法を見つけることができます。 Flock が何を変えようとしているのか、そしてどこに抜け穴が残っているのかをご紹介します。
+
+#### 🇺🇸 English Summary
+
+Plus: Ukrainian drones defeated US forces in a military exercise.This is today's edition of The Download , our weekday newsletter that provides a daily dose of what's going on in the world of technology.To combat that, the company will require them to enter a criminal case number before searching its database and expand automated auditing of suspicious searches.
+
+🔗 [元記事を読む](https://www.technologyreview.com/2026/08/14/1142033/the-download-flock-new-rules-cloning-future/)
+
+---
+
+## 記事 6  ｜  VentureBeat
+
+### RAG 推論コストを 6 分の 1 に削減するには、LLM に到達しないものを決定することから始まります
+
+> 原題: *Cutting RAG inference costs 6x starts with deciding what never reaches the LLM*
+
+#### 📝 記事の日本語要約
+
+Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.
+
+#### 🇺🇸 English Summary
+
+Most teams building retrieval augmented generation (RAG) systems for high stakes classification make the same architectural bet: Route every ambiguous case straight to the language model and trust the retrieved context to sort it out. This works fine in a demo. It falls apart the moment the system has to survive an audit, a regulator, or a complianc. .
+
+🔗 [元記事を読む](https://venturebeat.com/orchestration/cutting-rag-inference-costs-6x-starts-with-deciding-what-never-reaches-the-llm)
+
+---
+
+## 記事 7  ｜  Engadget
+
+### Android スマートフォンを盗難から保護するには、これらの設定をオンにしてください
+
+> 原題: *Turn on these settings to protect your Android phone from theft*
+
+#### 📝 記事の日本語要約
+
+Google は近年、Android にスマートな盗難検出機能をいくつか追加しました。長年にわたり、Android の盗難防止機能は積極的というよりはむしろ反応的なものでした。ユーザーは、PIN を入力するときに携帯電話を保護する、位置情報サービスを利用する、推測されやすいパスワードを避けるなど、従来の警告やプロトコルに慣れ親しんでいます。幸いなことに、盗難防止ツールは、AI と Google の組み込みの盗難防止スイートの助けを借りて、盗難を防ぐ能力がついに向上しています。たとえば、携帯電話が手からひったくられた場合、新しいモーションセンシング盗難検出機能がすぐに携帯電話をロックします。泥棒が SIM カードを抜き取ったり、機内モードに切り替えたりして接続を切断した場合、オフライン デバイス ロック機能によりカウントダウンがトリガーされ、すぐに画面がロックされます。
+
+#### 🇺🇸 English Summary
+
+Google has added some smart theft-detection features to Android in recent years.For years, Android anti-theft protection was more reactionary than proactive.Users are all too familiar with traditional warnings and protocols, like shielding your phone when entering your PIN, utilizing location services and avoiding easily guessed passwords.
+
+#### 🏢 企業解説リンク
+
+- [Google](companies/google.html)
+
+🔗 [元記事を読む](https://www.engadget.com/2236816/turn-on-settings-protect-android-phone-from-theft/)
+
+---
+
+## 記事 8  ｜  TechCrunch
+
+### マーク・ザッカーバーグのAIの未来を人々が買わない理由
+
+> 原題: *Why people aren't buying Mark Zuckerberg’s AI future*
+
+#### 📝 記事の日本語要約
+
+Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.
+
+#### 🇺🇸 English Summary
+
+Meta CEO Mark Zuckerberg published a 6,500 word essay this week declaring that “The Future is for Everyone” and painting an optimistic picture of a future powered by AI, where “everyone will have an exceptionally capable personal agent that understands you, your goals, and everything you care about.
+
+#### 🏢 企業解説リンク
+
+- [Meta](companies/meta.html)
+- [TechCrunch](companies/techcrunch.html)
+
+🔗 [元記事を読む](https://techcrunch.com/2026/08/16/why-people-arent-buying-mark-zuckerbergs-ai-future/)
+
+---
+
+## 記事 9  ｜  The Verge
+
+### オープン・マイク・イーグルとケニー・シーガルがヒップホップ・ブレイクアップの傑作を作り上げた
+
+> 原題: *Open Mike Eagle and Kenny Segal crafted a hip hop breakup masterpiece*
+
+#### 📝 記事の日本語要約
+
+このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。運命だ！イーグルの非常に個人的な歌詞とシーガルの最も威厳のあるビートを組み合わせたものです。
+
+#### 🇺🇸 English Summary
+
+Posts from this topic will be added to your daily email digest and your homepage feed. DOOMED! pairs Eagle’s deeply personal lyrics with some of Segal’s most commanding beats.
+
+🔗 [元記事を読む](https://www.theverge.com/entertainment/980799/open-mike-eagle-and-kenny-segal-doomed-review)
+
+---
+
+## 記事 10  ｜  Wired
+
+### 天文学者がブラックホール星の存在を発見
+
+> 原題: *Astronomers Discover the Existence of a Black Hole Star*
+
+#### 📝 記事の日本語要約
+
+サウンドガーデンが「Black Hole Sun」を書いたとき、彼らはうっかり何かを思いついたのかもしれない。 『ネイ​​チャー』誌の新しい論文で、科学者らは、太陽系ほどの大きさで、宇宙の深さで真っ赤に輝く「ブラックホール星」について記録した。この発見は、ジェームス・ウェッブ宇宙望遠鏡での観測に基づいており、天文学者の宇宙に対する考え方を変え続けています。研究者たちは、宇宙で最も遠くにある観測可能な現象のいくつかに焦点を当てました。これらの現象は、変装した星のようなものです。それらが発する光に基づいて、それらは巨大な星といくつかの特徴を共有しているように見えますが、天文学者はそれらが実際には非常に高密度で明るいガスに覆われたブラックホールではないかと疑っています。これらの仮想の天体はブラック ホール星と呼ばれ、新しい r. 。
+
+#### 🇺🇸 English Summary
+
+When Soundgarden Wrote “Black Hole Sun,” they may have inadvertently been onto something.In a new paper in Nature, scientists have chronicled a “black hole star” that’s the size of our solar system and glows bright red in the depth of space.The findings are based on observations from the James Webb Space Telescope , which continues to change how astronomers think about the cosmos.
+
+🔗 [元記事を読む](https://www.wired.com/story/black-hole-stars-are-becoming-less-hypothetical/)
+
+---
+
+## 記事 11  ｜  Ars Technica
+
+### ビジョンクエストのトレーラーがディズニーの D23 ファンイベントを開始
+
+> 原題: *VisionQuest trailer kicks off Disney's D23 fan event*
+
+#### 📝 記事の日本語要約
+
+また: アソーカ S2 ティーザー、ドゥームズデイ トレーラー、MCU の X-Men とスター・ウォーズ: スターファイターに関するニュース カリフォルニア州アナハイムで開催された D23: 究極のディズニー・ファン・イベントでは、マーベル・スタジオがビジョンクエストの最初のトレーラーを公開するなど、忙しい初日となりました。アソーカ S2 の最初のティーザーも入手しました。先月サンディエゴ・コミコンの参加者限定で特集された『アベンジャーズ：ドゥームズデイ』特別映像の公開。スター・ウォーズ：スターファイターの特別スニーク・ピーク（参加者限定）。MCUのX-MEN映画のキャスティングニュース。そして来月Disney+に登場するアニメーションスペシャル「LEGO Star Wars: The Mandalorian」の予告編です。（以下、ネタバレを含みます。
+
+#### 🇺🇸 English Summary
+
+Also: Ahsoka S2 teaser, Doomsday trailer, news about MCU’s X-Men and Star Wars: Starfighter It was a busy first day at D23: The Ultimate Disney Fan Event, in Anaheim, California, with Marvel Studios releasing the first trailer for VisionQuest .
+
+🔗 [元記事を読む](https://arstechnica.com/culture/2026/08/visionquest-trailer-kicks-off-disneys-d23-fan-event/)
+
+---
+
+## 記事 12  ｜  MIT Tech Review
+
+### この科学者は失われた幼少期の地図の作成に協力しています
+
+> 原題: *This scientist is helping build a missing map of childhood*
+
+#### 📝 記事の日本語要約
+
+ディアン・テイラー氏は研究者に対し、細胞レベルから始めて子供の健康を優先するよう促している。2017年、ディーン・テイラーはオフィスから歩いてすぐのペンシルバニア大学でのプレゼンテーションに出席した。ある研究者が、人体のあらゆる細胞の地図を作成することを目的とした野心的なプロジェクトである Human Cell Atlas を発表するためにそこに来ました。テイラーは困惑したが、その後心配した。詳細が明らかになるにつれて、彼女は、プロジェクトの研究者が成人を研究する計画しか立てていないことに気づきました。「そのとき、私の小さな目覚まし時計が鳴りました」と彼女は言います。テイラー氏は、3 年前にフィラデルフィア小児病院 (CHOP) にバイオインフォマティクス部長として入社して以来、子供を対象とした医学研究への投資が不足していることに失望していました。
+
+#### 🇺🇸 English Summary
+
+Deanne Taylor is pushing researchers to prioritize children’s health, starting at a cellular level.In 2017, Deanne Taylor attended a presentation at the University of Pennsylvania, just a short walk from her office.A researcher was there to unveil the Human Cell Atlas, an ambitious project that aimed to map every cell in the human body.Taylor was floored, and then concerned.
+
+🔗 [元記事を読む](https://www.technologyreview.com/2026/08/14/1141354/deanne-taylor-gene-expression-children/)
+
+---
+
+## 記事 13  ｜  VentureBeat
+
+### DeepSeek のトップランクの V4 Flash、価格高騰で実際のエージェントのタスクでつまずく
+
+> 原題: *DeepSeek's top-ranked V4 Flash stumbles on real agent tasks as its prices surge*
+
+#### 📝 記事の日本語要約
+
+DeepSeek の V4 Flash は、その公開以来、モデルのリーダーボードのトップに立っており、開発者からは「完全なモンスター」として賞賛されています。しかし、実際のテストでは、複雑なエージェント タスクのバッチのうち 53.8% しか完了しませんでした。 Composio は、Claude Code、Codex、OpenCode を含む 8 つの異なるエージェント ハーネスを介してモデルを実行し、Gmail、GitHub、Slack などのライブ ツールにわたる 30 の意図的に困難なマルチステップ タスクを実行しました。 。
+
+#### 🇺🇸 English Summary
+
+DeepSeek's V4 Flash has topped model leaderboards and been hailed by developers as a "total monster" since its rollout.But in real-world testing, it completed just 53.8% of a batch of complex agent tasks.
+
+🔗 [元記事を読む](https://venturebeat.com/orchestration/deepseeks-top-ranked-v4-flash-stumbles-on-real-agent-tasks-as-its-prices-surge)
+
+---
+
+## 記事 14  ｜  Engadget
+
+### 2026 年に OnePlus スマートフォンを購入するのはまだ良い考えですか?
+
+> 原題: *Is buying a OnePlus phone in 2026 still a good idea?*
+
+#### 📝 記事の日本語要約
+
+本当に欲しいのであれば、それを機能させることができます。OnePlus スマートフォンに注目している場合は、パフォーマンス、価値、ソフトウェアに優先順位を設定している可能性があります。同社はいくつかの波乱に満ちた発売を経験したが、過去数世代の OnePlus スマートフォンは、ブランドを最初に地図上に載せるのに貢献した「フラッグシップキラー」の称号を取り戻した。OnePlus 15 のレビューでは、カメラを除けば不満の点はほとんどありませんでした。900 ドルという価格で、OnePlus 15 と同等のパフォーマンスを実現しながら、優れたバッテリー寿命と比類のないソフトウェア エクスペリエンスを提供する代替品を見つけるのは難しいでしょう。悲しいことに、数か月にわたる噂の後、OnePlus は 7 月に北米とヨーロッパから撤退することを確認しました。
+
+#### 🇺🇸 English Summary
+
+If you really want one, you can make it work.If you've been eyeing a OnePlus phone, you likely have your priorities set on performance, value and software.Though the company had a couple of rocky launches, the previous few generations of OnePlus smartphones have reclaimed the "flagship killer" title that helped put the brand on the map in the first place.
+
+🔗 [元記事を読む](https://www.engadget.com/2236810/is-buying-oneplus-phone-still-good-idea-in-2026/)
+
+---
+
+## 記事 15  ｜  TechCrunch
+
+### Anthropic CEO、AIの反発は「根本的に信頼の危機」だと語る
+
+> 原題: *Anthropic CEO says AI backlash is ‘fundamentally a crisis of trust’*
+
+#### 📝 記事の日本語要約
+
+Anthropic CEO のダリオ・アモデイ氏は最近、人工知能とそれが未来をどのように形作るかについて過度に悲観的なイメージを描いているとの考えに反発しました。アモデイ氏のコメントは、オールイン ポッドキャストと X の両方で、AI の危険性についてのアモデイ氏の警告が米国で、特にデータセンターに対する反発をあおるのに役立っていると主張した投資家のギャビン・ベイカー氏に応えたものである。 AI規制に関してはアモデイ氏が「議論に負けた」と主張し（アンスロピック社は大手AI企業に透明性要件を課すカリフォルニア州法案など、いくつかの規制を主張している）、「彼は世界で最も重要な企業の一つのCEOになろうとしている」ことを踏まえて、ベイカー氏はこう書いた。
+
+#### 🇺🇸 English Summary
+
+Anthropic CEO Dario Amodei recently pushed back against the idea that he’s been painting an overly pessimistic picture of artificial intelligence and how it might shape the future.
+
+🔗 [元記事を読む](https://techcrunch.com/2026/08/16/anthropic-ceo-says-ai-backlash-is-fundamentally-a-crisis-of-trust/)
+
+---
+
+## 記事 16  ｜  The Verge
+
+### アマゾンは集団訴訟が始まる前に潰そうとしている
+
+> 原題: *Amazon is trying to crush class-action suits before they get started*
+
+#### 📝 記事の日本語要約
+
+このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。 An update to its terms and conditions requires all disputes be resolved through arbitration.
+
+#### 🇺🇸 English Summary
+
+Posts from this topic will be added to your daily email digest and your homepage feed. An update to its terms and conditions requires all disputes be resolved through arbitration.
+
+#### 🏢 企業解説リンク
+
+- [Amazon](companies/amazon.html)
+
+🔗 [元記事を読む](https://www.theverge.com/tech/980752/amazon-class-action-arbitration-terms-and-conditions)
+
+---
+
+## 記事 17  ｜  Wired
+
+### 次の 2 つの日食の計画を始めるのに早すぎるということはありません
+
+> 原題: *It’s Never Too Early to Start Planning for the Next Two Solar Eclipses*
+
+#### 📝 記事の日本語要約
+
+Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.
+
+#### 🇺🇸 English Summary
+
+The total solar eclipse on August 12 produced some of the most spectacular images of this phenomenon in recent years.But the mini golden age of eclipses in Europe is just beginning.The so-called “Iberian eclipse trio” still has two events to go—and both promise to be even more incredible than the one that just occurred.
+
+🔗 [元記事を読む](https://www.wired.com/story/its-never-too-early-to-start-planning-for-the-next-two-solar-eclipses/)
+
+---
+
+## 記事 18  ｜  Ars Technica
+
+### Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.
+
+> 原題: *Ukraine strikes major Russian rocket factory with cruise missiles*
+
+#### 📝 記事の日本語要約
+
+「フラミンゴ・ミサイルが使用された。良い成果だ。」 ウクライナのウォロディミル・ゼレンスキー大統領は土曜日、同国が地上発射巡航ミサイルを使用してロシア奥深くのプログレス・ロケット宇宙センターを攻撃したことを認めた。ゼレンスキー大統領はソーシャルメディアサイトXで、「ロシアのサマラ地域では、ロスコスモス内の主要企業の一つ、エレクトロニクス生産などに携わるプログレスセンターが被害を受けた」と述べ、「ウクライナ国境から約900キロ離れたサマラ州最大の都市、サマラはロシアで最も重要なロケット製造会社の本拠地である。プログレスセンターはロシアの主力車両であるソユーズ2号を組み立てている」と述べた。この施設は、最新のソユーズ 5 ロケットと同様に軍事衛星も製造しています。
+
+#### 🇺🇸 English Summary
+
+“Flamingo missiles were used.A good achievement.” Ukrainian President Volodymyr Zelenskyy confirmed on Saturday that his country struck the Progress Rocket Space Center deep within Russia using ground-launched cruise missiles.
+
+🔗 [元記事を読む](https://arstechnica.com/space/2026/08/ukraine-strikes-major-russian-rocket-factory-with-cruise-missiles/)
+
+---
+
+## 記事 19  ｜  VentureBeat
+
+### 評価ハーネスは、定性的レビューではできなかったことを発見しました: AI モデルは間違っているときに最も自信を持っています
+
+> 原題: *An eval harness found what qualitative review couldn't: AI models are most confident when wrong*
+
+#### 📝 記事の日本語要約
+
+大規模言語モデル (LLM) 支援ツールの開発プロセスには、退屈で時間がかかり、エンド ユーザーに見える結果が得られないため、ほとんどのチームがスキップしているステップがあります。それは、モデルが言っていることが実際に正しいことを確認するステップです。流暢ではなく、一貫性がなく、話題の関連性がありません。ツールが解決するために構築された特定の問題に対する正しい答えを正確に特定するという意味では正しいです。 「この出力は私にとって正しいように聞こえます。
+
+#### 🇺🇸 English Summary
+
+There is a step in the development process for large language model (LLM)-assisted tooling that most teams skip because it's tedious, time-consuming, and doesn't produce results visible to end users: Verifying that what the model is saying is actually correct.
+
+🔗 [元記事を読む](https://venturebeat.com/orchestration/an-eval-harness-found-what-qualitative-review-couldnt-ai-models-are-most-confident-when-wrong)
+
+---
+
+## 記事 20  ｜  Engadget
+
+### Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.
+
+> 原題: *Do you really need an antivirus app on your Android?*
+
+#### 📝 記事の日本語要約
+
+簡単な答えはおそらくそうではありませんが、それはデバイスの使用方法によって異なります。PC 時代の優位性が終わったため、サードパーティのウイルス対策ソフトウェアの全盛期は過ぎ去りました。Norton、McAfee、Avast などの名前は、かつては世界中の PC ユーザーによく知られていましたが、昔の Windows PC とは異なり、私たちは急いで携帯電話にウイルス対策ソフトウェアを一斉にインストールすることはありません。理由は簡単です。最新の Android スマートフォンには実際には必要がないからです。デバイスがマルウェアに侵入できないというわけではありませんが、最近ではデバイスの保護がすべてユーザーに任されているわけではありません。
+
+#### 🇺🇸 English Summary
+
+The short answer is probably not, but it depends on how you use your device.The heyday of third-party antivirus software has been and gone as the dominance of the PC era has ended.Names like Norton, McAfee and Avast were once familiar to PC users across the world, but unlike those Windows PCs of old, we aren't rushing en masse to install antivirus software on our phones.
+
+🔗 [元記事を読む](https://www.engadget.com/2236805/android-phones-antivirus-app-guidance/)
+
+---
+
+## 記事 21  ｜  TechCrunch
+
+### TechCrunch Mobility: 電動エアタクシーの飛行経路の変化
+
+> 原題: *TechCrunch Mobility: The shifting flight path of electric air taxis*
+
+#### 📝 記事の日本語要約
+
+TechCrunch Mobility へようこそ。交通の未来に関するニュースと洞察の中心ハブです。これを受信箱に受け取るには、ここから無料でサインアップしてください。TechCrunch Mobility をクリックするだけです。今週は電気航空機のニュースがたくさんあったので、何かが話題になっていました。ば、ダム、ss。しかし実際には、これは冗談ではありません。今週の大きな取引のうち 2 つは、電動垂直離着陸機 (eVTOL) を開発する企業に関係していました。これらは共に、最終的に電動エアタクシーを導入するために長い規制プロセスを経ながらも、急成長するセクターがいかに統合を続け、短期的な収益源を模索しているかを示しています。
+
+#### 🇺🇸 English Summary
+
+Welcome back to TechCrunch Mobility — your central hub for news and insights on the future of transportation.To get this in your inbox, sign up here for free — just click TechCrunch Mobility !Something was in the air this week because we had a heck of a lot of electric aircraft news.Ba-dum-tss.
+
+#### 🏢 企業解説リンク
+
+- [TechCrunch](companies/techcrunch.html)
+
+🔗 [元記事を読む](https://techcrunch.com/2026/08/16/techcrunch-mobility-the-shifting-flight-path-of-electric-air-taxis/)
+
+---
+
+## 記事 22  ｜  The Verge
+
+### Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.
+
+> 原題: *ChatGPT’s Computer History tracks your clicks and keystrokes*
+
+#### 📝 記事の日本語要約
+
+このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。 Windows Recall に似ていますが、不気味なスクリーンショットは一切ありません。 （でも、それでもちょっと不気味です。）
+
+#### 🇺🇸 English Summary
+
+Posts from this topic will be added to your daily email digest and your homepage feed. It’s like Windows Recall, but without all the creepy screenshots. (But it’s still kind of creepy. )
+
+🔗 [元記事を読む](https://www.theverge.com/ai-artificial-intelligence/980742/chatgpts-computer-history-tracks-your-clicks-and-keystrokes)
+
+---
+
+## 記事 23  ｜  Wired
+
+### 誰かがついに Mac へのアプリのインストールを修正した
+
+> 原題: *Someone Finally Fixed Installing Apps on a Mac*
+
+#### 📝 記事の日本語要約
+
+Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.
+
+#### 🇺🇸 English Summary
+
+One of the oddest things about macOS is the installation dance.Dealing with disk images, dragging and dropping—it's the main way of installing software from outside the Mac App Store, and it's annoying.You download a DMG file, open it to mount a virtual disk, and drag the application from there to your Applications folder.
+
+🔗 [元記事を読む](https://www.wired.com/story/easydmg-finally-fixed-installing-apps-on-a-mac/)
+
+---
+
+## 記事 24  ｜  Ars Technica
+
+### Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.
+
+> 原題: *So much solar: Digging into the list of every US power plant that went online this year*
+
+#### 📝 記事の日本語要約
+
+Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.
+
+#### 🇺🇸 English Summary
+
+Utility-scale solar leads by a mile, followed by batteries.Fossil fuels, not so much.It’s been a wild first half of the year in the US power sector, with announcements of gigantic natural gas power plants and some long-awaited renewable energy projects coming online.At times of rapid change, forecasting is difficult.
+
+🔗 [元記事を読む](https://arstechnica.com/science/2026/08/so-much-solar-digging-into-the-list-of-every-us-power-plant-that-went-online-this-year/)
+
+---
+
+## 記事 25  ｜  MIT Tech Review
+
+### クローン作成は種の保存、あるいは人間の「臓器袋」の作成に利用できる可能性がある
+
+> 原題: *Cloning could be used to save species—or make human “organ sacks”*
+
+#### 📝 記事の日本語要約
+
+Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.
+
+#### 🇺🇸 English Summary
+
+Creating genetically identical copies can veer from the cool to the creepy.This week I spoke to scientists who have found a way to turn male mouse embryos female.They’ve developed a CRISPR-based approach to essentially cut out the Y chromosome.It allowed them to create female clones of male mice .
+
+🔗 [元記事を読む](https://www.technologyreview.com/2026/08/14/1141919/cloning-save-species-or-make-human-organ-sacks/)
+
+---
+
+## 記事 26  ｜  VentureBeat
+
+### GLM-5.3 は高度なサイバー機能を備えています - そして伝えられるところによると、Cursor にはすでに「重大な脆弱性」が発見されています
+
+> 原題: *GLM-5.3 is here with advanced cyber capabilities — and reportedly already found a 'serious vulnerability' in Cursor*
+
+#### 📝 記事の日本語要約
+
+中国の AI スタートアップ Z.ai は、強力で主にオープンソースの GLM シリーズ言語モデルのラインナップが増えていることで国際的に知られており、本日 GLM-5 をリリースしました。 3 では、長期的なコーディングが大幅に向上し、より重要な、そして潜在的に機密性の高いサイバーセキュリティ機能が飛躍的に向上します。もう、GLM-5。 3 のサイバー機能により、最近 AI コーディングの新興企業である Cursor に「潜在的に深刻な脆弱性」が発見されました <a href="http. .
+
+#### 🇺🇸 English Summary
+
+Chinese AI startup Z.ai, known internationally for its growing lineup of powerful, largely open source GLM series of language models, today released GLM-5.3 with substantial gains in long-horizon coding and a more consequential — and potentially sensitive — jump in cybersecurity capabilities.Already, GLM-5.
+
+🔗 [元記事を読む](https://venturebeat.com/technology/glm-5-3-is-here-with-advanced-cyber-capabilities-and-reportedly-already-found-a-serious-vulnerability-in-cursor)
+
+---
+
+## 記事 27  ｜  Engadget
+
+### レトロゲームが古いブラウン管テレビでよりよく見える理由は次のとおりです
+
+> 原題: *Here's why retro games look better on old CRT TVs*
+
+#### 📝 記事の日本語要約
+
+子供の頃、お気に入りのゲームはもっと良く見えましたが、それは単にノスタルジーを語るだけではありません。子供の頃お気に入りのゲーム機を新しいテレビやモニターで使おうとしたことがあるなら、見たものにがっかりしたことがあるでしょう。これは、最新のシステムに移植されたバージョンをプレイする場合には問題になりませんが、元のハードウェアではすぐに明らかです。ノスタルジーのせいにするのは簡単ですが、お気に入りのレトロ ゲームが記憶の中の姿と異なる理由はもっと複雑です。簡単に言うと、それらのゲームは現代のフラットパネルディスプレイで見ることを想定していないということです。80 年代、90 年代、2000 年代初頭のゲームは、代わりに、当時の主流だったディスプレイ技術である地味なブラウン管 (CRT) 向けに設計されました。
+
+#### 🇺🇸 English Summary
+
+Your favorite games did look better when you were a kid, but it's not just nostalgia talking.If you've ever tried to use your favorite childhood game console with a new TV or monitor, you were likely disappointed by what you saw.This isn't an issue when playing a version ported to modern systems, but is immediately obvious on the original hardware.
+
+🔗 [元記事を読む](https://www.engadget.com/2236809/why-retro-games-look-better-old-crt-tv/)
+
+---
+
+## 記事 28  ｜  TechCrunch
+
+### 女性は、継父が幼少期の写真を露骨な画像に変換するためにGrokを使用したと主張している
+
+> 原題: *Woman claims her stepfather used Grok to transform childhood photo into explicit imagery*
+
+#### 📝 記事の日本語要約
+
+ジェーン・ドゥ4と特定される女性は、テネシー州のティーンエイジャー3人がイーロン・マスクのxAIに対して、同社のチャットボットGrokが児童性的虐待素材の作成に関与したとされる役割を相手に起こした訴訟に参加した。ワシントン・ポストの報道によると、女性は継父がグロクを使って彼女が11歳の時に撮った写真を加工し、7,000枚以上のあからさまな彼女の画像を作成したと主張した。女性はまた、法執行機関の強制捜査で画像が発見された2日後に義父が自殺で発見されたとも語った。 「これらのツールへの無制限のアクセスは急速に広がっています」と女性は語った。 「日常生活を奪い、児童への性的虐待に変えている。」訴訟を起こした十代の若者らは、xAI（現在はスペースXの一部）が基本的な予防策を講じていないと非難した。 。
+
+#### 🇺🇸 English Summary
+
+A woman identified as Jane Doe 4 has joined a lawsuit filed by three Tennessee teenagers against Elon Musk’s xAI over the role the company’s chatbot Grok allegedly played in creating child sexual abuse material.
+
+#### 🏢 企業解説リンク
+
+- [SpaceX](companies/spacex.html)
+
+🔗 [元記事を読む](https://techcrunch.com/2026/08/15/woman-claims-her-stepfather-used-grok-to-transform-childhood-photo-into-explicit-imagery/)
+
+---
+
+## 記事 29  ｜  The Verge
+
+### ローグ AI はもはや SF ではありません
+
+> 原題: *Rogue AI aren’t science fiction anymore*
+
+#### 📝 記事の日本語要約
+
+このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。 AI システムが人間の制御を逸脱するのではないかという懸念は、長年にわたって憶測として無視されてきました。
+
+#### 🇺🇸 English Summary
+
+Posts from this topic will be added to your daily email digest and your homepage feed. For years, fears about AI systems slipping human control were dismissed as speculative.
+
+🔗 [元記事を読む](https://www.theverge.com/column/980337/rogue-ai-science-fiction-openai)
+
+---
+
+
+> ⚠️ 本まとめは自動生成です。数値・固有名詞などの事実は元記事でご確認ください。
