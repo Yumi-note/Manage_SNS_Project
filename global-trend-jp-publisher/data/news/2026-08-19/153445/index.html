@@ -1,0 +1,1166 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>海外テックニュース日本語まとめ</title>
+    <style>
+        :root {
+            color-scheme: dark;
+            --bg: #0a0f1d;
+            --panel: rgba(13, 20, 36, 0.92);
+            --line: rgba(132, 152, 187, 0.25);
+            --text: #eef3ff;
+            --muted: #adc1dd;
+            --accent: #7dd3fc;
+            --accent-strong: #38bdf8;
+            --shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: "Hiragino Sans", "Noto Sans JP", sans-serif;
+            background:
+                radial-gradient(circle at top right, rgba(56, 189, 248, 0.22), transparent 26%),
+                radial-gradient(circle at top left, rgba(16, 185, 129, 0.16), transparent 20%),
+                linear-gradient(180deg, #07101f 0%, #0b1327 48%, #0a0f1d 100%);
+            color: var(--text);
+        }
+
+        .page-shell {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 24px;
+        }
+
+        .hero {
+            padding: 28px;
+            border: 1px solid var(--line);
+            border-radius: 28px;
+            background: linear-gradient(145deg, rgba(18, 27, 48, 0.96), rgba(10, 17, 32, 0.96));
+            box-shadow: var(--shadow);
+        }
+
+        .hero-nav {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 28px;
+        }
+
+        .nav-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 42px;
+            padding: 0 16px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        .eyebrow {
+            margin: 0 0 10px;
+            color: var(--accent);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            font-size: 0.78rem;
+        }
+
+        .hero h1 {
+            margin: 0;
+            font-size: clamp(2rem, 3vw, 3.3rem);
+            line-height: 1.1;
+        }
+
+        .timestamp,
+        .description {
+            color: var(--muted);
+        }
+
+        .control-panel {
+            margin: 20px 0 28px;
+            padding: 22px;
+            border: 1px solid var(--line);
+            border-radius: 24px;
+            background: var(--panel);
+            backdrop-filter: blur(12px);
+        }
+
+        .control-header {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            align-items: end;
+            flex-wrap: wrap;
+        }
+
+        .control-header h2 {
+            margin: 0 0 6px;
+        }
+
+        .control-header p {
+            margin: 0;
+            color: var(--muted);
+        }
+
+        #search-input {
+            width: min(100%, 360px);
+            min-height: 46px;
+            padding: 0 14px;
+            border-radius: 14px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
+        }
+
+        .category-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 16px;
+        }
+
+        .category-btn {
+            min-height: 42px;
+            padding: 0 14px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
+            cursor: pointer;
+        }
+
+        .category-btn.active {
+            background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+            color: #06111f;
+            border-color: transparent;
+            font-weight: 700;
+        }
+
+        .article-list {
+            display: grid;
+            gap: 18px;
+        }
+
+        .article-card {
+            padding: 24px;
+            border-radius: 24px;
+            border: 1px solid var(--line);
+            background: linear-gradient(180deg, rgba(12, 18, 34, 0.96), rgba(14, 22, 39, 0.9));
+            box-shadow: var(--shadow);
+        }
+
+        .card-topline {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+
+        .category-chip,
+        .source-chip {
+            display: inline-flex;
+            align-items: center;
+            min-height: 34px;
+            padding: 0 12px;
+            border-radius: 999px;
+            font-size: 0.92rem;
+            font-weight: 700;
+        }
+
+        .source-chip {
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--muted);
+        }
+
+        .article-title {
+            margin: 0 0 10px;
+            font-size: clamp(1.45rem, 2vw, 2rem);
+            line-height: 1.35;
+        }
+
+        .article-original-title {
+            margin: 0 0 18px;
+            color: var(--muted);
+        }
+
+        .security-alert {
+            margin: 0 0 14px;
+            padding: 10px 14px;
+            border-radius: 12px;
+            border: 1px solid rgba(248, 113, 113, 0.4);
+            background: rgba(248, 113, 113, 0.12);
+            color: #fecaca;
+            font-weight: 700;
+            font-size: 0.92rem;
+        }
+
+        .article-section {
+            margin-top: 18px;
+            padding-top: 18px;
+            border-top: 1px solid var(--line);
+        }
+
+        .article-section h3 {
+            margin: 0 0 12px;
+            font-size: 1rem;
+            color: var(--accent);
+        }
+
+        .article-paragraph {
+            margin: 0 0 14px;
+            color: #dce7f8;
+            line-height: 1.9;
+            font-size: 1rem;
+        }
+
+        .company-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .company-link,
+        .action-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 42px;
+            padding: 0 14px;
+            border-radius: 14px;
+            text-decoration: none;
+            border: 1px solid rgba(125, 211, 252, 0.3);
+        }
+
+        .company-link {
+            color: var(--accent);
+            background: rgba(56, 189, 248, 0.08);
+        }
+
+        .article-actions {
+            margin-top: 22px;
+        }
+
+        .footer {
+            padding: 28px 8px 40px;
+            color: var(--muted);
+            text-align: center;
+        }
+
+        .footer p {
+            margin: 6px 0;
+        }
+
+        .action-link.primary {
+            color: #06111f;
+            font-weight: 700;
+            background: linear-gradient(135deg, #7dd3fc, #22d3ee);
+            border-color: transparent;
+        }
+
+        @media (max-width: 720px) {
+            .page-shell {
+                padding: 14px;
+            }
+
+            .hero,
+            .control-panel,
+            .article-card {
+                padding: 18px;
+                border-radius: 20px;
+            }
+
+            .control-header {
+                align-items: stretch;
+            }
+
+            #search-input {
+                width: 100%;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="page-shell">
+        <header class="hero">
+            <div class="hero-nav">
+                <a class="nav-link" href="../../index.html">HOME</a>
+                <a class="nav-link" href="../index.html">この日の記事一覧</a>
+            </div>
+            <div class="hero-copy">
+                <p class="eyebrow">Global Tech News Digest</p>
+                <h1>海外テックニュース 日本語まとめ</h1>
+                <p class="timestamp">2026年8月19日 15:34 JST に収集した記事を掲載しています。</p>
+                <p class="description">各カードには本文寄りの日本語訳を掲載し、記事中で触れた企業は別ページの解説リンクとして分離しています。</p>
+            </div>
+        </header>
+
+        <section class="control-panel">
+            <div class="control-header">
+                <div>
+                    <h2>記事を探す</h2>
+                    <p>カテゴリとキーワードで一覧を絞り込めます。</p>
+                </div>
+                <input type="text" id="search-input" placeholder="タイトル・本文・媒体名で検索">
+            </div>
+            <div class="category-buttons">
+                <button class="category-btn active" data-category="all">すべて (28)</button>
+<button class="category-btn" data-category="AI/ML" style="--accent:#10b981">🤖 AI/ML (23)</button>
+<button class="category-btn" data-category="Hardware" style="--accent:#06b6d4">⚙️ Hardware (2)</button>
+<button class="category-btn" data-category="Mobile" style="--accent:#6366f1">📱 Mobile (1)</button>
+<button class="category-btn" data-category="Startups" style="--accent:#8b5cf6">🚀 Startups (2)</button>
+            </div>
+        </section>
+
+        <main class="article-list" id="articles-container">
+            <article class="article-card" data-category="Startups" data-index="1">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#8b5cf6">🚀 Startups</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">サチン・バンサルのフィンテック・ナビが1億ドルのプロサス投資で初の外部資本を調達</h2>
+    <p class="article-original-title">原題: <em>Sachin Bansal&#x27;s fintech Navi raises first outside capital with $100M Prosus investment</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">インドのフィンテック・ナビはプロサスから1億ドルを調達し、フリップカートの共同創設者サチン・バンサル（上の写真）が設立した創業8年のスタートアップにとって初の機関投資家としての資金調達となった。この投資では Navi の価値は約 1 ドルとなります。事情に詳しい関係者らによると、その額は30億ドルだという。これは、バンガロールに本拠を置く新興企業が、2024年に評価額約20億ドルで機関投資家から外部資金を調達しようとしていた後のことである。バンサル氏は、ウォルマートへの売却後にフリップカートを辞めた後、2018年にナビを設立した。フィンテックは、デジタル決済、融資、保険、投資信託などの幅広い金融サービスを提供します。この投資は、慣例的な完了条件と規制当局の承認を条件として行われ、伝えられるところによれば、Navi は上場して 300 億ルピー (約 3 ドル) を調達する準備を進めている。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Indian fintech Navi has raised $100 million from Prosus, marking the first institutional funding for the eight-year-old startup founded by Flipkart co-founder Sachin Bansal (pictured above).The investment values Navi at about $1.3 billion, according to people familiar with the matter.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/08/19/sachin-bansals-fintech-navi-raises-first-outside-capital-with-100m-prosus-investment/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="2">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Amazon Fire TV デバイスは Alexa Plus に無料アップグレードされます</h2>
+    <p class="article-original-title">原題: <em>Amazon Fire TV devices are getting a free Alexa Plus upgrade</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。より多くの Fire TV デバイス所有者が、Alexa Plus に映画のおすすめを尋ねたり、特定のシーンにジャンプしたりできるようになりました。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. More Fire TV device owners can now ask Alexa Plus for movie recommendations, jump to specific scenes, and more.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/amazon.html" target="_blank" rel="noopener noreferrer" class="company-link">Amazon の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/tech/982166/amazon-alexa-plus-fire-tv-free" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="3">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">なぜ今映画のチケットを買うのは地獄なのでしょうか?</h2>
+    <p class="article-original-title">原題: <em>Why Is It Absolute Hell to Buy a Movie Ticket Now?</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">ドゥニ・ヴィルヌーヴ監督の壮大な砂丘三部作の完結までにはまだ 4 か月あるが、その期待はチケット前売り初日の火曜日に明白であった。映画鑑賞者が空席が残っている座席表をようやく確認したいと仮想の長い列に並んで待っていたため、劇場チェーンのアプリは明らかな機能停止に見舞われた。マンハッタンでは、この信頼性の低いテクノロジーに不信感を募らせた人々が、平日の朝、チケット売り場が開く数時間前に時間を見つけて、AMC リンカーン スクエアのブロックの周りに並んだ。これは、クリストファー・ノーラン監督の『オデッセイ』とデスティン・ダニエル・クレットン監督の『スパイダーマン：ブラン・ニュー・デイ』に対する空前の需要に続き、この数週間で3回目の熱狂的な大作チケットの殺到となった。顧客は特に、これらの映画を IMAX スクリーンで見ることを熱望しています。『デューン: パート 3』です。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">The conclusion to Denis Villeneuve’s epic Dune trilogy is still four months away, but the anticipation was palpable on Tuesday, the first day of ticket presales.Theater chain apps suffered apparent outages as moviegoers waited in long virtual lines, hoping to finally glimpse a seat map with some empty spots left on it.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/story/why-is-it-absolute-hell-to-buy-a-movie-ticket-now/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="4">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">ダウンロード: AI の自己改善の問題とその熱を引き起こしているもの</h2>
+    <p class="article-original-title">原題: <em>The Download: AI’s self-improvement problem, and what’s driving the heat</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">さらに、OpenAI は安全上の懸念から一部のモデル作業を一時停止しました。これは、テクノロジーの世界で何が起こっているかを毎日提供する平日のニュースレター、 The Download の本日版です。 AI 業界が現時点で最も大胆に約束しているのは、人間の監視をほとんど必要とせずに、AI が間もなく自らを改善するということです。しかし、新しい研究は、そこに到達するには時間がかかる可能性があることを示唆しています。研究者らは、AI エージェントがまだオープンエンドの AI 研究、つまり真の進歩を遂げるために必要な判断力と創造性を必要とする明確な答えのない自由形式の調査を実施できないことを発見しました。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Plus: OpenAI has paused some model work over safety concerns.This is today&#x27;s edition of The Download , our weekday newsletter that provides a daily dose of what&#x27;s going on in the world of technology.The AI industry’s boldest promise right now is that AI will soon improve itself, with almost no need for human oversight.But a new study suggests it might take a while to get there.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/openai.html" target="_blank" rel="noopener noreferrer" class="company-link">OpenAI の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/08/19/1140195/the-download-ai-recursive-self-improvement-problem-heatwave-causes/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="5">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">VentureBeat</span>
+    </div>
+
+    
+
+    <h2 class="article-title">VentureBeat、初の主任アナリストにロブ・ストレチャイを指名、エンタープライズ AI 研究の推進を拡大</h2>
+    <p class="article-original-title">原題: <em>VentureBeat names Rob Strechay as its first Lead Analyst, expanding its enterprise AI research push</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">最近まで theCUBE Research のマネージング ディレクター兼主席アナリストであった Rob Strechay が、VentureBeat の初代主任アナリストおよび VentureBeat Research の創設アナリストとして VentureBeat に加わりました。同氏の就任は、VentureBeat におけるより深い専門化に向けた意図的な動きの次のステップとなる。つまり、エンタープライズ AI を評価、購入、導入する技術的意思決定者 (取締役、副社長、CIO、CTO) 向けに分析を構築することになる。エンタープライズ AI スタックはリアルタイムで書き換えられています。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Rob Strechay, until recently managing director and principal analyst at theCUBE Research, has joined VentureBeat as our first Lead Analyst and a founding analyst of VentureBeat Research.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://venturebeat.com/ai/venturebeat-names-rob-strechay-as-its-first-lead-analyst-expanding-its-enterprise-ai-research-push" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Mobile" data-index="6">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#6366f1">📱 Mobile</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Android の Qi2 と Qi2.2 のワイヤレス充電の違いは何ですか?</h2>
+    <p class="article-original-title">原題: <em>What&#x27;s the difference between Android&#x27;s Qi2 And Qi2.2 wireless charging?</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">大きな違いを生む重要な違いがいくつかあります。私たちはワイヤレスの世界に住んでいます。そのため、使用されているさまざまな規格を理解することは、ガジェットと充電器のパフォーマンスを最大化するのに役立ちます。ほとんどのデバイスで使用するワイヤレス充電規格は Qi2 です。これの最新版は Qi2 25W (一般に Qi2 とも呼ばれます) です。2.昨年の夏、新しい速度が iPhone と一部の Android スマートフォンの両方でサポートされることが発表されました。Google は Qi2 の採用に遅れましたが、最近発表された Pixel 11 ラインナップを含む、次世代 Android スマートフォンの機能として Qi2 25W がリストされ始めています。では、デバイスがどのバージョンをサポートしているかは重要でしょうか?Qi2 にはいくつかの重要な違いがあります。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">There are some key distinctions that make a big difference.We live in a wireless world, so understanding the different standards at play can help you to maximize the performance of your gadgets and your chargers.For most devices, the wireless charging standard you&#x27;ll be using is Qi2.The latest iteration of this is Qi2 25W, also commonly called Qi2.2.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/google.html" target="_blank" rel="noopener noreferrer" class="company-link">Google の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2237260/android-qi2-vs-25w-wireless-charging-differences/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="7">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Amazon、AIを活用したAlexa+をFire TVで無料化、プライムは不要</h2>
+    <p class="article-original-title">原題: <em>Amazon makes its AI-powered Alexa+ free on Fire TV, no Prime required</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">あなたが望むか望まないかに関わらず、AIはあなたのテレビにやって来ます。Amazonは水曜日、同社のAIアシスタント「Alexa+」が、顧客がPrimeサブスクリプションを持っているかどうかに関係なく、米国内のすべての互換性のあるFire TVデバイスに無料で展開されると発表した。このアップデートにより、会話型検索、スマートホームコントロール、AIを活用したレコメンデーションが提供されると同社は述べている。以前、Alexa+ の料金は 19 ドルでした。Amazonプライムメンバーシップを持っていない人は月額99ドルで、当初は同社が昨年秋に発表した新しいFire TVデバイスで利用できるようになった。現在、Amazon は、全員が自動的に Alexa+ にアップグレードされると述べています。アプリをダウンロードしたり、サブスクリプションにサインアップしたりする必要はありません。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">AI is coming to your TV, whether you want it or not.On Wednesday, Amazon said its AI assistant, Alexa+, will be rolled out to all compatible Fire TV devices in the U.S.for free, whether or not the customer has a Prime subscription.The update brings conversational search, smart home controls, and AI-powered recommendations, the company says.Previously, Alexa+ cost $19.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/amazon.html" target="_blank" rel="noopener noreferrer" class="company-link">Amazon の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/08/19/amazon-makes-its-ai-powered-alexa-free-on-fire-tv-no-prime-required/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="8">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Mova の最新ロボット掃除機がキッチンのスツールの問題を解決</h2>
+    <p class="article-original-title">原題: <em>Mova’s latest robot vacuum solves the kitchen stool problem</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。 Mova の新しい V70 Ultra Complete と、手の届きにくい場所を掃除するモップ アームを実際に使ってみましょう。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. ﻿Hands-on with Mova’s new V70 Ultra Complete and its mopping arm that cleans hard-to-reach spots.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/tech/981874/mova-v70-ultra-robot-vacuum-mop-arm-hands-on-review" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="9">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">最初のデジタル壁掛けカレンダーは大嫌いでしたが、今では私のお気に入りのガジェットです</h2>
+    <p class="article-original-title">原題: <em>After Hating My First Digital Wall Calendar, It’s Now My Favorite Gadget</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">嘘はつきません。私は最初に試したデジタル壁掛けカレンダーが嫌いでした。去年テストしましたが、あまり印象に残りませんでした。それは高価で巨大で、カレンダーの詳細が表示されるのが遅かった（表示されたとしても）。このデバイスは、家に役立つというよりも、むしろ乱雑に感じられました。それで、私はデジタル壁掛けカレンダーを使用するというアイデアを無視しましたが、驚いたことに、それ以来、デジタル壁掛けカレンダーの人気と選択肢は増加するばかりです。今年自分自身でいくつかの新しいモデルを試してみて、その理由が分かりました。これらのガジェットは、オンライン カレンダー (Google カレンダー、iPhone のカレンダー アプリ、会社の Microsoft カレンダー アカウントなど) を、壁に取り付けたり、カウンターやテーブルに立てかけたりできるデジタル スクリーン上に配置することで機能します。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">I won’t lie to you: I hated the first digital wall calendar I tried.I tested it last year and was left unimpressed.It was expensive and massive, and my calendar details were slow to appear (if they appeared at all).The device felt more like clutter than a useful addition to my home.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/google.html" target="_blank" rel="noopener noreferrer" class="company-link">Google の解説</a> <a href="companies/microsoft.html" target="_blank" rel="noopener noreferrer" class="company-link">Microsoft の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/story/are-digital-wall-calendars-worth-it/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="10">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Ars Technica - All content</span>
+    </div>
+
+    
+
+    <h2 class="article-title">ウクライナの無人機がロシア戦車の新しいアクティブ防御システムを圧倒 - 今のところ</h2>
+    <p class="article-original-title">原題: <em>Ukrainian drones overwhelm Russian tanks’ new active protection system—for now</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">無人機を撃墜するための防御技術を備えた戦車は依然として脆弱であることが判明しています。ロシアの戦車は、飛来するドローンを撃墜するために設計された新しいアクティブ防御システムを搭載して初めて戦闘に参加した。しかし、この技術の最近のウクライナでの実戦デビューは限られた成功しか収められず、依然としてウクライナの無人機が圧倒的な数で攻撃してロシアの装甲車両を破壊した。アリーナ-Mアクティブ防護システムが戦場で最初に記録されたのは、7月22日にロシア軍がウクライナ東部のドネツク州地域で戦車やその他の装甲車両による中隊規模の攻撃を開始したときである。ウクライナの守備隊は攻撃を撃退し、特攻無人機攻撃で少なくとも7両のT-72B3A戦車を破壊するビデオ映像を投稿した。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Tanks with defensive tech for shooting down drones are still proving vulnerable.Russian tanks have entered battle for the first time with a new active protection system designed to shoot down incoming drones.But the technology’s recent combat debut in Ukraine met with only limited success—Ukrainian drones still destroyed the Russian armored vehicles by attacking in overwhelming numbers.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/gadgets/2026/08/ukrainian-drones-overwhelm-russian-tanks-new-active-protection-system-for-now/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Hardware" data-index="11">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#06b6d4">⚙️ Hardware</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">児童監視アプリは再起動が必要な場合があります</h2>
+    <p class="article-original-title">原題: <em>Child-monitoring apps might need a reboot</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">監視アプリはオンラインでの若者の安全を約束しますが、子供の携帯電話を覗き見すると逆効果になる可能性があります。オンラインの安全性の専門家は、もっと良い方法があると言っています。ほとんどの親の最初の防御策は会話です。ピューの調査では、10 人中 9 人以上が、オンラインで共有するのが適切なことや、仲間との接し方について 10 代の子供たちと話し合ったことがあると回答しています。携帯電話にプリインストールされているツールを利用して、感染を制限することができます。Apple のスクリーン タイムと Google のファミリー リンクを使用すると、保護者はスクリーンタイムの制限、アプリのブロックまたは承認、Web コンテンツのフィルタリング、デバイスの追跡を行うことができます。家族が位置情報を共有できるアプリもあります。最大手の Life360 には毎月 9,800 万人近くのユーザーがいます。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Monitoring apps promise to keep young people safer online, but looking in on kids’ phones can backfire.Online safety experts say there’s a better way.Most parents’ first defense is conversation.In Pew surveys , more than nine in 10 say they’ve talked with their teens about what’s appropriate to share online and how to treat peers.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/apple.html" target="_blank" rel="noopener noreferrer" class="company-link">Apple の解説</a> <a href="companies/google.html" target="_blank" rel="noopener noreferrer" class="company-link">Google の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/08/19/1141623/child-monitoring-apps-need-reboot/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="12">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">VentureBeat</span>
+    </div>
+
+    
+
+    <h2 class="article-title">GLM-5.3 は、100 万トークンあたり 1.4 ドル/4.4 ドルで API にアクセスします</h2>
+    <p class="article-original-title">原題: <em>GLM-5.3 hits the API at $1.4/$4.4 per million tokens</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">非常に高度なサイバー機能を備えた先週の驚くべきデビューの後、伝えられるところによると、Cursor、GLM-5 にこれまで検出されていなかった脆弱性が発見されました。 3、中国のスタートアップ z による新しいフロンティアのオープンソース言語モデル。 ai はアプリケーション プログラミング インターフェイス (A. .</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">After a stunning debut last week with cyber capabilities so advanced they reportedly found a previously undetected vulnerability in Cursor, GLM-5. 3, the new frontier open source language model from Chinese startup z. ai, has now hit the application programming interface (A. .</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://venturebeat.com/technology/glm-5-3-hits-the-api-at-1-4-4-4-per-million-tokens" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="13">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Amazon の Alexa+ AI アシスタントが、Fire TV デバイスを持っている人なら誰でも無料で利用できるようになりました</h2>
+    <p class="article-original-title">原題: <em>Amazon&#x27;s Alexa+ AI assistant is now free for anyone with a Fire TV device</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">以前はプライム会員のみ無料でした。Amazon は、対象となる Fire TV デバイスを持つ米国内のすべての人に Alexa+ への無料アクセスを提供します。同社は AI を活用したアシスタントに単独でアクセスする場合、月額 20 ドルを請求しますが、プライム加入者は常に無料で利用できます。今では、使用するために料金を支払う必要はまったくありません。互換性のあるデバイスには、現行世代の Amazon Fire TV Stick 、Fire TV Cube 、Amazon Ember スマート テレビ、およびハイセンスやパナソニック製など、Alexa+ が組み込まれたその他のスマート テレビが含まれます。同社は、長年の開発を経て、今年2月にアップグレードされたAlexaエクスペリエンスを発表した。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">It only used to be free for Prime members.Amazon is giving everyone in the US with eligible Fire TV devices free access to Alexa+ .The company charges $20 per month for access to the AI-powered assistant on its own, though it has always been free for Prime subscribers.Now, you don&#x27;t have to pay to use it at all.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/amazon.html" target="_blank" rel="noopener noreferrer" class="company-link">Amazon の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2239785/amazons-alexa-ai-assistant-is-now-free-for-anyone-with-a-fire-tv-device/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="14">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">AmazonのPrime Airは米国の約500都市で普及中</h2>
+    <p class="article-original-title">原題: <em>Amazon’s Prime Air is taking off in nearly 500 U.S. cities</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Amazonは水曜日、同社のドローン配送サービスであるAmazon Prime Airの大規模な拡大を発表し、2026年末までに米国の約500都市にサービスを提供する計画を立てている。これは、サービスの展開範囲を現在の約6倍に拡大するという重要なマイルストーンとなる。Prime Air はまもなく 11 か所（アリゾナ州トーレソン）で開始されます。フロリダ州ラスキン。カンザス州カンザスシティ。ネブラスカ州パピリオン。ルイジアナ州バトンルージュ。ミシガン州ヘーゼルパークとポンティアック。リッチモンド、サンアントニオ、リチャードソン、およびテキサス州ウェイコ。おそらくこれが、Amazonが発表の一環として安全性への重点を改めて強調した理由だろう。同社は、各ドローンの空域と周囲を継続的に監視するように設計された、Prime Air の「業界をリードする検知回避システム」を強調しました。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Amazon announced Wednesday a major expansion of Amazon Prime Air, its drone delivery service, with plans to reach nearly 500 U.S.cities by the end of 2026.This marks a significant milestone as it expands the service’s footprint by roughly six times its current reach.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/amazon.html" target="_blank" rel="noopener noreferrer" class="company-link">Amazon の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/08/19/amazons-prime-air-is-taking-off-in-nearly-500-u-s-cities/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="15">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">アマゾンがジェイソン・ステイサムの反乱映画全編をリークしたようだ</h2>
+    <p class="article-original-title">原題: <em>Amazon seemingly leaked Jason Statham’s entire Mutiny movie</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。この映画は 2 日間劇場公開される予定ではありませんでしたが、プライム ビデオで短期間ストリーミングできるようになりました。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. The film isn’t supposed to hit theaters for two days, but it was briefly available to stream on Prime Video.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/amazon.html" target="_blank" rel="noopener noreferrer" class="company-link">Amazon の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/entertainment/981943/amazon-prime-video-mutiny-movie-leak" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Hardware" data-index="16">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#06b6d4">⚙️ Hardware</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">窓拭きロボットを試してみたけどダメだった</h2>
+    <p class="article-original-title">原題: <em>I Tried a Window-Cleaning Robot and Hated It</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">私は単純な作業をロボットが引き受けるというアイデアが大好きなので、Ecovacs Winbot W2S Omni を試すことに興奮しました。ネット上でも高い評価を得ている高級窓拭きロボットです。私はロボット掃除機とロボット芝刈り機を持っていますが、これらの家事を自分で行うことには戻りたくありません。悲しいことに、私は Ecovacs Winbot W2S Omni でトラウマ的なほどひどい経験をしたため、なぜ窓拭きロボットを欲しがる人がいるのか疑問に思っています。この悲惨な話に入る前に、私の問題のほとんどは、特に Ecovacs Winbot W2S Omni に関するものではなく、このカテゴリ全体に関するものであることを指摘しておく必要があります。それがうまく機能していると想像できる状況があります。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">I love the idea of robots taking over menial tasks, so I was excited to try the Ecovacs Winbot W2S Omni.This premium window-cleaning robot is highly rated online.I have a robot vacuum and a robot mower , and I would never go back to doing these chores myself.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/story/window-cleaning-robots-are-kinda-terrible/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="17">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Ars Technica - All content</span>
+    </div>
+
+    
+
+    <h2 class="article-title">あらゆる予想に反して、スペースXは24日間の海上航行を経て、ついにスターシップを港に引き揚げた</h2>
+    <p class="article-original-title">原題: <em>Against all odds, SpaceX finally tugs Starship into port after 24 days at sea</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">「スペースXのエンジニアのチームは、宇宙船の追加分析を行うために向かっているところです。」 スペースXの最新のスターシップ試験飛行は7月24日に終了したかもしれませんが、その使命はまだ終わっていません。宇宙船はテキサス州南部にあるスペースXの発射基地から地球半周飛行後、無傷でインド洋に落下した。技術者らは、過去のスターシップが着水後にそうしたのと同じように、この船は転覆後に激しい崩壊で寿命を終えるだろうと予想していた。多数の搭載センサーとカメラ、さらに着水域に設置されたブイやドローンが、各試験飛行後に船の熱シールドの性能を評価するための重要なデータをスペースXに提供してきたため、当局は飛行後の大火災を受け入れた。その日、スターシップはひっくり返ったものの、なんと無傷でした。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">“A team of SpaceX engineers is on their way to conduct additional analysis on the vehicle.” SpaceX’s most recent Starship test flight may have ended July 24, but its mission isn’t over yet.The spacecraft splashed down in the Indian Ocean intact after flying halfway around the world from SpaceX’s launch base in South Texas.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/spacex.html" target="_blank" rel="noopener noreferrer" class="company-link">SpaceX の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/space/2026/08/its-christmastime-at-spacex-as-company-salvages-starship-from-indian-ocean/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="18">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">ダウンロード: 人々が AI を実際にどのように使用しているか、および Flock の設計上の選択</h2>
+    <p class="article-original-title">原題: <em>The Download: how people really use AI, and Flock’s design choices</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">さらに、今日始まる児童プライバシー裁判はメタを永久に変える可能性がある。これは、テクノロジーの世界で何が起こっているかを毎日提供する平日のニュースレター、 The Download の本日版です。 Anthropic や OpenAI などの AI 企業は、人々が自社製品をどのように使用しているかに関するレポートを定期的に発行しています。しかし、AI研究者らによると、彼らは私たちに見てもらいたいデータだけを公開しており、それを裏付ける独立した情報源は存在しないという。 AI Observatory と呼ばれる新しい研究プロジェクトは、このギャップを埋めることを目的としています。その分析では、個人的な使用よりも仕事に重点を置いている大手 AI 企業のレポートで捕らえられているものよりも多くの機密性の高い行動が示されています。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Plus: a child privacy trial starting today could change Meta forever.This is today&#x27;s edition of The Download , our weekday newsletter that provides a daily dose of what&#x27;s going on in the world of technology.AI companies like Anthropic and OpenAI regularly publish reports on how people are using their products.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/meta.html" target="_blank" rel="noopener noreferrer" class="company-link">Meta の解説</a> <a href="companies/openai.html" target="_blank" rel="noopener noreferrer" class="company-link">OpenAI の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/08/18/1142229/the-download-how-people-use-ai-flock-cameras-design/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="19">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">VentureBeat</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Block の新しい Apache 2.0 エージェント ワークスペース Berd はモデルやハーネス全体で動作し、会話履歴をローカルに保存します</h2>
+    <p class="article-original-title">原題: <em>Block’s new Apache 2.0 agent workspace Berd works across models and harnesses, stores conversation history locally</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Twitter の元 CEO、ジャック・ドーシーによって設立され、Square、Cash App、音楽ストリーミング サービス Tidal を所有するテクノロジー企業である Block は、当初自社の従業員にさまざまなモデル、ツール、プロジェクトで AI エージェントを操作するための単一環境を提供するために構築したデスクトップ アプリケーションである Berd をオープンソース化しています。 Berd は、ブラウザベースのワークスペースではなく、ローカルにインストールされるグラフィカル デスクトップ アプリケーションです。 &lt;です。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Block , the technology company founded by former Twitter CEO Jack Dorsey that owns Square, Cash App and the music streaming service Tidal, is open-sourcing Berd , a desktop application it originally built to give its own employees a single environment for working with AI agents across different models, tools and projects.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://venturebeat.com/orchestration/blocks-new-apache-2-0-agent-workspace-berd-works-across-models-and-harnesses-stores-conversation-history-locally" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="20">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">ゲリラはホライゾン・ハンターズ・ギャザリングを全面的に見直して、より伝統的な協力ゲームにしていると報じられている</h2>
+    <p class="article-original-title">原題: <em>Guerrilla is reportedly overhauling Horizon Hunters Gathering to make it more of a traditional co-op game</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">さらに別のソニーのライブサービスゲームが、プレイヤーからのフィードバックが不十分だったという報告を受けて、苦境に立たされているようだ。ソニーのマルチプレイヤーゲーム『Horizo​​n』が苦境に立たされているようだ。開発元のGuerrilla Gamesは、Horizo​​n Hunters Gatheringの範囲を縮小し、ライブサービス要素を削除し、ストーリーモードを追加して、より伝統的な協力ゲームにすると言われています。ブルームバーグによると、ゲームの再調整の決定は、今年行われたクローズドプレイテストでのフィードバックが悪かったことを受けてのことだという。Horizo​​n Hunters Gatheringを完全に中止するのではなく、ゲリラは開発者たちに「次のマイルストーンで幹部に好印象を与えるため」に年末までの猶予を与えていると伝えられている。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Yet another Sony live-service game seems to be in trouble after reports of poor player feedback.Sony&#x27;s Horizon multiplayer game seems to be in trouble.Developer Guerrilla Games is said to be reducing the scope of Horizon Hunters Gathering , removing live-service elements and adding a story mode to make it more of a traditional co-op game.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2239975/guerrilla-games-overhauling-horizon-hunters-gathering-live-service-co-op/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="21">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">会議のメモ取りサーカスに冷静に帽子を投げる</h2>
+    <p class="article-original-title">原題: <em>Calendly throws its hat into meeting note-taker circus</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">メモを取ることはすぐに生産性の分野で重要な部分となり、多くの職場ソフトウェア会社が会議の記録から作成されたアクションアイテムに基づいて AI にタスクを自動化させるという夢を追いかけています。スケジューリングおよび会議予約ソフトウェアで知られる Calendly は、現在、メモ作成製品でこの競争に参入しています。この分野の他のユーザーと同様に、Calendly のメモ作成者も会議に参加し、音声とビデオを記録して文字に起こし、その後、概要とアクション アイテムを生成し、フォローアップ メールの下書きを作成できます。同社は、会議の文字起こしにシステムオーディオを使用する Granola のような機能もテストしていると述べた。 Calendly はまた、同社の既存の会議とスケジュール スタックを活用して会議を設定する Callie という AI アシスタントのリリースも計画しています。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Note-taking has quickly turned into a critical part of the productivity space, with many workplace software companies chasing the dream of having AI automate tasks based on action items created from meeting transcripts.Calendly, known for its scheduling and meeting booking software, is now entering the fray with a note-taking product.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/08/19/calendly-throws-its-hat-into-meeting-note-taker-circus/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="22">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</h2>
+    <p class="article-original-title">原題: <em>Nvidia’s new financial strategy does not compute</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。 Jensen Huang 氏は、「もう GPU 担保ローンは必要ない」ではなく、「ああ、コンピューティングは資産クラスだ」と考えてほしいと考えています。 』</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. Jensen Huang wants you to think ‘ah, compute as an asset class’ not ‘oh no more GPU-backed loans. ’</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/nvidia.html" target="_blank" rel="noopener noreferrer" class="company-link">NVIDIA の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/ai-artificial-intelligence/981668/nvidias-goldman-blackrock-gpu-compute-asset" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="23">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">「あなたの Excel スキルは最悪です」: スプレッドシートを観客スポーツに変えるパワー ユーザー</h2>
+    <p class="article-original-title">原題: <em>‘Your Excel Skills Suck’: The Power Users Turning Spreadsheets Into a Spectator Sport</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">多くの人にとって、Microsoft Excel は絶対に避けるべきです。もしかしたら、あなたは履歴書を水増しするために表計算ソフトに「習熟している」と嘘をつき、それ以来バレることを恐れて生きてきたのかもしれません。あるいは、いくつかの基本的な公式は理解しているものの、インターフェースが複雑すぎて完全にマスターするには至らないという場合もあります。それでも、好むと好まざるにかかわらず、Excel は依然としてビジネスに不可欠な部分であり、Microsoft は世界中に「数億人」のユーザーがいると主張しています。しかし、コンテンツ クリエイターの活発なコミュニティでは、Excel の用途は実用性をはるかに超えています。彼らは忍者のような Excel 効率のスリルを求めて生きており、難解な知識を探求する勇気のある人たちに喜んで伝えます。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">For many people, Microsoft Excel is to be avoided at all costs.Maybe you lied about being “proficient” with the spreadsheet program to pad out your résumé and have lived in fear of being found out ever since.Or it could be that you do have a grasp on a few basic formulas but find the interface too labyrinthine to truly master.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/microsoft.html" target="_blank" rel="noopener noreferrer" class="company-link">Microsoft の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/story/your-excel-skills-suck-the-power-users-turning-spreadsheets-into-a-spectator-sport/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="24">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Ars Technica - All content</span>
+    </div>
+
+    
+
+    <h2 class="article-title">ディズニー、FCCとその委員長を告訴、トランプ大統領の主任検閲官との戦いが激化</h2>
+    <p class="article-original-title">原題: <em>Disney sues FCC and its chair, escalating fight against Trump&#x27;s chief censor</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">ディズニーの訴訟によれば、FCCはトランプ検閲キャンペーンへの「完全な降伏」を要求しているという。ディズニーは本日、トランプ政権がABCに対して行った「検閲キャンペーン」と称するものを阻止することを目的とした訴訟で、連邦通信委員会とFCC委員長のブレンダン・カーを訴えた。 「この存亡の危機に直面した原告らには、合衆国憲法修正第1条の演説に対する政権の露骨な報復に対して司法府に救済を求める以外に選択肢はない」と訴状は述べている。 「原告らは、政府の要求に全面的に屈服する以外に、これらの継続的かつ当面の脅威を排除する代替手段を持たず、しぶしぶ当法廷に来ている。」 カー氏率いるFCCは本日、ディズニーが偽情報を拡散したとして非難した。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">FCC demands “total capitulation” in Trump censorship campaign, Disney suit says.Disney today sued the Federal Communications Commission and FCC Chairman Brendan Carr in a lawsuit that aims to stop what it called a “campaign of censorship” waged by the Trump administration against ABC.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/tech-policy/2026/08/disney-sues-fcc-and-its-chair-escalating-fight-against-trumps-chief-censor/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="25">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</h2>
+    <p class="article-original-title">原題: <em>We still don’t know how people are really using AI</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">But a new study shows that work use cases make up less of the picture than AI companies claim.AI companies like Anthropic and OpenAI regularly publish reports on how people are using products like Claude and ChatGPT, but they only release the data they want us to see, AI researchers say.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/openai.html" target="_blank" rel="noopener noreferrer" class="company-link">OpenAI の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/08/18/1142226/how-people-use-ai/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="26">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">VentureBeat</span>
+    </div>
+
+    
+
+    <h2 class="article-title">AI のミスで炎上した企業の 85% が、次にミスを犯す可能性のある人間を急いで削減しようとしている</h2>
+    <p class="article-original-title">原題: <em>85% of companies burned by an AI mistake are racing to cut the humans who might catch the next one</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Enterprises that already got burned by an AI agent passing its evals and then failing in production are moving faster toward removing humans from deployment decisions, not slower — even as trust in automated evaluation is rising across the board, new VB Pulse research shows . In July, 13% of 108 e. .</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://venturebeat.com/data/85-of-companies-burned-by-an-ai-mistake-are-racing-to-cut-the-humans-who-might-catch-the-next-one" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Startups" data-index="27">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#8b5cf6">🚀 Startups</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">創業者の秘密兵器: TechCrunch Disrupt 2026 で働き、プロのやり方を学ぶ</h2>
+    <p class="article-original-title">原題: <em>The founder&#x27;s secret weapon: Work at TechCrunch Disrupt 2026 and learn how the pros do it</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Want to know what separates the founders and operators who build industry-defining companies from everyone else?They understand how ecosystems work.They’ve seen how the best events are orchestrated, how networks are built, and how real opportunities emerge.You can get an insider’s view by volunteering at TechCrunch Disrupt 2026 , taking place October 13-15 at San Francisco’s Moscone West.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/techcrunch.html" target="_blank" rel="noopener noreferrer" class="company-link">TechCrunch の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/08/19/the-founders-secret-weapon-work-at-techcrunch-disrupt-2026-and-learn-how-the-pros-do-it/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="28">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</h2>
+    <p class="article-original-title">原題: <em>The women’s soccer league trying to fix fantasy sports</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。女子スーパーリーグ初の公式ファンタジーアプリは、ゲームを根本から再考しています。 ﻿</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. The Women’s Super League’s first official fantasy app is rethinking the game from the ground up. ﻿</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/entertainment/981880/womens-super-league-wsl-fantasy-league-app" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+        </main>
+
+        <footer class="footer">
+            <p>本ページは公開記事をもとに自動生成しています。数値や仕様は必ず元記事で確認してください。</p>
+            <p>JSON データは同じフォルダ内の tech_news_digest.json で参照できます。</p>
+        </footer>
+    </div>
+
+    <script>
+
+        const categoryButtons = document.querySelectorAll('.category-btn');
+        const articleCards = document.querySelectorAll('.article-card');
+        const searchInput = document.getElementById('search-input');
+
+        let activeCategory = 'all';
+
+        function applyFilters() {
+            const query = searchInput.value.trim().toLowerCase();
+            articleCards.forEach(card => {
+                const matchesCategory = activeCategory === 'all' || card.dataset.category === activeCategory;
+                const searchableText = card.innerText.toLowerCase();
+                const matchesQuery = !query || searchableText.includes(query);
+                card.style.display = matchesCategory && matchesQuery ? '' : 'none';
+            });
+        }
+
+        categoryButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                categoryButtons.forEach(item => item.classList.remove('active'));
+                button.classList.add('active');
+                activeCategory = button.dataset.category;
+                applyFilters();
+            });
+        });
+
+        searchInput.addEventListener('input', applyFilters);
+    
+    </script>
+</body>
+</html>
