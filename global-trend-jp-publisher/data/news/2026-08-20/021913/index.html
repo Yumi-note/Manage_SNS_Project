@@ -1,0 +1,1214 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>海外テックニュース日本語まとめ</title>
+    <style>
+        :root {
+            color-scheme: dark;
+            --bg: #0a0f1d;
+            --panel: rgba(13, 20, 36, 0.92);
+            --line: rgba(132, 152, 187, 0.25);
+            --text: #eef3ff;
+            --muted: #adc1dd;
+            --accent: #7dd3fc;
+            --accent-strong: #38bdf8;
+            --shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: "Hiragino Sans", "Noto Sans JP", sans-serif;
+            background:
+                radial-gradient(circle at top right, rgba(56, 189, 248, 0.22), transparent 26%),
+                radial-gradient(circle at top left, rgba(16, 185, 129, 0.16), transparent 20%),
+                linear-gradient(180deg, #07101f 0%, #0b1327 48%, #0a0f1d 100%);
+            color: var(--text);
+        }
+
+        .page-shell {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 24px;
+        }
+
+        .hero {
+            padding: 28px;
+            border: 1px solid var(--line);
+            border-radius: 28px;
+            background: linear-gradient(145deg, rgba(18, 27, 48, 0.96), rgba(10, 17, 32, 0.96));
+            box-shadow: var(--shadow);
+        }
+
+        .hero-nav {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 28px;
+        }
+
+        .nav-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 42px;
+            padding: 0 16px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        .eyebrow {
+            margin: 0 0 10px;
+            color: var(--accent);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            font-size: 0.78rem;
+        }
+
+        .hero h1 {
+            margin: 0;
+            font-size: clamp(2rem, 3vw, 3.3rem);
+            line-height: 1.1;
+        }
+
+        .timestamp,
+        .description {
+            color: var(--muted);
+        }
+
+        .control-panel {
+            margin: 20px 0 28px;
+            padding: 22px;
+            border: 1px solid var(--line);
+            border-radius: 24px;
+            background: var(--panel);
+            backdrop-filter: blur(12px);
+        }
+
+        .control-header {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            align-items: end;
+            flex-wrap: wrap;
+        }
+
+        .control-header h2 {
+            margin: 0 0 6px;
+        }
+
+        .control-header p {
+            margin: 0;
+            color: var(--muted);
+        }
+
+        #search-input {
+            width: min(100%, 360px);
+            min-height: 46px;
+            padding: 0 14px;
+            border-radius: 14px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
+        }
+
+        .category-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 16px;
+        }
+
+        .category-btn {
+            min-height: 42px;
+            padding: 0 14px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
+            cursor: pointer;
+        }
+
+        .category-btn.active {
+            background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+            color: #06111f;
+            border-color: transparent;
+            font-weight: 700;
+        }
+
+        .article-list {
+            display: grid;
+            gap: 18px;
+        }
+
+        .article-card {
+            padding: 24px;
+            border-radius: 24px;
+            border: 1px solid var(--line);
+            background: linear-gradient(180deg, rgba(12, 18, 34, 0.96), rgba(14, 22, 39, 0.9));
+            box-shadow: var(--shadow);
+        }
+
+        .card-topline {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+
+        .category-chip,
+        .source-chip {
+            display: inline-flex;
+            align-items: center;
+            min-height: 34px;
+            padding: 0 12px;
+            border-radius: 999px;
+            font-size: 0.92rem;
+            font-weight: 700;
+        }
+
+        .source-chip {
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--muted);
+        }
+
+        .article-title {
+            margin: 0 0 10px;
+            font-size: clamp(1.45rem, 2vw, 2rem);
+            line-height: 1.35;
+        }
+
+        .article-original-title {
+            margin: 0 0 18px;
+            color: var(--muted);
+        }
+
+        .security-alert {
+            margin: 0 0 14px;
+            padding: 10px 14px;
+            border-radius: 12px;
+            border: 1px solid rgba(248, 113, 113, 0.4);
+            background: rgba(248, 113, 113, 0.12);
+            color: #fecaca;
+            font-weight: 700;
+            font-size: 0.92rem;
+        }
+
+        .article-section {
+            margin-top: 18px;
+            padding-top: 18px;
+            border-top: 1px solid var(--line);
+        }
+
+        .article-section h3 {
+            margin: 0 0 12px;
+            font-size: 1rem;
+            color: var(--accent);
+        }
+
+        .article-paragraph {
+            margin: 0 0 14px;
+            color: #dce7f8;
+            line-height: 1.9;
+            font-size: 1rem;
+        }
+
+        .company-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .company-link,
+        .action-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 42px;
+            padding: 0 14px;
+            border-radius: 14px;
+            text-decoration: none;
+            border: 1px solid rgba(125, 211, 252, 0.3);
+        }
+
+        .company-link {
+            color: var(--accent);
+            background: rgba(56, 189, 248, 0.08);
+        }
+
+        .article-actions {
+            margin-top: 22px;
+        }
+
+        .footer {
+            padding: 28px 8px 40px;
+            color: var(--muted);
+            text-align: center;
+        }
+
+        .footer p {
+            margin: 6px 0;
+        }
+
+        .action-link.primary {
+            color: #06111f;
+            font-weight: 700;
+            background: linear-gradient(135deg, #7dd3fc, #22d3ee);
+            border-color: transparent;
+        }
+
+        @media (max-width: 720px) {
+            .page-shell {
+                padding: 14px;
+            }
+
+            .hero,
+            .control-panel,
+            .article-card {
+                padding: 18px;
+                border-radius: 20px;
+            }
+
+            .control-header {
+                align-items: stretch;
+            }
+
+            #search-input {
+                width: 100%;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="page-shell">
+        <header class="hero">
+            <div class="hero-nav">
+                <a class="nav-link" href="../../index.html">HOME</a>
+                <a class="nav-link" href="../index.html">この日の記事一覧</a>
+            </div>
+            <div class="hero-copy">
+                <p class="eyebrow">Global Tech News Digest</p>
+                <h1>海外テックニュース 日本語まとめ</h1>
+                <p class="timestamp">2026年8月20日 02:19 JST に収集した記事を掲載しています。</p>
+                <p class="description">各カードには本文寄りの日本語訳を掲載し、記事中で触れた企業は別ページの解説リンクとして分離しています。</p>
+            </div>
+        </header>
+
+        <section class="control-panel">
+            <div class="control-header">
+                <div>
+                    <h2>記事を探す</h2>
+                    <p>カテゴリとキーワードで一覧を絞り込めます。</p>
+                </div>
+                <input type="text" id="search-input" placeholder="タイトル・本文・媒体名で検索">
+            </div>
+            <div class="category-buttons">
+                <button class="category-btn active" data-category="all">すべて (30)</button>
+<button class="category-btn" data-category="AI/ML" style="--accent:#10b981">🤖 AI/ML (26)</button>
+<button class="category-btn" data-category="Hardware" style="--accent:#06b6d4">⚙️ Hardware (1)</button>
+<button class="category-btn" data-category="Media" style="--accent:#f59e0b">🎬 Media (1)</button>
+<button class="category-btn" data-category="Startups" style="--accent:#8b5cf6">🚀 Startups (2)</button>
+            </div>
+        </section>
+
+        <main class="article-list" id="articles-container">
+            <article class="article-card" data-category="AI/ML" data-index="1">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</h2>
+    <p class="article-original-title">原題: <em>Stripe didn&#x27;t really buy OpenRouter because of the &#x27;singularity&#x27;</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Stripeは水曜日、OpenRouterを買収することを認めた。同社は取引価格を明らかにしていないが、関係者はニューヨーク・タイムズに対し、7ドルを支払ったと語った。50億。これは OpenRouter の 1 ドルからの大幅な増加です。5月の評価額は30億。この価格を具体的に説明すると、創設者だけが 1 ドルを受け取ることになると伝えられています。売却額は50億ドルで、わずか3か月前のスタートアップ企業の評価額​​全体を上回った。NYTによると、投資家は残りの60億ドルを受け取ることになる。伝えられるところによると、Stripe は Databricks など、急成長を遂げているこのスタートアップに興味を持つ他社よりも入札する必要があったという。しかし問題は、決済大手が、異なる AI モデル間でプロンプトをルーティングするスタートアップに対して何を望んでいるのかということだ。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Stripe confirmed on Wednesday that it was buying OpenRouter.While the company didn’t disclose the deal price, sources told the New York Times that it paid $7.5 billion.That’s a huge step up from OpenRouter’s $1.3 billion valuation in May .To put that price in context, the founders alone will reportedly receive $1.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/08/19/stripe-didnt-really-buy-openrouter-because-of-the-singularity/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="2">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">カメラ翼を与えるとFCCのドローン禁止を回避できるのでしょうか？</h2>
+    <p class="article-original-title">原題: <em>Does giving a camera wings dodge the FCC’s drone ban?</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。 HoverAir Versa は、FCC のドローン禁止の抜け穴を発見しました。でも定着しないかも知れません。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. The HoverAir Versa found a loophole in the FCC’s drone ban. But it might not stick.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/tech/981834/hoverair-versa-drone-camera-fcc-loophole-indiegogo" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="3">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</h2>
+    <p class="article-original-title">原題: <em>Elon Musk Is Expected to Point His Money Machine at Texas Politics</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">この件について説明を受けたトランプ当局者らによると、イーロン・マスク氏は今年11月の中間選挙で共和党支持を高めるために多額の資金を投じると予想されている。正確な金額は変わる可能性があるが、関係者らはマスク氏が、共和党候補者ケン・パクストン氏の運命によって上院を支配する党が決まる可能性があるテキサス州などの主要な選挙の投票率に重点を置いて、約1億～2億ドルを支出すると予想している。計画されている現金注入、あるいは投票率に関連する現物寄付は、寄付額が大幅に上回っているパクストンにとっては恩恵となるだろう。最新のFEC提出書類によると、ジェームズ・タラリコ氏は約6,900万ドルを調達したのに対し、パクストン氏は900万ドルだった。ドナルド・トランプ大統領からの支持を受けてパクストン氏は勝利を収めたものの、全体を通じて貢献度で遅れをとった。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Elon Musk is expected to spend big to boost Republicans in the midterms this November, according to Trump officials briefed on the matter.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/story/elon-musk-is-expected-to-point-his-money-machine-at-texas/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="4">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Ars Technica - All content</span>
+    </div>
+
+    
+
+    <h2 class="article-title">NASAはスウィフトガンマ線天文台を救出する任務を中止する</h2>
+    <p class="article-original-title">原題: <em>NASA calls off mission to rescue Swift gamma-ray observatory</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">救助がなければ、NASAのスウィフト天文台は今年後半に大気圏に再突入すると予想されている。 NASAとカタリスト・スペース・テクノロジーズは水曜日、スウィフト・ガンマ線望遠鏡が軌道から外れる前にロボットによる救出ミッションを断念すると発表した。リンクと名付けられたこの救助衛星は7月3日に打ち上げられ、NASAのニール・ゲーレルス・スウィフト天文台まで飛行し、3本のロボットアームで天文台を捕捉し、迫りくる大気圏再突入から逃れられるほど軌道を高く上げた。リンクは冷蔵庫ほどの大きさで、スウィフトをより安全で高い軌道に送るための 2 つの発電用太陽電池アレイと 3 つのキセノン燃料電気スラスターを備えています。スウィフト救出活動を主導する新興企業カタリストは水曜日、「現在進行中の姿勢制御の問題により、リンク衛星のi.1.2の完了は妨げられるだろう」と述べた。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Without a rescue, NASA’s Swift Observatory is expected to reenter the atmosphere later this year.NASA and Katalyst Space Technologies announced Wednesday they are giving up on a robotic mission to rescue the Swift gamma-ray telescope before it falls out of orbit.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/space/2026/08/nasa-calls-off-mission-to-rescue-swift-gamma-ray-observatory/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="5">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">ダウンロード: AI の自己改善の問題とその熱を引き起こしているもの</h2>
+    <p class="article-original-title">原題: <em>The Download: AI’s self-improvement problem, and what’s driving the heat</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">さらに、OpenAI は安全上の懸念から一部のモデル作業を一時停止しました。これは、テクノロジーの世界で何が起こっているかを毎日提供する平日のニュースレター、 The Download の本日版です。 AI 業界が現時点で最も大胆に約束しているのは、人間の監視をほとんど必要とせずに、AI が間もなく自らを改善するということです。しかし、新しい研究は、そこに到達するには時間がかかる可能性があることを示唆しています。研究者らは、AI エージェントがまだオープンエンドの AI 研究、つまり真の進歩を遂げるために必要な判断力と創造性を必要とする明確な答えのない自由形式の調査を実施できないことを発見しました。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Plus: OpenAI has paused some model work over safety concerns.This is today&#x27;s edition of The Download , our weekday newsletter that provides a daily dose of what&#x27;s going on in the world of technology.The AI industry’s boldest promise right now is that AI will soon improve itself, with almost no need for human oversight.But a new study suggests it might take a while to get there.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/openai.html" target="_blank" rel="noopener noreferrer" class="company-link">OpenAI の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/08/19/1140195/the-download-ai-recursive-self-improvement-problem-heatwave-causes/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="6">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">VentureBeat</span>
+    </div>
+
+    
+
+    <h2 class="article-title">TrueFoundry のオープンソース AI エージェント ハーネス TrueForge は、Claude マネージド エージェントよりも 30% ～ 75% 安いタスク完了を誇ります</h2>
+    <p class="article-original-title">原題: <em>TrueFoundry&#x27;s open source AI agent harness TrueForge boasts 30%-75% cheaper task completion than Claude Managed Agents</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">別の日、別の新しい AI エージェント ハーネスがリリースされました。今回のみ、AI エージェントの急増に伴い増大する企業の問題を​​解決することを目的としており、コストを削減しながら開発者によるエージェントとツールの制御を強化できるようになります。元メタ エンジニアによって 2021 年に共同設立されたサンフランシスコの B2B 機械学習スタートアップである TrueFoundry は、独自のカスタム &lt;a href=&quot;https://www. truefoundry. com/blog/engineering/trueforge-open-sourc. . ] をリリースしました。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Another day, another new AI agent harness is released.Only this time, it&#x27;s one that aims to solve a growing enterprise problem as AI agents proliferate: enabling greater developer control of agents and tools, while reducing cost.TrueFoundry , a San Francisco B2B machine learning startup co-founded in 2021 by former Meta engineers, has released its own custom &lt;a href=&quot;https://www.truefoundry.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/meta.html" target="_blank" rel="noopener noreferrer" class="company-link">Meta の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://venturebeat.com/orchestration/truefoundrys-open-source-ai-agent-harness-trueforge-boasts-30-75-cheaper-task-completion-than-claude-managed-agents" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="7">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">The Binding of Isaac: Repentance+ オンライン リリースが 11 月 19 日に GTA 6 と対戦します</h2>
+    <p class="article-original-title">原題: <em>The Binding of Isaac: Repentance+ Online release goes head-to-head with GTA 6 on November 19</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">その日は他に何も起こらないですよね？ほとんどのゲームパブリッシャーは、グランド・セフト・オート6の登場がゲーマーの自由時間になると予想される今秋の核爆弾を避けるために、後ろ向きに曲がり、発売日を変更している。したがって、Edmund McMillen の『The Binding of Isaac: Repentance+ Online』のコンソール版リリースが、GTA 6 の発売日とまったく同じ 11 月 19 日に予定されているのは驚くべきことかもしれません。でも正直に言うと？尊敬。この章では、最大 4 人までのオンライン協力プレイを備えたマルチプレイヤー レイヤーを The Binding of Isaac: Rebirth に追加します。これには、ローグライク全体と、長年にわたるその多くの拡張のすべてが含まれます。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">There’s nothing else going on that day, right?Most game publishers have been bending over backwards and altering their release dates to avoid the nuclear bomb that the arrival of Grand Theft Auto 6 is expected to be on gamers&#x27; free time this fall.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2240496/the-binding-of-isaac-repentance-online-release-goes-head-to-head-with-gta-6-on-november-19/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="8">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Waymo の安価な次世代ロボタクシーが、これら 3 都市のすべての乗客に利用可能になりました</h2>
+    <p class="article-original-title">原題: <em>Waymo&#x27;s cheaper, next-gen robotaxi is now open to all riders in these three cities</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Waymo は、ロサンゼルス、フェニックス、サンフランシスコのすべての乗客に次世代ロボタクシーを公開しました。これは、製造、運営、維持がより安価な車両で車両の拡大を推進しているアルファベット社にとって注目に値するマイルストーンです。今のところ、これらの市場の顧客は、配車を呼ぶときにオーハイ（オーハイと発音）と呼ばれる新しいロボタクシーとマッチングされる可能性がある。Waymo が自社車両に十分な Ojais を導入すれば、乗客は新しい車両と旧型の Jaguar I-Pace ロボタクシーのどちらかを選択できるようになります。同社の広報担当者によると、ウェイモは現在、商用車両に約300台のオーハイ・ロボタクシーを保有しているという。同社は水曜日、今年後半にデンバー、ラスベガス、サンディエゴでオーハイを展開する予定であると発表した。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Waymo has opened its next-generation robotaxi to all riders in Los Angeles, Phoenix, and San Francisco — a notable milestone for the Alphabet company as it pushes to expand its fleet with vehicles that are cheaper to build, operate, and maintain.For now, customers in these markets may be matched with the new robotaxi, called the Ojai (pronounced oh-hi) when they hail a ride.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/08/19/waymos-cheaper-next-gen-robotaxi-is-now-open-to-all-riders-in-these-three-cities/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="9">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">ニールセン、ウェアラブルデバイスを使用した評価システムを強化</h2>
+    <p class="article-original-title">原題: <em>Nielsen will enhance its ratings system using wearable devices</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。ストリーミング時代により、信頼できる視聴者数データを取得することが難しくなりました。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. The streaming era has made it harder to capture reliable viewership data.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/entertainment/982358/nielsen-ratings-ppm-smart-watch-cowatching-big-data" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="10">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">その場で学習できるロボットにAIの未来を見た</h2>
+    <p class="article-original-title">原題: <em>I Saw the Future of AI in a Robot That Can Learn on the Spot</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">先週、私は自宅からなんと 15 分も離れたところに出かけ、ロボットが驚くような驚くようなことをしているのを見てきました。私はジェネラリスト AI という新興企業のマサチューセッツ州ケンブリッジのオフィスを訪れ、カップを積み重ねたり、ブロックをボウルに入れたりといった単純な作業をロボットアームが行う様子を観察しました。彼らの物事の理解の速さには驚きました。まるで生身の人間を彷彿とさせます。腕は、短い説明ビデオを摂取した後、さまざまなタスクを習得しましたが、最も印象的なのは、特定のタスクのための特別なトレーニングを受けなかったということです。最も印象的な例の 1 つは、ちりとりとブラシを使ってブロックをボウルに掃くように指示されたロボットに関するものでした。ブラシが現場から取り除かれると、ロボットは即興でちりとりをブラシのように使い、ブラシをはじきました。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Last week, I ventured a whopping 15 minutes from my house to see robots do some mind-boggling, jaw-dropping stuff.I visited the Cambridge, Massachusetts, offices of a startup called Generalist AI , where I watched robot arms perform simple chores like stacking cups, putting blocks into bowls, and the like.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/story/generalist-ai-robots-learn-like-clever-toddlers/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="11">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Ars Technica - All content</span>
+    </div>
+
+    
+
+    <h2 class="article-title">アマゾンは2026年末までに配送用ドローンを米国の500地域に届けることを目指す</h2>
+    <p class="article-original-title">原題: <em>Amazon aims for delivery drones to reach 500 US neighborhoods by end of 2026</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Prime Airなどの配送ドローンサービスが拡大するにつれ、米国居住者はトレードオフに直面している。アマゾンは、Prime Airの配送ドローンサービスを6倍に拡大し、2026年末までに全米約500の都市や町にサービスを提供したいと考えている。アマゾンと競合他社による計画された拡大により、今後数カ月間でさらに数千万人が配送ドローンサービスの利便性を利用できるようになる可能性があるが、日々のドローン飛行による騒音の増大に対するより多くの地域社会の許容度も試されることになる。8月19日、Amazonはシカゴの大都市圏で間もなくPrime Airを開始すると発表した。クリーブランド;アトランタ;ニューヨーク州シラキュース。そしてアイダホ州ボイジーでは、今年後半にはさらに多くのことが予定されています。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">US residents face trade-offs as delivery drone services such as Prime Air expand.Amazon wants to grow its Prime Air delivery drone service sixfold to reach nearly 500 cities and towns across the United States by the end of 2026.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/amazon.html" target="_blank" rel="noopener noreferrer" class="company-link">Amazon の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/gadgets/2026/08/amazon-aims-for-delivery-drones-to-reach-500-us-neighborhoods-by-end-of-2026/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Hardware" data-index="12">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#06b6d4">⚙️ Hardware</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">児童監視アプリは再起動が必要な場合があります</h2>
+    <p class="article-original-title">原題: <em>Child-monitoring apps might need a reboot</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">監視アプリはオンラインでの若者の安全を約束しますが、子供の携帯電話を覗き見すると逆効果になる可能性があります。オンラインの安全性の専門家は、もっと良い方法があると言っています。ほとんどの親の最初の防御策は会話です。ピューの調査では、10 人中 9 人以上が、オンラインで共有するのが適切なことや、仲間との接し方について 10 代の子供たちと話し合ったことがあると回答しています。携帯電話にプリインストールされているツールを利用して、感染を制限することができます。Apple のスクリーン タイムと Google のファミリー リンクを使用すると、保護者はスクリーンタイムの制限、アプリのブロックまたは承認、Web コンテンツのフィルタリング、デバイスの追跡を行うことができます。家族が位置情報を共有できるアプリもあります。最大手の Life360 には毎月 9,800 万人近くのユーザーがいます。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Monitoring apps promise to keep young people safer online, but looking in on kids’ phones can backfire.Online safety experts say there’s a better way.Most parents’ first defense is conversation.In Pew surveys , more than nine in 10 say they’ve talked with their teens about what’s appropriate to share online and how to treat peers.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/apple.html" target="_blank" rel="noopener noreferrer" class="company-link">Apple の解説</a> <a href="companies/google.html" target="_blank" rel="noopener noreferrer" class="company-link">Google の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/08/19/1141623/child-monitoring-apps-need-reboot/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="13">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">VentureBeat</span>
+    </div>
+
+    
+
+    <h2 class="article-title">VentureBeat、初の主任アナリストにロブ・ストレチャイ氏を指名、エンタープライズAI研究の推進を拡大</h2>
+    <p class="article-original-title">原題: <em>VentureBeat names Rob Strechay as its first Lead Analyst, expanding its enterprise AI research push</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">最近まで theCUBE Research のマネージング ディレクター兼主席アナリストであった Rob Strechay が、VentureBeat の初代主任アナリストおよび VentureBeat Research の創設アナリストとして VentureBeat に加わりました。同氏の就任は、VentureBeat におけるより深い専門化に向けた意図的な動きの次のステップとなる。つまり、エンタープライズ AI を評価、購入、導入する技術的意思決定者 (取締役、副社長、CIO、CTO) 向けに分析を構築することになる。エンタープライズ AI スタックはリアルタイムで書き換えられています。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Rob Strechay, until recently managing director and principal analyst at theCUBE Research, has joined VentureBeat as our first Lead Analyst and a founding analyst of VentureBeat Research.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://venturebeat.com/ai/venturebeat-names-rob-strechay-as-its-first-lead-analyst-expanding-its-enterprise-ai-research-push" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Media" data-index="14">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#f59e0b">🎬 Media</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</h2>
+    <p class="article-original-title">原題: <em>Valve Steam Frame videos show how to wear the headset, perfect the fit and sign in</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">リークされた 8 つの Steam Frame ビデオは有益ですが、ちょっとばかげています。通常、バルブから漏れが始まると嫌がりますが、今のところはまったく問題ありません。Valve は本日、ARM Steam クライアントのアップデートで Steam Frame VR ヘッドセットに関する 8 本のビデオを誤って公開しましたが、ハウツーが削除される前にユーザーによって発見され、保存され、共有されました。そこで、Valve は一部を公開し、残りをオンラインで野放しにしています。ビデオには衝撃的な新情報はありませんが、Steam Frame のサインイン プロセス、ヘッドセットの装着方法、付属のアクセサリについて詳しく説明しています。ビデオはすべて、殺人以前の GLaDOS によって監督されたかのように、クリーンでフレンドリーで、少しばかばかしいものです。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Eight leaked Steam Frame videos are informative and kinda silly.Usually we hate it when a Valve starts leaking, but right now, we&#x27;re pretty OK with it.Valve accidentally published eight videos about the Steam Frame VR headset in an ARM Steam Client update today, and before the how-tos could be removed, they were spotted, saved and shared by users.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2240427/valve-steam-frame-videos-show-how-to-wear-the-headset-perfect-the-fit-and-sign-in/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="15">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">OpenAI は、新たな顧客プライバシー保護で Anthropic を上回ることを目指す</h2>
+    <p class="article-original-title">原題: <em>OpenAI seeks to one-up Anthropic with new customer privacy protections</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">As AI models have become more powerful, the potential for those models to be misused has grown — as has a clamor for safety guardrails that can stop such abuse from happening.AI companies must now walk a delicate tight rope between respecting their enterprise customers’ privacy while also watching usage for possible issues.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/openai.html" target="_blank" rel="noopener noreferrer" class="company-link">OpenAI の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/08/19/openai-seeks-to-one-up-anthropic-with-new-customer-privacy-protections/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="16">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</h2>
+    <p class="article-original-title">原題: <em>Google Gemini is getting a dedicated student hub</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。また、Google レンズを使用して自分の作業を確認し、複雑なトピックについてサポートを受ける機能も展開します。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. It’s also rolling out the ability to check your work and get help with complicated topics using Google Lens.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/google.html" target="_blank" rel="noopener noreferrer" class="company-link">Google の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/ai-artificial-intelligence/982425/google-gemini-student-hub" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="17">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">クロードの目に見えない透かしに対する回避策をすでに見つけたとプログラマーらは語る</h2>
+    <p class="article-original-title">原題: <em>Coders Say They Already Found Workarounds to Claude’s Invisible Watermarks</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Within four hours of Anthropic confirming that Claude models would globally embed invisible, machine-readable watermarks into any AI-generated content, developer Guillaume Meyer had published his override.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/story/coders-say-they-already-found-workarounds-to-claudes-invisible-watermarks/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="18">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Ars Technica - All content</span>
+    </div>
+
+    
+
+    <h2 class="article-title">BIOS アップデートにより Ryzen 7040 ラップトップが壊れるという苦情に Framework が対応</h2>
+    <p class="article-original-title">原題: <em>Framework responds to complaints that BIOS update bricks Ryzen 7040 laptops</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Frameworkは、保証対象外のAMDメインボードの一部を交換すると述べている。AMD Ryzen 7040 シリーズ プロセッサを搭載した Framework Laptop 13 の BIOS アップデートによりシステムがブリックしてしまうと、複数のユーザーがオンラインで報告しています。Framework は、2023 年に構築済み Ryzen 7040 ベースの Framework Laptop 13 コンピューターと互換性のあるマザーボードの出荷を開始しました。2026 年 6 月に、Framework はデバイス用の BIOS 3.20 をリリースしました。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Framework says it’s replacing some out-of-warranty AMD mainboards.A BIOS update for the Framework Laptop 13 with AMD Ryzen 7040-series processors is bricking the systems, multiple users have reported online.Framework started shipping pre-built Ryzen 7040-based Framework Laptop 13 computers and compatible motherboards in 2023.In June 2026, Framework released BIOS 3.20 for the devices.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/gadgets/2026/08/framework-responds-to-complaints-that-bios-update-bricked-ryzen-7040-laptops/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="19">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">ダウンロード: 人々が AI を実際にどのように使用しているか、および Flock の設計上の選択</h2>
+    <p class="article-original-title">原題: <em>The Download: how people really use AI, and Flock’s design choices</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">さらに、今日始まる児童プライバシー裁判はメタを永久に変える可能性がある。これは、テクノロジーの世界で何が起こっているかを毎日提供する平日のニュースレター、 The Download の本日版です。 Anthropic や OpenAI などの AI 企業は、人々が自社製品をどのように使用しているかに関するレポートを定期的に発行しています。しかし、AI研究者らによると、彼らは私たちに見てもらいたいデータだけを公開しており、それを裏付ける独立した情報源は存在しないという。 AI Observatory と呼ばれる新しい研究プロジェクトは、このギャップを埋めることを目的としています。その分析では、個人的な使用よりも仕事に重点を置いている大手 AI 企業のレポートで捕らえられているものよりも多くの機密性の高い行動が示されています。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Plus: a child privacy trial starting today could change Meta forever.This is today&#x27;s edition of The Download , our weekday newsletter that provides a daily dose of what&#x27;s going on in the world of technology.AI companies like Anthropic and OpenAI regularly publish reports on how people are using their products.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/meta.html" target="_blank" rel="noopener noreferrer" class="company-link">Meta の解説</a> <a href="companies/openai.html" target="_blank" rel="noopener noreferrer" class="company-link">OpenAI の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/08/18/1142229/the-download-how-people-use-ai-flock-cameras-design/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="20">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">VentureBeat</span>
+    </div>
+
+    
+
+    <h2 class="article-title">GLM-5.3 は、100 万トークンあたり 1.4 ドル/4.4 ドルで API にアクセスします</h2>
+    <p class="article-original-title">原題: <em>GLM-5.3 hits the API at $1.4/$4.4 per million tokens</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">非常に高度なサイバー機能を備えた先週の驚くべきデビューの後、伝えられるところによると、Cursor、GLM-5 にこれまで検出されていなかった脆弱性が発見されました。 3、中国のスタートアップ z による新しいフロンティアのオープンソース言語モデル。 ai はアプリケーション プログラミング インターフェイス (A. .</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">After a stunning debut last week with cyber capabilities so advanced they reportedly found a previously undetected vulnerability in Cursor, GLM-5. 3, the new frontier open source language model from Chinese startup z. ai, has now hit the application programming interface (A. .</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://venturebeat.com/technology/glm-5-3-hits-the-api-at-1-4-4-4-per-million-tokens" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="21">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Waymo Ojai バンが 3 つの都市のすべての乗客に利用可能になりました</h2>
+    <p class="article-original-title">原題: <em>Waymo Ojai vans are now available for all riders in three cities</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">これは、サンフランシスコ、フェニックス、ロサンゼルスでの無人バンの完全な展開です。 Waymoは本日、ロサンゼルス、フェニックス、サンフランシスコで、あらゆる乗客がOjaiモデル車両の乗客になれると発表した。同社はソーシャルメディアへの投稿で、無人バンの広さと後部座席のエンターテイメント機能を強調した。 Google 傘下のこのブランドは、今年初めに同じ 3 都市でこの専用ロボタクシーによる限定送迎サービスの提供を開始しました。これは、先週発表された Waymo の拡張の 2 つ目です。同社はつい数日前、無人運転車をサクラメントとサンディエゴの道路に導入する許可が得られたと発表した。新しいバンモデルの名前からすると皮肉なことに、Waymo はカリフォルニア州オーハイではまだ利用できません。 Waymoの他の最近のヘッドラインは。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">It’s a full rollout for the driverless vans in San Francisco, Phoenix and Los Angeles.Waymo announced today that any riders can now be passengers in its Ojai model vehicles in Los Angeles, Phoenix and San Francisco.In a social media post , the company highlighted the spaciousness and backseat entertainment features in the driverless vans.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/google.html" target="_blank" rel="noopener noreferrer" class="company-link">Google の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2240419/waymo-ojai-vans-are-now-available-for-all-riders-in-three-cities/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Startups" data-index="22">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#8b5cf6">🚀 Startups</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">コグニションのCEO、スペースXがスタートアップを買収しようとしたという報道を否定</h2>
+    <p class="article-original-title">原題: <em>Cognition CEO denies report that SpaceX tried to acquire the startup</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">イーロン・マスク氏のスペースXは、AI競争でOpenAI、アンスロピック、グーグルに追いつくために、AIコーディングの新興企業コグニションの買収を試みたとブルームバーグが水曜、事情に詳しい情報筋の話として報じた。コグニションの最高経営責任者（CEO）スコット・ウー氏は、報道発表直後にこの報告書に異議を唱え、記事は不正確であり、コグニションは「売り物ではない」とXに書き、両社は交渉を行っていないと付け加えた。この報告書は、SpaceXが先週取引が完了した別のAIコーディングスタートアップCursorを600億ドルで買収した数日後に発表された。 SpaceXは今年初めにマスク氏のAI企業xAIを買収した。その後、6 月に大規模な IPO で上場し、時価総額は 2 ドル近くまで上昇しました。最盛期には3兆円。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Elon Musk’s SpaceX attempted to acquire AI coding startup Cognition as it works to catch up to OpenAI, Anthropic, and Google in the AI race, Bloomberg reported Wednesday , citing sources familiar with the matter.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/google.html" target="_blank" rel="noopener noreferrer" class="company-link">Google の解説</a> <a href="companies/openai.html" target="_blank" rel="noopener noreferrer" class="company-link">OpenAI の解説</a> <a href="companies/spacex.html" target="_blank" rel="noopener noreferrer" class="company-link">SpaceX の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/08/19/cognition-ceo-denies-report-that-spacex-tried-to-acquire-the-startup/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="23">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Valve が独自にリークしたビデオで Steam Frame をセットアップする様子をご覧ください</h2>
+    <p class="article-original-title">原題: <em>Watch Valve set up the Steam Frame in its own leaked videos</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。リークされたデモでは、Steam Frame とワイヤレス ドングルおよびアクセサリの使用方法が示されています。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. Leaked demonstrations show how to use the Steam Frame with its wireless dongle and accessories.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/games/982406/valve-steam-frame-setup-unboxing-leaked-videos" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="24">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Google の Pixel Watch 5 はフィットネス スマート機能を強化</h2>
+    <p class="article-original-title">原題: <em>Google’s Pixel Watch 5 Pumps Up Its Fitness Smarts</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">The Google Pixel Watch has always been a gorgeous smartwatch (minus the Active Band, which we’ve complained about ad nauseam).With Google Health Premium and Google Health Coach now part of the experience, it’s also one of the few smartwatches that feels equally capable as a fitness tracker and an everyday companion.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/google.html" target="_blank" rel="noopener noreferrer" class="company-link">Google の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/review/google-pixel-watch-5/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="25">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Ars Technica - All content</span>
+    </div>
+
+    
+
+    <h2 class="article-title">客室乗務員は、Google がスピリットの従業員データを大量に購入していることに激怒した</h2>
+    <p class="article-original-title">原題: <em>Flight attendants freaked out that Google is buying tons of Spirit employee data</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">破産したスピリットは、グーグルへの大量データ販売で労働者を売り飛ばしたとして告発された。先週金曜日、グーグルはスピリット航空の膨大なデータを取得するオークションに勝利した。このデータには個人情報や顧客データは含まれていませんが、その代わりに航空会社の雇用と職場の記録全体がほぼ網羅されています。データセット内で個人が特定されないようにするため、Google は、データが Google に転送される前に、データから個人を特定できる情報 (PII) を削除するプロセスを監督するために、裁判所が任命したオンブズマンを起用することに同意しました。この契約に基づき、Google はデータをこの匿名化された形式で維持し、意図的にデータを再識別しないことに同意しました。また、Google がデータへのアクセスを販売した場合、第三者も同じ条件に拘束されると考えられます。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Bankrupt Spirit accused of selling out workers in massive data sale to Google.Last Friday, Google won an auction to acquire a huge amount of Spirit Airlines data.The data doesn’t include personal information or customer data, but instead nearly covers the airline’s entire employment and workplace record.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/google.html" target="_blank" rel="noopener noreferrer" class="company-link">Google の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/tech-policy/2026/08/flight-attendants-freaked-out-that-google-to-buy-tons-of-spirit-employee-data/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="26">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">人々が実際に AI をどのように利用しているのかはまだわかりません</h2>
+    <p class="article-original-title">原題: <em>We still don’t know how people are really using AI</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">しかし、新しい調査によると、AI企業が主張するほど、業務のユースケースが全体像に占める割合は少ないことが判明した。Anthropic や OpenAI などの AI 企業は、人々が Claude や ChatGPT などの製品をどのように使用しているかに関するレポートを定期的に公開していますが、彼らが公開しているのは、私たちに見てもらいたいデータだけであると AI 研究者は述べています。「それを裏付ける独立した情報源はありません」と、スタンフォード Trustworthy AI Research (STAIR) Lab のコンピューター サイエンス博士号候補者である Anka Reuel 氏は言います。ロイエル氏は、そのギャップを埋めることを目的とした、AI Observatory と呼ばれる新しい研究プロジェクトの共同リーダーです。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">But a new study shows that work use cases make up less of the picture than AI companies claim.AI companies like Anthropic and OpenAI regularly publish reports on how people are using products like Claude and ChatGPT, but they only release the data they want us to see, AI researchers say.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/openai.html" target="_blank" rel="noopener noreferrer" class="company-link">OpenAI の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/08/18/1142226/how-people-use-ai/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="27">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">VentureBeat</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</h2>
+    <p class="article-original-title">原題: <em>Block’s new Apache 2.0 agent workspace Berd works across models and harnesses, stores conversation history locally</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Twitter の元 CEO、ジャック・ドーシーによって設立され、Square、Cash App、音楽ストリーミング サービス Tidal を所有するテクノロジー企業である Block は、当初自社の従業員にさまざまなモデル、ツール、プロジェクトで AI エージェントを操作するための単一環境を提供するために構築したデスクトップ アプリケーションである Berd をオープンソース化しています。 Berd は、ブラウザベースのワークスペースではなく、ローカルにインストールされるグラフィカル デスクトップ アプリケーションです。 &lt;です。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Block , the technology company founded by former Twitter CEO Jack Dorsey that owns Square, Cash App and the music streaming service Tidal, is open-sourcing Berd , a desktop application it originally built to give its own employees a single environment for working with AI agents across different models, tools and projects.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://venturebeat.com/orchestration/blocks-new-apache-2-0-agent-workspace-berd-works-across-models-and-harnesses-stores-conversation-history-locally" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="28">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">ポケモンとポラロイドが 3 つの新しい愛らしいカメラでコラボレーション</h2>
+    <p class="article-original-title">原題: <em>Pokémon and Polaroid are collaborating on three new adorable cameras</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">新しいカメラは、Polaroid NowとPolaroid Goのさらに美しいバージョンです。ポケモン シリーズの 30 周年を記念して、ポラロイドは、ピカチュウ、シルベオン、その他のポケモンのアイコンをモチーフにした新しいカメラ、インスタント フィルム、アクセサリーのコレクションをリリースします。このコレクションは、主に同社の既存製品をリメイクしたものだが、間違いなくキュートで、8月25日にポラロイドまたはポケモンセンターから直接予約注文できるようになる。小型の Polaroid Go をベースにした新しいカメラはどちらも、最も注目を集める可能性があります。Polaroid Go Camera Generation 3 – Pokémon Sylveon Editionは、白とピンクのボディに、イーブイの進化のリボンと弓をモチーフにしたマルチカラーのストラップが付いています。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">The new cameras are prettier versions of Polaroid Now and Polaroid Go.In celebration of the Pokémon franchise&#x27;s 30th anniversary, Polaroid is releasing a collection of new cameras, instant film and accessories styled after Pikachu, Sylveon and other Pokémon iconography.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2240387/pokemon-polaroid-collaboration-cameras-coming-soon/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Startups" data-index="29">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#8b5cf6">🚀 Startups</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">トラビス・カラニック氏、新たなVCバッシングを開始：「1%は役に立つ」</h2>
+    <p class="article-original-title">原題: <em>Travis Kalanick kicks off another round of VC bashing: &#x27;1% are helpful&#x27;</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">トラビス・カラニック氏は確かに、そのキャリアを通じてVCと愛憎の関係を築いてきた。Uber の創設者として彼は VC の寵児であり、在任中に当時としては前例のない約 150 億ドルのベンチャー資金を調達しました。その後、ベンチャー企業ベンチマークの主要投資家ビル・ガーリーとの取締役会での争いにより、彼は2017年に追い出された。現在、彼はロボット工学会社アトムズのために巨額の資金を集めて戻ってきており、その資金はたったの1ドルだ。アンドリーセン・ホロヴィッツが率いる70億ドルで、ベン・ホロヴィッツが取締役会に加わりました。先週末放送されたデビッド・センラ氏のポッドキャストのエピソードで、カラニック氏はウーバーの取締役会での争いについて未だに辛口であり、創業者たちにはベンチマークから資金を調達しないようにと言っていることを明らかにした。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Travis Kalanick certainly has had a love-hate relationship with VCs over his career.As the founder of Uber he was a VC darling, raising what was then an unprecedented roughly $15 billion in venture funding during his tenure.Then, a boardroom battle with key investor Bill Gurley of venture firm Benchmark led to him being pushed out in 2017.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/08/19/travis-kalanick-kicks-off-another-round-of-vc-bashing-1-are-helpful/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="30">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">ウェアラブルの未来は奇妙で実験的で実存的な曖昧な状態に陥っている</h2>
+    <p class="article-original-title">原題: <em>The wearable future is stuck in weird, experimental, existential limbo</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. ﻿I sat down with Google to discuss its vision for the next generation of wearables. It’s a work in progress.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/google.html" target="_blank" rel="noopener noreferrer" class="company-link">Google の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/column/982359/optimizer-wearable-future-google-ai" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+        </main>
+
+        <footer class="footer">
+            <p>本ページは公開記事をもとに自動生成しています。数値や仕様は必ず元記事で確認してください。</p>
+            <p>JSON データは同じフォルダ内の tech_news_digest.json で参照できます。</p>
+        </footer>
+    </div>
+
+    <script>
+
+        const categoryButtons = document.querySelectorAll('.category-btn');
+        const articleCards = document.querySelectorAll('.article-card');
+        const searchInput = document.getElementById('search-input');
+
+        let activeCategory = 'all';
+
+        function applyFilters() {
+            const query = searchInput.value.trim().toLowerCase();
+            articleCards.forEach(card => {
+                const matchesCategory = activeCategory === 'all' || card.dataset.category === activeCategory;
+                const searchableText = card.innerText.toLowerCase();
+                const matchesQuery = !query || searchableText.includes(query);
+                card.style.display = matchesCategory && matchesQuery ? '' : 'none';
+            });
+        }
+
+        categoryButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                categoryButtons.forEach(item => item.classList.remove('active'));
+                button.classList.add('active');
+                activeCategory = button.dataset.category;
+                applyFilters();
+            });
+        });
+
+        searchInput.addEventListener('input', applyFilters);
+    
+    </script>
+</body>
+</html>
