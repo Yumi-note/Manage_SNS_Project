@@ -1,0 +1,568 @@
+# 🌐 海外テックニュース 日本語まとめ
+
+**生成日時:** 2026年8月30日  06:23 JST
+
+> 世界の有力テックメディア（TechCrunch・The Verge・Wired・Ars Technica・MIT Tech Review・VentureBeat・Engadget）から注目記事を自動収集し、日本の読者向けに翻訳・要約しました。
+
+---
+
+## 目次
+
+1. [ソニー・ミュージックとワーナー、知的財産窃盗の「厚かましいキャンペーン」を主張してアンスロピックを提訴](#記事-1--ソニー・ミュージックとワーナー、知的財産窃盗の「厚かましいキャンペーン」を主張してアンスロピックを提訴)
+2. [豪華な A Trail Tale でアパラチア山脈を代理ハイキングしましょう](#記事-2--豪華な-a-trail-tale-でアパラチア山脈を代理ハイキングしましょう)
+3. [50 ペア以上のイヤホンをテストした結果、ついにお気に入りを見つけました](#記事-3--50-ペア以上のイヤホンをテストした結果、ついにお気に入りを見つけました)
+4. [100社にデータを求めました。代わりに削除した人もいます。](#記事-4--100社にデータを求めました。代わりに削除した人もいます。)
+5. [ダウンロード: 秘密の老化防止薬と仮想発電所への参加](#記事-5--ダウンロード-秘密の老化防止薬と仮想発電所への参加)
+6. [エージェント AI セキュリティの 3 つの層: 自律エージェントのための多層防御アーキテクチャ](#記事-6--エージェント-ai-セキュリティの-3-つの層-自律エージェントのための多層防御アーキテクチャ)
+7. [Android Autoが動作しないのですが？最初に確認することは次のとおりです](#記事-7--android-autoが動作しないのですが最初に確認することは次のとおりです)
+8. [TechBBQ では、ヨーロッパの AI に関する会話は次のようになりました。実際に制御しているのは誰ですか?](#記事-8--techbbq-では、ヨーロッパの-ai-に関する会話は次のようになりました。実際に制御しているのは誰ですか)
+9. [オルタナ右翼のトロール、マイロ・ヤノプロスが国外追放される](#記事-9--オルタナ右翼のトロール、マイロ・ヤノプロスが国外追放される)
+10. [NASAのナンシー・グレース・ローマン宇宙望遠鏡には隠された技術的飛躍がある](#記事-10--nasaのナンシー・グレース・ローマン宇宙望遠鏡には隠された技術的飛躍がある)
+11. [仮想発電所にサインアップする方法と、サインアップするかどうかを決定する方法](#記事-11--仮想発電所にサインアップする方法と、サインアップするかどうかを決定する方法)
+12. [メタ研究者は、フロンティア価格なしで、Claude Opus 4.5 に匹敵する 8B AI モデルを教えました](#記事-12--メタ研究者は、フロンティア価格なしで、claude-opus-45-に匹敵する-8b-ai-モデルを教えました)
+13. [MVNOで電話代を節約する方法](#記事-13--mvnoで電話代を節約する方法)
+14. [「年間30回も賭けているわけではない」：a16zで40億ドルを運用した後、少額の賭けをするビジェイ・パンデ](#記事-14--「年間30回も賭けているわけではない」a16zで40億ドルを運用した後、少額の賭けをするビジェイ・パンデ)
+15. [ソニー・ミュージックとワーナー・チャペルがAnthropic社を告訴](#記事-15--ソニー・ミュージックとワーナー・チャペルがanthropic社を告訴)
+16. [サイバーセキュリティの黙示録は「数か月」以内にやってくる、AI巨人が警告](#記事-16--サイバーセキュリティの黙示録は「数か月」以内にやってくる、ai巨人が警告)
+17. [血液を若くする薬を発見したと新興企業が主張](#記事-17--血液を若くする薬を発見したと新興企業が主張)
+18. [Cohere Parse 5 はポイントのベンチマークを失います。ページあたりのコストで勝ります。](#記事-18--cohere-parse-5-はポイントのベンチマークを失います。ページあたりのコストで勝ります。)
+19. [ビデオ ゲームの予算がいくらあっても GTA 6 には太刀打ちできない](#記事-19--ビデオ-ゲームの予算がいくらあっても-gta-6-には太刀打ちできない)
+20. [Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.](#記事-20--error-500-server-error1500thats-an-errorthere-was-an-error-please-try-again-laterthats-all-we-know)
+21. [Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.](#記事-21--error-500-server-error1500thats-an-errorthere-was-an-error-please-try-again-laterthats-all-we-know)
+22. [Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.](#記事-22--error-500-server-error1500thats-an-errorthere-was-an-error-please-try-again-laterthats-all-we-know)
+23. [Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.](#記事-23--error-500-server-error1500thats-an-errorthere-was-an-error-please-try-again-laterthats-all-we-know)
+24. [Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.](#記事-24--error-500-server-error1500thats-an-errorthere-was-an-error-please-try-again-laterthats-all-we-know)
+25. [Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.](#記事-25--error-500-server-error1500thats-an-errorthere-was-an-error-please-try-again-laterthats-all-we-know)
+26. [Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.](#記事-26--error-500-server-error1500thats-an-errorthere-was-an-error-please-try-again-laterthats-all-we-know)
+27. [Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.](#記事-27--error-500-server-error1500thats-an-errorthere-was-an-error-please-try-again-laterthats-all-we-know)
+28. [Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.](#記事-28--error-500-server-error1500thats-an-errorthere-was-an-error-please-try-again-laterthats-all-we-know)
+
+---
+
+## 記事 1  ｜  TechCrunch
+
+### ソニー・ミュージックとワーナー、知的財産窃盗の「厚かましいキャンペーン」を主張してアンスロピックを提訴
+
+> 原題: *Sony Music, Warner sue Anthropic, alleging a "brazen campaign" of intellectual property theft*
+
+#### 📝 記事の日本語要約
+
+ソニー・ミュージック・パブリッシング、ワーナー・チャペル、その他多数の音楽出版社は、AI研究所が「著作権で保護された作品を違法にトレントし、スクレイピングし、ダウンロードするという厚かましいキャンペーン」を行ったとして、アンスロピック社と共同創設者のダリオ・アモデイ氏とベンジャミン・マン氏を告訴した。この訴訟は金曜日遅くにカリフォルニア北部地区連邦地方裁判所に起こされ、ミュージック・ビジネス・ワールドワイドが最初に報じた。出版社らは、Anthropic が自社の AI モデル Claude をトレーニングするために数千の著作物を使用した「露骨な窃盗」を行っていると非難している。「我々は出版社の主張に同意せず、法廷で断固として弁護するつもりだ」とAnthropicの広報担当者はTechCrunchに送った電子メールでの声明で述べた。
+
+#### 🇺🇸 English Summary
+
+Sony Music Publishing, Warner Chappell and numerous other music publishers have sued Anthropic and co-founders Dario Amodei and Benjamin Mann, alleging the AI lab conducted a “brazen campaign of illegally torrenting, scraping, and downloading copyrighted works.” The lawsuit, which was filed late Friday in the U.S.
+
+#### 🏢 企業解説リンク
+
+- [TechCrunch](companies/techcrunch.html)
+
+🔗 [元記事を読む](https://techcrunch.com/2026/08/29/sony-music-warner-sue-anthropic-alleging-a-brazen-campaign-of-intellectual-property-theft/)
+
+---
+
+## 記事 2  ｜  The Verge
+
+### 豪華な A Trail Tale でアパラチア山脈を代理ハイキングしましょう
+
+> 原題: *Vicariously hike the Appalachian in the gorgeous A Trail Tale*
+
+#### 📝 記事の日本語要約
+
+このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。これは、シエラのポイント アンド クリック アドベンチャーとオレゴン トレイルからインスピレーションを得たインタラクティブなトレイル ジャーナルです。
+
+#### 🇺🇸 English Summary
+
+Posts from this topic will be added to your daily email digest and your homepage feed. It’s an interactive trail journal inspired by Sierra point-and-click adventures and Oregon Trail.
+
+🔗 [元記事を読む](https://www.theverge.com/entertainment/986461/hike-appalachian-trail-pixel-art-a-trail-tale)
+
+---
+
+## 記事 3  ｜  Wired
+
+### 50 ペア以上のイヤホンをテストした結果、ついにお気に入りを見つけました
+
+> 原題: *After Testing More Than 50 Pairs of Earbuds, I Finally Found My Favorite*
+
+#### 📝 記事の日本語要約
+
+Soundcore Liberty 5 Pro は、私が予想していなかった機能を備えていました。家族にもっと電話をかけるようになりました。これが私の問題です。私には聴力を失いつつある高齢の両親がいます。私はつぶやくのが好きです。これは、ニューヨーク市の通勤中に電話で近況を報告するには悪い組み合わせです。私はほとんどの場合、大声で話したり、自分が望むよりも頻繁に同じことを繰り返したりしなければなりません。会話全体が不自然に感じられ、電話をかけるのが少し怖くなってしまうほどです。私はヘッドフォンの専門家としてこれまでに 50 組以上のワイヤレス イヤフォンをテストしてきましたが、この問題を完全に解決できたものはありませんでした。それは、私が Soundcore Liberty 5 Pro のレビューを始めるまでのことであり、そのギネス世界記録には「最高の音声品質スコア」が記載されていました。。
+
+#### 🇺🇸 English Summary
+
+The Soundcore Liberty 5 Pro did something I wasn't expecting: It made me call my family more.Here's my problem: I have aging parents who are losing their hearing, and I like to mumble.That's a bad combination for catching up over the phone during my New York City commute.I almost always have to talk loudly and repeat myself way more often than I would like.
+
+🔗 [元記事を読む](https://www.wired.com/review/soundcore-liberty-5-pro/)
+
+---
+
+## 記事 4  ｜  Ars Technica
+
+### 100社にデータを求めました。代わりに削除した人もいます。
+
+> 原題: *I asked 100 companies for my data. Some deleted it instead.*
+
+#### 📝 記事の日本語要約
+
+100社の企業をテストしたところ、プライバシー要求はしばしば混乱や行き詰まりにつながることが判明した。私は今月初め、ファストフード会社が私に関して収集したすべての個人データにアクセスするようマクドナルドにリクエストを提出しました。そして数日後、私のアプリでのやり取りを詳細に詳述し、私がマクドナルドで食べることを決してやめないだろうと予測した515ページの驚くべき報告書を受け取りました。カリフォルニア州消費者プライバシー法に基づき、私には個人データを収集する大企業に情報へのアクセスを要求する法的権利があります。そこで私は他の人が私に何を考えているのか興味があり、翌週かけて 100 件以上のリクエストを提出しました。 CCPA は 2020 年に発効し、その主要な規定の 3 つは、個人情報の販売をオプトアウトする権利、その情報を削除する権利、および権利です。 。
+
+#### 🇺🇸 English Summary
+
+Testing 100 companies found privacy requests often led to confusion and dead ends.I filed a request with McDonald’s earlier this month to access all of the personal data the fast food company collected about me, and I received a stunning 515-page report a few days later that detailed my app interactions in granular detail and predicted I would never stop eating there.
+
+🔗 [元記事を読む](https://arstechnica.com/tech-policy/2026/08/i-asked-100-companies-for-my-data-some-deleted-it-instead/)
+
+---
+
+## 記事 5  ｜  MIT Tech Review
+
+### ダウンロード: 秘密の老化防止薬と仮想発電所への参加
+
+> 原題: *The Download: a secretive antiaging drug and joining virtual power plants*
+
+#### 📝 記事の日本語要約
+
+さらに: 裁判官は、国防総省による Anthropic のブラックリストへの登録を阻止しました。これは、テクノロジーの世界で何が起こっているかを毎日提供する平日のニュースレター、 The Download の本日版です。私が正式に「長寿インフルエンサー」になれると確信したのは、ジェネレーション ラボという会社が私に、新しい若返り治療法について執筆する、さらには受ける機会を提供してくれたときでした。これは単なるアンチエイジング治療ではありませんでした。同社のファクトシートには、「血流における老化の全身的な広がりを阻止し、体自身の修復メカニズムを目覚めさせ、複数の組織に健康と若さを回復させる」と記載されています。
+
+#### 🇺🇸 English Summary
+
+Plus: A judge has blocked the Pentagon’s blacklisting of Anthropic.This is today's edition of The Download , our weekday newsletter that provides a daily dose of what's going on in the world of technology.I knew I’d officially become a “longevity influencer” when a company called Generation Lab offered me the chance to write about—and even receive—their new rejuvenation treatment.
+
+🔗 [元記事を読む](https://www.technologyreview.com/2026/08/28/1143113/the-download-antiaging-drug-joining-virtual-power-plants/)
+
+---
+
+## 記事 6  ｜  VentureBeat
+
+### エージェント AI セキュリティの 3 つの層: 自律エージェントのための多層防御アーキテクチャ
+
+> 原題: *The three layers of agentic AI security: A defense-in-depth architecture for autonomous agents*
+
+#### 📝 記事の日本語要約
+
+Nutanix が提供 推論し、独自の決定を下し、環境全体でアクションを実行できる自律システムは、アプリケーション レベルの制御が構築されていなかったカテゴリのリスクを導入します。 Nutanix の製品管理シニア ディレクターである Oscar Wahlberg 氏は、そのリスクを 1 つの問題として扱うと不完全なアーキテクチャが生成されると述べています。 「悪意のあるプロンプトをキャッチするためのガードレールでは、エージェントが幻覚を見たり、何かをしたりするのを防ぐことはできません。
+
+#### 🇺🇸 English Summary
+
+Presented by Nutanix Autonomous systems that can reason, make their own decisions, and execute actions across an environment introduce a category of risk that application-level controls were never built to contain.Treating that risk as a single problem produces incomplete architectures, says Oscar Wahlberg, senior director of product management at Nutanix.
+
+🔗 [元記事を読む](https://venturebeat.com/security/the-three-layers-of-agentic-ai-security-a-defense-in-depth-architecture-for-autonomous-agents)
+
+---
+
+## 記事 7  ｜  Engadget
+
+### Android Autoが動作しないのですが？最初に確認することは次のとおりです
+
+> 原題: *Android Auto not working? Here's what to check first*
+
+#### 📝 記事の日本語要約
+
+Android auto が機能しない場合は、携帯電話と車の間の接続に問題がある可能性があります。 Android Auto は、スマートフォンを車のインフォテインメント スクリーンに拡張する優れた方法です。携帯電話を車に接続すると、地図やメッセージなどにすべてアクセスできるようになります。携帯電話と車が実際に互換性がある限り、エクスペリエンスはシームレスになるように設計されています。 Android Auto が機能しない場合はどうなるのでしょうか?まあ、まれなバグが原因ではないと仮定すると、車への Android Auto 接続の欠陥を修正するのは非常に簡単なプロセスです。問題を解決するために大量の技術的なノウハウは必要ありません。一般的な修正の 1 つで問題を再び動作させることができるためです。スマートフォンと車の間の弱点は、無線または有線の接続です。有線で使用する場合。 。
+
+#### 🇺🇸 English Summary
+
+Chances are there's a connection issue between your phone and car if Android auto isn't working.Android Auto is a neat way to extend your smartphone to your car's infotainment screen.Maps, messages and more are all accessible once you've hooked up your phone up to your car.The experience is designed to be seamless, so long as your phone and car are actually compatible.
+
+🔗 [元記事を読む](https://www.engadget.com/2242769/android-auto-not-working-check-first/)
+
+---
+
+## 記事 8  ｜  TechCrunch
+
+### TechBBQ では、ヨーロッパの AI に関する会話は次のようになりました。実際に制御しているのは誰ですか?
+
+> 原題: *At TechBBQ, Europe's AI conversations kept coming back to: Who's actually in control?*
+
+#### 📝 記事の日本語要約
+
+コペンハーゲンのTechBBQでは、ヨーロッパ中の投資家、創設者、経営者の間で議論されたのは、AIで何を構築するかだけではなく、誰がAIを制御すべきかということでした。年次北欧カンファレンス中、ステージ上からカクテルアワー、アフターパーティーまで、どこにいても、ヨーロッパが AI を支えるテクノロジーをどのように制御できるかについての話題が絶えませんでした。この主権の問題は、「エージェンシーからの脱却」という今年のテーマにぴったりと一致しており、今年初めに Anthropic の AI モデル Mythos と Fable がヨーロッパ以外のユーザーに利用できなくなってから特にタイムリーでした。
+
+#### 🇺🇸 English Summary
+
+At TechBBQ in Copenhagen, the conversation among investors, founders, and operators from across Europe wasn’t just about what to build with AI, but who should control it.No matter where you were during the annual Nordic conference, from onstage to cocktail hours and after-parties, the chatter kept coming back to how Europe can gain more control over the technology powering AI.
+
+🔗 [元記事を読む](https://techcrunch.com/2026/08/29/at-techbbq-europes-ai-conversations-kept-coming-back-to-whos-actually-in-control/)
+
+---
+
+## 記事 9  ｜  The Verge
+
+### オルタナ右翼のトロール、マイロ・ヤノプロスが国外追放される
+
+> 原題: *Alt-right troll Milo Yiannopoulos has been deported*
+
+#### 📝 記事の日本語要約
+
+このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。物議を醸しているゲーマーゲートの人物が、ビザをオーバーステイしたため英国に強制送還された。
+
+#### 🇺🇸 English Summary
+
+Posts from this topic will be added to your daily email digest and your homepage feed. The controversial Gamergate figure has been sent back to the UK after overstaying his visa.
+
+🔗 [元記事を読む](https://www.theverge.com/policy/986456/milo-yiannopoulos-deported-ice)
+
+---
+
+## 記事 10  ｜  Wired
+
+### NASAのナンシー・グレース・ローマン宇宙望遠鏡には隠された技術的飛躍がある
+
+> 原題: *NASA’s Nancy Grace Roman Space Telescope Has a Hidden Technological Leap*
+
+#### 📝 記事の日本語要約
+
+手のひらに収まるほど小さい 2 つの鏡が、私たちの宇宙への理解の仕方を変えるために設置されています。 NASA のナンシー グレース ローマン宇宙望遠鏡の打ち上げ期間が間もなく開かれます。この望遠鏡の主な機器は、天体物理学のほぼすべての分野に情報を提供する予定ですが、特殊なコロナグラフも望遠鏡内に組み込まれています。これは、惑星の表面から反射された星の光を初めて直接捕捉しようとする実験装置です。これは、NASA がいつか太陽のような星の周りを回る地球のような惑星を垣間見ることができる宇宙望遠鏡への道を開くことを期待している野心的なプロジェクトです。これは現在のエンジニアリングの力をはるかに超えた偉業です。したがって、基本的なテクニックを Roman にアレンジしてみる必要があります。 「初めて宇宙でテストします。
+
+#### 🇺🇸 English Summary
+
+Two mirrors, each small enough to fit in the palm of your hand, are set to change how we understand the cosmos.The launch window for NASA’s Nancy Grace Roman Space Telescope is about to open.
+
+🔗 [元記事を読む](https://www.wired.com/story/nasas-nancy-grace-roman-space-telescope-coronagraph-leap/)
+
+---
+
+## 記事 11  ｜  MIT Tech Review
+
+### 仮想発電所にサインアップする方法と、サインアップするかどうかを決定する方法
+
+> 原題: *How to sign up for a virtual power plant—and decide whether you should*
+
+#### 📝 記事の日本語要約
+
+電力会社は、電気使用量の管理を強化する代わりに、光熱費を削減しています。参加方法は次のとおりです。 MIT Technology Review の How To シリーズは、物事を成し遂げるのに役立ちます。サーモスタットは発電所のようには見えないかもしれません。電気自動車、家庭用バッテリー、HVAC システムも同様です。しかし、公益事業会社とエネルギー会社は、それらを一つのものとして扱うことをますます望んでいます。仮想発電所 (VPP) は、電力会社が制御できる家庭用デバイス (スマート サーモスタット、電気自動車の充電器、家庭用バッテリー、ソーラー パネルなど) の集合です。通常、これはピーク時の消費電力を減らすようデバイスに命令することを意味します。たとえば、電力需要が高い場合、電力会社はサーモスタットを調整したり、EV の充電を遅らせたり遅くしたりすることがあります。
+
+#### 🇺🇸 English Summary
+
+Utilities are lowering energy bills in exchange for more control over your electricity use.Here’s how to get involved.MIT Technology Review ’s How To series helps you get things done.Your thermostat may not look like a power plant.Neither does your electric vehicle, home battery, or HVAC system.But utility and energy companies increasingly want to treat them like one.
+
+🔗 [元記事を読む](https://www.technologyreview.com/2026/08/28/1142956/how-to-sign-up-for-a-virtual-power-plant-and-decide-whether-you-should/)
+
+---
+
+## 記事 12  ｜  VentureBeat
+
+### メタ研究者は、フロンティア価格なしで、Claude Opus 4.5 に匹敵する 8B AI モデルを教えました
+
+> 原題: *Meta researchers taught an 8B AI model to match Claude Opus 4.5 — without the frontier price tag*
+
+#### 📝 記事の日本語要約
+
+従来の CRM からクラウド データベースに顧客レコードの大量のバッチを移行するなど、複雑なエンタープライズ ワークフローを任された AI エージェントを考えてみましょう。エージェントは、数時間にわたるジョブを内部コンテキスト ウィンドウだけに依存することはできず、ランタイム層 (別名ハーネス) に依存します。このハーネスは、 のような実行フィードバックを提供します。 。
+
+#### 🇺🇸 English Summary
+
+Consider an AI agent tasked with a complex enterprise workflow like migrating massive batches of customer records from a legacy CRM to a cloud database. The agent cannot rely solely on its internal context window for a job spanning hours and depends on the runtime layer, aka the harness . This harness provides execution feedback, like s. .
+
+#### 🏢 企業解説リンク
+
+- [Meta](companies/meta.html)
+
+🔗 [元記事を読む](https://venturebeat.com/orchestration/meta-researchers-taught-an-8b-ai-model-to-match-claude-opus-4-5-without-the-frontier-price-tag)
+
+---
+
+## 記事 13  ｜  Engadget
+
+### MVNOで電話代を節約する方法
+
+> 原題: *How to save money on your phone bill with an MVNO*
+
+#### 📝 記事の日本語要約
+
+コストが低いからといって、必ずしも品質が低いとは限りません。3 つの大手電話会社 (AT&T、T-Mobile、Verizon) のいずれかで人気のポストペイド プランを使用するのは、決して安くはありません。ほとんどの場合、月額少なくとも 50 ドルの費用がかかり、1 人の場合は月額 100 ドル近くになる場合もあります。多くの「on us」電話セールを利用するには、最も高価なプランに参加する必要があり、使用しない可能性のあるバンドルされた追加料金で料金がつり上がることがよくあります。ありがたいことに、これらの通信会社が唯一の選択肢ではありません。仮想移動体通信事業者 (MVNO) として知られる低コストのモバイル プロバイダーが数多く存在し、数分の 1 の価格で信頼性の高いサービスを提供しています。私はこれらのサービスを 10 年以上使用しており、ほぼすべての人にお勧めします。
+
+#### 🇺🇸 English Summary
+
+Lower cost doesn't always mean lower quality.Using a popular postpaid plan with one of the three major phone carriers (AT&T, T-Mobile or Verizon) isn't cheap.Most of them cost at least $50 per month and can get close to $100/month for a single person.
+
+🔗 [元記事を読む](https://www.engadget.com/2246399/how-to-save-money-phone-bill-with-mvno/)
+
+---
+
+## 記事 14  ｜  TechCrunch
+
+### 「年間30回も賭けているわけではない」：a16zで40億ドルを運用した後、少額の賭けをするビジェイ・パンデ
+
+> 原題: *"We're not doing 30 bets a year": Vijay Pande on betting small after running $4 billion at a16z*
+
+#### 📝 記事の日本語要約
+
+かつて、ビジェイ・パンデ氏は投資家界よりも学術界でよく知られていました。それは十数年前、マーク・アンドリーセンとベン・ホロウィッツ――彼らの会社の最初の5年間は明らかにヘルスケアとライフサイエンスを避けて過ごしていた――が、結局のところこのカテゴリーには賭ける価値があると判断し、その鍵をパンデに手渡したとき、状況が一変した。当時、彼はスタンフォード大学の化学教授で、数百万台の家庭用 PC を疾患研究用のスーパーコンピューターに変える分散コンピューティング プロジェクトである Folding@home を構築したことで最もよく知られていました。その後 10 年以上にわたり、彼は a16z の賭けを 40 億ドル近くを管理する習慣に成長させました。したがって、昨年 6 月にパンデ氏がすべての仕事から離れ、もっと小さなことを始めたのは少々予想外でした。実際、彼の新しい会社は VZVC です。 。
+
+#### 🇺🇸 English Summary
+
+It used to be that Vijay Pande was better known in academic circles than investor circles.That changed pretty abruptly a dozen years ago, when Marc Andreessen and Ben Horowitz — who’d spent their firm’s first five years explicitly avoiding healthcare and life sciences — decided the category was worth betting on after all and handed the keys to Pande.
+
+🔗 [元記事を読む](https://techcrunch.com/2026/08/29/were-not-doing-30-bets-a-year-vijay-pande-on-betting-small-after-running-4-billion-at-a16z/)
+
+---
+
+## 記事 15  ｜  The Verge
+
+### ソニー・ミュージックとワーナー・チャペルがAnthropic社を告訴
+
+> 原題: *Sony Music and Warner Chappell are suing Anthropic*
+
+#### 📝 記事の日本語要約
+
+このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。両社は、これを「史上最大かつ最も露骨な現在進行中の知的財産窃盗の一つ」と呼んでいる。
+
+#### 🇺🇸 English Summary
+
+Posts from this topic will be added to your daily email digest and your homepage feed. The companies call it “one of the largest and most blatant ongoing thefts of intellectual property in history. ”
+
+🔗 [元記事を読む](https://www.theverge.com/ai-artificial-intelligence/986438/sony-music-warner-chappell-anthropic-lawsuit-copyright)
+
+---
+
+## 記事 16  ｜  Wired
+
+### サイバーセキュリティの黙示録は「数か月」以内にやってくる、AI巨人が警告
+
+> 原題: *The Cybersecurity Apocalypse Is Coming in ‘Months,’ AI Giants Warn*
+
+#### 📝 記事の日本語要約
+
+元恋人たちが勤務していた同じ警察署も、フロックのカメラから捉えたデータを全米の2,000以上の警察署、大学、その他の組織と共有し、引き換えに1,300以上の団体からのデータにアクセスした。また、愛と監視が交差するところで、身元調査会社ピープルファインダーは、人々に関する膨大な資料を利用して、スタッドまたはダッドと呼ばれる新しい出会い系サイトを立ち上げている。 OpenAIの不正AIによるHugging Faceへのハッキングについては、同社が事件の監査を依頼したグループからの2つの追加報告書と併せて今週37ページの報告書を発表した後でも、依然として多くの疑問が残っている。特に懸念されるのは、AI エージェントがソフトウェア パッケージ内に設立した秘密の掲示板です。 。
+
+#### 🇺🇸 English Summary
+
+The same police department where the former lovers worked also shared the data captured from its Flock cameras with more than 2,000 police departments, colleges, and other organizations across the United States, and accessed data from more than 1,300 entities in exchange.
+
+#### 🏢 企業解説リンク
+
+- [OpenAI](companies/openai.html)
+
+🔗 [元記事を読む](https://www.wired.com/story/security-news-this-week-the-cybersecurity-apocalypse-is-coming-in-months-ai-giants-warn/)
+
+---
+
+## 記事 17  ｜  MIT Tech Review
+
+### 血液を若くする薬を発見したと新興企業が主張
+
+> 原題: *A startup claims it’s found a drug to make your blood young*
+
+#### 📝 記事の日本語要約
+
+ジェネレーション・ラボは、同社の複合薬が体中の「老化の広がりを阻止する」ことができると主張している。そして、それを試してくれるインフルエンサーを探しています。今月、私が正式に「長寿インフルエンサー」になれると確信したのは、ジェネレーション・ラボという会社が、同社の新しい若返り治療法、彼らが「1ジェネレーション」と呼んでいる2つの既存の薬を組み合わせた注射剤について書く機会、さらにはそれを受ける機会を私に提供してくれたときだった。これは単なるアンチエイジング治療ではありませんでした。同社のファクトシートには、「血流における老化の全身的な広がりを阻止し、身体自身の修復メカニズムを目覚めさせ、複数の組織に健康と若さを取り戻す。」治療へのアクセスを受ける「プライベートコホート」への独占的オファーは、「以下の判断を下す限られた数の人々に拡大される」と述べられている。
+
+#### 🇺🇸 English Summary
+
+Generation Lab claims its drug combo can “stop the spread of aging” around the body.And it’s looking for influencers to give it a try.
+
+🔗 [元記事を読む](https://www.technologyreview.com/2026/08/27/1143037/startup-claims-its-found-a-drug-to-make-your-blood-young/)
+
+---
+
+## 記事 18  ｜  VentureBeat
+
+### Cohere Parse 5 はポイントのベンチマークを失います。ページあたりのコストで勝ります。
+
+> 原題: *Cohere Parse 5 loses the benchmark on points. It wins on cost per page.*
+
+#### 📝 記事の日本語要約
+
+PDF、スライド、スキャンしたドキュメントを AI パイプラインに入力しようとしている企業は、同じ壁にぶつかり続けています。つまり、ツールが表、グラフ、レイアウトなどの構造を欠いているか、大規模に実行するにはコストが高すぎるかのいずれかです。 Cohereは木曜日にParse 5をリリースし、生の精度ではなく価格対パフォーマンス、つまりエンタープライズ規模に適したコストと機能の組み合わせを重視してリリースした。 Parse 5 は、PDF を変換するために構築された 230 億パラメータのビジョン言語モデルです。 。
+
+#### 🇺🇸 English Summary
+
+Enterprises trying to feed PDFs, slides and scanned documents into AI pipelines keep running into the same wall: the tools either miss the structure — tables, charts, layout — or cost too much to run at scale.Cohere released Parse 5 on Thursday , positioning it on price-to-performance, not raw accuracy — the right cost-capability mix for enterprise scale.Parse 5 is a 2.
+
+🔗 [元記事を読む](https://venturebeat.com/data/cohere-parse-5-loses-the-benchmark-on-points-it-wins-on-cost-per-page)
+
+---
+
+## 記事 19  ｜  Engadget
+
+### ビデオ ゲームの予算がいくらあっても GTA 6 には太刀打ちできない
+
+> 原題: *The wildest video game budgets can't hold a candle to GTA 6*
+
+#### 📝 記事の日本語要約
+
+最新のグランド・セフト・オートは、これまでに作られた中で最も高価なエンターテイメント製品であると考えられています。これまでに制作された最も高価なエンターテイメント作品について考えるとき、ビデオ ゲームが最初に思い浮かぶものではないでしょう。ハリウッドのスタジオは、複数年にわたる製作スケジュールを持つ単一の映画に日常的に数億ドルを費やします。しかし、実際にはビデオゲームの製作費も最近では同じくらい高額になり、時には大作映画を上回ることさえあります。その好例:『グランド・セフト・オート VI』は、これまでに作られた中で最も高価なゲームになりそうだ。ロックスター・ゲームスはこれまでに費やした金額を公表していないが、アナリストらは推定予算を10億ドルを大きく上回っており、現在の数字を約1ドルとする人もいる。 50億。そのため、『GTA VI』は稀になります。 。
+
+#### 🇺🇸 English Summary
+
+The latest Grand Theft Auto is thought to be the most expensive entertainment product ever made.When you think about the most expensive entertainment productions ever created, video games are likely not the first thing that comes to mind.Hollywood studios routinely spend hundreds of millions of dollars on a single movie that can have a multi-year production schedule.
+
+🔗 [元記事を読む](https://www.engadget.com/2246918/video-games-rival-gta-6-budget/)
+
+---
+
+## 記事 20  ｜  TechCrunch
+
+### Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.
+
+> 原題: *Hollywood celebs are getting into microdrama apps*
+
+#### 📝 記事の日本語要約
+
+Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.
+
+#### 🇺🇸 English Summary
+
+Hollywood’s finest — the people accustomed to massive eight-figure checks and exotic movie sets — are now betting on something much smaller: microdramas.Microdramas are short, scripted series designed to be watched on phones.
+
+🔗 [元記事を読む](https://techcrunch.com/2026/08/29/hollywood-celebs-are-getting-into-microdrama-apps/)
+
+---
+
+## 記事 21  ｜  The Verge
+
+### Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.
+
+> 原題: *Distraction-free writing gadget BYOK is adding custom extensions*
+
+#### 📝 記事の日本語要約
+
+Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.
+
+#### 🇺🇸 English Summary
+
+Posts from this topic will be added to your daily email digest and your homepage feed. The company’s solution to adding features without bloat is an optional scripting system.
+
+🔗 [元記事を読む](https://www.theverge.com/gadgets/986427/distraction-free-writing-gadget-byok-scripts-extensions)
+
+---
+
+## 記事 22  ｜  Wired
+
+### Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.
+
+> 原題: *How to Run a Chatbot on Your Own Computer*
+
+#### 📝 記事の日本語要約
+
+Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.
+
+#### 🇺🇸 English Summary
+
+It's no exaggeration to say the large language models that power AI bots like ChatGPT and Gemini are changing the world.Many of us are now relying on them for coding, writing, summarizing, and searching the web.Whatever directions AI goes in over the next few years, LLMs will be part of that future.If you use ChatGPT, Claude, Perplexity, or any of the other AI platforms, then you're using an LLM.
+
+🔗 [元記事を読む](https://www.wired.com/story/how-to-run-your-own-local-llm/)
+
+---
+
+## 記事 23  ｜  Ars Technica
+
+### Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.
+
+> 原題: *"RFK Jr. has lied to the Senate": Lawmakers call for criminal probe, ouster*
+
+#### 📝 記事の日本語要約
+
+Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.
+
+#### 🇺🇸 English Summary
+
+RFK Jr.went to Samoa to spread vaccine fears.The measles outbreak after killed 83.Senators are renewing calls for anti-vaccine Health Secretary Robert F.Kennedy to step down or be ousted—and at least one is calling for a criminal investigation—amid the release of documents they say prove Kennedy lied to them during his confirmation hearings last year.“This is a pattern, not a slip,” Sen.Edward J.
+
+🔗 [元記事を読む](https://arstechnica.com/health/2026/08/rfk-jr-has-lied-to-the-senate-lawmakers-call-for-criminal-probe-ouster/)
+
+---
+
+## 記事 24  ｜  MIT Tech Review
+
+### Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.
+
+> 原題: *The Download: inside OpenAI’s Hugging Face hack, and a new EV takes on the US*
+
+#### 📝 記事の日本語要約
+
+Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.
+
+#### 🇺🇸 English Summary
+
+Plus: Meta will pay up to $18 billion to settle a landmark child-safety case.This is today's edition of The Download , our weekday newsletter that provides a daily dose of what's going on in the world of technology.
+
+#### 🏢 企業解説リンク
+
+- [Meta](companies/meta.html)
+- [OpenAI](companies/openai.html)
+
+🔗 [元記事を読む](https://www.technologyreview.com/2026/08/27/1143033/the-download-openai-hugging-face-hack-slate-truck-ev/)
+
+---
+
+## 記事 25  ｜  VentureBeat
+
+### Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.
+
+> 原題: *Enterprise AI's real risk isn't autonomous agents. It's the complexity between them.*
+
+#### 📝 記事の日本語要約
+
+Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.
+
+#### 🇺🇸 English Summary
+
+Presented by Gravitee Agent complexity is the insidious shadow lurking inside enterprises right now that needs a light shone on it.That’s because enterprises don't deploy a single agent and watch it run, they deploy fleets, each one calling APIs, calling other agents, reaching into applications that were never built with a machine decision-maker in mind.
+
+🔗 [元記事を読む](https://venturebeat.com/ai/enterprise-ais-real-risk-isnt-autonomous-agents-its-the-complexity-between-them)
+
+---
+
+## 記事 26  ｜  Engadget
+
+### Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.
+
+> 原題: *Why does your Kindle even have Bluetooth?*
+
+#### 📝 記事の日本語要約
+
+Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.
+
+#### 🇺🇸 English Summary
+
+How else do you expect to hear an audiobook?Keep in mind that only Kindles released in 2016 or later have Bluetooth connectivity.This feature lets you connect the ereader to wireless headphones or speakers to listen to audiobooks, or simply to have text read aloud since Amazon's newer e-readers don't have built-in speakers or headphone jacks.
+
+#### 🏢 企業解説リンク
+
+- [Amazon](companies/amazon.html)
+
+🔗 [元記事を読む](https://www.engadget.com/2242764/why-does-your-kindle-even-have-bluetooth/)
+
+---
+
+## 記事 27  ｜  TechCrunch
+
+### Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.
+
+> 原題: *The Theragun Sense makes everyday recovery surprisingly easy*
+
+#### 📝 記事の日本語要約
+
+Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.
+
+#### 🇺🇸 English Summary
+
+As my 20s are set to come to an end later this year, I’ve officially reached the age where sleeping in the wrong position or stretching just a little too far can cause aches and pains.I’ve always been somewhat skeptical of massage guns, mostly because I’ve tried a few off-brand ones and just assumed they’d eventually end up collecting dust in a drawer.
+
+🔗 [元記事を読む](https://techcrunch.com/2026/08/29/the-theragun-sense-makes-everyday-recovery-surprisingly-easy/)
+
+---
+
+## 記事 28  ｜  The Verge
+
+### Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.
+
+> 原題: *Welcome to Night Vale cocreator Joseph Fink learned storytelling from Grim Fandango*
+
+#### 📝 記事の日本語要約
+
+Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.
+
+#### 🇺🇸 English Summary
+
+Posts from this topic will be added to your daily email digest and your homepage feed. His latest book, The Nudge, tells the tale of a man who can’t seem to outrun a mysterious evil.
+
+🔗 [元記事を読む](https://www.theverge.com/entertainment/983448/welcome-to-night-vale-cocreator-joseph-fink-learned-storytelling-from-grim-fandango)
+
+---
+
+
+> ⚠️ 本まとめは自動生成です。数値・固有名詞などの事実は元記事でご確認ください。
