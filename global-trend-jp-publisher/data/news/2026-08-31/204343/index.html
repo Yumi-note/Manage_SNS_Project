@@ -1,0 +1,1204 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>海外テックニュース日本語まとめ</title>
+    <style>
+        :root {
+            color-scheme: dark;
+            --bg: #0a0f1d;
+            --panel: rgba(13, 20, 36, 0.92);
+            --line: rgba(132, 152, 187, 0.25);
+            --text: #eef3ff;
+            --muted: #adc1dd;
+            --accent: #7dd3fc;
+            --accent-strong: #38bdf8;
+            --shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: "Hiragino Sans", "Noto Sans JP", sans-serif;
+            background:
+                radial-gradient(circle at top right, rgba(56, 189, 248, 0.22), transparent 26%),
+                radial-gradient(circle at top left, rgba(16, 185, 129, 0.16), transparent 20%),
+                linear-gradient(180deg, #07101f 0%, #0b1327 48%, #0a0f1d 100%);
+            color: var(--text);
+        }
+
+        .page-shell {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 24px;
+        }
+
+        .hero {
+            padding: 28px;
+            border: 1px solid var(--line);
+            border-radius: 28px;
+            background: linear-gradient(145deg, rgba(18, 27, 48, 0.96), rgba(10, 17, 32, 0.96));
+            box-shadow: var(--shadow);
+        }
+
+        .hero-nav {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 28px;
+        }
+
+        .nav-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 42px;
+            padding: 0 16px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        .eyebrow {
+            margin: 0 0 10px;
+            color: var(--accent);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            font-size: 0.78rem;
+        }
+
+        .hero h1 {
+            margin: 0;
+            font-size: clamp(2rem, 3vw, 3.3rem);
+            line-height: 1.1;
+        }
+
+        .timestamp,
+        .description {
+            color: var(--muted);
+        }
+
+        .control-panel {
+            margin: 20px 0 28px;
+            padding: 22px;
+            border: 1px solid var(--line);
+            border-radius: 24px;
+            background: var(--panel);
+            backdrop-filter: blur(12px);
+        }
+
+        .control-header {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            align-items: end;
+            flex-wrap: wrap;
+        }
+
+        .control-header h2 {
+            margin: 0 0 6px;
+        }
+
+        .control-header p {
+            margin: 0;
+            color: var(--muted);
+        }
+
+        #search-input {
+            width: min(100%, 360px);
+            min-height: 46px;
+            padding: 0 14px;
+            border-radius: 14px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
+        }
+
+        .category-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 16px;
+        }
+
+        .category-btn {
+            min-height: 42px;
+            padding: 0 14px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
+            cursor: pointer;
+        }
+
+        .category-btn.active {
+            background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+            color: #06111f;
+            border-color: transparent;
+            font-weight: 700;
+        }
+
+        .article-list {
+            display: grid;
+            gap: 18px;
+        }
+
+        .article-card {
+            padding: 24px;
+            border-radius: 24px;
+            border: 1px solid var(--line);
+            background: linear-gradient(180deg, rgba(12, 18, 34, 0.96), rgba(14, 22, 39, 0.9));
+            box-shadow: var(--shadow);
+        }
+
+        .card-topline {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+
+        .category-chip,
+        .source-chip {
+            display: inline-flex;
+            align-items: center;
+            min-height: 34px;
+            padding: 0 12px;
+            border-radius: 999px;
+            font-size: 0.92rem;
+            font-weight: 700;
+        }
+
+        .source-chip {
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--muted);
+        }
+
+        .article-title {
+            margin: 0 0 10px;
+            font-size: clamp(1.45rem, 2vw, 2rem);
+            line-height: 1.35;
+        }
+
+        .article-original-title {
+            margin: 0 0 18px;
+            color: var(--muted);
+        }
+
+        .security-alert {
+            margin: 0 0 14px;
+            padding: 10px 14px;
+            border-radius: 12px;
+            border: 1px solid rgba(248, 113, 113, 0.4);
+            background: rgba(248, 113, 113, 0.12);
+            color: #fecaca;
+            font-weight: 700;
+            font-size: 0.92rem;
+        }
+
+        .article-section {
+            margin-top: 18px;
+            padding-top: 18px;
+            border-top: 1px solid var(--line);
+        }
+
+        .article-section h3 {
+            margin: 0 0 12px;
+            font-size: 1rem;
+            color: var(--accent);
+        }
+
+        .article-paragraph {
+            margin: 0 0 14px;
+            color: #dce7f8;
+            line-height: 1.9;
+            font-size: 1rem;
+        }
+
+        .company-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .company-link,
+        .action-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 42px;
+            padding: 0 14px;
+            border-radius: 14px;
+            text-decoration: none;
+            border: 1px solid rgba(125, 211, 252, 0.3);
+        }
+
+        .company-link {
+            color: var(--accent);
+            background: rgba(56, 189, 248, 0.08);
+        }
+
+        .article-actions {
+            margin-top: 22px;
+        }
+
+        .footer {
+            padding: 28px 8px 40px;
+            color: var(--muted);
+            text-align: center;
+        }
+
+        .footer p {
+            margin: 6px 0;
+        }
+
+        .action-link.primary {
+            color: #06111f;
+            font-weight: 700;
+            background: linear-gradient(135deg, #7dd3fc, #22d3ee);
+            border-color: transparent;
+        }
+
+        @media (max-width: 720px) {
+            .page-shell {
+                padding: 14px;
+            }
+
+            .hero,
+            .control-panel,
+            .article-card {
+                padding: 18px;
+                border-radius: 20px;
+            }
+
+            .control-header {
+                align-items: stretch;
+            }
+
+            #search-input {
+                width: 100%;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="page-shell">
+        <header class="hero">
+            <div class="hero-nav">
+                <a class="nav-link" href="../../index.html">HOME</a>
+                <a class="nav-link" href="../index.html">この日の記事一覧</a>
+            </div>
+            <div class="hero-copy">
+                <p class="eyebrow">Global Tech News Digest</p>
+                <h1>海外テックニュース 日本語まとめ</h1>
+                <p class="timestamp">2026年8月31日 20:43 JST に収集した記事を掲載しています。</p>
+                <p class="description">各カードには本文寄りの日本語訳を掲載し、記事中で触れた企業は別ページの解説リンクとして分離しています。</p>
+            </div>
+        </header>
+
+        <section class="control-panel">
+            <div class="control-header">
+                <div>
+                    <h2>記事を探す</h2>
+                    <p>カテゴリとキーワードで一覧を絞り込めます。</p>
+                </div>
+                <input type="text" id="search-input" placeholder="タイトル・本文・媒体名で検索">
+            </div>
+            <div class="category-buttons">
+                <button class="category-btn active" data-category="all">すべて (30)</button>
+<button class="category-btn" data-category="AI/ML" style="--accent:#10b981">🤖 AI/ML (24)</button>
+<button class="category-btn" data-category="Hardware" style="--accent:#06b6d4">⚙️ Hardware (1)</button>
+<button class="category-btn" data-category="Media" style="--accent:#f59e0b">🎬 Media (1)</button>
+<button class="category-btn" data-category="Mobile" style="--accent:#6366f1">📱 Mobile (1)</button>
+<button class="category-btn" data-category="Other" style="--accent:#6b7280">📰 Other (2)</button>
+<button class="category-btn" data-category="Startups" style="--accent:#8b5cf6">🚀 Startups (1)</button>
+            </div>
+        </section>
+
+        <main class="article-list" id="articles-container">
+            <article class="article-card" data-category="AI/ML" data-index="1">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</h2>
+    <p class="article-original-title">原題: <em>FTC accuses Amazon of running a ‘secret ad surcharge scheme’ in new lawsuit</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">アマゾンは、プラットフォーム上の広告に対して密かに企業に追加料金を請求しているとして、連邦取引委員会（FTC）と22の州から新たな訴訟に直面している。月曜日に起こされたこの訴訟は、アマゾンがオンライン広告オークションを通じて広告主が支払う価格を密かに7年以上費やしてきたと主張している。訴状によると、この行為は100万以上のブランドや販売者に影響を及ぼし、Amazonに数百億ドルの追加収益をもたらした可能性があるという。 FTCに参加している22州は、アラスカ、アリゾナ、カリフォルニア、コロラド、フロリダ、アイダホ、イリノイ、インディアナ、アイオワ、ケンタッキー、ルイジアナ、メリーランド、ネブラスカ、ニュージャージー、ニューヨーク、ノースカロライナ、オクラホマ、ペンシルバニア、ロードアイランド、サウスカロライナ、バーモント、ワシントンである。訴訟はセン。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Amazon is facing a new lawsuit from the Federal Trade Commission (FTC) and 22 states, which accuse the company of secretly charging businesses more for advertising on its platform.The lawsuit, filed Monday, claims Amazon spent more than seven years quietly increasing the prices advertisers paid through its online ad auctions.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/amazon.html" target="_blank" rel="noopener noreferrer" class="company-link">Amazon の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/08/31/ftc-accuses-amazon-of-running-a-secret-ad-surcharge-scheme-in-new-lawsuit/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="2">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">自動車所有者は無視できるテクノロジーを望んでいます</h2>
+    <p class="article-original-title">原題: <em>Car owners want tech they can ignore</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. Posts from this author will be added to your daily email digest and your homepage feed.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/news/986721/car-tech-survey-jd-power-smart-ignition" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Media" data-index="3">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#f59e0b">🎬 Media</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">この Asus ProArt モニターは OLED を大衆にもたらします</h2>
+    <p class="article-original-title">原題: <em>This Asus ProArt Monitor Brings OLED to the Masses</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">OLED is common in gaming monitors these days.But for those of us who don’t need gaming gear?Well, home-office and content-creation monitors have been much slower to adopt the exciting and more capable display technology.That’s unfortunate because having an OLED monitor is every bit as useful as having an OLED TV if you ever use your monitor for entertainment purposes.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/review/asus-proart-pa279cdv/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Other" data-index="4">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#6b7280">📰 Other</span>
+        <span class="source-chip">Ars Technica - All content</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</h2>
+    <p class="article-original-title">原題: <em>Review: Coyote vs. Acme is an unabashed love letter to Looney Tunes</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Director Dave Green&#x27;s live action/animated hybrid captures smart, subversive weirdness of the classic cartoons.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/culture/2026/08/review-coyote-vs-acme-is-an-unabashed-love-letter-to-looney-tunes/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="5">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">ハグフェイスハッキングはOpenAIの文化的問題を示唆している可能性がある</h2>
+    <p class="article-original-title">原題: <em>Hugging Face hack could indicate cultural issues at OpenAI</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">社内で警鐘が鳴らされ、モデルトレーニングの続行は中止されるべきだった。では、なぜそうしなかったのでしょうか？先月の大規模な AI セキュリティ インシデントについてはおそらく聞いたことがあるでしょう。このインシデントでは、OpenAI エージェントがテストでカンニングしようとしてサンドボックスから脱出し、AI プラットフォーム Hugging Face にハッキングされました。とんでもない話ですね。水曜日、OpenAI はこのインシデントに関する事後技術レポートをリリースしました。これについては、私がここに書きました。OpenAIがそのレポートを発表する前日、私はモントリオール大学を休学してEvitableというAI安全性の非営利団体を設立し率いたコンピュータサイエンスの教授で著名なアラインメントの専門家であるデイビッド・クルーガー氏と話をした。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Alarm bells within the company should have stopped model training from going forward.So why didn’t they?By now you’ve probably heard about last month’s major AI security incident, in which OpenAI agents escaped their sandbox and hacked into the AI platform Hugging Face while trying to cheat on a test.It’s a wild story.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/openai.html" target="_blank" rel="noopener noreferrer" class="company-link">OpenAI の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/08/31/1143180/hugging-face-hack-could-indicate-cultural-issues-at-openai/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="6">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">VentureBeat</span>
+    </div>
+
+    
+
+    <h2 class="article-title">ソフトウェア エンジニアの新しい仕事はコードを書くことではなく、AI エージェントが突破できない境界を設計することです</h2>
+    <p class="article-original-title">原題: <em>Software engineers&#x27; new job isn&#x27;t writing code — it&#x27;s designing the boundaries AI agents can&#x27;t break</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">最新のデータ プラットフォームのコミット履歴を見ると、過去 2 年間で何か重大な変化が起きていることがわかります。構文を書く際の摩擦は崩壊しました。カーソル、クロード コード、およびエージェント ワークフローが Docker コンテナーと IDE 内に存在するようになったことで、分散ストリーミング パイプラインの最初の実装や複雑な API 統合の生成が中心的なボトルネックではなくなりました。エージェントはリポジトリを移動し、テスト カバレッジを書き込み、スタック トレースを検査し、再提案することができます。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">If you look at the commit histories of modern data platforms, something profound has shifted over the last two years.The friction of writing syntax has collapsed.With Cursor, Claude Code, and agentic workflows now living inside our Docker containers and IDEs, generating the first implementation of a distributed streaming pipeline or a complex API integration is no longer the central bottleneck.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://venturebeat.com/orchestration/software-engineers-new-job-isnt-writing-code-its-designing-the-boundaries-ai-agents-cant-break" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="7">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">進取的なモッダーがどのようにして Windows NT を Nintendo GameCube にインストールしたか</h2>
+    <p class="article-original-title">原題: <em>How Enterprising Modders Installed Windows NT On Nintendo GameCubes</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">A blast from the past modded onto another blast from the past.With the current &quot;analog&quot; tech trend encouraging hobbyists to find new ways to exercise their ownership over hardware, console modding is seeing more and more attention.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2246406/how-modders-installed-windows-nt-operating-system-nintendo-gamecube/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="8">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">国防総省は現在、ChatGPT と Grok の独自バージョンを持っています</h2>
+    <p class="article-original-title">原題: <em>The Pentagon now has its own version of ChatGPT and Grok</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">国防総省は、OpenAI の ChatGPT と xAI の Grok のバージョンを開始し、300 万人の民間人および軍人が「戦闘員のニーズ」に合わせた生成 AI ツールにアクセスできるようにしました。ChatGPT Mil および Grok for Government (一般的な消費者向け生成 AI ツールのカスタム バージョン) は、現在 GenAI の一部です。mil は、昨年立ち上げられた集中型の安全なポータルです。ゲンアイ。最初の立ち上げ時に Google Gemini を提供した mil は、通常の消費者チャネルを通じて政府の機密データを送信することなく、国防総省の職員が商用フロンティア AI モデルにアクセスできるように設計されています。特に、公式の軍用バージョンは、消費者向けテクノロジー製品では回避することが難しいデータ収集から免除されています。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">The Pentagon has launched versions of OpenAI’s ChatGPT and xAI’s Grok, giving 3 million civilian and military personnel access to generative AI tools that have been tailored to “warfighter needs.” ChatGPT Mil and Grok for Government — custom versions of the popular consumer generative AI tools — are now part of GenAI.mil, a centralized, secure portal launched last year.GenAI.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/google.html" target="_blank" rel="noopener noreferrer" class="company-link">Google の解説</a> <a href="companies/openai.html" target="_blank" rel="noopener noreferrer" class="company-link">OpenAI の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/08/31/the-pentagon-now-has-its-own-version-of-chatgpt-and-grok/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="9">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">フィル・シラーがAppleで最も重要な職を辞任</h2>
+    <p class="article-original-title">原題: <em>Phil Schiller is leaving his biggest jobs at Apple</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. The executive will remain an Apple Fellow, but it’s unclear what he’ll work on after handing off the App Store and events.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/apple.html" target="_blank" rel="noopener noreferrer" class="company-link">Apple の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/tech/986869/apple-phil-schiller-stepping-down" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="10">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Top Tempo プロモーション コード: 2026 年 9 月に健康的な食事を最大 60% オフに</h2>
+    <p class="article-original-title">原題: <em>Top Tempo Promo Codes: Get up to 60% Off Healthy Meals in September 2026</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">私は調理済みの食事の配達サービスに不安を感じていました。彼らは私に、1990年代の深夜テレビで販売されていた宅配ダイエットプランをフラッシュバックさせました。そして、ミールキットサービス Home Chef からスピンオフした調理済み食事ブランドである Tempo Meals は、数十のミールキットをテストした後でも嬉しい驚きでした。テンポミールはテレビのディナーのように見えますが、包装技術の進歩のおかげで一度も冷凍されていません。私が試したビーフバルバッコアと真空調理チキンは、実際に水分と柔らかさを保っていました。インゲンはまだ鮮やかな緑色で、少しパチパチ音を立てていました。売店のキッチンで調理され、大量の保存料を使用せずに腐敗を防ぐ特別なパッケージで玄関先まで配送されます。加熱して食べる食事は、作りたての食事ほど美味しくはありませんが、 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">I had been leery of prepared meal delivery services.They gave me flashbacks to those delivery diet plans sold on late night television in the 1990s.And so Tempo Meals , a spin-off prepared meal brand from meal kit service Home Chef, came as a pleasant surprise even after testing dozens of meal kits .</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/story/tempo-meals-promo-code/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Other" data-index="11">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#6b7280">📰 Other</span>
+        <span class="source-chip">Ars Technica - All content</span>
+    </div>
+
+    
+
+    <h2 class="article-title">トランプ大統領、選挙結果を「まちまち」と呼んだジャーナリストを罰するようFCCに指示</h2>
+    <p class="article-original-title">原題: <em>Trump tells FCC to punish journalist for calling his election results &quot;mixed&quot;</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">トランプ大統領は、NBCのクリステン・ウェルカー氏が予備選での支持結果がまちまちだったと述べたことに激怒した。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Trump furious at NBC&#x27;s Kristen Welker for saying he had mixed results in primary endorsements.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/tech-policy/2026/08/trump-tells-fcc-to-punish-journalist-for-calling-his-election-results-mixed/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="12">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">ダウンロード: 秘密の老化防止薬と仮想発電所への参加</h2>
+    <p class="article-original-title">原題: <em>The Download: a secretive antiaging drug and joining virtual power plants</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Plus: A judge has blocked the Pentagon’s blacklisting of Anthropic.This is today&#x27;s edition of The Download , our weekday newsletter that provides a daily dose of what&#x27;s going on in the world of technology.I knew I’d officially become a “longevity influencer” when a company called Generation Lab offered me the chance to write about—and even receive—their new rejuvenation treatment.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/08/28/1143113/the-download-antiaging-drug-joining-virtual-power-plants/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="13">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">VentureBeat</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</h2>
+    <p class="article-original-title">原題: <em>Identity and permissions aren’t enough to govern AI agent behavior</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Box によって提供される ID と権限だけでは、エンタープライズ AI エージェントを保護するのに十分ではなくなりました。これらは、エージェントが独自に動作し始めた後の動作ではなく、エージェントが到達できる範囲を制御し、自律エージェントは企業データへの正当なアクセスを数秒で意図しないアクションに変えることができます。このギャップにより、企業の AI セキュリティはアクセスの管理だけから、実行の管理を含む多層的なアプローチへと移行していると、最高情報セキュリティ責任者のヘザー セイラン氏は述べています。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Presented by Box Identity and permissions are no longer enough to secure enterprise AI agents.They govern what an agent can reach, not how it behaves once it starts working on its own, and an autonomous agent can turn legitimate access of enterprise data into unintended action in seconds.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://venturebeat.com/security/identity-and-permissions-arent-enough-to-govern-ai-agent-behavior" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="14">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">フィル・シラー氏がAppleのApp Storeおよび製品イベント責任者を辞任すると報じられている</h2>
+    <p class="article-original-title">原題: <em>Phil Schiller reportedly steps down as Apple&#x27;s App Store and product event chief</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Schiller will remain an Apple Fellow and focus on &quot;unspecified initiatives,&quot; according to Bloomberg.As Tim Cook steps aside as Apple CEO and John Ternus takes over the top job, it seems there are other changes taking place at the company&#x27;s executive level.Phil Schiller has reportedly stepped down from overseeing the App Store and product events.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/apple.html" target="_blank" rel="noopener noreferrer" class="company-link">Apple の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2247924/phil-schiller-reportedly-steps-down-as-apple-app-store-and-product-event-chief/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Startups" data-index="15">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#8b5cf6">🚀 Startups</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</h2>
+    <p class="article-original-title">原題: <em>Apply now to host a Side Event at TechCrunch Disrupt 2026</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">TechCrunch Disrupt 2026 が近づいています!10 月 13 日から 15 日まで、10,000 人を超えるイノベーター、創業者、投資家、業界リーダーがサンフランシスコのモスコーン ウェストで開催されるイベントに参加しますが、ベイエリアでのコミュニティの集まりはその 3 日間にとどまりません。Disrupt サイド イベント プログラムを使用すると、10 月 10 日から 16 日までいつでも人々を集めて、Disrupt の参加者に宣伝されるカスタム イベントを開催できます。しかし、時間はなくなってきています。サイド イベントへの応募締め切りは今週金曜日、太平洋時間の 9 月 4 日午前 0 時です。したがって、応募するのは今です!</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">We’re getting close to TechCrunch Disrupt 2026 !From October 13-15, more than 10,000 innovators, founders, investors, and industry leaders will attend our event in San Francisco’s Moscone West, but the community gathering in the Bay Area stretches beyond those three days.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/techcrunch.html" target="_blank" rel="noopener noreferrer" class="company-link">TechCrunch の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/08/31/apply-now-to-host-a-side-event-at-techcrunch-disrupt-2026/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="16">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</h2>
+    <p class="article-original-title">原題: <em>Markiplier is now GoPro’s biggest shareholder</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. The YouTuber recently posted a video promoting GoPro’s new Mission 1 ILS camera. ﻿</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/tech/986847/markiplier-gopro-investor" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="17">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</h2>
+    <p class="article-original-title">原題: <em>George Santos Just Got Hit With Kalshi’s First-Ever Lifetime Ban</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">元共和党議員ジョージ・サントス氏は、予測市場プラットフォーム「カルシ」から史上初の永久追放処分を受け、インサイダー取引と市場操作に関する規則に違反したとして、同氏に7万1356ドルの罰金も科せられた。カルシ氏が本日投稿した懲戒通知によると、元政治家は2026年2月のトランプ大統領の一般教書演説に出席するかどうかに関連して市場で取引を行った。その後、カルシ氏は特定の契約の「価格に影響を与える目的で、式典への出席に関する一連の公の場での発言を開始し」、その中には「虚偽または誤解を招く」内容も含まれていた、と通知による。演説の前日、サントスはXに「皆さん、ギャラリーで一般教書演説に参加するつもりです」と投稿した。演説中、彼はこう言った。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Former Republican congressman George Santos has received a first-of-its-kind lifetime ban from the prediction market platform Kalshi , which has also fined him $71,356 for violating its rules around insider trading and market manipulation.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/story/george-santos-gets-a-lifetime-ban-from-kalshi/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="18">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Ars Technica - All content</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</h2>
+    <p class="article-original-title">原題: <em>“Zlibrary my beloved”: Anthropic staff chats extolling piracy cited in Sony suit</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Lawsuit: Anthropic’s torrenting totally screwed songwriters as AI songs top charts.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/tech-policy/2026/08/zlibrary-my-beloved-anthropic-staff-chats-extolling-piracy-cited-in-sony-suit/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Hardware" data-index="19">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#06b6d4">⚙️ Hardware</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</h2>
+    <p class="article-original-title">原題: <em>How to sign up for a virtual power plant—and decide whether you should</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Utilities are lowering energy bills in exchange for more control over your electricity use.Here’s how to get involved.MIT Technology Review ’s How To series helps you get things done.Your thermostat may not look like a power plant.Neither does your electric vehicle, home battery, or HVAC system.But utility and energy companies increasingly want to treat them like one.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/08/28/1142956/how-to-sign-up-for-a-virtual-power-plant-and-decide-whether-you-should/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="20">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">VentureBeat</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</h2>
+    <p class="article-original-title">原題: <em>AI agents need their own identity before they need a gateway</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Enterprise AI has entered a new era.Organizations are rapidly moving beyond assistants that answer questions to autonomous agents capable of reasoning, invoking tools, accessing enterprise applications, coordinating with other agents, and completing multi-step business workflows with minimal human intervention.This shift represents a fundamental change in how software operates.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://venturebeat.com/security/ai-agents-need-their-own-identity-before-they-need-a-gateway" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="21">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</h2>
+    <p class="article-original-title">原題: <em>The downsides of switching from Windows to Mac</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">It&#x27;s not an entirely smooth jump to macOS.Last year, I considered one of the most common questions I get from readers, friends, family and anyone who learns I&#x27;m a gadget nerd: Is it a good time to jump to Macs from Windows?Short answer: absolutely.Macs typically perform better than equivalent Windows PCs; they&#x27;re far more durable; and they actually live up to Apple&#x27;s lengthy battery claims.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/apple.html" target="_blank" rel="noopener noreferrer" class="company-link">Apple の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2244172/downsides-switching-from-windows-to-mac/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="22">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</h2>
+    <p class="article-original-title">原題: <em>Instagram puts new limits on undisclosed AI profiles</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Instagramは月曜日、AIが生成したプロフィールのラベル付け方法を変更し、AIが生成した人物を無言でフィーチャーするアカウントのリーチを制限し始めると発表した。同プラットフォームは、既存の「AIクリエイター」ラベルの名前を「AI生成プロフィール」に変更すると発表しており、インスタグラムはこれにより開示が理解しやすくなるとしている。新しいラベルは、プロフィールに掲載されている人物が AI で生成または実質的に作成されたものであることをユーザーに伝えることを目的としています。新しいポリシーでは、AI が生成したプロフィールに適切なラベルを付けていないクリエイターはリーチが減少する可能性があります。一方、新しいラベルを使用するクリエイターは、AI によって生成された人物をプロフィールの件名にしているだけで罰せられることはありません。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Instagram announced Monday that it’s changing how it labels AI-generated profiles and will start limiting the reach of accounts that feature AI-generated people without saying so.The platform says it’s renaming its existing “AI creator” label to “AI-generated profile,” which Instagram says should make the disclosure easier to understand.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/08/31/instagram-puts-new-limits-on-undisclosed-ai-profiles/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="23">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</h2>
+    <p class="article-original-title">原題: <em>Read Tim Cook’s final message to Apple staff as CEO</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. “I love this company and the team behind it. ” “I love this company and the team behind it. ”</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/apple.html" target="_blank" rel="noopener noreferrer" class="company-link">Apple の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/tech/986832/read-tim-cooks-final-message-as-ceo-to-apple-staff" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="24">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</h2>
+    <p class="article-original-title">原題: <em>From Salmonella Eggs to Diarrhea Lettuce, Why This Has Been a Sick Hot American Summer</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">This summer, every meal feels like a risk.Just as the US is recovering from a major cyclospora outbreak stemming from tainted iceberg lettuce, salmonella has turned up in jalapeños, eggs , and even dog food.The jalapeño-related outbreak is now responsible for at least 431 illnesses and 57 hospitalizations in more than two dozen states.Meanwhile, a dual-pathogen outbreak of E.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/story/why-salmonella-cyclospora-make-americans-sick/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="25">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Ars Technica - All content</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</h2>
+    <p class="article-original-title">原題: <em>Raindrops are tiny lightning bolts, and they’re corroding cars, study finds</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Finding reveals an overlooked way that water can damage surfaces.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/science/2026/08/raindrops-are-tiny-lightning-bolts-and-theyre-corroding-cars-study-finds/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="26">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</h2>
+    <p class="article-original-title">原題: <em>A startup claims it’s found a drug to make your blood young</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Generation Lab claims its drug combo can “stop the spread of aging” around the body.And it’s looking for influencers to give it a try.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/08/27/1143037/startup-claims-its-found-a-drug-to-make-your-blood-young/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="27">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">VentureBeat</span>
+    </div>
+
+    
+
+    <h2 class="article-title">認証に合格した AI エージェントでも、ドリフトしたり、データを公開したり、メモリ中毒になったりする可能性があります。</h2>
+    <p class="article-original-title">原題: <em>AI agents that pass authentication can still drift, expose data, or get memory-poisoned</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">There is a clear repeating trend in agent deployments: The gateway is the first control teams reach for, but it is the one they are least ready to run. This is because gateways sit on top of identity and attribution layers that are mostly not there. The first layer of risk is not hypothetical. In June, CISA added a LiteLLM flaw to its Known Exploited Vulnerabilities catalog after attackers . .</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://venturebeat.com/security/ai-agents-that-pass-authentication-can-still-drift-expose-data-or-get-memory-poisoned" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="28">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</h2>
+    <p class="article-original-title">原題: <em>What is the best direction to face your subwoofer?</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">So you just bought a new audio system.You find the perfect place for your speaker and then start looking around for a spot for the subwoofer.Is there a &quot;right&quot; way to place it?Should you put it into the corner?Against the wall?Should it face the couch?There are so many questions that seem simple, but they can quickly lead you down a rabbit hole.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2240906/best-direction-to-face-subwoofer/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Mobile" data-index="29">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#6366f1">📱 Mobile</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">AppleのApp Storeトップ幹部、フィル・シラー氏もティム・クックCEO辞任に伴い撤退の波に追随</h2>
+    <p class="article-original-title">原題: <em>Apple&#x27;s top App Store exec, Phil Schiller, follows wave of exits as CEO Tim Cook steps down</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">ティム・クック氏は、長年務めたAppleのCEOとしての役割を離れることになっており、多くの経営幹部が彼と同じように退任に向かっている。月曜日、ブルームバーグは、長年アップルのApp Store責任者を務めてきたフィル・シラー氏がここ数日でその職を辞任したと報じた。シラー氏は 1987 年から同社に勤務していますが、その間の休暇はわずか 4 年です。彼は 2015 年に App Store を引き継ぎました。ただし、シラー氏は完全に会社を離れるわけではない。同氏は、同社に技術面やリーダーシップで顕著な貢献をした人物に与えられる役割であるApple Fellowとして留任する予定だ。その役割において、彼は不特定のプロジェクトに取り組むことになるが、ブルームバーグは、同社の内部関係者がシラー氏のフェローの役割は「最終的に幹部の退任に向けた大きな一歩である」と信じていると指摘している。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Tim Cook is departing from his long-held role as Apple’s CEO — and a wave of top executives are heading for the exits as he does.On Monday, Bloomberg reported that Phil Schiller, long the head of Apple’s App Store, stepped down from his position in recent days.Schiller has been with the company since 1987, with only a four-year break during that time.He took over the App Store in 2015 .</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/apple.html" target="_blank" rel="noopener noreferrer" class="company-link">Apple の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/08/31/apples-top-app-store-exec-phil-schiller-follows-wave-of-exits-as-ceo-tim-cook-steps-down/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="30">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Debian は Linux ディストリビューションから AI コードを禁止しない</h2>
+    <p class="article-original-title">原題: <em>Debian won’t ban AI code from its Linux distribution</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. The distro’s new AI policy says it ‘neither endorses nor prohibits the use of generative AI tools. ’</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/tech/986789/linux-debian-generative-ai-policy" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+        </main>
+
+        <footer class="footer">
+            <p>本ページは公開記事をもとに自動生成しています。数値や仕様は必ず元記事で確認してください。</p>
+            <p>JSON データは同じフォルダ内の tech_news_digest.json で参照できます。</p>
+        </footer>
+    </div>
+
+    <script>
+
+        const categoryButtons = document.querySelectorAll('.category-btn');
+        const articleCards = document.querySelectorAll('.article-card');
+        const searchInput = document.getElementById('search-input');
+
+        let activeCategory = 'all';
+
+        function applyFilters() {
+            const query = searchInput.value.trim().toLowerCase();
+            articleCards.forEach(card => {
+                const matchesCategory = activeCategory === 'all' || card.dataset.category === activeCategory;
+                const searchableText = card.innerText.toLowerCase();
+                const matchesQuery = !query || searchableText.includes(query);
+                card.style.display = matchesCategory && matchesQuery ? '' : 'none';
+            });
+        }
+
+        categoryButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                categoryButtons.forEach(item => item.classList.remove('active'));
+                button.classList.add('active');
+                activeCategory = button.dataset.category;
+                applyFilters();
+            });
+        });
+
+        searchInput.addEventListener('input', applyFilters);
+    
+    </script>
+</body>
+</html>
