@@ -1,0 +1,1214 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>海外テックニュース日本語まとめ</title>
+    <style>
+        :root {
+            color-scheme: dark;
+            --bg: #0a0f1d;
+            --panel: rgba(13, 20, 36, 0.92);
+            --line: rgba(132, 152, 187, 0.25);
+            --text: #eef3ff;
+            --muted: #adc1dd;
+            --accent: #7dd3fc;
+            --accent-strong: #38bdf8;
+            --shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: "Hiragino Sans", "Noto Sans JP", sans-serif;
+            background:
+                radial-gradient(circle at top right, rgba(56, 189, 248, 0.22), transparent 26%),
+                radial-gradient(circle at top left, rgba(16, 185, 129, 0.16), transparent 20%),
+                linear-gradient(180deg, #07101f 0%, #0b1327 48%, #0a0f1d 100%);
+            color: var(--text);
+        }
+
+        .page-shell {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 24px;
+        }
+
+        .hero {
+            padding: 28px;
+            border: 1px solid var(--line);
+            border-radius: 28px;
+            background: linear-gradient(145deg, rgba(18, 27, 48, 0.96), rgba(10, 17, 32, 0.96));
+            box-shadow: var(--shadow);
+        }
+
+        .hero-nav {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 28px;
+        }
+
+        .nav-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 42px;
+            padding: 0 16px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        .eyebrow {
+            margin: 0 0 10px;
+            color: var(--accent);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            font-size: 0.78rem;
+        }
+
+        .hero h1 {
+            margin: 0;
+            font-size: clamp(2rem, 3vw, 3.3rem);
+            line-height: 1.1;
+        }
+
+        .timestamp,
+        .description {
+            color: var(--muted);
+        }
+
+        .control-panel {
+            margin: 20px 0 28px;
+            padding: 22px;
+            border: 1px solid var(--line);
+            border-radius: 24px;
+            background: var(--panel);
+            backdrop-filter: blur(12px);
+        }
+
+        .control-header {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            align-items: end;
+            flex-wrap: wrap;
+        }
+
+        .control-header h2 {
+            margin: 0 0 6px;
+        }
+
+        .control-header p {
+            margin: 0;
+            color: var(--muted);
+        }
+
+        #search-input {
+            width: min(100%, 360px);
+            min-height: 46px;
+            padding: 0 14px;
+            border-radius: 14px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
+        }
+
+        .category-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 16px;
+        }
+
+        .category-btn {
+            min-height: 42px;
+            padding: 0 14px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
+            cursor: pointer;
+        }
+
+        .category-btn.active {
+            background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+            color: #06111f;
+            border-color: transparent;
+            font-weight: 700;
+        }
+
+        .article-list {
+            display: grid;
+            gap: 18px;
+        }
+
+        .article-card {
+            padding: 24px;
+            border-radius: 24px;
+            border: 1px solid var(--line);
+            background: linear-gradient(180deg, rgba(12, 18, 34, 0.96), rgba(14, 22, 39, 0.9));
+            box-shadow: var(--shadow);
+        }
+
+        .card-topline {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+
+        .category-chip,
+        .source-chip {
+            display: inline-flex;
+            align-items: center;
+            min-height: 34px;
+            padding: 0 12px;
+            border-radius: 999px;
+            font-size: 0.92rem;
+            font-weight: 700;
+        }
+
+        .source-chip {
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--muted);
+        }
+
+        .article-title {
+            margin: 0 0 10px;
+            font-size: clamp(1.45rem, 2vw, 2rem);
+            line-height: 1.35;
+        }
+
+        .article-original-title {
+            margin: 0 0 18px;
+            color: var(--muted);
+        }
+
+        .security-alert {
+            margin: 0 0 14px;
+            padding: 10px 14px;
+            border-radius: 12px;
+            border: 1px solid rgba(248, 113, 113, 0.4);
+            background: rgba(248, 113, 113, 0.12);
+            color: #fecaca;
+            font-weight: 700;
+            font-size: 0.92rem;
+        }
+
+        .article-section {
+            margin-top: 18px;
+            padding-top: 18px;
+            border-top: 1px solid var(--line);
+        }
+
+        .article-section h3 {
+            margin: 0 0 12px;
+            font-size: 1rem;
+            color: var(--accent);
+        }
+
+        .article-paragraph {
+            margin: 0 0 14px;
+            color: #dce7f8;
+            line-height: 1.9;
+            font-size: 1rem;
+        }
+
+        .company-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .company-link,
+        .action-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 42px;
+            padding: 0 14px;
+            border-radius: 14px;
+            text-decoration: none;
+            border: 1px solid rgba(125, 211, 252, 0.3);
+        }
+
+        .company-link {
+            color: var(--accent);
+            background: rgba(56, 189, 248, 0.08);
+        }
+
+        .article-actions {
+            margin-top: 22px;
+        }
+
+        .footer {
+            padding: 28px 8px 40px;
+            color: var(--muted);
+            text-align: center;
+        }
+
+        .footer p {
+            margin: 6px 0;
+        }
+
+        .action-link.primary {
+            color: #06111f;
+            font-weight: 700;
+            background: linear-gradient(135deg, #7dd3fc, #22d3ee);
+            border-color: transparent;
+        }
+
+        @media (max-width: 720px) {
+            .page-shell {
+                padding: 14px;
+            }
+
+            .hero,
+            .control-panel,
+            .article-card {
+                padding: 18px;
+                border-radius: 20px;
+            }
+
+            .control-header {
+                align-items: stretch;
+            }
+
+            #search-input {
+                width: 100%;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="page-shell">
+        <header class="hero">
+            <div class="hero-nav">
+                <a class="nav-link" href="../../index.html">HOME</a>
+                <a class="nav-link" href="../index.html">この日の記事一覧</a>
+            </div>
+            <div class="hero-copy">
+                <p class="eyebrow">Global Tech News Digest</p>
+                <h1>海外テックニュース 日本語まとめ</h1>
+                <p class="timestamp">2026年9月1日 15:18 JST に収集した記事を掲載しています。</p>
+                <p class="description">各カードには本文寄りの日本語訳を掲載し、記事中で触れた企業は別ページの解説リンクとして分離しています。</p>
+            </div>
+        </header>
+
+        <section class="control-panel">
+            <div class="control-header">
+                <div>
+                    <h2>記事を探す</h2>
+                    <p>カテゴリとキーワードで一覧を絞り込めます。</p>
+                </div>
+                <input type="text" id="search-input" placeholder="タイトル・本文・媒体名で検索">
+            </div>
+            <div class="category-buttons">
+                <button class="category-btn active" data-category="all">すべて (30)</button>
+<button class="category-btn" data-category="AI/ML" style="--accent:#10b981">🤖 AI/ML (19)</button>
+<button class="category-btn" data-category="Hardware" style="--accent:#06b6d4">⚙️ Hardware (2)</button>
+<button class="category-btn" data-category="Mobile" style="--accent:#6366f1">📱 Mobile (1)</button>
+<button class="category-btn" data-category="Other" style="--accent:#6b7280">📰 Other (3)</button>
+<button class="category-btn" data-category="Policy" style="--accent:#ec4899">⚖️ Policy (1)</button>
+<button class="category-btn" data-category="Security" style="--accent:#f97316">🔒 Security (1)</button>
+<button class="category-btn" data-category="Startups" style="--accent:#8b5cf6">🚀 Startups (3)</button>
+            </div>
+        </section>
+
+        <main class="article-list" id="articles-container">
+            <article class="article-card" data-category="AI/ML" data-index="1">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</h2>
+    <p class="article-original-title">原題: <em>Fambot introduces an &#x27;AI chief of staff&#x27; for families</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">AI agents that perform tasks on your behalf to help solve your daily problems are all the rage in Silicon Valley.But the startup Fambot sees a future for agents out in the real world, too, where they’re used by families who need help keeping up with the mental load of children’s activities, school events, newsletters, and other family logistics.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/09/01/fambot-introduces-an-ai-chief-of-staff-for-families/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="2">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</h2>
+    <p class="article-original-title">原題: <em>After two years of turmoil, Sonos attempts a triumphant return.</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。 2 年間の混乱を経て、Sonos は凱旋を試みます。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. After two years of turmoil, Sonos attempts a triumphant return.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/tech/987129/sonos-27-ace-ultra-beam-ultra-announcement" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="3">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</h2>
+    <p class="article-original-title">原題: <em>Sonos Has New Devices, a New OS, and Yes, a New App</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Sonos has a new app.Stop me if you’ve heard this one before .The smart speaker company , long a darling of the audio industry, undid much of the goodwill it earned with its multiroom speakers through a bevy of software updates that broke its app in 2024.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/story/sonos-has-new-devices-a-new-os-and-yes-a-new-app/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Policy" data-index="4">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#ec4899">⚖️ Policy</span>
+        <span class="source-chip">Ars Technica - All content</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</h2>
+    <p class="article-original-title">原題: <em>Without new landers or rovers, it&#x27;s helicopters or bust for NASA&#x27;s Mars program</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">NASA&#x27;s cost estimate for SR-1 Freedom is $2. 1 billion, but that doesn&#x27;t include the helicopters.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/space/2026/09/without-new-landers-or-rovers-its-helicopters-or-bust-for-nasas-mars-program/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="5">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</h2>
+    <p class="article-original-title">原題: <em>Making the AI-powered case for legacy modernization</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">AI を活用したモダナイゼーションにより、レガシー システムの変革にかかる時間と複雑さを軽減しながら、より迅速なイノベーションのための基盤を構築できると、Bupa の医療保険 CIO である Asifa Sherazi 氏と、Infosys の上級副社長兼 BFSI、ヘルスケア、および公共部門の地域責任者である Sanjeev Tripathi 氏は述べています。レガシーテクノロジーは長年にわたり、企業が解決する必要があると認識していた問題でしたが、取り組むのに苦労することが多かった問題です。ビジネスクリティカルなシステムを置き換えるコスト、複雑さ、リスクにより、モダナイゼーションは追求する機会ではなく、管理が困難になる可能性があります。しかし、顧客の期待の高まりと AI がソフトウェア開発の経済学にもたらした変化により、その計算は変化しつつあります。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">AI-assisted modernization can reduce the time and complexity of transforming legacy systems while creating a foundation for faster innovation, says Asifa Sherazi, CIO of health insurance at Bupa and Sanjeev Tripathi, senior VP, region head of BFSI, healthcare, and public sector at Infosys.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/09/01/1142180/making-the-ai-powered-case-for-legacy-modernization/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="6">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">VentureBeat</span>
+    </div>
+
+    
+
+    <h2 class="article-title">ファイルはそのままに: Perplexity のハイブリッド AI が機密データをクラウドから遠ざける</h2>
+    <p class="article-original-title">原題: <em>Your files stay put: Perplexity’s hybrid AI keeps confidential data off the cloud</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Perplexity は本日、そのエージェント プラットフォームである Computer のハイブリッド コンピューティングを開始しました。これは、単一の AI エージェントが、クラウドで実行されるフロンティア モデルと、Apple シリコン Mac でローカルに実行される小規模なオープンウェイト モデルとの間で作業を分割できるようにするシステムであり、機密データがデバイスから流出することがないようにローカル マシンにルーティングされます。同社によれば、AIエージェントが世界でタスクを開始できるのはこれが初めてだという。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Perplexity today launched hybrid compute for its agentic platform, Computer , a system that lets a single AI agent split its work between frontier models running in the cloud and smaller open-weight models running locally on Apple silicon Macs — routing sensitive data to the local machine so it never leaves the device. The company says it is the first time an AI agent can begin a task in th. .</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/apple.html" target="_blank" rel="noopener noreferrer" class="company-link">Apple の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://venturebeat.com/orchestration/your-files-stay-put-perplexitys-hybrid-ai-keeps-confidential-data-off-the-cloud" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="7">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Perplexity のハイブリッド コンピューティングは、機密性の高いタスクをクラウドとローカル AI の間で分割します。</h2>
+    <p class="article-original-title">原題: <em>Perplexity&#x27;s Hybrid Compute splits sensitive tasks between cloud and local AI</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">また、ローカル処理によりコストも削減できる可能性があります。2 月に Perplexity Computer をデビューさせました。Claude Cowork と同様、これは Web や PC 上のファイルやアプリを使用して自律的にタスクを完了できる AI エージェントのスイートです。それ以来、このプラットフォームは、Mac 用パーソナル コンピューターなど、いくつかの異なる製品を網羅するように進化してきました。そして今日、Perplexity は、ハイブリッド コンピューティングと呼ばれる派生製品を発表しました。新しいツールを使用すると、Opus 5 や GPT-5 などのフロンティアのクラウドベース モデル間でタスクを分割できます。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">And local processing could keep costs down too.Back in February, debuted Perplexity Computer .Like Claude Cowork , it&#x27;s a suite of AI agents that can autonomously complete tasks using the web, as well as files and apps on your PC.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2248548/perplexitys-hybrid-compute-splits-sensitive-tasks-between-cloud-and-local-ai/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Security" data-index="8">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#f97316">🔒 Security</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    <p class="security-alert">🔒 セキュリティエンジニア向け重要記事 — キーワードベースの分類でセキュリティ関連と判定されました（Grok未設定のためフォールバック）</p>
+
+    <h2 class="article-title">フロリダ州とテキサス州はプライバシー上の懸念からフロックのカメラをブロックする動きを見せている</h2>
+    <p class="article-original-title">原題: <em>Florida and Texas move to block Flock cameras over privacy concerns</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">フロリダ州とテキサス州は、監視大手フロック社がプライバシーへの懸念や追跡技術の悪用を巡る反発の増大に直面しているため、同社との関係を解消する方向で動いている。フロリダ州もテキサス州の同様の措置に追随しており、テキサス州は先週州当局に対しフロックカメラへの資金提供を停止するよう命じた。テキサス州知事のグレッグ・アボット事務所は、許可なく人々を追跡するためにフロックのデータベースを検索した疑いで最近テキサス州ラフキンの警察官を100件の重罪で起訴するなど、監視システムの悪用を挙げた。アボット氏の事務所はどの機関が影響を受けるかについては明らかにしていないが、地元メディアはダラス市全域で数百台のフロックカメラが稼働していると当局が述べていることから、ダラスが広範囲に影響を受ける可能性があると報じている。 TechCrunchはFlockに連絡を取った。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">The states of Florida and Texas are moving to end their relationship with surveillance giant Flock, as the company faces increasing backlash over privacy concerns and misuse of its tracking technology.Florida follows similar action by Texas, which last week ordered state agencies to stop funding Flock cameras.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/techcrunch.html" target="_blank" rel="noopener noreferrer" class="company-link">TechCrunch の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/09/01/florida-and-texas-move-to-block-flock-cameras-over-privacy-concerns/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="9">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">ティム・クック氏の功績は電話だけではなく政治にもある</h2>
+    <p class="article-original-title">原題: <em>Tim Cook’s legacy isn’t just phones, it’s politics</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。クック氏はドナルド・トランプ氏と習近平氏を巧みになだめることでアップルのサプライチェーンを維持した。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. Cook preserved Apple’s supply chain by deftly appeasing Donald Trump and Xi Jinping.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/apple.html" target="_blank" rel="noopener noreferrer" class="company-link">Apple の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/policy/987356/tim-cook-apple-trump-xi" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="10">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">高エネルギーレーザーを使用、米国がメキシコ国境付近でドローンを撃墜</h2>
+    <p class="article-original-title">原題: <em>Using High-Energy Laser, US Shoots Down Drones Near Mexico Border</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">今週、米軍は高エネルギーの多目的レーザーを使用して、米国とメキシコの国境近くで3機のドローンを撃墜した。公式報告書は、税関・国境警備隊の話として、ドローンが「米軍関係者とCBPパートナーに物理的脅威を与えている」と主張した。この作戦は8月25日夜から26日早朝にかけてテキサス州リオグランデ渓谷付近で行われ、米北部軍の傘下で活動する南国境統合任務部隊（JTF-SB）が主導した。当局は、作戦中、エージェントが陸軍の高エネルギー多目的レーザー（AMP-HEL）システムから派生した技術を使用したことを確認した。このシステムは、新たな防衛能力のための高エネルギーレーザーの導入に重点を置いた軍事計画である。入手可能な情報は、この取り組みが始まったことを示唆しています。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">This week, the US Army used a high-energy multipurpose laser to shoot down three drones near the US-Mexico border, which official reports claimed were “posing a physical threat to US military personnel and CBP partners,” referring to Customs and Border Patrol.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/story/high-energy-laser-us-shoots-down-drones-near-mexico-border/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Other" data-index="11">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#6b7280">📰 Other</span>
+        <span class="source-chip">Ars Technica - All content</span>
+    </div>
+
+    
+
+    <h2 class="article-title">民間団体はアルファ・ケンタウリへの「可能な限り安価な」ミッションを開始したいと考えている</h2>
+    <p class="article-original-title">原題: <em>Private group wants to launch &quot;cheapest possible&quot; mission to Alpha Centauri</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">「私たちは本当に大きなフィルターに直面しているかもしれません。」</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">&quot;We could really be facing the great filter. &quot;</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/space/2026/09/private-group-wants-to-launch-cheapest-possible-mission-to-alpha-centauri/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="12">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">ダウンロード: 作物用に作られた微生物と OpenAI の培養問題</h2>
+    <p class="article-original-title">原題: <em>The Download: engineered microbes for crops, and OpenAI’s culture problem</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">さらに、AI がユーザーの制御を逃れているという報告が 1 か月でほぼ 2 倍に増加しました。これは、テクノロジーの世界で何が起こっているかを毎日提供する平日のニュースレター、 The Download の本日版です。肥料は世界の食糧供給にとって不可欠ですが、その製造には大量のエネルギーが使用され、大量の排出物が発生します。一部の企業は、微生物が植物の成長を助けるために不可欠な窒素を提供し、化学肥料の必要性を潜在的に減らすことによって役立つことを期待しています。 Startup Switch Bioworks は、微生物が窒素生成モードに移行する前に自らを確立し、成長できるようにする遺伝子スイッチを使用するという、新しいアプローチを採用しています。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Plus: reports of AI escaping users’ control nearly doubled in a month.This is today&#x27;s edition of The Download , our weekday newsletter that provides a daily dose of what&#x27;s going on in the world of technology.Fertilizer is crucial for the global food supply, but making it uses a lot of energy and produces a lot of emissions.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/openai.html" target="_blank" rel="noopener noreferrer" class="company-link">OpenAI の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/09/01/1143199/the-download-engineered-microbes-openai-safety-culture/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="13">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">VentureBeat</span>
+    </div>
+
+    
+
+    <h2 class="article-title">AI は労働力を再定義しつつありますが、ほとんどの計画モデルは準備ができていません</h2>
+    <p class="article-original-title">原題: <em>AI is redefining the workforce — and most planning models aren’t ready</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">SAP HR によって提供され、従業員とスキルを追跡します。財務部門は人員目標とコストを所有します。調達では、請負業者とサービス支出を管理します。これらが重なって、幹部は、従業員の意思決定が実際にビジネスの成果にどのように反映されるかについての基本的な質問に答えることができなくなります。断片化された計画により従業員の盲点が生じる 各部門には、独自のシステム、独自の計画リズム、および仕事の進め方に関する独自の前提があります。最近の &lt;a href=&quot;https:/. .</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Presented by SAP HR tracks employees and skills.Finance owns headcount targets and cost.Procurement manages contractors and services spend.Together, they leave executives unable to answer basic questions about how workforce decisions actually translate into business outcomes.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://venturebeat.com/orchestration/ai-is-redefining-the-workforce-and-most-planning-models-arent-ready" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Hardware" data-index="14">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#06b6d4">⚙️ Hardware</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Sonos の Ace Ultra ヘッドフォンは、Sonos スピーカーとオーディオを交換できます</h2>
+    <p class="article-original-title">原題: <em>Sonos&#x27; Ace Ultra headphones can swap audio with any Sonos speaker</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">アップグレードされたヘッドフォンは、改良された ANC と長いバッテリー寿命も備えています。Sonos が最初のヘッドフォンを発表してから 2 年以上が経ち、今回同社は新しいモデルを発表しました。Ace Ultra は、オリジナルの Ace ヘッドフォンによく似ているかもしれませんが、内部にはいくつかのアップデートがあり、このバージョンを前モデルと区別しています。最も注目すべき変更は、互換性のあるサウンドバーからのサウンドの受信に依存するのではなく、Ace Ultra が Sonos システム内でより大きな役割を果たすことができることです。Sonosによれば、Ace Ultraは他のスピーカーやサウンドバーに直接リンクできるため、それらのデバイスで再生されているものをヘッドフォンに移動できるという。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">The upgraded headphones also feature improved ANC and longer battery life.It&#x27;s been a little over two years since Sonos debuted its first headphones and now the company has new model.The Ace Ultra may look a lot like the original Ace headphones , but there are several updates on the inside that set this version apart from its predecessor.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2248071/sonos-ace-ultra-headphones-can-swap-audio-with-any-sonos-speaker/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Startups" data-index="15">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#8b5cf6">🚀 Startups</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">このスタートアップは、貨物船の効率を高めるために水素を燃料噴射しています</h2>
+    <p class="article-original-title">原題: <em>This startup is fuel-injecting hydrogen to make cargo ships more efficient</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">これは、映画『ワイルド・スピード』シリーズの中でも最も象徴的なシーンの 1 つです。ポール ウォーカーの親指がハンドルから外れ、小さな赤いボタンを叩き、三菱エクリプスのエンジンに亜酸化窒素を送り込み、車に爆発的なブーストを与えます。これは、Newlight という新興企業が開発した水素注入システムが貨物船でどのように機能するかというと、まったく同じではありません。実際、同社のシステムは効率を上げるために圧縮水素燃料を使用していますが、ヴィン ディーゼルに勝つためではありません。しかし、これは共同創設者エヴィアタール・コーエンにとって役立つことが証明された例え話です。「パワーを得る代わりに、私たちは実際にエンジンにこう言います。『おい、エンジンへの燃料（流量）を減らしてくれ。亜硝酸がある程度あるからそんなに必要ない。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">It’s one the most iconic scenes in the Fast &amp; Furious film franchise: Paul Walker’s thumb comes off the steering wheel and smashes a small red button, pumping nitrous oxide into the engine of his Mitsubishi Eclipse and giving the car an explosive boost.This is not exactly how the hydrogen-injection system developed by a startup called Newlight works on cargo ships.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/techcrunch.html" target="_blank" rel="noopener noreferrer" class="company-link">TechCrunch の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/09/01/this-startup-is-fuel-injecting-hydrogen-to-make-cargo-ships-more-efficient/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Hardware" data-index="16">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#06b6d4">⚙️ Hardware</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">ジョン・ターナス氏がAppleの新CEOに就任</h2>
+    <p class="article-original-title">原題: <em>John Ternus takes over as Apple’s new CEO</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">iPhone、Mac、その他多くのテクノロジーガジェットの数兆ドルの本拠地には、9月1日付でティム・クック氏の後任として元ハードウェア部門の責任者であるジョン・ターナス氏がCEOに就任し、新たなリーダーが誕生した。私たちはクック氏の功績をどのように振り返るのか、そしてテルナス氏と新しい最高ハードウェア責任者のジョニー・スルージ氏のリーダーシップの下でアップルはどのようになるのでしょうか？次回の iPhone イベントは 9 月 9 日に予定されており、おそらくすぐに判明するでしょう。Apple における John Ternus 時代について、これまでに私たちが知っていると思われることはすべてここにあります。CEO在任中にリリースされた他のApple製品と同様に、ティム・クック氏の在任期間は、中国の独裁者と米国の独裁者志望者との間の、容赦なく効果的な綱渡りとして記憶されるだろう。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">The multitrillion-dollar home of the iPhone, Mac, and so many other tech gadgets has a new leaader, as Tim Cook has been replaced as CEO as of September 1st by former hardware boss John Ternus .How will we look back on Cook’s legacy, and what will Apple look like under the leadership of Ternus and new chief hardware officer Johny Srouji?</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/apple.html" target="_blank" rel="noopener noreferrer" class="company-link">Apple の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/tech/915272/apple-john-ternus-tim-cook" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Mobile" data-index="17">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#6366f1">📱 Mobile</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">噂のAppleの折りたたみスマートフォンは熾烈な競争を繰り広げている。これら 5 つはクラス最高です</h2>
+    <p class="article-original-title">原題: <em>Apple’s Rumored Folding Phone Has Fierce Competition. These 5 Are Best in Class</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">これを読んであなたは嘲笑しているかもしれません。最高の折りたたみ携帯電話?本当に？それはただのギミックではないでしょうか？これらが非常に便利であることをお伝えしたいと思います。そして、はい、今ではかなりの数があるので、選択肢があります。折りたたみスマートフォンは、私たち全員が 20 年近く使用してきた伝統的な 1 画面のガラス板の進化版であり、2026 年には折りたたみ iPhone が登場するかもしれません。これらは主に 2 つの形式で提供されます。折りたたみ式の折りたたみ式携帯電話と折りたたみ式の本のような携帯電話で、小型携帯電話の全盛期を追体験したり、外出先でマルチタスクのオプションを拡張したりできます。折りたたみ式携帯電話は、好みのスタイルに左右されるため、おそらく従来のスマートフォンよりも個人的な決定が必要です。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">You may be scoffing as you read this.The best folding phones?Really?Aren’t those just gimmicks?I&#x27;m here to tell you they&#x27;re pretty darn useful.And yes, there are quite a few now, so you have options.Folding phones are an evolution of the traditional single-screen slab of glass we&#x27;ve all been using for nearly two decades—and we might even see a folding iPhone in 2026 .</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/apple.html" target="_blank" rel="noopener noreferrer" class="company-link">Apple の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/gallery/best-folding-phones/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Other" data-index="18">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#6b7280">📰 Other</span>
+        <span class="source-chip">Ars Technica - All content</span>
+    </div>
+
+    
+
+    <h2 class="article-title">ベントレー スーパースポーツ: 無駄を省いたエンジニアの贅沢</h2>
+    <p class="article-original-title">原題: <em>The Bentley Supersports: A stripped-out engineer&#x27;s indulgence</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">ベントレー スーパースポーツ: 無駄を省いたエンジニアの贅沢。85年間で最も軽いベントレーだ。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">It&#x27;s the lightest Bentley in 85 years.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/cars/2026/08/the-bentley-supersports-a-stripped-out-engineers-indulgence/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Startups" data-index="19">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#8b5cf6">🚀 Startups</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">遺伝子操作された微生物はどのようにして世界の作物に栄養を与えることができるのか</h2>
+    <p class="article-original-title">原題: <em>How engineered microbes could help feed the world’s crops</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Startup Switch Bioworks は、微生物を利用して化学肥料の需要を削減したいと考えています。肥料は世界の食糧供給にとって不可欠ですが、その製造には大量のエネルギーが使用され、大量の排出物が発生します。微生物が役立つことを期待している企業もある。作物の根の周りの土壌に有益な微生物を播種すると、植物に栄養を与え、成長に不可欠な窒素を供給できることが研究で明らかになってきています。これは、世界の温室効果ガス排出量の約2%を占める化学肥料の必要性を減らすのに役立つ可能性がある。また、特にイラン戦争によりここ数カ月でエネルギーと肥料の価格が高騰していることから、農家にとってはコストも削減でき、大きな恩恵となるだろう。人間は何千年もの間、肥料などの生物肥料を使用してきましたし、企業も長年にわたってミツバチを使用してきました。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Startup Switch Bioworks hopes to use microbes to reduce demand for chemical fertilizer.Fertilizer is crucial for the global food supply, but making it uses a lot of energy and produces a lot of emissions.Some companies hope microbes can help.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/09/01/1143195/microbe-fertilizer-switch-bioworks/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="20">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">VentureBeat</span>
+    </div>
+
+    
+
+    <h2 class="article-title">OpenClaw 2.0 が登場、「マルチプレイヤー」AI コーディングの時代の到来: 企業にとってそれが何を意味するか</h2>
+    <p class="article-original-title">原題: <em>OpenClaw 2.0 is here, ushering in the era of &#x27;multiplayer&#x27; AI coding: What it means for enterprises</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">The viral fervor we saw earlier this year around OpenClaw, the open source AI harness that turns powerful language models into autonomous workers the user can message via their favorite channels (Telegram, iMessage, WhatsApp, Discord etc), has cooled off substantially from its peak in March 2026. &lt;. .</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/google.html" target="_blank" rel="noopener noreferrer" class="company-link">Google の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://venturebeat.com/technology/openclaw-2-0-is-here-what-it-means-for-enterprises" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="21">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</h2>
+    <p class="article-original-title">原題: <em>&#x27;Sonos 27&#x27; brings a refreshed UI to the app and lets AI agents control your system</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Sonos says its system will be able to communicate with any AI system the user chooses.Alongside a new soundbar and headphones, Sonos is announcing an updated app and some major changes to the underlying OS that powers all of its products.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2248252/sonos-27-brings-a-refreshed-ui-to-the-app-and-lets-ai-agents-control-your-system/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="22">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Waymo、デンバー、サンディエゴ、タンパでロボタクシーの拡大を加速</h2>
+    <p class="article-original-title">原題: <em>Waymo accelerates robotaxi expansion with launches in Denver, San Diego and Tampa</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Waymo は、デンバー、サンディエゴ、タンパで一般向けにロボタクシー サービスの提供を開始し、アルファベット所有の会社の商業事業を米国 14 都市に拡大しました。同社は火曜日、通常の商業計画に従い、順次ライダーの招待を開始し、3都市へのアクセスを徐々に増やしていくと発表した。この拡張により、自動運転ジャガー I ペイス ハッチバックとオーハイと呼ばれる新型ミニバンの保有台数が 4,000 台以上に増加しました。これら 3 都市での発売は、テスラがロボタクシー市場におけるギャップを縮めようと努めている中で行われた。テスラは現在、オースティン、ダラス、ヒューストン、マイアミ、オーランド、タンパで無人運転テスラ モデル Y の乗車料金を請求している。これらの市場の一部ではサービスが制限されていますが、同社はその範囲内で拡大を続けています。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Waymo has started to offer its robotaxi service to the public in Denver, San Diego, and Tampa, extending the Alphabet-owned company’s commercial operations to 14 U.S.cities.The company said on Tuesday that it will begin inviting riders on a rolling basis and slowly ramp up access in the three cities, following its usual commercial playbook.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/09/01/waymo-accelerates-robotaxi-expansion-with-launches-in-denver-san-diego-and-tampa/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="23">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</h2>
+    <p class="article-original-title">原題: <em>Florida blocks Flock cams on state highways</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. Posts from this author will be added to your daily email digest and your homepage feed.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/tech/987353/florida-flock-cam-ban-state-highways" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="24">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</h2>
+    <p class="article-original-title">原題: <em>You Can Replace the Battery on the New Sennheiser Momentum 5 Headphones</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">We’ve waited almost four years for a new pair of Sennheiser Momentum wireless over-ear headphones.That’s eons in a world where Sony, Apple, and Bowers &amp; Wilkins have been busy launching stellar Bluetooth headphones like the Sony WH-1000XM6 , Apple AirPods Max 2 , and Bowers &amp; Wilkins Px7 S3 .</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/apple.html" target="_blank" rel="noopener noreferrer" class="company-link">Apple の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/review/sennheiser-momentum-5/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Other" data-index="25">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#6b7280">📰 Other</span>
+        <span class="source-chip">Ars Technica - All content</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</h2>
+    <p class="article-original-title">原題: <em>Trump admin shelves Cyclospora research despite record-breaking outbreak</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">The CDC has tallied nearly 30,000 confirmed and probable cases this summer.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/health/2026/08/trump-admin-shelves-cyclospora-research-despite-record-breaking-outbreak/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="26">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</h2>
+    <p class="article-original-title">原題: <em>The Hugging Face hack could indicate cultural issues at OpenAI</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Alarm bells within the company should have stopped model training from going forward.So why didn’t they?By now you’ve probably heard about last month’s major AI security incident, in which OpenAI agents escaped their sandbox and hacked into the AI platform Hugging Face while trying to cheat on a test.It’s a wild story.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/openai.html" target="_blank" rel="noopener noreferrer" class="company-link">OpenAI の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/08/31/1143180/hugging-face-hack-could-indicate-cultural-issues-at-openai/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="27">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">VentureBeat</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</h2>
+    <p class="article-original-title">原題: <em>Software engineers&#x27; new job isn&#x27;t writing code — it&#x27;s designing the boundaries AI agents can&#x27;t break</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">If you look at the commit histories of modern data platforms, something profound has shifted over the last two years.The friction of writing syntax has collapsed.With Cursor, Claude Code, and agentic workflows now living inside our Docker containers and IDEs, generating the first implementation of a distributed streaming pipeline or a complex API integration is no longer the central bottleneck.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://venturebeat.com/orchestration/software-engineers-new-job-isnt-writing-code-its-designing-the-boundaries-ai-agents-cant-break" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="28">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</h2>
+    <p class="article-original-title">原題: <em>Sonos unveils new Beam Ultra soundbar with &#x27;true 7.1.2 Dolby Atmos&#x27;</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">The refreshed model with better surround sound will cost $699.After a rough couple of years and some shakeups in strategy, Sonos is back with some new products.Today, the company announced the Sonos Beam Ultra, a premium take on its mid-size soundbar.Pre-orders begin today, and the soundbar will be available beginning September 29 for a suggested retail price of $699.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2248155/sonos-unveils-new-beam-ultra-soundbar-with-true-7-1-2-dolby-atmos/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Startups" data-index="29">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#8b5cf6">🚀 Startups</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</h2>
+    <p class="article-original-title">原題: <em>Help build the future of startups: Volunteer at TechCrunch Disrupt 2026</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Every breakthrough company starts somewhere.Every founder who changed the world had a moment where they found their people, discovered their next co-founder, or got the advice that shifted everything.TechCrunch Disrupt is where those moments happen.And we can’t pull it off without volunteers like you.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/techcrunch.html" target="_blank" rel="noopener noreferrer" class="company-link">TechCrunch の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/09/01/help-build-the-future-of-startups-volunteer-at-techcrunch-disrupt-2026/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="30">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</h2>
+    <p class="article-original-title">原題: <em>Get ready for a really busy month of smartphones</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. Xiaomi, Apple, Huawei, and more are all launching flagship phones this month.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/apple.html" target="_blank" rel="noopener noreferrer" class="company-link">Apple の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/tech/986236/smartphones-september-ifa-apple-iphone-oppo-vivo-xiaomi" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+        </main>
+
+        <footer class="footer">
+            <p>本ページは公開記事をもとに自動生成しています。数値や仕様は必ず元記事で確認してください。</p>
+            <p>JSON データは同じフォルダ内の tech_news_digest.json で参照できます。</p>
+        </footer>
+    </div>
+
+    <script>
+
+        const categoryButtons = document.querySelectorAll('.category-btn');
+        const articleCards = document.querySelectorAll('.article-card');
+        const searchInput = document.getElementById('search-input');
+
+        let activeCategory = 'all';
+
+        function applyFilters() {
+            const query = searchInput.value.trim().toLowerCase();
+            articleCards.forEach(card => {
+                const matchesCategory = activeCategory === 'all' || card.dataset.category === activeCategory;
+                const searchableText = card.innerText.toLowerCase();
+                const matchesQuery = !query || searchableText.includes(query);
+                card.style.display = matchesCategory && matchesQuery ? '' : 'none';
+            });
+        }
+
+        categoryButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                categoryButtons.forEach(item => item.classList.remove('active'));
+                button.classList.add('active');
+                activeCategory = button.dataset.category;
+                applyFilters();
+            });
+        });
+
+        searchInput.addEventListener('input', applyFilters);
+    
+    </script>
+</body>
+</html>
