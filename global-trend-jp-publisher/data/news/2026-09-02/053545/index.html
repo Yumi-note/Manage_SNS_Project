@@ -1,0 +1,1214 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>海外テックニュース日本語まとめ</title>
+    <style>
+        :root {
+            color-scheme: dark;
+            --bg: #0a0f1d;
+            --panel: rgba(13, 20, 36, 0.92);
+            --line: rgba(132, 152, 187, 0.25);
+            --text: #eef3ff;
+            --muted: #adc1dd;
+            --accent: #7dd3fc;
+            --accent-strong: #38bdf8;
+            --shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: "Hiragino Sans", "Noto Sans JP", sans-serif;
+            background:
+                radial-gradient(circle at top right, rgba(56, 189, 248, 0.22), transparent 26%),
+                radial-gradient(circle at top left, rgba(16, 185, 129, 0.16), transparent 20%),
+                linear-gradient(180deg, #07101f 0%, #0b1327 48%, #0a0f1d 100%);
+            color: var(--text);
+        }
+
+        .page-shell {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 24px;
+        }
+
+        .hero {
+            padding: 28px;
+            border: 1px solid var(--line);
+            border-radius: 28px;
+            background: linear-gradient(145deg, rgba(18, 27, 48, 0.96), rgba(10, 17, 32, 0.96));
+            box-shadow: var(--shadow);
+        }
+
+        .hero-nav {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 28px;
+        }
+
+        .nav-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 42px;
+            padding: 0 16px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        .eyebrow {
+            margin: 0 0 10px;
+            color: var(--accent);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            font-size: 0.78rem;
+        }
+
+        .hero h1 {
+            margin: 0;
+            font-size: clamp(2rem, 3vw, 3.3rem);
+            line-height: 1.1;
+        }
+
+        .timestamp,
+        .description {
+            color: var(--muted);
+        }
+
+        .control-panel {
+            margin: 20px 0 28px;
+            padding: 22px;
+            border: 1px solid var(--line);
+            border-radius: 24px;
+            background: var(--panel);
+            backdrop-filter: blur(12px);
+        }
+
+        .control-header {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            align-items: end;
+            flex-wrap: wrap;
+        }
+
+        .control-header h2 {
+            margin: 0 0 6px;
+        }
+
+        .control-header p {
+            margin: 0;
+            color: var(--muted);
+        }
+
+        #search-input {
+            width: min(100%, 360px);
+            min-height: 46px;
+            padding: 0 14px;
+            border-radius: 14px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
+        }
+
+        .category-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 16px;
+        }
+
+        .category-btn {
+            min-height: 42px;
+            padding: 0 14px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
+            cursor: pointer;
+        }
+
+        .category-btn.active {
+            background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+            color: #06111f;
+            border-color: transparent;
+            font-weight: 700;
+        }
+
+        .article-list {
+            display: grid;
+            gap: 18px;
+        }
+
+        .article-card {
+            padding: 24px;
+            border-radius: 24px;
+            border: 1px solid var(--line);
+            background: linear-gradient(180deg, rgba(12, 18, 34, 0.96), rgba(14, 22, 39, 0.9));
+            box-shadow: var(--shadow);
+        }
+
+        .card-topline {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+
+        .category-chip,
+        .source-chip {
+            display: inline-flex;
+            align-items: center;
+            min-height: 34px;
+            padding: 0 12px;
+            border-radius: 999px;
+            font-size: 0.92rem;
+            font-weight: 700;
+        }
+
+        .source-chip {
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--muted);
+        }
+
+        .article-title {
+            margin: 0 0 10px;
+            font-size: clamp(1.45rem, 2vw, 2rem);
+            line-height: 1.35;
+        }
+
+        .article-original-title {
+            margin: 0 0 18px;
+            color: var(--muted);
+        }
+
+        .security-alert {
+            margin: 0 0 14px;
+            padding: 10px 14px;
+            border-radius: 12px;
+            border: 1px solid rgba(248, 113, 113, 0.4);
+            background: rgba(248, 113, 113, 0.12);
+            color: #fecaca;
+            font-weight: 700;
+            font-size: 0.92rem;
+        }
+
+        .article-section {
+            margin-top: 18px;
+            padding-top: 18px;
+            border-top: 1px solid var(--line);
+        }
+
+        .article-section h3 {
+            margin: 0 0 12px;
+            font-size: 1rem;
+            color: var(--accent);
+        }
+
+        .article-paragraph {
+            margin: 0 0 14px;
+            color: #dce7f8;
+            line-height: 1.9;
+            font-size: 1rem;
+        }
+
+        .company-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .company-link,
+        .action-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 42px;
+            padding: 0 14px;
+            border-radius: 14px;
+            text-decoration: none;
+            border: 1px solid rgba(125, 211, 252, 0.3);
+        }
+
+        .company-link {
+            color: var(--accent);
+            background: rgba(56, 189, 248, 0.08);
+        }
+
+        .article-actions {
+            margin-top: 22px;
+        }
+
+        .footer {
+            padding: 28px 8px 40px;
+            color: var(--muted);
+            text-align: center;
+        }
+
+        .footer p {
+            margin: 6px 0;
+        }
+
+        .action-link.primary {
+            color: #06111f;
+            font-weight: 700;
+            background: linear-gradient(135deg, #7dd3fc, #22d3ee);
+            border-color: transparent;
+        }
+
+        @media (max-width: 720px) {
+            .page-shell {
+                padding: 14px;
+            }
+
+            .hero,
+            .control-panel,
+            .article-card {
+                padding: 18px;
+                border-radius: 20px;
+            }
+
+            .control-header {
+                align-items: stretch;
+            }
+
+            #search-input {
+                width: 100%;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="page-shell">
+        <header class="hero">
+            <div class="hero-nav">
+                <a class="nav-link" href="../../index.html">HOME</a>
+                <a class="nav-link" href="../index.html">この日の記事一覧</a>
+            </div>
+            <div class="hero-copy">
+                <p class="eyebrow">Global Tech News Digest</p>
+                <h1>海外テックニュース 日本語まとめ</h1>
+                <p class="timestamp">2026年9月2日 05:35 JST に収集した記事を掲載しています。</p>
+                <p class="description">各カードには本文寄りの日本語訳を掲載し、記事中で触れた企業は別ページの解説リンクとして分離しています。</p>
+            </div>
+        </header>
+
+        <section class="control-panel">
+            <div class="control-header">
+                <div>
+                    <h2>記事を探す</h2>
+                    <p>カテゴリとキーワードで一覧を絞り込めます。</p>
+                </div>
+                <input type="text" id="search-input" placeholder="タイトル・本文・媒体名で検索">
+            </div>
+            <div class="category-buttons">
+                <button class="category-btn active" data-category="all">すべて (30)</button>
+<button class="category-btn" data-category="AI/ML" style="--accent:#10b981">🤖 AI/ML (23)</button>
+<button class="category-btn" data-category="Mobile" style="--accent:#6366f1">📱 Mobile (1)</button>
+<button class="category-btn" data-category="Other" style="--accent:#6b7280">📰 Other (2)</button>
+<button class="category-btn" data-category="Startups" style="--accent:#8b5cf6">🚀 Startups (4)</button>
+            </div>
+        </section>
+
+        <main class="article-list" id="articles-container">
+            <article class="article-card" data-category="AI/ML" data-index="1">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</h2>
+    <p class="article-original-title">原題: <em>Larry Page&#x27;s flying car company Pivotal loses its CEO</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">The CEO of a flying car company backed by Larry Page has left the company.Ken Karklin, who was Pivotal’s CEO for more than four years, left the role this week, according to a press release .Pivotal said Karklin is “pursuing new endeavors” but didn’t offer any other information about the executive’s departure from the electric vertical takeoff and landing (eVTOL) firm.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/09/01/larry-pages-flying-car-company-pivotal-loses-its-ceo/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="2">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</h2>
+    <p class="article-original-title">原題: <em>Google needs Hollywood more than the studios need AI</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. Striking deals with studios like Disney could help the tech giant shift the narrative about artificial intelligence.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/google.html" target="_blank" rel="noopener noreferrer" class="company-link">Google の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/tech/987429/google-needs-hollywood-more-than-the-studios-need-ai" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="3">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</h2>
+    <p class="article-original-title">原題: <em>Top Booking.com Promo Codes and Deals This September 2026</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Like other online travel agencies, Booking .com helps you find discount rates for airline tickets, cruises, hotel stays, car rentals, and packages.We at WIRED regularly post updates with the newest Booking .</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/story/booking-com-promo-code/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="4">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Ars Technica - All content</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</h2>
+    <p class="article-original-title">原題: <em>Here&#x27;s our first look—and drive—of the 2027 Range Rover Electric</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">妥協のない快適性とオフロード能力を備えた実際の航続距離は 333 マイルです。ジャガー ランドローバーは、内燃機関からの移行を発表した最初の自動車メーカーの 1 つです。その移行スケジュールは多少ずれたかもしれない――パンデミック、サプライチェーン、再編などのやっかいな出来事はすべて、より急速な電動化への障壁となっている――だが、それはまだ進行中であり、今日は内燃機関やプラグインハイブリッドのレンジローバーと並ぶ新しいバッテリー電気自動車のバリエーションであるレンジローバー・エレクトリックのデビューである。これまで、完全電動レンジローバーを手に入れる唯一の方法は、レストモッドルートを進むことでした。しかし、クラシックなレンジローバーは、あらゆる固有の欠点を抱えながらも、クラシックカーのように運転でき、その価格は目を見張るようなものになる可能性があります。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">333 miles of real-world range with uncompromised comfort and off-road ability.Jaguar Land Rover was one of the first automakers to announce a transition away from combustion engines.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/cars/2026/09/range-rover-ev-electric-propulsion-pairs-perfectly-with-this-luxury-suv/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Startups" data-index="5">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#8b5cf6">🚀 Startups</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">AI はどのようにしてアルファ ケンタウリへの星間旅行を計画したか</h2>
+    <p class="article-original-title">原題: <em>How AI plotted an interstellar journey to Alpha Centauri</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">フェルミ探査ミッションは、AI が発見した軌道を使用して、2029 年末までに最も近い星に探査機を打ち上げる予定です。フェルミ・エクスプローラー・ミッションと呼ばれる非営利団体は本日、2029年末までに探査機を私たちの最も近い恒星系に打ち上げる予定であると発表した。これは非常に野心的なミッションであり、すべてがうまくいけば、探査機が4.4光年離れたアルファ・ケンタウリに到着するまでに最大8万年かかる可能性がある。そして宇宙船は、AI物理学研究所であるフィジカル・スーパーインテリジェンス（PSI）が開発したAIシステムによって発見された新しい軌道をたどることになる。PSIは本日、Microsoftの共同創設者ビル・ゲイツ氏が設立した気候変動に焦点を当てた投資グループであるBreakthrough Energyが主導する5,800万ドルの資金を得て発足した。この試みは初めてではありません。。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">The Fermi Explorer Mission plans to launch a spacecraft to our nearest star by the end of 2029, using a trajectory discovered by AI.A nonprofit organization called the Fermi Explorer Mission announced today that it intends to launch a spacecraft to our nearest star system by the end of 2029.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/microsoft.html" target="_blank" rel="noopener noreferrer" class="company-link">Microsoft の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/09/01/1143247/ai-interstellar-journey-alpha-centauri/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="6">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">VentureBeat</span>
+    </div>
+
+    
+
+    <h2 class="article-title">フロンティアモデルは、より長く考えるだけで、直接思い出せない事実の最大 65% を復元できます</h2>
+    <p class="article-original-title">原題: <em>Frontier models can recover up to 65% of facts they can&#x27;t directly recall — just by thinking longer</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">大規模言語モデル (LLM) が幻覚を起こすと、開発者は通常、モデルに必要な事実が欠けていると想定します。エンジニアリング チームは、エラーが知識の不足であると診断します。標準的な対応策は、モデルのサイズを増やすか、トレーニング データを拡張するか、複雑な検索アーキテクチャを構築することです。 Google Research and Technion の研究者による新しい研究は、知識が欠けていないことが多いことを示しています。モデルにはパラメトリックにエンコードされた情報が含まれています。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">When large language models (LLMs) hallucinate, developers typically assume the model lacks the required facts.Engineering teams diagnose the error as missing knowledge.The standard response is to increase model size, expand training data, or build complex retrieval architectures.A new study by researchers at Google Research and Technion demonstrates that the knowledge is often not missing.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/google.html" target="_blank" rel="noopener noreferrer" class="company-link">Google の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://venturebeat.com/orchestration/frontier-models-can-recover-up-to-65-of-facts-they-cant-directly-recall-just-by-thinking-longer" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="7">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">これは、Dolby Atmos サウンドバーに最適な設定と配置です</h2>
+    <p class="article-original-title">原題: <em>This is the best setting and placement for your Dolby Atmos soundbar</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">ドルビーアトモスサウンドを最大限に体験するには、適切な手順を実行してください。ドルビー アトモス サウンドバーは家庭用オーディオ ゲームを完全に変えましたが、ゲームを楽しむのは、接続して再生ボタンを押すだけでは簡単ではありません。地元の劇場での没入型体験を模倣し、それを世界中のリビングルームに移すことは、机上では簡単に思えますが、それを適切に使用していることを確認する必要があります。ソファに直接オーディオを出力する一般的なサウンドバーとは異なり、Atmos 対応オプションは新しい道を切り開き、異なる操作を行います。オーバーヘッドスピーカーをミラーリングするために、これらのセットアップは多くの場合、音を天井に反射させて耳に戻す、上向きに発射する、場合によっては側面に発射するドライバーに依存します。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Take the proper steps to fully experience Dolby Atmos sound.Dolby Atmos soundbars changed the home audio game for good, but enjoying one isn&#x27;t as simple as plugging in and pressing play.Mimicking the immersive experience from your local theater and translating it to living rooms around the world sounds simple on paper, but you have to make sure you&#x27;re using it properly.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2245484/dolby-atmos-soundbar-best-setting-and-placement/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="8">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Reliance の JioHotstar は、スポーツなしでストリーミング帝国を世界に広めます</h2>
+    <p class="article-original-title">原題: <em>Reliance&#x27;s JioHotstar takes its streaming empire global — without sports</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">インドの複合企業リライアンス・インダストリーズが管理するストリーミング・プラットフォームである JioHotstar は、初めてインド国外にそのブランドを持ち出し、英国、カナダ、シンガポールで Hotstar に代わってより広範な世界展開を開始することになる。このストリーミング サービスは 160,000 時間以上のエンターテイメント コンテンツを備えて開始されますが、インド プレミア リーグ (IPL)、女子プレミア リーグ (WPL)、クリケットのインド代表試合など、インドでの大勢の視聴者を獲得するのに貢献してきたライブ スポーツは含まれません。JioStarは、既存のコンテンツ契約があるため、ローンチ時にはスポーツを提供しないと述べたが、将来的にスポーツを追加する可能性は排除しなかった。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">JioHotstar, the streaming platform controlled by Indian conglomerate Reliance Industries, is taking its brand outside India for the first time and will replace Hotstar in the U.K., Canada, and Singapore as it begins a wider global push.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/09/01/reliances-jiohotstar-takes-its-streaming-empire-global-without-sports/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="9">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Anthropic が Claude Fable 5.1 をリリース、エージェントの作業が最大 45% 安くなると発表</h2>
+    <p class="article-original-title">原題: <em>Anthropic launches Claude Fable 5.1 and says it’s up to 45 percent cheaper for agentic work</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。 Mythos 5.1 も Project Glasswing でリリースされます。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. ﻿Mythos 5. 1 is also launching in Project Glasswing.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/ai-artificial-intelligence/987830/anthropic-claude-fable-mythos-5-1" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="10">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Priceline プロモーション コードとクーポン: 2026 年 9 月に 10% オフ</h2>
+    <p class="article-original-title">原題: <em>Priceline Promo Codes &amp; Coupons: 10% Off in September 2026</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">他のオンライン旅行予約サービスと同様に、Priceline を使用すると、航空券やホテルの宿泊など、旅行に関連するすべてのサービスと料金を比較できます。子供の頃、私はいつも歌手兼スターシップの船長であるウィリアム・シャトナーのことをプライスラインの迷惑な奴だと言っていて、祖母と父を大いに怖がらせた。しかし、たとえそれがシャトナーの新しい世代への遺産となったとしても、その広告は記憶に残る説得力のあるものだったことは認めざるを得ません。ただし、Priceline プロモーション コードを使用して節約するためにセレブの承認は必要ありません。当社では、予算に優しい旅行者になるために、Priceline クーポンを定期的に更新しています。Priceline クーポン コードでは、レンタカー、ホテルの直前予約、その他の旅行関連の (ほぼ) すべての割引が割引されます。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Like other online travel booking services, Priceline helps you compare offerings and rates for everything travel-related, like airline tickets, and hotel stays.Growing up, I always referred to singer/starship captain William Shatner as the annoying guy from Priceline, much to my grandmother and father’s horror.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/story/priceline-promo-code/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="11">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Ars Technica - All content</span>
+    </div>
+
+    
+
+    <h2 class="article-title">研究のまとめ: 見逃しそうになっていた 7 つのクールな科学ストーリー</h2>
+    <p class="article-original-title">原題: <em>Research roundup: 7 cool science stories we almost missed</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">プラスチックからクッキーを作る「ブラック ホール スター」、音で動く小型ドローンなど。残念ながら、私たちが遭遇する興味深い科学的ストーリーをすべて取り上げるのに十分な時間がないのは現実です。そこで、私たちは毎月、ほとんど見逃されていたいくつかの最高のストーリーを特集します。 8月のリストには、天文学者が「ブラックホール星」と名付けた新しい天体の発見が含まれている。微生物によってプラスチックを分解し、食べられるクッキーに変える。クジラの鳴き声がアインシュタインの特殊相対性理論とどのように関係しているのか。アボカドの木の花が日中に性転換する様子など、見どころが満載です。クレジット: Rohan Naidu (ハワイ大学) クレジット: Rohan Naidu (ハワイ大学) 2024 年、天文学者たちは、James We が撮影したデータセットを徹底的に調べていました。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">“Black hole stars,” making cookies from plastic, tiny sound-powered drones, and more.It’s a regrettable reality that there is never enough time to cover all the interesting scientific stories we come across.So every month, we highlight a handful of the best stories that nearly slipped through the cracks.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/science/2026/09/august-research-roundup-7-cool-science-stories-we-almost-missed/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="12">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">AI を活用したレガシーのモダナイゼーションを主張する</h2>
+    <p class="article-original-title">原題: <em>Making the AI-powered case for legacy modernization</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">AI を活用したモダナイゼーションは、より迅速なイノベーションのための基盤を構築しながら、レガシー システムの変革にかかる時間と複雑さを軽減できると、Bupa の医療保険 CIO である Asifa Sherazi 氏と、Infosys の BFSI、ヘルスケア、および公共部門の上級副社長兼地域責任者である Sanjeev Tripathi 氏は述べています。レガシーテクノロジーは長年にわたり、企業が解決する必要があると認識していた問題でしたが、取り組むのに苦労することが多かった問題です。ビジネスクリティカルなシステムを置き換えるコスト、複雑さ、リスクにより、モダナイゼーションは追求する機会ではなく、管理が困難になる可能性があります。しかし、顧客の期待の高まりと AI がソフトウェア開発の経済学にもたらした変化により、その計算は変化しつつあります。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">AI-assisted modernization can reduce the time and complexity of transforming legacy systems while creating a foundation for faster innovation, says Asifa Sherazi, CIO of health insurance at Bupa and Sanjeev Tripathi, senior VP, region head of BFSI, healthcare, and public sector at Infosys.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/09/01/1142180/making-the-ai-powered-case-for-legacy-modernization/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="13">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">VentureBeat</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Azure OpenAI アシスタントの取得ギャップを埋めるには、新しい ID プラットフォームは必要ありませんでした。それには1つのフィルターとより狭いアシスタントが必要でした。</h2>
+    <p class="article-original-title">原題: <em>Closing an Azure OpenAI assistant&#x27;s retrieval gap didn&#x27;t take a new identity platform. It took one filter and a narrower assistant.</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Egiziago Ciofi は、ミラノに拠点を置く Microsoft パートナーである SynSphere Italia の IT およびエンタープライズ アーキテクト兼 CEO です。彼は自分でエージェントを構築しました。彼はインデックス作成ジョブを作成し、Azure OpenAI 取得パイプラインを構成し、それを SharePoint に接続し、チームが実行するすべての評価に合格するのを観察しました。 Cioffi 氏は、インタビューの質問に対する書面での回答の中で、VentureBeat に対し、彼の Azure OpenAI 電子メール アシスタントは顧客からの受信メールの約 60% を自動解決すると語った。評価点数もきれいでした。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Egiziago Cioffi is the IT and Enterprise Architect and CEO of SynSphere Italia, a Microsoft partner based in Milan.He built an agent himself.He wrote the indexing job, configured the Azure OpenAI retrieval pipeline, connected it to SharePoint, and watched it pass every evaluation his team ran.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/microsoft.html" target="_blank" rel="noopener noreferrer" class="company-link">Microsoft の解説</a> <a href="companies/openai.html" target="_blank" rel="noopener noreferrer" class="company-link">OpenAI の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://venturebeat.com/security/azure-openai-agent-passed-every-evaluation-served-files-user-couldnt-open" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="14">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">すべてのテレビが焼き付きの危険にさらされていますか?問題を完全に回避する方法は次のとおりです</h2>
+    <p class="article-original-title">原題: <em>Are all TVs at risk from burn-in? Here&#x27;s how to avoid the problem altogether</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">OLED スクリーンには最大のリスクがありますが、少しの常識があれば問題を軽減できます。新しいテレビやモニターを購入する場合は、OLED が現在入手できる最高の画質を提供するということを聞いたことがあるかもしれません。 OLED TV は、低価格帯や中価格帯の LCD に比べて高価であることが多いですが、その代わりに、優れたコントラスト、鮮やかな色、深みのある黒が得られます。ただし、ディスプレイ技術には大きな注意点が 1 つあります。それは、永久的な画像保持または焼き付きの可能性です。焼き付きという用語は、特に数百ドルまたは数千ドルを費やそうとしている場合には憂慮すべきことのように聞こえるかもしれませんが、すぐに心配する必要はありません。また、焼き付きは避けられないものではありますが、多くの場合は目立たないままであり、焼き付きがあったとしても現れるまでに何年もかかります。より良い 。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">OLED screens run the biggest risk, but with a little common sense you can mitigate the issue.If you&#x27;re shopping for a new TV or monitor, you may have heard that OLED offers some of the best picture quality available today.While OLED TVs often cost a premium compared to budget and even mid-range LCDs, you get excellent contrast, vivid colors and deep blacks in return.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/the-verge.html" target="_blank" rel="noopener noreferrer" class="company-link">The Verge の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2246417/tvs-at-risk-of-burn-in/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Mobile" data-index="15">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#6366f1">📱 Mobile</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">AppleがGoogleに続き、トランプ大統領の「Lake America」の名前を採用</h2>
+    <p class="article-original-title">原題: <em>Apple follows Google in adopting Trump’s ‘Lake America’ name</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">AppleはGoogleに倣い、トランプ大統領の変更命令から1週間も経たないうちに、Apple Mapsサービス上でオンタリオ湖の名前を「アメリカ湖」に正式に変更した。米国の Apple Maps ユーザーが Web サイトまたはモバイル アプリを使用すると、北米の 5 つの五大湖の 1 つであるオンタリオ湖ではなく、アメリカ湖が表示されるようになります。変更は米国内のユーザーにのみ表示されます。カナダの Apple Maps ユーザーには引き続きオンタリオ湖が表示されますが、両国以外のユーザーには両方の名前が表示されます。この変更は、8月27日にトランプ大統領が署名した大統領令に応じたもので、内務省は米国の地理命名サービスやその他の連邦データベースにある湖の名前を更新するために30日間の猶予を与えた。 「この経済活動の繁栄を認めて……」</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Apple has followed Google’s lead and officially changed the name of Lake Ontario to “Lake America” on its Apple Maps service less than a week after President Trump ordered the change.Apple Maps users in the United States will begin to see Lake America, not Lake Ontario — one of the five Great Lakes in North America — when using the website or mobile app.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/apple.html" target="_blank" rel="noopener noreferrer" class="company-link">Apple の解説</a> <a href="companies/google.html" target="_blank" rel="noopener noreferrer" class="company-link">Google の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/09/01/apple-follows-google-in-adopting-trumps-lake-america-name/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="16">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Apple MapsがGoogleに続き、オンタリオ湖の名前を変更</h2>
+    <p class="article-original-title">原題: <em>Apple Maps follows Google in renaming Lake Ontario</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。 「Lake America」は現在、Apple と Google のナビゲーション アプリ全体に表示されています。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. ‘Lake America’ now shows up across Apple and Google’s navigation apps.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/apple.html" target="_blank" rel="noopener noreferrer" class="company-link">Apple の解説</a> <a href="companies/google.html" target="_blank" rel="noopener noreferrer" class="company-link">Google の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/tech/987784/apple-maps-lake-america-renaming" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Other" data-index="17">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#6b7280">📰 Other</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">NordVPN クーポン: 75% オフ、さらに 2026 年 9 月に 3 か月間無料</h2>
+    <p class="article-original-title">原題: <em>NordVPN Coupons: 75% Off, Plus 3 Months Free in September 2026</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">地元のコーヒーショップのオープンネットワークが心配な場合でも、旅行中に地域制限を回避したい場合でも、NordVPN が役立ちます。仮想プライベート ネットワーク (VPN) は、データを覗き見から守る保護トンネルのようなものです。VPN は完璧な保護ではありません (VPN プロバイダーを信頼する必要があります) が、公共のホットスポットを使用している場合は、何もしないよりは常に優れています。また、休暇中でもお気に入りの番組を簡単に視聴し続けることができます。オンラインで自分自身を守る方法について詳しく知りたい場合は、「 最高の VPN 」のガイドを参照してください。NordVPN で最も人気のあるプランは Complete プランです。これは現在 75% オフで、今すぐ購入すると追加の 3 か月が無料になります。わずか 4 ドルで。月あたり 49 回 (および .からの 3 か月を追加)…</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Whether you&#x27;re worried about the open network at your local coffee shop or want to get around geo-restrictions when you&#x27;re traveling, NordVPN can help.A virtual private network (VPN) is like a protective tunnel, keeping your data safe from prying eyes.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/story/nordvpn-coupon/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Other" data-index="18">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#6b7280">📰 Other</span>
+        <span class="source-chip">Ars Technica - All content</span>
+    </div>
+
+    
+
+    <h2 class="article-title">新生児と子供が麻疹で死亡したと伝えられている。 CDCはそれらをカウントしていない</h2>
+    <p class="article-original-title">原題: <em>A newborn and child reportedly died of measles; CDC isn&#x27;t counting them</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">歴史的に、感染者と死亡者を決定するのはCDCではなく州保健局である。疾病管理予防センターは、先週ペンシルベニア州保健当局によって報告された2人の麻疹による死亡を、最新の全国麻疹データから除外している。この動きは、CDCではなく州が症例と死亡の判定を裁定するという先例を打ち破る異例の動きで、州の死亡判定の正確性に公に異議を唱えるものである。ニューヨーク・タイムズは月曜、CDCの新局長エリカ・シュワルツがこの決定の背後にあると報じた。伝えられるところによると、シュワルツ氏は着任して1か月も経たないうちに、麻疹監視データに関するCDCのウェブサイトに異例の声明を追加するようCDC職員に命じたという。声明では、今回のアップデートにはペンシーが報告した死亡例は含まれないとしている。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Historically, state health departments determine cases and deaths, not the CDC.The Centers for Disease Control and Prevention is excluding two measles deaths reported by Pennsylvania health officials last week from its latest update of national measles data.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/health/2026/09/cdc-reported-then-deleted-two-measles-deaths-that-were-questioned-by-rfk-jr/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="19">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">ダウンロード: 作物用に作られた微生物と OpenAI の文化問題</h2>
+    <p class="article-original-title">原題: <em>The Download: engineered microbes for crops, and OpenAI’s culture problem</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">さらに、AI がユーザーの制御を逃れているという報告が 1 か月でほぼ 2 倍に増加しました。これは、テクノロジーの世界で何が起こっているかを毎日提供する平日のニュースレター、 The Download の本日版です。肥料は世界の食糧供給にとって不可欠ですが、その製造には大量のエネルギーが使用され、大量の排出物が発生します。一部の企業は、微生物が植物の成長を助けるために不可欠な窒素を提供し、化学肥料の必要性を潜在的に減らすことによって役立つことを期待しています。 Startup Switch Bioworks は、微生物が窒素生成モードに移行する前に自らを確立し、成長できるようにする遺伝子スイッチを使用するという、新しいアプローチを採用しています。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Plus: reports of AI escaping users’ control nearly doubled in a month.This is today&#x27;s edition of The Download , our weekday newsletter that provides a daily dose of what&#x27;s going on in the world of technology.Fertilizer is crucial for the global food supply, but making it uses a lot of energy and produces a lot of emissions.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/openai.html" target="_blank" rel="noopener noreferrer" class="company-link">OpenAI の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/09/01/1143199/the-download-engineered-microbes-openai-safety-culture/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="20">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">VentureBeat</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Anthropic の Claude Fable 5.1 および Mythos 5.1 は、Fable キャッシュ読み取りのコストを 75% 削減して登場</h2>
+    <p class="article-original-title">原題: <em>Anthropic&#x27;s Claude Fable 5.1 and Mythos 5.1 arrive with a 75% cost reduction for Fable cache reads</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">2026 年 9 月はまだ初日に過ぎませんが、Anthropic が最新かつ最も強力な大規模言語モデルである Claude Fable 5.1 と Claude Mythos 5.1 をリリースしたばかりであるため、すでにその月と秋のシーズンが AI の分野でレースに向けてスタートしています。 2 つの名前は、同じ基礎となるモデルを指します。 Fable 5.1 は、Anthropic の運用上の安全策が講じられた、一般に利用可能なバージョンです。 Mythos 5.1 は以下から入手できます。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">It&#x27;s only the first day of September 2026, but the month and fall season are already off to the races in AI land, as Anthropic has just released its latest and most powerful large language models yet — Claude Fable 5.1 and Claude Mythos 5.1 .The two names refer to the same underlying model.Fable 5.1 is the generally available version, with Anthropic’s production safeguards in place.Mythos 5.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://venturebeat.com/technology/anthropics-claude-fable-5-1-and-mythos-5-1-arrive-with-a-75-cost-reduction-for-fable-cache-reads" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Startups" data-index="21">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#8b5cf6">🚀 Startups</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">ブルー・オリジンが火星の電気通信に関するNASA契約を獲得</h2>
+    <p class="article-original-title">原題: <em>Blue Origin wins NASA contract for telecommunications on Mars</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">NASA は本日、Blue Origin に火星通信ネットワークの開発契約を結んだと発表しました。同社は、2028年12月31日までに同局向けに高性能の火星通信周回機を開発するため、潜在的に7億ドル相当の契約を結んだ。運用が開始されれば、周回機は「科学データ、画像、航法情報、地球上およびその周囲で活動する宇宙船の重要なミッション通信」を送信することになる。宇宙局はアルテミス計画を利用して月を探査している。進歩は遅かったが、今年初めに有人有人ミッションが成功し、これらのミッションは最終的に宇宙飛行士を火星に送るための準備として役立つだろう。 NASA はその目標に向けて取り組みを続けるにつれて、より多くのデータを必要とするため、そのデータを送信するための信頼できる方法が必要になります。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">NASA announced today that it has awarded Blue Origin the contract to develop the Mars Telecommunications Network.The company has taken a deal worth potentially $700 million to create a high-performance Mars telecommunications orbiter for the agency by December 31, 2028.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2249162/blue-origin-wins-nasa-contract-for-telecommunications-on-mars/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Startups" data-index="22">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#8b5cf6">🚀 Startups</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">AfterQuery は Y Combinator 史上最速のユニコーンとなり、現在評価額は 32 億ドルと伝えられています</h2>
+    <p class="article-original-title">原題: <em>AfterQuery reportedly becomes Y Combinator&#x27;s fastest-ever unicorn, now valued at $3.2B</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">AIトレーニングデータのスタートアップであるAfterQueryは、3ドルの価値でラウンドを調達したと伝えられている。20億。4月に3億ドルの評価額で3000万ドルのシリーズAを発表してからわずか5か月後のことだ。これは半年足らずで10倍以上の増加であり、Y Combinatorのパートナーであるグスタフ・アルストロマー氏によれば、アクセラレータの歴史の中でスタートアップが立ち上げからユニコーンの地位に到達した最速の記録であるという。AfterQuery の創設者は現在 22 歳と 23 歳で、わずか 18 か月前に Y Combinator の 2025 年冬期コホートに参加しました。サンフランシスコの新興企業は4月、年間収益ランレートが1億ドルに達し、多くの大手研究所と協力していると発表した。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">AI training-data startup AfterQuery has reportedly raised a round that valued it at $3.2 billion.This just five months after announcing its $30 million Series A at a $300 million valuation in April.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/nvidia.html" target="_blank" rel="noopener noreferrer" class="company-link">NVIDIA の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/09/01/afterquery-reportedly-becomes-y-combinators-fastest-ever-unicorn-now-valued-at-3-2b/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="23">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Lenovo の 2-in-1 Yoga 7i はレイバーデーのセールで 750 ドル</h2>
+    <p class="article-original-title">原題: <em>Lenovo’s 2-in-1 Yoga 7i is a great Labor Day deal at $750</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。メモを取ったり、勉強したり、宿題を先延ばししたりするのに最適なラップトップを約 500 ドル節約できます。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. Save almost $500 on a great laptop for note-taking, studying, or procrastinating on your homework.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/gadgets/987670/lenovo-yoga-7i-2in1-deal-sale" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="24">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">2026 年 9 月の B&amp;H Photo プロモーション コードとセール</h2>
+    <p class="article-original-title">原題: <em>B&amp;H Photo Promo Codes and Deals This September 2026</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">B&amp;H Photo は、カメラ用品を購入するのに最適な場所の 1 つです。ニューヨークに来たことがあれば、店舗に行って、購入した商品を上の階から下の階のレジまで運ぶ巨大な頭上のベルトコンベア システムをチェックしてください (はい、真剣に、これがビデオです )。幸いなことに、B&amp;H Photo のウェブサイトには、私たちが愛用する写真機材のお得なセールが掲載されています。B&amp;H Photo には、ニコンの最新フルフレーム ミラーレス カメラ Z6III が 2,196 ドルで販売されるなど、お買い得品がたくさんあります。95 ($300 オフ) 。Z6III (8/10、WIRED Recommends) は、Z6 シリーズの大幅なアップデートであり、ニコンファンにとって素晴らしい万能カメラです。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">B&amp;H Photo is one of our favorite places to shop for camera gear.If you’re ever in New York, head to the store to check out the giant overhead conveyor belt system that brings your purchase from the upper floors to the registers downstairs (yes, seriously, here’s a video ).Fortunately B&amp;H Photo’s website is here for the rest of us with some good deals on photo gear we love.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/story/bh-photo-coupon/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="25">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Ars Technica - All content</span>
+    </div>
+
+    
+
+    <h2 class="article-title">新しい Android Drop は Find Hub に記憶されたアイテムを追加し、吐き気止めドットを公式にします</h2>
+    <p class="article-original-title">原題: <em>New Android Drop adds remembered items in Find Hub, makes anti-nausea dots official</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">本日より、Android エコシステム全体に新機能が展開されます。正直に言うと、Google の最近の Android 機能 Drops の一部は失敗に終わり、Gemini の概要とチャット機能の拡張にすぎません。新しいセプテンバー ドロップにはジェミニ風味もありますが、AI 以外のグッズもあります。メッセージング スレッドはますます美しく、より便利になり、先週表示され始めた気の利いた Motion Assist ドットは広く展開されています。そして、ジェミニの拡張にも有用性がないわけではありません。これは Pixel Drop ではなく Android Drop であるため、これらの機能はより幅広いデバイスに導入されることになります。ただし、OS のバージョンは重要です。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">New features are rolling out across the Android ecosystem starting today.Let’s be frank: Some of Google’s recent Android feature Drops have been duds, offering little more than an expansion of Gemini summaries and chat functions.The new September Drop does have some Gemini flavor, but there are non-AI goodies, too.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/google.html" target="_blank" rel="noopener noreferrer" class="company-link">Google の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/gadgets/2026/09/latest-android-drop-connects-gemini-to-find-hub-adds-keep-notes-and-themes-to-messages/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Startups" data-index="26">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#8b5cf6">🚀 Startups</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">遺伝子操作された微生物はどのようにして世界の作物に栄養を与えることができるのか</h2>
+    <p class="article-original-title">原題: <em>How engineered microbes could help feed the world’s crops</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Startup Switch Bioworks は、微生物を利用して化学肥料の需要を削減したいと考えています。肥料は世界の食糧供給にとって不可欠ですが、その製造には大量のエネルギーが使用され、大量の排出物が発生します。微生物が役立つことを期待している企業もある。作物の根の周りの土壌に有益な微生物を播種すると、植物に栄養を与え、成長に不可欠な窒素を供給できることが研究で明らかになってきています。これは、世界の温室効果ガス排出量の約2%を占める化学肥料の必要性を減らすのに役立つ可能性がある。また、特にイラン戦争によりここ数カ月でエネルギーと肥料の価格が高騰していることから、農家にとってはコストも削減でき、大きな恩恵となるだろう。人間は何千年もの間、肥料などの生物肥料を使用してきましたし、企業も長年にわたってミツバチを使用してきました。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Startup Switch Bioworks hopes to use microbes to reduce demand for chemical fertilizer.Fertilizer is crucial for the global food supply, but making it uses a lot of energy and produces a lot of emissions.Some companies hope microbes can help.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/09/01/1143195/microbe-fertilizer-switch-bioworks/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="27">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">VentureBeat</span>
+    </div>
+
+    
+
+    <h2 class="article-title">ファイルはそのままに: Perplexity のハイブリッド AI が機密データをクラウドから遠ざける</h2>
+    <p class="article-original-title">原題: <em>Your files stay put: Perplexity’s hybrid AI keeps confidential data off the cloud</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Perplexity は本日、そのエージェント プラットフォームである Computer のハイブリッド コンピューティングを開始しました。これは、単一の AI エージェントが、クラウドで実行されるフロンティア モデルと、Apple シリコン Mac でローカルに実行される小規模なオープンウェイト モデルとの間で作業を分割できるようにするシステムであり、機密データがデバイスから流出することがないようにローカル マシンにルーティングされます。同社によれば、AIエージェントが世界でタスクを開始できるのはこれが初めてだという。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Perplexity today launched hybrid compute for its agentic platform, Computer , a system that lets a single AI agent split its work between frontier models running in the cloud and smaller open-weight models running locally on Apple silicon Macs — routing sensitive data to the local machine so it never leaves the device. The company says it is the first time an AI agent can begin a task in th. .</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/apple.html" target="_blank" rel="noopener noreferrer" class="company-link">Apple の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://venturebeat.com/orchestration/your-files-stay-put-perplexitys-hybrid-ai-keeps-confidential-data-off-the-cloud" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="28">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Android がセーフ モードでスタックしていますか?オフにする方法は次のとおりです</h2>
+    <p class="article-original-title">原題: <em>Android stuck in Safe Mode? Here&#x27;s how to turn it off</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">数タップするだけで携帯電話が通常の状態に戻ります。セーフ モードは、Android スマートフォンの問題のトラブルシューティングやマルウェアからデバイスを保護する場合に非常に役立ちます。Android がセーフ モードの場合、すべてのサードパーティ製アプリが無効になり、機内モードが有効になります。これは、ラグやバッテリーの消耗などの問題を引き起こしている可能性のある新しいアプリを隔離するのがはるかに簡単であることを意味します。また、アプリケーションに悪意があることが懸念される場合は、アプリケーションによる干渉やバックエンドの問題を発生させることなく、簡単に削除できます。セーフ モードの有効化は簡単です。電源オプション メニューで電源オフ ボタンを押し続けると、選択できるセーフ モード オプションが表示されます。これを実行すると、携帯電話がセーフ モードで再起動されます。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">You&#x27;re a few taps away from getting your phone back to normal.Safe Mode has a lot of utility when it comes to troubleshooting Android phone problems and protecting your device from malware.When an Android is in Safe Mode, all third-party apps are disabled, and Airplane Mode is activated.This means it&#x27;s much easier to isolate a new app that may be causing problems like lag or battery drain.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2244182/how-to-turn-off-safe-mode-on-android-phone/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="29">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">OpenAI の Astra モデルは開発中 – コンピュータ システムへの侵入に非常に優れています</h2>
+    <p class="article-original-title">原題: <em>OpenAI&#x27;s Astra model is on the way — and very good at breaking into computer systems</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">OpenAIは、近々リリースされるAstraモデルに関する新たな詳細を共有した。同社によれば、このモデルは、差し迫ったリリースに備えて「サイバーセキュリティの重要な閾値」を満たす最初の大規模言語モデルだという。OpenAIのブログ投稿には、「私たちはAstraを間もなく利用可能にする予定ですが、その最先端のサイバーセキュリティ機能へのアクセスはより制限されることになります。」と書かれており、フロンティアラボは、Astraがコンピュータシステム内の未知のセキュリティ欠陥を発見し、人の指導なしにそれを悪用する能力があると判断した。これは、Anthropic が今年初めに Mythos モデルに関して提起した懸念と同様であり、OpenAI は Astra の展開準備にあたり、同様の予防策を講じています。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">OpenAI shared new details on its forthcoming Astra model, which the company said is the first large language model to meet its “critical cybersecurity threshold,” in preparation for its imminent release.“We plan to make Astra available soon,” OpenAI’s blog post reads, “but access to its most advanced cybersecurity capabilities will be more limited.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/openai.html" target="_blank" rel="noopener noreferrer" class="company-link">OpenAI の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/09/01/open-ais-astra-model-is-on-the-way-and-very-good-at-breaking-into-computer-systems/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="30">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">OpenAIはHugging Faceハッキングの後、新モデルの開発を遅らせた</h2>
+    <p class="article-original-title">原題: <em>OpenAI delayed its new model’s development after the Hugging Face hack</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。同社は、Astra のリリースに先立って、AI による安全性損傷制御を行っています。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. The company is doing some AI safety damage control ahead of Astra’s release.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/openai.html" target="_blank" rel="noopener noreferrer" class="company-link">OpenAI の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/ai-artificial-intelligence/987695/openai-astra-unreleased-model-cybersecurity-delay" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+        </main>
+
+        <footer class="footer">
+            <p>本ページは公開記事をもとに自動生成しています。数値や仕様は必ず元記事で確認してください。</p>
+            <p>JSON データは同じフォルダ内の tech_news_digest.json で参照できます。</p>
+        </footer>
+    </div>
+
+    <script>
+
+        const categoryButtons = document.querySelectorAll('.category-btn');
+        const articleCards = document.querySelectorAll('.article-card');
+        const searchInput = document.getElementById('search-input');
+
+        let activeCategory = 'all';
+
+        function applyFilters() {
+            const query = searchInput.value.trim().toLowerCase();
+            articleCards.forEach(card => {
+                const matchesCategory = activeCategory === 'all' || card.dataset.category === activeCategory;
+                const searchableText = card.innerText.toLowerCase();
+                const matchesQuery = !query || searchableText.includes(query);
+                card.style.display = matchesCategory && matchesQuery ? '' : 'none';
+            });
+        }
+
+        categoryButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                categoryButtons.forEach(item => item.classList.remove('active'));
+                button.classList.add('active');
+                activeCategory = button.dataset.category;
+                applyFilters();
+            });
+        });
+
+        searchInput.addEventListener('input', applyFilters);
+    
+    </script>
+</body>
+</html>
