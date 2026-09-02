@@ -1,0 +1,1205 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>海外テックニュース日本語まとめ</title>
+    <style>
+        :root {
+            color-scheme: dark;
+            --bg: #0a0f1d;
+            --panel: rgba(13, 20, 36, 0.92);
+            --line: rgba(132, 152, 187, 0.25);
+            --text: #eef3ff;
+            --muted: #adc1dd;
+            --accent: #7dd3fc;
+            --accent-strong: #38bdf8;
+            --shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: "Hiragino Sans", "Noto Sans JP", sans-serif;
+            background:
+                radial-gradient(circle at top right, rgba(56, 189, 248, 0.22), transparent 26%),
+                radial-gradient(circle at top left, rgba(16, 185, 129, 0.16), transparent 20%),
+                linear-gradient(180deg, #07101f 0%, #0b1327 48%, #0a0f1d 100%);
+            color: var(--text);
+        }
+
+        .page-shell {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 24px;
+        }
+
+        .hero {
+            padding: 28px;
+            border: 1px solid var(--line);
+            border-radius: 28px;
+            background: linear-gradient(145deg, rgba(18, 27, 48, 0.96), rgba(10, 17, 32, 0.96));
+            box-shadow: var(--shadow);
+        }
+
+        .hero-nav {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 28px;
+        }
+
+        .nav-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 42px;
+            padding: 0 16px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        .eyebrow {
+            margin: 0 0 10px;
+            color: var(--accent);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            font-size: 0.78rem;
+        }
+
+        .hero h1 {
+            margin: 0;
+            font-size: clamp(2rem, 3vw, 3.3rem);
+            line-height: 1.1;
+        }
+
+        .timestamp,
+        .description {
+            color: var(--muted);
+        }
+
+        .control-panel {
+            margin: 20px 0 28px;
+            padding: 22px;
+            border: 1px solid var(--line);
+            border-radius: 24px;
+            background: var(--panel);
+            backdrop-filter: blur(12px);
+        }
+
+        .control-header {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            align-items: end;
+            flex-wrap: wrap;
+        }
+
+        .control-header h2 {
+            margin: 0 0 6px;
+        }
+
+        .control-header p {
+            margin: 0;
+            color: var(--muted);
+        }
+
+        #search-input {
+            width: min(100%, 360px);
+            min-height: 46px;
+            padding: 0 14px;
+            border-radius: 14px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
+        }
+
+        .category-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 16px;
+        }
+
+        .category-btn {
+            min-height: 42px;
+            padding: 0 14px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
+            cursor: pointer;
+        }
+
+        .category-btn.active {
+            background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+            color: #06111f;
+            border-color: transparent;
+            font-weight: 700;
+        }
+
+        .article-list {
+            display: grid;
+            gap: 18px;
+        }
+
+        .article-card {
+            padding: 24px;
+            border-radius: 24px;
+            border: 1px solid var(--line);
+            background: linear-gradient(180deg, rgba(12, 18, 34, 0.96), rgba(14, 22, 39, 0.9));
+            box-shadow: var(--shadow);
+        }
+
+        .card-topline {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+
+        .category-chip,
+        .source-chip {
+            display: inline-flex;
+            align-items: center;
+            min-height: 34px;
+            padding: 0 12px;
+            border-radius: 999px;
+            font-size: 0.92rem;
+            font-weight: 700;
+        }
+
+        .source-chip {
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--muted);
+        }
+
+        .article-title {
+            margin: 0 0 10px;
+            font-size: clamp(1.45rem, 2vw, 2rem);
+            line-height: 1.35;
+        }
+
+        .article-original-title {
+            margin: 0 0 18px;
+            color: var(--muted);
+        }
+
+        .security-alert {
+            margin: 0 0 14px;
+            padding: 10px 14px;
+            border-radius: 12px;
+            border: 1px solid rgba(248, 113, 113, 0.4);
+            background: rgba(248, 113, 113, 0.12);
+            color: #fecaca;
+            font-weight: 700;
+            font-size: 0.92rem;
+        }
+
+        .article-section {
+            margin-top: 18px;
+            padding-top: 18px;
+            border-top: 1px solid var(--line);
+        }
+
+        .article-section h3 {
+            margin: 0 0 12px;
+            font-size: 1rem;
+            color: var(--accent);
+        }
+
+        .article-paragraph {
+            margin: 0 0 14px;
+            color: #dce7f8;
+            line-height: 1.9;
+            font-size: 1rem;
+        }
+
+        .company-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .company-link,
+        .action-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 42px;
+            padding: 0 14px;
+            border-radius: 14px;
+            text-decoration: none;
+            border: 1px solid rgba(125, 211, 252, 0.3);
+        }
+
+        .company-link {
+            color: var(--accent);
+            background: rgba(56, 189, 248, 0.08);
+        }
+
+        .article-actions {
+            margin-top: 22px;
+        }
+
+        .footer {
+            padding: 28px 8px 40px;
+            color: var(--muted);
+            text-align: center;
+        }
+
+        .footer p {
+            margin: 6px 0;
+        }
+
+        .action-link.primary {
+            color: #06111f;
+            font-weight: 700;
+            background: linear-gradient(135deg, #7dd3fc, #22d3ee);
+            border-color: transparent;
+        }
+
+        @media (max-width: 720px) {
+            .page-shell {
+                padding: 14px;
+            }
+
+            .hero,
+            .control-panel,
+            .article-card {
+                padding: 18px;
+                border-radius: 20px;
+            }
+
+            .control-header {
+                align-items: stretch;
+            }
+
+            #search-input {
+                width: 100%;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="page-shell">
+        <header class="hero">
+            <div class="hero-nav">
+                <a class="nav-link" href="../../index.html">HOME</a>
+                <a class="nav-link" href="../index.html">この日の記事一覧</a>
+            </div>
+            <div class="hero-copy">
+                <p class="eyebrow">Global Tech News Digest</p>
+                <h1>海外テックニュース 日本語まとめ</h1>
+                <p class="timestamp">2026年9月2日 14:48 JST に収集した記事を掲載しています。</p>
+                <p class="description">各カードには本文寄りの日本語訳を掲載し、記事中で触れた企業は別ページの解説リンクとして分離しています。</p>
+            </div>
+        </header>
+
+        <section class="control-panel">
+            <div class="control-header">
+                <div>
+                    <h2>記事を探す</h2>
+                    <p>カテゴリとキーワードで一覧を絞り込めます。</p>
+                </div>
+                <input type="text" id="search-input" placeholder="タイトル・本文・媒体名で検索">
+            </div>
+            <div class="category-buttons">
+                <button class="category-btn active" data-category="all">すべて (30)</button>
+<button class="category-btn" data-category="AI/ML" style="--accent:#10b981">🤖 AI/ML (27)</button>
+<button class="category-btn" data-category="Hardware" style="--accent:#06b6d4">⚙️ Hardware (1)</button>
+<button class="category-btn" data-category="Other" style="--accent:#6b7280">📰 Other (1)</button>
+<button class="category-btn" data-category="Startups" style="--accent:#8b5cf6">🚀 Startups (1)</button>
+            </div>
+        </section>
+
+        <main class="article-list" id="articles-container">
+            <article class="article-card" data-category="AI/ML" data-index="1">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">アドビ、インド市場インテリジェンスのスタートアップ Rilo を買収</h2>
+    <p class="article-original-title">原題: <em>Adobe acquires Indian market intelligence startup Rilo</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Adobeがインドに本拠を置くマーケティングインテリジェンスのスタートアップRiloを、ライセンスとチーム買収を伴う契約で買収したとTechCrunchが知り、同社も認めた。Adobe がインドから買収するのは、ビデオプラットフォームの Rephrase に次いで 2 件目です。2023年のai。両社は取引条件を明らかにしていない。アドビは契約を確認した以外はコメントを控えた。この買収により、アドビはマーケティング ワークフローの自動化に重点を置いた小規模なチームとテクノロジーを手に入れることができます。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Adobe has acquired India-based marketing intelligence startup Rilo in a deal involving licensing and team acquisition, TechCrunch learned and the company confirmed.This is Adobe’s second acquisition from India after it bought video platform Rephrase.ai in 2023 .The companies didn’t disclose the deal’s terms.Beyond confirming the deal, Adobe declined to comment.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/techcrunch.html" target="_blank" rel="noopener noreferrer" class="company-link">TechCrunch の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/09/02/adobe-acquires-indian-market-intelligence-startup-rilo/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="2">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">「Wordle in 1」は購読者専用の NYT の新しいパズルです</h2>
+    <p class="article-original-title">原題: <em>‘Wordle in 1’ is the NYT’s new puzzle just for subscribers</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。 このパズルと他のボーナス パズルは、毎週水曜日に毎週リリースされます。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. ﻿This and other bonus puzzles will be released in weekly batches every Wednesday.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/games/988099/nyt-bonus-puzzle-games-weekly-wordle" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="3">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">サイバーキャブはもうすぐです。ここからが難しい部分です</h2>
+    <p class="article-original-title">原題: <em>The Cybercab Is Almost Here. Now Comes the Hard Part</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">マットなゴールドで、傾斜があり、ステアリングホイールがない Tesla Cyber​​cab は、見た目の悪い人の目を引くように設計されているようです。テスラは木曜日にテキサス州オースティンの本社でサイバーキャブをデビューさせるイベントを開催する予定だ。テスラは、2024 年にワーナー ブラザーズの敷地で行われた派手なイベントで初めてサイバーキャブのプロトタイプを公開しました。今週の発表は、電気自動車メーカーの小規模配車サービスへのこの車両の正式な導入を示すものとなる可能性があります。同社は昨年夏からオースティンでパイロットプログラムを運営しており、その後アリゾナ州とネバダ州での立ち上げ許可を得てテキサス州とフロリダ州の他のいくつかの都市に拡大した。 （サンフランシスコ・ベイエリアの「ロボタクシー」サービスは、ドライバーがハンドルを握らずに運行することは法的に許可されていません。） 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Matte gold, sloped, and steering-wheel-free, the Tesla Cybercab seems designed to catch the eyes of looky-loos.Now rubberneckers may have more opportunities: Tesla is set to host an event on Thursday at its Austin, Texas, headquarters to debut the Cybercab.Tesla first rolled out a prototype Cybercab at a flashy event on the Warner Bros.lot in 2024.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/story/here-comes-the-tesla-cybercab/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="4">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Ars Technica - All content</span>
+    </div>
+
+    
+
+    <h2 class="article-title">スターリンクに対するロシアのライバルは失敗しているのか？私たちが知っていることは次のとおりです。</h2>
+    <p class="article-original-title">原題: <em>Is Russia&#x27;s rival to Starlink failing? Here&#x27;s what we know.</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">最初の 32 基のラスベット衛星のうち少なくとも 3 基が完全な故障に見舞われた可能性があり、さらに多くの衛星がトラブルに見舞われる可能性があります。スペースXのスターリンク衛星ネットワークを再現しようとするロシアの試みは、ウクライナ東部の前線と同じくらいゆっくりと進んでいるように見える。スターリンクに対するロシアの答えとして宣伝されることが多いラスベット計画は、今年初めに最初の運用衛星の打ち上げを開始した。1回目は3月、2回目は7月の2回の打ち上げで、32機のラスベット衛星が低軌道に到達した。これは、軍と民間ユーザーに接続を提供するためにロシアが来年末までに軌道に投入することを目指している約300機のラスベット宇宙船の約10％に相当する。ラスベットを担当する会社、ビューロー 1440 は、2035 年までに 924 機の衛星を配備したいと考えています。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">At least three of the first 32 Rassvet satellites likely suffered outright failures, and more may be in trouble.Russia’s attempt to replicate SpaceX’s Starlink satellite network seems to be moving as slowly as the front lines in eastern Ukraine.The Rassvet program, often billed as Russia’s answer to Starlink, started launching its first operational satellites earlier this year.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/spacex.html" target="_blank" rel="noopener noreferrer" class="company-link">SpaceX の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/space/2026/09/rassvet-russias-rival-to-starlink-is-getting-off-to-a-slow-start/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="5">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">大規模な簡素化により AI 統合を促進</h2>
+    <p class="article-original-title">原題: <em>Facilitating AI integration with simplicity at scale</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Jabil の SAP IT ディレクターである Harish Manohar 氏は、エンタープライズ テクノロジーを簡素化して統合することで、企業の迅速な行動、混乱への対応、AI の強力な基盤の構築に役立つと述べています。企業が拡大するにつれて、業務をサポートするテクノロジーは資産になるのと同じくらい早く負債になる可能性があります。切断されたシステム、サイト固有のツール、スプレッドシート、および手動による回避策により、データ サイロが形成され、問題の早期発見、対応の調整、および自信を持った意思決定が困難になる可能性があります。30 か国以上に 100 以上の拠点を持つ世界的な製造会社である Jabil にとって、その答えは統合と簡素化を優先することでした。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Simplifying and integrating enterprise technology can help companies move faster, respond to disruptions, and build a stronger foundation for AI, says Harish Manohar, SAP IT Director at Jabil.As companies scale, the technology supporting operations can become a liability just as quickly as it becomes an asset.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/09/02/1142879/facilitating-ai-integration-with-simplicity-at-scale/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="6">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">VentureBeat</span>
+    </div>
+
+    
+
+    <h2 class="article-title">前方展開型エンジニアリングはエンタープライズ AI の学習方法です</h2>
+    <p class="article-original-title">原題: <em>Forward-deployed engineering is how enterprise AI learns</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Zeta によるプレゼンテーション すべての前方展開エンジニアリング (FDE) ピッチは、最初の 10 分間は同じように聞こえます。エンジニアがオンサイトに組み込み、ワークフローが数週間以内にエンコードされ、最終的に顧客の実際のデータで動作するデモが行われます。異なるのは、その後の数か月で何が起こるかということであり、ほとんどのベンダーは直接尋ねるまで教えてくれません。 FDE は、エンタープライズ AI の最も重要な運用モデルの 1 つになりました。ベンダーはさまざまな市場開拓活動を構築しています。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Presented by Zeta Every forward-deployed engineering (FDE) pitch sounds identical for the first ten minutes: an engineer embedded on-site, a workflow encoded within weeks, a demo that finally works on the customer&#x27;s real data.What differs is what happens in the following months, and most vendors will not tell you until you ask directly.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://venturebeat.com/orchestration/forward-deployed-engineering-is-how-enterprise-ai-learns" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="7">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Switch 2 のマリオカート 8 デラックスの任天堂のサプライズ無料アップデートには 8 人のプレイヤー分割画面が含まれます</h2>
+    <p class="article-original-title">原題: <em>Nintendo&#x27;s surprise free update for Mario Kart 8 Deluxe on Switch 2 includes eight-player split-screen</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">9年前から与えられ続けているゲーム。任天堂がすでにマリオカート 8 デラックスから残りのジュースをすべて搾り取ったと考えるのも無理はないでしょう。 2014 年に Wii U タイトルとして誕生した後、3 年後に登場したすでに拡張された Switch バージョンのマリオカート 8 には、さらに多くの新しいトラックと機能が追加され、コンソールの寿命のほぼ全体にわたって米国の販売チャートに留まり続けました。 Switch 2は昨年、マリオカートワールドとともに発売され、驚異的な成功を収めた前作の（レインボー）ロードの終わりのように見えましたが、任天堂はどうやらまだ終わっていないようです。まったく突然に（シェル — OK、もうやめることを約束します）、同社はちょうどSwitch向けに特化したマリオカート8 デラックスの充実した新しい無料アップデートを公開しました。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">The nine-year-old game that keeps giving.You&#x27;d be forgiven for thinking Nintendo had already squeezed every remaining drop of juice out of Mario Kart 8 Deluxe .</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2249394/nintendo-free-update-mario-kart-8-deluxe-switch-2-includes-eight-player-split-screen/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="8">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">ノルウェー、カメラ機能付きウェアラブル「変態メガネ」の禁止を検討</h2>
+    <p class="article-original-title">原題: <em>Norway considers ban on camera-enabled wearable &#x27;pervert glasses&#x27;</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">ノルウェーは、プライバシーへの懸念の中で物議を醸している技術を規制しようとして、スマートグラスやその他のカメラ付きウェアラブルヘッドセットの禁止を検討している。ノルウェーのトゥン氏は、「眼鏡、ヘッドフォン、帽子、その他日常生活で使用する物品に組み込まれたカメラやマイクと人工知能を組み合わせる明らかな傾向がある」と述べ、「この機器が公共の場で他人を監視するために使用されることを阻止しなければならない」と述べ、これには公共の場での他人の顔認識の使用禁止も含まれる可能性があると付け加えた。トゥン氏は、人々のプライバシー権の保護を強化するために政府に助言する専門家グループを設立する予定だ。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Norway is considering a ban on smart glasses and other camera-enabled wearable headsets as it seeks to regulate the controversial technology amid privacy concerns.Norway’s Tung said there is a “clear trend toward combining artificial intelligence with cameras and microphones built into glasses, headphones, hats and other objects we use in everyday life.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/09/02/norway-considers-ban-on-camera-enabled-wearable-pervert-glasses/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="9">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">イーロン・マスクの異端的なロボタクシー哲学が試される</h2>
+    <p class="article-original-title">原題: <em>Elon Musk’s heterodox robotaxi philosophy gets put to the test</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。時折、この大富豪は、必要最低限​​の機能を備えた、カメラだけが搭載され、ハンドルのない二輪車に会社を賭けています。十分に安全とはどの程度安全ですか?</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. The occasional trillionaire is betting his company on a stripped down, camera-only, steering-wheel-free two-wheeler. How safe is safe enough?</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/transportation/987901/tesla-cybercab-launch-elon-musk-robotaxi-camera-lidar" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Hardware" data-index="10">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#06b6d4">⚙️ Hardware</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">これらのソニーのヘッドフォンは現在半額です</h2>
+    <p class="article-original-title">原題: <em>These Sony Headphones Are Half Off Right Now</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">ソニーは、私たちがテストした中で最も信頼できるエレクトロニクス ブランドの 1 つであり、その実績はさまざまなカテゴリーに及びます。そのため、当社の製品が発売されるときは必ず注目します。現在、プレミアムSony WH-1000XM5を含むSonyのヘッドフォンのいくつかが大幅に割引されており、その中には私が見た中で最も安い価格のものも含まれています。ソニーのその他の推奨事項については、ベスト ワイヤレス ヘッドフォン 、ベスト ノイズキャンセリング ヘッドフォン 、ベスト サウンドバー 、およびベスト OLED テレビ のガイドをご覧ください。WIREDは好きですか？私たちをもっと見るには、Google の優先情報源として私たちを追加してください。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Sony is one of the most reliable electronics brands we’ve tested, and its track record extends across a range of categories.That&#x27;s why when any of its products go on sale, we take notice.Right now, a few of Sony&#x27;s headphones, including the premium Sony WH-1000XM5 , are steeply discounted, including some of the lowest prices I&#x27;ve seen.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/google.html" target="_blank" rel="noopener noreferrer" class="company-link">Google の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/story/sony-headphone-deals-september-2026/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="11">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Ars Technica - All content</span>
+    </div>
+
+    
+
+    <h2 class="article-title">まったく面白くないエラーのコメディーによってネットワークに感染する BGP ハイジャック</h2>
+    <p class="article-original-title">原題: <em>BGP hijack infecting networks caused by a comedy of errors that’s not funny at all</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">実稼働ソフトウェアを汚染した BGP ハイジャックから何を学べるでしょうか?多くの。未知の攻撃者は、綿密に調整された作戦により、ホスティング プロバイダー Hetzner Online のルーティング セキュリティ設定と有効な TLS 証明書を取得するプロセスの弱点を悪用しました。この失効により、攻撃者は BGP (ボーダー ゲートウェイ プロトコル) ハイジャックを実行して、Softaculous に割り当てられた IP アドレスの制御を取得することができました。アラブ首長国連邦に拠点を置く同社は、Web ソフトウェアをインストールおよび管理するためのプラットフォームのメーカーであり、仮想化環境の管理プラットフォームである Virtualizor の開発者でもあります。Softaculous は IP を使用してアップデートを発行し、クライアントと請求サイトをホストしました。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">What can we learn from a BGP hijacking that poisoned production software?Plenty.In a well-coordinated operation, the unknown attackers exploited weaknesses in the routing security setup of hosting provider Hetzner Online and the process for attaining valid TLS certificates.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/security/2026/09/well-executed-bgp-attack-uses-hijacked-ips-to-infect-real-networks/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="12">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">ダウンロード: AI パズルと最も近い星系への道</h2>
+    <p class="article-original-title">原題: <em>The Download: AI puzzles and a path to our nearest star system</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">さらに、OpenAI は、サイバー リスクを「重大」と評価した後、次期モデルを制限しています。これは、テクノロジーの世界で何が起こっているかを毎日提供する平日のニュースレター、 The Download の本日版です。純粋にその不可解なスキルから判断すると、AI は大幅に、そして急速に進歩しています。 2024 年後半には、最高のモデルであっても、悪名高いニューヨーク タイムズ コネクションのパズルの 18% しか理解できませんでした。 2025 年の初めまでに、毎回ほぼ完璧に問題を解決できる人もいます。しかし、パズルは AI の進歩を強調するだけではありません。モデルがどこで成功し、どこで失敗するのか、そして人間がまだモデルに勝てないところを確認することで、テクノロジーの長所と短所を知ることができます。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Plus: OpenAI is restricting its next model after rating it a “critical” cyber risk.This is today&#x27;s edition of The Download , our weekday newsletter that provides a daily dose of what&#x27;s going on in the world of technology.Judged purely on its puzzling skills, AI is improving a lot—and quickly.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/openai.html" target="_blank" rel="noopener noreferrer" class="company-link">OpenAI の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/09/02/1143283/the-download-ai-puzzles-alpha-centauri-mission/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="13">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">VentureBeat</span>
+    </div>
+
+    
+
+    <h2 class="article-title">フロンティアモデルは、より長く考えるだけで、直接思い出せない事実の最大 65% を復元できます</h2>
+    <p class="article-original-title">原題: <em>Frontier models can recover up to 65% of facts they can&#x27;t directly recall — just by thinking longer</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">大規模言語モデル (LLM) が幻覚を起こすと、開発者は通常、モデルに必要な事実が欠けていると想定します。エンジニアリング チームは、エラーが知識の不足であると診断します。標準的な対応策は、モデルのサイズを増やすか、トレーニング データを拡張するか、複雑な検索アーキテクチャを構築することです。 Google Research and Technion の研究者による新しい研究は、知識が欠けていないことが多いことを示しています。モデルにはパラメトリックにエンコードされた情報が含まれています。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">When large language models (LLMs) hallucinate, developers typically assume the model lacks the required facts.Engineering teams diagnose the error as missing knowledge.The standard response is to increase model size, expand training data, or build complex retrieval architectures.A new study by researchers at Google Research and Technion demonstrates that the knowledge is often not missing.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/google.html" target="_blank" rel="noopener noreferrer" class="company-link">Google の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://venturebeat.com/orchestration/frontier-models-can-recover-up-to-65-of-facts-they-cant-directly-recall-just-by-thinking-longer" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Other" data-index="14">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#6b7280">📰 Other</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Star Wars Zero Company は素晴らしいゲームだが破綻しており、修正されることはないかもしれない</h2>
+    <p class="article-original-title">原題: <em>Star Wars Zero Company is a great game that&#x27;s busted and may never be fixed</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">スタジオがスタッフのほとんどを一時帰休させたことを受けて、ゲームの将来について自信を持つのは難しい。「スター・ウォーズ ゼロ・カンパニー」について迷っているなら、自分が何に巻き込まれる可能性があるかを知っておく必要があります。このゲームは現在 Metacritic で批評家スコアの合計が 85 点を獲得しており、最近の記憶にある中で最もよくレビューされたスター ウォーズ ゲームの 1 つとなっています。ストーリーとゲームプレイに関しては、忘れられないキャラクターが登場する、X-COM スタイルの見事に実行された戦術ゲームです。私が読んだり見たりしたレビューのどれも言及していませんでしたが、ゼロカンパニーも技術的に混乱したものであるということです。PC では、このゲームにはジャンクな Unreal Engine 5 リリースのすべての商標が付いています。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">It&#x27;s hard to be confident about the game&#x27;s future after the studio that made it furloughed most of its staff.If you&#x27;re on the fence about Star Wars Zero Company , you should know what you might be getting into.The game currently has an aggregate critic score of 85 on Metacritic , making it one of the best reviewed Star Wars games in recent memory.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2248910/star-wars-zero-company-is-a-great-game-that-s-busted-and-may-never-be-fixed/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="15">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">アドビは自社ツールを Slack で利用できるようにしています</h2>
+    <p class="article-original-title">原題: <em>Adobe is making its tools available in Slack</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">顧客は、Firefly、Adobe Express、Photoshop、Premiere、Acrobat、InDesign、Illustrator、Stock、Lightroom などの Adob​​e アプリを、Slack の AI チャットボット Slackbot で直接使用できるようになったと、Adobe が月曜日に発表しました。さらに、Adobe for Slack MCP アプリを通じて、70 を超える Adob​​e ツールが Slack で利用できるようになります。Slackbot の統合により、ユーザーはやりたいことを説明できるようになり、ボットが適切な Adob​​e ツールを呼び出してタスクを完了します。Adobe によると、Slackbot は自社のツールを呼び出しているときに、会話のコンテキストも考慮するという。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Customers can now use Adobe’s apps like Firefly, Adobe Express, Photoshop, Premiere, Acrobat, InDesign, Illustrator, Stock, Lightroom, and others directly with Slack’s AI chatbot, Slackbot, Adobe announced on Monday.In addition, more than 70 Adobe tools will become available in Slack through the Adobe for Slack MCP app.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/09/02/adobe-is-making-its-tools-available-in-slack/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="16">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">古い任天堂のカートリッジを再生できる素晴らしい USB-C ガジェット</h2>
+    <p class="article-original-title">原題: <em>The amazing USB-C gadgets that play old Nintendo cartridges</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。 エピローグ SN と GB オペレーターは、任天堂のカートリッジ コレクターにとって夢のようなガジェットです。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. ﻿The Epilogue SN and GB Operator are dream gadgets for Nintendo cartridge collectors.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/games/987972/epilogue-gb-sn-operator-review-nintendo-game-boy-snes" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="17">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">パングラムは AI 検出のゴールドスタンダードとして登場しました。信じるべきですか?</h2>
+    <p class="article-original-title">原題: <em>Pangram Has Emerged as the Gold Standard of AI Detection. Should You Trust It?</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Pangram は、ブルックリンのポパイの上に本社を置く、従業員 24 名の AI スタートアップ企業です。これまでに 1,300 万ドルを調達していますが、これは OpenAI の資金の約 0.0072% に相当しますが、今年初めまでは事実上無名でした。しかし、パングラムが信じられるとすれば、それは書かれた言葉を機械が完全に乗っ取ることを妨げる唯一の勢力です。Pangram は、特定のテキストの生成に AI がどの程度関与したかを検出することを約束しており、最も推測されるパーセンテージとして検出します (もちろん AI を使用)。1月には、作家ミア・バラードがAIを利用して、アシェット社の従来の出版物として取り上げられた自費出版小説「シャイ・ガール」を執筆したのではないかという憶測がレディットとユーチューブで渦巻いた。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Pangram is an AI startup with 24 employees, headquartered above a Popeyes in Brooklyn.It has raised $13 million to date—about 0.0072 percent of what OpenAI has—and was virtually unknown until earlier this year.But if Pangram is to be believed, it’s the one force standing in the way of a full machine takeover of the written word.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/openai.html" target="_blank" rel="noopener noreferrer" class="company-link">OpenAI の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/story/pangram-has-emerged-as-the-gold-standard-of-ai-detection/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="18">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Ars Technica - All content</span>
+    </div>
+
+    
+
+    <h2 class="article-title">2027 レンジローバー エレクトリックの最初の外観とドライブをご紹介します。</h2>
+    <p class="article-original-title">原題: <em>Here&#x27;s our first look—and drive—of the 2027 Range Rover Electric</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">妥協のない快適性とオフロード能力を備えた実際の航続距離は 333 マイルです。ジャガー ランドローバーは、内燃機関からの移行を発表した最初の自動車メーカーの 1 つです。その移行スケジュールは多少ずれたかもしれない――パンデミック、サプライチェーン、再編などのやっかいな出来事はすべて、より急速な電動化への障壁となっている――だが、それはまだ進行中であり、今日は内燃機関やプラグインハイブリッドのレンジローバーと並ぶ新しいバッテリー電気自動車のバリエーションであるレンジローバー・エレクトリックのデビューである。これまで、完全電動レンジローバーを手に入れる唯一の方法は、レストモッドルートを進むことでした。しかし、クラシックなレンジローバーは、あらゆる固有の欠点を抱えながらも、クラシックカーのように運転でき、その価格は目を見張るようなものになる可能性があります。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">333 miles of real-world range with uncompromised comfort and off-road ability.Jaguar Land Rover was one of the first automakers to announce a transition away from combustion engines.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/cars/2026/09/range-rover-ev-electric-propulsion-pairs-perfectly-with-this-luxury-suv/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Startups" data-index="19">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#8b5cf6">🚀 Startups</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">AI はどのようにしてケンタウリ座アルファ星への星間旅行を計画したか</h2>
+    <p class="article-original-title">原題: <em>How AI plotted an interstellar journey to Alpha Centauri</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">フェルミ探査ミッションは、AI が発見した軌道を使用して、2029 年末までに最も近い星に探査機を打ち上げる予定です。フェルミ・エクスプローラー・ミッションと呼ばれる非営利団体は本日、2029年末までに探査機を私たちの最も近い恒星系に打ち上げる予定であると発表した。これは非常に野心的なミッションであり、すべてがうまくいけば、探査機が4.4光年離れたアルファ・ケンタウリに到着するまでに最大8万年かかる可能性がある。そして宇宙船は、AI物理学研究所であるフィジカル・スーパーインテリジェンス（PSI）が開発したAIシステムによって発見された新しい軌道をたどることになる。PSIは本日、Microsoftの共同創設者ビル・ゲイツ氏が設立した気候変動に焦点を当てた投資グループであるBreakthrough Energyが主導する5,800万ドルの資金を得て発足した。この試みは初めてではありません。。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">The Fermi Explorer Mission plans to launch a spacecraft to our nearest star by the end of 2029, using a trajectory discovered by AI.A nonprofit organization called the Fermi Explorer Mission announced today that it intends to launch a spacecraft to our nearest star system by the end of 2029.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/microsoft.html" target="_blank" rel="noopener noreferrer" class="company-link">Microsoft の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/09/01/1143247/ai-interstellar-journey-alpha-centauri/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="20">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">VentureBeat</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Azure OpenAI アシスタントの取得ギャップを埋めるには、新しい ID プラットフォームは必要ありませんでした。それには1つのフィルターとより狭いアシスタントが必要でした。</h2>
+    <p class="article-original-title">原題: <em>Closing an Azure OpenAI assistant&#x27;s retrieval gap didn&#x27;t take a new identity platform. It took one filter and a narrower assistant.</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Egiziago Ciofi は、ミラノに拠点を置く Microsoft パートナーである SynSphere Italia の IT およびエンタープライズ アーキテクト兼 CEO です。彼は自分でエージェントを構築しました。彼はインデックス作成ジョブを作成し、Azure OpenAI 取得パイプラインを構成し、それを SharePoint に接続し、チームが実行するすべての評価に合格するのを観察しました。 Cioffi 氏は、インタビューの質問に対する書面での回答の中で、VentureBeat に対し、彼の Azure OpenAI 電子メール アシスタントは顧客からの受信メールの約 60% を自動解決すると語った。評価点もきれいでした。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Egiziago Cioffi is the IT and Enterprise Architect and CEO of SynSphere Italia, a Microsoft partner based in Milan.He built an agent himself.He wrote the indexing job, configured the Azure OpenAI retrieval pipeline, connected it to SharePoint, and watched it pass every evaluation his team ran.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/microsoft.html" target="_blank" rel="noopener noreferrer" class="company-link">Microsoft の解説</a> <a href="companies/openai.html" target="_blank" rel="noopener noreferrer" class="company-link">OpenAI の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://venturebeat.com/security/azure-openai-agent-passed-every-evaluation-served-files-user-couldnt-open" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="21">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Apple TV のリモコンをリセットする方法</h2>
+    <p class="article-original-title">原題: <em>How to reset an Apple TV remote</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Apple のストリーミング ボックスのリモコンとの接続の問題を解決するためのヒント。私たちが選んだ最高のストリーミング デバイスの 1 つである Apple TV をお持ちの場合は、おそらく専用の Apple TV リモコンを使用して制御していることでしょう。この洗練されたスリムなリモコンは、非常に使いやすく、超小型 (したがって紛失しやすいです!) で、必要なキー ボタンだけがあり、留守番中のおばあちゃんが昼間の石鹸を見たいときに混乱するような他の複雑なオプションはありません。場合によっては、リモコンが接続を失ったり、応答しなくなったりすることがあります。技術的には動作しているのかもしれませんが、途中で途切れたり、一部のボタンが機能しなかったりします。リモコンをリセットする必要があるもう 1 つの理由は、Apple TV を売却する場合、または友人や家族に譲る場合です。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Tips for fixing connection issues with the remote for Apple&#x27;s streaming box.If you have an Apple TV, one of our picks for the best streaming devices , you are probably using the dedicated Apple TV remote to control it.This sleek and slim remote is super easy to use, ultra-small (so it&#x27;s easy to lose as well!</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/apple.html" target="_blank" rel="noopener noreferrer" class="company-link">Apple の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2244155/how-to-reset-apple-tv-remote/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="22">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">ウーバーはスタッフの10％、または3,300人を解雇する</h2>
+    <p class="article-original-title">原題: <em>Uber is laying off 10% of staff, or 3,300 people</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">ウーバーは、経営層を削減し、ライドシェアリング、配達、ロボタクシー部門への投資を増やすため、世界の従業員数の約10％に相当する約3,300人を解雇する。同社は、最高経営責任者（CEO）のダラ・コスロシャヒ氏が送信した社内電子メールの変更を発表し、水曜日にオンラインで公開した。電子メールによると、この人員削減は管理職の数を20％削減するリストラ計画の一環であり、これらの役割の一部の人員は今後、個人の貢献者として働くことになるという。ブルームバーグが人員削減のニュースを最初に報じた。ブルームバーグによると、ライドシェアの巨人は、メンバーが1人か2人のチームの数を50％削減し、「CEOより7階層以上下」のスタッフを解雇しているという。コスロシャヒ氏の電子メールには、同社がエンジニアリングとサイエンスを統合していると書かれていた。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Uber is laying off about 3,300 people, or about 10% of its global headcount, in a bid to cut management layers and invest more in its ride-sharing, delivery and robotaxi divisions.The company announced the changes in an internal email sent by CEO Dara Khosrowshahi and published online Wednesday.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/09/02/uber-is-laying-off-10-of-staff-or-3300-people/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="23">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">ロボット執事の夢には足がない</h2>
+    <p class="article-original-title">原題: <em>The robot butler dream doesn’t have legs</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。今週、人型ロボットが IFA のキャットウォークに登場し、自分たちがどこまで到達したかを見せてくれます。しかし、何年も家庭用ロボットと暮らしてきたので、私たちは間違ったマシンを追っているのではないかと思います。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. Humanoid robots will take to the catwalk at IFA this week to show us how far they’ve come. But after years of living with home robots, I think we’re chasing the wrong machine.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/tech/987756/humanoid-robot-butlers-lg-cloid-smart-home-ifa" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="24">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">REI レイバーデー セールのベスト 42 セール</h2>
+    <p class="article-original-title">原題: <em>The 42 Best Deals From the REI Labor Day Sale</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">REI の毎年恒例のレイバーデー セールは、私にとって夏の終わりのように感じられるようになりました。今年のイベントは盛況で、9 月 7 日のレイバーデーに終了します。多くの商品が最大 40% オフで、REI 生協の会員は REI アウトレットのどの商品でも最大 20% 割引になります。REI の最もお得なセールの多くは、同社の自社ブランドのギアに関するものです。ただし、マウンテン ハードウェア、ニモ イクイップメント、ビッグ アグネス、コールマンなど、他のブランドでもお得な割引があります。また、Backcountry や他の家内産業の小売店での競合セールからいくつかの取引も引き出しました。以下では、お気に入りのテント、バックパック、寝袋、スリーピングパッド、調理器具、アウトドア アパレルなどのお買い得情報をご覧いただけます。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">REI&#x27;s annual Labor Day Sale has come to feel like the end of summer to me.This year’s event is in full swing and ends on Labor Day, September 7.Many items are up to 40 percent off, and REI Co-op members save up to 20 percent on any REI Outlet item.Many of the best REI deals are on gear from the company&#x27;s house brand.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/story/rei-labor-day-sale-2026/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="25">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Ars Technica - All content</span>
+    </div>
+
+    
+
+    <h2 class="article-title">研究のまとめ: 見逃しそうになっていた 7 つのクールな科学ストーリー</h2>
+    <p class="article-original-title">原題: <em>Research roundup: 7 cool science stories we almost missed</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">プラスチックからクッキーを作る「ブラック ホール スター」、音で動く小型ドローンなど。残念ながら、私たちが遭遇する興味深い科学的ストーリーをすべて取り上げるのに十分な時間がないのは現実です。そこで、私たちは毎月、ほとんど見逃されていたいくつかの最高のストーリーを特集します。 8月のリストには、天文学者が「ブラックホール星」と名付けた新しい天体の発見が含まれている。微生物によってプラスチックを分解し、食べられるクッキーに変える。クジラの鳴き声がアインシュタインの特殊相対性理論とどのように関係しているのか。アボカドの木の花が日中に性転換する様子など、見どころが満載です。クレジット: Rohan Naidu (ハワイ大学) クレジット: Rohan Naidu (ハワイ大学) 2024 年、天文学者たちは、James We が撮影したデータセットを徹底的に調べていました。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">“Black hole stars,” making cookies from plastic, tiny sound-powered drones, and more.It’s a regrettable reality that there is never enough time to cover all the interesting scientific stories we come across.So every month, we highlight a handful of the best stories that nearly slipped through the cracks.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/science/2026/09/august-research-roundup-7-cool-science-stories-we-almost-missed/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="26">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">AI を活用したレガシーのモダナイゼーションを主張する</h2>
+    <p class="article-original-title">原題: <em>Making the AI-powered case for legacy modernization</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">AI を活用したモダナイゼーションにより、レガシー システムの変革にかかる時間と複雑さを軽減しながら、より迅速なイノベーションのための基盤を構築できると、Bupa の医療保険 CIO である Asifa Sherazi 氏と、Infosys の上級副社長兼 BFSI、ヘルスケア、および公共部門の地域責任者である Sanjeev Tripathi 氏は述べています。レガシーテクノロジーは長年にわたり、企業が解決する必要があると認識していた問題でしたが、取り組むのに苦労することが多かった問題です。ビジネスクリティカルなシステムを置き換えるコスト、複雑さ、リスクにより、モダナイゼーションは追求する機会ではなく、管理が困難になる可能性があります。しかし、顧客の期待の高まりと AI がソフトウェア開発の経済学にもたらした変化により、その計算は変化しつつあります。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">AI-assisted modernization can reduce the time and complexity of transforming legacy systems while creating a foundation for faster innovation, says Asifa Sherazi, CIO of health insurance at Bupa and Sanjeev Tripathi, senior VP, region head of BFSI, healthcare, and public sector at Infosys.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/09/01/1142180/making-the-ai-powered-case-for-legacy-modernization/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="27">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">VentureBeat</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Anthropic の Claude Fable 5.1 および Mythos 5.1 は、Fable キャッシュ読み取りのコストを 75% 削減して登場</h2>
+    <p class="article-original-title">原題: <em>Anthropic&#x27;s Claude Fable 5.1 and Mythos 5.1 arrive with a 75% cost reduction for Fable cache reads</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">2026 年 9 月はまだ初日に過ぎませんが、Anthropic が最新かつ最も強力な大規模言語モデルである Claude Fable 5.1 と Claude Mythos 5.1 をリリースしたばかりであるため、すでにその月と秋のシーズンが AI の分野でレースに向けてスタートしています。 2 つの名前は、同じ基礎となるモデルを指します。 Fable 5.1 は、Anthropic の運用上の安全策が講じられた、一般に利用可能なバージョンです。 Mythos 5.1 は以下から入手できます。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">It&#x27;s only the first day of September 2026, but the month and fall season are already off to the races in AI land, as Anthropic has just released its latest and most powerful large language models yet — Claude Fable 5.1 and Claude Mythos 5.1 .The two names refer to the same underlying model.Fable 5.1 is the generally available version, with Anthropic’s production safeguards in place.Mythos 5.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://venturebeat.com/technology/anthropics-claude-fable-5-1-and-mythos-5-1-arrive-with-a-75-cost-reduction-for-fable-cache-reads" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="28">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">ユナイテッド航空が食べ物やその他の必需品をゲートまでお届けします</h2>
+    <p class="article-original-title">原題: <em>United Airlines will deliver food and other essentials to your gate</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">ニューアーク・リバティー・インターナショナルのターミナルCで新しいサービスをテストしている。ユナイテッド航空は、アプリを通じて食品、医薬品、旅行必需品を注文し、ゲートまで直接配達してもらえる新しいサービスをテストしている。現在、同社はニューアーク・リバティー国際空港のターミナルCにある9つの指定ゲートから出発または乗り継ぎする一部のフライトのみを対象に試験運用を行っている。同ターミナルを経由する場合は、間もなくユナイテッドのアプリまたは電子メールを通じて出発前のプッシュ通知を受け取る可能性がある。そこから、サラダ、サンドイッチ、チップス、キャンディー、キッズミール、ドリンクのセレクションからお選びいただけます。市販薬、旅行用枕、充電コードも購入できます。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">It’s testing out the new offering at Newark Liberty International&#x27;s Terminal C.United Airlines is testing a new service that will give you the the ability to order food, medicine and travel essentials through its app and then have them delivered straight to your gate.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2249200/united-airlines-deliver-food-essentials-gate/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="29">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">OpenAI、タンブラーリッジ銃乱射事件に関連してさらに30件の訴訟に直面</h2>
+    <p class="article-original-title">原題: <em>OpenAI faces 30 more lawsuits tied to Tumbler Ridge shooting</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">タンブラーリッジ銃乱射事件に関係する被害者と家族を代表して、4月にOpenAIに対して7件の訴訟を起こした法律事務所エデルソンPCは、今週さらに30件の告訴を提起している。新たな原告には、襲撃中に建物内にいたが銃撃を受けなかった教師、校長、生徒が含まれている。また、新たな提出書類では、OpenAIが銃乱射事件を単に過失で阻止できなかったというよりも、事件を幇助し教唆したとして初めて告発されている。この主張にはOpenAIの意図を証明する必要があり、早期却下という困難に直面する可能性が高い。この苦情は、同社の AI モデルの 1 つがサイバーセキュリティ評価中にサンドボックスから脱出し、サービスにハッキングされた後、OpenAI が別の注目を集めた安全性インシデントの余波への対応を続けている中で生じたものである。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Edelson PC, the law firm that filed seven lawsuits against OpenAI in April on behalf of victims and families connected to the Tumbler Ridge mass shooting , is filing 30 additional complaints this week.The new plaintiffs include teachers, a principal, and students who were in the building during the attack but not physically shot.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/openai.html" target="_blank" rel="noopener noreferrer" class="company-link">OpenAI の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/09/02/openai-faces-30-more-lawsuits-tied-to-tumbler-ridge-shooting/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="30">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">あなたの未来はバージニアにあります</h2>
+    <p class="article-original-title">原題: <em>Your future is in Virginia</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">米国全土で大規模な AI インフラストラクチャが構築されています。しかし、データセンターの占有がどのようなものかを知りたい場合は、20 年前にその未来が到来したバージニア州ラウドン郡を訪れてください。 2007 年、米国は景気後退の瀬戸際にあり、バディ ライザーはバージニア州ラウドン郡に新しいお金を稼ぐ方法を見つける任務を負っていました。ライザーの以前のラジオ DJ としてのキャリアは、解決策を見つける明らかな候補者とは言えませんでしたが、彼は「本当の仕事」と呼ぶものを探していたところ、ラウドゥンの経済開発当局での役割に巡り合いました。住宅バブルの崩壊のおかげで、この新しい事業は緊急に行われました。郡の収入の 80% 以上が住宅用不動産から来ていました。当時の目標は商業税を引き上げることでした。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Massive AI infrastructure is being built out across the US.But if you want to know what the data center occupation looks like, visit Loudoun County, Virginia, where that future arrived 20 years ago.I n In 2007, the US was on the cusp of an economic recession, and Buddy Rizer was tasked with finding Loudoun County, Virginia, a new way to make money.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/cs/features/975597/loudoun-county-virginia-data-center-backlash" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+        </main>
+
+        <footer class="footer">
+            <p>本ページは公開記事をもとに自動生成しています。数値や仕様は必ず元記事で確認してください。</p>
+            <p>JSON データは同じフォルダ内の tech_news_digest.json で参照できます。</p>
+        </footer>
+    </div>
+
+    <script>
+
+        const categoryButtons = document.querySelectorAll('.category-btn');
+        const articleCards = document.querySelectorAll('.article-card');
+        const searchInput = document.getElementById('search-input');
+
+        let activeCategory = 'all';
+
+        function applyFilters() {
+            const query = searchInput.value.trim().toLowerCase();
+            articleCards.forEach(card => {
+                const matchesCategory = activeCategory === 'all' || card.dataset.category === activeCategory;
+                const searchableText = card.innerText.toLowerCase();
+                const matchesQuery = !query || searchableText.includes(query);
+                card.style.display = matchesCategory && matchesQuery ? '' : 'none';
+            });
+        }
+
+        categoryButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                categoryButtons.forEach(item => item.classList.remove('active'));
+                button.classList.add('active');
+                activeCategory = button.dataset.category;
+                applyFilters();
+            });
+        });
+
+        searchInput.addEventListener('input', applyFilters);
+    
+    </script>
+</body>
+</html>
