@@ -1,0 +1,1224 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>海外テックニュース日本語まとめ</title>
+    <style>
+        :root {
+            color-scheme: dark;
+            --bg: #0a0f1d;
+            --panel: rgba(13, 20, 36, 0.92);
+            --line: rgba(132, 152, 187, 0.25);
+            --text: #eef3ff;
+            --muted: #adc1dd;
+            --accent: #7dd3fc;
+            --accent-strong: #38bdf8;
+            --shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: "Hiragino Sans", "Noto Sans JP", sans-serif;
+            background:
+                radial-gradient(circle at top right, rgba(56, 189, 248, 0.22), transparent 26%),
+                radial-gradient(circle at top left, rgba(16, 185, 129, 0.16), transparent 20%),
+                linear-gradient(180deg, #07101f 0%, #0b1327 48%, #0a0f1d 100%);
+            color: var(--text);
+        }
+
+        .page-shell {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 24px;
+        }
+
+        .hero {
+            padding: 28px;
+            border: 1px solid var(--line);
+            border-radius: 28px;
+            background: linear-gradient(145deg, rgba(18, 27, 48, 0.96), rgba(10, 17, 32, 0.96));
+            box-shadow: var(--shadow);
+        }
+
+        .hero-nav {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 28px;
+        }
+
+        .nav-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 42px;
+            padding: 0 16px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        .eyebrow {
+            margin: 0 0 10px;
+            color: var(--accent);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            font-size: 0.78rem;
+        }
+
+        .hero h1 {
+            margin: 0;
+            font-size: clamp(2rem, 3vw, 3.3rem);
+            line-height: 1.1;
+        }
+
+        .timestamp,
+        .description {
+            color: var(--muted);
+        }
+
+        .control-panel {
+            margin: 20px 0 28px;
+            padding: 22px;
+            border: 1px solid var(--line);
+            border-radius: 24px;
+            background: var(--panel);
+            backdrop-filter: blur(12px);
+        }
+
+        .control-header {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            align-items: end;
+            flex-wrap: wrap;
+        }
+
+        .control-header h2 {
+            margin: 0 0 6px;
+        }
+
+        .control-header p {
+            margin: 0;
+            color: var(--muted);
+        }
+
+        #search-input {
+            width: min(100%, 360px);
+            min-height: 46px;
+            padding: 0 14px;
+            border-radius: 14px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
+        }
+
+        .category-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 16px;
+        }
+
+        .category-btn {
+            min-height: 42px;
+            padding: 0 14px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
+            cursor: pointer;
+        }
+
+        .category-btn.active {
+            background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+            color: #06111f;
+            border-color: transparent;
+            font-weight: 700;
+        }
+
+        .article-list {
+            display: grid;
+            gap: 18px;
+        }
+
+        .article-card {
+            padding: 24px;
+            border-radius: 24px;
+            border: 1px solid var(--line);
+            background: linear-gradient(180deg, rgba(12, 18, 34, 0.96), rgba(14, 22, 39, 0.9));
+            box-shadow: var(--shadow);
+        }
+
+        .card-topline {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+
+        .category-chip,
+        .source-chip {
+            display: inline-flex;
+            align-items: center;
+            min-height: 34px;
+            padding: 0 12px;
+            border-radius: 999px;
+            font-size: 0.92rem;
+            font-weight: 700;
+        }
+
+        .source-chip {
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--muted);
+        }
+
+        .article-title {
+            margin: 0 0 10px;
+            font-size: clamp(1.45rem, 2vw, 2rem);
+            line-height: 1.35;
+        }
+
+        .article-original-title {
+            margin: 0 0 18px;
+            color: var(--muted);
+        }
+
+        .security-alert {
+            margin: 0 0 14px;
+            padding: 10px 14px;
+            border-radius: 12px;
+            border: 1px solid rgba(248, 113, 113, 0.4);
+            background: rgba(248, 113, 113, 0.12);
+            color: #fecaca;
+            font-weight: 700;
+            font-size: 0.92rem;
+        }
+
+        .article-section {
+            margin-top: 18px;
+            padding-top: 18px;
+            border-top: 1px solid var(--line);
+        }
+
+        .article-section h3 {
+            margin: 0 0 12px;
+            font-size: 1rem;
+            color: var(--accent);
+        }
+
+        .article-paragraph {
+            margin: 0 0 14px;
+            color: #dce7f8;
+            line-height: 1.9;
+            font-size: 1rem;
+        }
+
+        .company-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .company-link,
+        .action-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 42px;
+            padding: 0 14px;
+            border-radius: 14px;
+            text-decoration: none;
+            border: 1px solid rgba(125, 211, 252, 0.3);
+        }
+
+        .company-link {
+            color: var(--accent);
+            background: rgba(56, 189, 248, 0.08);
+        }
+
+        .article-actions {
+            margin-top: 22px;
+        }
+
+        .footer {
+            padding: 28px 8px 40px;
+            color: var(--muted);
+            text-align: center;
+        }
+
+        .footer p {
+            margin: 6px 0;
+        }
+
+        .action-link.primary {
+            color: #06111f;
+            font-weight: 700;
+            background: linear-gradient(135deg, #7dd3fc, #22d3ee);
+            border-color: transparent;
+        }
+
+        @media (max-width: 720px) {
+            .page-shell {
+                padding: 14px;
+            }
+
+            .hero,
+            .control-panel,
+            .article-card {
+                padding: 18px;
+                border-radius: 20px;
+            }
+
+            .control-header {
+                align-items: stretch;
+            }
+
+            #search-input {
+                width: 100%;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="page-shell">
+        <header class="hero">
+            <div class="hero-nav">
+                <a class="nav-link" href="../../index.html">HOME</a>
+                <a class="nav-link" href="../index.html">この日の記事一覧</a>
+            </div>
+            <div class="hero-copy">
+                <p class="eyebrow">Global Tech News Digest</p>
+                <h1>海外テックニュース 日本語まとめ</h1>
+                <p class="timestamp">2026年9月5日 13:36 JST に収集した記事を掲載しています。</p>
+                <p class="description">各カードには本文寄りの日本語訳を掲載し、記事中で触れた企業は別ページの解説リンクとして分離しています。</p>
+            </div>
+        </header>
+
+        <section class="control-panel">
+            <div class="control-header">
+                <div>
+                    <h2>記事を探す</h2>
+                    <p>カテゴリとキーワードで一覧を絞り込めます。</p>
+                </div>
+                <input type="text" id="search-input" placeholder="タイトル・本文・媒体名で検索">
+            </div>
+            <div class="category-buttons">
+                <button class="category-btn active" data-category="all">すべて (30)</button>
+<button class="category-btn" data-category="AI/ML" style="--accent:#10b981">🤖 AI/ML (23)</button>
+<button class="category-btn" data-category="Mobile" style="--accent:#6366f1">📱 Mobile (2)</button>
+<button class="category-btn" data-category="Other" style="--accent:#6b7280">📰 Other (1)</button>
+<button class="category-btn" data-category="Security" style="--accent:#f97316">🔒 Security (1)</button>
+<button class="category-btn" data-category="Startups" style="--accent:#8b5cf6">🚀 Startups (3)</button>
+            </div>
+        </section>
+
+        <main class="article-list" id="articles-container">
+            <article class="article-card" data-category="Startups" data-index="1">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#8b5cf6">🚀 Startups</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">ステルス状態からわずか 3 か月の XDOF、評価額 12 億ドルでシリーズ B の交渉中</h2>
+    <p class="article-original-title">原題: <em>XDOF, just three months out of stealth, is in talks for a Series B at a $1.2B valuation</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">ステルスからの脱却から3か月も経たないうちに、汎用ロボットを訓練するために現実世界の遠隔操作データを収集する新興企業XDOFは、約1ドルの評価額でシリーズBを調達するための最終段階の交渉に入っている。この取引に詳しい複数の関係者によると、評価額は8VC主導で20億ドルとなった。XDOFは、カリフォルニア大学バークレー校の研究者フィリップ・ウー氏（CEO）とフレッド・シェントゥ氏（CTO）によって2024年に共同設立された。TechCrunchは6月、Thrive Capital、Andreessen Horowitz、Lux、Spark Capitalが参加したこのスタートアップの7,000万ドルのシリーズAについて報じた。XDOF はそのラウンド後すぐに再度レイズする予定はありませんでした。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Less than three months after emerging from stealth, XDOF , a startup that collects real-world teleoperation data for training general-purpose robots, is in late-stage talks to raise a Series B at a valuation of about $1.2 billion valuation led by 8VC, several people with knowledge of the deal said.XDOF was co-founded by UC Berkeley researchers Philipp Wu (CEO) and Fred Shentu (CTO) in 2024.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/techcrunch.html" target="_blank" rel="noopener noreferrer" class="company-link">TechCrunch の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/09/04/xdof-just-three-months-out-of-stealth-is-in-talks-for-a-series-b-at-a-1-2b-valuation/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Security" data-index="2">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#f97316">🔒 Security</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    <p class="security-alert">🔒 セキュリティエンジニア向け重要記事 — キーワードベースの分類でセキュリティ関連と判定されました（Grok未設定のためフォールバック）</p>
+
+    <h2 class="article-title">OpenAIの不正エージェントは逃亡を続けており、正式な調査プロセスは存在しない</h2>
+    <p class="article-original-title">原題: <em>OpenAI&#x27;s rogue agents keep escaping, with no formal process to investigate them</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">OpenAI は別のエージェント群事件の中心となっています。研究者らによると、同社が社内に配置したエージェントが5月から6月にかけて、あいまいなドイツ語のwikiを乗っ取り、それを利用して評価の調整や方法の交換を行い、OpenAI自身の制御を回避したという（OpenAIは、この群れが同社から来たものであることをまだ確認していない）。この事実は、METR と Redwood Research が 7 月の Hugging Face 侵害に関する報告を発表した数日後に表面化しました。7 月、OpenAI エージェントの群れが協力してサイバーセキュリティ評価中にサンドボックスを脱出し、Hugging Face のサーバーに侵入しました。その後、後続の群れが最初の群れからテクニックを取得し、それを使用して OpenAI 独自のインフラストラクチャ内の研究クラスターへの管理者アクセスを取得しました。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">OpenAI is at the center of another agent swarm incident.Researchers say the company’s internally deployed agents took over an obscure German-language wiki in May and June, using it to coordinate on evaluations and swap methods to evade OpenAI’s own controls (OpenAI has not yet confirmed the swarm came from the company).</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/openai.html" target="_blank" rel="noopener noreferrer" class="company-link">OpenAI の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/09/04/openais-rogue-agents-keep-escaping-with-no-formal-process-to-investigate-them/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Startups" data-index="3">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#8b5cf6">🚀 Startups</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">AI コンピューティングプロバイダーの Nscale は、IPO 前の資金調達で 35 億ドルを求めています</h2>
+    <p class="article-original-title">原題: <em>AI compute provider Nscale is looking for $3.5B in pre-IPO financing</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">わずか2年前に設立された英国のAIインフラ企業Nscaleは、早ければ今月下旬にも上場する可能性があると述べた。予想されるIPOに先立ち、同社はさらに3ドルを調達する交渉を行っていると伝えられている。50億。ブルームバーグは金曜日、同社が1ドルの売却を検討していると報じた。投資家グループに転換社債（後で会社の株式に転換できるローンの一種）で50億ドルを提供する一方、Nvidiaから追加の20億ドルの融資も求めている。Nvidiaは3月に同社のシリーズB資金調達ラウンドにも参加しており、資金は1ドルだった。投資ファンドAker主導で10億調達。Nscale は、このラウンドを「欧州史上最大のシリーズ B」と称賛しました。2024 年 12 月の同社のシリーズ A ラウンドでは、1 億 5,500 万ドルを調達しました。TechCrunchはNscaleとNvidiaにコメントを求めた。。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Nscale, a British AI infrastructure company founded just two years ago, has said it may go public as early as later this month.Ahead of that expected IPO, the company is reportedly in talks to raise an additional $3.5 billion.Bloomberg reported Friday that the company is looking to sell $1.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/nvidia.html" target="_blank" rel="noopener noreferrer" class="company-link">NVIDIA の解説</a> <a href="companies/techcrunch.html" target="_blank" rel="noopener noreferrer" class="company-link">TechCrunch の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/09/04/ai-compute-provider-nscale-is-looking-for-3-5b-in-pre-ipo-financing/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="4">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">裁判官はXライバルのTwitter名の使用を阻止したが、今のところ「ツイート」は許可</h2>
+    <p class="article-original-title">原題: <em>Judge blocks X rival from using Twitter name, but allows &#x27;Tweet&#x27; for now</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">デラウェア州の連邦裁判所は、イーロン・マスク氏の「X」と、ライバルのソーシャルネットワークを立ち上げようとしている新興企業との間の商標権争いについて判決を下した。このスタートアップ、Operation Bluebird は当初 Twitter という名前で立ち上げられました。しかし裁判所は、中核となる「Twitter」商標に関してXの側に立って、その名前の使用を禁止した。しかし裁判所は、Xが他の2つの関連商標、「ツイート」という言葉とTwitterの鳥のロゴを放棄し、使用できるようにした可能性が高いことも認定した。その後、Operation Bluebird は Web サイトのブランド名を Tweet に変更しました。解放された「ツイート」名を使用してアプリを作成し、一般に公開しました。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">A federal court in Delaware has ruled on a trademark fight between Elon Musk’s X and a startup trying to launch a rival social network.The startup, Operation Bluebird, originally launched under the name Twitter.now , but the court barred it from using that name, siding with X on the core “Twitter” trademark.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/09/04/judge-blocks-x-rival-from-using-twitter-name-but-allows-tweet-for-now/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="5">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Appleのジョン・ターナス時代はどうなるだろうか？</h2>
+    <p class="article-original-title">原題: <em>What will Apple&#x27;s John Ternus era look like?</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Disrupt 2026: OpenAI、Anthropic、Replit などが 6 つの業界ステージを制覇します。チケットが 25% オフになりました 好評により復活しました: Disrupt で最大 300 ドル割引になります Apple は正式に Ternus 時代に入りました。ティム・クック氏は今週CEOを辞任し、元ハードウェア責任者のジョン・ターナス氏に会社を引き渡した。彼の最初のメモでは「来週大々的に発売する」と約束されていたが、これは自分が落ち着く前にAppleの次期iPhoneイベントを机上に置くタイミングだ。とはいえ、クック氏はそこまでは進んでいない。彼は執行会長に留まり、最近地図ラベルのような小さなものを非常に公共的なバランスをとる行為に変えた一種の政策関係に焦点を当てている。これらすべてが明らかな疑問を引き起こします。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Disrupt 2026: OpenAI, Anthropic, Replit, and more take over 6 industry stages.25% off tickets now Back by popular demand: Save up to $300 on Disrupt It’s officially the Ternus era at Apple.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/apple.html" target="_blank" rel="noopener noreferrer" class="company-link">Apple の解説</a> <a href="companies/openai.html" target="_blank" rel="noopener noreferrer" class="company-link">OpenAI の解説</a> <a href="companies/techcrunch.html" target="_blank" rel="noopener noreferrer" class="company-link">TechCrunch の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/video/what-will-apples-john-ternus-era-look-like/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="6">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">CanJam 2026 の奇妙で素晴らしいヘッドフォン</h2>
+    <p class="article-original-title">原題: <em>The weird and wonderful headphones of CanJam 2026</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。 主流のヘッドフォンは良いものですが、今では退屈です。私はなぜヘッドフォンが好きなのかを思い出させるために、オーディオマニアのショーに行きました。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. ﻿Mainstream headphones are good but boring now. I went to an audiophile show to be reminded why I love headphones.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/tech/990706/a-day-at-canjam-socal-2026" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="7">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">OpenAI、ドイツ語ウィキの「事件」を認める</h2>
+    <p class="article-original-title">原題: <em>OpenAI admits to German wiki ‘incident’</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。同社は、代理店の「位置ずれインシデント」報告を全面的に見直すことを約束した。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. The company pledged to overhaul their agent ‘misalignment incident’ reporting.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/openai.html" target="_blank" rel="noopener noreferrer" class="company-link">OpenAI の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/ai-artificial-intelligence/990773/openai-german-wiki-incident" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="8">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">ロボタクシーが悪役時代に突入</h2>
+    <p class="article-original-title">原題: <em>Robotaxis enter their villain era</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。 『Road Rage』は現在製作中の新しい短編映画で、凶悪な自動運転車を悪者に設定し、道路上の AI について人々がすでに恐れているすべてを利用しています。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. Road Rage is a new short film in production that casts a murderous autonomous car as the bad guy — and taps into everything people already fear about AI on the road.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/transportation/989513/road-rage-short-film-robotaxi-autonomous-ai" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="9">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Audacity 4 は「世界で最も人気のある」オーディオエディターの完全な改良版です</h2>
+    <p class="article-original-title">原題: <em>Audacity 4 is a complete revamp of the ‘world’s most popular’ audio editor</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。非破壊編集、改善されたクリップ管理、新しい外観により、アプリは現代に取り入れられています。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. Non-destructive editing, better clip management, and a new look bring the app into the modern age.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/tech/990658/audacity-4-update-audio-editing" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="10">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">ホワイトハウスはアーケードゲームを人種差別的としている</h2>
+    <p class="article-original-title">原題: <em>The White House is making arcade games racist</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。この著者からの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. Posts from this author will be added to your daily email digest and your homepage feed.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/policy/990520/trump-arcade-games-maga-copyright" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="11">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">私はすべての Alexa スピーカーを試しました。これらは買う価値があります</h2>
+    <p class="article-original-title">原題: <em>I’ve Tried Every Single Alexa Speaker. These Are the Ones Worth Buying</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Amazon はスマート スピーカー ゲームを開始しましたが、同社がより多くのデバイスを発売するにつれて、最適な Alexa スピーカーを見つけることはますます困難になっています。Amazon は、スマート スピーカーとディスプレイの品揃えが断然最大で、飛び込むには圧倒されるかもしれません。最新のものは、Echo Dot Max、Echo Studio (第 2 世代)、Echo Show 11、および Echo Show 8 (第 4 世代) で、昨年末に発売されました。ただし、Amazon には古い安価なモデルもたくさんあります。家を制御するための小型でシンプルなものを探している場合は、Echo Dot ($80) または Echo Dot Max ($120) が最適です。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Amazon started the smart speaker game, but finding the best Alexa speaker has only gotten harder as the company launches more and more devices.Amazon has the largest range of smart speakers and displays by a long shot, which can be overwhelming to dive into.The most recent were launched late last year: the Echo Dot Max, the Echo Studio (2nd Gen), the Echo Show 11, and the Echo Show 8 (4th Gen).</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/amazon.html" target="_blank" rel="noopener noreferrer" class="company-link">Amazon の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/gallery/best-alexa-and-amazon-echo-speakers/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Mobile" data-index="12">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#6366f1">📱 Mobile</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">今年はiPhone 18は登場しないかもしれない</h2>
+    <p class="article-original-title">原題: <em>There May Not Be an iPhone 18 This Year</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">毎年この時期に、Apple は新しい iPhone を発表します。製品はその後すぐに発売され、通常はベース モデルからよりプレミアムで高価な Pro モデルまで多岐にわたります。しかし、今年はおそらく違うでしょう。会社に新しい CEO が就任したからだけではありません。Apple の iPhone イベントは、太平洋時間 9 月 9 日午前 10 時 (東部時間午後 1 時) に開催され、先週「サプライズと輝き!」というタイトルで発表されました。ライブストリームを視聴すれば、iPhone 18 Pro、18 Pro Max の発表が期待されます。すべての噂と広く行われているアナリストの期待が真実であれば、Apple の折りたたみ式デバイスの初公開が期待されます。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Every year around this time, Apple announces new iPhones .The products go on sale soon after, usually ranging from a base model to more premium and more expensive Pro models.But this year will likely be different—not just because the company has a brand-new CEO .Apple’s iPhone event will be held on September 9 at 10 am Pacific (1 pm Eastern), announced last week with the title “Surprise and Shine!</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/apple.html" target="_blank" rel="noopener noreferrer" class="company-link">Apple の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/story/there-may-not-be-an-iphone-18-this-year/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="13">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</h2>
+    <p class="article-original-title">原題: <em>OpenAI Agents Hacked Another Website</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">先週、監視会社Flock Safetyが法執行機関向けのAI検索ツールを構築していると報じた後、『WIRED』は同社が警察官のブラウザに送信するコードからFlockの最新検索ツールを再構築し、ツールの仕組みに関する重要な詳細を明らかにした。 OpenAIは今週、間もなく非公開リリースされる同社のAstraモデルは、同社が一般公開すると「重大な」リスクを引き起こすと定義するサイバーセキュリティ関連機能を備えた最初のモデルであると発表した。一方、AIチャットボットプラットフォームのClaude、ChatGPT、Grokはすべて木曜日にほぼ同時に停止に見舞われた。しかし、xAIはGrokの停止はメンフィスのデータセンターの問題が原因だとしているが、OpenAIとAnthropicの停止の原因は不明である。米国は高エネルギーを使用しています。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">After reporting last week that the surveillance company Flock Safety is building an AI search tool for law enforcement, WIRED reconstructed Flock’s latest search tool from code that the company sends to a police officer’s browser and uncovered key details about how the tool works.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/openai.html" target="_blank" rel="noopener noreferrer" class="company-link">OpenAI の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/story/security-news-this-week-openai-agents-hacked-another-website/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="14">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">科学者たちはイモムシを超静かな部屋に入れて、耳なしでどのように聞こえるかを研究しました</h2>
+    <p class="article-original-title">原題: <em>Scientists Put Caterpillars in an Ultraquiet Chamber to Learn How They Hear Without Ears</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">静かな夏の庭で、毛虫が枝にとまり、静かに葉をむしゃむしゃ食べています。一瞬後、フリーズします。危険を察知し、それがまさに間に合ったのです。後ろから、スズメバチが獲物のサイズを測りながら近づいてきます。タバコホーンワームの毛虫は耳がないように見えますが、スズメバチなどの捕食者を感知することができます。毛虫はどのようにしてスズメバチが近づいていることを知るのでしょうか?科学者たちはこの毛虫の感覚がどのように機能するのか完全には理解していませんが、私たちはそれを解明したいと考えている生物学者と技術者のチームの一員です。私たちの進行中の研究は、タバコツノ虫が体にある非常に敏感な小さな毛を使って聴覚を持っていることを示唆しています。この生物が環境を認識し、環境と相互作用することを可能にする複雑な生物学的メカニズムを理解することは、自然界の謎を解くのに役立つでしょう。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">In a quiet summer garden, a caterpillar perches on a branch, munching serenely on leaves.A moment later it freezes.It senses danger—and just in time.From behind, a wasp approaches, sizing up its prey.Tobacco hornworm caterpillars don’t look like they have ears, and yet they’re able to sense predators such as wasps.How does the caterpillar know a wasp is approaching?</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/story/how-do-caterpillars-hear-without-ears/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="15">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">今週、時計の世界は熱狂しました。必見の 10 件をご紹介します</h2>
+    <p class="article-original-title">原題: <em>The Watch World Went Crazy This Week. Here Are the 10 You Need to See</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">While Watches and Wonders every April is undoubtedly the watch world&#x27;s main event of the year , Geneva Watch Days—which inauspiciously launched in 2020, the year Covid was declared a pandemic —is now establishing itself as a serious follow-up.Big brands can hold back key releases and gain valuable space to shout about new pieces away from the horological hubbub of W&amp;W.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">While Watches and Wonders every April is undoubtedly the watch world&#x27;s main event of the year , Geneva Watch Days—which inauspiciously launched in 2020, the year Covid was declared a pandemic —is now establishing itself as a serious follow-up.Big brands can hold back key releases and gain valuable space to shout about new pieces away from the horological hubbub of W&amp;W.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/apple.html" target="_blank" rel="noopener noreferrer" class="company-link">Apple の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/story/the-watch-world-went-crazy-this-week-here-are-the-10-you-need-to-see/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Startups" data-index="16">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#8b5cf6">🚀 Startups</span>
+        <span class="source-chip">Ars Technica - All content</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</h2>
+    <p class="article-original-title">原題: <em>After 8 years, Europe&#x27;s BepiColombo mission is on final approach to Mercury</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">“Fundamentally, we want to learn about the origins of this planet and how it came to be like it is.” The BepiColombo mission cleared a major milestone this week in the final stretch of an eight-year interplanetary voyage to Mercury, the hard-to-reach, scorching hot iron world at the Solar System’s innermost frontier.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/space/2026/09/after-8-years-europes-bepicolombo-mission-is-on-final-approach-to-mercury/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="17">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Ars Technica - All content</span>
+    </div>
+
+    
+
+    <h2 class="article-title">OpenAI エージェントはサンドボックスから脱出する方法を公開 Wiki で議論しました</h2>
+    <p class="article-original-title">原題: <em>OpenAI agents discussed ways to escape their sandbox on public wiki</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">合計 3,700 人の内部エージェントが、テストでの不正行為について議論する 18,000 件のメッセージを投稿しました。研究者らは金曜日、自己を識別する OpenAI エージェントが、エージェントのハッキング能力を評価するために設計された内部テストである可能性が高い期間中に、他のエージェントがセキュリティ サンドボックスの制限を回避する方法について議論する 18,000 件のメッセージを公開 Wiki に投稿したと発表した。シドニー・フォン・アークス氏、スペンサー・キッツ氏、トーマス・ラーセン氏、コーマック・スレイド・バード氏で構成された研究チームは、投稿を見つけてつなぎ合わせたと述べた。研究者らは、この研究は投稿の内容のみに基づいているため、エージェントがどのような行動をとったのかを正確に理解するにはギャップがあると述べている。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">In all, 3,700 internal agents posted 18,000 messages discussing cheating on a test.Self-identifying OpenAI agents posted 18,000 messages to a public wiki that discussed ways for other agents to bypass security sandbox restrictions during what was likely internal testing designed to gauge the agents’ hacking abilities, researchers said Friday .</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/openai.html" target="_blank" rel="noopener noreferrer" class="company-link">OpenAI の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/security/2026/09/openai-agents-discussed-ways-to-escape-their-sandbox-on-public-wiki/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="18">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Ars Technica - All content</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</h2>
+    <p class="article-original-title">原題: <em>Measles killed 6-week-old baby, coroner confirms after RFK Jr. disputed deaths</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">「RFKが人々の命を賭けたゲームをやめる時期はとっくに過ぎている。」ペンシルベニア州ランカスターで生後6週間の女児が麻疹で死亡したことを郡検死官が金曜日地元報道陣に認めた。 2007年に共和党から選出された検死官スティーブン・ディアマントーニ氏は、乳児は自宅で死亡したとランカスター・オンラインに語った。 「8月18日だったと思います」と彼は言った。同氏はまた、赤ちゃんはアーミッシュ致死小頭症と呼ばれる遺伝的疾患を患っており、赤ちゃんの頭が異常に小さく、脳が未発達であることにも言及した。この症状は、ミトコンドリア内のエネルギー生成酵素に関与するタンパク質をコードする SLC25A19 遺伝子の変異によって引き起こされ、脳の発達に重要であると考えられています。ペンシルベニア州のオールド・オーダー・アーミッシュ人口では、約500人に1人の赤ちゃんが生まれます。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">“It’s long past time for RFK to stop playing games with people’s lives.” A six-week-old baby girl in Lancaster, Pennsylvania, died from measles, the county coroner confirmed to local press on Friday.Stephen Diamantoni, a Republican elected coroner in 2007, told Lancaster Online that the baby died at home.“I believe it was the 18th of August,” he said.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/health/2026/09/measles-killed-6-week-old-baby-coroner-confirms-after-rfk-jr-disputed-deaths/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="19">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Ars Technica - All content</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</h2>
+    <p class="article-original-title">原題: <em>Trump admin fights ABC lawsuit as watchdogs worry Disney will settle with FCC</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Meanwhile, two watchdog groups and individual viewers of ABC stations are trying to intervene in the lawsuit, saying they are worried Disney will agree to a settlement with the FCC that isn’t in the public’s interest.Disney opposed the motion, and a judge will have to decide whether the groups and individuals can act as intervenors in the case.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/tech-policy/2026/09/trump-admin-fights-abc-lawsuit-as-watchdogs-worry-disney-will-settle-with-fcc/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="20">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Ars Technica - All content</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</h2>
+    <p class="article-original-title">原題: <em>Medieval manuscripts are &quot;biological time capsules&quot; for deadly sheeppox virus</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Other archives and libraries around the world may also contain genetic traces of past disease outbreaks.Sheeppox is a highly contagious, often fatal viral disease that was largely eradicated from much of European livestock in the 20th century.But there is still the occasional regional outbreak, such as the one that afflicted many flocks of sheep in Greece last year .</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/science/2026/09/medieval-manuscripts-are-biological-time-capsules-for-deadly-sheeppox-virus/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="21">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</h2>
+    <p class="article-original-title">原題: <em>Architecting memory and storage in the AI era</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">AI 推論が企業のワークロードを推進するようになったことで、組織は AI の現実世界の可能性を引き出すために、速度、効率、拡張性、ワットあたりのパフォーマンスについてインフラストラクチャを再考する必要があります。 AI推論の時代が到来しました。数百万のデータポイントをリアルタイムで分析して救命医学研究を加速する医療システムや、何千もの複雑な顧客のニーズを一度に瞬時に解決するインテリジェントアシスタントを想像してみてください。これらの現実世界のブレークスルーは、継続的インテリジェンスのエンジンとして機能する高度なインフラストラクチャに依存しており、リアルタイム サービスを強化しながら、ますますインテリジェントになる IoT エッジやコンシューマー デバイスもサポートします。ただし、この推論主導の環境では、あらゆる遅延、ボトルネック、無駄なワットが人間の成果と運用コストに直接影響します。 。</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">With AI inference now driving enterprise workloads, organizations must rethink infrastructure for speed, efficiency, scalability, and performance per watt to unlock AI’s real-world potential.The era of AI inference has arrived.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/09/04/1140872/architecting-memory-and-storage-in-the-ai-era/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="22">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</h2>
+    <p class="article-original-title">原題: <em>The Download: selling battlefield drone data and AI reshaping language</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Plus: OpenAI has launched Astra, its most capable model yet.This is today&#x27;s edition of The Download , our weekday newsletter that provides a daily dose of what&#x27;s going on in the world of technology.—Cory Alpert, a researcher at the University of Melbourne studying AI&#x27;s impact on democracy, who previously served in the Biden White House.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/openai.html" target="_blank" rel="noopener noreferrer" class="company-link">OpenAI の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/09/04/1143457/the-download-ukraine-selling-drone-data-ai-reshaping-language/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="23">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</h2>
+    <p class="article-original-title">原題: <em>Data from drones in Ukraine is fueling a new Wild West marketplace</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">The front line is being turned into a place to train AI models, and right now it’s effectively a regulation-free zone.Battlefields in Ukraine are littered with the remnants of drones, which are now firmly established as a critical weapon of modern warfare.But behind all that wreckage, there’s a new gold mine for the defense sector.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/09/04/1143452/drone-data-wild-west/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="24">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">ダウンロード: 子どもの安全と化石燃料農業を再考する</h2>
+    <p class="article-original-title">原題: <em>The Download: rethinking child safety and fossil-fueled farming</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Plus: New York City has banned AI in elementary and middle schools.This is today&#x27;s edition of The Download , our weekday newsletter that provides a daily dose of what&#x27;s going on in the world of technology.These tools have had genuine successes, preventing suicide attempts, intercepting predators, and averting school shootings.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/09/03/1143385/the-download-rethinking-child-safety-online-fossil-fuels-farming/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Other" data-index="25">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#6b7280">📰 Other</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</h2>
+    <p class="article-original-title">原題: <em>Agriculture relies on fossil fuels. It’s costing us.</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Could new fertilizers help combat high prices?If you’ve had to fill up your vehicle’s gas tank or buy a plane ticket lately, you’ve probably felt the effects of rising fossil-fuel prices.But farmers buying fertilizer for their crops are especially aware of just how far the ripple effects of the conflict in Iran have spread.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/09/03/1143320/fertilizer-prices-fossil-fuels/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="26">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">MacBook のハードドライブの状態をチェックする方法</h2>
+    <p class="article-original-title">原題: <em>How to check your MacBook&#x27;s hard drive health</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">If it fails without a backup, recovering your files can become a nightmare.Your Mac&#x27;s storage is arguably the most essential part of the computer.After all, a broken screen or keyboard doesn&#x27;t necessarily lead to data loss.An SSD or hard drive failure, however, is another story.If it goes kaput without a backup, getting your files back can sometimes be impossible.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/apple.html" target="_blank" rel="noopener noreferrer" class="company-link">Apple の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2247782/how-to-check-hard-drive-health-macbook/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="27">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">iCloudストレージに追加料金を支払う価値はありますか?</h2>
+    <p class="article-original-title">原題: <em>Is it worth paying extra for iCloud storage?</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Upgrading your online storage is easy, but choosing the right plan is key.Most Apple devices these days come with 256GB of storage out of the box, but iCloud is a different story.Apple&#x27;s online platform has been around since 2011, and the company has never increased the 5GB of free space it offers .That wasn&#x27;t a lot even a decade ago.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/apple.html" target="_blank" rel="noopener noreferrer" class="company-link">Apple の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2247758/paying-extra-for-icloud-storage-worth-it/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Mobile" data-index="28">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#6366f1">📱 Mobile</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">iPhoneのバッテリーを消耗しているアプリを確認する方法</h2>
+    <p class="article-original-title">原題: <em>How to check which apps are draining your iPhone battery</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Sometimes it&#x27;s good to know why your phone isn&#x27;t lasting a full day.Apple says the battery inside your iPhone is designed to last a full day.While this is mostly true, the way you use your phone can make it drain a lot quicker.Some apps can deplete the battery quickly without you even noticing.The good news is that iOS provides tools that let you check your iPhone&#x27;s battery usage.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/apple.html" target="_blank" rel="noopener noreferrer" class="company-link">Apple の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2247753/how-to-check-apps-draining-iphone-battery/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="29">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</h2>
+    <p class="article-original-title">原題: <em>10 products Apple is leaving behind in 2026</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">While Apple usually supports its devices for a long time, nothing can last forever.It&#x27;s important to know which products the company is no longer selling or supporting, so you can plan when to make the most of an upgrade and avoid getting burned by buying something outdated.Apple &quot;leaving behind&quot; a particular model can refer to a few different changes.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/apple.html" target="_blank" rel="noopener noreferrer" class="company-link">Apple の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2249734/apple-products-being-discontinued-left-behind-2026/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="30">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Windows メモリ診断ツールを実行するとどうなりますか?</h2>
+    <p class="article-original-title">原題: <em>What happens when you run the Windows Memory Diagnostic tool?</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">If you&#x27;ve got memory issues, Microsoft&#x27;s built-in diagnostic tool could come in handy.While your computer&#x27;s SSD or hard drive is where all of your apps, documents and the Windows operating system itself are stored, it is the RAM that handles the data you&#x27;re actively working with.It temporarily stores information about the apps and data that the processor needs quick access to.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/microsoft.html" target="_blank" rel="noopener noreferrer" class="company-link">Microsoft の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2247700/what-happens-when-run-windows-memory-diagnostic-tool/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+        </main>
+
+        <footer class="footer">
+            <p>本ページは公開記事をもとに自動生成しています。数値や仕様は必ず元記事で確認してください。</p>
+            <p>JSON データは同じフォルダ内の tech_news_digest.json で参照できます。</p>
+        </footer>
+    </div>
+
+    <script>
+
+        const categoryButtons = document.querySelectorAll('.category-btn');
+        const articleCards = document.querySelectorAll('.article-card');
+        const searchInput = document.getElementById('search-input');
+
+        let activeCategory = 'all';
+
+        function applyFilters() {
+            const query = searchInput.value.trim().toLowerCase();
+            articleCards.forEach(card => {
+                const matchesCategory = activeCategory === 'all' || card.dataset.category === activeCategory;
+                const searchableText = card.innerText.toLowerCase();
+                const matchesQuery = !query || searchableText.includes(query);
+                card.style.display = matchesCategory && matchesQuery ? '' : 'none';
+            });
+        }
+
+        categoryButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                categoryButtons.forEach(item => item.classList.remove('active'));
+                button.classList.add('active');
+                activeCategory = button.dataset.category;
+                applyFilters();
+            });
+        });
+
+        searchInput.addEventListener('input', applyFilters);
+    
+    </script>
+</body>
+</html>
