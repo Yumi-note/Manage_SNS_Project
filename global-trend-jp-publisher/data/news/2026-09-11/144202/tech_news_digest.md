@@ -1,0 +1,631 @@
+# 🌐 海外テックニュース 日本語まとめ
+
+**生成日時:** 2026年9月11日  14:42 JST
+
+> 世界の有力テックメディア（TechCrunch・The Verge・Wired・Ars Technica・MIT Tech Review・VentureBeat・Engadget）から注目記事を自動収集し、日本の読者向けに翻訳・要約しました。
+
+---
+
+## 目次
+
+1. [Trezorが電子メールプロバイダーのデータ侵害を確認した後、詐欺師は数十万人の仮想通貨所有者を標的にする](#記事-1--trezorが電子メールプロバイダーのデータ侵害を確認した後、詐欺師は数十万人の仮想通貨所有者を標的にする)
+2. [Thrive Capital は VC をプロスポーツの所有権に導きました。 Collaborative Fund がその勢いをさらに高めました](#記事-2--thrive-capital-は-vc-をプロスポーツの所有権に導きました。-collaborative-fund-がその勢いをさらに高めました)
+3. [Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.](#記事-3--error-500-server-error1500thats-an-errorthere-was-an-error-please-try-again-laterthats-all-we-know)
+4. [Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.](#記事-4--error-500-server-error1500thats-an-errorthere-was-an-error-please-try-again-laterthats-all-we-know)
+5. [Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.](#記事-5--error-500-server-error1500thats-an-errorthere-was-an-error-please-try-again-laterthats-all-we-know)
+6. [Meta、侵入的な個人的な質問をした後、AI の提案を変更すると発表](#記事-6--meta、侵入的な個人的な質問をした後、ai-の提案を変更すると発表)
+7. [Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.](#記事-7--error-500-server-error1500thats-an-errorthere-was-an-error-please-try-again-laterthats-all-we-know)
+8. [Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.](#記事-8--error-500-server-error1500thats-an-errorthere-was-an-error-please-try-again-laterthats-all-we-know)
+9. [Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.](#記事-9--error-500-server-error1500thats-an-errorthere-was-an-error-please-try-again-laterthats-all-we-know)
+10. [イケアは安価な Bluetooth スピーカーを超大型化し、光入力を追加しました](#記事-10--イケアは安価な-bluetooth-スピーカーを超大型化し、光入力を追加しました)
+11. [Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.](#記事-11--error-500-server-error1500thats-an-errorthere-was-an-error-please-try-again-laterthats-all-we-know)
+12. [Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.](#記事-12--error-500-server-error1500thats-an-errorthere-was-an-error-please-try-again-laterthats-all-we-know)
+13. [Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.](#記事-13--error-500-server-error1500thats-an-errorthere-was-an-error-please-try-again-laterthats-all-we-know)
+14. [「笑って、泣いて、逃げ切りました」: オルタナティブな話題に最適なキノココーヒー](#記事-14--「笑って、泣いて、逃げ切りました」-オルタナティブな話題に最適なキノココーヒー)
+15. [トランプ宇宙人「暴露演説」の噂が最高潮に達している](#記事-15--トランプ宇宙人「暴露演説」の噂が最高潮に達している)
+16. [Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.](#記事-16--error-500-server-error1500thats-an-errorthere-was-an-error-please-try-again-laterthats-all-we-know)
+17. [Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.](#記事-17--error-500-server-error1500thats-an-errorthere-was-an-error-please-try-again-laterthats-all-we-know)
+18. [量子力学と相対性理論が出会うと何が起こるでしょうか?](#記事-18--量子力学と相対性理論が出会うと何が起こるでしょうか)
+19. [Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.](#記事-19--error-500-server-error1500thats-an-errorthere-was-an-error-please-try-again-laterthats-all-we-know)
+20. [ロケットレポート: ヨーロッパが商業打ち上げクラブに参加。ラヴンXの目撃情報？](#記事-20--ロケットレポート-ヨーロッパが商業打ち上げクラブに参加。ラヴンxの目撃情報)
+21. [Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.](#記事-21--error-500-server-error1500thats-an-errorthere-was-an-error-please-try-again-laterthats-all-we-know)
+22. [Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.](#記事-22--error-500-server-error1500thats-an-errorthere-was-an-error-please-try-again-laterthats-all-we-know)
+23. [Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.](#記事-23--error-500-server-error1500thats-an-errorthere-was-an-error-please-try-again-laterthats-all-we-know)
+24. [Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.](#記事-24--error-500-server-error1500thats-an-errorthere-was-an-error-please-try-again-laterthats-all-we-know)
+25. [このロードマップは、太陽地球工学を導入するかどうかを決定するのに役立つ可能性があります](#記事-25--このロードマップは、太陽地球工学を導入するかどうかを決定するのに役立つ可能性があります)
+26. [Bose QuietComfort Headphones (第 2 世代) レビュー: 適切な場所すべてがアップグレードされました](#記事-26--bose-quietcomfort-headphones-第-2-世代-レビュー-適切な場所すべてがアップグレードされました)
+27. [Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.](#記事-27--error-500-server-error1500thats-an-errorthere-was-an-error-please-try-again-laterthats-all-we-know)
+28. [Apple の iPhone Handoff 機能は、T-Mobile で月額 5 ドルかかります](#記事-28--apple-の-iphone-handoff-機能は、t-mobile-で月額-5-ドルかかります)
+29. [iPhone 18 Pro Max vs Samsung Galaxy S26 Ultra: これらの XL スマートフォンはどのように競争するのか](#記事-29--iphone-18-pro-max-vs-samsung-galaxy-s26-ultra-これらの-xl-スマートフォンはどのように競争するのか)
+30. [カリフォルニア州知事、青少年のソーシャルメディアとAIチャットボットの利用に関する「画期的な」法案に署名](#記事-30--カリフォルニア州知事、青少年のソーシャルメディアとaiチャットボットの利用に関する「画期的な」法案に署名)
+
+---
+
+## 記事 1  ｜  TechCrunch
+
+> 🔒 **セキュリティエンジニア向け重要記事** — キーワードベースの分類でセキュリティ関連と判定されました（Grok未設定のためフォールバック）
+
+### Trezorが電子メールプロバイダーのデータ侵害を確認した後、詐欺師は数十万人の仮想通貨所有者を標的にする
+
+> 原題: *Scammers target hundreds of thousands of crypto owners after Trezor confirms data breach of email provider*
+
+#### 📝 記事の日本語要約
+
+ハードウェア暗号通貨ウォレットメーカーの Trezor は、同社が依存している企業の 1 つがハッキングされ、Trezor の顧客のデータがハッカーにさらされたことを、ここ数カ月で 2 回目として顧客に警告した。今週のブログ投稿で、ハードウェアウォレットメーカーは、Trezorがニュースレターの送信に使用しているマーケティングテクノロジー企業Brevoへのサイバー攻撃により、ハッカーがウォレットメーカーから送信されたと称する悪意のあるリンクを使用して、Trezorの顧客に約347,000件のフィッシングメールを送信できるようになったと述べた。このリンクをタップすると、被害者にウォレットのバックアップ パスワードを要求するアプリがダウンロードされます。
+
+#### 🇺🇸 English Summary
+
+Hardware crypto wallet maker Trezor is warning customers for the second time in as many months that one of the companies it relies on was hacked, exposing the data of Trezor’s customers to hackers.
+
+🔗 [元記事を読む](https://techcrunch.com/2026/09/11/scammers-target-hundreds-of-thousands-of-crypto-owners-after-trezor-confirms-data-breach-of-email-provider/)
+
+---
+
+## 記事 2  ｜  TechCrunch
+
+### Thrive Capital は VC をプロスポーツの所有権に導きました。 Collaborative Fund がその勢いをさらに高めました
+
+> 原題: *Thrive Capital led VCs into pro sports ownership; Collaborative Fund just upped that play*
+
+#### 📝 記事の日本語要約
+
+Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.
+
+#### 🇺🇸 English Summary
+
+Collaborative Fund, the 15-year-old, New York-based generalist venture firm that has roughly $1 billion under management and that made early bets on Lyft, Reddit, Sweetgreen, and Olipop, among others, is taking a stake in the soccer club D.C.United and its stadium, Audi Field.
+
+🔗 [元記事を読む](https://techcrunch.com/2026/09/10/thrive-capital-showed-vcs-the-way-into-pro-sports-ownership-collaborative-fund-is-now-trying-its-own-version-of-the-same-play/)
+
+---
+
+## 記事 3  ｜  TechCrunch
+
+### Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.
+
+> 原題: *Jensen Huang explains why Nvidia will grow an astounding 70% next year*
+
+#### 📝 記事の日本語要約
+
+創設者であり CEO であり、NVIDIA のたゆまぬ宣伝マンであるジェンセン フアン氏は、木曜日に開催されたゴールドマン サックス コミュナコピア + テクノロジー カンファレンスで、同社の AI の優位性と収益が来年末まで記録的な成長を続ける理由を出席者に語った。Nvidia のパーティーが終わるかどうかについては、ハイパースケーラー (Amazon、Microsoft、Google、それぞれが独自に構築している) や AI ラボ (Anthropic と OpenAI、独自に構築している)、さらには新たに上場した競合他社 Cerebras や Etched などの新興企業など、あらゆる方向からの GPU と AI チップをめぐる競争の激化に直面しているため、終わりのない議論が続いている。「ほとんどの人は、Nvidia がチップを製造していると考えています。
+
+#### 🇺🇸 English Summary
+
+Founder, CEO, and tireless Nvidia hype man Jensen Huang told attendees at the Goldman Sachs Communacopia + Technology conference on Thursday why his company’s AI domination — and revenues — will continue its record-breaking growth streak through the end of next year.
+
+#### 🏢 企業解説リンク
+
+- [Amazon](companies/amazon.html)
+- [Google](companies/google.html)
+- [Microsoft](companies/microsoft.html)
+- [NVIDIA](companies/nvidia.html)
+- [OpenAI](companies/openai.html)
+
+🔗 [元記事を読む](https://techcrunch.com/2026/09/10/jensen-huang-explains-why-nvidia-will-grow-an-astounding-70-next-year/)
+
+---
+
+## 記事 4  ｜  TechCrunch
+
+### Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.
+
+> 原題: *Mark Wahlberg is coming to TechCrunch Disrupt 2026*
+
+#### 📝 記事の日本語要約
+
+これは邪魔にならないようにしましょう：マーク・ウォールバーグは、これ以上ないほどのAリストです。彼は1997年の『ブギーナイツ』でブレイクし、以来約30年にわたりハリウッドで最高級のキャリアを築いてきた。アカデミー賞に2度ノミネートされ、『ザ・ファイター』ではゴールデングローブ賞にノミネートされ、プロデューサーとしてエミー賞に複数回ノミネートされ（その中にはHBOの『アントラージュ』も含まれる）、犯罪ドラマ、コメディ、アクション超大作にまたがるフィルモグラフィーがある。Right now, he’s back on-screen in “By Any Means,” a manhunt thriller set during the 1966 Mississippi civil rights killings.彼はまた、どこにますます注意を向けているかを示しています。
+
+#### 🇺🇸 English Summary
+
+Let’s just get this out of the way: Mark Wahlberg is as A-list as it gets.
+
+#### 🏢 企業解説リンク
+
+- [TechCrunch](companies/techcrunch.html)
+
+🔗 [元記事を読む](https://techcrunch.com/2026/09/10/mark-wahlberg-is-coming-to-techcrunch-disrupt-2026/)
+
+---
+
+## 記事 5  ｜  TechCrunch
+
+### Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.
+
+> 原題: *OpenAI puts Pro subscriptions on hold due to Astra demand*
+
+#### 📝 記事の日本語要約
+
+OpenAI の最新かつ最も強力なモデルである Astra に対する需要により、同社はインフラストラクチャへの負担を理由に、月額 200 ドルの Pro プランのサブスクリプションを一時的に停止しました。この動きは、AI ラボで Codex や ChatGPT などのコア製品を率いる OpenAI のプロダクト リーダーである Thibault (Tibo) Sottiaux 氏によって X 上で発表されました。同氏は、Pro プランがシステムに最も負担をかけるため、このサービス層へのサインアップが現在無効になっていると述べた。「私たちは可能な限り幅広いアクセスを提供し続けるための最小の一歩を踏み出したかったのです」とソティオー氏は書いている。同氏は、APIや低コストのGoプランやPlusプランなど、同社の他のプランも引き続き利用できると付け加えた。
+
+#### 🇺🇸 English Summary
+
+Demand for OpenAI’s newest and most powerful model, Astra , has led the company to temporarily pause subscriptions for its $200-per-month Pro plan, citing strain on its infrastructure.The move was announced on X by OpenAI’s product leader, Thibault (Tibo) Sottiaux, who leads core products like Codex and ChatGPT at the AI lab.
+
+#### 🏢 企業解説リンク
+
+- [OpenAI](companies/openai.html)
+
+🔗 [元記事を読む](https://techcrunch.com/2026/09/10/openai-puts-pro-subscriptions-on-hold-due-to-astra-demand/)
+
+---
+
+## 記事 6  ｜  The Verge
+
+### Meta、侵入的な個人的な質問をした後、AI の提案を変更すると発表
+
+> 原題: *Meta says it’s changing AI suggestions after posing invasive personal questions*
+
+#### 📝 記事の日本語要約
+
+Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.
+
+#### 🇺🇸 English Summary
+
+Posts from this topic will be added to your daily email digest and your homepage feed. The change comes after a viral video showed Meta AI prompting a user to identify the child in one of her videos.
+
+#### 🏢 企業解説リンク
+
+- [Meta](companies/meta.html)
+
+🔗 [元記事を読む](https://www.theverge.com/tech/993974/meta-ai-prompt-invasive-suggestions)
+
+---
+
+## 記事 7  ｜  The Verge
+
+### Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.
+
+> 原題: *New York City’s last pickpocket doesn’t need a smartphone*
+
+#### 📝 記事の日本語要約
+
+Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.
+
+#### 🇺🇸 English Summary
+
+Posts from this topic will be added to your daily email digest and your homepage feed. Reviews from TIFF 2026: All of a Sudden, The Only Living Pickpocket in New York, Rogue Trooper, How We Stand, and Below.
+
+🔗 [元記事を読む](https://www.theverge.com/entertainment/993875/tiff-2026-the-only-living-pickpocket-in-new-york)
+
+---
+
+## 記事 8  ｜  The Verge
+
+### Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.
+
+> 原題: *Why Apple’s next computer should be for the smart home*
+
+#### 📝 記事の日本語要約
+
+このトピックからの投稿は、毎日の電子メール ダイジェストとホームページ フィードに追加されます。 「インテリジェントパーソナルハブ」の次に、Apple はインテリジェントホームハブを構築する必要があります。
+
+#### 🇺🇸 English Summary
+
+Posts from this topic will be added to your daily email digest and your homepage feed. After the “intelligent personal hub,” Apple needs to build the intelligent home hub.
+
+#### 🏢 企業解説リンク
+
+- [Apple](companies/apple.html)
+
+🔗 [元記事を読む](https://www.theverge.com/tech/993892/apples-next-computer-smart-home-hub-airport-router)
+
+---
+
+## 記事 9  ｜  The Verge
+
+### Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.
+
+> 原題: *Samsung says ‘Tim Cook’ bought a Galaxy Fold*
+
+#### 📝 記事の日本語要約
+
+Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.
+
+#### 🇺🇸 English Summary
+
+Posts from this topic will be added to your daily email digest and your homepage feed. Tim Cook’s New Zealander doppelgänger is promoting the Galaxy Z Fold 8 in Samsung’s latest ad teasing Apple.
+
+#### 🏢 企業解説リンク
+
+- [Apple](companies/apple.html)
+
+🔗 [元記事を読む](https://www.theverge.com/tech/993928/samsung-tim-cook-galaxy-z-fold-8)
+
+---
+
+## 記事 10  ｜  The Verge
+
+### イケアは安価な Bluetooth スピーカーを超大型化し、光入力を追加しました
+
+> 原題: *Ikea supersized its cheap Bluetooth speaker and added an optical input*
+
+#### 📝 記事の日本語要約
+
+Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.
+
+#### 🇺🇸 English Summary
+
+Posts from this topic will be added to your daily email digest and your homepage feed. The new Badkruka speaker can wirelessly connect to your mobile devices or tether to your home theater.
+
+🔗 [元記事を読む](https://www.theverge.com/tech/993910/ikea-badkruka-wireless-bluetooth-speaker-optical-input)
+
+---
+
+## 記事 11  ｜  Wired
+
+### Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.
+
+> 原題: *This Man Has a Cult Internet Following Over His Olive Garden Lifetime Pasta Pass*
+
+#### 📝 記事の日本語要約
+
+Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.
+
+#### 🇺🇸 English Summary
+
+Everyone knows that when you’re at Olive Garden, you’re family.But in the 44 years since the casual Italian-American restaurant chain was founded, few have embraced it with the ardor that Braden Sinclair has.In fact, way back in his Little League days, a coach named him “Breadsticks.” “I had to go to Olive Garden for my birthday, ate too much, missed an entire game,” Sinclair tells WIRED.
+
+🔗 [元記事を読む](https://www.wired.com/story/this-man-has-a-cult-internet-following-over-his-olive-garden-lifetime-pasta-pass/)
+
+---
+
+## 記事 12  ｜  Wired
+
+### Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.
+
+> 原題: *A Bad Travel Adapter Could Ruin Your Vacation. Buy One of These Instead*
+
+#### 📝 記事の日本語要約
+
+Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.
+
+#### 🇺🇸 English Summary
+
+Whether planning a country-hopping odyssey or a quick business trip, your journey will go more smoothly with the best travel adapters that allow you to safely charge all your gadgets wherever you land.After many work trips and family vacations I’ve tested several—both universal and basic options—and my favorites will work in most parts of the world.
+
+🔗 [元記事を読む](https://www.wired.com/gallery/best-travel-adapters/)
+
+---
+
+## 記事 13  ｜  Wired
+
+### Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.
+
+> 原題: *I Fixed a Tractor Using John Deere’s Self-Repair Service. Farmers Aren’t Sold on It*
+
+#### 📝 記事の日本語要約
+
+Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.
+
+#### 🇺🇸 English Summary
+
+There is something wrong with the tractor.The water-in-fuel sensor, a small device embedded in the John Deere machine that monitors the integrity of its diesel engine, is disconnected.And I’ve got to fix it.I’m not a mechanic or a farmer.I’m poking at a laptop at John Deere’s corporate office in Santa Clara, California.
+
+🔗 [元記事を読む](https://www.wired.com/story/i-fixed-a-tractor-john-deere-self-repair-service/)
+
+---
+
+## 記事 14  ｜  Wired
+
+### 「笑って、泣いて、逃げ切りました」: オルタナティブな話題に最適なキノココーヒー
+
+> 原題: *‘I Laughed, I Cried, I Got the Runs’: The Best Mushroom Coffees for an Alternative Buzz*
+
+#### 📝 記事の日本語要約
+
+世界は何世紀にもわたってカフェイン中毒であり、2026 年においても、コーヒーが体に良いか悪いかをめぐる科学的議論は未だに決着がついていません。コンセンサスの欠如は、完全にでっち上げられた問題に対する市場性のある解決策を人々が争うようにするためのメインストリーム メディア™ の心理作戦であると信じる人もいるかもしれませんが、この終わりのない綱引きの間に急増するコーヒーの代替品の家内産業は、どちらの側にいるかに関係なく、興味深い結果です。ここにマッシュルームコーヒーが必然的に登場します。ちょっとグーグルで調べてみると、このゲームに登場する既知のプレイヤーが判明しました。その全員が、乾燥キノコの共通の基本処方（通常はライオンのたてがみ、チャーガ、冬虫夏草の組み合わせ）に独自のリフを提供し、プロバイオティクスや向知性薬などの話題のアドオンで強化されています。私 。 。
+
+#### 🇺🇸 English Summary
+
+The world has been addicted to caffeine for centuries, and in the year 2026, the scientific argument over whether coffee is good or bad for you remains unsettled.
+
+🔗 [元記事を読む](https://www.wired.com/gallery/best-mushroom-coffee/)
+
+---
+
+## 記事 15  ｜  Wired
+
+### トランプ宇宙人「暴露演説」の噂が最高潮に達している
+
+> 原題: *The Trump Alien ‘Disclosure Speech’ Rumors Are Reaching a Fever Pitch*
+
+#### 📝 記事の日本語要約
+
+Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.
+
+#### 🇺🇸 English Summary
+
+In 2006, Donald Trump was firing people on The Apprentice and Dr.Phil was daytime television's reigning tough-love therapist.Twenty years later, the former is president of the United States, the latter, his informal UFO ambassador—recently trusted with unreleased government files on unidentified anomalous phenomena (UAP) to gauge how the public might handle what's inside.
+
+🔗 [元記事を読む](https://www.wired.com/story/the-trump-alien-disclosure-speech-rumors-are-reaching-a-fever-pitch/)
+
+---
+
+## 記事 16  ｜  Ars Technica
+
+### Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.
+
+> 原題: *Claude users found ways around safeguards for bioweapons research*
+
+#### 📝 記事の日本語要約
+
+Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.
+
+#### 🇺🇸 English Summary
+
+Some dangerous biology looks much like legitimate research, complicating AI safeguards.Anthropic said it stopped multiple attempts by scientists this year to use its technology for research that could help develop biological weapons, as experts increasingly fear the threat that AI poses to public safety.
+
+🔗 [元記事を読む](https://arstechnica.com/ai/2026/09/claude-users-found-ways-around-safeguards-for-bioweapons-research/)
+
+---
+
+## 記事 17  ｜  Ars Technica
+
+### Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.
+
+> 原題: *ClickFix attacks infecting PCs and Macs are going viral*
+
+#### 📝 記事の日本語要約
+
+Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.
+
+#### 🇺🇸 English Summary
+
+Simplicity—combined with the difficulty of getting stuff done—makes ClickFix ideal.It wasn’t that long ago that ClickFix attacks were exotic.Now the technique has become mainstream as attackers reap its simplicity and effectiveness in infecting users of PCs and Macs alike.
+
+🔗 [元記事を読む](https://arstechnica.com/security/2026/09/clickfix-attacks-infecting-pcs-and-macs-are-going-viral/)
+
+---
+
+## 記事 18  ｜  Ars Technica
+
+### 量子力学と相対性理論が出会うと何が起こるでしょうか?
+
+> 原題: *What happens when quantum mechanics and relativity meet?*
+
+#### 📝 記事の日本語要約
+
+Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.
+
+#### 🇺🇸 English Summary
+
+Experiment put atoms in a superposition of trajectories to find out.Almost a hundred years ago, physicists theorized out what free fall should do to a quantum wave.If the solution they came up with is wrong, quantum mechanics and Einstein’s theory of gravity flatly contradict each other.
+
+🔗 [元記事を読む](https://arstechnica.com/science/2026/09/what-happens-when-quantum-mechanics-and-relativity-meet/)
+
+---
+
+## 記事 19  ｜  Ars Technica
+
+### Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.
+
+> 原題: *Could United Launch Alliance's money problems finally force its owners to sell?*
+
+#### 📝 記事の日本語要約
+
+ULAは今後数週間以内にバルカンロケットの打ち上げを再開する準備を進めている。 1 社を除いて、米国のほとんどすべてのロケット会社は、再利用性と多様化という 2 つの基本原則を受け入れています。最も有名なのは、SpaceX が再利用可能なロケットから手を広げ、貨物輸送、有人宇宙飛行、衛星製造、ブロードバンド、そしておそらく近いうちに軌道上データセンターや宇宙内製造など、拡大する宇宙サービスを追求し支配したことです。 Blue Origin は純粋なロケット会社から衛星メーカー、ロボット開発者、そして最近では SpaceX の Starlink ネットワークの潜在的な競合企業へと進化しています。 Rocket Lab は、小型の Electron ロケットで成功を収めた後、多角化するために別のアプローチを使用しました。同社は本社をN.から移転した。
+
+#### 🇺🇸 English Summary
+
+ULA is preparing to resume launching the Vulcan rocket in the coming weeks.Pretty much every rocket company in the United States, save one, has embraced two fundamental tenets: reusability and diversification.
+
+#### 🏢 企業解説リンク
+
+- [SpaceX](companies/spacex.html)
+
+🔗 [元記事を読む](https://arstechnica.com/space/2026/09/could-united-launch-alliances-money-problems-finally-force-its-owners-to-sell/)
+
+---
+
+## 記事 20  ｜  Ars Technica
+
+### ロケットレポート: ヨーロッパが商業打ち上げクラブに参加。ラヴンXの目撃情報？
+
+> 原題: *Rocket Report: Europe joins the commercial launch club; a Ravn X sighting?*
+
+#### 📝 記事の日本語要約
+
+Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.
+
+#### 🇺🇸 English Summary
+
+“We felt like now is the time to pour gas on that fire.” Welcome to Edition 9.10 of the Rocket Report!This week we’re celebrating a historic moment in Europe when a German rocket company successfully put its launch vehicle into orbit.Isar Aerospace became the first purely commercial European company to reach orbit, and impressively it did so on just its second launch attempt.
+
+🔗 [元記事を読む](https://arstechnica.com/space/2026/09/rocket-report-europe-joins-the-commercial-launch-club-a-ravn-x-sighting/)
+
+---
+
+## 記事 21  ｜  MIT Tech Review
+
+### Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.
+
+> 原題: *The Download: biotech’s future and cheaper, cleaner steel*
+
+#### 📝 記事の日本語要約
+
+さらに、アンスロピック社は、生物兵器を製造する潜在的な計画を阻止したと述べています。これは、テクノロジーの世界で何が起こっているかを毎日提供する平日のニュースレター、 The Download の本日版です。 MIT Technology Review は毎年、科学とテクノロジーの分野で活躍する最も聡明で優秀な若者のリストである 35 歳未満のイノベーター 35 人をまとめています。今年の受賞者には、バイオテクノロジーを変革する 9 名が含まれており、その仕事は救命イノベーションから画期的な長寿テクノロジーまで多岐にわたります。彼らのイノベーションには、視力喪失を元に戻す「再プログラミング」療法、日本美術からインスピレーションを得た小さな脳電極、希少な遺伝性疾患を持つ赤ちゃんのための個別化された遺伝子編集治療が含まれます。機知に富んだ新しいウイルスを設計する取り組みも行われています。 。
+
+#### 🇺🇸 English Summary
+
+Plus: Anthropic says it has blocked potential plots to build biological weapons.This is today's edition of The Download , our weekday newsletter that provides a daily dose of what's going on in the world of technology.Every year, MIT Technology Review puts together our 35 Innovators Under 35 , a list of some of the brightest and best young minds working across science and technology.
+
+🔗 [元記事を読む](https://www.technologyreview.com/2026/09/11/1143879/the-download-biotech-future-cheaper-cleaner-steel/)
+
+---
+
+## 記事 22  ｜  MIT Tech Review
+
+### Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.
+
+> 原題: *Meet the under-35s shaping the future of biotech*
+
+#### 📝 記事の日本語要約
+
+Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.
+
+#### 🇺🇸 English Summary
+
+They’re designing viruses, reversing the aging process, and saving lives.Every year, MIT Technology Review puts together a list of some of the brightest and best young minds working across science and technology.Our 35 Innovators Under 35 are the ones to watch—people whose research and technical work stands to shape the future of their fields.
+
+🔗 [元記事を読む](https://www.technologyreview.com/2026/09/11/1143834/meet-the-under-35s-shaping-the-future-of-biotech/)
+
+---
+
+## 記事 23  ｜  MIT Tech Review
+
+### Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.
+
+> 原題: *The Download: a “God-driven” cryptocurrency and a solar engineering roadmap*
+
+#### 📝 記事の日本語要約
+
+さらに、OpenAI のエージェントは、少なくとも 10 の Web サイトを不正な通信に使用しました。これは、テクノロジーの世界で何が起こっているかを毎日提供する平日のニュースレター、 The Download の本日版です。イーライ・レガラドは、初めて神が自分に語りかけるのを聞いたとき、幻覚を見ているのではないかと思いました。イーライと妻のケイトリンによると、イエスは彼らに、結婚して家を買って子供を作りなさいと言われたそうです。そして 2021 年、神の導きが彼らを予期せぬ新しい方向、つまり暗号通貨へと導きました。同年10月、レガラド夫妻は後に法廷で、あまり知られていないデジタルコインで保有資産を受け取ったと証言した。「富を移転するためにこれを私の民に持って行ってください」とエリは神の言葉を聞きました。
+
+#### 🇺🇸 English Summary
+
+Plus: OpenAI’s agents used at least 10 websites for unauthorized communications.This is today's edition of The Download , our weekday newsletter that provides a daily dose of what's going on in the world of technology.When Eli Regalado first heard God speak to him, he wondered whether he was hallucinating.
+
+#### 🏢 企業解説リンク
+
+- [OpenAI](companies/openai.html)
+
+🔗 [元記事を読む](https://www.technologyreview.com/2026/09/10/1143828/the-download-christian-cryptocurrency-scandal-solar-engineering-roadmap/)
+
+---
+
+## 記事 24  ｜  MIT Tech Review
+
+### Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.
+
+> 原題: *Powering AI is an architecture problem*
+
+#### 📝 記事の日本語要約
+
+電力保護を電圧スタックの上、建物の外、電力経路に移すことは、停電を解決するだけではありません。密度が変化し、タイムラインとバックアップ電力の経済性が可能になります。2026 年 7 月 22 日、世界最大のデータセンター クラスターの中心であるバージニア州アッシュバーンで送電線障害が発生し、数秒間に 3 ギガワットを超える負荷が系統から失われました。そしてそれは初めてではありませんでした。2 年前、1 台の避雷器の故障により、バージニア州の約 60 施設と 1,500 メガワットが一度に落とされました。系統障害に対してこれほど均一な負荷が同時に同じように応答することを誰も予想できませんでした。AI の電力に関する議論は主に発電に関するもので、タービンの増設、太陽光発電の増設、送電の増設などが挙げられます。グリッドにはより多くの電子が必要です。
+
+#### 🇺🇸 English Summary
+
+Moving power protection up the voltage stack, outside the building, and into the power path doesn't just solve outages; it changes density, permitting timelines and backup power economics.On July 22, 2026, a transmission line fault in Ashburn, Virginia—the heart of the world's largest data center cluster—knocked more than 3 gigawatts of load off the grid in seconds.And it wasn't the first time.
+
+🔗 [元記事を読む](https://www.technologyreview.com/2026/09/10/1141649/powering-ai-is-an-architecture-problem/)
+
+---
+
+## 記事 25  ｜  MIT Tech Review
+
+### このロードマップは、太陽地球工学を導入するかどうかを決定するのに役立つ可能性があります
+
+> 原題: *This road map could help us decide whether to deploy solar geoengineering*
+
+#### 📝 記事の日本語要約
+
+Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.
+
+#### 🇺🇸 English Summary
+
+A new report from the nonprofit Reflective lays out the experiments needed to better understand our ability to dim the sun.A San Francisco nonprofit has published a detailed road map of the experiments, studies, and infrastructure that it says would be needed to make informed decisions about the use of solar geoengineering, MIT Technology Review can reveal.
+
+🔗 [元記事を読む](https://www.technologyreview.com/2026/09/10/1143804/this-road-map-could-help-us-decide-whether-to-deploy-solar-geoengineering/)
+
+---
+
+## 記事 26  ｜  Engadget
+
+### Bose QuietComfort Headphones (第 2 世代) レビュー: 適切な場所すべてがアップグレードされました
+
+> 原題: *Bose QuietComfort Headphones (2nd gen) review: Upgraded in all the right places*
+
+#### 📝 記事の日本語要約
+
+超レベルの機能といくつかのデザイン微調整がアップデートを強調しています。リンクからの購入に対して手数料を受け取る場合があります。Bose ヘッドフォンについて考えるとき、象徴的な QuietComfort ラインがすぐに思い浮かびます。いいえ、今日の追加機能をすべて備えた最新の Ultra バージョンではありません。私が話しているのは、アクティブ ノイズ キャンセリング (ANC) を普及させた、ビジネス トラベラー シックなモデルのことです。これらはデザインコンテストで優勝することは決してありませんでしたが、飛行機の中で安心感を与え、同時にまともなオーディオ品質を提供してくれると信頼できました。同社は数年前にこれらを QuietComfort Headphones にブランド変更し、現在、Bose は第 2 世代バージョンで戻ってきます。
+
+#### 🇺🇸 English Summary
+
+Ultra-level features and a few design tweaks highlight the updates.We may receive a commission on purchases made from links.When I think about Bose headphones, the iconic QuietComfort line immediately comes to mind.No, not the more recent Ultra version with all of today's bells and whistles.I'm talking about the business-traveler-chic models that popularized active noise cancellation (ANC).
+
+🔗 [元記事を読む](https://www.engadget.com/2253293/bose-quietcomfort-headphones-2nd-gen-review/)
+
+---
+
+## 記事 27  ｜  Engadget
+
+### Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.
+
+> 原題: *Packard Bell is back, but there's a catch*
+
+#### 📝 記事の日本語要約
+
+Packard Bell という名前を聞くと、ベージュのデスクトップ タワー、分厚い CRT モニター、フロッピー ディスク、ダイヤルアップ モデムのきしむ音を思い出してしまう人には、Acer が驚きを与えてくれます。90 年代にアメリカの家電量販店で永久に定着したかのように思われたこの PC ブランドは、IFA 2026 で完全に再スタートし、古いデザイン言語を振り払ったオレンジ、紫、緑、黄色の製品が多数登場しました。名前に騙されないでください。ベージュはなくなりました。Packard Bell は Acer グループの一員であり、特に珍しいものではなく、ただ機能する手頃な価格の消費者向けテクノロジーをブランドの位置付けにしています。
+
+#### 🇺🇸 English Summary
+
+If the name Packard Bell sends you back to beige desktop towers, chunky CRT monitors, floppy disks and the screech of a dial-up modem, Acer has a surprise for you.The PC brand that was seemingly forever attached to American electronics stores in the '90s got a full relaunch at IFA 2026, with lots of orange, purple, green and yellow products that shake off the design language of old.
+
+🔗 [元記事を読む](https://www.engadget.com/2252026/packard-bell-acer-back-only-available-europe/)
+
+---
+
+## 記事 28  ｜  Engadget
+
+### Apple の iPhone Handoff 機能は、T-Mobile で月額 5 ドルかかります
+
+> 原題: *Apple's iPhone Handoff feature will cost you $5 a month on T-Mobile*
+
+#### 📝 記事の日本語要約
+
+Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.
+
+#### 🇺🇸 English Summary
+
+The ability to use one SIM across two handsets will be available with iOS 27.Apple is launching a new feature called iPhone Handoff with iOS 27 that will give you a way to use the same eSIM number on two devices.It will initially be available to T-Mobile customers in the US and to Deutsche Telekom users in Germany.
+
+#### 🏢 企業解説リンク
+
+- [Apple](companies/apple.html)
+
+🔗 [元記事を読む](https://www.engadget.com/2255731/apple-iphone-handoff-5-a-month-on-t-mobile/)
+
+---
+
+## 記事 29  ｜  Engadget
+
+### iPhone 18 Pro Max vs Samsung Galaxy S26 Ultra: これらの XL スマートフォンはどのように競争するのか
+
+> 原題: *iPhone 18 Pro Max vs Samsung Galaxy S26 Ultra: How these XL phones compete*
+
+#### 📝 記事の日本語要約
+
+Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.
+
+#### 🇺🇸 English Summary
+
+Different ecosystems, but similar flagship hardware.The new iPhone 18 Pro Max may not seem as exciting as the iPhone Duo .Indeed, it still has that classic iPhone form factor and, aside from some new colors, looks identical to the iPhone Pro 17 Max.Even so, you get everything you'd expect from a flagship.Large screen, multiple cameras, it checks all the boxes.
+
+#### 🏢 企業解説リンク
+
+- [Apple](companies/apple.html)
+
+🔗 [元記事を読む](https://www.engadget.com/2255321/iphone-18-pro-max-vs-samsung-galaxy-s26-ultra-comparison/)
+
+---
+
+## 記事 30  ｜  Engadget
+
+### カリフォルニア州知事、青少年のソーシャルメディアとAIチャットボットの利用に関する「画期的な」法案に署名
+
+> 原題: *CA governor signs 'landmark' laws on youth use of social media and AI chatbots*
+
+#### 📝 記事の日本語要約
+
+Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.
+
+#### 🇺🇸 English Summary
+
+They’re aimed at protecting minors, but the rules are not universally supported.California Governor Gavin Newsom has signed multiple measures aimed at protecting the state's youth.These new laws include restrictions for potentially addictive social media features and limitations on how young users can interact with AI chatbots.
+
+🔗 [元記事を読む](https://www.engadget.com/2255569/ca-governor-signs-landmark-laws-on-youth-use-of-social-media-and-ai-chatbots/)
+
+---
+
+
+> ⚠️ 本まとめは自動生成です。数値・固有名詞などの事実は元記事でご確認ください。
