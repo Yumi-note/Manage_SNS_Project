@@ -1,0 +1,1216 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>海外テックニュース日本語まとめ</title>
+    <style>
+        :root {
+            color-scheme: dark;
+            --bg: #0a0f1d;
+            --panel: rgba(13, 20, 36, 0.92);
+            --line: rgba(132, 152, 187, 0.25);
+            --text: #eef3ff;
+            --muted: #adc1dd;
+            --accent: #7dd3fc;
+            --accent-strong: #38bdf8;
+            --shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: "Hiragino Sans", "Noto Sans JP", sans-serif;
+            background:
+                radial-gradient(circle at top right, rgba(56, 189, 248, 0.22), transparent 26%),
+                radial-gradient(circle at top left, rgba(16, 185, 129, 0.16), transparent 20%),
+                linear-gradient(180deg, #07101f 0%, #0b1327 48%, #0a0f1d 100%);
+            color: var(--text);
+        }
+
+        .page-shell {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 24px;
+        }
+
+        .hero {
+            padding: 28px;
+            border: 1px solid var(--line);
+            border-radius: 28px;
+            background: linear-gradient(145deg, rgba(18, 27, 48, 0.96), rgba(10, 17, 32, 0.96));
+            box-shadow: var(--shadow);
+        }
+
+        .hero-nav {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 28px;
+        }
+
+        .nav-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 42px;
+            padding: 0 16px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        .eyebrow {
+            margin: 0 0 10px;
+            color: var(--accent);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            font-size: 0.78rem;
+        }
+
+        .hero h1 {
+            margin: 0;
+            font-size: clamp(2rem, 3vw, 3.3rem);
+            line-height: 1.1;
+        }
+
+        .timestamp,
+        .description {
+            color: var(--muted);
+        }
+
+        .control-panel {
+            margin: 20px 0 28px;
+            padding: 22px;
+            border: 1px solid var(--line);
+            border-radius: 24px;
+            background: var(--panel);
+            backdrop-filter: blur(12px);
+        }
+
+        .control-header {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            align-items: end;
+            flex-wrap: wrap;
+        }
+
+        .control-header h2 {
+            margin: 0 0 6px;
+        }
+
+        .control-header p {
+            margin: 0;
+            color: var(--muted);
+        }
+
+        #search-input {
+            width: min(100%, 360px);
+            min-height: 46px;
+            padding: 0 14px;
+            border-radius: 14px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
+        }
+
+        .category-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 16px;
+        }
+
+        .category-btn {
+            min-height: 42px;
+            padding: 0 14px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
+            cursor: pointer;
+        }
+
+        .category-btn.active {
+            background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+            color: #06111f;
+            border-color: transparent;
+            font-weight: 700;
+        }
+
+        .article-list {
+            display: grid;
+            gap: 18px;
+        }
+
+        .article-card {
+            padding: 24px;
+            border-radius: 24px;
+            border: 1px solid var(--line);
+            background: linear-gradient(180deg, rgba(12, 18, 34, 0.96), rgba(14, 22, 39, 0.9));
+            box-shadow: var(--shadow);
+        }
+
+        .card-topline {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+
+        .category-chip,
+        .source-chip {
+            display: inline-flex;
+            align-items: center;
+            min-height: 34px;
+            padding: 0 12px;
+            border-radius: 999px;
+            font-size: 0.92rem;
+            font-weight: 700;
+        }
+
+        .source-chip {
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--muted);
+        }
+
+        .article-title {
+            margin: 0 0 10px;
+            font-size: clamp(1.45rem, 2vw, 2rem);
+            line-height: 1.35;
+        }
+
+        .article-original-title {
+            margin: 0 0 18px;
+            color: var(--muted);
+        }
+
+        .security-alert {
+            margin: 0 0 14px;
+            padding: 10px 14px;
+            border-radius: 12px;
+            border: 1px solid rgba(248, 113, 113, 0.4);
+            background: rgba(248, 113, 113, 0.12);
+            color: #fecaca;
+            font-weight: 700;
+            font-size: 0.92rem;
+        }
+
+        .article-section {
+            margin-top: 18px;
+            padding-top: 18px;
+            border-top: 1px solid var(--line);
+        }
+
+        .article-section h3 {
+            margin: 0 0 12px;
+            font-size: 1rem;
+            color: var(--accent);
+        }
+
+        .article-paragraph {
+            margin: 0 0 14px;
+            color: #dce7f8;
+            line-height: 1.9;
+            font-size: 1rem;
+        }
+
+        .company-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .company-link,
+        .action-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 42px;
+            padding: 0 14px;
+            border-radius: 14px;
+            text-decoration: none;
+            border: 1px solid rgba(125, 211, 252, 0.3);
+        }
+
+        .company-link {
+            color: var(--accent);
+            background: rgba(56, 189, 248, 0.08);
+        }
+
+        .article-actions {
+            margin-top: 22px;
+        }
+
+        .footer {
+            padding: 28px 8px 40px;
+            color: var(--muted);
+            text-align: center;
+        }
+
+        .footer p {
+            margin: 6px 0;
+        }
+
+        .action-link.primary {
+            color: #06111f;
+            font-weight: 700;
+            background: linear-gradient(135deg, #7dd3fc, #22d3ee);
+            border-color: transparent;
+        }
+
+        @media (max-width: 720px) {
+            .page-shell {
+                padding: 14px;
+            }
+
+            .hero,
+            .control-panel,
+            .article-card {
+                padding: 18px;
+                border-radius: 20px;
+            }
+
+            .control-header {
+                align-items: stretch;
+            }
+
+            #search-input {
+                width: 100%;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="page-shell">
+        <header class="hero">
+            <div class="hero-nav">
+                <a class="nav-link" href="../../index.html">HOME</a>
+                <a class="nav-link" href="../index.html">この日の記事一覧</a>
+            </div>
+            <div class="hero-copy">
+                <p class="eyebrow">Global Tech News Digest</p>
+                <h1>海外テックニュース 日本語まとめ</h1>
+                <p class="timestamp">2026年9月16日 15:13 JST に収集した記事を掲載しています。</p>
+                <p class="description">各カードには本文寄りの日本語訳を掲載し、記事中で触れた企業は別ページの解説リンクとして分離しています。</p>
+            </div>
+        </header>
+
+        <section class="control-panel">
+            <div class="control-header">
+                <div>
+                    <h2>記事を探す</h2>
+                    <p>カテゴリとキーワードで一覧を絞り込めます。</p>
+                </div>
+                <input type="text" id="search-input" placeholder="タイトル・本文・媒体名で検索">
+            </div>
+            <div class="category-buttons">
+                <button class="category-btn active" data-category="all">すべて (30)</button>
+<button class="category-btn" data-category="AI/ML" style="--accent:#10b981">🤖 AI/ML (20)</button>
+<button class="category-btn" data-category="Hardware" style="--accent:#06b6d4">⚙️ Hardware (1)</button>
+<button class="category-btn" data-category="Media" style="--accent:#f59e0b">🎬 Media (2)</button>
+<button class="category-btn" data-category="Mobile" style="--accent:#6366f1">📱 Mobile (3)</button>
+<button class="category-btn" data-category="Other" style="--accent:#6b7280">📰 Other (2)</button>
+<button class="category-btn" data-category="Startups" style="--accent:#8b5cf6">🚀 Startups (2)</button>
+            </div>
+        </section>
+
+        <main class="article-list" id="articles-container">
+            <article class="article-card" data-category="AI/ML" data-index="1">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Nvidia’s Les Karpas joins the agenda lineup at Disrupt 2026</h2>
+    <p class="article-original-title">原題: <em>Nvidia’s Les Karpas joins the agenda lineup at Disrupt 2026</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">The world hasn’t been the same since ChatGPT made its debut in November 2022, when seemingly out of nowhere, a means of engaging with large language models propelled AI beyond hype and into day-to-day reality.Robotics, like AI, has been discussed, built upon, and in some ways adopted for a long time now, but it’s yet to have that big breakthrough moment.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">The world hasn’t been the same since ChatGPT made its debut in November 2022, when seemingly out of nowhere, a means of engaging with large language models propelled AI beyond hype and into day-to-day reality.Robotics, like AI, has been discussed, built upon, and in some ways adopted for a long time now, but it’s yet to have that big breakthrough moment.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/nvidia.html" target="_blank" rel="noopener noreferrer" class="company-link">NVIDIA の解説</a> <a href="companies/techcrunch.html" target="_blank" rel="noopener noreferrer" class="company-link">TechCrunch の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/09/16/robots-are-waiting-for-a-chatgpt-moment-nvidias-les-karpas-explains-why-at-techcrunch-disrupt-2026/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="2">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Google says some Pixel phone owners were hacked in zero-day attacks</h2>
+    <p class="article-original-title">原題: <em>Google says some Pixel phone owners were hacked in zero-day attacks</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Google says that a bug in its Pixel smartphones’ software was exploited in limited and targeted cyberattacks.The company said Tuesday that the bug, tracked as CVE-2026-58704, has now been patched.The bug can be exploited silently and without any interaction from the phone owner in what’s known as a “zero-click” attack, meaning a victim does not need to click on a link or open a file.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Google says that a bug in its Pixel smartphones’ software was exploited in limited and targeted cyberattacks.The company said Tuesday that the bug, tracked as CVE-2026-58704, has now been patched.The bug can be exploited silently and without any interaction from the phone owner in what’s known as a “zero-click” attack, meaning a victim does not need to click on a link or open a file.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/google.html" target="_blank" rel="noopener noreferrer" class="company-link">Google の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/09/16/google-says-some-pixel-phone-owners-were-hacked-in-zero-day-attacks/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="3">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Amazon gives its workers a raise of $1 per hour</h2>
+    <p class="article-original-title">原題: <em>Amazon gives its workers a raise of $1 per hour</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Amazon is raising the minimum starting pay for its U.S.core operations workers — like delivery drivers and fulfillment center employees — to $20 per hour and its average hourly pay to nearly $24 per hour.The company notes the higher pay represents an increase of $1 per hour for eligible employees.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Amazon is raising the minimum starting pay for its U.S.core operations workers — like delivery drivers and fulfillment center employees — to $20 per hour and its average hourly pay to nearly $24 per hour.The company notes the higher pay represents an increase of $1 per hour for eligible employees.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/amazon.html" target="_blank" rel="noopener noreferrer" class="company-link">Amazon の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/09/16/amazon-gives-its-workers-a-raise-of-1-per-hour/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Media" data-index="4">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#f59e0b">🎬 Media</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Threads&#x27; new features let podcasters promote shows and reach listeners</h2>
+    <p class="article-original-title">原題: <em>Threads&#x27; new features let podcasters promote shows and reach listeners</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Meta announced on Wednesday that its social network and X rival Threads is rolling out new tools that will allow podcast creators to promote their shows, grow their audiences, and engage existing listeners directly on the platform.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Meta announced on Wednesday that its social network and X rival Threads is rolling out new tools that will allow podcast creators to promote their shows, grow their audiences, and engage existing listeners directly on the platform.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/meta.html" target="_blank" rel="noopener noreferrer" class="company-link">Meta の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/09/16/threads-new-features-let-podcasters-promote-shows-and-reach-listeners/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Startups" data-index="5">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#8b5cf6">🚀 Startups</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Here are the VCs judging in Startup Battlefield 200 Disrupt 2026</h2>
+    <p class="article-original-title">原題: <em>Here are the VCs judging in Startup Battlefield 200 Disrupt 2026</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">A great pitch doesn’t win Startup Battlefield 200 .A great company does.That’s why the VCs sitting in the judges’ seats matter so much.They aren’t looking for polished presentations or clever demos — they’re looking for founders solving real problems with businesses that can endure.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">A great pitch doesn’t win Startup Battlefield 200 .A great company does.That’s why the VCs sitting in the judges’ seats matter so much.They aren’t looking for polished presentations or clever demos — they’re looking for founders solving real problems with businesses that can endure.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/techcrunch.html" target="_blank" rel="noopener noreferrer" class="company-link">TechCrunch の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/09/16/next-wave-of-vcs-judging-startup-battlefield-200-contenders-at-techcrunch-disrupt-2026-revealed/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="6">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">The sexy AI-powered dating app scams are here</h2>
+    <p class="article-original-title">原題: <em>The sexy AI-powered dating app scams are here</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. Thousands of people were catfished by scammers supercharged with AI. Posts from this author will be added to your daily email digest and your homepage feed.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. Thousands of people were catfished by scammers supercharged with AI. Posts from this author will be added to your daily email digest and your homepage feed.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/ai-artificial-intelligence/995348/ai-dating-app-scams" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="7">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Xreal’s well-rounded 1S glasses are back down to their lowest price</h2>
+    <p class="article-original-title">原題: <em>Xreal’s well-rounded 1S glasses are back down to their lowest price</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. 3DoF, comfort, and great sound quality. Other deals include the $99 Beats Pill, refurb Sonos Ace, and more.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. 3DoF, comfort, and great sound quality. Other deals include the $99 Beats Pill, refurb Sonos Ace, and more.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/gadgets/996216/xreal-video-glasses-beats-pill-sonos-ace-deal-sale" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="8">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">A brief history of AI executives calling for regulation</h2>
+    <p class="article-original-title">原題: <em>A brief history of AI executives calling for regulation</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. The industry is in a panic, but it’s been claiming to want legal guardrails for years — with few meaningful results.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. The industry is in a panic, but it’s been claiming to want legal guardrails for years — with few meaningful results.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/policy/995534/a-brief-history-of-ai-executives-calling-for-regulation" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="9">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Nintendo opens up Fire Emblem with the gigantic Fortune’s Weave</h2>
+    <p class="article-original-title">原題: <em>Nintendo opens up Fire Emblem with the gigantic Fortune’s Weave</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. As Fire Emblem has gotten bigger, it’s gotten more ambitious, yet the new game is as engrossing as ever.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. As Fire Emblem has gotten bigger, it’s gotten more ambitious, yet the new game is as engrossing as ever.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/games/995539/fire-emblem-fortunes-weave-switch-2-review" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="10">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">The iPhone 18 Pro’s big camera update is all about the small gains</h2>
+    <p class="article-original-title">原題: <em>The iPhone 18 Pro’s big camera update is all about the small gains</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. The Pro camera’s major upgrade offers minor image quality improvements — whether or not you know what an f-stop is.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. The Pro camera’s major upgrade offers minor image quality improvements — whether or not you know what an f-stop is.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/tech/995945/iphone-18-pro-max-review-camera-aperture" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="11">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">The iPhone 18 Pro Is for the Shutterbugs</h2>
+    <p class="article-original-title">原題: <em>The iPhone 18 Pro Is for the Shutterbugs</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">There is no iPhone 18 this year .If you were hoping to upgrade your smartphone right now, Apple is only offering the new iPhone 18 Pro models (and a very expensive folding iPhone coming next month ).Don&#x27;t let that be a reason to spend extra money on a phone you might not need.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">There is no iPhone 18 this year .If you were hoping to upgrade your smartphone right now, Apple is only offering the new iPhone 18 Pro models (and a very expensive folding iPhone coming next month ).Don&#x27;t let that be a reason to spend extra money on a phone you might not need.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/apple.html" target="_blank" rel="noopener noreferrer" class="company-link">Apple の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/review/apple-iphone-18-pro-and-iphone-18-pro-max/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Mobile" data-index="12">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#6366f1">📱 Mobile</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Don’t Buy an Android Phone Until You Read Our Guide</h2>
+    <p class="article-original-title">原題: <em>Don’t Buy an Android Phone Until You Read Our Guide</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">The best Android phone means something different to everyone.It&#x27;s hard to find one that caters to every need, but chances are there&#x27;s a new smartphone that comes close to what you&#x27;re looking for.From the bottomless pit of phone choices, my favorite Android handsets include the Google Pixel 10a , Pixel 11 , and Galaxy S26 Ultra .</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">The best Android phone means something different to everyone.It&#x27;s hard to find one that caters to every need, but chances are there&#x27;s a new smartphone that comes close to what you&#x27;re looking for.From the bottomless pit of phone choices, my favorite Android handsets include the Google Pixel 10a , Pixel 11 , and Galaxy S26 Ultra .</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/google.html" target="_blank" rel="noopener noreferrer" class="company-link">Google の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/gallery/best-android-phones/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="13">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Hackers Got Inside a Flock Camera. Its Data Shows How the System Really Works</h2>
+    <p class="article-original-title">原題: <em>Hackers Got Inside a Flock Camera. Its Data Shows How the System Really Works</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Hackers ripped down a Flock camera above a roadway, made a near-complete copy of the data stored inside it, and shared the files with 404 Media and WIRED, revealing in new detail how exactly Flock Safety’s cameras track the movements of both vehicles and people .</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Hackers ripped down a Flock camera above a roadway, made a near-complete copy of the data stored inside it, and shared the files with 404 Media and WIRED, revealing in new detail how exactly Flock Safety’s cameras track the movements of both vehicles and people .</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/story/hackers-flock-camera-data-shows-how-system-works/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Mobile" data-index="14">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#6366f1">📱 Mobile</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Introducing the WIRED App</h2>
+    <p class="article-original-title">原題: <em>Introducing the WIRED App</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">The new WIRED app is now available on iPhone and Android. Every day, WIRED brings you exclusive, future-looking journalism. Now there are more ways to make the most of it. Download it for free on iPhone or Android . In the WIRED app, you’ll have more ways to read, watch, listen, and connect: Check out the WIRED app today on iPhone or Android .</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">The new WIRED app is now available on iPhone and Android. Every day, WIRED brings you exclusive, future-looking journalism. Now there are more ways to make the most of it. Download it for free on iPhone or Android . In the WIRED app, you’ll have more ways to read, watch, listen, and connect: Check out the WIRED app today on iPhone or Android .</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/story/introducing-the-wired-app/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Other" data-index="15">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#6b7280">📰 Other</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">The EU Plans to Ban Social Media For Under-13s</h2>
+    <p class="article-original-title">原題: <em>The EU Plans to Ban Social Media For Under-13s</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">The European Union has announced plans to restrict children’s access to social media across member states in a bid to free them from what President of the Commission Ursula von der Leyen described as the “capture [of] their attention, their focus, their minds” by the platforms.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">The European Union has announced plans to restrict children’s access to social media across member states in a bid to free them from what President of the Commission Ursula von der Leyen described as the “capture [of] their attention, their focus, their minds” by the platforms.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/story/the-eu-bans-social-media-for-under-13s/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="16">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Ars Technica - All content</span>
+    </div>
+
+    
+
+    <h2 class="article-title">How chimps teach their kids tool tricks</h2>
+    <p class="article-original-title">原題: <em>How chimps teach their kids tool tricks</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Adults first demonstrate tool use, then hand over the implements to their infants, who copy the behavior.Chimpanzees are known to use rudimentary tools when foraging for food.According to a new paper in the journal Frontiers in Psychology, this learned behavior is passed down from adults to offspring through social learning.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Adults first demonstrate tool use, then hand over the implements to their infants, who copy the behavior.Chimpanzees are known to use rudimentary tools when foraging for food.According to a new paper in the journal Frontiers in Psychology, this learned behavior is passed down from adults to offspring through social learning.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/science/2026/09/how-chimps-teach-their-kids-tool-tricks/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Startups" data-index="17">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#8b5cf6">🚀 Startups</span>
+        <span class="source-chip">Ars Technica - All content</span>
+    </div>
+
+    
+
+    <h2 class="article-title">The Roman telescope has enough gas for 22 years, double NASA&#x27;s expectations</h2>
+    <p class="article-original-title">原題: <em>The Roman telescope has enough gas for 22 years, double NASA&#x27;s expectations</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">The Nancy Grace Roman Space Telescope is the first NASA observatory designed for in-space refueling.NASA’s Nancy Grace Roman Space Telescope is gliding toward its distant observation post on a pinpoint trajectory so precise that engineers estimate the spacecraft’s fuel load will last twice as long as their initial expectations, the space agency confirmed Monday.The $4.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">The Nancy Grace Roman Space Telescope is the first NASA observatory designed for in-space refueling.NASA’s Nancy Grace Roman Space Telescope is gliding toward its distant observation post on a pinpoint trajectory so precise that engineers estimate the spacecraft’s fuel load will last twice as long as their initial expectations, the space agency confirmed Monday.The $4.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/space/2026/09/the-roman-telescope-has-enough-gas-for-22-years-double-nasas-expectations/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="18">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Ars Technica - All content</span>
+    </div>
+
+    
+
+    <h2 class="article-title">“Filmmaker” suing PassThePopcorn may be banned user out for revenge</h2>
+    <p class="article-original-title">原題: <em>“Filmmaker” suing PassThePopcorn may be banned user out for revenge</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Allegedly fake filmmaker targeted trackers like PassThePopcorn, BroadcasTheNet, and HDBits.Some of the most widely used private torrent trackers for pirating movies suspect that a banned user may have posed as a filmmaker protecting copyrights in a failed attempt to seek revenge.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Allegedly fake filmmaker targeted trackers like PassThePopcorn, BroadcasTheNet, and HDBits.Some of the most widely used private torrent trackers for pirating movies suspect that a banned user may have posed as a filmmaker protecting copyrights in a failed attempt to seek revenge.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/tech-policy/2026/09/filmmaker-suing-passthepopcorn-may-be-banned-user-out-for-revenge/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Other" data-index="19">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#6b7280">📰 Other</span>
+        <span class="source-chip">Ars Technica - All content</span>
+    </div>
+
+    
+
+    <h2 class="article-title">18-year-old dies of measles in PA from severe neurological complication</h2>
+    <p class="article-original-title">原題: <em>18-year-old dies of measles in PA from severe neurological complication</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Teen developed acute disseminated encephalomyelitis, a known measles complication.A fourth person in Pennsylvania has died of measles, the state health department confirmed Tuesday .The latest death was in an unvaccinated 18-year-old resident of Mifflin County.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Teen developed acute disseminated encephalomyelitis, a known measles complication.A fourth person in Pennsylvania has died of measles, the state health department confirmed Tuesday .The latest death was in an unvaccinated 18-year-old resident of Mifflin County.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/health/2026/09/measles-kills-18-year-old-in-pa-fourth-death-as-state-outbreak-nears-700-cases/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="20">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Ars Technica - All content</span>
+    </div>
+
+    
+
+    <h2 class="article-title">SpaceX declares Starship ready for orbit, sets launch date next week</h2>
+    <p class="article-original-title">原題: <em>SpaceX declares Starship ready for orbit, sets launch date next week</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Reaching orbit would mark a significant milestone.Pending regulatory approval, SpaceX said today it intends to launch its 14th Starship mission as early as September 22.This flight is notable, as it will be the first time that SpaceX attempts to launch the experimental vehicle into orbit.The company set a target liftoff time of 7:15 am local in Texas (12:15 UTC), with a 75-minute launch window.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Reaching orbit would mark a significant milestone.Pending regulatory approval, SpaceX said today it intends to launch its 14th Starship mission as early as September 22.This flight is notable, as it will be the first time that SpaceX attempts to launch the experimental vehicle into orbit.The company set a target liftoff time of 7:15 am local in Texas (12:15 UTC), with a 75-minute launch window.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/spacex.html" target="_blank" rel="noopener noreferrer" class="company-link">SpaceX の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/space/2026/09/spacex-sets-launch-date-for-first-starship-orbital-flight/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="21">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Meet a mouse whose brain cortex is made up of human cells</h2>
+    <p class="article-original-title">原題: <em>Meet a mouse whose brain cortex is made up of human cells</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">“Xenocortical mice” are a dramatic demonstration of organoid technologies Multiple cameras tracked a mouse as it wandered around a small arena.A computer charted its position and speed, leaving Pong-like traces on a monitor.The reason to watch this rodent so carefully?Nearly half its brain volume had been replaced with human cells.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">“Xenocortical mice” are a dramatic demonstration of organoid technologies Multiple cameras tracked a mouse as it wandered around a small arena.A computer charted its position and speed, leaving Pong-like traces on a monitor.The reason to watch this rodent so carefully?Nearly half its brain volume had been replaced with human cells.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/09/16/1144210/meet-a-mouse-whose-brain-cortex-is-made-up-of-human-cells/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="22">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Building the materials foundation for AI</h2>
+    <p class="article-original-title">原題: <em>Building the materials foundation for AI</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">As AI pushes semiconductors and data centers toward new physical limits, advanced materials are becoming critical to performance, efficiency, and sustainability, says Mike Finelli, chief technology and innovation officer and chief North America officer at Syensqo.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">As AI pushes semiconductors and data centers toward new physical limits, advanced materials are becoming critical to performance, efficiency, and sustainability, says Mike Finelli, chief technology and innovation officer and chief North America officer at Syensqo.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/09/16/1144014/building-the-materials-foundation-for-ai/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="23">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">The Download: AI’s trillion-dollar gamble and OpenAI’s biology data bid</h2>
+    <p class="article-original-title">原題: <em>The Download: AI’s trillion-dollar gamble and OpenAI’s biology data bid</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Plus: Nvidia and Meta CEOs have rejected calls for a coordinated AI slowdown.This is today&#x27;s edition of The Download , our weekday newsletter that provides a daily dose of what&#x27;s going on in the world of technology.When Jessica Wachter, a finance professor at the University of Pennsylvania, wanted to assess AI’s impact on the economy over the next few years, she faced a long list of uncertainties.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Plus: Nvidia and Meta CEOs have rejected calls for a coordinated AI slowdown.This is today&#x27;s edition of The Download , our weekday newsletter that provides a daily dose of what&#x27;s going on in the world of technology.When Jessica Wachter, a finance professor at the University of Pennsylvania, wanted to assess AI’s impact on the economy over the next few years, she faced a long list of uncertainties.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/meta.html" target="_blank" rel="noopener noreferrer" class="company-link">Meta の解説</a> <a href="companies/nvidia.html" target="_blank" rel="noopener noreferrer" class="company-link">NVIDIA の解説</a> <a href="companies/openai.html" target="_blank" rel="noopener noreferrer" class="company-link">OpenAI の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/09/16/1144205/the-download-ai-trillion-dollar-build-openai-biological-data/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="24">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Roundtables: Could AI really kill us all?</h2>
+    <p class="article-original-title">原題: <em>Roundtables: Could AI really kill us all?</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Watch a subscriber-only conversation unpacking AI extinction fears.Employees at the world&#x27;s leading AI labs are saying there&#x27;s a real possibility that advanced AI could destroy humanity.Are they right?Or is this more scaremongering and hype?Watch a conversation unpacking AI extinction fears: where they come from, whether they hold any water, and, if so, what we should do.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Watch a subscriber-only conversation unpacking AI extinction fears.Employees at the world&#x27;s leading AI labs are saying there&#x27;s a real possibility that advanced AI could destroy humanity.Are they right?Or is this more scaremongering and hype?Watch a conversation unpacking AI extinction fears: where they come from, whether they hold any water, and, if so, what we should do.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/09/15/1143936/roundtables-will-ai-really-kill-us-all/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="25">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">The Download: AI doomers, whistleblowing agents, and de-aged livers</h2>
+    <p class="article-original-title">原題: <em>The Download: AI doomers, whistleblowing agents, and de-aged livers</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Plus: Trump has called AI safety fears a “hoax” and rejected more safeguards.This is today&#x27;s edition of The Download , our weekday newsletter that provides a daily dose of what&#x27;s going on in the world of technology.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Plus: Trump has called AI safety fears a “hoax” and rejected more safeguards.This is today&#x27;s edition of The Download , our weekday newsletter that provides a daily dose of what&#x27;s going on in the world of technology.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/openai.html" target="_blank" rel="noopener noreferrer" class="company-link">OpenAI の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/09/15/1144141/the-download-ai-extinction-whistleblowing-agents-donated-livers/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="26">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Samsung brings One UI 9 to the rest of the Galaxy S26 series</h2>
+    <p class="article-original-title">原題: <em>Samsung brings One UI 9 to the rest of the Galaxy S26 series</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Features that debuted on foldables, such as My FanCam, are coming to more devices.Samsung is expanding One UI 9 to more Galaxy devices after the latest version of the user interface debuted on the company&#x27;s most recent foldables.A bit over a month after the Galaxy Z Fold 8 Ultra , Fold 8 and Flip 8 began shipping, Samsung is bringing One UI 9 to the Galaxy S26, S26+ and S26 Ultra starting today.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Features that debuted on foldables, such as My FanCam, are coming to more devices.Samsung is expanding One UI 9 to more Galaxy devices after the latest version of the user interface debuted on the company&#x27;s most recent foldables.A bit over a month after the Galaxy Z Fold 8 Ultra , Fold 8 and Flip 8 began shipping, Samsung is bringing One UI 9 to the Galaxy S26, S26+ and S26 Ultra starting today.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2260198/samsung-brings-one-ui-9-to-the-rest-of-the-galaxy-s26-series/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Hardware" data-index="27">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#06b6d4">⚙️ Hardware</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Snap Specs launch 2026: Live updates from CEO Evan Spiegel&#x27;s keynote</h2>
+    <p class="article-original-title">原題: <em>Snap Specs launch 2026: Live updates from CEO Evan Spiegel&#x27;s keynote</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">More details on the company&#x27;s chunky smart glasses are expected today.Say what you want about the oversized design of Snap&#x27;s Specs, but the company has shown off one of the most ambitious visions for standalone AR glasses to date.Now, we&#x27;re finally going to get our first good look at the device and what it can actually do.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">More details on the company&#x27;s chunky smart glasses are expected today.Say what you want about the oversized design of Snap&#x27;s Specs, but the company has shown off one of the most ambitious visions for standalone AR glasses to date.Now, we&#x27;re finally going to get our first good look at the device and what it can actually do.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2260114/snap-specs-launch-live-blog-evan-spiegel-keynote/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Media" data-index="28">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#f59e0b">🎬 Media</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Threads leans even further into podcasts with transcripts, analytics and more</h2>
+    <p class="article-original-title">原題: <em>Threads leans even further into podcasts with transcripts, analytics and more</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Meta is making the platform even better for podcast promotion.After dabbling with podcast-specific features in 2025, Meta is diving in head first and adding a collection of new tools to Threads to make it a better place to promote shows.Threads users can now share transcripts of shows, save episodes for later and track the traffic Threads is driving to their podcast, all without leaving the app.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Meta is making the platform even better for podcast promotion.After dabbling with podcast-specific features in 2025, Meta is diving in head first and adding a collection of new tools to Threads to make it a better place to promote shows.Threads users can now share transcripts of shows, save episodes for later and track the traffic Threads is driving to their podcast, all without leaving the app.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/meta.html" target="_blank" rel="noopener noreferrer" class="company-link">Meta の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2259605/threads-leans-even-further-into-podcasts-with-transcripts-analytics-and-more/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="29">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Here&#x27;s how the iPhone 18 Pro&#x27;s Apple Reference Image tech works</h2>
+    <p class="article-original-title">原題: <em>Here&#x27;s how the iPhone 18 Pro&#x27;s Apple Reference Image tech works</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Apple is giving your photos a tamper-proof seal.It&#x27;d be naive to say that we&#x27;ve always been able to trust what we can see, as if seeing something is evidence that it really happened.There&#x27;s plenty of evidence throughout history of doctored photos, designed to fool the viewer into believing a story.That said, those skills weren&#x27;t easily accessible.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Apple is giving your photos a tamper-proof seal.It&#x27;d be naive to say that we&#x27;ve always been able to trust what we can see, as if seeing something is evidence that it really happened.There&#x27;s plenty of evidence throughout history of doctored photos, designed to fool the viewer into believing a story.That said, those skills weren&#x27;t easily accessible.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/apple.html" target="_blank" rel="noopener noreferrer" class="company-link">Apple の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2259654/how-iphone-18-pro-apple-reference-image-works/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Mobile" data-index="30">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#6366f1">📱 Mobile</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">iPhone 18 Pro review: The standard setter</h2>
+    <p class="article-original-title">原題: <em>iPhone 18 Pro review: The standard setter</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">The yardstick that all phones, including the Duo, will be measured by.The iPhone Duo may have hogged the limelight at last week&#x27;s &quot;Surprise and Shine&quot; event, but it won&#x27;t be available for a while.And as there was no mention of a standard iPhone 18, the iPhone 18 Pro and Pro Max became the de facto new handsets for anyone considering a &quot;candybar&quot; smartphone from Apple right now.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">The yardstick that all phones, including the Duo, will be measured by.The iPhone Duo may have hogged the limelight at last week&#x27;s &quot;Surprise and Shine&quot; event, but it won&#x27;t be available for a while.And as there was no mention of a standard iPhone 18, the iPhone 18 Pro and Pro Max became the de facto new handsets for anyone considering a &quot;candybar&quot; smartphone from Apple right now.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/apple.html" target="_blank" rel="noopener noreferrer" class="company-link">Apple の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2259790/apple-iphone-18-pro-review-cameras-performance-variable-aperture-siri-ai/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+        </main>
+
+        <footer class="footer">
+            <p>本ページは公開記事をもとに自動生成しています。数値や仕様は必ず元記事で確認してください。</p>
+            <p>JSON データは同じフォルダ内の tech_news_digest.json で参照できます。</p>
+        </footer>
+    </div>
+
+    <script>
+
+        const categoryButtons = document.querySelectorAll('.category-btn');
+        const articleCards = document.querySelectorAll('.article-card');
+        const searchInput = document.getElementById('search-input');
+
+        let activeCategory = 'all';
+
+        function applyFilters() {
+            const query = searchInput.value.trim().toLowerCase();
+            articleCards.forEach(card => {
+                const matchesCategory = activeCategory === 'all' || card.dataset.category === activeCategory;
+                const searchableText = card.innerText.toLowerCase();
+                const matchesQuery = !query || searchableText.includes(query);
+                card.style.display = matchesCategory && matchesQuery ? '' : 'none';
+            });
+        }
+
+        categoryButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                categoryButtons.forEach(item => item.classList.remove('active'));
+                button.classList.add('active');
+                activeCategory = button.dataset.category;
+                applyFilters();
+            });
+        });
+
+        searchInput.addEventListener('input', applyFilters);
+    
+    </script>
+</body>
+</html>
