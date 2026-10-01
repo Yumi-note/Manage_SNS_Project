@@ -1,0 +1,1212 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>海外テックニュース日本語まとめ</title>
+    <style>
+        :root {
+            color-scheme: dark;
+            --bg: #0a0f1d;
+            --panel: rgba(13, 20, 36, 0.92);
+            --line: rgba(132, 152, 187, 0.25);
+            --text: #eef3ff;
+            --muted: #adc1dd;
+            --accent: #7dd3fc;
+            --accent-strong: #38bdf8;
+            --shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: "Hiragino Sans", "Noto Sans JP", sans-serif;
+            background:
+                radial-gradient(circle at top right, rgba(56, 189, 248, 0.22), transparent 26%),
+                radial-gradient(circle at top left, rgba(16, 185, 129, 0.16), transparent 20%),
+                linear-gradient(180deg, #07101f 0%, #0b1327 48%, #0a0f1d 100%);
+            color: var(--text);
+        }
+
+        .page-shell {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 24px;
+        }
+
+        .hero {
+            padding: 28px;
+            border: 1px solid var(--line);
+            border-radius: 28px;
+            background: linear-gradient(145deg, rgba(18, 27, 48, 0.96), rgba(10, 17, 32, 0.96));
+            box-shadow: var(--shadow);
+        }
+
+        .hero-nav {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 28px;
+        }
+
+        .nav-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 42px;
+            padding: 0 16px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        .eyebrow {
+            margin: 0 0 10px;
+            color: var(--accent);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            font-size: 0.78rem;
+        }
+
+        .hero h1 {
+            margin: 0;
+            font-size: clamp(2rem, 3vw, 3.3rem);
+            line-height: 1.1;
+        }
+
+        .timestamp,
+        .description {
+            color: var(--muted);
+        }
+
+        .control-panel {
+            margin: 20px 0 28px;
+            padding: 22px;
+            border: 1px solid var(--line);
+            border-radius: 24px;
+            background: var(--panel);
+            backdrop-filter: blur(12px);
+        }
+
+        .control-header {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            align-items: end;
+            flex-wrap: wrap;
+        }
+
+        .control-header h2 {
+            margin: 0 0 6px;
+        }
+
+        .control-header p {
+            margin: 0;
+            color: var(--muted);
+        }
+
+        #search-input {
+            width: min(100%, 360px);
+            min-height: 46px;
+            padding: 0 14px;
+            border-radius: 14px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
+        }
+
+        .category-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 16px;
+        }
+
+        .category-btn {
+            min-height: 42px;
+            padding: 0 14px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
+            cursor: pointer;
+        }
+
+        .category-btn.active {
+            background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+            color: #06111f;
+            border-color: transparent;
+            font-weight: 700;
+        }
+
+        .article-list {
+            display: grid;
+            gap: 18px;
+        }
+
+        .article-card {
+            padding: 24px;
+            border-radius: 24px;
+            border: 1px solid var(--line);
+            background: linear-gradient(180deg, rgba(12, 18, 34, 0.96), rgba(14, 22, 39, 0.9));
+            box-shadow: var(--shadow);
+        }
+
+        .card-topline {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+
+        .category-chip,
+        .source-chip {
+            display: inline-flex;
+            align-items: center;
+            min-height: 34px;
+            padding: 0 12px;
+            border-radius: 999px;
+            font-size: 0.92rem;
+            font-weight: 700;
+        }
+
+        .source-chip {
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--muted);
+        }
+
+        .article-title {
+            margin: 0 0 10px;
+            font-size: clamp(1.45rem, 2vw, 2rem);
+            line-height: 1.35;
+        }
+
+        .article-original-title {
+            margin: 0 0 18px;
+            color: var(--muted);
+        }
+
+        .security-alert {
+            margin: 0 0 14px;
+            padding: 10px 14px;
+            border-radius: 12px;
+            border: 1px solid rgba(248, 113, 113, 0.4);
+            background: rgba(248, 113, 113, 0.12);
+            color: #fecaca;
+            font-weight: 700;
+            font-size: 0.92rem;
+        }
+
+        .article-section {
+            margin-top: 18px;
+            padding-top: 18px;
+            border-top: 1px solid var(--line);
+        }
+
+        .article-section h3 {
+            margin: 0 0 12px;
+            font-size: 1rem;
+            color: var(--accent);
+        }
+
+        .article-paragraph {
+            margin: 0 0 14px;
+            color: #dce7f8;
+            line-height: 1.9;
+            font-size: 1rem;
+        }
+
+        .company-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .company-link,
+        .action-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 42px;
+            padding: 0 14px;
+            border-radius: 14px;
+            text-decoration: none;
+            border: 1px solid rgba(125, 211, 252, 0.3);
+        }
+
+        .company-link {
+            color: var(--accent);
+            background: rgba(56, 189, 248, 0.08);
+        }
+
+        .article-actions {
+            margin-top: 22px;
+        }
+
+        .footer {
+            padding: 28px 8px 40px;
+            color: var(--muted);
+            text-align: center;
+        }
+
+        .footer p {
+            margin: 6px 0;
+        }
+
+        .action-link.primary {
+            color: #06111f;
+            font-weight: 700;
+            background: linear-gradient(135deg, #7dd3fc, #22d3ee);
+            border-color: transparent;
+        }
+
+        @media (max-width: 720px) {
+            .page-shell {
+                padding: 14px;
+            }
+
+            .hero,
+            .control-panel,
+            .article-card {
+                padding: 18px;
+                border-radius: 20px;
+            }
+
+            .control-header {
+                align-items: stretch;
+            }
+
+            #search-input {
+                width: 100%;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="page-shell">
+        <header class="hero">
+            <div class="hero-nav">
+                <a class="nav-link" href="../../index.html">HOME</a>
+                <a class="nav-link" href="../index.html">この日の記事一覧</a>
+            </div>
+            <div class="hero-copy">
+                <p class="eyebrow">Global Tech News Digest</p>
+                <h1>海外テックニュース 日本語まとめ</h1>
+                <p class="timestamp">2026年10月1日 20:12 JST に収集した記事を掲載しています。</p>
+                <p class="description">各カードには本文寄りの日本語訳を掲載し、記事中で触れた企業は別ページの解説リンクとして分離しています。</p>
+            </div>
+        </header>
+
+        <section class="control-panel">
+            <div class="control-header">
+                <div>
+                    <h2>記事を探す</h2>
+                    <p>カテゴリとキーワードで一覧を絞り込めます。</p>
+                </div>
+                <input type="text" id="search-input" placeholder="タイトル・本文・媒体名で検索">
+            </div>
+            <div class="category-buttons">
+                <button class="category-btn active" data-category="all">すべて (30)</button>
+<button class="category-btn" data-category="AI/ML" style="--accent:#10b981">🤖 AI/ML (26)</button>
+<button class="category-btn" data-category="Enterprise" style="--accent:#3b82f6">🏢 Enterprise (1)</button>
+<button class="category-btn" data-category="Other" style="--accent:#6b7280">📰 Other (1)</button>
+<button class="category-btn" data-category="Policy" style="--accent:#ec4899">⚖️ Policy (1)</button>
+<button class="category-btn" data-category="Startups" style="--accent:#8b5cf6">🚀 Startups (1)</button>
+            </div>
+        </section>
+
+        <main class="article-list" id="articles-container">
+            <article class="article-card" data-category="AI/ML" data-index="1">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">ChatGPT can now virtually try on clothes for you</h2>
+    <p class="article-original-title">原題: <em>ChatGPT can now virtually try on clothes for you</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">OpenAI is again experimenting with how its conversational AI assistant, ChatGPT, can help users as they shop online.On Thursday, the company announced the global launch of two new shopping features, including a way to virtually try on clothing and accessories and a new favoriting function that can help users save products they like for later reference.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">OpenAI is again experimenting with how its conversational AI assistant, ChatGPT, can help users as they shop online.On Thursday, the company announced the global launch of two new shopping features, including a way to virtually try on clothing and accessories and a new favoriting function that can help users save products they like for later reference.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/openai.html" target="_blank" rel="noopener noreferrer" class="company-link">OpenAI の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/10/01/chatgpt-can-now-virtually-try-on-clothes-for-you/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="2">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Google thinks SpaceX&#x27;s Starship has to launch 1,800 times before space data centers get off the ground</h2>
+    <p class="article-original-title">原題: <em>Google thinks SpaceX&#x27;s Starship has to launch 1,800 times before space data centers get off the ground</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Google’s prototype of its orbital compute satellite took off today onboard a SpaceX rocket launched from California — the first time the tech giant has sent one of its advanced chips into space.Built by Planet Labs , the satellite will prove that a Google Tensor Processing Unit, its competitor to Nvidia’s GPUs, can function in space.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Google’s prototype of its orbital compute satellite took off today onboard a SpaceX rocket launched from California — the first time the tech giant has sent one of its advanced chips into space.Built by Planet Labs , the satellite will prove that a Google Tensor Processing Unit, its competitor to Nvidia’s GPUs, can function in space.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/google.html" target="_blank" rel="noopener noreferrer" class="company-link">Google の解説</a> <a href="companies/nvidia.html" target="_blank" rel="noopener noreferrer" class="company-link">NVIDIA の解説</a> <a href="companies/spacex.html" target="_blank" rel="noopener noreferrer" class="company-link">SpaceX の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/10/01/google-thinks-spacexs-starship-has-to-launch-1600-times-before-space-data-centers-get-off-the-ground/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="3">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">World’s first enhanced geothermal power plant completed in just 23 months</h2>
+    <p class="article-original-title">原題: <em>World’s first enhanced geothermal power plant completed in just 23 months</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Geothermal company Fervo Energy announced Thursday morning that it had started selling electricity from its Cape Station power plant to the grid on September 30, one day ahead of schedule.With it, Fervo becomes the first enhanced geothermal company to reach a key commercial milestone.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Geothermal company Fervo Energy announced Thursday morning that it had started selling electricity from its Cape Station power plant to the grid on September 30, one day ahead of schedule.With it, Fervo becomes the first enhanced geothermal company to reach a key commercial milestone.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/techcrunch.html" target="_blank" rel="noopener noreferrer" class="company-link">TechCrunch の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/10/01/worlds-first-enhanced-geothermal-power-plant-completed-in-just-23-months/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="4">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">OpenAI cuts ties with 3 safety researchers, WSJ reports</h2>
+    <p class="article-original-title">原題: <em>OpenAI cuts ties with 3 safety researchers, WSJ reports</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">OpenAI has parted ways with three researchers on its safety team who allegedly shared confidential company information with a third-party AI safety organization, The Wall Street Journal reported on Thursday.“We have parted ways with three individuals for violating our policies on accessing and handling sensitive company information,” an OpenAI spokesperson said in a statement to the WSJ.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">OpenAI has parted ways with three researchers on its safety team who allegedly shared confidential company information with a third-party AI safety organization, The Wall Street Journal reported on Thursday.“We have parted ways with three individuals for violating our policies on accessing and handling sensitive company information,” an OpenAI spokesperson said in a statement to the WSJ.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/openai.html" target="_blank" rel="noopener noreferrer" class="company-link">OpenAI の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/10/01/openai-cuts-ties-with-three-safety-researchers-wsj-reports/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="5">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Opus 5.5 loves to tell you &#x27;this matters&#x27; (and other AI writing tells)</h2>
+    <p class="article-original-title">原題: <em>Opus 5.5 loves to tell you &#x27;this matters&#x27; (and other AI writing tells)</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Now that LLM-generated prose is everywhere, human beings are eager for ways to sniff it out.While early tells like em-dashes and “delve” are long gone, researchers say there are still plenty of telltale habits that AI models fall back on when writing prose.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Now that LLM-generated prose is everywhere, human beings are eager for ways to sniff it out.While early tells like em-dashes and “delve” are long gone, researchers say there are still plenty of telltale habits that AI models fall back on when writing prose.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/10/01/opus-5-5-loves-to-tell-you-this-matters-and-other-ai-writing-tells/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="6">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Google’s new Guided Vision feature can help you read the fine print</h2>
+    <p class="article-original-title">原題: <em>Google’s new Guided Vision feature can help you read the fine print</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. People with low vision can use Guided Vision to have Gemini describe what’s nearby and ask follow-up questions.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. People with low vision can use Guided Vision to have Gemini describe what’s nearby and ask follow-up questions.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/google.html" target="_blank" rel="noopener noreferrer" class="company-link">Google の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/ai-artificial-intelligence/1003756/google-gemini-live-guided-vision" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="7">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Android Central ‘will continue’ despite laying off its staff</h2>
+    <p class="article-original-title">原題: <em>Android Central ‘will continue’ despite laying off its staff</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. The Android-focused blog is still publishing posts even though all of its full-time staff were cut.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. The Android-focused blog is still publishing posts even though all of its full-time staff were cut.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/tech/1003735/android-central-layoffs" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="8">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Steam Deck 2: Is AMD Gainsborough the chip Valve’s been waiting for?</h2>
+    <p class="article-original-title">原題: <em>Steam Deck 2: Is AMD Gainsborough the chip Valve’s been waiting for?</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. Posts from this author will be added to your daily email digest and your homepage feed.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. Posts from this author will be added to your daily email digest and your homepage feed.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/games/1003593/steam-deck-2-is-amd-gainsborough-the-chip-valves-been-waiting-for" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="9">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Judge dismisses antitrust lawsuits over Google’s AI Overviews</h2>
+    <p class="article-original-title">原題: <em>Judge dismisses antitrust lawsuits over Google’s AI Overviews</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. Rolling Stone’s parent company and Chegg claimed Google’s AI search features drove away traffic from their sites.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. Rolling Stone’s parent company and Chegg claimed Google’s AI search features drove away traffic from their sites.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/google.html" target="_blank" rel="noopener noreferrer" class="company-link">Google の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/tech/1003589/google-ai-overviews-chegg-penske-lawsuits-dismissed" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="10">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Sony brings AI graphics upscaling to the regular PS5</h2>
+    <p class="article-original-title">原題: <em>Sony brings AI graphics upscaling to the regular PS5</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. Sony’s new Quick Spectral Super Resolution AI upscaling is coming first to Marvel’s Wolverine and Ghost of Yōtei.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. Sony’s new Quick Spectral Super Resolution AI upscaling is coming first to Marvel’s Wolverine and Ghost of Yōtei.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/games/1003549/sony-ps5-quick-spectral-super-resolution-qssr" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="11">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Trump’s ‘Morally Binding’ AI ‘Accord,’ the Rise of AI Agents, and Extremists on the Ballot</h2>
+    <p class="article-original-title">原題: <em>Trump’s ‘Morally Binding’ AI ‘Accord,’ the Rise of AI Agents, and Extremists on the Ballot</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">This week on Uncanny Valley , Brian Barrett, Zoë Schiffer, and Leah Feiger discuss the “morally binding” AI accord tech executives signed following a meeting with Donald Trump.They’ve agreed that AI labs will regulate themselves—should work out great.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">This week on Uncanny Valley , Brian Barrett, Zoë Schiffer, and Leah Feiger discuss the “morally binding” AI accord tech executives signed following a meeting with Donald Trump.They’ve agreed that AI labs will regulate themselves—should work out great.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/openai.html" target="_blank" rel="noopener noreferrer" class="company-link">OpenAI の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/story/uncanny-valley-podcast-trumps-pinky-swear-ai-safety-accord-an-ai-agent-worth-the-risk/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Other" data-index="12">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#6b7280">📰 Other</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Experience What It’s Like to Travel in the Occupied West Bank</h2>
+    <p class="article-original-title">原題: <em>Experience What It’s Like to Travel in the Occupied West Bank</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Traverse barriers and checkpoints in the occupied West Bank—your choices reflect the reality of nearly 3. 5 million Palestinians who live there.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Traverse barriers and checkpoints in the occupied West Bank—your choices reflect the reality of nearly 3. 5 million Palestinians who live there.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/story/experience-what-its-like-to-travel-in-the-occupied-west-bank/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="13">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Tim Heidecker Is Bringing His Joe Rogan Parody Show to The Onion</h2>
+    <p class="article-original-title">原題: <em>Tim Heidecker Is Bringing His Joe Rogan Parody Show to The Onion</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">As satirical news outlet The Onion continued to wage a legal battle to acquire the assets of Infowars out of bankruptcy this summer, it launched a streaming program that spoofed the brand and its bellowing conspiracist ringleader, Alex Jones.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">As satirical news outlet The Onion continued to wage a legal battle to acquire the assets of Infowars out of bankruptcy this summer, it launched a streaming program that spoofed the brand and its bellowing conspiracist ringleader, Alex Jones.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/story/tim-heidecker-is-bringing-his-joe-rogan-parody-show-to-the-onion/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="14">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">I’ve Tried Every Kindle. This Is the Best One to Buy</h2>
+    <p class="article-original-title">原題: <em>I’ve Tried Every Kindle. This Is the Best One to Buy</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">There’s a lot to love about a Kindle if you’re a reader.If you’re looking for the best Kindle, you really can’t go wrong with any of the models.These Amazon-powered ebook readers let you bring thousands of books anywhere and typically give a month of battery life per charge.You can subscribe to get unlimited books from Amazon or get free books from your local library .</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">There’s a lot to love about a Kindle if you’re a reader.If you’re looking for the best Kindle, you really can’t go wrong with any of the models.These Amazon-powered ebook readers let you bring thousands of books anywhere and typically give a month of battery life per charge.You can subscribe to get unlimited books from Amazon or get free books from your local library .</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/amazon.html" target="_blank" rel="noopener noreferrer" class="company-link">Amazon の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/gallery/best-kindle/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="15">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Amazon’s New Kindle Lineup Is Lighter, Thinner, and More Metal</h2>
+    <p class="article-original-title">原題: <em>Amazon’s New Kindle Lineup Is Lighter, Thinner, and More Metal</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">The Kindle will turn 20 in 2027.Amazon says it plans to celebrate the milestone throughout the year, but to kick things off, it&#x27;s starting with an entirely refreshed Kindle lineup.On Thursday, the company introduced a handful of new Kindle models: a new 6-inch base Kindle, a 7-inch Kindle Paperwhite, and a 7-inch Kindle Colorsoft.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">The Kindle will turn 20 in 2027.Amazon says it plans to celebrate the milestone throughout the year, but to kick things off, it&#x27;s starting with an entirely refreshed Kindle lineup.On Thursday, the company introduced a handful of new Kindle models: a new 6-inch base Kindle, a 7-inch Kindle Paperwhite, and a 7-inch Kindle Colorsoft.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/amazon.html" target="_blank" rel="noopener noreferrer" class="company-link">Amazon の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/story/amazon-kindle-paperwhite-colorsoft-2026-refresh/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="16">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Ars Technica - All content</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Marvel releases one last VisionQuest trailer</h2>
+    <p class="article-original-title">原題: <em>Marvel releases one last VisionQuest trailer</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">“This is a fight I likely won’t win.We have said goodbye before.But remember, family is forever.” With its premiere just two weeks away, Marvel Studios has dropped one last trailer for the limited series, VisionQuest , which will complete the trilogy begun with WandaVision and Agatha All Along.(Spoilers for WandaVision and Agatha All Along below.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">“This is a fight I likely won’t win.We have said goodbye before.But remember, family is forever.” With its premiere just two weeks away, Marvel Studios has dropped one last trailer for the limited series, VisionQuest , which will complete the trilogy begun with WandaVision and Agatha All Along.(Spoilers for WandaVision and Agatha All Along below.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/culture/2026/10/marvel-releases-one-last-visionquest-trailer/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="17">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Ars Technica - All content</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Memory executives expect RAM shortage to continue through 2028</h2>
+    <p class="article-original-title">原題: <em>Memory executives expect RAM shortage to continue through 2028</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Prices for memory sold for 2027 “are much higher than 2026 prices.” Micron and Samsung executives this week said the memory shortage will continue for at least the next couple of years.Micron CEO Sanjay Mehrotra expects demand for the firm’s memory to exceed its available supply over that period, he told investors last night.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Prices for memory sold for 2027 “are much higher than 2026 prices.” Micron and Samsung executives this week said the memory shortage will continue for at least the next couple of years.Micron CEO Sanjay Mehrotra expects demand for the firm’s memory to exceed its available supply over that period, he told investors last night.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/information-technology/2026/10/memory-supplies-are-only-getting-tighter-micron-ceo-says/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="18">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Ars Technica - All content</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Florida cops say they don&#x27;t know who owns 11 unpermitted Flock cameras</h2>
+    <p class="article-original-title">原題: <em>Florida cops say they don&#x27;t know who owns 11 unpermitted Flock cameras</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Floridians alarmed by 14 mysterious Flock cameras; 11 have no clear owner.Florida cops are facing questions after a mandate to remove all Flock cameras tracking cars on St.Lucie County roads led local police to uncover more than a dozen suspicious cameras operating without permits.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Floridians alarmed by 14 mysterious Flock cameras; 11 have no clear owner.Florida cops are facing questions after a mandate to remove all Flock cameras tracking cars on St.Lucie County roads led local police to uncover more than a dozen suspicious cameras operating without permits.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/tech-policy/2026/10/florida-cops-say-they-dont-know-who-owns-11-unpermitted-flock-cameras/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="19">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Ars Technica - All content</span>
+    </div>
+
+    
+
+    <h2 class="article-title">With most information hidden, the game Stratego had stumped AI—until now</h2>
+    <p class="article-original-title">原題: <em>With most information hidden, the game Stratego had stumped AI—until now</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Adding in a second neural network that guesses the identity of hidden pieces was key.Deep Blue took down Garry Kasparov at chess in 1997, AlphaGo beat Lee Sedol at Go in 2016, and poker bots have been beating professionals for years.But one classic game called Stratego held out.Even DeepMind, with its exceptional budget, couldn’t build a machine that reliably beat the best human players.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Adding in a second neural network that guesses the identity of hidden pieces was key.Deep Blue took down Garry Kasparov at chess in 1997, AlphaGo beat Lee Sedol at Go in 2016, and poker bots have been beating professionals for years.But one classic game called Stratego held out.Even DeepMind, with its exceptional budget, couldn’t build a machine that reliably beat the best human players.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/science/2026/10/ai-finally-beat-the-best-stratego-player-in-history-and-did-it-on-a-budget/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Startups" data-index="20">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#8b5cf6">🚀 Startups</span>
+        <span class="source-chip">Ars Technica - All content</span>
+    </div>
+
+    
+
+    <h2 class="article-title">As US relations fray, Canada gets serious about its own launch industry</h2>
+    <p class="article-original-title">原題: <em>As US relations fray, Canada gets serious about its own launch industry</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">The Canada Rocket Company gets serious about medium-lift launch.A year or two ago, a few Canadian launch companies were trying to develop small rockets, but if we’re being frank, the industry was not particularly notable.Sure, something interesting might eventually happen, but no one outside of a few Canadian space geeks was paying much attention.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">The Canada Rocket Company gets serious about medium-lift launch.A year or two ago, a few Canadian launch companies were trying to develop small rockets, but if we’re being frank, the industry was not particularly notable.Sure, something interesting might eventually happen, but no one outside of a few Canadian space geeks was paying much attention.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/space/2026/10/as-us-relations-fray-canada-gets-serious-about-its-own-launch-industry/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="21">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">The Download: AI “mind-reading” and creative uses for small batteries</h2>
+    <p class="article-original-title">原題: <em>The Download: AI “mind-reading” and creative uses for small batteries</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Plus: the Pentagon has tapped Elon Musk to co-lead a future warfare project.This is today&#x27;s edition of The Download , our weekday newsletter that provides a daily dose of what&#x27;s going on in the world of technology.A new AI tool can guess what you’re looking at just by analyzing your brain scans—and recreate that image with remarkable precision.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Plus: the Pentagon has tapped Elon Musk to co-lead a future warfare project.This is today&#x27;s edition of The Download , our weekday newsletter that provides a daily dose of what&#x27;s going on in the world of technology.A new AI tool can guess what you’re looking at just by analyzing your brain scans—and recreate that image with remarkable precision.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/10/01/1145592/the-download-ai-mind-reading-small-batteries/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="22">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">An AI “mind-reading” tool can reconstruct what you’re looking at from a brain scan</h2>
+    <p class="article-original-title">原題: <em>An AI “mind-reading” tool can reconstruct what you’re looking at from a brain scan</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Scientists hope it could be used to reconstruct a person’s inner thoughts, mental images, or even dreams.A new AI tool can guess what you’re looking at just by analyzing your brain scans—and re-create that image with remarkable precision.It can go the other way, too, and predict a person’s brain activity based on what they’re looking at.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Scientists hope it could be used to reconstruct a person’s inner thoughts, mental images, or even dreams.A new AI tool can guess what you’re looking at just by analyzing your brain scans—and re-create that image with remarkable precision.It can go the other way, too, and predict a person’s brain activity based on what they’re looking at.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/10/01/1145588/ai-mind-reading-reconstructs-what-youre-looking-at/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Policy" data-index="23">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#ec4899">⚖️ Policy</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">How smaller, distributed batteries could help the grid</h2>
+    <p class="article-original-title">原題: <em>How smaller, distributed batteries could help the grid</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">From e-bikes to stoves, here’s how companies are adding energy storage in surprising ways.If you want to install a big battery in New York City, you have to cut through a notoriously tough tangle of regulations.That’s made it difficult to get large energy storage projects on the grid.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">From e-bikes to stoves, here’s how companies are adding energy storage in surprising ways.If you want to install a big battery in New York City, you have to cut through a notoriously tough tangle of regulations.That’s made it difficult to get large energy storage projects on the grid.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/10/01/1145435/distributed-batteries/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="24">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">The Download: OpenAI’s chief research officer explains its hacking response</h2>
+    <p class="article-original-title">原題: <em>The Download: OpenAI’s chief research officer explains its hacking response</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Plus: Trump and tech executives have agreed to “self-regulate” AI.This is today&#x27;s edition of The Download , our weekday newsletter that provides a daily dose of what&#x27;s going on in the world of technology.Two months after OpenAI’s agents hacked into the computers of AI company Hugging Face, the company is still dealing with the fallout.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Plus: Trump and tech executives have agreed to “self-regulate” AI.This is today&#x27;s edition of The Download , our weekday newsletter that provides a daily dose of what&#x27;s going on in the world of technology.Two months after OpenAI’s agents hacked into the computers of AI company Hugging Face, the company is still dealing with the fallout.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/openai.html" target="_blank" rel="noopener noreferrer" class="company-link">OpenAI の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/09/30/1145350/the-download-openai-chief-research-officer-hacking-response/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="25">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">“We’re not going to shoot ourselves in the foot” over hack fallout, says OpenAI’s chief research officer</h2>
+    <p class="article-original-title">原題: <em>“We’re not going to shoot ourselves in the foot” over hack fallout, says OpenAI’s chief research officer</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Mark Chen on what the firm is doing to make its models safe, how a slowdown would work, and why the world is better off with OpenAI in it.Two months after the bombshell news that a swarm of its agents had broken their containment and hacked into the computers of the AI company Hugging Face , OpenAI is still putting out fires.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Mark Chen on what the firm is doing to make its models safe, how a slowdown would work, and why the world is better off with OpenAI in it.Two months after the bombshell news that a swarm of its agents had broken their containment and hacked into the computers of the AI company Hugging Face , OpenAI is still putting out fires.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/openai.html" target="_blank" rel="noopener noreferrer" class="company-link">OpenAI の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/09/30/1145339/were-not-going-to-shoot-ourselves-in-the-foot-over-hugging-face-says-openais-chief-research-officer/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="26">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Judge dismisses lawsuits claiming Google&#x27;s AI Overviews siphon web traffic</h2>
+    <p class="article-original-title">原題: <em>Judge dismisses lawsuits claiming Google&#x27;s AI Overviews siphon web traffic</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Google may have a monopoly in search, but neither lawsuit made a compelling case the company was leveraging it.A federal judge has dismissed lawsuits from publisher Penske Media Corporation (PMC) and ed tech company Chegg that alleged Google&#x27;s AI Overviews illegally pulled readers away by repackaging their online content, Reuters reports .</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Google may have a monopoly in search, but neither lawsuit made a compelling case the company was leveraging it.A federal judge has dismissed lawsuits from publisher Penske Media Corporation (PMC) and ed tech company Chegg that alleged Google&#x27;s AI Overviews illegally pulled readers away by repackaging their online content, Reuters reports .</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/google.html" target="_blank" rel="noopener noreferrer" class="company-link">Google の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2275023/judge-dismisses-lawsuits-claiming-googles-ai-overviews-siphon-web-traffic/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="27">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">The Steam Autumn Sale has deals on Resident Evil Requiem and 007 First Light</h2>
+    <p class="article-original-title">原題: <em>The Steam Autumn Sale has deals on Resident Evil Requiem and 007 First Light</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">As the cooler months roll in, it&#x27;s a perfect time to tackle some of the gaming projects in your backlog.Or maybe you&#x27;d rather just add more titles to said backlog, because the Steam Autumn Sale is underway from now through October 8 at 1PM ET/10AM PT.The seasonal sales usually have some noteworthy discounts, and this edition has a couple nice price cuts even on more recent AAA releases.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">As the cooler months roll in, it&#x27;s a perfect time to tackle some of the gaming projects in your backlog.Or maybe you&#x27;d rather just add more titles to said backlog, because the Steam Autumn Sale is underway from now through October 8 at 1PM ET/10AM PT.The seasonal sales usually have some noteworthy discounts, and this edition has a couple nice price cuts even on more recent AAA releases.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2274933/the-steam-autumn-sale-has-deals-on-resident-evil-requiem-and-007-first-light/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Enterprise" data-index="28">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#3b82f6">🏢 Enterprise</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">NYC&#x27;s click-to-cancel rule is now in effect to save consumers from subscription hell</h2>
+    <p class="article-original-title">原題: <em>NYC&#x27;s click-to-cancel rule is now in effect to save consumers from subscription hell</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Can the rest of the country have this please?New York City&#x27;s click-to-cancel rule is now in effect , after Mayor Zohran Mamdani announced the legislation back in July .As the name suggests, this forces companies to make it much easier to cancel stuff.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Can the rest of the country have this please?New York City&#x27;s click-to-cancel rule is now in effect , after Mayor Zohran Mamdani announced the legislation back in July .As the name suggests, this forces companies to make it much easier to cancel stuff.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2274831/nycs-click-to-cancel-rule-is-now-in-effect-to-save-consumers-from-subscription-hell/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="29">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Pandora claims &#x27;we haven&#x27;t made this decision lightly&#x27; after raising prices</h2>
+    <p class="article-original-title">原題: <em>Pandora claims &#x27;we haven&#x27;t made this decision lightly&#x27; after raising prices</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">The SiriusXM service joins a long list of streamers that have increased rates this year.Following the lead of streamers everywhere, Pandora is instituting a price hike.In a September 2026 email, the music streamer announced that their subscriptions would increase by at least a dollar per month beginning in October.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">The SiriusXM service joins a long list of streamers that have increased rates this year.Following the lead of streamers everywhere, Pandora is instituting a price hike.In a September 2026 email, the music streamer announced that their subscriptions would increase by at least a dollar per month beginning in October.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2274733/pandora-stream-music-service-raise-prices/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="30">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Sony brings AI upscaling to the base PS5</h2>
+    <p class="article-original-title">原題: <em>Sony brings AI upscaling to the base PS5</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Marvel’s Wolverine and Ghost of Yōtei are the first games to support Quick Spectral Super Resolution.Sony Interactive Entertainment has added AI upscaling to the standard PS5.It&#x27;s deploying patches for Marvel&#x27;s Wolverine and Ghost of Yōtei today that make them the first games to support Quick Spectral Super Resolution (QSSR) through new graphics options.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Marvel’s Wolverine and Ghost of Yōtei are the first games to support Quick Spectral Super Resolution.Sony Interactive Entertainment has added AI upscaling to the standard PS5.It&#x27;s deploying patches for Marvel&#x27;s Wolverine and Ghost of Yōtei today that make them the first games to support Quick Spectral Super Resolution (QSSR) through new graphics options.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2274744/sony-brings-ai-upscaling-to-the-base-ps5/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+        </main>
+
+        <footer class="footer">
+            <p>本ページは公開記事をもとに自動生成しています。数値や仕様は必ず元記事で確認してください。</p>
+            <p>JSON データは同じフォルダ内の tech_news_digest.json で参照できます。</p>
+        </footer>
+    </div>
+
+    <script>
+
+        const categoryButtons = document.querySelectorAll('.category-btn');
+        const articleCards = document.querySelectorAll('.article-card');
+        const searchInput = document.getElementById('search-input');
+
+        let activeCategory = 'all';
+
+        function applyFilters() {
+            const query = searchInput.value.trim().toLowerCase();
+            articleCards.forEach(card => {
+                const matchesCategory = activeCategory === 'all' || card.dataset.category === activeCategory;
+                const searchableText = card.innerText.toLowerCase();
+                const matchesQuery = !query || searchableText.includes(query);
+                card.style.display = matchesCategory && matchesQuery ? '' : 'none';
+            });
+        }
+
+        categoryButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                categoryButtons.forEach(item => item.classList.remove('active'));
+                button.classList.add('active');
+                activeCategory = button.dataset.category;
+                applyFilters();
+            });
+        });
+
+        searchInput.addEventListener('input', applyFilters);
+    
+    </script>
+</body>
+</html>
