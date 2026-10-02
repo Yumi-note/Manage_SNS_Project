@@ -1,0 +1,1221 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>海外テックニュース日本語まとめ</title>
+    <style>
+        :root {
+            color-scheme: dark;
+            --bg: #0a0f1d;
+            --panel: rgba(13, 20, 36, 0.92);
+            --line: rgba(132, 152, 187, 0.25);
+            --text: #eef3ff;
+            --muted: #adc1dd;
+            --accent: #7dd3fc;
+            --accent-strong: #38bdf8;
+            --shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: "Hiragino Sans", "Noto Sans JP", sans-serif;
+            background:
+                radial-gradient(circle at top right, rgba(56, 189, 248, 0.22), transparent 26%),
+                radial-gradient(circle at top left, rgba(16, 185, 129, 0.16), transparent 20%),
+                linear-gradient(180deg, #07101f 0%, #0b1327 48%, #0a0f1d 100%);
+            color: var(--text);
+        }
+
+        .page-shell {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 24px;
+        }
+
+        .hero {
+            padding: 28px;
+            border: 1px solid var(--line);
+            border-radius: 28px;
+            background: linear-gradient(145deg, rgba(18, 27, 48, 0.96), rgba(10, 17, 32, 0.96));
+            box-shadow: var(--shadow);
+        }
+
+        .hero-nav {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 28px;
+        }
+
+        .nav-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 42px;
+            padding: 0 16px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        .eyebrow {
+            margin: 0 0 10px;
+            color: var(--accent);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            font-size: 0.78rem;
+        }
+
+        .hero h1 {
+            margin: 0;
+            font-size: clamp(2rem, 3vw, 3.3rem);
+            line-height: 1.1;
+        }
+
+        .timestamp,
+        .description {
+            color: var(--muted);
+        }
+
+        .control-panel {
+            margin: 20px 0 28px;
+            padding: 22px;
+            border: 1px solid var(--line);
+            border-radius: 24px;
+            background: var(--panel);
+            backdrop-filter: blur(12px);
+        }
+
+        .control-header {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            align-items: end;
+            flex-wrap: wrap;
+        }
+
+        .control-header h2 {
+            margin: 0 0 6px;
+        }
+
+        .control-header p {
+            margin: 0;
+            color: var(--muted);
+        }
+
+        #search-input {
+            width: min(100%, 360px);
+            min-height: 46px;
+            padding: 0 14px;
+            border-radius: 14px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
+        }
+
+        .category-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 16px;
+        }
+
+        .category-btn {
+            min-height: 42px;
+            padding: 0 14px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
+            cursor: pointer;
+        }
+
+        .category-btn.active {
+            background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+            color: #06111f;
+            border-color: transparent;
+            font-weight: 700;
+        }
+
+        .article-list {
+            display: grid;
+            gap: 18px;
+        }
+
+        .article-card {
+            padding: 24px;
+            border-radius: 24px;
+            border: 1px solid var(--line);
+            background: linear-gradient(180deg, rgba(12, 18, 34, 0.96), rgba(14, 22, 39, 0.9));
+            box-shadow: var(--shadow);
+        }
+
+        .card-topline {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+
+        .category-chip,
+        .source-chip {
+            display: inline-flex;
+            align-items: center;
+            min-height: 34px;
+            padding: 0 12px;
+            border-radius: 999px;
+            font-size: 0.92rem;
+            font-weight: 700;
+        }
+
+        .source-chip {
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--muted);
+        }
+
+        .article-title {
+            margin: 0 0 10px;
+            font-size: clamp(1.45rem, 2vw, 2rem);
+            line-height: 1.35;
+        }
+
+        .article-original-title {
+            margin: 0 0 18px;
+            color: var(--muted);
+        }
+
+        .security-alert {
+            margin: 0 0 14px;
+            padding: 10px 14px;
+            border-radius: 12px;
+            border: 1px solid rgba(248, 113, 113, 0.4);
+            background: rgba(248, 113, 113, 0.12);
+            color: #fecaca;
+            font-weight: 700;
+            font-size: 0.92rem;
+        }
+
+        .article-section {
+            margin-top: 18px;
+            padding-top: 18px;
+            border-top: 1px solid var(--line);
+        }
+
+        .article-section h3 {
+            margin: 0 0 12px;
+            font-size: 1rem;
+            color: var(--accent);
+        }
+
+        .article-paragraph {
+            margin: 0 0 14px;
+            color: #dce7f8;
+            line-height: 1.9;
+            font-size: 1rem;
+        }
+
+        .company-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .company-link,
+        .action-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 42px;
+            padding: 0 14px;
+            border-radius: 14px;
+            text-decoration: none;
+            border: 1px solid rgba(125, 211, 252, 0.3);
+        }
+
+        .company-link {
+            color: var(--accent);
+            background: rgba(56, 189, 248, 0.08);
+        }
+
+        .article-actions {
+            margin-top: 22px;
+        }
+
+        .footer {
+            padding: 28px 8px 40px;
+            color: var(--muted);
+            text-align: center;
+        }
+
+        .footer p {
+            margin: 6px 0;
+        }
+
+        .action-link.primary {
+            color: #06111f;
+            font-weight: 700;
+            background: linear-gradient(135deg, #7dd3fc, #22d3ee);
+            border-color: transparent;
+        }
+
+        @media (max-width: 720px) {
+            .page-shell {
+                padding: 14px;
+            }
+
+            .hero,
+            .control-panel,
+            .article-card {
+                padding: 18px;
+                border-radius: 20px;
+            }
+
+            .control-header {
+                align-items: stretch;
+            }
+
+            #search-input {
+                width: 100%;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="page-shell">
+        <header class="hero">
+            <div class="hero-nav">
+                <a class="nav-link" href="../../index.html">HOME</a>
+                <a class="nav-link" href="../index.html">この日の記事一覧</a>
+            </div>
+            <div class="hero-copy">
+                <p class="eyebrow">Global Tech News Digest</p>
+                <h1>海外テックニュース 日本語まとめ</h1>
+                <p class="timestamp">2026年10月2日 19:49 JST に収集した記事を掲載しています。</p>
+                <p class="description">各カードには本文寄りの日本語訳を掲載し、記事中で触れた企業は別ページの解説リンクとして分離しています。</p>
+            </div>
+        </header>
+
+        <section class="control-panel">
+            <div class="control-header">
+                <div>
+                    <h2>記事を探す</h2>
+                    <p>カテゴリとキーワードで一覧を絞り込めます。</p>
+                </div>
+                <input type="text" id="search-input" placeholder="タイトル・本文・媒体名で検索">
+            </div>
+            <div class="category-buttons">
+                <button class="category-btn active" data-category="all">すべて (30)</button>
+<button class="category-btn" data-category="AI/ML" style="--accent:#10b981">🤖 AI/ML (25)</button>
+<button class="category-btn" data-category="Hardware" style="--accent:#06b6d4">⚙️ Hardware (1)</button>
+<button class="category-btn" data-category="Media" style="--accent:#f59e0b">🎬 Media (2)</button>
+<button class="category-btn" data-category="Mobile" style="--accent:#6366f1">📱 Mobile (1)</button>
+<button class="category-btn" data-category="Other" style="--accent:#6b7280">📰 Other (1)</button>
+            </div>
+        </section>
+
+        <main class="article-list" id="articles-container">
+            <article class="article-card" data-category="AI/ML" data-index="1">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Disrupt 2026 Layoff Expo+ Passes Available for $75</h2>
+    <p class="article-original-title">原題: <em>Disrupt 2026 Layoff Expo+ Passes Available for $75</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">If you’ve been laid off, you can get a TechCrunch Disrupt 2026 Expo+ Pass for just $75 .The offer is limited to the first 100 qualifying people, or until Disrupt doors open on October 13 at 8 a.m.PT.Once all 100 passes are claimed, the offer is no longer available.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">If you’ve been laid off, you can get a TechCrunch Disrupt 2026 Expo+ Pass for just $75 .The offer is limited to the first 100 qualifying people, or until Disrupt doors open on October 13 at 8 a.m.PT.Once all 100 passes are claimed, the offer is no longer available.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/techcrunch.html" target="_blank" rel="noopener noreferrer" class="company-link">TechCrunch の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/10/02/disrupt-2026-layoff-expo-plus-passes-available-for-75-dollars/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="2">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Apple says it&#x27;s tightening macOS &#x27;Full Disk Access&#x27; controls due to new risks from AI agents</h2>
+    <p class="article-original-title">原題: <em>Apple says it&#x27;s tightening macOS &#x27;Full Disk Access&#x27; controls due to new risks from AI agents</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Days after a journalist claimed that Meta’s Muse app on Mac read their private messages — a claim that Meta disputed — Apple announced that it’s introducing additional controls around a setting called “Full Disk Access” on macOS.The feature was designed to allow backups to function properly, but AI agents have now increased “the risks associated with this level of access,” Apple said.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Days after a journalist claimed that Meta’s Muse app on Mac read their private messages — a claim that Meta disputed — Apple announced that it’s introducing additional controls around a setting called “Full Disk Access” on macOS.The feature was designed to allow backups to function properly, but AI agents have now increased “the risks associated with this level of access,” Apple said.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/apple.html" target="_blank" rel="noopener noreferrer" class="company-link">Apple の解説</a> <a href="companies/meta.html" target="_blank" rel="noopener noreferrer" class="company-link">Meta の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/10/02/apple-says-its-tightening-macos-full-disk-access-controls-due-to-new-risks-from-ai-agents/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="3">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">It&#x27;s not AI anymore, it&#x27;s ‘super intelligence’ (according to the White House)</h2>
+    <p class="article-original-title">原題: <em>It&#x27;s not AI anymore, it&#x27;s ‘super intelligence’ (according to the White House)</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Last day to exhibit your breakthrough to 10,000+ tech leaders at Disrupt is on Oct 2 .Book Exhibit Table Now.Today’s the last day to exhibit your breakthrough to 10,000+ tech leaders at Disrupt.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Last day to exhibit your breakthrough to 10,000+ tech leaders at Disrupt is on Oct 2 .Book Exhibit Table Now.Today’s the last day to exhibit your breakthrough to 10,000+ tech leaders at Disrupt.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/meta.html" target="_blank" rel="noopener noreferrer" class="company-link">Meta の解説</a> <a href="companies/openai.html" target="_blank" rel="noopener noreferrer" class="company-link">OpenAI の解説</a> <a href="companies/techcrunch.html" target="_blank" rel="noopener noreferrer" class="company-link">TechCrunch の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/video/its-not-ai-anymore-its-super-intelligence-according-to-the-white-house/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="4">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Blackstone’s Jas Khaira joins Disrupt 2026</h2>
+    <p class="article-original-title">原題: <em>Blackstone’s Jas Khaira joins Disrupt 2026</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">AI startups can grow at a speed that would have been difficult to imagine a generation ago.But rapid growth comes with another reality: Scaling AI can require enormous amounts of capital, and founders have to make financing decisions long before they know whether early momentum will turn into an enduring business.So what separates the AI companies built to last from those simply growing fast?</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">AI startups can grow at a speed that would have been difficult to imagine a generation ago.But rapid growth comes with another reality: Scaling AI can require enormous amounts of capital, and founders have to make financing decisions long before they know whether early momentum will turn into an enduring business.So what separates the AI companies built to last from those simply growing fast?</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/techcrunch.html" target="_blank" rel="noopener noreferrer" class="company-link">TechCrunch の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/10/02/techcrunch-disrupt-2026-blackstones-jas-khaira-on-building-the-next-generation-of-ai-giants/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="5">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Circuit Breaker Labs hopes to make AI safer for your kids (and you)</h2>
+    <p class="article-original-title">原題: <em>Circuit Breaker Labs hopes to make AI safer for your kids (and you)</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">With all the talk about how AI might one day kill us all, it’s easy to forget that AI has already been life-threatening to some, not through bioweapons, but psychologically.For example, Character.AI settled several wrongful death lawsuits earlier this year brought by families of underage users who died by suicide after interactions with its bots.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">With all the talk about how AI might one day kill us all, it’s easy to forget that AI has already been life-threatening to some, not through bioweapons, but psychologically.For example, Character.AI settled several wrongful death lawsuits earlier this year brought by families of underage users who died by suicide after interactions with its bots.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/openai.html" target="_blank" rel="noopener noreferrer" class="company-link">OpenAI の解説</a> <a href="companies/techcrunch.html" target="_blank" rel="noopener noreferrer" class="company-link">TechCrunch の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/10/02/circuit-breaker-labs-hopes-to-make-ai-safer-for-your-kids-and-you/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="6">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">OpenAI’s Dot agent is enterprise software that can also order your dinner</h2>
+    <p class="article-original-title">原題: <em>OpenAI’s Dot agent is enterprise software that can also order your dinner</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. Think of Dots as Codex, but for regular people.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. Think of Dots as Codex, but for regular people.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/openai.html" target="_blank" rel="noopener noreferrer" class="company-link">OpenAI の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/ai-artificial-intelligence/1004096/openai-chatgpt-dots-hands-on-agent" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="7">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Breaking up (with Elon Musk) is hard to do</h2>
+    <p class="article-original-title">原題: <em>Breaking up (with Elon Musk) is hard to do</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. Things went just great for Henry VIII’s wives, too.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. Things went just great for Henry VIII’s wives, too.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/tech/1004177/elon-musk-unfollows-shivon-zilis" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="8">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Rivian’s sales pop as the company’s big R2 bet starts to pay off</h2>
+    <p class="article-original-title">原題: <em>Rivian’s sales pop as the company’s big R2 bet starts to pay off</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. The company reported a 45 percent increase in sales and a whopping 85 percent bump in production for the third quarter.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. The company reported a 45 percent increase in sales and a whopping 85 percent bump in production for the third quarter.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/transportation/1004127/rivian-q3-2026-production-delivery-r2" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="9">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Beehiiv creators are buzzing about a new price increase</h2>
+    <p class="article-original-title">原題: <em>Beehiiv creators are buzzing about a new price increase</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. Creators may have escaped the Substack tax, but now they’re facing a price increase of at least $10 per month.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. Creators may have escaped the Substack tax, but now they’re facing a price increase of at least $10 per month.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/tech/1004133/beehiiv-price-increase-reactions" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="10">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Nacon’s new PS5 controller can mix audio from your phone and console</h2>
+    <p class="article-original-title">原題: <em>Nacon’s new PS5 controller can mix audio from your phone and console</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. The customizable Revolution 5 Unlimited gamepad features asymmetrical TMR thumbsticks and a built-in settings screen.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. The customizable Revolution 5 Unlimited gamepad features asymmetrical TMR thumbsticks and a built-in settings screen.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/tech/1004053/nacon-sony-playstation-licensed-revolution-5-unlimited-wireless-controller" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Media" data-index="11">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#f59e0b">🎬 Media</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">This Shoe Company’s Instagram Ad With a Frat Is Pissing People Off</h2>
+    <p class="article-original-title">原題: <em>This Shoe Company’s Instagram Ad With a Frat Is Pissing People Off</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">A popular national footwear brand recently published a collaborative Instagram post with a fraternity, despite two former members being recently accused of disseminating nonconsensual intimate images of a fellow college student.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">A popular national footwear brand recently published a collaborative Instagram post with a fraternity, despite two former members being recently accused of disseminating nonconsensual intimate images of a fellow college student.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/story/this-shoe-companys-instagram-ad-with-a-frat-is-pissing-people-off/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Media" data-index="12">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#f59e0b">🎬 Media</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">The NHL Is Releasing Its Own ‘Hot’ Fanfic. Romance Lovers Hate It</h2>
+    <p class="article-original-title">原題: <em>The NHL Is Releasing Its Own ‘Hot’ Fanfic. Romance Lovers Hate It</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">For better or for worse, romance lovers have never been hornier for hockey .Now, the National Hockey League wants to cash in.As part of its new “Hot for Hockey,” campaign, the NHL is rolling out romance novel-inspired short stories starring the league’s players on audiobook platforms.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">For better or for worse, romance lovers have never been hornier for hockey .Now, the National Hockey League wants to cash in.As part of its new “Hot for Hockey,” campaign, the NHL is rolling out romance novel-inspired short stories starring the league’s players on audiobook platforms.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/story/the-nhl-is-releasing-its-own-hot-fanfic-romance-lovers-hate-it/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="13">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">These AI Experts Want to Do High-Stakes Research Out in the Open</h2>
+    <p class="article-original-title">原題: <em>These AI Experts Want to Do High-Stakes Research Out in the Open</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Some big AI companies seem to think that the best way to keep models from becoming too chaotic or too mischievous is to keep them locked inside of labs.If only a chosen few can access them, the thinking goes, they can do less damage in the real world while researchers try to understand what they’re capable of.Nathan Lambert and Tom Zick, two industry scientists, believe the opposite.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Some big AI companies seem to think that the best way to keep models from becoming too chaotic or too mischievous is to keep them locked inside of labs.If only a chosen few can access them, the thinking goes, they can do less damage in the real world while researchers try to understand what they’re capable of.Nathan Lambert and Tom Zick, two industry scientists, believe the opposite.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/story/trillium-labs-wants-to-do-high-risk-ai-research-in-the-open/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="14">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Trump’s Crazy AI Rebrand Was a Loyalty Test for Tech Execs—and It Worked</h2>
+    <p class="article-original-title">原題: <em>Trump’s Crazy AI Rebrand Was a Loyalty Test for Tech Execs—and It Worked</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Seventy years ago last summer, a group of scientists met at Dartmouth College to discuss a wild idea—that machines might one day be capable of human-like thought processes.One of those scientists, John McCarthy, had suggested a name for the new field: artificial intelligence .It stuck.When you search Google Scholar for “artificial intelligence,” approximately 7,420,000 results appear.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Seventy years ago last summer, a group of scientists met at Dartmouth College to discuss a wild idea—that machines might one day be capable of human-like thought processes.One of those scientists, John McCarthy, had suggested a name for the new field: artificial intelligence .It stuck.When you search Google Scholar for “artificial intelligence,” approximately 7,420,000 results appear.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/google.html" target="_blank" rel="noopener noreferrer" class="company-link">Google の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/story/trumps-crazy-ai-rebrand-was-a-loyalty-test-for-tech-execs-and-it-worked/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="15">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Amazon Says It’s No Longer Using NDAs for Data Centers</h2>
+    <p class="article-original-title">原題: <em>Amazon Says It’s No Longer Using NDAs for Data Centers</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Amazon has made a series of new public commitments to communities where it’s building data centers , including making an official announcement that it no longer uses nondisclosure agreements in its arrangements with county officials.In a blog post published Friday, CEO Matt Garman detailed the steps the company says it’s already taking around data centers.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Amazon has made a series of new public commitments to communities where it’s building data centers , including making an official announcement that it no longer uses nondisclosure agreements in its arrangements with county officials.In a blog post published Friday, CEO Matt Garman detailed the steps the company says it’s already taking around data centers.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/amazon.html" target="_blank" rel="noopener noreferrer" class="company-link">Amazon の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/story/amazon-says-it-is-going-to-stop-using-ndas-for-data-centers/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Other" data-index="16">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#6b7280">📰 Other</span>
+        <span class="source-chip">Ars Technica - All content</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Research roundup: 6 cool science stories we almost missed</h2>
+    <p class="article-original-title">原題: <em>Research roundup: 6 cool science stories we almost missed</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Also: Spooky action at the LHC, Ice Age psychoactive use, yeast for building homes on Mars, and more.It’s a regrettable reality that there is never enough time to cover all the interesting scientific stories we come across.So every month, we highlight a handful of the best stories that nearly slipped through the cracks.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Also: Spooky action at the LHC, Ice Age psychoactive use, yeast for building homes on Mars, and more.It’s a regrettable reality that there is never enough time to cover all the interesting scientific stories we come across.So every month, we highlight a handful of the best stories that nearly slipped through the cracks.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/science/2026/10/research-roundup-6-cool-science-stories-we-almost-missed-6/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="17">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Ars Technica - All content</span>
+    </div>
+
+    
+
+    <h2 class="article-title">US military ends long-running program to spot nuclear missile launches</h2>
+    <p class="article-original-title">原題: <em>US military ends long-running program to spot nuclear missile launches</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">A newer program has been operational since 2011, and the next generation could launch within 12 months.In late 1970, a Titan IIIC rocket launched from Space Launch Complex 40 at what was then called Cape Canaveral Air Force Station.It carried a top-secret payload for the US military.Much has changed in spaceflight since then.The Titan IIIC would bow out in 1982 after dozens of launches.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">A newer program has been operational since 2011, and the next generation could launch within 12 months.In late 1970, a Titan IIIC rocket launched from Space Launch Complex 40 at what was then called Cape Canaveral Air Force Station.It carried a top-secret payload for the US military.Much has changed in spaceflight since then.The Titan IIIC would bow out in 1982 after dozens of launches.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/spacex.html" target="_blank" rel="noopener noreferrer" class="company-link">SpaceX の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/space/2026/10/us-military-ends-long-running-program-to-spot-nuclear-missile-launches/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="18">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Ars Technica - All content</span>
+    </div>
+
+    
+
+    <h2 class="article-title">How I kept cool with NYC&#x27;s free battery program for window AC units</h2>
+    <p class="article-original-title">原題: <em>How I kept cool with NYC&#x27;s free battery program for window AC units</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Bonus: Every Electric’s batteries are beloved by household cats.My family has spent four summers participating in demand response programs whereby utility companies pay customers to reduce energy use on the hottest summer days.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Bonus: Every Electric’s batteries are beloved by household cats.My family has spent four summers participating in demand response programs whereby utility companies pay customers to reduce energy use on the hottest summer days.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/gadgets/2026/10/how-i-kept-cool-with-nycs-free-battery-program-for-window-ac-units/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="19">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Ars Technica - All content</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Cybertruck sales in free fall as Tesla reports mediocre sales for Q3</h2>
+    <p class="article-original-title">原題: <em>Cybertruck sales in free fall as Tesla reports mediocre sales for Q3</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Tesla met analysts expectations as it sold fewer cars in Q3 2026 than Q3 2025.Tesla sold 486,532 electric vehicles during the third quarter of 2026.That’s a 2.1 percent decrease on the same quarter in 2025, when the company found homes for 497,099 EVs, and one might think that would be bad news for a company valued on the premise of near-constant growth.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Tesla met analysts expectations as it sold fewer cars in Q3 2026 than Q3 2025.Tesla sold 486,532 electric vehicles during the third quarter of 2026.That’s a 2.1 percent decrease on the same quarter in 2025, when the company found homes for 497,099 EVs, and one might think that would be bad news for a company valued on the premise of near-constant growth.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/cars/2026/10/tesla-sales-drop-2-percent-in-underwhelming-q3-2026/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="20">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Ars Technica - All content</span>
+    </div>
+
+    
+
+    <h2 class="article-title">The 7-year-old Nvidia Shield TV is now $100 more expensive due to AI</h2>
+    <p class="article-original-title">原題: <em>The 7-year-old Nvidia Shield TV is now $100 more expensive due to AI</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Initially launched in 2019, the Nvidia Shield TV Pro now retails for $299.99.The era of generative AI has upended technology supply chains, and there is one ironclad rule in 2026: If it has memory or storage, it’s getting more expensive.Even devices with years-old tech inside are still apparently subject to that unwritten rule.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Initially launched in 2019, the Nvidia Shield TV Pro now retails for $299.99.The era of generative AI has upended technology supply chains, and there is one ironclad rule in 2026: If it has memory or storage, it’s getting more expensive.Even devices with years-old tech inside are still apparently subject to that unwritten rule.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/nvidia.html" target="_blank" rel="noopener noreferrer" class="company-link">NVIDIA の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/gadgets/2026/10/the-7-year-old-nvidia-shield-tv-is-now-100-more-expensive-thanks-to-ai/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="21">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Redefining enterprise intelligence with autonomous AI</h2>
+    <p class="article-original-title">原題: <em>Redefining enterprise intelligence with autonomous AI</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Composable infrastructure, sovereign data, and cross-functional coordination can enable intelligence to flow and AI to grow smarter.Enterprise AI is no longer a future ambition.It is in full operational flight.Model capabilities are advancing faster than most organizations can absorb, while the cost of performance continues to fall.Globally, AI investment is set to reach $2.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Composable infrastructure, sovereign data, and cross-functional coordination can enable intelligence to flow and AI to grow smarter.Enterprise AI is no longer a future ambition.It is in full operational flight.Model capabilities are advancing faster than most organizations can absorb, while the cost of performance continues to fall.Globally, AI investment is set to reach $2.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/10/02/1143774/redefining-enterprise-intelligence-with-autonomous-ai/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="22">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">The Download: a biological de-aging contest and why LLMs don’t reason</h2>
+    <p class="article-original-title">原題: <em>The Download: a biological de-aging contest and why LLMs don’t reason</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Plus: OpenAI says rogue agents may have affected more than 100 organizations.This is today&#x27;s edition of The Download , our weekday newsletter that provides a daily dose of what&#x27;s going on in the world of technology.This week, I officially signed up for an unusual competition.One that rewards competitors for getting younger .</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Plus: OpenAI says rogue agents may have affected more than 100 organizations.This is today&#x27;s edition of The Download , our weekday newsletter that provides a daily dose of what&#x27;s going on in the world of technology.This week, I officially signed up for an unusual competition.One that rewards competitors for getting younger .</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/openai.html" target="_blank" rel="noopener noreferrer" class="company-link">OpenAI の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/10/02/1145666/the-download-biological-de-aging-ai-reasoning/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="23">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">A new contest pits competitors against each other in a race to biological youth</h2>
+    <p class="article-original-title">原題: <em>A new contest pits competitors against each other in a race to biological youth</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">This week, I officially signed up for an unusual competition.One that rewards competitors for getting younger .I recently turned 40, and I don’t need reminding that both time and my chronological age only tick forward.But this game is focused on competitors’ biological ages—figures that are meant to provide a better way to measure the age-related health of our organs and bodies.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">This week, I officially signed up for an unusual competition.One that rewards competitors for getting younger .I recently turned 40, and I don’t need reminding that both time and my chronological age only tick forward.But this game is focused on competitors’ biological ages—figures that are meant to provide a better way to measure the age-related health of our organs and bodies.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/10/02/1145610/younger-contest-race-to-biological-youth/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="24">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Don’t be fooled—LLMs don’t reason</h2>
+    <p class="article-original-title">原題: <em>Don’t be fooled—LLMs don’t reason</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Ten years after AlphaGo’s match against Go champion Lee Sedol, today’s AI still isn’t tapping into the machinery that made that win possible.On an afternoon in Seoul in March 2016, I watched a program I helped build put a stone on the fifth line of a Go board in what looked like a gift to its human opponent.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Ten years after AlphaGo’s match against Go champion Lee Sedol, today’s AI still isn’t tapping into the machinery that made that win possible.On an afternoon in Seoul in March 2016, I watched a program I helped build put a stone on the fifth line of a Go board in what looked like a gift to its human opponent.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/10/02/1145639/dont-be-fooled-llms-dont-reason/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="25">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">The Download: AI “mind-reading” and creative uses for small batteries</h2>
+    <p class="article-original-title">原題: <em>The Download: AI “mind-reading” and creative uses for small batteries</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Plus: the Pentagon has tapped Elon Musk to co-lead a future warfare project.This is today&#x27;s edition of The Download , our weekday newsletter that provides a daily dose of what&#x27;s going on in the world of technology.A new AI tool can guess what you’re looking at just by analyzing your brain scans—and recreate that image with remarkable precision.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Plus: the Pentagon has tapped Elon Musk to co-lead a future warfare project.This is today&#x27;s edition of The Download , our weekday newsletter that provides a daily dose of what&#x27;s going on in the world of technology.A new AI tool can guess what you’re looking at just by analyzing your brain scans—and recreate that image with remarkable precision.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/10/01/1145592/the-download-ai-mind-reading-small-batteries/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="26">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Samsung and Google are raising prices on their budget phones</h2>
+    <p class="article-original-title">原題: <em>Samsung and Google are raising prices on their budget phones</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">A Galaxy A17 5G costs $70 more than it did at launch and a Pixel 10a costs $100 more.Both Samsung and Google are increasing the starting price of their budget phones, likely due to the RAM crisis that seemingly no tech company is able to escape.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">A Galaxy A17 5G costs $70 more than it did at launch and a Pixel 10a costs $100 more.Both Samsung and Google are increasing the starting price of their budget phones, likely due to the RAM crisis that seemingly no tech company is able to escape.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/google.html" target="_blank" rel="noopener noreferrer" class="company-link">Google の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2276208/samsung-and-google-are-raising-prices-on-their-budget-phones/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="27">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Apple sounds the alarm on AI agents and &#x27;Full Disk Access&#x27;</h2>
+    <p class="article-original-title">原題: <em>Apple sounds the alarm on AI agents and &#x27;Full Disk Access&#x27;</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">The company says some AI developers are risking their users&#x27; privacy.Apple is adding new safeguards to how &quot;Full Disk Access&quot; works in macOS to address the growing risk posed by AI agents.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">The company says some AI developers are risking their users&#x27; privacy.Apple is adding new safeguards to how &quot;Full Disk Access&quot; works in macOS to address the growing risk posed by AI agents.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/apple.html" target="_blank" rel="noopener noreferrer" class="company-link">Apple の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2276186/apple-sounds-the-alarm-on-ai-agents-and-full-disk-access/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Hardware" data-index="28">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#06b6d4">⚙️ Hardware</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">iPhone 18 Pro vs iPhone 18 Pro Max: Comparing their displays and batteries</h2>
+    <p class="article-original-title">原題: <em>iPhone 18 Pro vs iPhone 18 Pro Max: Comparing their displays and batteries</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Not much else differentiates them, which isn’t a bad thing.While Apple&#x27;s first-ever foldable phone, the iPhone Duo , grabbed most of the headlines after the &quot;Surprise and Shine&quot; event, John Ternus also introduced other devices in his debut as CEO.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Not much else differentiates them, which isn’t a bad thing.While Apple&#x27;s first-ever foldable phone, the iPhone Duo , grabbed most of the headlines after the &quot;Surprise and Shine&quot; event, John Ternus also introduced other devices in his debut as CEO.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/apple.html" target="_blank" rel="noopener noreferrer" class="company-link">Apple の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2276013/iphone-18-pro-vs-max-comparison/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Mobile" data-index="29">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#6366f1">📱 Mobile</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Samsung Galaxy Tab S12 Ultra vs Apple iPad Pro: Here&#x27;s how they stack up</h2>
+    <p class="article-original-title">原題: <em>Samsung Galaxy Tab S12 Ultra vs Apple iPad Pro: Here&#x27;s how they stack up</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Choosing between these two powerhouse tablets is probably simpler than you think.As ever, choosing a premium tablet in 2026 comes down to two very different philosophies.Samsung&#x27;s Galaxy Tab S12 Ultra bets on sheer screen size, battery stamina and bundled accessories, while Apple&#x27;s iPad Pro prioritizes raw processing, display precision and a tightly integrated software ecosystem.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Choosing between these two powerhouse tablets is probably simpler than you think.As ever, choosing a premium tablet in 2026 comes down to two very different philosophies.Samsung&#x27;s Galaxy Tab S12 Ultra bets on sheer screen size, battery stamina and bundled accessories, while Apple&#x27;s iPad Pro prioritizes raw processing, display precision and a tightly integrated software ecosystem.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/apple.html" target="_blank" rel="noopener noreferrer" class="company-link">Apple の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2275982/samsung-galaxy-tab-s12-ultra-vs-apple-ipad-pro-comparison/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="30">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">YouTube takes aim at clipper accounts, will prioritize original Shorts</h2>
+    <p class="article-original-title">原題: <em>YouTube takes aim at clipper accounts, will prioritize original Shorts</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">YouTube is trying to reduce the reach of clipper accounts — users who upload clips from other accounts without adding anything — within Shorts.This is pretty good news for people who like to watch fresh content without having to wade through a sea of rehashes.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">YouTube is trying to reduce the reach of clipper accounts — users who upload clips from other accounts without adding anything — within Shorts.This is pretty good news for people who like to watch fresh content without having to wade through a sea of rehashes.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2275978/youtube-takes-aim-at-clipper-accounts-will-prioritize-original-shorts/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+        </main>
+
+        <footer class="footer">
+            <p>本ページは公開記事をもとに自動生成しています。数値や仕様は必ず元記事で確認してください。</p>
+            <p>JSON データは同じフォルダ内の tech_news_digest.json で参照できます。</p>
+        </footer>
+    </div>
+
+    <script>
+
+        const categoryButtons = document.querySelectorAll('.category-btn');
+        const articleCards = document.querySelectorAll('.article-card');
+        const searchInput = document.getElementById('search-input');
+
+        let activeCategory = 'all';
+
+        function applyFilters() {
+            const query = searchInput.value.trim().toLowerCase();
+            articleCards.forEach(card => {
+                const matchesCategory = activeCategory === 'all' || card.dataset.category === activeCategory;
+                const searchableText = card.innerText.toLowerCase();
+                const matchesQuery = !query || searchableText.includes(query);
+                card.style.display = matchesCategory && matchesQuery ? '' : 'none';
+            });
+        }
+
+        categoryButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                categoryButtons.forEach(item => item.classList.remove('active'));
+                button.classList.add('active');
+                activeCategory = button.dataset.category;
+                applyFilters();
+            });
+        });
+
+        searchInput.addEventListener('input', applyFilters);
+    
+    </script>
+</body>
+</html>
