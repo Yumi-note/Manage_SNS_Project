@@ -1,0 +1,1206 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>海外テックニュース日本語まとめ</title>
+    <style>
+        :root {
+            color-scheme: dark;
+            --bg: #0a0f1d;
+            --panel: rgba(13, 20, 36, 0.92);
+            --line: rgba(132, 152, 187, 0.25);
+            --text: #eef3ff;
+            --muted: #adc1dd;
+            --accent: #7dd3fc;
+            --accent-strong: #38bdf8;
+            --shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: "Hiragino Sans", "Noto Sans JP", sans-serif;
+            background:
+                radial-gradient(circle at top right, rgba(56, 189, 248, 0.22), transparent 26%),
+                radial-gradient(circle at top left, rgba(16, 185, 129, 0.16), transparent 20%),
+                linear-gradient(180deg, #07101f 0%, #0b1327 48%, #0a0f1d 100%);
+            color: var(--text);
+        }
+
+        .page-shell {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 24px;
+        }
+
+        .hero {
+            padding: 28px;
+            border: 1px solid var(--line);
+            border-radius: 28px;
+            background: linear-gradient(145deg, rgba(18, 27, 48, 0.96), rgba(10, 17, 32, 0.96));
+            box-shadow: var(--shadow);
+        }
+
+        .hero-nav {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 28px;
+        }
+
+        .nav-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 42px;
+            padding: 0 16px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        .eyebrow {
+            margin: 0 0 10px;
+            color: var(--accent);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            font-size: 0.78rem;
+        }
+
+        .hero h1 {
+            margin: 0;
+            font-size: clamp(2rem, 3vw, 3.3rem);
+            line-height: 1.1;
+        }
+
+        .timestamp,
+        .description {
+            color: var(--muted);
+        }
+
+        .control-panel {
+            margin: 20px 0 28px;
+            padding: 22px;
+            border: 1px solid var(--line);
+            border-radius: 24px;
+            background: var(--panel);
+            backdrop-filter: blur(12px);
+        }
+
+        .control-header {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            align-items: end;
+            flex-wrap: wrap;
+        }
+
+        .control-header h2 {
+            margin: 0 0 6px;
+        }
+
+        .control-header p {
+            margin: 0;
+            color: var(--muted);
+        }
+
+        #search-input {
+            width: min(100%, 360px);
+            min-height: 46px;
+            padding: 0 14px;
+            border-radius: 14px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
+        }
+
+        .category-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 16px;
+        }
+
+        .category-btn {
+            min-height: 42px;
+            padding: 0 14px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
+            cursor: pointer;
+        }
+
+        .category-btn.active {
+            background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+            color: #06111f;
+            border-color: transparent;
+            font-weight: 700;
+        }
+
+        .article-list {
+            display: grid;
+            gap: 18px;
+        }
+
+        .article-card {
+            padding: 24px;
+            border-radius: 24px;
+            border: 1px solid var(--line);
+            background: linear-gradient(180deg, rgba(12, 18, 34, 0.96), rgba(14, 22, 39, 0.9));
+            box-shadow: var(--shadow);
+        }
+
+        .card-topline {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+
+        .category-chip,
+        .source-chip {
+            display: inline-flex;
+            align-items: center;
+            min-height: 34px;
+            padding: 0 12px;
+            border-radius: 999px;
+            font-size: 0.92rem;
+            font-weight: 700;
+        }
+
+        .source-chip {
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--muted);
+        }
+
+        .article-title {
+            margin: 0 0 10px;
+            font-size: clamp(1.45rem, 2vw, 2rem);
+            line-height: 1.35;
+        }
+
+        .article-original-title {
+            margin: 0 0 18px;
+            color: var(--muted);
+        }
+
+        .security-alert {
+            margin: 0 0 14px;
+            padding: 10px 14px;
+            border-radius: 12px;
+            border: 1px solid rgba(248, 113, 113, 0.4);
+            background: rgba(248, 113, 113, 0.12);
+            color: #fecaca;
+            font-weight: 700;
+            font-size: 0.92rem;
+        }
+
+        .article-section {
+            margin-top: 18px;
+            padding-top: 18px;
+            border-top: 1px solid var(--line);
+        }
+
+        .article-section h3 {
+            margin: 0 0 12px;
+            font-size: 1rem;
+            color: var(--accent);
+        }
+
+        .article-paragraph {
+            margin: 0 0 14px;
+            color: #dce7f8;
+            line-height: 1.9;
+            font-size: 1rem;
+        }
+
+        .company-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .company-link,
+        .action-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 42px;
+            padding: 0 14px;
+            border-radius: 14px;
+            text-decoration: none;
+            border: 1px solid rgba(125, 211, 252, 0.3);
+        }
+
+        .company-link {
+            color: var(--accent);
+            background: rgba(56, 189, 248, 0.08);
+        }
+
+        .article-actions {
+            margin-top: 22px;
+        }
+
+        .footer {
+            padding: 28px 8px 40px;
+            color: var(--muted);
+            text-align: center;
+        }
+
+        .footer p {
+            margin: 6px 0;
+        }
+
+        .action-link.primary {
+            color: #06111f;
+            font-weight: 700;
+            background: linear-gradient(135deg, #7dd3fc, #22d3ee);
+            border-color: transparent;
+        }
+
+        @media (max-width: 720px) {
+            .page-shell {
+                padding: 14px;
+            }
+
+            .hero,
+            .control-panel,
+            .article-card {
+                padding: 18px;
+                border-radius: 20px;
+            }
+
+            .control-header {
+                align-items: stretch;
+            }
+
+            #search-input {
+                width: 100%;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="page-shell">
+        <header class="hero">
+            <div class="hero-nav">
+                <a class="nav-link" href="../../index.html">HOME</a>
+                <a class="nav-link" href="../index.html">この日の記事一覧</a>
+            </div>
+            <div class="hero-copy">
+                <p class="eyebrow">Global Tech News Digest</p>
+                <h1>海外テックニュース 日本語まとめ</h1>
+                <p class="timestamp">2026年10月6日 20:04 JST に収集した記事を掲載しています。</p>
+                <p class="description">各カードには本文寄りの日本語訳を掲載し、記事中で触れた企業は別ページの解説リンクとして分離しています。</p>
+            </div>
+        </header>
+
+        <section class="control-panel">
+            <div class="control-header">
+                <div>
+                    <h2>記事を探す</h2>
+                    <p>カテゴリとキーワードで一覧を絞り込めます。</p>
+                </div>
+                <input type="text" id="search-input" placeholder="タイトル・本文・媒体名で検索">
+            </div>
+            <div class="category-buttons">
+                <button class="category-btn active" data-category="all">すべて (30)</button>
+<button class="category-btn" data-category="AI/ML" style="--accent:#10b981">🤖 AI/ML (20)</button>
+<button class="category-btn" data-category="Enterprise" style="--accent:#3b82f6">🏢 Enterprise (1)</button>
+<button class="category-btn" data-category="Hardware" style="--accent:#06b6d4">⚙️ Hardware (2)</button>
+<button class="category-btn" data-category="Media" style="--accent:#f59e0b">🎬 Media (1)</button>
+<button class="category-btn" data-category="Mobile" style="--accent:#6366f1">📱 Mobile (1)</button>
+<button class="category-btn" data-category="Other" style="--accent:#6b7280">📰 Other (2)</button>
+<button class="category-btn" data-category="Policy" style="--accent:#ec4899">⚖️ Policy (1)</button>
+<button class="category-btn" data-category="Startups" style="--accent:#8b5cf6">🚀 Startups (2)</button>
+            </div>
+        </section>
+
+        <main class="article-list" id="articles-container">
+            <article class="article-card" data-category="Startups" data-index="1">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#8b5cf6">🚀 Startups</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">AI computing startup Lambda to raise $4B ahead of planned IPO</h2>
+    <p class="article-original-title">原題: <em>AI computing startup Lambda to raise $4B ahead of planned IPO</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Cloud provider Lambda is raising up to $4 billion at a $14.5 billion pre-money valuation, marking what could be its last private round before a planned 2027 IPO, according to The Wall Street Journal.Coatue Management and Blackstone are leading the round.A letter to investors reviewed by the Journal shows Lambda’s backlog grew from $15 billion in June to $50 billion in September.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Cloud provider Lambda is raising up to $4 billion at a $14.5 billion pre-money valuation, marking what could be its last private round before a planned 2027 IPO, according to The Wall Street Journal.Coatue Management and Blackstone are leading the round.A letter to investors reviewed by the Journal shows Lambda’s backlog grew from $15 billion in June to $50 billion in September.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/10/06/ai-computing-startup-lambda-to-raise-4b-ahead-of-planned-ipo/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="2">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">The next hurdle for AI agents: getting websites to let them in</h2>
+    <p class="article-original-title">原題: <em>The next hurdle for AI agents: getting websites to let them in</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Personal AI agents, like Meta’s Muse, Instinct, ChatGPT’s Dots, and others, are kicking off a new wave of consumer AI that involves more than just responding to queries.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Personal AI agents, like Meta’s Muse, Instinct, ChatGPT’s Dots, and others, are kicking off a new wave of consumer AI that involves more than just responding to queries.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/amazon.html" target="_blank" rel="noopener noreferrer" class="company-link">Amazon の解説</a> <a href="companies/meta.html" target="_blank" rel="noopener noreferrer" class="company-link">Meta の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/10/06/the-next-hurdle-for-ai-agents-getting-websites-to-let-them-in/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="3">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Hark releases an AI personal assistant with a focus on privacy</h2>
+    <p class="article-original-title">原題: <em>Hark releases an AI personal assistant with a focus on privacy</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">From Muse to Instinct to Dots, tech firms are hunting for the user experience that will make an AI personal assistant a must-have product.Hark , a startup founded less than a year ago by serial founder Brett Adcock, is throwing its hat in the ring today with the wide release of Hark Pro.Users can access the service for free, with a subscription tier for heavy users.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">From Muse to Instinct to Dots, tech firms are hunting for the user experience that will make an AI personal assistant a must-have product.Hark , a startup founded less than a year ago by serial founder Brett Adcock, is throwing its hat in the ring today with the wide release of Hark Pro.Users can access the service for free, with a subscription tier for heavy users.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/10/06/hark-releases-an-ai-personal-assistant-with-a-focus-on-privacy/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Media" data-index="4">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#f59e0b">🎬 Media</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">India&#x27;s JioHotstar takes partnership route for Middle East expansion</h2>
+    <p class="article-original-title">原題: <em>India&#x27;s JioHotstar takes partnership route for Middle East expansion</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">JioHotstar , the streaming platform with more than 500 million monthly active users backed by Indian conglomerate Reliance Industries, is expanding into the Middle East and North Africa (MENA) through Starzplay, one of the region’s largest streaming services.The new overseas push comes after its debut in the U.K., Canada, and Singapore.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">JioHotstar , the streaming platform with more than 500 million monthly active users backed by Indian conglomerate Reliance Industries, is expanding into the Middle East and North Africa (MENA) through Starzplay, one of the region’s largest streaming services.The new overseas push comes after its debut in the U.K., Canada, and Singapore.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/10/06/indias-jiohotstar-takes-partnership-route-for-middle-east-expansion/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="5">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Mirror Particle is building a ‘world model’ of human behavior</h2>
+    <p class="article-original-title">原題: <em>Mirror Particle is building a ‘world model’ of human behavior</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Startups that promise to predict how humans will behave are having a moment.Over the past year, Simile raised $200 million at a $2 billion valuation; Aaru raised $88 million at a $1 billion valuation; and Humans&amp;, an AI startup that announced a massive $480 million seed round in January at a $4.48 billion valuation, launched Persimmon to model human behavior.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Startups that promise to predict how humans will behave are having a moment.Over the past year, Simile raised $200 million at a $2 billion valuation; Aaru raised $88 million at a $1 billion valuation; and Humans&amp;, an AI startup that announced a massive $480 million seed round in January at a $4.48 billion valuation, launched Persimmon to model human behavior.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/10/06/mirror-particle-is-building-a-world-model-of-human-behavior/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="6">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Amazon’s last-gen Kindle Paperwhite is 30 percent off</h2>
+    <p class="article-original-title">原題: <em>Amazon’s last-gen Kindle Paperwhite is 30 percent off</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. $170 gets you the Signature Edition without ads, plus 32GB of storage and wireless charging.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. $170 gets you the Signature Edition without ads, plus 32GB of storage and wireless charging.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/amazon.html" target="_blank" rel="noopener noreferrer" class="company-link">Amazon の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/gadgets/1006020/amazon-kindle-paperwhite-prime-day-deal-sale" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="7">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Save on MacBooks, iPads and Apple Watches during October Prime Day</h2>
+    <p class="article-original-title">原題: <em>Save on MacBooks, iPads and Apple Watches during October Prime Day</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. Prime Big Deal Days is a great chance to save cash on the latest Apple tech.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. Prime Big Deal Days is a great chance to save cash on the latest Apple tech.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/apple.html" target="_blank" rel="noopener noreferrer" class="company-link">Apple の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/gadgets/1005662/apple-ipad-macbook-airpod-prime-day-deal-sale" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="8">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Two mystery PlayStation products have leaked — one might be a PlayStation Portal OLED</h2>
+    <p class="article-original-title">原題: <em>Two mystery PlayStation products have leaked — one might be a PlayStation Portal OLED</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. The Wi-Fi Alliance recently leaked two new PlayStation devices that seem like they could be updates to Sony’s handheld for streaming.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. The Wi-Fi Alliance recently leaked two new PlayStation devices that seem like they could be updates to Sony’s handheld for streaming.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/games/1006092/playstation-portal-oled-wi-fi-alliance-certifications" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="9">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Alexa can’t control the aux input on Amazon Echo speakers anymore</h2>
+    <p class="article-original-title">原題: <em>Alexa can’t control the aux input on Amazon Echo speakers anymore</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. You can still use the 3. 5mm port on older Echo devices, but Alexa can’t control your connected device. ﻿</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. You can still use the 3. 5mm port on older Echo devices, but Alexa can’t control your connected device. ﻿</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/amazon.html" target="_blank" rel="noopener noreferrer" class="company-link">Amazon の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/tech/1006103/amazon-alexa-aux-voice-commands" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="10">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">The Sonos Beam 2 soundbar is $140 off</h2>
+    <p class="article-original-title">原題: <em>The Sonos Beam 2 soundbar is $140 off</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. This Sonos-integrated soundbar adds Dolby Atmos and eARC to the mix.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. This Sonos-integrated soundbar adds Dolby Atmos and eARC to the mix.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/gadgets/1004180/sonos-beam-2-soundbar-prime-day-deal-sale" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="11">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Everybody’s Favorite Art TV Is Nearly Half Off Right Now</h2>
+    <p class="article-original-title">原題: <em>Everybody’s Favorite Art TV Is Nearly Half Off Right Now</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Samsung&#x27;s The Frame TV is at its lowest price ever right now, at 40 percent off—a very appealing deal for one of the most popular art TVs on the market.The discount applies to the 2025 65-inch model, which is still a very capable TV that does its primary function very well.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Samsung&#x27;s The Frame TV is at its lowest price ever right now, at 40 percent off—a very appealing deal for one of the most popular art TVs on the market.The discount applies to the 2025 65-inch model, which is still a very capable TV that does its primary function very well.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/story/samsung-the-frame-tv-deal-prime-day-10-6-2026/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="12">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">‘Artificial’ Roasts AI’s Creators—and Sends a Dark Warning About Its Dangers</h2>
+    <p class="article-original-title">原題: <em>‘Artificial’ Roasts AI’s Creators—and Sends a Dark Warning About Its Dangers</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Artificial , the new comedy-drama about OpenAI and the artificial intelligence arms race, is a movie of weird walks.As OpenAI cofounder Ilya Sutskever, Russian actor Yuri Borisov clomps around, like a geeky Frankensteinian monster.As the controversial OpenAI CEO Sam Altman, Andrew Garfield bounces and skips boyishly—a gait that Altman himself recently commended for its accuracy.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Artificial , the new comedy-drama about OpenAI and the artificial intelligence arms race, is a movie of weird walks.As OpenAI cofounder Ilya Sutskever, Russian actor Yuri Borisov clomps around, like a geeky Frankensteinian monster.As the controversial OpenAI CEO Sam Altman, Andrew Garfield bounces and skips boyishly—a gait that Altman himself recently commended for its accuracy.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/openai.html" target="_blank" rel="noopener noreferrer" class="company-link">OpenAI の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/story/artificial-roasts-ais-creators-and-sends-a-dark-warning-about-its-dangers/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="13">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Apple AirPods Max 2 Are $120 Off Right Now</h2>
+    <p class="article-original-title">原題: <em>Apple AirPods Max 2 Are $120 Off Right Now</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Apple AirPods Max 2 are 22 percent off right now at Amazon, Walmart, and Best Buy.I’ve tested more than 100 wireless earbuds and headphones, and for Apple loyalists, these are the over-ear headphones to get, especially if you bounce between your iPhone and MacBook often.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Apple AirPods Max 2 are 22 percent off right now at Amazon, Walmart, and Best Buy.I’ve tested more than 100 wireless earbuds and headphones, and for Apple loyalists, these are the over-ear headphones to get, especially if you bounce between your iPhone and MacBook often.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/amazon.html" target="_blank" rel="noopener noreferrer" class="company-link">Amazon の解説</a> <a href="companies/apple.html" target="_blank" rel="noopener noreferrer" class="company-link">Apple の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/story/apple-airpods-max-2-deal-october-2026/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="14">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">I’ve Tested Countless Smart Home Gadgets. These Are the Prime Day Deals I’d Go For</h2>
+    <p class="article-original-title">原題: <em>I’ve Tested Countless Smart Home Gadgets. These Are the Prime Day Deals I’d Go For</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">By combining a range of smart home devices, you can create automations that make life easier and let you keep an eye on your property from afar.After testing countless products and tracking their prices over the last year, these are the Prime Day smart home deals I recommend springing for.For more bargains, browse our roundup of the Absolute Best Prime Day Deals and the Best Prime Day Tech Deals .</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">By combining a range of smart home devices, you can create automations that make life easier and let you keep an eye on your property from afar.After testing countless products and tracking their prices over the last year, these are the Prime Day smart home deals I recommend springing for.For more bargains, browse our roundup of the Absolute Best Prime Day Deals and the Best Prime Day Tech Deals .</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/story/best-smart-home-prime-day-10-6-2026/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="15">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">These Excellent Yeti Prime Day Deals Will Sell Out Fast</h2>
+    <p class="article-original-title">原題: <em>These Excellent Yeti Prime Day Deals Will Sell Out Fast</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Make sure to check out the rest of our deals coverage including the Absolute Best Prime Day Deals and the Best Prime Day Deals Under $50 .I bring the Roadie 32 with me on basically every trip, and I&#x27;ve been eyeing the Roadie 48 because I like the design so much.It&#x27;s nearly perfect, though the handle can feel a little short if you&#x27;re navigating rough terrain.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Make sure to check out the rest of our deals coverage including the Absolute Best Prime Day Deals and the Best Prime Day Deals Under $50 .I bring the Roadie 32 with me on basically every trip, and I&#x27;ve been eyeing the Roadie 48 because I like the design so much.It&#x27;s nearly perfect, though the handle can feel a little short if you&#x27;re navigating rough terrain.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/story/amazon-prime-day-2026-yeti-deals/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="16">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Ars Technica - All content</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Paramount completes $111B Warner merger, creating “Skydance” behemoth</h2>
+    <p class="article-original-title">原題: <em>Paramount completes $111B Warner merger, creating “Skydance” behemoth</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Paramount now owns Warner Bros.as last-ditch effort to stop $111B merger fails.Paramount Skydance completed its $111 billion merger with Warner Bros.Discovery today, after a last-ditch effort to block the deal was rejected by Supreme Court Justice Elena Kagan.The post-merger company is called Skydance, taking the name of a firm that Paramount bought in a separate deal last year.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Paramount now owns Warner Bros.as last-ditch effort to stop $111B merger fails.Paramount Skydance completed its $111 billion merger with Warner Bros.Discovery today, after a last-ditch effort to block the deal was rejected by Supreme Court Justice Elena Kagan.The post-merger company is called Skydance, taking the name of a firm that Paramount bought in a separate deal last year.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/tech-policy/2026/10/paramount-completes-111b-warner-merger-creating-skydance-behemoth/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="17">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Ars Technica - All content</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Support Ars and get a better reading experience in return</h2>
+    <p class="article-original-title">原題: <em>Support Ars and get a better reading experience in return</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">ArsPro gives you more ways to read while directly supporting our journalism.When Ars launched in 1998, there was one way to read it: in a web browser on a PC (or Mac).Your screen of choice was either some massive CRT or a very expensive LCD monitor (or, in my case, the less-expensive grayscale, passive-matrix LCD on a PowerBook).Either way, it was butt in chair, chair at desk.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">ArsPro gives you more ways to read while directly supporting our journalism.When Ars launched in 1998, there was one way to read it: in a web browser on a PC (or Mac).Your screen of choice was either some massive CRT or a very expensive LCD monitor (or, in my case, the less-expensive grayscale, passive-matrix LCD on a PowerBook).Either way, it was butt in chair, chair at desk.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/staff/2026/10/make-ars-better-with-an-arspro-subscription/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="18">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Ars Technica - All content</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Amazon kills Alexa’s ability to control Echo speakers&#x27; AUX input</h2>
+    <p class="article-original-title">原題: <em>Amazon kills Alexa’s ability to control Echo speakers&#x27; AUX input</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Amazon hasn’t made an Echo with a 3.5mm port in six years.Amazon has disabled Alexa control of devices plugged into the company’s Echo smart speaker’s AUX port.Users have reported receiving an email from Amazon this week informing them of the change.“This is a reminder that as of today, voice commands to control your Echo device’s Aux input are no longer available.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Amazon hasn’t made an Echo with a 3.5mm port in six years.Amazon has disabled Alexa control of devices plugged into the company’s Echo smart speaker’s AUX port.Users have reported receiving an email from Amazon this week informing them of the change.“This is a reminder that as of today, voice commands to control your Echo device’s Aux input are no longer available.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/amazon.html" target="_blank" rel="noopener noreferrer" class="company-link">Amazon の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/gadgets/2026/10/amazon-bricks-alexas-ability-to-control-echo-speakers-aux-input/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="19">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Ars Technica - All content</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Neutrino physicist wins 2026 Nobel Physics Prize</h2>
+    <p class="article-original-title">原題: <em>Neutrino physicist wins 2026 Nobel Physics Prize</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Francis Halzen of University of Wisconsin-Madison led development of IceCube Neutrino Observatory.Francis Halzen, a physicist at the University of Wisconsin, Madison, has won the 2026 Nobel Prize in Physics “for decisive contributions to the IceCube Neutrino Observatory and the discovery of high-energy neutrinos of astrophysical origin.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Francis Halzen of University of Wisconsin-Madison led development of IceCube Neutrino Observatory.Francis Halzen, a physicist at the University of Wisconsin, Madison, has won the 2026 Nobel Prize in Physics “for decisive contributions to the IceCube Neutrino Observatory and the discovery of high-energy neutrinos of astrophysical origin.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/science/2026/10/neutrino-physicist-wins-2026-nobel-physics-prize/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="20">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Ars Technica - All content</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Googlebook &quot;Better Together&quot; phone features don&#x27;t work with Samsung at launch</h2>
+    <p class="article-original-title">原題: <em>Googlebook &quot;Better Together&quot; phone features don&#x27;t work with Samsung at launch</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Googlebooks require Android 17, but Samsung’s Android 17 phones won’t work yet.Googlebooks are Google’s latest attempt to carve out a piece of the premium laptop market, and tight integration with Android phones is a key part of that effort.Now that Googlebooks are available, we’re learning of some frustrating limitations of that plan.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Googlebooks require Android 17, but Samsung’s Android 17 phones won’t work yet.Googlebooks are Google’s latest attempt to carve out a piece of the premium laptop market, and tight integration with Android phones is a key part of that effort.Now that Googlebooks are available, we’re learning of some frustrating limitations of that plan.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/google.html" target="_blank" rel="noopener noreferrer" class="company-link">Google の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/gadgets/2026/10/googlebook-better-together-phone-features-dont-work-with-samsung-at-launch/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Other" data-index="21">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#6b7280">📰 Other</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Weight-loss drugs show signs of slowing biological aging, say drugmakers</h2>
+    <p class="article-original-title">原題: <em>Weight-loss drugs show signs of slowing biological aging, say drugmakers</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Novo Nordisk and Eli Lilly found the popular medicines reduce molecular markers of age.Popular weight-loss drugs may do more than help people shed pounds.They might also melt away the years.Drug giants Eli Lilly and Novo Nordisk say patients taking their drugs age less quickly, according to readouts from molecular “aging clocks.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Novo Nordisk and Eli Lilly found the popular medicines reduce molecular markers of age.Popular weight-loss drugs may do more than help people shed pounds.They might also melt away the years.Drug giants Eli Lilly and Novo Nordisk say patients taking their drugs age less quickly, according to readouts from molecular “aging clocks.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/10/06/1145836/weight-loss-drugs-glp1-lilly-novo-aging-clocks/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="22">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">The Download: 10 climate tech companies to watch</h2>
+    <p class="article-original-title">原題: <em>The Download: 10 climate tech companies to watch</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Plus: Musk’s new Pentagon role has raised conflict-of-interest fears.This is today&#x27;s edition of The Download , our weekday newsletter that provides a daily dose of what&#x27;s going on in the world of technology.Each year, MIT Technology Review puts together a list of the most promising climate tech companies in the world.This year, the stakes feel higher than ever.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Plus: Musk’s new Pentagon role has raised conflict-of-interest fears.This is today&#x27;s edition of The Download , our weekday newsletter that provides a daily dose of what&#x27;s going on in the world of technology.Each year, MIT Technology Review puts together a list of the most promising climate tech companies in the world.This year, the stakes feel higher than ever.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/10/06/1145796/the-download-10-climate-tech-companies-to-watch/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Startups" data-index="23">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#8b5cf6">🚀 Startups</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">2026 Climate Tech Companies to Watch</h2>
+    <p class="article-original-title">原題: <em>2026 Climate Tech Companies to Watch</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Each year, the MIT Technology Review team puts together a list of some of the most promising climate tech companies in the world.Whether early-stage startup or multinational corporation, the businesses we’ve chosen are working on technologies to help us address climate change or adapt to our warming world.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Each year, the MIT Technology Review team puts together a list of some of the most promising climate tech companies in the world.Whether early-stage startup or multinational corporation, the businesses we’ve chosen are working on technologies to help us address climate change or adapt to our warming world.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/10/06/1143800/2026-climate-tech-companies-to-watch/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Policy" data-index="24">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#ec4899">⚖️ Policy</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Here’s how our climate team picked 10 promising companies to watch</h2>
+    <p class="article-original-title">原題: <em>Here’s how our climate team picked 10 promising companies to watch</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Our reporters and editors evaluated dozens of climate tech companies from around the world for potential impact, scalability, and signs of commercial progress.As the team at MIT Technology Review set out to choose companies for this year’s edition of our annual list of Climate Tech Companies to Watch, the challenge felt more daunting than any year since we started compiling the list in 2023.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Our reporters and editors evaluated dozens of climate tech companies from around the world for potential impact, scalability, and signs of commercial progress.As the team at MIT Technology Review set out to choose companies for this year’s edition of our annual list of Climate Tech Companies to Watch, the challenge felt more daunting than any year since we started compiling the list in 2023.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/10/06/1144978/2026-climate-tech-companies-to-watch-how-we-chose/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Hardware" data-index="25">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#06b6d4">⚙️ Hardware</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">WeLion New Energy and its semi-solid-state batteries</h2>
+    <p class="article-original-title">原題: <em>WeLion New Energy and its semi-solid-state batteries</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">The Chinese company is making liquid-solid hybrid cells to pack more power into products like electric cars and cargo ships.WeLion New Energy is on a quest to make safer, better batteries.The company’s semi-solid-state cells could improve safety and offer greater energy density than lithium-ion batteries to power electric cars, boats, and drones.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">The Chinese company is making liquid-solid hybrid cells to pack more power into products like electric cars and cargo ships.WeLion New Energy is on a quest to make safer, better batteries.The company’s semi-solid-state cells could improve safety and offer greater energy density than lithium-ion batteries to power electric cars, boats, and drones.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/10/06/1144987/2026-climate-tech-companies-to-watch-welion-semi-solid-state-batteries/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Hardware" data-index="26">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#06b6d4">⚙️ Hardware</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Doom on the Vectrex turns the classic shooter into Tron-like vector art</h2>
+    <p class="article-original-title">原題: <em>Doom on the Vectrex turns the classic shooter into Tron-like vector art</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">The 1993 game runs on the 1982 console thanks to a modded cartridge.Vector graphics were mostly abandoned in gaming, but small pockets of enthusiasts are still keeping the Vectrex, the only vector-based home console ever released, alive.And what does one do to draw attention to a niche platform?Why, put Doom on it, of course.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">The 1993 game runs on the 1982 console thanks to a modded cartridge.Vector graphics were mostly abandoned in gaming, but small pockets of enthusiasts are still keeping the Vectrex, the only vector-based home console ever released, alive.And what does one do to draw attention to a niche platform?Why, put Doom on it, of course.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2279239/doom-on-the-vectrex-turns-the-classic-shooter-into-tron-like-vector-art/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Enterprise" data-index="27">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#3b82f6">🏢 Enterprise</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Skydance will combine HBO Max and Paramount+ into a single streaming service</h2>
+    <p class="article-original-title">原題: <em>Skydance will combine HBO Max and Paramount+ into a single streaming service</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">The newly merged media company plans to &#x27;unify&#x27; its new streaming businesses.Skydance , the new media entity made from Paramount Skydance and Warner Bros.Discovery, is also going to merge its streaming apps.The company shared its intentions in the same announcement that confirmed the $110 billion acquisition of Warner Bros.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">The newly merged media company plans to &#x27;unify&#x27; its new streaming businesses.Skydance , the new media entity made from Paramount Skydance and Warner Bros.Discovery, is also going to merge its streaming apps.The company shared its intentions in the same announcement that confirmed the $110 billion acquisition of Warner Bros.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2279192/skydance-will-combine-hbo-max-and-paramount-into-a-single-streaming-service/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Mobile" data-index="28">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#6366f1">📱 Mobile</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Google Photos vs. Gallery app: What&#x27;s the difference and which should you use?</h2>
+    <p class="article-original-title">原題: <em>Google Photos vs. Gallery app: What&#x27;s the difference and which should you use?</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Gallery is a pared-down option if you don’t need Photos’ cloud backup and editing features.Did you know that Google has another, simpler app for images called Gallery?We&#x27;re not talking about preloaded applications made by Android brands like Samsung&#x27;s Gallery, but an app that Google itself developed.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Gallery is a pared-down option if you don’t need Photos’ cloud backup and editing features.Did you know that Google has another, simpler app for images called Gallery?We&#x27;re not talking about preloaded applications made by Android brands like Samsung&#x27;s Gallery, but an app that Google itself developed.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/google.html" target="_blank" rel="noopener noreferrer" class="company-link">Google の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2273767/google-photos-vs-gallery-app-differences-explained/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="29">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Asos hit by extortion hack that may have compromised some customer data</h2>
+    <p class="article-original-title">原題: <em>Asos hit by extortion hack that may have compromised some customer data</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">The attackers sent a push notification to Asos shoppers announcing their activity.UK-based fashion retailer Asos is doing damage control after its customers were sent a push notification claiming that its cloud services had been hacked.According to The Guardian , Asos users received mobile alerts that were addressed to the company&#x27;s data protection officer and IT personnel.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">The attackers sent a push notification to Asos shoppers announcing their activity.UK-based fashion retailer Asos is doing damage control after its customers were sent a push notification claiming that its cloud services had been hacked.According to The Guardian , Asos users received mobile alerts that were addressed to the company&#x27;s data protection officer and IT personnel.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2279150/asos-hit-by-extortion-hack-that-may-have-compromised-some-customer-data/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Other" data-index="30">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#6b7280">📰 Other</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Why it&#x27;s important to regularly replace your surge protectors</h2>
+    <p class="article-original-title">原題: <em>Why it&#x27;s important to regularly replace your surge protectors</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Time and spikes take a toll on a surge protector, even with no visible signs of damage.Few things in modern life are as convenient as a good surge protector.That small, narrow strip can literally protect thousands of dollars&#x27; worth of equipment, especially if you have a PC gaming setup or extensive home office equipment.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Time and spikes take a toll on a surge protector, even with no visible signs of damage.Few things in modern life are as convenient as a good surge protector.That small, narrow strip can literally protect thousands of dollars&#x27; worth of equipment, especially if you have a PC gaming setup or extensive home office equipment.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2277442/why-its-important-to-replace-surge-protector/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+        </main>
+
+        <footer class="footer">
+            <p>本ページは公開記事をもとに自動生成しています。数値や仕様は必ず元記事で確認してください。</p>
+            <p>JSON データは同じフォルダ内の tech_news_digest.json で参照できます。</p>
+        </footer>
+    </div>
+
+    <script>
+
+        const categoryButtons = document.querySelectorAll('.category-btn');
+        const articleCards = document.querySelectorAll('.article-card');
+        const searchInput = document.getElementById('search-input');
+
+        let activeCategory = 'all';
+
+        function applyFilters() {
+            const query = searchInput.value.trim().toLowerCase();
+            articleCards.forEach(card => {
+                const matchesCategory = activeCategory === 'all' || card.dataset.category === activeCategory;
+                const searchableText = card.innerText.toLowerCase();
+                const matchesQuery = !query || searchableText.includes(query);
+                card.style.display = matchesCategory && matchesQuery ? '' : 'none';
+            });
+        }
+
+        categoryButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                categoryButtons.forEach(item => item.classList.remove('active'));
+                button.classList.add('active');
+                activeCategory = button.dataset.category;
+                applyFilters();
+            });
+        });
+
+        searchInput.addEventListener('input', applyFilters);
+    
+    </script>
+</body>
+</html>
