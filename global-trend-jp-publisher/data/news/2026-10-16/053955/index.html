@@ -1,0 +1,1207 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>海外テックニュース日本語まとめ</title>
+    <style>
+        :root {
+            color-scheme: dark;
+            --bg: #0a0f1d;
+            --panel: rgba(13, 20, 36, 0.92);
+            --line: rgba(132, 152, 187, 0.25);
+            --text: #eef3ff;
+            --muted: #adc1dd;
+            --accent: #7dd3fc;
+            --accent-strong: #38bdf8;
+            --shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: "Hiragino Sans", "Noto Sans JP", sans-serif;
+            background:
+                radial-gradient(circle at top right, rgba(56, 189, 248, 0.22), transparent 26%),
+                radial-gradient(circle at top left, rgba(16, 185, 129, 0.16), transparent 20%),
+                linear-gradient(180deg, #07101f 0%, #0b1327 48%, #0a0f1d 100%);
+            color: var(--text);
+        }
+
+        .page-shell {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 24px;
+        }
+
+        .hero {
+            padding: 28px;
+            border: 1px solid var(--line);
+            border-radius: 28px;
+            background: linear-gradient(145deg, rgba(18, 27, 48, 0.96), rgba(10, 17, 32, 0.96));
+            box-shadow: var(--shadow);
+        }
+
+        .hero-nav {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 28px;
+        }
+
+        .nav-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 42px;
+            padding: 0 16px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        .eyebrow {
+            margin: 0 0 10px;
+            color: var(--accent);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            font-size: 0.78rem;
+        }
+
+        .hero h1 {
+            margin: 0;
+            font-size: clamp(2rem, 3vw, 3.3rem);
+            line-height: 1.1;
+        }
+
+        .timestamp,
+        .description {
+            color: var(--muted);
+        }
+
+        .control-panel {
+            margin: 20px 0 28px;
+            padding: 22px;
+            border: 1px solid var(--line);
+            border-radius: 24px;
+            background: var(--panel);
+            backdrop-filter: blur(12px);
+        }
+
+        .control-header {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            align-items: end;
+            flex-wrap: wrap;
+        }
+
+        .control-header h2 {
+            margin: 0 0 6px;
+        }
+
+        .control-header p {
+            margin: 0;
+            color: var(--muted);
+        }
+
+        #search-input {
+            width: min(100%, 360px);
+            min-height: 46px;
+            padding: 0 14px;
+            border-radius: 14px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
+        }
+
+        .category-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 16px;
+        }
+
+        .category-btn {
+            min-height: 42px;
+            padding: 0 14px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
+            cursor: pointer;
+        }
+
+        .category-btn.active {
+            background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+            color: #06111f;
+            border-color: transparent;
+            font-weight: 700;
+        }
+
+        .article-list {
+            display: grid;
+            gap: 18px;
+        }
+
+        .article-card {
+            padding: 24px;
+            border-radius: 24px;
+            border: 1px solid var(--line);
+            background: linear-gradient(180deg, rgba(12, 18, 34, 0.96), rgba(14, 22, 39, 0.9));
+            box-shadow: var(--shadow);
+        }
+
+        .card-topline {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+
+        .category-chip,
+        .source-chip {
+            display: inline-flex;
+            align-items: center;
+            min-height: 34px;
+            padding: 0 12px;
+            border-radius: 999px;
+            font-size: 0.92rem;
+            font-weight: 700;
+        }
+
+        .source-chip {
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--muted);
+        }
+
+        .article-title {
+            margin: 0 0 10px;
+            font-size: clamp(1.45rem, 2vw, 2rem);
+            line-height: 1.35;
+        }
+
+        .article-original-title {
+            margin: 0 0 18px;
+            color: var(--muted);
+        }
+
+        .security-alert {
+            margin: 0 0 14px;
+            padding: 10px 14px;
+            border-radius: 12px;
+            border: 1px solid rgba(248, 113, 113, 0.4);
+            background: rgba(248, 113, 113, 0.12);
+            color: #fecaca;
+            font-weight: 700;
+            font-size: 0.92rem;
+        }
+
+        .article-section {
+            margin-top: 18px;
+            padding-top: 18px;
+            border-top: 1px solid var(--line);
+        }
+
+        .article-section h3 {
+            margin: 0 0 12px;
+            font-size: 1rem;
+            color: var(--accent);
+        }
+
+        .article-paragraph {
+            margin: 0 0 14px;
+            color: #dce7f8;
+            line-height: 1.9;
+            font-size: 1rem;
+        }
+
+        .company-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .company-link,
+        .action-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 42px;
+            padding: 0 14px;
+            border-radius: 14px;
+            text-decoration: none;
+            border: 1px solid rgba(125, 211, 252, 0.3);
+        }
+
+        .company-link {
+            color: var(--accent);
+            background: rgba(56, 189, 248, 0.08);
+        }
+
+        .article-actions {
+            margin-top: 22px;
+        }
+
+        .footer {
+            padding: 28px 8px 40px;
+            color: var(--muted);
+            text-align: center;
+        }
+
+        .footer p {
+            margin: 6px 0;
+        }
+
+        .action-link.primary {
+            color: #06111f;
+            font-weight: 700;
+            background: linear-gradient(135deg, #7dd3fc, #22d3ee);
+            border-color: transparent;
+        }
+
+        @media (max-width: 720px) {
+            .page-shell {
+                padding: 14px;
+            }
+
+            .hero,
+            .control-panel,
+            .article-card {
+                padding: 18px;
+                border-radius: 20px;
+            }
+
+            .control-header {
+                align-items: stretch;
+            }
+
+            #search-input {
+                width: 100%;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="page-shell">
+        <header class="hero">
+            <div class="hero-nav">
+                <a class="nav-link" href="../../index.html">HOME</a>
+                <a class="nav-link" href="../index.html">この日の記事一覧</a>
+            </div>
+            <div class="hero-copy">
+                <p class="eyebrow">Global Tech News Digest</p>
+                <h1>海外テックニュース 日本語まとめ</h1>
+                <p class="timestamp">2026年10月16日 05:39 JST に収集した記事を掲載しています。</p>
+                <p class="description">各カードには本文寄りの日本語訳を掲載し、記事中で触れた企業は別ページの解説リンクとして分離しています。</p>
+            </div>
+        </header>
+
+        <section class="control-panel">
+            <div class="control-header">
+                <div>
+                    <h2>記事を探す</h2>
+                    <p>カテゴリとキーワードで一覧を絞り込めます。</p>
+                </div>
+                <input type="text" id="search-input" placeholder="タイトル・本文・媒体名で検索">
+            </div>
+            <div class="category-buttons">
+                <button class="category-btn active" data-category="all">すべて (30)</button>
+<button class="category-btn" data-category="AI/ML" style="--accent:#10b981">🤖 AI/ML (19)</button>
+<button class="category-btn" data-category="Enterprise" style="--accent:#3b82f6">🏢 Enterprise (1)</button>
+<button class="category-btn" data-category="Media" style="--accent:#f59e0b">🎬 Media (2)</button>
+<button class="category-btn" data-category="Mobile" style="--accent:#6366f1">📱 Mobile (3)</button>
+<button class="category-btn" data-category="Policy" style="--accent:#ec4899">⚖️ Policy (3)</button>
+<button class="category-btn" data-category="Startups" style="--accent:#8b5cf6">🚀 Startups (2)</button>
+            </div>
+        </section>
+
+        <main class="article-list" id="articles-container">
+            <article class="article-card" data-category="AI/ML" data-index="1">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Even Benchmark thinks AI is eroding the venture pact against backing rivals</h2>
+    <p class="article-original-title">原題: <em>Even Benchmark thinks AI is eroding the venture pact against backing rivals</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">For decades, the unwritten rule of venture capital was that a firm doesn’t back two companies that compete head-on.But speaking at TechCrunch Disrupt earlier this week, the partners of Benchmark readily acknowledged that the AI boom is straining that rule.It’s been on the verge of snapping for some time.The towering AI labs OpenAI and Anthropic share dozens of the same investors at this point.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">For decades, the unwritten rule of venture capital was that a firm doesn’t back two companies that compete head-on.But speaking at TechCrunch Disrupt earlier this week, the partners of Benchmark readily acknowledged that the AI boom is straining that rule.It’s been on the verge of snapping for some time.The towering AI labs OpenAI and Anthropic share dozens of the same investors at this point.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/openai.html" target="_blank" rel="noopener noreferrer" class="company-link">OpenAI の解説</a> <a href="companies/techcrunch.html" target="_blank" rel="noopener noreferrer" class="company-link">TechCrunch の解説</a> <a href="companies/the-verge.html" target="_blank" rel="noopener noreferrer" class="company-link">The Verge の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/10/15/even-benchmark-thinks-ai-is-eroding-the-venture-pact-against-backing-rivals/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="2">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Tesla reveals SpaceX-powered Roadster that flies and falls with style</h2>
+    <p class="article-original-title">原題: <em>Tesla reveals SpaceX-powered Roadster that flies and falls with style</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Tesla just revealed its redesigned second-generation Roadster with SpaceX thrusters, a vehicle CEO Elon Musk has called “the best of the last of the human-driven cars.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Tesla just revealed its redesigned second-generation Roadster with SpaceX thrusters, a vehicle CEO Elon Musk has called “the best of the last of the human-driven cars.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/spacex.html" target="_blank" rel="noopener noreferrer" class="company-link">SpaceX の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/10/15/tesla-reveals-spacex-powered-roadster-that-flies-and-falls-with-style/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="3">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">When it came to Cal AI&#x27;s viral success, a small army of influencers paid off</h2>
+    <p class="article-original-title">原題: <em>When it came to Cal AI&#x27;s viral success, a small army of influencers paid off</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Zach Yadegari has enjoyed an immense amount of success for someone who only recently graduated from high school.Founder of the AI-fueled calorie tracking app Cal AI, Yadegari is only 19 but his company has rocketed to viral fame over the past two years.At TechCrunch Disrupt on Thursday, Yadegari shared details of that surprising rise to prominence.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Zach Yadegari has enjoyed an immense amount of success for someone who only recently graduated from high school.Founder of the AI-fueled calorie tracking app Cal AI, Yadegari is only 19 but his company has rocketed to viral fame over the past two years.At TechCrunch Disrupt on Thursday, Yadegari shared details of that surprising rise to prominence.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/techcrunch.html" target="_blank" rel="noopener noreferrer" class="company-link">TechCrunch の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/10/15/when-it-came-to-cal-ais-viral-success-a-small-army-of-influencers-paid-off/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Startups" data-index="4">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#8b5cf6">🚀 Startups</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">And the winner of Startup Battlefield at Disrupt 2026 is: Intero Biosystems</h2>
+    <p class="article-original-title">原題: <em>And the winner of Startup Battlefield at Disrupt 2026 is: Intero Biosystems</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">For three days this week in San Francisco, 20 eager startups participated in the Startup Battlefield at TechCrunch Disrupt 2026.The top 20 were chosen to represent the best of the Startup Battlefield 200, and they competed for a chance to take home the Startup Battlefield Cup and $100,000.With that intense pitching now complete, we have a winner.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">For three days this week in San Francisco, 20 eager startups participated in the Startup Battlefield at TechCrunch Disrupt 2026.The top 20 were chosen to represent the best of the Startup Battlefield 200, and they competed for a chance to take home the Startup Battlefield Cup and $100,000.With that intense pitching now complete, we have a winner.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/techcrunch.html" target="_blank" rel="noopener noreferrer" class="company-link">TechCrunch の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/10/15/and-the-winner-of-startup-battlefield-at-disrupt-2026-is-intero-biosystems/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="5">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Amazon devices chief Panos Panay on the importance of failure and bouncing back from it</h2>
+    <p class="article-original-title">原題: <em>Amazon devices chief Panos Panay on the importance of failure and bouncing back from it</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Amazon executive Panos Panay has a message for startup founders: Failure is an inevitable, required part of building a successful product.Panay, Amazon SVP of Devices, Alexa, and Leo, shared that advice onstage at TechCrunch Disrupt in San Francisco, drawing on his own experience at Microsoft, where he spent more than 19 years and weathered one particularly expensive failure.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Amazon executive Panos Panay has a message for startup founders: Failure is an inevitable, required part of building a successful product.Panay, Amazon SVP of Devices, Alexa, and Leo, shared that advice onstage at TechCrunch Disrupt in San Francisco, drawing on his own experience at Microsoft, where he spent more than 19 years and weathered one particularly expensive failure.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/amazon.html" target="_blank" rel="noopener noreferrer" class="company-link">Amazon の解説</a> <a href="companies/microsoft.html" target="_blank" rel="noopener noreferrer" class="company-link">Microsoft の解説</a> <a href="companies/techcrunch.html" target="_blank" rel="noopener noreferrer" class="company-link">TechCrunch の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/10/15/amazon-devices-chief-panos-panay-on-the-importance-of-failure-and-bouncing-back-from-it/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="6">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">The Tesla Roadster flew, drove upside down, and hit 60mph in under a second</h2>
+    <p class="article-original-title">原題: <em>The Tesla Roadster flew, drove upside down, and hit 60mph in under a second</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. The next-gen Roadster has been in development for nearly a decade. But perhaps it was worth the wait.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. The next-gen Roadster has been in development for nearly a decade. But perhaps it was worth the wait.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/transportation/1012552/tesla-roadster-next-gen-reveal-elon-musk" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="7">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Steam can now show game achievements in separate ‘sets’</h2>
+    <p class="article-original-title">原題: <em>Steam can now show game achievements in separate ‘sets’</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. Developers with games on Steam can split achievements from a base game and its DLC into sets with their own progress bars.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. Developers with games on Steam can split achievements from a base game and its DLC into sets with their own progress bars.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/games/1012541/valve-steam-achievement-sets" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="8">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">ChatGPT can peek at your Chrome tabs now</h2>
+    <p class="article-original-title">原題: <em>ChatGPT can peek at your Chrome tabs now</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. With the ChatGPT extension installed, it can pull information from your open tabs or bring the AI bot into the sidebar. ﻿</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. With the ChatGPT extension installed, it can pull information from your open tabs or bring the AI bot into the sidebar. ﻿</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/ai-artificial-intelligence/1012510/openai-chatgpt-google-chrome-tabs" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="9">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Sega pulls Total War: Shogun 2 remaster from sale following disastrous launch</h2>
+    <p class="article-original-title">原題: <em>Sega pulls Total War: Shogun 2 remaster from sale following disastrous launch</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. Total War: Shogun 2 — Complete Edition is being removed after users discovered bugs and upscaling that appears to have been done by AI.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. Total War: Shogun 2 — Complete Edition is being removed after users discovered bugs and upscaling that appears to have been done by AI.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/games/1012512/sega-total-war-shogun-2-remaster-pulled" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="10">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">The tech backlash is now in theaters</h2>
+    <p class="article-original-title">原題: <em>The tech backlash is now in theaters</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. Between The Social Reckoning , You Can See Everything , Musk , and Artificial , filmmakers are taking Big Tech to task.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. Between The Social Reckoning , You Can See Everything , Musk , and Artificial , filmmakers are taking Big Tech to task.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/entertainment/1012438/hollywood-tech-backlash-you-can-see-everything-musk-the-social-reckoning-artificial" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="11">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Top Skechers Coupon Codes: 20% Off</h2>
+    <p class="article-original-title">原題: <em>Top Skechers Coupon Codes: 20% Off</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Like many New Yorkers, I’m always looking for new shoes.Living in a walking city means burning through shoes faster than you can believe and always needing new pairs that are comfortable for an active lifestyle.That’s why, instead of heels and dress shoes, you see everyone in NYC wearing some riff on comfortable sneakers.Brooks , Hoka , New Balance, and yes, Skechers.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Like many New Yorkers, I’m always looking for new shoes.Living in a walking city means burning through shoes faster than you can believe and always needing new pairs that are comfortable for an active lifestyle.That’s why, instead of heels and dress shoes, you see everyone in NYC wearing some riff on comfortable sneakers.Brooks , Hoka , New Balance, and yes, Skechers.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/story/skechers-coupon-codes/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Media" data-index="12">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#f59e0b">🎬 Media</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Best Surfshark Promo Codes for October 2026</h2>
+    <p class="article-original-title">原題: <em>Best Surfshark Promo Codes for October 2026</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Surfshark is one of our favorite VPN s to get around geographical restrictions on content (aka access Netflix) and protect your web traffic while using an open Wi-Fi hotspot.Surfshark is secure, and it provides great value for the money if you pay for two years upfront.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Surfshark is one of our favorite VPN s to get around geographical restrictions on content (aka access Netflix) and protect your web traffic while using an open Wi-Fi hotspot.Surfshark is secure, and it provides great value for the money if you pay for two years upfront.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/story/surfshark-coupon/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Mobile" data-index="13">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#6366f1">📱 Mobile</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Total Wireless Promo Codes: Save 50%</h2>
+    <p class="article-original-title">原題: <em>Total Wireless Promo Codes: Save 50%</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Total Wireless, formerly known as Total by Verizon, is a prepaid, no-contract wireless provider with unlimited data covered by the Verizon 5G network.Total Wireless Total 5G Unlimited plan has unlimited data, talk, and text, along with a five-year price guarantee—meaning it won’t get jacked up after a trial period, guaranteeing you get unlimited data at a low price.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Total Wireless, formerly known as Total by Verizon, is a prepaid, no-contract wireless provider with unlimited data covered by the Verizon 5G network.Total Wireless Total 5G Unlimited plan has unlimited data, talk, and text, along with a five-year price guarantee—meaning it won’t get jacked up after a trial period, guaranteeing you get unlimited data at a low price.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/story/total-wireless-promo-code/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="14">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">HP Coupon Codes and Deals October 2026</h2>
+    <p class="article-original-title">原題: <em>HP Coupon Codes and Deals October 2026</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">If you don&#x27;t know where to start—and how to use—your HP coupon code, there’s a wide variety of options at HP.com to fit different budgets and use cases.My eye goes first to the high-end HP Omen gaming monitors , like the fantastic HP Omen Transcend 32 .This 4K 240Hz monitor is a favorite among PC gamers, even with the many OLED options out there.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">If you don&#x27;t know where to start—and how to use—your HP coupon code, there’s a wide variety of options at HP.com to fit different budgets and use cases.My eye goes first to the high-end HP Omen gaming monitors , like the fantastic HP Omen Transcend 32 .This 4K 240Hz monitor is a favorite among PC gamers, even with the many OLED options out there.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/story/hp-coupon-code/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="15">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">A Tesla Flying Car? I Don’t Know, Man</h2>
+    <p class="article-original-title">原題: <em>A Tesla Flying Car? I Don’t Know, Man</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Where is my flying car?The enduring question sort of, kind of, might have an answer: In McGregor, Texas.On Thursday, Tesla showed off a version of its new Roadster 2 sports car in a demonstration at SpaceX ’s rocket development testing facility.And in its own way, with an awkward jerking maneuver, the Roadster flew a few dozen feet.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Where is my flying car?The enduring question sort of, kind of, might have an answer: In McGregor, Texas.On Thursday, Tesla showed off a version of its new Roadster 2 sports car in a demonstration at SpaceX ’s rocket development testing facility.And in its own way, with an awkward jerking maneuver, the Roadster flew a few dozen feet.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/spacex.html" target="_blank" rel="noopener noreferrer" class="company-link">SpaceX の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/story/tesla-flying-car-faa/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Mobile" data-index="16">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#6366f1">📱 Mobile</span>
+        <span class="source-chip">Ars Technica - All content</span>
+    </div>
+
+    
+
+    <h2 class="article-title">KDE turns 30 with Plasma 6.8, remote upgrades, and an X11 farewell</h2>
+    <p class="article-original-title">原題: <em>KDE turns 30 with Plasma 6.8, remote upgrades, and an X11 farewell</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">KDE celebrates 30 years with a new Plasma release, a farewell to X11, and a movie.Marking the 30th anniversary of software developer KDE on October 14, the company released Plasma 6.8, debuted a movie, and retired Plasma’s native X11 session support.The announcement from KDE dubs the new Plasma 6.8 as the “30th Anniversary Edition” and describes the update as preparing Plasma for the future.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">KDE celebrates 30 years with a new Plasma release, a farewell to X11, and a movie.Marking the 30th anniversary of software developer KDE on October 14, the company released Plasma 6.8, debuted a movie, and retired Plasma’s native X11 session support.The announcement from KDE dubs the new Plasma 6.8 as the “30th Anniversary Edition” and describes the update as preparing Plasma for the future.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/gadgets/2026/10/kde-turns-30-with-plasma-6-8-remote-upgrades-and-an-x11-farewell/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Enterprise" data-index="17">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#3b82f6">🏢 Enterprise</span>
+        <span class="source-chip">Ars Technica - All content</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Plex now helps sell movie theater tickets</h2>
+    <p class="article-original-title">原題: <em>Plex now helps sell movie theater tickets</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Discovery data from Plex users will help studios, advertisers.Plex, which made a name for itself by letting users share movies they own, is now helping sell movie theater tickets.The company is looking to monetize its content-discovery capabilities and expand its business beyond its media server software.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Discovery data from Plex users will help studios, advertisers.Plex, which made a name for itself by letting users share movies they own, is now helping sell movie theater tickets.The company is looking to monetize its content-discovery capabilities and expand its business beyond its media server software.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/gadgets/2026/10/plex-now-helps-sell-movie-theater-tickets/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="18">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Ars Technica - All content</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Hegseth’s dubious low-T screening may flag up to 25 percent of the Army</h2>
+    <p class="article-original-title">原題: <em>Hegseth’s dubious low-T screening may flag up to 25 percent of the Army</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Medical experts explicitly recommend against blanket screenings.Up to a quarter of active-duty Army members could receive a low testosterone result from mandatory military screening, despite the true prevalence of the condition likely being a tiny fraction of that figure, according to a study published Thursday in JAMA .</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Medical experts explicitly recommend against blanket screenings.Up to a quarter of active-duty Army members could receive a low testosterone result from mandatory military screening, despite the true prevalence of the condition likely being a tiny fraction of that figure, according to a study published Thursday in JAMA .</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/health/2026/10/hegseths-dubious-low-t-screening-may-flag-up-to-25-percent-of-the-army/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Mobile" data-index="19">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#6366f1">📱 Mobile</span>
+        <span class="source-chip">Ars Technica - All content</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Targeted ads delivered 0-click exploits to install mercenary malware</h2>
+    <p class="article-original-title">原題: <em>Targeted ads delivered 0-click exploits to install mercenary malware</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">The incident is likely 1st confirmation of mercenary spyware delivered by targeted ads.Researchers say that mercenary hackers laced ads with zero-click exploits that installed sophisticated malware on the devices of targeted individuals when they did nothing other than load a website or open an installed app.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">The incident is likely 1st confirmation of mercenary spyware delivered by targeted ads.Researchers say that mercenary hackers laced ads with zero-click exploits that installed sophisticated malware on the devices of targeted individuals when they did nothing other than load a website or open an installed app.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/security/2026/10/targeted-ads-delivered-0-click-exploits-to-install-mercenary-malware/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="20">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Ars Technica - All content</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Above the 911? Porsche previews a new mid-engined supercar.</h2>
+    <p class="article-original-title">原題: <em>Above the 911? Porsche previews a new mid-engined supercar.</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Porsche’s turnaround plan for 2035 involves less volume but more expensive cars.Porsche showed us a preview of a new model this afternoon as it unveiled the Mission S concept in New York.It’s a mid-engined sports car that will slot into the Porsche range above the 911 .</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Porsche’s turnaround plan for 2035 involves less volume but more expensive cars.Porsche showed us a preview of a new model this afternoon as it unveiled the Mission S concept in New York.It’s a mid-engined sports car that will slot into the Porsche range above the 911 .</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/cars/2026/10/porsche-previews-its-future-with-mission-s-supercar-concept/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="21">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">The Download: reviving frozen pig kidneys and boosting nuclear power</h2>
+    <p class="article-original-title">原題: <em>The Download: reviving frozen pig kidneys and boosting nuclear power</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Plus: Ukraine says sudden Starlink speed limits disrupted key drone missions.This is today&#x27;s edition of The Download , our weekday newsletter that provides a daily dose of what&#x27;s going on in the world of technology.Pig kidneys that were cooled to -150 °C and stored in a freezer for months have been successfully rewarmed and shown to work again for the first time, say scientists.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Plus: Ukraine says sudden Starlink speed limits disrupted key drone missions.This is today&#x27;s edition of The Download , our weekday newsletter that provides a daily dose of what&#x27;s going on in the world of technology.Pig kidneys that were cooled to -150 °C and stored in a freezer for months have been successfully rewarmed and shown to work again for the first time, say scientists.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/10/15/1146755/the-download-reviving-frozen-pig-kidneys-boosting-nuclear-power/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Policy" data-index="22">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#ec4899">⚖️ Policy</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">How much more can nuclear power plants give?</h2>
+    <p class="article-original-title">原題: <em>How much more can nuclear power plants give?</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Upgrades could bring more clean power to the grid, but there&#x27;s only so much room to grow.In this age of rising electricity demand, people are trying to squeeze every last bit of power out of every power plant possible.Over the past few weeks, there’s been big news about nuclear power plants trying to do just that.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Upgrades could bring more clean power to the grid, but there&#x27;s only so much room to grow.In this age of rising electricity demand, people are trying to squeeze every last bit of power out of every power plant possible.Over the past few weeks, there’s been big news about nuclear power plants trying to do just that.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/10/15/1146577/nuclear-power-upgrade/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="23">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Six wild ideas for perpetuating your mind</h2>
+    <p class="article-original-title">原題: <em>Six wild ideas for perpetuating your mind</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">The quest for cognitive immortality continues.Have you ever thought about what makes you you ?Science assures us it has everything to do with the three-pound organ between our ears, with its billions of neurons and trillions of delicate connections.But it’s a lot trickier to explain why we have a sense of self-awareness or to pin down precisely where that first memory of Mommy actually resides.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">The quest for cognitive immortality continues.Have you ever thought about what makes you you ?Science assures us it has everything to do with the three-pound organ between our ears, with its billions of neurons and trillions of delicate connections.But it’s a lot trickier to explain why we have a sense of self-awareness or to pin down precisely where that first memory of Mommy actually resides.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/10/15/1145819/six-wild-ideas-perpetuating-your-mind-cognitive-immortality/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="24">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Pig kidneys that were “frozen” for a year have been brought back to life</h2>
+    <p class="article-original-title">原題: <em>Pig kidneys that were “frozen” for a year have been brought back to life</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">One day human organs could also be banked safely for future transplantation.Pig kidneys that were cooled to -150 °C and stored in a freezer for months have been successfully rewarmed and shown to work again for the first time, say scientists.They hope to replicate the findings with human organs.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">One day human organs could also be banked safely for future transplantation.Pig kidneys that were cooled to -150 °C and stored in a freezer for months have been successfully rewarmed and shown to work again for the first time, say scientists.They hope to replicate the findings with human organs.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/10/15/1146091/pig-kidneys-that-were-frozen-for-a-year-have-been-brought-back-to-life/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="25">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">The Download: faking blood and the future of batteries</h2>
+    <p class="article-original-title">原題: <em>The Download: faking blood and the future of batteries</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Plus: The FBI has arrested an OpenAI engineer accused of snooping.This is today&#x27;s edition of The Download , our weekday newsletter that provides a daily dose of what&#x27;s going on in the world of technology.In February 2007, a US military helicopter carrying blood to a field hospital was shot down in Iraq, killing all seven crew members.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Plus: The FBI has arrested an OpenAI engineer accused of snooping.This is today&#x27;s edition of The Download , our weekday newsletter that provides a daily dose of what&#x27;s going on in the world of technology.In February 2007, a US military helicopter carrying blood to a field hospital was shot down in Iraq, killing all seven crew members.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/openai.html" target="_blank" rel="noopener noreferrer" class="company-link">OpenAI の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/10/14/1146452/the-download-military-fake-blood-future-batteries/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="26">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Relive Tesla&#x27;s ridiculous(ly fun) Roadster stunt show</h2>
+    <p class="article-original-title">原題: <em>Relive Tesla&#x27;s ridiculous(ly fun) Roadster stunt show</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Watch the new Roadster make crazy jumps.Tesla&#x27;s Roadster launch event was pretty exciting to say the least, with loads of car stunts that we enjoyed watching.The Roadster first appeared during the event at the bottom of C-shaped ramp.It drove up — twice — and stopped at the top of the ramp perpendicular to the ground, hanging upside-down.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Watch the new Roadster make crazy jumps.Tesla&#x27;s Roadster launch event was pretty exciting to say the least, with loads of car stunts that we enjoyed watching.The Roadster first appeared during the event at the bottom of C-shaped ramp.It drove up — twice — and stopped at the top of the ramp perpendicular to the ground, hanging upside-down.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/spacex.html" target="_blank" rel="noopener noreferrer" class="company-link">SpaceX の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2288448/relive-tesla-ridiculously-fun-roadster-stunt-show/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Startups" data-index="27">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#8b5cf6">🚀 Startups</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Tesla&#x27;s redesigned Roadster has a cold-gas thruster option, but you&#x27;ll need $250,000 just to reserve it</h2>
+    <p class="article-original-title">原題: <em>Tesla&#x27;s redesigned Roadster has a cold-gas thruster option, but you&#x27;ll need $250,000 just to reserve it</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">The automaker has unveiled the vehicle with some crazy stunts.Tesla has unveiled the next-generation Roadster , nine years after the company showed off its concept prototype and after years and years of launch delay.Elon Musk and the Tesla team introduced the vehicle during an event at the SpaceX test site in McGregor, Texas with a stunt.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">The automaker has unveiled the vehicle with some crazy stunts.Tesla has unveiled the next-generation Roadster , nine years after the company showed off its concept prototype and after years and years of launch delay.Elon Musk and the Tesla team introduced the vehicle during an event at the SpaceX test site in McGregor, Texas with a stunt.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/spacex.html" target="_blank" rel="noopener noreferrer" class="company-link">SpaceX の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2288437/teslas-redesigned-roadster-cold-gas-thruster-option-reservation/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Policy" data-index="28">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#ec4899">⚖️ Policy</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Withings wants new users to pay $100 a year to sync with Apple Health</h2>
+    <p class="article-original-title">原題: <em>Withings wants new users to pay $100 a year to sync with Apple Health</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">The smart health company is gating third-party app syncing to its own subscription plan for new users.Withings has found itself in hot water with its customers after adopting an expensive policy change this week.According to a post on the company&#x27;s support forum, Withings appears to be gating the ability for users to sync their data with Apple Health to its own subscription service.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">The smart health company is gating third-party app syncing to its own subscription plan for new users.Withings has found itself in hot water with its customers after adopting an expensive policy change this week.According to a post on the company&#x27;s support forum, Withings appears to be gating the ability for users to sync their data with Apple Health to its own subscription service.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/apple.html" target="_blank" rel="noopener noreferrer" class="company-link">Apple の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2288346/withings-wants-new-users-to-pay-100-a-year-to-sync-with-apple-health/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Media" data-index="29">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#f59e0b">🎬 Media</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">The UK may expand the BBC license fee, charging residents to watch streaming services</h2>
+    <p class="article-original-title">原題: <em>The UK may expand the BBC license fee, charging residents to watch streaming services</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">If the proposal is enacted, it could cost $240 a year to watch YouTube in the UK. The BBC recently announced that it would begin streaming a 24/7 news channel on YouTube for viewers in the UK and the US. The broadcaster already has similar channels active in Australia, Kenya, Nigeria and Poland.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">If the proposal is enacted, it could cost $240 a year to watch YouTube in the UK. The BBC recently announced that it would begin streaming a 24/7 news channel on YouTube for viewers in the UK and the US. The broadcaster already has similar channels active in Australia, Kenya, Nigeria and Poland.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2288294/the-uk-may-expand-the-bbc-license-fee-charging-residents-to-watch-streaming-services/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Policy" data-index="30">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#ec4899">⚖️ Policy</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">NY congressman to introduce bill protecting video game ownership</h2>
+    <p class="article-original-title">原題: <em>NY congressman to introduce bill protecting video game ownership</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Representative Ritchie Torres wants the FTC to establish regulations ensuring you can play the games you&#x27;ve purchased.The announcement for Torres&#x27; bill specifically mentions NBA 2K25 , which serves as a good example of what&#x27;s at stake.The basketball game launched in 2024 for $70, and is now being removed from digital storefronts on October 30, just two years after it was released.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Representative Ritchie Torres wants the FTC to establish regulations ensuring you can play the games you&#x27;ve purchased.The announcement for Torres&#x27; bill specifically mentions NBA 2K25 , which serves as a good example of what&#x27;s at stake.The basketball game launched in 2024 for $70, and is now being removed from digital storefronts on October 30, just two years after it was released.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2288193/ny-congressman-to-introduce-bill-protecting-video-game-ownership/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+        </main>
+
+        <footer class="footer">
+            <p>本ページは公開記事をもとに自動生成しています。数値や仕様は必ず元記事で確認してください。</p>
+            <p>JSON データは同じフォルダ内の tech_news_digest.json で参照できます。</p>
+        </footer>
+    </div>
+
+    <script>
+
+        const categoryButtons = document.querySelectorAll('.category-btn');
+        const articleCards = document.querySelectorAll('.article-card');
+        const searchInput = document.getElementById('search-input');
+
+        let activeCategory = 'all';
+
+        function applyFilters() {
+            const query = searchInput.value.trim().toLowerCase();
+            articleCards.forEach(card => {
+                const matchesCategory = activeCategory === 'all' || card.dataset.category === activeCategory;
+                const searchableText = card.innerText.toLowerCase();
+                const matchesQuery = !query || searchableText.includes(query);
+                card.style.display = matchesCategory && matchesQuery ? '' : 'none';
+            });
+        }
+
+        categoryButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                categoryButtons.forEach(item => item.classList.remove('active'));
+                button.classList.add('active');
+                activeCategory = button.dataset.category;
+                applyFilters();
+            });
+        });
+
+        searchInput.addEventListener('input', applyFilters);
+    
+    </script>
+</body>
+</html>
