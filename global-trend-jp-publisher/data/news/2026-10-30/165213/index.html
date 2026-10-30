@@ -1,0 +1,1173 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>海外テックニュース日本語まとめ</title>
+    <style>
+        :root {
+            color-scheme: dark;
+            --bg: #0a0f1d;
+            --panel: rgba(13, 20, 36, 0.92);
+            --line: rgba(132, 152, 187, 0.25);
+            --text: #eef3ff;
+            --muted: #adc1dd;
+            --accent: #7dd3fc;
+            --accent-strong: #38bdf8;
+            --shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: "Hiragino Sans", "Noto Sans JP", sans-serif;
+            background:
+                radial-gradient(circle at top right, rgba(56, 189, 248, 0.22), transparent 26%),
+                radial-gradient(circle at top left, rgba(16, 185, 129, 0.16), transparent 20%),
+                linear-gradient(180deg, #07101f 0%, #0b1327 48%, #0a0f1d 100%);
+            color: var(--text);
+        }
+
+        .page-shell {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 24px;
+        }
+
+        .hero {
+            padding: 28px;
+            border: 1px solid var(--line);
+            border-radius: 28px;
+            background: linear-gradient(145deg, rgba(18, 27, 48, 0.96), rgba(10, 17, 32, 0.96));
+            box-shadow: var(--shadow);
+        }
+
+        .hero-nav {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 28px;
+        }
+
+        .nav-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 42px;
+            padding: 0 16px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        .eyebrow {
+            margin: 0 0 10px;
+            color: var(--accent);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            font-size: 0.78rem;
+        }
+
+        .hero h1 {
+            margin: 0;
+            font-size: clamp(2rem, 3vw, 3.3rem);
+            line-height: 1.1;
+        }
+
+        .timestamp,
+        .description {
+            color: var(--muted);
+        }
+
+        .control-panel {
+            margin: 20px 0 28px;
+            padding: 22px;
+            border: 1px solid var(--line);
+            border-radius: 24px;
+            background: var(--panel);
+            backdrop-filter: blur(12px);
+        }
+
+        .control-header {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            align-items: end;
+            flex-wrap: wrap;
+        }
+
+        .control-header h2 {
+            margin: 0 0 6px;
+        }
+
+        .control-header p {
+            margin: 0;
+            color: var(--muted);
+        }
+
+        #search-input {
+            width: min(100%, 360px);
+            min-height: 46px;
+            padding: 0 14px;
+            border-radius: 14px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
+        }
+
+        .category-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 16px;
+        }
+
+        .category-btn {
+            min-height: 42px;
+            padding: 0 14px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
+            cursor: pointer;
+        }
+
+        .category-btn.active {
+            background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+            color: #06111f;
+            border-color: transparent;
+            font-weight: 700;
+        }
+
+        .article-list {
+            display: grid;
+            gap: 18px;
+        }
+
+        .article-card {
+            padding: 24px;
+            border-radius: 24px;
+            border: 1px solid var(--line);
+            background: linear-gradient(180deg, rgba(12, 18, 34, 0.96), rgba(14, 22, 39, 0.9));
+            box-shadow: var(--shadow);
+        }
+
+        .card-topline {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+
+        .category-chip,
+        .source-chip {
+            display: inline-flex;
+            align-items: center;
+            min-height: 34px;
+            padding: 0 12px;
+            border-radius: 999px;
+            font-size: 0.92rem;
+            font-weight: 700;
+        }
+
+        .source-chip {
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--muted);
+        }
+
+        .article-title {
+            margin: 0 0 10px;
+            font-size: clamp(1.45rem, 2vw, 2rem);
+            line-height: 1.35;
+        }
+
+        .article-original-title {
+            margin: 0 0 18px;
+            color: var(--muted);
+        }
+
+        .security-alert {
+            margin: 0 0 14px;
+            padding: 10px 14px;
+            border-radius: 12px;
+            border: 1px solid rgba(248, 113, 113, 0.4);
+            background: rgba(248, 113, 113, 0.12);
+            color: #fecaca;
+            font-weight: 700;
+            font-size: 0.92rem;
+        }
+
+        .article-section {
+            margin-top: 18px;
+            padding-top: 18px;
+            border-top: 1px solid var(--line);
+        }
+
+        .article-section h3 {
+            margin: 0 0 12px;
+            font-size: 1rem;
+            color: var(--accent);
+        }
+
+        .article-paragraph {
+            margin: 0 0 14px;
+            color: #dce7f8;
+            line-height: 1.9;
+            font-size: 1rem;
+        }
+
+        .company-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .company-link,
+        .action-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 42px;
+            padding: 0 14px;
+            border-radius: 14px;
+            text-decoration: none;
+            border: 1px solid rgba(125, 211, 252, 0.3);
+        }
+
+        .company-link {
+            color: var(--accent);
+            background: rgba(56, 189, 248, 0.08);
+        }
+
+        .article-actions {
+            margin-top: 22px;
+        }
+
+        .footer {
+            padding: 28px 8px 40px;
+            color: var(--muted);
+            text-align: center;
+        }
+
+        .footer p {
+            margin: 6px 0;
+        }
+
+        .action-link.primary {
+            color: #06111f;
+            font-weight: 700;
+            background: linear-gradient(135deg, #7dd3fc, #22d3ee);
+            border-color: transparent;
+        }
+
+        @media (max-width: 720px) {
+            .page-shell {
+                padding: 14px;
+            }
+
+            .hero,
+            .control-panel,
+            .article-card {
+                padding: 18px;
+                border-radius: 20px;
+            }
+
+            .control-header {
+                align-items: stretch;
+            }
+
+            #search-input {
+                width: 100%;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="page-shell">
+        <header class="hero">
+            <div class="hero-nav">
+                <a class="nav-link" href="../../index.html">HOME</a>
+                <a class="nav-link" href="../index.html">この日の記事一覧</a>
+            </div>
+            <div class="hero-copy">
+                <p class="eyebrow">Global Tech News Digest</p>
+                <h1>海外テックニュース 日本語まとめ</h1>
+                <p class="timestamp">2026年10月30日 16:52 JST に収集した記事を掲載しています。</p>
+                <p class="description">各カードには本文寄りの日本語訳を掲載し、記事中で触れた企業は別ページの解説リンクとして分離しています。</p>
+            </div>
+        </header>
+
+        <section class="control-panel">
+            <div class="control-header">
+                <div>
+                    <h2>記事を探す</h2>
+                    <p>カテゴリとキーワードで一覧を絞り込めます。</p>
+                </div>
+                <input type="text" id="search-input" placeholder="タイトル・本文・媒体名で検索">
+            </div>
+            <div class="category-buttons">
+                <button class="category-btn active" data-category="all">すべて (29)</button>
+<button class="category-btn" data-category="AI/ML" style="--accent:#10b981">🤖 AI/ML (23)</button>
+<button class="category-btn" data-category="Hardware" style="--accent:#06b6d4">⚙️ Hardware (1)</button>
+<button class="category-btn" data-category="Media" style="--accent:#f59e0b">🎬 Media (1)</button>
+<button class="category-btn" data-category="Mobile" style="--accent:#6366f1">📱 Mobile (3)</button>
+<button class="category-btn" data-category="Startups" style="--accent:#8b5cf6">🚀 Startups (1)</button>
+            </div>
+        </section>
+
+        <main class="article-list" id="articles-container">
+            <article class="article-card" data-category="AI/ML" data-index="1">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Theranos whistleblower Tyler Shultz warns that the AI boom is &#x27;a great opportunity to go deceive people&#x27;</h2>
+    <p class="article-original-title">原題: <em>Theranos whistleblower Tyler Shultz warns that the AI boom is &#x27;a great opportunity to go deceive people&#x27;</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">“ You Can See Everything ,” the documentary capturing disgraced Theranos founder Elizabeth Holmes’ final weeks before prison, is sparking national conversation as it becomes one of the highest-grossing documentaries of all time.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">“ You Can See Everything ,” the documentary capturing disgraced Theranos founder Elizabeth Holmes’ final weeks before prison, is sparking national conversation as it becomes one of the highest-grossing documentaries of all time.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/10/30/theranos-whistleblower-tyler-shultz-warns-that-the-ai-boom-is-a-great-opportunity-to-go-deceive-people/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="2">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">North Korean hackers blamed for stealing record $6.3B in Binance breach</h2>
+    <p class="article-original-title">原題: <em>North Korean hackers blamed for stealing record $6.3B in Binance breach</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Hackers working for the North Korean regime have been blamed for a record cryptocurrency heist following a cyberattack at crypto exchange Binance .The hackers stole at least $6.3 billion in crypto from the company’s wallets, though about half of that amount was frozen as the stolen crypto traveled across various blockchains, according to security researchers.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Hackers working for the North Korean regime have been blamed for a record cryptocurrency heist following a cyberattack at crypto exchange Binance .The hackers stole at least $6.3 billion in crypto from the company’s wallets, though about half of that amount was frozen as the stolen crypto traveled across various blockchains, according to security researchers.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/10/30/north-korean-hackers-blamed-for-stealing-record-6-3b-in-binance-breach/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="3">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Make game-changing connections at Founder Summit with Braindate</h2>
+    <p class="article-original-title">原題: <em>Make game-changing connections at Founder Summit with Braindate</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">The best connection you make at an event is not always the person standing next to you in line for coffee.Sometimes it is the founder who has already solved the problem keeping you up at night.The investor who can challenge the way you are thinking about your next round.Or the operator who has learned firsthand what happens when a company scales too quickly.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">The best connection you make at an event is not always the person standing next to you in line for coffee.Sometimes it is the founder who has already solved the problem keeping you up at night.The investor who can challenge the way you are thinking about your next round.Or the operator who has learned firsthand what happens when a company scales too quickly.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/techcrunch.html" target="_blank" rel="noopener noreferrer" class="company-link">TechCrunch の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/10/30/skip-the-small-talk-make-game-changing-connections-at-techcrunch-founder-summit-with-braindate/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="4">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">DoorDash said it&#x27;s only received &#x27;several hundred&#x27; orders from AI agents</h2>
+    <p class="article-original-title">原題: <em>DoorDash said it&#x27;s only received &#x27;several hundred&#x27; orders from AI agents</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">There’s a big uproar about AI agents taking over commerce and orders, but that might not be the case just yet.Delivery company DoorDash revealed during its third-quarter earnings call that it has only seen “several hundred” orders from third-party agents like Muse, Instinct, Fo, and others.For comparison, the company said in its 2025 report it completes an average of 3 million deliveries daily.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">There’s a big uproar about AI agents taking over commerce and orders, but that might not be the case just yet.Delivery company DoorDash revealed during its third-quarter earnings call that it has only seen “several hundred” orders from third-party agents like Muse, Instinct, Fo, and others.For comparison, the company said in its 2025 report it completes an average of 3 million deliveries daily.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/10/30/doordash-said-its-only-received-several-hundred-orders-from-ai-agents/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="5">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Can AI data centers be mass-produced like cars? This startup aims to find out</h2>
+    <p class="article-original-title">原題: <em>Can AI data centers be mass-produced like cars? This startup aims to find out</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">AI infrastructure company Runware is making news again, just months after unveiling the Sonic Inference Pod, a modular data center built in a factory and shipped to customers ready to install.Now the company has bigger plans.It told TechCrunch it wants to build a factory that assembles these pods on a production line, as if they were cars.The idea isn’t entirely new.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">AI infrastructure company Runware is making news again, just months after unveiling the Sonic Inference Pod, a modular data center built in a factory and shipped to customers ready to install.Now the company has bigger plans.It told TechCrunch it wants to build a factory that assembles these pods on a production line, as if they were cars.The idea isn’t entirely new.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/techcrunch.html" target="_blank" rel="noopener noreferrer" class="company-link">TechCrunch の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/10/30/can-ai-data-centers-be-mass-produced-like-cars-and-online-in-48-hours-this-startup-aims-to-find-out/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="6">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Google’s latest Nest Learning Thermostat is $60 off just in time for sweater weather</h2>
+    <p class="article-original-title">原題: <em>Google’s latest Nest Learning Thermostat is $60 off just in time for sweater weather</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. We also found deals on Casio’s retro step-tracking watch and a four-pack of AirTags.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. We also found deals on Casio’s retro step-tracking watch and a four-pack of AirTags.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/google.html" target="_blank" rel="noopener noreferrer" class="company-link">Google の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/gadgets/1022819/google-nest-learning-thermostat-4th-gen-casio-ws-b1000-watch-deal-sale" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="7">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Pope Leo calls for the disarmament of AI: ‘Machines are tools, not persons’</h2>
+    <p class="article-original-title">原題: <em>Pope Leo calls for the disarmament of AI: ‘Machines are tools, not persons’</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. UN member states should take steps to ban ‘lethal autonomous weapons,’ Pope Leo says.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. UN member states should take steps to ban ‘lethal autonomous weapons,’ Pope Leo says.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/ai-artificial-intelligence/1023188/pope-leo-disarm-ai" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="8">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">This electric screwdriver uses a camera and AI to figure out what bit you need</h2>
+    <p class="article-original-title">原題: <em>This electric screwdriver uses a camera and AI to figure out what bit you need</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. The Arrowspace S1 can identify the bit and then show you where to find it in an optional smart case.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. The Arrowspace S1 can identify the bit and then show you where to find it in an optional smart case.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/tech/1023057/arrowmax-arrowspace-s1-electric-screwdriver-ai-camera-kickstarter" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="9">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Waymo’s next robotaxi is a purpose-built Toyota bZ4X</h2>
+    <p class="article-original-title">原題: <em>Waymo’s next robotaxi is a purpose-built Toyota bZ4X</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. Toyota will assemble Waymo-equipped bZ4X electric SUVs directly on its factory line in Japan ahead of planned robotaxi rollouts in Tokyo and the UK. ﻿</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. Toyota will assemble Waymo-equipped bZ4X electric SUVs directly on its factory line in Japan ahead of planned robotaxi rollouts in Tokyo and the UK. ﻿</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/transportation/1023112/waymos-next-robotaxi-is-a-purpose-built-toyota-bz4x" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="10">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Silicon Valley wants you to invest in miracles</h2>
+    <p class="article-original-title">原題: <em>Silicon Valley wants you to invest in miracles</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. Anthropic’s S-1 is a new milestone in Big Tech’s sprawling and lofty promises to Wall Street.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. Anthropic’s S-1 is a new milestone in Big Tech’s sprawling and lofty promises to Wall Street.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/ai-artificial-intelligence/1023070/anthropic-ipo-risk-factors-filing-miracles" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="11">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">People Are Creating ‘Survival Guides’ to Cope With the ‘AO3 Apocalypse’</h2>
+    <p class="article-original-title">原題: <em>People Are Creating ‘Survival Guides’ to Cope With the ‘AO3 Apocalypse’</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">In a major blow to both the terminally online and the criminally horny , the fan fiction website Archive of Our Own (AO3) has temporarily shut down due to a “security incident,” according to an update posted on the site.On October 29, an admin for AO3 posted that the website was “down for maintenance.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">In a major blow to both the terminally online and the criminally horny , the fan fiction website Archive of Our Own (AO3) has temporarily shut down due to a “security incident,” according to an update posted on the site.On October 29, an admin for AO3 posted that the website was “down for maintenance.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/story/people-are-creating-survival-guides-to-cope-with-the-ao3-apocalypse/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="12">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Top Stearns and Foster Coupons: $300 Off in 2026</h2>
+    <p class="article-original-title">原題: <em>Top Stearns and Foster Coupons: $300 Off in 2026</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">For 180 years, Stearns &amp; Foster has been making mattresses before expanding into bedding , pillows , and frames .Throughout their history, the brand has continuously brought its trademark old-school style of craftsmanship.Now owned by Tempur Sealy, the iconic Stearns &amp; Foster look features hand-stitched details and an elevated design seen in luxury hotels like the Ritz-Carlton.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">For 180 years, Stearns &amp; Foster has been making mattresses before expanding into bedding , pillows , and frames .Throughout their history, the brand has continuously brought its trademark old-school style of craftsmanship.Now owned by Tempur Sealy, the iconic Stearns &amp; Foster look features hand-stitched details and an elevated design seen in luxury hotels like the Ritz-Carlton.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/story/stearns-and-foster-promo-code/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Media" data-index="13">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#f59e0b">🎬 Media</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">I Spent 30 Minutes With Apple’s CEO. Now I Know Why John Ternus Got the Job</h2>
+    <p class="article-original-title">原題: <em>I Spent 30 Minutes With Apple’s CEO. Now I Know Why John Ternus Got the Job</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">The brief ceremony introducing the new Macbook Pro this week was as low-key as the presenter, Apple’s new CEO John Ternus.He stepped onto the low stage at a Los Angeles event space with zero fanfare, said hi, and queued up a video showing the first touchscreen Mac.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">The brief ceremony introducing the new Macbook Pro this week was as low-key as the presenter, Apple’s new CEO John Ternus.He stepped onto the low stage at a Los Angeles event space with zero fanfare, said hi, and queued up a video showing the first touchscreen Mac.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/apple.html" target="_blank" rel="noopener noreferrer" class="company-link">Apple の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/story/i-spent-30-minutes-with-apples-ceo-now-i-know-why-john-ternus-got-the-job/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Mobile" data-index="14">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#6366f1">📱 Mobile</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Black Friday Mattress Deals Are Already Wide Awake</h2>
+    <p class="article-original-title">原題: <em>Black Friday Mattress Deals Are Already Wide Awake</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Mattress sales come and go so often that it’s hard to determine what’s an actual deal.The times of year when we see the most legit mattress deals are Black Friday, Cyber Monday, Memorial Day, and Labor Day.And this year is no different.We’re already seeing our favorite WIRED-tested bedding and mattress brands offering discounts leading up to Black Friday and Cyber Monday this year.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Mattress sales come and go so often that it’s hard to determine what’s an actual deal.The times of year when we see the most legit mattress deals are Black Friday, Cyber Monday, Memorial Day, and Labor Day.And this year is no different.We’re already seeing our favorite WIRED-tested bedding and mattress brands offering discounts leading up to Black Friday and Cyber Monday this year.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/story/best-early-bfcm-mattress-deals-10-30-2026/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="15">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">The $6.3 Billion Binance Hack Was Pulled Off in Just 20 Minutes</h2>
+    <p class="article-original-title">原題: <em>The $6.3 Billion Binance Hack Was Pulled Off in Just 20 Minutes</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Cryptocurrency firms and investigators are racing to freeze and track down billions of dollars of stolen digital cash following what appears to be the largest crypto heist of all time.On Thursday, starting at around 4pm ET, hackers started quickly siphoning around $6.3 billion in cryptocurrencies, spread across multiple blockchains, from wallets belonging to crypto exchange Binance .</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Cryptocurrency firms and investigators are racing to freeze and track down billions of dollars of stolen digital cash following what appears to be the largest crypto heist of all time.On Thursday, starting at around 4pm ET, hackers started quickly siphoning around $6.3 billion in cryptocurrencies, spread across multiple blockchains, from wallets belonging to crypto exchange Binance .</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/story/the-dollar63-billion-binance-hack-was-pulled-off-in-just-20-minutes/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="16">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Ars Technica - All content</span>
+    </div>
+
+    
+
+    <h2 class="article-title">GM to pay $220 million after selling customer Smart Driver data</h2>
+    <p class="article-original-title">原題: <em>GM to pay $220 million after selling customer Smart Driver data</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Owners of GM cars found their driving data had been sold to insurance companies.General Motors marketed its Smart Driver system as a way for parents to monitor teen drivers or for adults to track their driving behavior.But in 2024, it emerged that GM had been sharing that data with brokers.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Owners of GM cars found their driving data had been sold to insurance companies.General Motors marketed its Smart Driver system as a way for parents to monitor teen drivers or for adults to track their driving behavior.But in 2024, it emerged that GM had been sharing that data with brokers.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/cars/2026/10/gm-to-pay-220-million-after-selling-customer-smart-driver-data/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="17">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Ars Technica - All content</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Hackers steal $6.3 billion from Binance in record crypto heist</h2>
+    <p class="article-original-title">原題: <em>Hackers steal $6.3 billion from Binance in record crypto heist</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Binance scrambles to freeze billions after record-breaking hack linked to North Korea.Binance has suspended all withdrawals after the world’s largest cryptocurrency exchange fell victim to what appears to be the biggest heist in history.The exchange put the “estimated total impact” of the hack at about $6.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Binance scrambles to freeze billions after record-breaking hack linked to North Korea.Binance has suspended all withdrawals after the world’s largest cryptocurrency exchange fell victim to what appears to be the biggest heist in history.The exchange put the “estimated total impact” of the hack at about $6.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/security/2026/10/hackers-steal-6-3-billion-from-binance-in-record-crypto-heist/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="18">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Ars Technica - All content</span>
+    </div>
+
+    
+
+    <h2 class="article-title">2027 Nissan Rogue Hybrid: Drives like an EV, but there&#x27;s no plug involved</h2>
+    <p class="article-original-title">原題: <em>2027 Nissan Rogue Hybrid: Drives like an EV, but there&#x27;s no plug involved</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Nissan’s series hybrid e-Power system has been retuned for American roads.Nissan has a new version of its bestselling Rogue SUV, and it’s launching the model here with the latest version of its e-Power hybrid system, which Ars tested in February.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Nissan’s series hybrid e-Power system has been retuned for American roads.Nissan has a new version of its bestselling Rogue SUV, and it’s launching the model here with the latest version of its e-Power hybrid system, which Ars tested in February.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/cars/2026/10/2027-nissan-rogue-hybrid-drives-like-an-ev-but-theres-no-plug-involved/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="19">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Ars Technica - All content</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Review: You Can See Everything blurs the view of Elizabeth Holmes&#x27; deceit</h2>
+    <p class="article-original-title">原題: <em>Review: You Can See Everything blurs the view of Elizabeth Holmes&#x27; deceit</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Disgraced founder of Theranos has some people falling for her act all over again.In 2015, biomedical entrepreneur Elizabeth Holmes was Silicon Valley’s golden girl, lauded as the youngest and richest self-made female billionaire thanks to the company she founded, Theranos, which was valued at $9 billion at the height of its success.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Disgraced founder of Theranos has some people falling for her act all over again.In 2015, biomedical entrepreneur Elizabeth Holmes was Silicon Valley’s golden girl, lauded as the youngest and richest self-made female billionaire thanks to the company she founded, Theranos, which was valued at $9 billion at the height of its success.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/culture/2026/10/review-you-can-see-everything-blurs-the-view-of-elizabeth-holmes-deceit/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Startups" data-index="20">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#8b5cf6">🚀 Startups</span>
+        <span class="source-chip">Ars Technica - All content</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Rocket Report: Winter is coming for Themis; Cowboy Space adds iron to the fire</h2>
+    <p class="article-original-title">原題: <em>Rocket Report: Winter is coming for Themis; Cowboy Space adds iron to the fire</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">It’s been a good week for ULA, with big NASA contract, Vulcan nearing return-to-flight.Welcome to Edition 9.17 of the Rocket Report!It’s been a while since an American company announced plans for a medium-lift new launch vehicle, but that’s what happened this week when a startup named Cowboy Space revealed specs for its Big Iron rocket, named for the classic country-western song by Marty Robbins.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">It’s been a good week for ULA, with big NASA contract, Vulcan nearing return-to-flight.Welcome to Edition 9.17 of the Rocket Report!It’s been a while since an American company announced plans for a medium-lift new launch vehicle, but that’s what happened this week when a startup named Cowboy Space revealed specs for its Big Iron rocket, named for the classic country-western song by Marty Robbins.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/space/2026/10/rocket-report-winter-is-coming-for-themis-cowboy-space-adds-iron-to-the-fire/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="21">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">The Download: GLP-1s and eating disorders, self-aware cities, and forever chemicals</h2>
+    <p class="article-original-title">原題: <em>The Download: GLP-1s and eating disorders, self-aware cities, and forever chemicals</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Plus: Binance has suffered the biggest crypto hack in history.This is today&#x27;s edition of The Download , our weekday newsletter that provides a daily dose of what&#x27;s going on in the world of technology.Eating disorders are on the rise.GLP-1s could make things worse.GLP-1 weight-loss drugs are one of the biggest biotech breakthroughs of the last decade.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Plus: Binance has suffered the biggest crypto hack in history.This is today&#x27;s edition of The Download , our weekday newsletter that provides a daily dose of what&#x27;s going on in the world of technology.Eating disorders are on the rise.GLP-1s could make things worse.GLP-1 weight-loss drugs are one of the biggest biotech breakthroughs of the last decade.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/10/30/1147843/the-download-glp-1s-eating-disorders-forever-chemicals/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Hardware" data-index="22">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#06b6d4">⚙️ Hardware</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Eating disorders are on the rise. GLP-1s could make things worse.</h2>
+    <p class="article-original-title">原題: <em>Eating disorders are on the rise. GLP-1s could make things worse.</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Emerging evidence suggests some people with eating disorders are misusing weight-loss drugs.GLP-1 weight-loss drugs are one of the biggest biotech breakthroughs of the last decade.But to some clinical psychologists, they can represent something more sinister—a potential trigger for eating disorders.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Emerging evidence suggests some people with eating disorders are misusing weight-loss drugs.GLP-1 weight-loss drugs are one of the biggest biotech breakthroughs of the last decade.But to some clinical psychologists, they can represent something more sinister—a potential trigger for eating disorders.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/10/30/1147838/eating-disorders-rise-glp-1s-weight-loss-drugs/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="23">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">The Download: AI agent tracking and climate feedback loops</h2>
+    <p class="article-original-title">原題: <em>The Download: AI agent tracking and climate feedback loops</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Plus: Hackers exposed 41,000 Homeland Security workers.This is today&#x27;s edition of The Download , our weekday newsletter that provides a daily dose of what&#x27;s going on in the world of technology.—Madhulika Srikumar and Claire Leibowicz from the Partnership on AI, a nonprofit advancing best practices in AI governance.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Plus: Hackers exposed 41,000 Homeland Security workers.This is today&#x27;s edition of The Download , our weekday newsletter that provides a daily dose of what&#x27;s going on in the world of technology.—Madhulika Srikumar and Claire Leibowicz from the Partnership on AI, a nonprofit advancing best practices in AI governance.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/10/29/1147830/the-download-monitoring-ai-agents-climate-feedback-loops/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="24">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">We urgently need to monitor AI agents’ actions in real time</h2>
+    <p class="article-original-title">原題: <em>We urgently need to monitor AI agents’ actions in real time</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Right now, we’re effectively flying blind when deploying these tools.Here’s what we need to do instead.This summer, hundreds of OpenAI agents tried to cheat on a cybersecurity test.They broke out of their test environment and successfully hacked Hugging Face, a site that they believed held clues about how they’d be graded.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Right now, we’re effectively flying blind when deploying these tools.Here’s what we need to do instead.This summer, hundreds of OpenAI agents tried to cheat on a cybersecurity test.They broke out of their test environment and successfully hacked Hugging Face, a site that they believed held clues about how they’d be graded.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/google.html" target="_blank" rel="noopener noreferrer" class="company-link">Google の解説</a> <a href="companies/meta.html" target="_blank" rel="noopener noreferrer" class="company-link">Meta の解説</a> <a href="companies/openai.html" target="_blank" rel="noopener noreferrer" class="company-link">OpenAI の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/10/29/1147824/monitor-ai-agents-actions-real-time/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="25">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Our climate models have a big, dangerous blind spot</h2>
+    <p class="article-original-title">原題: <em>Our climate models have a big, dangerous blind spot</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">A powerful feedback loop could drive more warming than predicted.Climate change itself is increasingly fueling climate change.Rising concentrations of greenhouse gases are driving up global temperatures, setting off dangerous feedback loops that we have not fully accounted for in our climate models—or our emissions-reduction goals.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">A powerful feedback loop could drive more warming than predicted.Climate change itself is increasingly fueling climate change.Rising concentrations of greenhouse gases are driving up global temperatures, setting off dangerous feedback loops that we have not fully accounted for in our climate models—or our emissions-reduction goals.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/10/29/1147735/climate-models-blind-spot/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Mobile" data-index="26">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#6366f1">📱 Mobile</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">New tvOS 27.2 features to try for an upgraded Apple TV experience</h2>
+    <p class="article-original-title">原題: <em>New tvOS 27.2 features to try for an upgraded Apple TV experience</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">No major changes here, but tvOS 27.2&#x27;s new features are welcome additions all the same.Apple recently released iOS 27.2 to the public alongside macOS 27.2 and tvOS 27.2.For Apple TV, this was the first update since tvOS 27 debuted in September , because Apple skipped version 27.1 entirely.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">No major changes here, but tvOS 27.2&#x27;s new features are welcome additions all the same.Apple recently released iOS 27.2 to the public alongside macOS 27.2 and tvOS 27.2.For Apple TV, this was the first update since tvOS 27 debuted in September , because Apple skipped version 27.1 entirely.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/apple.html" target="_blank" rel="noopener noreferrer" class="company-link">Apple の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2302449/tvos-27-2-features-try-upgraded-apple-tv-experience/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="27">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">The Wikimedia Foundation weighs in on the NYT&#x27;s case against OpenAI</h2>
+    <p class="article-original-title">原題: <em>The Wikimedia Foundation weighs in on the NYT&#x27;s case against OpenAI</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">The folks behind Wikipedia say that an extreme decision in either direction could threaten the open web.We may receive a commission on purchases made from links.The Wikimedia Foundation has weighed in on the copyright lawsuit launched by The New York Times against OpenAI and Microsoft .</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">The folks behind Wikipedia say that an extreme decision in either direction could threaten the open web.We may receive a commission on purchases made from links.The Wikimedia Foundation has weighed in on the copyright lawsuit launched by The New York Times against OpenAI and Microsoft .</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/microsoft.html" target="_blank" rel="noopener noreferrer" class="company-link">Microsoft の解説</a> <a href="companies/openai.html" target="_blank" rel="noopener noreferrer" class="company-link">OpenAI の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2302374/the-wikimedia-foundation-weighs-in-on-the-nyts-case-against-openai/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="28">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">The Death Stranding anime&#x27;s first teaser trailer arrives ahead of its Disney+ debut</h2>
+    <p class="article-original-title">原題: <em>The Death Stranding anime&#x27;s first teaser trailer arrives ahead of its Disney+ debut</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">The adaptation has a fittingly strange tagline: &quot;My mom became a crater.&quot; Kojima Productions has offered the first proper peek at the Death Stranding anime with a teaser trailer.The brief look at Death Stranding Isolations has a few motifs from the game, such as a courier with cargo strapped to their back.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">The adaptation has a fittingly strange tagline: &quot;My mom became a crater.&quot; Kojima Productions has offered the first proper peek at the Death Stranding anime with a teaser trailer.The brief look at Death Stranding Isolations has a few motifs from the game, such as a courier with cargo strapped to their back.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2302296/the-death-stranding-animes-first-teaser-trailer-arrives-ahead-of-its-disney-debut/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Mobile" data-index="29">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#6366f1">📱 Mobile</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Meta quietly launches an AI fashion app for virtually trying on clothes</h2>
+    <p class="article-original-title">原題: <em>Meta quietly launches an AI fashion app for virtually trying on clothes</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">For now, it&#x27;s a limited launch in parts of Asia.Meta has released yet another AI app with very limited availability.A few weeks ago, it launched Waddle World , a Tamagotchi-like game that the company describes as a &quot;daily journal disguised as a pet,&quot; in the Philippines.Now, it has introduced an AI fashion app called Style Sketch in Indonesia, Singapore and Thailand on Android and iOS .</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">For now, it&#x27;s a limited launch in parts of Asia.Meta has released yet another AI app with very limited availability.A few weeks ago, it launched Waddle World , a Tamagotchi-like game that the company describes as a &quot;daily journal disguised as a pet,&quot; in the Philippines.Now, it has introduced an AI fashion app called Style Sketch in Indonesia, Singapore and Thailand on Android and iOS .</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/meta.html" target="_blank" rel="noopener noreferrer" class="company-link">Meta の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2302003/meta-quietly-launches-an-ai-fashion-app-for-virtually-trying-on-clothes/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+        </main>
+
+        <footer class="footer">
+            <p>本ページは公開記事をもとに自動生成しています。数値や仕様は必ず元記事で確認してください。</p>
+            <p>JSON データは同じフォルダ内の tech_news_digest.json で参照できます。</p>
+        </footer>
+    </div>
+
+    <script>
+
+        const categoryButtons = document.querySelectorAll('.category-btn');
+        const articleCards = document.querySelectorAll('.article-card');
+        const searchInput = document.getElementById('search-input');
+
+        let activeCategory = 'all';
+
+        function applyFilters() {
+            const query = searchInput.value.trim().toLowerCase();
+            articleCards.forEach(card => {
+                const matchesCategory = activeCategory === 'all' || card.dataset.category === activeCategory;
+                const searchableText = card.innerText.toLowerCase();
+                const matchesQuery = !query || searchableText.includes(query);
+                card.style.display = matchesCategory && matchesQuery ? '' : 'none';
+            });
+        }
+
+        categoryButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                categoryButtons.forEach(item => item.classList.remove('active'));
+                button.classList.add('active');
+                activeCategory = button.dataset.category;
+                applyFilters();
+            });
+        });
+
+        searchInput.addEventListener('input', applyFilters);
+    
+    </script>
+</body>
+</html>
