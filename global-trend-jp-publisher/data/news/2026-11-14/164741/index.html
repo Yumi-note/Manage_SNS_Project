@@ -1,0 +1,1216 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>海外テックニュース日本語まとめ</title>
+    <style>
+        :root {
+            color-scheme: dark;
+            --bg: #0a0f1d;
+            --panel: rgba(13, 20, 36, 0.92);
+            --line: rgba(132, 152, 187, 0.25);
+            --text: #eef3ff;
+            --muted: #adc1dd;
+            --accent: #7dd3fc;
+            --accent-strong: #38bdf8;
+            --shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: "Hiragino Sans", "Noto Sans JP", sans-serif;
+            background:
+                radial-gradient(circle at top right, rgba(56, 189, 248, 0.22), transparent 26%),
+                radial-gradient(circle at top left, rgba(16, 185, 129, 0.16), transparent 20%),
+                linear-gradient(180deg, #07101f 0%, #0b1327 48%, #0a0f1d 100%);
+            color: var(--text);
+        }
+
+        .page-shell {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 24px;
+        }
+
+        .hero {
+            padding: 28px;
+            border: 1px solid var(--line);
+            border-radius: 28px;
+            background: linear-gradient(145deg, rgba(18, 27, 48, 0.96), rgba(10, 17, 32, 0.96));
+            box-shadow: var(--shadow);
+        }
+
+        .hero-nav {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 28px;
+        }
+
+        .nav-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 42px;
+            padding: 0 16px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        .eyebrow {
+            margin: 0 0 10px;
+            color: var(--accent);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            font-size: 0.78rem;
+        }
+
+        .hero h1 {
+            margin: 0;
+            font-size: clamp(2rem, 3vw, 3.3rem);
+            line-height: 1.1;
+        }
+
+        .timestamp,
+        .description {
+            color: var(--muted);
+        }
+
+        .control-panel {
+            margin: 20px 0 28px;
+            padding: 22px;
+            border: 1px solid var(--line);
+            border-radius: 24px;
+            background: var(--panel);
+            backdrop-filter: blur(12px);
+        }
+
+        .control-header {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            align-items: end;
+            flex-wrap: wrap;
+        }
+
+        .control-header h2 {
+            margin: 0 0 6px;
+        }
+
+        .control-header p {
+            margin: 0;
+            color: var(--muted);
+        }
+
+        #search-input {
+            width: min(100%, 360px);
+            min-height: 46px;
+            padding: 0 14px;
+            border-radius: 14px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
+        }
+
+        .category-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 16px;
+        }
+
+        .category-btn {
+            min-height: 42px;
+            padding: 0 14px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
+            cursor: pointer;
+        }
+
+        .category-btn.active {
+            background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+            color: #06111f;
+            border-color: transparent;
+            font-weight: 700;
+        }
+
+        .article-list {
+            display: grid;
+            gap: 18px;
+        }
+
+        .article-card {
+            padding: 24px;
+            border-radius: 24px;
+            border: 1px solid var(--line);
+            background: linear-gradient(180deg, rgba(12, 18, 34, 0.96), rgba(14, 22, 39, 0.9));
+            box-shadow: var(--shadow);
+        }
+
+        .card-topline {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+
+        .category-chip,
+        .source-chip {
+            display: inline-flex;
+            align-items: center;
+            min-height: 34px;
+            padding: 0 12px;
+            border-radius: 999px;
+            font-size: 0.92rem;
+            font-weight: 700;
+        }
+
+        .source-chip {
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--muted);
+        }
+
+        .article-title {
+            margin: 0 0 10px;
+            font-size: clamp(1.45rem, 2vw, 2rem);
+            line-height: 1.35;
+        }
+
+        .article-original-title {
+            margin: 0 0 18px;
+            color: var(--muted);
+        }
+
+        .security-alert {
+            margin: 0 0 14px;
+            padding: 10px 14px;
+            border-radius: 12px;
+            border: 1px solid rgba(248, 113, 113, 0.4);
+            background: rgba(248, 113, 113, 0.12);
+            color: #fecaca;
+            font-weight: 700;
+            font-size: 0.92rem;
+        }
+
+        .article-section {
+            margin-top: 18px;
+            padding-top: 18px;
+            border-top: 1px solid var(--line);
+        }
+
+        .article-section h3 {
+            margin: 0 0 12px;
+            font-size: 1rem;
+            color: var(--accent);
+        }
+
+        .article-paragraph {
+            margin: 0 0 14px;
+            color: #dce7f8;
+            line-height: 1.9;
+            font-size: 1rem;
+        }
+
+        .company-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .company-link,
+        .action-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 42px;
+            padding: 0 14px;
+            border-radius: 14px;
+            text-decoration: none;
+            border: 1px solid rgba(125, 211, 252, 0.3);
+        }
+
+        .company-link {
+            color: var(--accent);
+            background: rgba(56, 189, 248, 0.08);
+        }
+
+        .article-actions {
+            margin-top: 22px;
+        }
+
+        .footer {
+            padding: 28px 8px 40px;
+            color: var(--muted);
+            text-align: center;
+        }
+
+        .footer p {
+            margin: 6px 0;
+        }
+
+        .action-link.primary {
+            color: #06111f;
+            font-weight: 700;
+            background: linear-gradient(135deg, #7dd3fc, #22d3ee);
+            border-color: transparent;
+        }
+
+        @media (max-width: 720px) {
+            .page-shell {
+                padding: 14px;
+            }
+
+            .hero,
+            .control-panel,
+            .article-card {
+                padding: 18px;
+                border-radius: 20px;
+            }
+
+            .control-header {
+                align-items: stretch;
+            }
+
+            #search-input {
+                width: 100%;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="page-shell">
+        <header class="hero">
+            <div class="hero-nav">
+                <a class="nav-link" href="../../index.html">HOME</a>
+                <a class="nav-link" href="../index.html">この日の記事一覧</a>
+            </div>
+            <div class="hero-copy">
+                <p class="eyebrow">Global Tech News Digest</p>
+                <h1>海外テックニュース 日本語まとめ</h1>
+                <p class="timestamp">2026年11月14日 16:47 JST に収集した記事を掲載しています。</p>
+                <p class="description">各カードには本文寄りの日本語訳を掲載し、記事中で触れた企業は別ページの解説リンクとして分離しています。</p>
+            </div>
+        </header>
+
+        <section class="control-panel">
+            <div class="control-header">
+                <div>
+                    <h2>記事を探す</h2>
+                    <p>カテゴリとキーワードで一覧を絞り込めます。</p>
+                </div>
+                <input type="text" id="search-input" placeholder="タイトル・本文・媒体名で検索">
+            </div>
+            <div class="category-buttons">
+                <button class="category-btn active" data-category="all">すべて (30)</button>
+<button class="category-btn" data-category="AI/ML" style="--accent:#10b981">🤖 AI/ML (26)</button>
+<button class="category-btn" data-category="Security" style="--accent:#f97316">🔒 Security (1)</button>
+<button class="category-btn" data-category="Startups" style="--accent:#8b5cf6">🚀 Startups (3)</button>
+            </div>
+        </section>
+
+        <main class="article-list" id="articles-container">
+            <article class="article-card" data-category="AI/ML" data-index="1">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Asian governments react to Nvidia CEO Jensen Huang’s exit</h2>
+    <p class="article-original-title">原題: <em>Asian governments react to Nvidia CEO Jensen Huang’s exit</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Jensen Huang’s departure from Nvidia has drawn a range of responses across Asia, with some governments moving to confirm chip supply commitments, while others are monitoring the impact on local projects or addressing ongoing investigations.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Jensen Huang’s departure from Nvidia has drawn a range of responses across Asia, with some governments moving to confirm chip supply commitments, while others are monitoring the impact on local projects or addressing ongoing investigations.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/nvidia.html" target="_blank" rel="noopener noreferrer" class="company-link">NVIDIA の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/11/14/asian-governments-react-to-nvidia-ceo-jensen-huangs-exit/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="2">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Amazon’s new Kindle Colorsoft is a premium e-reader with a premium price</h2>
+    <p class="article-original-title">原題: <em>Amazon’s new Kindle Colorsoft is a premium e-reader with a premium price</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Amazon recently unveiled its refreshed Kindle lineup , introducing a new basic Kindle , Paperwhite, and Colorsoft.The new Kindle Colorsoft starts at $290, while the Signature Edition, which I’ve spent the past few weeks testing, costs $320.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Amazon recently unveiled its refreshed Kindle lineup , introducing a new basic Kindle , Paperwhite, and Colorsoft.The new Kindle Colorsoft starts at $290, while the Signature Edition, which I’ve spent the past few weeks testing, costs $320.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/amazon.html" target="_blank" rel="noopener noreferrer" class="company-link">Amazon の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/11/13/amazons-new-kindle-colorsoft-is-a-premium-e-reader-with-a-premium-price/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Startups" data-index="3">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#8b5cf6">🚀 Startups</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Jensen Huang’s departure blasts big hole in AI startup funding, VCs and founders say</h2>
+    <p class="article-original-title">原題: <em>Jensen Huang’s departure blasts big hole in AI startup funding, VCs and founders say</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">It was the resignation heard across the world.Jensen Huang, Nvidia’s embattled CEO who co-founded and led the company for 33 years, had officially stepped down .“It’s like a bomb went off,” one neocloud founder told TechCrunch when he first heard the news.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">It was the resignation heard across the world.Jensen Huang, Nvidia’s embattled CEO who co-founded and led the company for 33 years, had officially stepped down .“It’s like a bomb went off,” one neocloud founder told TechCrunch when he first heard the news.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/nvidia.html" target="_blank" rel="noopener noreferrer" class="company-link">NVIDIA の解説</a> <a href="companies/techcrunch.html" target="_blank" rel="noopener noreferrer" class="company-link">TechCrunch の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/11/13/jensen-huangs-departure-blasts-big-hole-in-ai-startup-funding-vcs-and-founders-say/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="4">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">US government grounds all flights across the United States &#x27;due to extraordinary circumstances&#x27;</h2>
+    <p class="article-original-title">原題: <em>US government grounds all flights across the United States &#x27;due to extraordinary circumstances&#x27;</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">The Federal Aviation Administration said Friday afternoon that it has grounded all flights across the United States due to “extraordinary circumstances” and issues related to safety.The FAA’s website said the cause is an “equipment outage.” The site itself was down for a brief period at the time of publication, with a note that the website was “experiencing technical difficulties.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">The Federal Aviation Administration said Friday afternoon that it has grounded all flights across the United States due to “extraordinary circumstances” and issues related to safety.The FAA’s website said the cause is an “equipment outage.” The site itself was down for a brief period at the time of publication, with a note that the website was “experiencing technical difficulties.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/11/13/u-s-government-grounds-all-flights-across-the-united-states-due-to-extraordinary-cirumstances/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="5">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Exclusive: This young startup wants to power floating data centers with the ocean’s heat, and investors are already on board</h2>
+    <p class="article-original-title">原題: <em>Exclusive: This young startup wants to power floating data centers with the ocean’s heat, and investors are already on board</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Anyone who has weathered a hurricane can tell you that the oceans — which fuel the storms — contain a tremendous amount of energy.Thanks to global warming, they’re holding more than ever.A new startup wants to harness that energy to power data centers.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Anyone who has weathered a hurricane can tell you that the oceans — which fuel the storms — contain a tremendous amount of energy.Thanks to global warming, they’re holding more than ever.A new startup wants to harness that energy to power data centers.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/11/13/this-young-startup-wants-to-power-floating-data-centers-with-the-oceans-heat-and-investors-are-already-on-board/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="6">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Here are our favorite deals from REI’s giant Holiday Sale</h2>
+    <p class="article-original-title">原題: <em>Here are our favorite deals from REI’s giant Holiday Sale</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. From Garmin watches to seasonal camping gear, REI is offering a slate of deep discounts ahead of Black Friday.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. From Garmin watches to seasonal camping gear, REI is offering a slate of deep discounts ahead of Black Friday.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/gadgets/1032500/best-deals-rei-holiday-sale-2026" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="7">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">The OpenAI board member who fired Sam Altman says we still can’t trust AI CEOs</h2>
+    <p class="article-original-title">原題: <em>The OpenAI board member who fired Sam Altman says we still can’t trust AI CEOs</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. CSET’s Helen Toner says ‘we’re screwed’ if our AI safety plan rests on any one person being trusted to get this right.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. CSET’s Helen Toner says ‘we’re screwed’ if our AI safety plan rests on any one person being trusted to get this right.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/openai.html" target="_blank" rel="noopener noreferrer" class="company-link">OpenAI の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/podcast/1032907/helen-toner-openai-cset-ai-safety-policy-interview" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="8">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Tesla is inviting some people to buy a Cybercab ‘for personal use’ — but read the fine print</h2>
+    <p class="article-original-title">原題: <em>Tesla is inviting some people to buy a Cybercab ‘for personal use’ — but read the fine print</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. Look past the $29,990 sticker price and the math — and regulatory risk — gets messy fast.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. Look past the $29,990 sticker price and the math — and regulatory risk — gets messy fast.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/transportation/1033844/tesla-personal-cybercab-orders-299-subscription-fine-print" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="9">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">This tiny gamepad with dual analog thumbsticks pushes the limits of portable controllers</h2>
+    <p class="article-original-title">原題: <em>This tiny gamepad with dual analog thumbsticks pushes the limits of portable controllers</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. Larger hands may struggle with the Atom Plus, but it squeezes a lot of functionality into an extremely tiny controller.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. Larger hands may struggle with the Atom Plus, but it squeezes a lot of functionality into an extremely tiny controller.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/tech/1013985/crkd-atom-plus-tmr-analog-thumbstick-controller-gamepad-switch-ios-android-hands-on" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="10">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">A gadget to make your dumb house smarter</h2>
+    <p class="article-original-title">原題: <em>A gadget to make your dumb house smarter</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. Plus, in this week’s Installer: a Space Race history, an Apple TV heist flick, a Wikipedia podcast, and much more.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. Plus, in this week’s Installer: a Space Race history, an Apple TV heist flick, a Wikipedia podcast, and much more.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/apple.html" target="_blank" rel="noopener noreferrer" class="company-link">Apple の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/tech/1033761/home-assistant-tk-tripod-tabletop-installer" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Security" data-index="11">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#f97316">🔒 Security</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    <p class="security-alert">🔒 セキュリティエンジニア向け重要記事 — キーワードベースの分類でセキュリティ関連と判定されました（Grok未設定のためフォールバック）</p>
+
+    <h2 class="article-title">Beware the New AI-Fueled Ransomware Boom</h2>
+    <p class="article-original-title">原題: <em>Beware the New AI-Fueled Ransomware Boom</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Welcome to Kernel Panic , a weekly newsletter by Lily Hay Newman and Matt Burgess from inside the new world of privacy and digital security.To receive this newsletter in your inbox each week, sign up here .</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Welcome to Kernel Panic , a weekly newsletter by Lily Hay Newman and Matt Burgess from inside the new world of privacy and digital security.To receive this newsletter in your inbox each week, sign up here .</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/story/beware-the-new-ai-fueled-ransomware-boom/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="12">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">I’m an Obsessive Notetaker. These Are the Best Digital Notebooks I’ve Tried</h2>
+    <p class="article-original-title">原題: <em>I’m an Obsessive Notetaker. These Are the Best Digital Notebooks I’ve Tried</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Do you take a lot of notes?Whether it&#x27;s daily to-do lists, notes for class, or just jotting down thoughts, I&#x27;ve found the best digital notebooks to keep them organized.Sure, you could just open your Notes app , but physically writing something down helps you remember and learn more.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Do you take a lot of notes?Whether it&#x27;s daily to-do lists, notes for class, or just jotting down thoughts, I&#x27;ve found the best digital notebooks to keep them organized.Sure, you could just open your Notes app , but physically writing something down helps you remember and learn more.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/gallery/best-smart-notebooks-and-smart-pens/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="13">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Get SteamOS Easily Running on Your Mac</h2>
+    <p class="article-original-title">原題: <em>Get SteamOS Easily Running on Your Mac</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Most of my Steam collection won&#x27;t run on my Mac .It&#x27;s not (entirely) my fault.I will be the first to admit that my collection is mostly old indie games , all of which work fine on Windows.Less so on the Mac.Apple stopped supporting 32-bit games back in 2019 when it released macOS Catalina .A good chunk of my Steam library has a &quot;No&quot; symbol next to it because of that restriction.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Most of my Steam collection won&#x27;t run on my Mac .It&#x27;s not (entirely) my fault.I will be the first to admit that my collection is mostly old indie games , all of which work fine on Windows.Less so on the Mac.Apple stopped supporting 32-bit games back in 2019 when it released macOS Catalina .A good chunk of my Steam library has a &quot;No&quot; symbol next to it because of that restriction.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/apple.html" target="_blank" rel="noopener noreferrer" class="company-link">Apple の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/story/get-steamos-easily-running-on-your-mac/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="14">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">It’s Time to Run an Audit of All the Cloud Storage Links You’ve Shared</h2>
+    <p class="article-original-title">原題: <em>It’s Time to Run an Audit of All the Cloud Storage Links You’ve Shared</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Cloud storage certainly has a lot going for it.For a start, if you drop your laptop into the sink, it&#x27;s likely that a lot of your important work will be backed up somewhere in the cloud, as long as you’re using services such as Google Drive , OneDrive , and iCloud .</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Cloud storage certainly has a lot going for it.For a start, if you drop your laptop into the sink, it&#x27;s likely that a lot of your important work will be backed up somewhere in the cloud, as long as you’re using services such as Google Drive , OneDrive , and iCloud .</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/google.html" target="_blank" rel="noopener noreferrer" class="company-link">Google の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/story/audit-all-the-cloud-storage-links-youve-shared/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="15">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Save Up to 50% Off on the Best Early Black Friday Headphone Deals</h2>
+    <p class="article-original-title">原題: <em>Save Up to 50% Off on the Best Early Black Friday Headphone Deals</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Right now is a great time to buy a new pair of headphones.Brands have largely finished launching their latest models for the year, leaving some great discounts on older generations.As part of early Black Friday deals , I&#x27;m even seeing some of the latest and greatest models on sale for the first time.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Right now is a great time to buy a new pair of headphones.Brands have largely finished launching their latest models for the year, leaving some great discounts on older generations.As part of early Black Friday deals , I&#x27;m even seeing some of the latest and greatest models on sale for the first time.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/story/best-early-black-friday-headphone-deals-11-14-26/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Startups" data-index="16">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#8b5cf6">🚀 Startups</span>
+        <span class="source-chip">Ars Technica</span>
+    </div>
+
+    
+
+    <h2 class="article-title">James Webb telescope finds ice older than the star it orbits</h2>
+    <p class="article-original-title">原題: <em>James Webb telescope finds ice older than the star it orbits</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Radiation and collisions reshape the planetary building materials.Beta Pictoris is a young star, roughly 20 million years old, and located about 64 light-years away from Earth.It is surrounded by a vast disk of dust and rubble where planets are still forming—astronomers have already found three.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Radiation and collisions reshape the planetary building materials.Beta Pictoris is a young star, roughly 20 million years old, and located about 64 light-years away from Earth.It is surrounded by a vast disk of dust and rubble where planets are still forming—astronomers have already found three.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/science/2026/11/james-webb-telescope-finds-ice-older-than-the-star-it-orbits/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="17">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Ars Technica</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Winemakers are learning that conservation can be good for business</h2>
+    <p class="article-original-title">原題: <em>Winemakers are learning that conservation can be good for business</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Healthy soils, native plants, and fewer chemicals are helping vineyards adapt.More than 500 vineyards are scattered across the slopes and valleys of South Africa’s Western Cape , one of the world’s most biologically diverse landscapes.The region produces about 90 percent of South Africa’s wine , but winemakers there are increasingly struggling with drought, excessive heat and erratic rainfall.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Healthy soils, native plants, and fewer chemicals are helping vineyards adapt.More than 500 vineyards are scattered across the slopes and valleys of South Africa’s Western Cape , one of the world’s most biologically diverse landscapes.The region produces about 90 percent of South Africa’s wine , but winemakers there are increasingly struggling with drought, excessive heat and erratic rainfall.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/science/2026/11/winemakers-are-learning-that-conservation-can-be-good-for-business/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Startups" data-index="18">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#8b5cf6">🚀 Startups</span>
+        <span class="source-chip">Ars Technica</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Starship flight 15 powers to orbit—setting up a possible catch on Saturday</h2>
+    <p class="article-original-title">原題: <em>Starship flight 15 powers to orbit—setting up a possible catch on Saturday</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">One way or another, the company will get some more data on Saturday.STARBASE, Texas—Starship lifted off right on schedule Friday from South Texas, making its 15th test flight in more than three years.The largely successful launch took place in the early evening; as the massive rocket rose into the atmosphere, the Sun sank toward the western horizon.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">One way or another, the company will get some more data on Saturday.STARBASE, Texas—Starship lifted off right on schedule Friday from South Texas, making its 15th test flight in more than three years.The largely successful launch took place in the early evening; as the massive rocket rose into the atmosphere, the Sun sank toward the western horizon.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/space/2026/11/starship-flight-15-powers-to-orbit-setting-up-a-possible-catch-on-saturday/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="19">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Ars Technica</span>
+    </div>
+
+    
+
+    <h2 class="article-title">FAA has lifted its third-ever nationwide ground stop</h2>
+    <p class="article-original-title">原題: <em>FAA has lifted its third-ever nationwide ground stop</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Secretary of Transportation Sean Duffy blamed obsolete equipment for the outage.The Federal Administration lifted its third-ever nationwide ground stop after several hours Friday evening.Domestic flights were cleared to begin taking off at 8:35 pm EST.FAA Transportation Secretary Sean Duffy cautioned that, barring massive system updates, there will be “more of these” ahead.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Secretary of Transportation Sean Duffy blamed obsolete equipment for the outage.The Federal Administration lifted its third-ever nationwide ground stop after several hours Friday evening.Domestic flights were cleared to begin taking off at 8:35 pm EST.FAA Transportation Secretary Sean Duffy cautioned that, barring massive system updates, there will be “more of these” ahead.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/tech-policy/2026/11/faa-orders-third-nationwide-ground-stop-in-its-history/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="20">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Ars Technica</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Millions of Americans are not taking their GLP-1 drugs as prescribed</h2>
+    <p class="article-original-title">原題: <em>Millions of Americans are not taking their GLP-1 drugs as prescribed</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Cost and access barriers are pushing people to modified use and unapproved versions.GLP-1 medications are everywhere these days.The peptide-based drugs are both highly effective and wildly popular for diabetes, weight loss and a growing range of connected chronic health conditions, including cardiovascular disease and obstructive sleep apnea.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Cost and access barriers are pushing people to modified use and unapproved versions.GLP-1 medications are everywhere these days.The peptide-based drugs are both highly effective and wildly popular for diabetes, weight loss and a growing range of connected chronic health conditions, including cardiovascular disease and obstructive sleep apnea.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/health/2026/11/millions-in-us-use-unapproved-glp-1s-and-use-them-in-unapproved-ways/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="21">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">The Download: Silicon Valley’s blind spot and Nvidia’s chip-tracking plan</h2>
+    <p class="article-original-title">原題: <em>The Download: Silicon Valley’s blind spot and Nvidia’s chip-tracking plan</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Plus: A major Microsoft outage has disrupted services worldwide.This is today&#x27;s edition of The Download , our weekday newsletter that provides a daily dose of what&#x27;s going on in the world of technology.—Aaron Zamost, a tech communications consultant and a former executive at Square The self-styled visionaries of Silicon Valley have built careers claiming to see the future.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Plus: A major Microsoft outage has disrupted services worldwide.This is today&#x27;s edition of The Download , our weekday newsletter that provides a daily dose of what&#x27;s going on in the world of technology.—Aaron Zamost, a tech communications consultant and a former executive at Square The self-styled visionaries of Silicon Valley have built careers claiming to see the future.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/microsoft.html" target="_blank" rel="noopener noreferrer" class="company-link">Microsoft の解説</a> <a href="companies/nvidia.html" target="_blank" rel="noopener noreferrer" class="company-link">NVIDIA の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/11/13/1148551/the-download-silicon-valley-midterms-nvidia-chip-tracking/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="22">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">More autonomy, fewer NDAs: Volunteers have new requests for brain implant trials</h2>
+    <p class="article-original-title">原題: <em>More autonomy, fewer NDAs: Volunteers have new requests for brain implant trials</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">People with experimental brain implants are pushing for more recognition and respect.Scientists have been working on ways to decode brain activity for decades.Teams have developed brain implants that can be used to control robotic limbs and computers, and even to “speak.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">People with experimental brain implants are pushing for more recognition and respect.Scientists have been working on ways to decode brain activity for decades.Teams have developed brain implants that can be used to control robotic limbs and computers, and even to “speak.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/11/13/1148474/more-autonomy-fewer-ndas-volunteers-have-new-requests-for-brain-implant-trials/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="23">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Silicon Valley claims to know the future. So why did it get the midterms so wrong?</h2>
+    <p class="article-original-title">原題: <em>Silicon Valley claims to know the future. So why did it get the midterms so wrong?</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Tech executives traded their reputations as visionaries for short-term political gain.The self-styled visionaries of Silicon Valley, leaders like OpenAI chief executive Sam Altman and SpaceX boss Elon Musk, have built careers claiming to see the future.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Tech executives traded their reputations as visionaries for short-term political gain.The self-styled visionaries of Silicon Valley, leaders like OpenAI chief executive Sam Altman and SpaceX boss Elon Musk, have built careers claiming to see the future.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/google.html" target="_blank" rel="noopener noreferrer" class="company-link">Google の解説</a> <a href="companies/meta.html" target="_blank" rel="noopener noreferrer" class="company-link">Meta の解説</a> <a href="companies/openai.html" target="_blank" rel="noopener noreferrer" class="company-link">OpenAI の解説</a> <a href="companies/spacex.html" target="_blank" rel="noopener noreferrer" class="company-link">SpaceX の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/11/13/1148498/silicon-valley-claims-to-know-the-future-so-why-did-it-get-the-midterms-so-wrong/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="24">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Nvidia privately confirmed it could track chips to fight smuggling, even as industry publicly questioned feasibility</h2>
+    <p class="article-original-title">原題: <em>Nvidia privately confirmed it could track chips to fight smuggling, even as industry publicly questioned feasibility</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">The Chip Security Act is getting renewed attention following Nvidia CEO Jensen Huang’s resignation and reported affair with an alleged Chinese spy.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">The Chip Security Act is getting renewed attention following Nvidia CEO Jensen Huang’s resignation and reported affair with an alleged Chinese spy.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/nvidia.html" target="_blank" rel="noopener noreferrer" class="company-link">NVIDIA の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/11/12/1148483/nvidia-chip-tracking/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="25">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">The Download: COP31’s climate challenge and the quest for immortality</h2>
+    <p class="article-original-title">原題: <em>The Download: COP31’s climate challenge and the quest for immortality</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Plus: Nvidia is reportedly preparing to oust CEO Jensen Huang.This is today&#x27;s edition of The Download , our weekday newsletter that provides a daily dose of what&#x27;s going on in the world of technology.Thousands of delegates, lobbyists, and journalists have gathered in Antalya, Turkey, for COP31, the annual UN climate talks.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Plus: Nvidia is reportedly preparing to oust CEO Jensen Huang.This is today&#x27;s edition of The Download , our weekday newsletter that provides a daily dose of what&#x27;s going on in the world of technology.Thousands of delegates, lobbyists, and journalists have gathered in Antalya, Turkey, for COP31, the annual UN climate talks.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/nvidia.html" target="_blank" rel="noopener noreferrer" class="company-link">NVIDIA の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/11/12/1148444/the-download-cop31-climate-talks-cognitive-immortality/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="26">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Here&#x27;s how much Apple AirPods cost in 2016 vs. 2026</h2>
+    <p class="article-original-title">原題: <em>Here&#x27;s how much Apple AirPods cost in 2016 vs. 2026</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">AirPods are one of the few products that haven’t seen an insane price climb.It&#x27;s been just over 10 years since Apple announced AirPods, the company&#x27;s first wireless earbuds.They were revealed alongside the iPhone 7 during September 2016&#x27;s Apple event, accompanying the shocking removal of the headphone jack from the iPhone.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">AirPods are one of the few products that haven’t seen an insane price climb.It&#x27;s been just over 10 years since Apple announced AirPods, the company&#x27;s first wireless earbuds.They were revealed alongside the iPhone 7 during September 2016&#x27;s Apple event, accompanying the shocking removal of the headphone jack from the iPhone.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/apple.html" target="_blank" rel="noopener noreferrer" class="company-link">Apple の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2311715/apple-airpods-2016-vs-2026-how-much-they-cost/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="27">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Whatever happened to Sony Xperia phones?</h2>
+    <p class="article-original-title">原題: <em>Whatever happened to Sony Xperia phones?</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Sony still makes Xperia phones, but buying one in the US now isn’t so seamless.From our pockets to our living rooms, Sony used to have a presence in most aspects of life.As of late, though, its US mobile store has been reduced to three products, and not one of them is a phone.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Sony still makes Xperia phones, but buying one in the US now isn’t so seamless.From our pockets to our living rooms, Sony used to have a presence in most aspects of life.As of late, though, its US mobile store has been reduced to three products, and not one of them is a phone.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2311608/sony-xperia-phones-what-happened/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="28">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">What the circled &quot;Z&quot; on Google Maps means</h2>
+    <p class="article-original-title">原題: <em>What the circled &quot;Z&quot; on Google Maps means</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">The icon could save you from getting a fine.If you have had the chance to drive around Europe lately while using Google Maps, you might have noticed a small &quot;Z&quot; icon in your route details.Some drivers noticed this icon popping up in their route information and went online to ask what it represents.Well, it&#x27;s not a zebra crossing icon, sadly, and it does not stand for &quot;sleep mode,&quot; either.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">The icon could save you from getting a fine.If you have had the chance to drive around Europe lately while using Google Maps, you might have noticed a small &quot;Z&quot; icon in your route details.Some drivers noticed this icon popping up in their route information and went online to ask what it represents.Well, it&#x27;s not a zebra crossing icon, sadly, and it does not stand for &quot;sleep mode,&quot; either.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/google.html" target="_blank" rel="noopener noreferrer" class="company-link">Google の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2311447/google-maps-circled-z-meaning/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="29">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Sodium vs. lithium-ion batteries: What&#x27;s the difference between them?</h2>
+    <p class="article-original-title">原題: <em>Sodium vs. lithium-ion batteries: What&#x27;s the difference between them?</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Two battery technologies, one big question.Sodium-ion batteries aren&#x27;t all that different from lithium-ion batteries in terms of how they operate.Both store and release energy by moving charged particles between negative and positive electrodes.The difference is mainly in the composition and which elements supply the ions.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Two battery technologies, one big question.Sodium-ion batteries aren&#x27;t all that different from lithium-ion batteries in terms of how they operate.Both store and release energy by moving charged particles between negative and positive electrodes.The difference is mainly in the composition and which elements supply the ions.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2311394/sodium-vs-lithium-ion-batteries-differences-compared/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="30">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Should you make the switch to Samsung Galaxy from Google Pixel?</h2>
+    <p class="article-original-title">原題: <em>Should you make the switch to Samsung Galaxy from Google Pixel?</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Samsung offers more choice and customization, but Pixel&#x27;s cleaner software and strong cameras make switching a tougher call.Deciding whether to switch to a Samsung Galaxy from a Google Pixel comes down to which model you buy, what it would do for you relative to its cost, and core software and hardware philosophies.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Samsung offers more choice and customization, but Pixel&#x27;s cleaner software and strong cameras make switching a tougher call.Deciding whether to switch to a Samsung Galaxy from a Google Pixel comes down to which model you buy, what it would do for you relative to its cost, and core software and hardware philosophies.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/google.html" target="_blank" rel="noopener noreferrer" class="company-link">Google の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2311344/switch-to-samsung-galaxy-to-google-pixel/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+        </main>
+
+        <footer class="footer">
+            <p>本ページは公開記事をもとに自動生成しています。数値や仕様は必ず元記事で確認してください。</p>
+            <p>JSON データは同じフォルダ内の tech_news_digest.json で参照できます。</p>
+        </footer>
+    </div>
+
+    <script>
+
+        const categoryButtons = document.querySelectorAll('.category-btn');
+        const articleCards = document.querySelectorAll('.article-card');
+        const searchInput = document.getElementById('search-input');
+
+        let activeCategory = 'all';
+
+        function applyFilters() {
+            const query = searchInput.value.trim().toLowerCase();
+            articleCards.forEach(card => {
+                const matchesCategory = activeCategory === 'all' || card.dataset.category === activeCategory;
+                const searchableText = card.innerText.toLowerCase();
+                const matchesQuery = !query || searchableText.includes(query);
+                card.style.display = matchesCategory && matchesQuery ? '' : 'none';
+            });
+        }
+
+        categoryButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                categoryButtons.forEach(item => item.classList.remove('active'));
+                button.classList.add('active');
+                activeCategory = button.dataset.category;
+                applyFilters();
+            });
+        });
+
+        searchInput.addEventListener('input', applyFilters);
+    
+    </script>
+</body>
+</html>
