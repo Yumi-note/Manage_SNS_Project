@@ -1,0 +1,1215 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>海外テックニュース日本語まとめ</title>
+    <style>
+        :root {
+            color-scheme: dark;
+            --bg: #0a0f1d;
+            --panel: rgba(13, 20, 36, 0.92);
+            --line: rgba(132, 152, 187, 0.25);
+            --text: #eef3ff;
+            --muted: #adc1dd;
+            --accent: #7dd3fc;
+            --accent-strong: #38bdf8;
+            --shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: "Hiragino Sans", "Noto Sans JP", sans-serif;
+            background:
+                radial-gradient(circle at top right, rgba(56, 189, 248, 0.22), transparent 26%),
+                radial-gradient(circle at top left, rgba(16, 185, 129, 0.16), transparent 20%),
+                linear-gradient(180deg, #07101f 0%, #0b1327 48%, #0a0f1d 100%);
+            color: var(--text);
+        }
+
+        .page-shell {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 24px;
+        }
+
+        .hero {
+            padding: 28px;
+            border: 1px solid var(--line);
+            border-radius: 28px;
+            background: linear-gradient(145deg, rgba(18, 27, 48, 0.96), rgba(10, 17, 32, 0.96));
+            box-shadow: var(--shadow);
+        }
+
+        .hero-nav {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 28px;
+        }
+
+        .nav-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 42px;
+            padding: 0 16px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        .eyebrow {
+            margin: 0 0 10px;
+            color: var(--accent);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            font-size: 0.78rem;
+        }
+
+        .hero h1 {
+            margin: 0;
+            font-size: clamp(2rem, 3vw, 3.3rem);
+            line-height: 1.1;
+        }
+
+        .timestamp,
+        .description {
+            color: var(--muted);
+        }
+
+        .control-panel {
+            margin: 20px 0 28px;
+            padding: 22px;
+            border: 1px solid var(--line);
+            border-radius: 24px;
+            background: var(--panel);
+            backdrop-filter: blur(12px);
+        }
+
+        .control-header {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            align-items: end;
+            flex-wrap: wrap;
+        }
+
+        .control-header h2 {
+            margin: 0 0 6px;
+        }
+
+        .control-header p {
+            margin: 0;
+            color: var(--muted);
+        }
+
+        #search-input {
+            width: min(100%, 360px);
+            min-height: 46px;
+            padding: 0 14px;
+            border-radius: 14px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
+        }
+
+        .category-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 16px;
+        }
+
+        .category-btn {
+            min-height: 42px;
+            padding: 0 14px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
+            cursor: pointer;
+        }
+
+        .category-btn.active {
+            background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+            color: #06111f;
+            border-color: transparent;
+            font-weight: 700;
+        }
+
+        .article-list {
+            display: grid;
+            gap: 18px;
+        }
+
+        .article-card {
+            padding: 24px;
+            border-radius: 24px;
+            border: 1px solid var(--line);
+            background: linear-gradient(180deg, rgba(12, 18, 34, 0.96), rgba(14, 22, 39, 0.9));
+            box-shadow: var(--shadow);
+        }
+
+        .card-topline {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+
+        .category-chip,
+        .source-chip {
+            display: inline-flex;
+            align-items: center;
+            min-height: 34px;
+            padding: 0 12px;
+            border-radius: 999px;
+            font-size: 0.92rem;
+            font-weight: 700;
+        }
+
+        .source-chip {
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--muted);
+        }
+
+        .article-title {
+            margin: 0 0 10px;
+            font-size: clamp(1.45rem, 2vw, 2rem);
+            line-height: 1.35;
+        }
+
+        .article-original-title {
+            margin: 0 0 18px;
+            color: var(--muted);
+        }
+
+        .security-alert {
+            margin: 0 0 14px;
+            padding: 10px 14px;
+            border-radius: 12px;
+            border: 1px solid rgba(248, 113, 113, 0.4);
+            background: rgba(248, 113, 113, 0.12);
+            color: #fecaca;
+            font-weight: 700;
+            font-size: 0.92rem;
+        }
+
+        .article-section {
+            margin-top: 18px;
+            padding-top: 18px;
+            border-top: 1px solid var(--line);
+        }
+
+        .article-section h3 {
+            margin: 0 0 12px;
+            font-size: 1rem;
+            color: var(--accent);
+        }
+
+        .article-paragraph {
+            margin: 0 0 14px;
+            color: #dce7f8;
+            line-height: 1.9;
+            font-size: 1rem;
+        }
+
+        .company-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .company-link,
+        .action-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 42px;
+            padding: 0 14px;
+            border-radius: 14px;
+            text-decoration: none;
+            border: 1px solid rgba(125, 211, 252, 0.3);
+        }
+
+        .company-link {
+            color: var(--accent);
+            background: rgba(56, 189, 248, 0.08);
+        }
+
+        .article-actions {
+            margin-top: 22px;
+        }
+
+        .footer {
+            padding: 28px 8px 40px;
+            color: var(--muted);
+            text-align: center;
+        }
+
+        .footer p {
+            margin: 6px 0;
+        }
+
+        .action-link.primary {
+            color: #06111f;
+            font-weight: 700;
+            background: linear-gradient(135deg, #7dd3fc, #22d3ee);
+            border-color: transparent;
+        }
+
+        @media (max-width: 720px) {
+            .page-shell {
+                padding: 14px;
+            }
+
+            .hero,
+            .control-panel,
+            .article-card {
+                padding: 18px;
+                border-radius: 20px;
+            }
+
+            .control-header {
+                align-items: stretch;
+            }
+
+            #search-input {
+                width: 100%;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="page-shell">
+        <header class="hero">
+            <div class="hero-nav">
+                <a class="nav-link" href="../../index.html">HOME</a>
+                <a class="nav-link" href="../index.html">この日の記事一覧</a>
+            </div>
+            <div class="hero-copy">
+                <p class="eyebrow">Global Tech News Digest</p>
+                <h1>海外テックニュース 日本語まとめ</h1>
+                <p class="timestamp">2026年11月14日 07:29 JST に収集した記事を掲載しています。</p>
+                <p class="description">各カードには本文寄りの日本語訳を掲載し、記事中で触れた企業は別ページの解説リンクとして分離しています。</p>
+            </div>
+        </header>
+
+        <section class="control-panel">
+            <div class="control-header">
+                <div>
+                    <h2>記事を探す</h2>
+                    <p>カテゴリとキーワードで一覧を絞り込めます。</p>
+                </div>
+                <input type="text" id="search-input" placeholder="タイトル・本文・媒体名で検索">
+            </div>
+            <div class="category-buttons">
+                <button class="category-btn active" data-category="all">すべて (30)</button>
+<button class="category-btn" data-category="AI/ML" style="--accent:#10b981">🤖 AI/ML (23)</button>
+<button class="category-btn" data-category="Hardware" style="--accent:#06b6d4">⚙️ Hardware (1)</button>
+<button class="category-btn" data-category="Media" style="--accent:#f59e0b">🎬 Media (1)</button>
+<button class="category-btn" data-category="Other" style="--accent:#6b7280">📰 Other (2)</button>
+<button class="category-btn" data-category="Startups" style="--accent:#8b5cf6">🚀 Startups (3)</button>
+            </div>
+        </section>
+
+        <main class="article-list" id="articles-container">
+            <article class="article-card" data-category="AI/ML" data-index="1">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Amazon’s new Kindle Colorsoft is a premium e-reader with a premium price</h2>
+    <p class="article-original-title">原題: <em>Amazon’s new Kindle Colorsoft is a premium e-reader with a premium price</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Amazon recently unveiled its refreshed Kindle lineup , introducing a new basic Kindle , Paperwhite, and Colorsoft.The new Kindle Colorsoft starts at $290, while the Signature Edition, which I’ve spent the past few weeks testing, costs $320.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Amazon recently unveiled its refreshed Kindle lineup , introducing a new basic Kindle , Paperwhite, and Colorsoft.The new Kindle Colorsoft starts at $290, while the Signature Edition, which I’ve spent the past few weeks testing, costs $320.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/amazon.html" target="_blank" rel="noopener noreferrer" class="company-link">Amazon の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/11/13/amazons-new-kindle-colorsoft-is-a-premium-e-reader-with-a-premium-price/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Startups" data-index="2">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#8b5cf6">🚀 Startups</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Jensen Huang’s departure blasts big hole in AI startup funding, VCs and founders say</h2>
+    <p class="article-original-title">原題: <em>Jensen Huang’s departure blasts big hole in AI startup funding, VCs and founders say</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">It was the resignation heard across the world.Jensen Huang, Nvidia’s embattled CEO who co-founded and led the company for 33 years, had officially stepped down .“It’s like a bomb went off,” one neocloud founder told TechCrunch when he first heard the news.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">It was the resignation heard across the world.Jensen Huang, Nvidia’s embattled CEO who co-founded and led the company for 33 years, had officially stepped down .“It’s like a bomb went off,” one neocloud founder told TechCrunch when he first heard the news.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/nvidia.html" target="_blank" rel="noopener noreferrer" class="company-link">NVIDIA の解説</a> <a href="companies/techcrunch.html" target="_blank" rel="noopener noreferrer" class="company-link">TechCrunch の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/11/13/jensen-huangs-departure-blasts-big-hole-in-ai-startup-funding-vcs-and-founders-say/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="3">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">US government grounds all flights across the United States &#x27;due to extraordinary circumstances&#x27;</h2>
+    <p class="article-original-title">原題: <em>US government grounds all flights across the United States &#x27;due to extraordinary circumstances&#x27;</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">The Federal Aviation Administration said Friday afternoon that it has grounded all flights across the United States due to “extraordinary circumstances” and issues related to safety.The FAA’s website said the cause is an “equipment outage.” The site itself was down for a brief period at the time of publication, with a note that the website was “experiencing technical difficulties.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">The Federal Aviation Administration said Friday afternoon that it has grounded all flights across the United States due to “extraordinary circumstances” and issues related to safety.The FAA’s website said the cause is an “equipment outage.” The site itself was down for a brief period at the time of publication, with a note that the website was “experiencing technical difficulties.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/11/13/u-s-government-grounds-all-flights-across-the-united-states-due-to-extraordinary-cirumstances/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="4">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Exclusive: This young startup wants to power floating data centers with the ocean’s heat, and investors are already on board</h2>
+    <p class="article-original-title">原題: <em>Exclusive: This young startup wants to power floating data centers with the ocean’s heat, and investors are already on board</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Anyone who has weathered a hurricane can tell you that the oceans — which fuel the storms — contain a tremendous amount of energy.Thanks to global warming, they’re holding more than ever.A new startup wants to harness that energy to power data centers.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Anyone who has weathered a hurricane can tell you that the oceans — which fuel the storms — contain a tremendous amount of energy.Thanks to global warming, they’re holding more than ever.A new startup wants to harness that energy to power data centers.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/11/13/this-young-startup-wants-to-power-floating-data-centers-with-the-oceans-heat-and-investors-are-already-on-board/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Startups" data-index="5">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#8b5cf6">🚀 Startups</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">AI agent startup LangChain hits $3B valuation</h2>
+    <p class="article-original-title">原題: <em>AI agent startup LangChain hits $3B valuation</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Agent management startup LangChain has raised a $300 million Series C at a $3 billion valuation led by CapitalG, with participation from investors, including Singapore’s GIC, DFJ Growth, IVP, and Sapphire Ventures, the company announced on Friday.That’s more than double its $1.25 billion valuation when it raised $125 million about a year ago , led by IVP.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Agent management startup LangChain has raised a $300 million Series C at a $3 billion valuation led by CapitalG, with participation from investors, including Singapore’s GIC, DFJ Growth, IVP, and Sapphire Ventures, the company announced on Friday.That’s more than double its $1.25 billion valuation when it raised $125 million about a year ago , led by IVP.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/11/13/ai-agent-startup-langchain-hits-3b-valuation/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="6">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">FAA lifts nationwide ground stop that blocked takeoffs for hours</h2>
+    <p class="article-original-title">原題: <em>FAA lifts nationwide ground stop that blocked takeoffs for hours</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. A communications problem shut down takeoffs across the US on Friday afternoon before it was lifted more than four hours later.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. A communications problem shut down takeoffs across the US on Friday afternoon before it was lifted more than four hours later.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/news/1033489/faa-ground-stop" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="7">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Amazon has a plan to index the world’s online shopping data</h2>
+    <p class="article-original-title">原題: <em>Amazon has a plan to index the world’s online shopping data</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. Listing the details of everything for sale everywhere is meant to make Amazon more useful than Reddit for people and AI agents. ﻿</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. Listing the details of everything for sale everywhere is meant to make Amazon more useful than Reddit for people and AI agents. ﻿</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/amazon.html" target="_blank" rel="noopener noreferrer" class="company-link">Amazon の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/tech/1033697/amazon-world-product-graph-ai-search" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="8">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">ChatGPT Wallet lets OpenAI’s Dots agents make purchases for you</h2>
+    <p class="article-original-title">原題: <em>ChatGPT Wallet lets OpenAI’s Dots agents make purchases for you</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. OpenAI says ChatGPT Wallet won’t share your actual credit card info with its AI agents. ﻿</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. OpenAI says ChatGPT Wallet won’t share your actual credit card info with its AI agents. ﻿</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/openai.html" target="_blank" rel="noopener noreferrer" class="company-link">OpenAI の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/ai-artificial-intelligence/1033425/openai-chatgpt-wallet" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="9">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">CMF’s milk carton-shaped Bluetooth speaker is down to a new low price</h2>
+    <p class="article-original-title">原題: <em>CMF’s milk carton-shaped Bluetooth speaker is down to a new low price</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. Nothing’s funky, compact Bluetooth speaker launched in October and is already on sale ahead of Black Friday.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. Nothing’s funky, compact Bluetooth speaker launched in October and is already on sale ahead of Black Friday.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/gadgets/1033185/nothing-cmf-speaker-s-m-black-friday-deal-sale" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="10">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Here’s how you can save on your GTA VI preorder ahead of launch</h2>
+    <p class="article-original-title">原題: <em>Here’s how you can save on your GTA VI preorder ahead of launch</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. Preloading is already underway for Rockstar’s anticipated open-world game, but you’re not too late to save.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. Preloading is already underway for Rockstar’s anticipated open-world game, but you’re not too late to save.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/gadgets/1033046/playstation-xbox-gift-card-gta-vi-6-preorder-deal-sale" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="11">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Outlook Went Down? Microsoft May Owe You Money</h2>
+    <p class="article-original-title">原題: <em>Outlook Went Down? Microsoft May Owe You Money</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Rest assured this week that while Outlook, Teams, and other Microsoft services were flatlining, the company’s billing operations were still firing on all cylinders.Copilot can’t run on air alone, after all.It needs cash.The silver lining to the week is that, in the light of our global recovery from one of the most debilitating tech outages in recent memory , Microsoft now owes you compensation.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Rest assured this week that while Outlook, Teams, and other Microsoft services were flatlining, the company’s billing operations were still firing on all cylinders.Copilot can’t run on air alone, after all.It needs cash.The silver lining to the week is that, in the light of our global recovery from one of the most debilitating tech outages in recent memory , Microsoft now owes you compensation.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/microsoft.html" target="_blank" rel="noopener noreferrer" class="company-link">Microsoft の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/story/outlook-went-down-microsoft-may-owe-you-money/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="12">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Top Dell Coupon Codes: 20% Off for November 2026</h2>
+    <p class="article-original-title">原題: <em>Top Dell Coupon Codes: 20% Off for November 2026</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Expect to save over $600 on the hottest models, including $250 off monitors for crisp, clear gaming (or writing), 40% off laptops, and up to $1,200 off desktops for true gamers.We’ve rounded up the top Dell coupon codes and discounts so you can save big on pricey tech.If you haven’t bought from Dell, you can get seriously rewarded for switching.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Expect to save over $600 on the hottest models, including $250 off monitors for crisp, clear gaming (or writing), 40% off laptops, and up to $1,200 off desktops for true gamers.We’ve rounded up the top Dell coupon codes and discounts so you can save big on pricey tech.If you haven’t bought from Dell, you can get seriously rewarded for switching.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/story/dell-coupon-code/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Media" data-index="13">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#f59e0b">🎬 Media</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Top Paramount+ Coupon Codes and Deals for November 2026</h2>
+    <p class="article-original-title">原題: <em>Top Paramount+ Coupon Codes and Deals for November 2026</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Once the most talked-about TV show in the country, South Park, is on Paramount+.Don’t you want to know what got Trump in such a tizzy?Stream the much-buzzed-about South Park, fan-favorite Yellowstone, original series MobLand, and rebooted crime drama Dexter &amp; Dexter on Paramount+.The streaming network has bingeable TV series for almost everyone.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Once the most talked-about TV show in the country, South Park, is on Paramount+.Don’t you want to know what got Trump in such a tizzy?Stream the much-buzzed-about South Park, fan-favorite Yellowstone, original series MobLand, and rebooted crime drama Dexter &amp; Dexter on Paramount+.The streaming network has bingeable TV series for almost everyone.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/story/paramount-plus-coupon-code/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="14">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Top Disney Plus Discounts and Promos for November 2026</h2>
+    <p class="article-original-title">原題: <em>Top Disney Plus Discounts and Promos for November 2026</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Disney is as American as apple pie, bald eagles, or guns.From humble beginnings drawing a mouse in an apartment over a hundred years ago to becoming one of the most recognizable and successful entertainment conglomerates of all time, Disney is where magic happens.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Disney is as American as apple pie, bald eagles, or guns.From humble beginnings drawing a mouse in an apartment over a hundred years ago to becoming one of the most recognizable and successful entertainment conglomerates of all time, Disney is where magic happens.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/apple.html" target="_blank" rel="noopener noreferrer" class="company-link">Apple の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/story/disney-plus-discounts/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Other" data-index="15">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#6b7280">📰 Other</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Canon Promo Codes: 30% Off for November 2026</h2>
+    <p class="article-original-title">原題: <em>Canon Promo Codes: 30% Off for November 2026</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">If you know photography, you know Canon.This super-advanced, often pricey gear is made more affordable through the ways to save at Canon we’ve found below.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">If you know photography, you know Canon.This super-advanced, often pricey gear is made more affordable through the ways to save at Canon we’ve found below.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/story/canon-promo-code/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Startups" data-index="16">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#8b5cf6">🚀 Startups</span>
+        <span class="source-chip">Ars Technica</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Starship flight 15 powers to orbit—setting up a possible catch on Saturday</h2>
+    <p class="article-original-title">原題: <em>Starship flight 15 powers to orbit—setting up a possible catch on Saturday</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">One way or another, the company will get some more data on Saturday.STARBASE, Texas—Starship lifted off right on schedule Friday from South Texas, making its 15th test flight in more than three years.The largely successful launch took place in the early evening; as the massive rocket rose into the atmosphere, the Sun sank toward the western horizon.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">One way or another, the company will get some more data on Saturday.STARBASE, Texas—Starship lifted off right on schedule Friday from South Texas, making its 15th test flight in more than three years.The largely successful launch took place in the early evening; as the massive rocket rose into the atmosphere, the Sun sank toward the western horizon.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/space/2026/11/starship-flight-15-powers-to-orbit-setting-up-a-possible-catch-on-saturday/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="17">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Ars Technica</span>
+    </div>
+
+    
+
+    <h2 class="article-title">FAA has lifted its third-ever nationwide ground stop</h2>
+    <p class="article-original-title">原題: <em>FAA has lifted its third-ever nationwide ground stop</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Secretary of Transportation Sean Duffy blamed obsolete equipment for the outage.The Federal Administration lifted its third-ever nationwide ground stop after several hours Friday evening.Domestic flights were cleared to begin taking off at 8:35 pm EST.FAA Transportation Secretary Sean Duffy cautioned that, barring massive system updates, there will be “more of these” ahead.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Secretary of Transportation Sean Duffy blamed obsolete equipment for the outage.The Federal Administration lifted its third-ever nationwide ground stop after several hours Friday evening.Domestic flights were cleared to begin taking off at 8:35 pm EST.FAA Transportation Secretary Sean Duffy cautioned that, barring massive system updates, there will be “more of these” ahead.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/tech-policy/2026/11/faa-orders-third-nationwide-ground-stop-in-its-history/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="18">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Ars Technica</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Millions of Americans are not taking their GLP-1 drugs as prescribed</h2>
+    <p class="article-original-title">原題: <em>Millions of Americans are not taking their GLP-1 drugs as prescribed</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Cost and access barriers are pushing people to modified use and unapproved versions.GLP-1 medications are everywhere these days.The peptide-based drugs are both highly effective and wildly popular for diabetes, weight loss and a growing range of connected chronic health conditions, including cardiovascular disease and obstructive sleep apnea.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Cost and access barriers are pushing people to modified use and unapproved versions.GLP-1 medications are everywhere these days.The peptide-based drugs are both highly effective and wildly popular for diabetes, weight loss and a growing range of connected chronic health conditions, including cardiovascular disease and obstructive sleep apnea.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/health/2026/11/millions-in-us-use-unapproved-glp-1s-and-use-them-in-unapproved-ways/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="19">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Ars Technica</span>
+    </div>
+
+    
+
+    <h2 class="article-title">FAA expands AI advice to manage air traffic congestion across entire US airspace</h2>
+    <p class="article-original-title">原題: <em>FAA expands AI advice to manage air traffic congestion across entire US airspace</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Airlines praised the AI tool, but the air traffic controllers’ union wasn’t involved.The US government has expanded the use of an AI tool for advising air traffic controllers to assist in managing air traffic across the entire national airspace system.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Airlines praised the AI tool, but the air traffic controllers’ union wasn’t involved.The US government has expanded the use of an AI tool for advising air traffic controllers to assist in managing air traffic across the entire national airspace system.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/features/2026/11/faa-expands-ai-advice-to-manage-air-traffic-congestion-across-entire-us-airspace/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Other" data-index="20">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#6b7280">📰 Other</span>
+        <span class="source-chip">Ars Technica</span>
+    </div>
+
+    
+
+    <h2 class="article-title">In elephants, the resilience of communities has its limits</h2>
+    <p class="article-original-title">原題: <em>In elephants, the resilience of communities has its limits</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">In Sri Lanka, ecological change is shrinking a park’s elephant population.Elephants live in some of the most complex and resilient societies in the animal kingdom.Individuals die or move away, calves grow up, and newcomers join, but the local communities as a whole usually hold together.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">In Sri Lanka, ecological change is shrinking a park’s elephant population.Elephants live in some of the most complex and resilient societies in the animal kingdom.Individuals die or move away, calves grow up, and newcomers join, but the local communities as a whole usually hold together.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/science/2026/11/in-elephants-the-resilience-of-communities-has-its-limits/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="21">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">The Download: Silicon Valley’s blind spot and Nvidia’s chip-tracking plan</h2>
+    <p class="article-original-title">原題: <em>The Download: Silicon Valley’s blind spot and Nvidia’s chip-tracking plan</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Plus: A major Microsoft outage has disrupted services worldwide.This is today&#x27;s edition of The Download , our weekday newsletter that provides a daily dose of what&#x27;s going on in the world of technology.—Aaron Zamost, a tech communications consultant and a former executive at Square The self-styled visionaries of Silicon Valley have built careers claiming to see the future.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Plus: A major Microsoft outage has disrupted services worldwide.This is today&#x27;s edition of The Download , our weekday newsletter that provides a daily dose of what&#x27;s going on in the world of technology.—Aaron Zamost, a tech communications consultant and a former executive at Square The self-styled visionaries of Silicon Valley have built careers claiming to see the future.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/microsoft.html" target="_blank" rel="noopener noreferrer" class="company-link">Microsoft の解説</a> <a href="companies/nvidia.html" target="_blank" rel="noopener noreferrer" class="company-link">NVIDIA の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/11/13/1148551/the-download-silicon-valley-midterms-nvidia-chip-tracking/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="22">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">More autonomy, fewer NDAs: Volunteers have new requests for brain implant trials</h2>
+    <p class="article-original-title">原題: <em>More autonomy, fewer NDAs: Volunteers have new requests for brain implant trials</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">People with experimental brain implants are pushing for more recognition and respect.Scientists have been working on ways to decode brain activity for decades.Teams have developed brain implants that can be used to control robotic limbs and computers, and even to “speak.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">People with experimental brain implants are pushing for more recognition and respect.Scientists have been working on ways to decode brain activity for decades.Teams have developed brain implants that can be used to control robotic limbs and computers, and even to “speak.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/11/13/1148474/more-autonomy-fewer-ndas-volunteers-have-new-requests-for-brain-implant-trials/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="23">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Silicon Valley claims to know the future. So why did it get the midterms so wrong?</h2>
+    <p class="article-original-title">原題: <em>Silicon Valley claims to know the future. So why did it get the midterms so wrong?</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Tech executives traded their reputations as visionaries for short-term political gain.The self-styled visionaries of Silicon Valley, leaders like OpenAI chief executive Sam Altman and SpaceX boss Elon Musk, have built careers claiming to see the future.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Tech executives traded their reputations as visionaries for short-term political gain.The self-styled visionaries of Silicon Valley, leaders like OpenAI chief executive Sam Altman and SpaceX boss Elon Musk, have built careers claiming to see the future.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/google.html" target="_blank" rel="noopener noreferrer" class="company-link">Google の解説</a> <a href="companies/meta.html" target="_blank" rel="noopener noreferrer" class="company-link">Meta の解説</a> <a href="companies/openai.html" target="_blank" rel="noopener noreferrer" class="company-link">OpenAI の解説</a> <a href="companies/spacex.html" target="_blank" rel="noopener noreferrer" class="company-link">SpaceX の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/11/13/1148498/silicon-valley-claims-to-know-the-future-so-why-did-it-get-the-midterms-so-wrong/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="24">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Nvidia privately confirmed it could track chips to fight smuggling, even as industry publicly questioned feasibility</h2>
+    <p class="article-original-title">原題: <em>Nvidia privately confirmed it could track chips to fight smuggling, even as industry publicly questioned feasibility</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">The Chip Security Act is getting renewed attention following Nvidia CEO Jensen Huang’s resignation and reported affair with an alleged Chinese spy.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">The Chip Security Act is getting renewed attention following Nvidia CEO Jensen Huang’s resignation and reported affair with an alleged Chinese spy.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/nvidia.html" target="_blank" rel="noopener noreferrer" class="company-link">NVIDIA の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/11/12/1148483/nvidia-chip-tracking/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="25">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">The Download: COP31’s climate challenge and the quest for immortality</h2>
+    <p class="article-original-title">原題: <em>The Download: COP31’s climate challenge and the quest for immortality</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Plus: Nvidia is reportedly preparing to oust CEO Jensen Huang.This is today&#x27;s edition of The Download , our weekday newsletter that provides a daily dose of what&#x27;s going on in the world of technology.Thousands of delegates, lobbyists, and journalists have gathered in Antalya, Turkey, for COP31, the annual UN climate talks.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Plus: Nvidia is reportedly preparing to oust CEO Jensen Huang.This is today&#x27;s edition of The Download , our weekday newsletter that provides a daily dose of what&#x27;s going on in the world of technology.Thousands of delegates, lobbyists, and journalists have gathered in Antalya, Turkey, for COP31, the annual UN climate talks.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/nvidia.html" target="_blank" rel="noopener noreferrer" class="company-link">NVIDIA の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/11/12/1148444/the-download-cop31-climate-talks-cognitive-immortality/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="26">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">FAA allows flights to resume after hours-long ground stop across the US</h2>
+    <p class="article-original-title">原題: <em>FAA allows flights to resume after hours-long ground stop across the US</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Transport secretary Sean Duffy blamed the USA&#x27;s &#x27;incredibly old air traffic control system.&#x27; The Federal Aviation Administration has lifted a nationwide ground stop in the US that brought all flights to a halt for hours, starting in the afternoon of November 13.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Transport secretary Sean Duffy blamed the USA&#x27;s &#x27;incredibly old air traffic control system.&#x27; The Federal Aviation Administration has lifted a nationwide ground stop in the US that brought all flights to a halt for hours, starting in the afternoon of November 13.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2316792/faa-flights-resume-ground-stop-old-equipment/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="27">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Some international physical copies of GTA VI can allegedly be redeemed without opening the box</h2>
+    <p class="article-original-title">原題: <em>Some international physical copies of GTA VI can allegedly be redeemed without opening the box</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">The box was already for decoration, and now maybe more so.Less than a week before Grand Theft Auto VI is released into the wild, online reports have started to bubble up about a potentially serious issue with the retail version of the game.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">The box was already for decoration, and now maybe more so.Less than a week before Grand Theft Auto VI is released into the wild, online reports have started to bubble up about a potentially serious issue with the retail version of the game.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2316687/some-physical-copies-of-gta-vi-can-allegedly-be-redeemed-without-opening-the-box/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="28">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Google now lets people connect Gemini to their bank accounts</h2>
+    <p class="article-original-title">原題: <em>Google now lets people connect Gemini to their bank accounts</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">This is for spending analysis and not for making purchases.Google just announced that Gemini users can now connect the chatbot to their bank accounts via integration with Google Wallet .This is not a shopping platform in which chatbots buy stuff on command, like Meta Muse .Rather, it&#x27;s being pitched as a way for users to &quot;get more tailored responses around personal finance.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">This is for spending analysis and not for making purchases.Google just announced that Gemini users can now connect the chatbot to their bank accounts via integration with Google Wallet .This is not a shopping platform in which chatbots buy stuff on command, like Meta Muse .Rather, it&#x27;s being pitched as a way for users to &quot;get more tailored responses around personal finance.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/google.html" target="_blank" rel="noopener noreferrer" class="company-link">Google の解説</a> <a href="companies/meta.html" target="_blank" rel="noopener noreferrer" class="company-link">Meta の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2316384/google-now-lets-people-connect-gemini-to-their-bank-accounts/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Hardware" data-index="29">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#06b6d4">⚙️ Hardware</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Disney&#x27;s 3D movies shine on Meta&#x27;s Quest 3, it&#x27;s just a shame it took so long</h2>
+    <p class="article-original-title">原題: <em>Disney&#x27;s 3D movies shine on Meta&#x27;s Quest 3, it&#x27;s just a shame it took so long</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Finally, you can watch Avatar in 3D HFR at home.3D movies have been, and continue to be, a bit of a gimmick.But the technology can also be used well — just take a look at James Cameron&#x27;s Avatar films , or CG movies like Moana and Zootopia .With the death of 3D TVs , though, there haven&#x27;t been many easy ways for consumers to see 3D content at home.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Finally, you can watch Avatar in 3D HFR at home.3D movies have been, and continue to be, a bit of a gimmick.But the technology can also be used well — just take a look at James Cameron&#x27;s Avatar films , or CG movies like Moana and Zootopia .With the death of 3D TVs , though, there haven&#x27;t been many easy ways for consumers to see 3D content at home.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/apple.html" target="_blank" rel="noopener noreferrer" class="company-link">Apple の解説</a> <a href="companies/meta.html" target="_blank" rel="noopener noreferrer" class="company-link">Meta の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2316342/meta-quest-3-disney-plus-3d-movies-hands-on/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="30">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">You can now tempt fate and give your banking information to ChatGPT</h2>
+    <p class="article-original-title">原題: <em>You can now tempt fate and give your banking information to ChatGPT</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">The new Wallet feature will allow its AI agents to make purchases on your behalf.OpenAI just announced ChatGPT Wallet , a payment feature that enables its newly-released Dots AI agents to make purchases on behalf of users.Of course, that requires handing over your payment information to a chatbot, which carries some risk .</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">The new Wallet feature will allow its AI agents to make purchases on your behalf.OpenAI just announced ChatGPT Wallet , a payment feature that enables its newly-released Dots AI agents to make purchases on behalf of users.Of course, that requires handing over your payment information to a chatbot, which carries some risk .</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/openai.html" target="_blank" rel="noopener noreferrer" class="company-link">OpenAI の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2316137/you-can-now-tempt-fate-and-give-your-banking-information-to-chatgpt/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+        </main>
+
+        <footer class="footer">
+            <p>本ページは公開記事をもとに自動生成しています。数値や仕様は必ず元記事で確認してください。</p>
+            <p>JSON データは同じフォルダ内の tech_news_digest.json で参照できます。</p>
+        </footer>
+    </div>
+
+    <script>
+
+        const categoryButtons = document.querySelectorAll('.category-btn');
+        const articleCards = document.querySelectorAll('.article-card');
+        const searchInput = document.getElementById('search-input');
+
+        let activeCategory = 'all';
+
+        function applyFilters() {
+            const query = searchInput.value.trim().toLowerCase();
+            articleCards.forEach(card => {
+                const matchesCategory = activeCategory === 'all' || card.dataset.category === activeCategory;
+                const searchableText = card.innerText.toLowerCase();
+                const matchesQuery = !query || searchableText.includes(query);
+                card.style.display = matchesCategory && matchesQuery ? '' : 'none';
+            });
+        }
+
+        categoryButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                categoryButtons.forEach(item => item.classList.remove('active'));
+                button.classList.add('active');
+                activeCategory = button.dataset.category;
+                applyFilters();
+            });
+        });
+
+        searchInput.addEventListener('input', applyFilters);
+    
+    </script>
+</body>
+</html>
