@@ -1,0 +1,1222 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>海外テックニュース日本語まとめ</title>
+    <style>
+        :root {
+            color-scheme: dark;
+            --bg: #0a0f1d;
+            --panel: rgba(13, 20, 36, 0.92);
+            --line: rgba(132, 152, 187, 0.25);
+            --text: #eef3ff;
+            --muted: #adc1dd;
+            --accent: #7dd3fc;
+            --accent-strong: #38bdf8;
+            --shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: "Hiragino Sans", "Noto Sans JP", sans-serif;
+            background:
+                radial-gradient(circle at top right, rgba(56, 189, 248, 0.22), transparent 26%),
+                radial-gradient(circle at top left, rgba(16, 185, 129, 0.16), transparent 20%),
+                linear-gradient(180deg, #07101f 0%, #0b1327 48%, #0a0f1d 100%);
+            color: var(--text);
+        }
+
+        .page-shell {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 24px;
+        }
+
+        .hero {
+            padding: 28px;
+            border: 1px solid var(--line);
+            border-radius: 28px;
+            background: linear-gradient(145deg, rgba(18, 27, 48, 0.96), rgba(10, 17, 32, 0.96));
+            box-shadow: var(--shadow);
+        }
+
+        .hero-nav {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 28px;
+        }
+
+        .nav-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 42px;
+            padding: 0 16px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        .eyebrow {
+            margin: 0 0 10px;
+            color: var(--accent);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            font-size: 0.78rem;
+        }
+
+        .hero h1 {
+            margin: 0;
+            font-size: clamp(2rem, 3vw, 3.3rem);
+            line-height: 1.1;
+        }
+
+        .timestamp,
+        .description {
+            color: var(--muted);
+        }
+
+        .control-panel {
+            margin: 20px 0 28px;
+            padding: 22px;
+            border: 1px solid var(--line);
+            border-radius: 24px;
+            background: var(--panel);
+            backdrop-filter: blur(12px);
+        }
+
+        .control-header {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            align-items: end;
+            flex-wrap: wrap;
+        }
+
+        .control-header h2 {
+            margin: 0 0 6px;
+        }
+
+        .control-header p {
+            margin: 0;
+            color: var(--muted);
+        }
+
+        #search-input {
+            width: min(100%, 360px);
+            min-height: 46px;
+            padding: 0 14px;
+            border-radius: 14px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
+        }
+
+        .category-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 16px;
+        }
+
+        .category-btn {
+            min-height: 42px;
+            padding: 0 14px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
+            cursor: pointer;
+        }
+
+        .category-btn.active {
+            background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+            color: #06111f;
+            border-color: transparent;
+            font-weight: 700;
+        }
+
+        .article-list {
+            display: grid;
+            gap: 18px;
+        }
+
+        .article-card {
+            padding: 24px;
+            border-radius: 24px;
+            border: 1px solid var(--line);
+            background: linear-gradient(180deg, rgba(12, 18, 34, 0.96), rgba(14, 22, 39, 0.9));
+            box-shadow: var(--shadow);
+        }
+
+        .card-topline {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+
+        .category-chip,
+        .source-chip {
+            display: inline-flex;
+            align-items: center;
+            min-height: 34px;
+            padding: 0 12px;
+            border-radius: 999px;
+            font-size: 0.92rem;
+            font-weight: 700;
+        }
+
+        .source-chip {
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--muted);
+        }
+
+        .article-title {
+            margin: 0 0 10px;
+            font-size: clamp(1.45rem, 2vw, 2rem);
+            line-height: 1.35;
+        }
+
+        .article-original-title {
+            margin: 0 0 18px;
+            color: var(--muted);
+        }
+
+        .security-alert {
+            margin: 0 0 14px;
+            padding: 10px 14px;
+            border-radius: 12px;
+            border: 1px solid rgba(248, 113, 113, 0.4);
+            background: rgba(248, 113, 113, 0.12);
+            color: #fecaca;
+            font-weight: 700;
+            font-size: 0.92rem;
+        }
+
+        .article-section {
+            margin-top: 18px;
+            padding-top: 18px;
+            border-top: 1px solid var(--line);
+        }
+
+        .article-section h3 {
+            margin: 0 0 12px;
+            font-size: 1rem;
+            color: var(--accent);
+        }
+
+        .article-paragraph {
+            margin: 0 0 14px;
+            color: #dce7f8;
+            line-height: 1.9;
+            font-size: 1rem;
+        }
+
+        .company-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .company-link,
+        .action-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 42px;
+            padding: 0 14px;
+            border-radius: 14px;
+            text-decoration: none;
+            border: 1px solid rgba(125, 211, 252, 0.3);
+        }
+
+        .company-link {
+            color: var(--accent);
+            background: rgba(56, 189, 248, 0.08);
+        }
+
+        .article-actions {
+            margin-top: 22px;
+        }
+
+        .footer {
+            padding: 28px 8px 40px;
+            color: var(--muted);
+            text-align: center;
+        }
+
+        .footer p {
+            margin: 6px 0;
+        }
+
+        .action-link.primary {
+            color: #06111f;
+            font-weight: 700;
+            background: linear-gradient(135deg, #7dd3fc, #22d3ee);
+            border-color: transparent;
+        }
+
+        @media (max-width: 720px) {
+            .page-shell {
+                padding: 14px;
+            }
+
+            .hero,
+            .control-panel,
+            .article-card {
+                padding: 18px;
+                border-radius: 20px;
+            }
+
+            .control-header {
+                align-items: stretch;
+            }
+
+            #search-input {
+                width: 100%;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="page-shell">
+        <header class="hero">
+            <div class="hero-nav">
+                <a class="nav-link" href="../../index.html">HOME</a>
+                <a class="nav-link" href="../index.html">この日の記事一覧</a>
+            </div>
+            <div class="hero-copy">
+                <p class="eyebrow">Global Tech News Digest</p>
+                <h1>海外テックニュース 日本語まとめ</h1>
+                <p class="timestamp">2026年11月18日 08:21 JST に収集した記事を掲載しています。</p>
+                <p class="description">各カードには本文寄りの日本語訳を掲載し、記事中で触れた企業は別ページの解説リンクとして分離しています。</p>
+            </div>
+        </header>
+
+        <section class="control-panel">
+            <div class="control-header">
+                <div>
+                    <h2>記事を探す</h2>
+                    <p>カテゴリとキーワードで一覧を絞り込めます。</p>
+                </div>
+                <input type="text" id="search-input" placeholder="タイトル・本文・媒体名で検索">
+            </div>
+            <div class="category-buttons">
+                <button class="category-btn active" data-category="all">すべて (30)</button>
+<button class="category-btn" data-category="AI/ML" style="--accent:#10b981">🤖 AI/ML (27)</button>
+<button class="category-btn" data-category="Media" style="--accent:#f59e0b">🎬 Media (1)</button>
+<button class="category-btn" data-category="Mobile" style="--accent:#6366f1">📱 Mobile (2)</button>
+            </div>
+        </section>
+
+        <main class="article-list" id="articles-container">
+            <article class="article-card" data-category="AI/ML" data-index="1">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Nvidia’s startup stakes ballooned to $65B, but Huang’s exit puts future deals in doubt</h2>
+    <p class="article-original-title">原題: <em>Nvidia’s startup stakes ballooned to $65B, but Huang’s exit puts future deals in doubt</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Nvidia’s equity in private companies continues to grow: it revealed its stakes are now worth $65.5 billion on Tuesday , up from the $22 billion reported in January.The increase includes both new investments and significant markups of existing portfolio companies.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Nvidia’s equity in private companies continues to grow: it revealed its stakes are now worth $65.5 billion on Tuesday , up from the $22 billion reported in January.The increase includes both new investments and significant markups of existing portfolio companies.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/nvidia.html" target="_blank" rel="noopener noreferrer" class="company-link">NVIDIA の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/11/17/nvidias-startup-stakes-ballooned-to-65b-but-huangs-exit-puts-future-deals-in-doubt/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="2">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Nvidia promises that revenue will keep soaring — for now</h2>
+    <p class="article-original-title">原題: <em>Nvidia promises that revenue will keep soaring — for now</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Despite the turmoil at Nvidia following the departure of its disgraced founder and CEO Jensen Huang , the company — as expected — delivered a solid quarter on Tuesday.More importantly, Nvidia reassured investors that its streak of record-breaking revenue won’t stop.On Tuesday, CFO-turned-interim CEO Colette Kress reported revenue of $115.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Despite the turmoil at Nvidia following the departure of its disgraced founder and CEO Jensen Huang , the company — as expected — delivered a solid quarter on Tuesday.More importantly, Nvidia reassured investors that its streak of record-breaking revenue won’t stop.On Tuesday, CFO-turned-interim CEO Colette Kress reported revenue of $115.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/nvidia.html" target="_blank" rel="noopener noreferrer" class="company-link">NVIDIA の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/11/17/nvidia-promises-that-revenue-will-keep-soaring-for-now/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="3">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Stripe backer Atomico calls for Europe to own its success stories</h2>
+    <p class="article-original-title">原題: <em>Stripe backer Atomico calls for Europe to own its success stories</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Europe is home to many of the world’s fastest growing companies of all time, veteran VC firm Atomico highlighted in its latest annual State of European Tech report .The report, for instance, notes that the likes of Black Forest Labs and Microagi have reached $100 million in revenue in months, not years.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Europe is home to many of the world’s fastest growing companies of all time, veteran VC firm Atomico highlighted in its latest annual State of European Tech report .The report, for instance, notes that the likes of Black Forest Labs and Microagi have reached $100 million in revenue in months, not years.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/techcrunch.html" target="_blank" rel="noopener noreferrer" class="company-link">TechCrunch の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/11/17/stripe-backer-atomico-calls-for-europe-to-own-its-success-stories/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="4">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Nvidia is abandoning China after Jensen Huang&#x27;s ouster</h2>
+    <p class="article-original-title">原題: <em>Nvidia is abandoning China after Jensen Huang&#x27;s ouster</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Nvidia will no longer sell its H200 chips in China, acting CEO Colette Kress said Tuesday, ending the company’s participation in a controversial loophole in the U.S.ban on the sale of advanced chips to the country.China’s access to leading AI accelerators was an important topic during the company’s first earnings call since CEO and co-founder Jensen Huang stepped down last week.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Nvidia will no longer sell its H200 chips in China, acting CEO Colette Kress said Tuesday, ending the company’s participation in a controversial loophole in the U.S.ban on the sale of advanced chips to the country.China’s access to leading AI accelerators was an important topic during the company’s first earnings call since CEO and co-founder Jensen Huang stepped down last week.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/nvidia.html" target="_blank" rel="noopener noreferrer" class="company-link">NVIDIA の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/11/17/nvidia-is-abandoning-china-after-jensen-huangs-ouster/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="5">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Nvidia says its open source AI strategy remains intact after Jensen Huang&#x27;s exit</h2>
+    <p class="article-original-title">原題: <em>Nvidia says its open source AI strategy remains intact after Jensen Huang&#x27;s exit</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Nvidia interim CEO Colette Kress reaffirmed the company’s commitment to open source AI during Tuesday’s earnings call with analysts — the first since CEO Jensen Huang’s resignation.“At Nvidia, we are committed to fostering a vibrant open model ecosystem, so every country, company, and industry can build its own intelligence,” Kress said in her opening remarks.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Nvidia interim CEO Colette Kress reaffirmed the company’s commitment to open source AI during Tuesday’s earnings call with analysts — the first since CEO Jensen Huang’s resignation.“At Nvidia, we are committed to fostering a vibrant open model ecosystem, so every country, company, and industry can build its own intelligence,” Kress said in her opening remarks.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/nvidia.html" target="_blank" rel="noopener noreferrer" class="company-link">NVIDIA の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/11/17/nvidia-says-its-open-source-ai-strategy-remains-intact-after-jensen-huangs-exit/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="6">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Satya Nadella says he’s AGI-pilled now</h2>
+    <p class="article-original-title">原題: <em>Satya Nadella says he’s AGI-pilled now</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. But he doesn’t think Claude is conscious.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. But he doesn’t think Claude is conscious.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/tech/1036111/satya-nadella-says-hes-agi-pilled-now" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="7">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Jeff Bezos says he was ‘heavily involved’ in picking the new James Bond</h2>
+    <p class="article-original-title">原題: <em>Jeff Bezos says he was ‘heavily involved’ in picking the new James Bond</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. Bezos said that he was immediately drawn to Robert Pattinson’s performance during screen tests.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. Bezos said that he was immediately drawn to Robert Pattinson’s performance during screen tests.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/entertainment/1036110/jeff-bezos-james-bond-casting-amazon" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="8">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Read everything that Nvidia’s board chair had to say about Jensen Huang</h2>
+    <p class="article-original-title">原題: <em>Read everything that Nvidia’s board chair had to say about Jensen Huang</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. Harvey C. Jones said the company would not be addressing or taking questions ‘regarding the circumstances of Jensen’s resignation. ’﻿</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. Harvey C. Jones said the company would not be addressing or taking questions ‘regarding the circumstances of Jensen’s resignation. ’﻿</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/nvidia.html" target="_blank" rel="noopener noreferrer" class="company-link">NVIDIA の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/tech/1036160/nvidia-earnings-harvey-c-jones-jensen-huang" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="9">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">iFixit’s Apple HomeView teardown reveals a device that will be difficult to repair</h2>
+    <p class="article-original-title">原題: <em>iFixit’s Apple HomeView teardown reveals a device that will be difficult to repair</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. Apple’s inroads on designing repairable devices seems to have been abandoned with the HomeView. ﻿</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. Apple’s inroads on designing repairable devices seems to have been abandoned with the HomeView. ﻿</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/apple.html" target="_blank" rel="noopener noreferrer" class="company-link">Apple の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/tech/1036045/ifixit-teardown-apple-homeview-smart-home-hub" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="10">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Nvidia says it does not intend to reinstate Jensen Huang as CEO</h2>
+    <p class="article-original-title">原題: <em>Nvidia says it does not intend to reinstate Jensen Huang as CEO</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. The board said it would not take additional questions on the call about Huang’s departure.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. The board said it would not take additional questions on the call about Huang’s departure.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/nvidia.html" target="_blank" rel="noopener noreferrer" class="company-link">NVIDIA の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/report/1035465/nvidia-says-it-will-not-reinstate-jensen-huang-as-ceo" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="11">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Top Loop Earplugs Promo Codes: 20% Off Quiet 2, Sweet Dreams, and Gift Sets</h2>
+    <p class="article-original-title">原題: <em>Top Loop Earplugs Promo Codes: 20% Off Quiet 2, Sweet Dreams, and Gift Sets</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Loop earplugs are among the best reusable earplugs you can buy.I keep a pair attached to my car keys at all times.As a live music enthusiast who frequently travels to some of the loudest music festivals on the planet, I take earplugs seriously.I want to protect my hearing while keeping the sound clear and not muddy or muffled.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Loop earplugs are among the best reusable earplugs you can buy.I keep a pair attached to my car keys at all times.As a live music enthusiast who frequently travels to some of the loudest music festivals on the planet, I take earplugs seriously.I want to protect my hearing while keeping the sound clear and not muddy or muffled.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/story/loop-earplugs-discount-code/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="12">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Top Columbia Promo Codes: 15% Off for November 2026</h2>
+    <p class="article-original-title">原題: <em>Top Columbia Promo Codes: 15% Off for November 2026</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">When I decided to take a last-minute ski trip, despite never having skied before, I went straight to Columbia.Was I shredding the slopes?Absolutely not, but at least I was warm, thanks to my Snowy Summit Insulated Jacket and Bugaboo II Pants .Here at WIRED, we’re fans of Columbia.The brand makes reliable, well-priced outdoor gear for skiing, hiking, hunting, or just a day at the beach.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">When I decided to take a last-minute ski trip, despite never having skied before, I went straight to Columbia.Was I shredding the slopes?Absolutely not, but at least I was warm, thanks to my Snowy Summit Insulated Jacket and Bugaboo II Pants .Here at WIRED, we’re fans of Columbia.The brand makes reliable, well-priced outdoor gear for skiing, hiking, hunting, or just a day at the beach.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/story/columbia-promo-code/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="13">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Top Walmart Promo Codes: 20% Off for November 2026</h2>
+    <p class="article-original-title">原題: <em>Top Walmart Promo Codes: 20% Off for November 2026</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">After living in big cities like San Francisco and New York, when I set foot in Wally World in the Midwest, I heard angels sing.Rows and rows of fluorescent lights highlighted any and every product needed for your house in one place.Screw the mom-and-pop bodega—I missed this level of convenience.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">After living in big cities like San Francisco and New York, when I set foot in Wally World in the Midwest, I heard angels sing.Rows and rows of fluorescent lights highlighted any and every product needed for your house in one place.Screw the mom-and-pop bodega—I missed this level of convenience.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/story/top-walmart-promo-codes/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="14">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Best Birdfy Discount Codes: 15% Off Sitewide</h2>
+    <p class="article-original-title">原題: <em>Best Birdfy Discount Codes: 15% Off Sitewide</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">If you’re seeing more birds around your neighborhood right now, it’s not a coincidence.Spring is one of the busiest times of year for bird activity.Not only are migratory birds returning to their nesting sites, but local birds are also building nests, seeking mates, defending territories, and hunting for prey that’s just starting to emerge after winter.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">If you’re seeing more birds around your neighborhood right now, it’s not a coincidence.Spring is one of the busiest times of year for bird activity.Not only are migratory birds returning to their nesting sites, but local birds are also building nests, seeking mates, defending territories, and hunting for prey that’s just starting to emerge after winter.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/story/birdfy-discount-code/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="15">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Best Priceline Promo Codes &amp; Coupons: 10% Off in November 2026</h2>
+    <p class="article-original-title">原題: <em>Best Priceline Promo Codes &amp; Coupons: 10% Off in November 2026</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Like other online travel booking services, Priceline helps you compare offerings and rates for everything travel-related, including airline tickets and hotel stays.Growing up, I always referred to singer and Starship captain William Shatner as the annoying guy from Priceline, much to my grandmother and father’s horror.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Like other online travel booking services, Priceline helps you compare offerings and rates for everything travel-related, including airline tickets and hotel stays.Growing up, I always referred to singer and Starship captain William Shatner as the annoying guy from Priceline, much to my grandmother and father’s horror.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/story/priceline-promo-code/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="16">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Ars Technica</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Copilot is &quot;the new OS for work,&quot; and now Office runs inside of it</h2>
+    <p class="article-original-title">原題: <em>Copilot is &quot;the new OS for work,&quot; and now Office runs inside of it</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Word, Excel, and PowerPoint now live inside Copilot; always-on agents are next.Opening the keynote at its Ignite event, Microsoft CEO Satya Nadella outlined the company’s vision for its new “frontier ecosystem,” announcing Tuesday the general availability of Word, Excel, and PowerPoint inside Copilot, which he described as “the new OS for work.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Word, Excel, and PowerPoint now live inside Copilot; always-on agents are next.Opening the keynote at its Ignite event, Microsoft CEO Satya Nadella outlined the company’s vision for its new “frontier ecosystem,” announcing Tuesday the general availability of Word, Excel, and PowerPoint inside Copilot, which he described as “the new OS for work.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/microsoft.html" target="_blank" rel="noopener noreferrer" class="company-link">Microsoft の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/gadgets/2026/11/microsoft-calls-copilot-the-new-os-for-work-at-ignite-keynote/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="17">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Ars Technica</span>
+    </div>
+
+    
+
+    <h2 class="article-title">San Diego dumps both Flock cameras and smart streetlights</h2>
+    <p class="article-original-title">原題: <em>San Diego dumps both Flock cameras and smart streetlights</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">500+ cameras will go dark just 3 years after mayor urged approval.On Monday evening, San Diego’s city council voted to end its contracts with two surveillance equipment vendors, Flock and Ubicquia.San Diego is one of the largest cities to end its relationship with Flock , the startup with an estimated valuation of $8.3 billion.“We fucking won!</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">500+ cameras will go dark just 3 years after mayor urged approval.On Monday evening, San Diego’s city council voted to end its contracts with two surveillance equipment vendors, Flock and Ubicquia.San Diego is one of the largest cities to end its relationship with Flock , the startup with an estimated valuation of $8.3 billion.“We fucking won!</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/tech-policy/2026/11/san-diego-dumps-both-flock-cameras-and-smart-streetlights/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="18">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Ars Technica</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Yet another satellite company is jockeying for a rocket—but this one makes sense</h2>
+    <p class="article-original-title">原題: <em>Yet another satellite company is jockeying for a rocket—but this one makes sense</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">“Governments need control of their critical space infrastructure, and Europe needs it most.” Finnish satellite developer ICEYE announced Tuesday that it is seeking to buy Italian rocket-maker Avio for more than $2.2 billion in a transaction aimed at creating Europe’s first true vertically integrated end-to-end space company.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">“Governments need control of their critical space infrastructure, and Europe needs it most.” Finnish satellite developer ICEYE announced Tuesday that it is seeking to buy Italian rocket-maker Avio for more than $2.2 billion in a transaction aimed at creating Europe’s first true vertically integrated end-to-end space company.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/space/2026/11/yet-another-satellite-company-is-jockeying-for-a-rocket-but-this-one-makes-sense/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Mobile" data-index="19">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#6366f1">📱 Mobile</span>
+        <span class="source-chip">Ars Technica</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Hundreds of websites deliver potent malware cocktail to unsuspecting visitors</h2>
+    <p class="article-original-title">原題: <em>Hundreds of websites deliver potent malware cocktail to unsuspecting visitors</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Malware cocktail delivers cryptocurrency theft payloads and iOS exploits, among other things.Hundreds of websites using the Optimizely website personalization platform served unsuspecting visitors a potent malware cocktail that targeted cryptocurrency wallets, stole payment card data, cookies, and screenshots, and delivered exploit kits for infecting iPhones and iPads, researchers said Tuesday.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Malware cocktail delivers cryptocurrency theft payloads and iOS exploits, among other things.Hundreds of websites using the Optimizely website personalization platform served unsuspecting visitors a potent malware cocktail that targeted cryptocurrency wallets, stole payment card data, cookies, and screenshots, and delivered exploit kits for infecting iPhones and iPads, researchers said Tuesday.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/security/2026/11/malicious-code-delivered-through-optimizely-hits-visitors-to-hundreds-of-sites/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="20">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Ars Technica</span>
+    </div>
+
+    
+
+    <h2 class="article-title">“Trump was in bed with Jensen”: Critics balk at Huang’s wish to return to Nvidia</h2>
+    <p class="article-original-title">原題: <em>“Trump was in bed with Jensen”: Critics balk at Huang’s wish to return to Nvidia</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">“I love our country”: Jensen Huang’s apology comes amid escalating Nvidia probes.On Monday, large trucks began circling the streets of Washington, DC, carrying billboards urging Congress to investigate the Trump administration’s ties with Nvidia’s disgraced CEO Jensen Huang.“Jensen was in bed with a spy from China,” the billboards created by the Tech Oversight Project (TOP) alleged.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">“I love our country”: Jensen Huang’s apology comes amid escalating Nvidia probes.On Monday, large trucks began circling the streets of Washington, DC, carrying billboards urging Congress to investigate the Trump administration’s ties with Nvidia’s disgraced CEO Jensen Huang.“Jensen was in bed with a spy from China,” the billboards created by the Tech Oversight Project (TOP) alleged.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/nvidia.html" target="_blank" rel="noopener noreferrer" class="company-link">NVIDIA の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/tech-policy/2026/11/trump-was-in-bed-with-jensen-critics-balk-at-huangs-wish-to-return-to-nvidia/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="21">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Roundtables: Inside the Quest for Cognitive Immortality</h2>
+    <p class="article-original-title">原題: <em>Roundtables: Inside the Quest for Cognitive Immortality</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Watch a subscriber-only conversation exploring possible paths to keep your mind going.Available only for MIT Technology Review subscribers.In an effort to reach an elusive continuity of the self, some far-thinking technologists are working on ways to keep your brain going—even beyond death.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Watch a subscriber-only conversation exploring possible paths to keep your mind going.Available only for MIT Technology Review subscribers.In an effort to reach an elusive continuity of the self, some far-thinking technologists are working on ways to keep your brain going—even beyond death.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/11/17/1148049/roundtables-inside-the-quest-for-cognitive-immortality/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="22">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Hydropower hit record lows in the US Southwest this summer</h2>
+    <p class="article-original-title">原題: <em>Hydropower hit record lows in the US Southwest this summer</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Drought conditions and low reservoir levels are affecting the renewable power source.The US Southwest generated 28% less electricity via hydropower between April and August than the 10-year average, according to new data from the US Energy Information Administration.Most hydropower plants in the US rely on dams to hold back water, creating reservoirs.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Drought conditions and low reservoir levels are affecting the renewable power source.The US Southwest generated 28% less electricity via hydropower between April and August than the 10-year average, according to new data from the US Energy Information Administration.Most hydropower plants in the US rely on dams to hold back water, creating reservoirs.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/11/17/1148742/hydropower-drought-colorado-river/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="23">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Research Reports</h2>
+    <p class="article-original-title">原題: <em>Research Reports</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">As a subscriber, you now have access to 4 in-depth research reports on AI, energy, and climate tech. Only available to MIT Technology Review subscribers. To access a report, click on the corresponding image below. Ten years after AlphaGo’s match against Go champion Lee Sedol, today’s AI still isn’t tapping into the machinery that made that win possible.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">As a subscriber, you now have access to 4 in-depth research reports on AI, energy, and climate tech. Only available to MIT Technology Review subscribers. To access a report, click on the corresponding image below. Ten years after AlphaGo’s match against Go champion Lee Sedol, today’s AI still isn’t tapping into the machinery that made that win possible.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/11/17/1148203/research-reports/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="24">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">The Download: Jensen Huang’s open-source dilemma and cognitive immortality</h2>
+    <p class="article-original-title">原題: <em>The Download: Jensen Huang’s open-source dilemma and cognitive immortality</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Plus: The US is tightening controls on China’s remote access to AI chips.This is today&#x27;s edition of The Download , our weekday newsletter that provides a daily dose of what&#x27;s going on in the world of technology.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Plus: The US is tightening controls on China’s remote access to AI chips.This is today&#x27;s edition of The Download , our weekday newsletter that provides a daily dose of what&#x27;s going on in the world of technology.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/nvidia.html" target="_blank" rel="noopener noreferrer" class="company-link">NVIDIA の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/11/17/1148679/the-download-jensen-huang-open-source-ai-cognitive-immortality/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="25">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">The open-source movement wants Jensen Huang back</h2>
+    <p class="article-original-title">原題: <em>The open-source movement wants Jensen Huang back</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Supporters are signing a petition to reinstate Huang.But findings on Nvidia chips in China and a new Commerce rule are threatening open-source AI’s reputation and progress regardless.On Friday, a petition to reinstate Jensen Huang as CEO of Nvidia began circulating on social media, and by Monday it listed some notable signatories, including Elon Musk and several influential Nvidia researchers.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Supporters are signing a petition to reinstate Huang.But findings on Nvidia chips in China and a new Commerce rule are threatening open-source AI’s reputation and progress regardless.On Friday, a petition to reinstate Jensen Huang as CEO of Nvidia began circulating on social media, and by Monday it listed some notable signatories, including Elon Musk and several influential Nvidia researchers.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/nvidia.html" target="_blank" rel="noopener noreferrer" class="company-link">NVIDIA の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/11/16/1148624/the-open-source-movement-wants-jensen-huang-back/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Media" data-index="26">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#f59e0b">🎬 Media</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">YouTube will start boosting public view counts when you watch on a TV</h2>
+    <p class="article-original-title">原題: <em>YouTube will start boosting public view counts when you watch on a TV</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">It will estimate co-views based on a ‘privacy-safe statistical model.’ YouTube view counts are about to go up ( again ) thanks to a new metric.Google&#x27;s video streaming platform may count more than one person when videos are viewed on a TV, according to an X post from YouTube Creator Insider .These extra &quot;co-views&quot; will apply to long form, Shorts, and Live videos, for TV views only.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">It will estimate co-views based on a ‘privacy-safe statistical model.’ YouTube view counts are about to go up ( again ) thanks to a new metric.Google&#x27;s video streaming platform may count more than one person when videos are viewed on a TV, according to an X post from YouTube Creator Insider .These extra &quot;co-views&quot; will apply to long form, Shorts, and Live videos, for TV views only.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/google.html" target="_blank" rel="noopener noreferrer" class="company-link">Google の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2320163/youtube-will-start-boosting-public-view-counts-when-you-watch-on-a-tv/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="27">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Here&#x27;s what you can do if your PC won&#x27;t read an external hard drive</h2>
+    <p class="article-original-title">原題: <em>Here&#x27;s what you can do if your PC won&#x27;t read an external hard drive</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Bring a dead external drive back to life with these troubleshooting steps, including Disk Utility and swapping cables.Finding the best portable SSD is almost a must in the modern tech landscape.Although you can get by with internal storage and cloud backup, an external drive makes it far easier to move media and document libraries between machines.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Bring a dead external drive back to life with these troubleshooting steps, including Disk Utility and swapping cables.Finding the best portable SSD is almost a must in the modern tech landscape.Although you can get by with internal storage and cloud backup, an external drive makes it far easier to move media and document libraries between machines.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2315721/pc-wont-read-external-hard-drive-fixes/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Mobile" data-index="28">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#6366f1">📱 Mobile</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">How to set up EV routing on CarPlay and Android Auto</h2>
+    <p class="article-original-title">原題: <em>How to set up EV routing on CarPlay and Android Auto</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Whether EV routing works depends on your car, your phone and the navigation app you use.Owning an electric car means you need to adapt your driving to your surroundings.You&#x27;re not worrying about where to fill up your gas tank anymore, but about where to find the nearest charging station.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Whether EV routing works depends on your car, your phone and the navigation app you use.Owning an electric car means you need to adapt your driving to your surroundings.You&#x27;re not worrying about where to fill up your gas tank anymore, but about where to find the nearest charging station.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/apple.html" target="_blank" rel="noopener noreferrer" class="company-link">Apple の解説</a> <a href="companies/google.html" target="_blank" rel="noopener noreferrer" class="company-link">Google の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2319928/how-to-set-up-ev-routing-carplay-android-auto/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="29">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">You can now see and edit what Google Gemini remembers about you</h2>
+    <p class="article-original-title">原題: <em>You can now see and edit what Google Gemini remembers about you</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Editing the AI’s memory is one way you can shape its responses.Besides the ability to connect and use other applications and services, a lot of AI assistants&#x27; utility comes from their capacity to shape their responses based on what they learn and remember about you.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Editing the AI’s memory is one way you can shape its responses.Besides the ability to connect and use other applications and services, a lot of AI assistants&#x27; utility comes from their capacity to shape their responses based on what they learn and remember about you.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/google.html" target="_blank" rel="noopener noreferrer" class="company-link">Google の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2315475/google-gemini-memory-summary-see-what-remembers-about-you/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="30">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Oregon is the latest state to sue OpenAI over child safety</h2>
+    <p class="article-original-title">原題: <em>Oregon is the latest state to sue OpenAI over child safety</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">The state’s lawsuit calls on the company to address child safety issues and pay at least $2 billion in damages.Oregon Attorney General Dan Rayfield has filed a lawsuit accusing OpenAI of endangering the state&#x27;s children, misleading the public about the safety of its product and violating the state&#x27;s Unlawful Trade Practices Act.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">The state’s lawsuit calls on the company to address child safety issues and pay at least $2 billion in damages.Oregon Attorney General Dan Rayfield has filed a lawsuit accusing OpenAI of endangering the state&#x27;s children, misleading the public about the safety of its product and violating the state&#x27;s Unlawful Trade Practices Act.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/openai.html" target="_blank" rel="noopener noreferrer" class="company-link">OpenAI の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2320041/oregon-is-the-latest-state-to-sue-openai-over-child-safety/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+        </main>
+
+        <footer class="footer">
+            <p>本ページは公開記事をもとに自動生成しています。数値や仕様は必ず元記事で確認してください。</p>
+            <p>JSON データは同じフォルダ内の tech_news_digest.json で参照できます。</p>
+        </footer>
+    </div>
+
+    <script>
+
+        const categoryButtons = document.querySelectorAll('.category-btn');
+        const articleCards = document.querySelectorAll('.article-card');
+        const searchInput = document.getElementById('search-input');
+
+        let activeCategory = 'all';
+
+        function applyFilters() {
+            const query = searchInput.value.trim().toLowerCase();
+            articleCards.forEach(card => {
+                const matchesCategory = activeCategory === 'all' || card.dataset.category === activeCategory;
+                const searchableText = card.innerText.toLowerCase();
+                const matchesQuery = !query || searchableText.includes(query);
+                card.style.display = matchesCategory && matchesQuery ? '' : 'none';
+            });
+        }
+
+        categoryButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                categoryButtons.forEach(item => item.classList.remove('active'));
+                button.classList.add('active');
+                activeCategory = button.dataset.category;
+                applyFilters();
+            });
+        });
+
+        searchInput.addEventListener('input', applyFilters);
+    
+    </script>
+</body>
+</html>
