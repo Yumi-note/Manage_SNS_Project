@@ -1,0 +1,1202 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>海外テックニュース日本語まとめ</title>
+    <style>
+        :root {
+            color-scheme: dark;
+            --bg: #0a0f1d;
+            --panel: rgba(13, 20, 36, 0.92);
+            --line: rgba(132, 152, 187, 0.25);
+            --text: #eef3ff;
+            --muted: #adc1dd;
+            --accent: #7dd3fc;
+            --accent-strong: #38bdf8;
+            --shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: "Hiragino Sans", "Noto Sans JP", sans-serif;
+            background:
+                radial-gradient(circle at top right, rgba(56, 189, 248, 0.22), transparent 26%),
+                radial-gradient(circle at top left, rgba(16, 185, 129, 0.16), transparent 20%),
+                linear-gradient(180deg, #07101f 0%, #0b1327 48%, #0a0f1d 100%);
+            color: var(--text);
+        }
+
+        .page-shell {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 24px;
+        }
+
+        .hero {
+            padding: 28px;
+            border: 1px solid var(--line);
+            border-radius: 28px;
+            background: linear-gradient(145deg, rgba(18, 27, 48, 0.96), rgba(10, 17, 32, 0.96));
+            box-shadow: var(--shadow);
+        }
+
+        .hero-nav {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 28px;
+        }
+
+        .nav-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 42px;
+            padding: 0 16px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        .eyebrow {
+            margin: 0 0 10px;
+            color: var(--accent);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            font-size: 0.78rem;
+        }
+
+        .hero h1 {
+            margin: 0;
+            font-size: clamp(2rem, 3vw, 3.3rem);
+            line-height: 1.1;
+        }
+
+        .timestamp,
+        .description {
+            color: var(--muted);
+        }
+
+        .control-panel {
+            margin: 20px 0 28px;
+            padding: 22px;
+            border: 1px solid var(--line);
+            border-radius: 24px;
+            background: var(--panel);
+            backdrop-filter: blur(12px);
+        }
+
+        .control-header {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            align-items: end;
+            flex-wrap: wrap;
+        }
+
+        .control-header h2 {
+            margin: 0 0 6px;
+        }
+
+        .control-header p {
+            margin: 0;
+            color: var(--muted);
+        }
+
+        #search-input {
+            width: min(100%, 360px);
+            min-height: 46px;
+            padding: 0 14px;
+            border-radius: 14px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
+        }
+
+        .category-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 16px;
+        }
+
+        .category-btn {
+            min-height: 42px;
+            padding: 0 14px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
+            cursor: pointer;
+        }
+
+        .category-btn.active {
+            background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+            color: #06111f;
+            border-color: transparent;
+            font-weight: 700;
+        }
+
+        .article-list {
+            display: grid;
+            gap: 18px;
+        }
+
+        .article-card {
+            padding: 24px;
+            border-radius: 24px;
+            border: 1px solid var(--line);
+            background: linear-gradient(180deg, rgba(12, 18, 34, 0.96), rgba(14, 22, 39, 0.9));
+            box-shadow: var(--shadow);
+        }
+
+        .card-topline {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+
+        .category-chip,
+        .source-chip {
+            display: inline-flex;
+            align-items: center;
+            min-height: 34px;
+            padding: 0 12px;
+            border-radius: 999px;
+            font-size: 0.92rem;
+            font-weight: 700;
+        }
+
+        .source-chip {
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--muted);
+        }
+
+        .article-title {
+            margin: 0 0 10px;
+            font-size: clamp(1.45rem, 2vw, 2rem);
+            line-height: 1.35;
+        }
+
+        .article-original-title {
+            margin: 0 0 18px;
+            color: var(--muted);
+        }
+
+        .security-alert {
+            margin: 0 0 14px;
+            padding: 10px 14px;
+            border-radius: 12px;
+            border: 1px solid rgba(248, 113, 113, 0.4);
+            background: rgba(248, 113, 113, 0.12);
+            color: #fecaca;
+            font-weight: 700;
+            font-size: 0.92rem;
+        }
+
+        .article-section {
+            margin-top: 18px;
+            padding-top: 18px;
+            border-top: 1px solid var(--line);
+        }
+
+        .article-section h3 {
+            margin: 0 0 12px;
+            font-size: 1rem;
+            color: var(--accent);
+        }
+
+        .article-paragraph {
+            margin: 0 0 14px;
+            color: #dce7f8;
+            line-height: 1.9;
+            font-size: 1rem;
+        }
+
+        .company-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .company-link,
+        .action-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 42px;
+            padding: 0 14px;
+            border-radius: 14px;
+            text-decoration: none;
+            border: 1px solid rgba(125, 211, 252, 0.3);
+        }
+
+        .company-link {
+            color: var(--accent);
+            background: rgba(56, 189, 248, 0.08);
+        }
+
+        .article-actions {
+            margin-top: 22px;
+        }
+
+        .footer {
+            padding: 28px 8px 40px;
+            color: var(--muted);
+            text-align: center;
+        }
+
+        .footer p {
+            margin: 6px 0;
+        }
+
+        .action-link.primary {
+            color: #06111f;
+            font-weight: 700;
+            background: linear-gradient(135deg, #7dd3fc, #22d3ee);
+            border-color: transparent;
+        }
+
+        @media (max-width: 720px) {
+            .page-shell {
+                padding: 14px;
+            }
+
+            .hero,
+            .control-panel,
+            .article-card {
+                padding: 18px;
+                border-radius: 20px;
+            }
+
+            .control-header {
+                align-items: stretch;
+            }
+
+            #search-input {
+                width: 100%;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="page-shell">
+        <header class="hero">
+            <div class="hero-nav">
+                <a class="nav-link" href="../../index.html">HOME</a>
+                <a class="nav-link" href="../index.html">この日の記事一覧</a>
+            </div>
+            <div class="hero-copy">
+                <p class="eyebrow">Global Tech News Digest</p>
+                <h1>海外テックニュース 日本語まとめ</h1>
+                <p class="timestamp">2026年11月27日 19:44 JST に収集した記事を掲載しています。</p>
+                <p class="description">各カードには本文寄りの日本語訳を掲載し、記事中で触れた企業は別ページの解説リンクとして分離しています。</p>
+            </div>
+        </header>
+
+        <section class="control-panel">
+            <div class="control-header">
+                <div>
+                    <h2>記事を探す</h2>
+                    <p>カテゴリとキーワードで一覧を絞り込めます。</p>
+                </div>
+                <input type="text" id="search-input" placeholder="タイトル・本文・媒体名で検索">
+            </div>
+            <div class="category-buttons">
+                <button class="category-btn active" data-category="all">すべて (30)</button>
+<button class="category-btn" data-category="AI/ML" style="--accent:#10b981">🤖 AI/ML (20)</button>
+<button class="category-btn" data-category="Hardware" style="--accent:#06b6d4">⚙️ Hardware (2)</button>
+<button class="category-btn" data-category="Mobile" style="--accent:#6366f1">📱 Mobile (3)</button>
+<button class="category-btn" data-category="Other" style="--accent:#6b7280">📰 Other (2)</button>
+<button class="category-btn" data-category="Policy" style="--accent:#ec4899">⚖️ Policy (1)</button>
+<button class="category-btn" data-category="Security" style="--accent:#f97316">🔒 Security (1)</button>
+<button class="category-btn" data-category="Startups" style="--accent:#8b5cf6">🚀 Startups (1)</button>
+            </div>
+        </section>
+
+        <main class="article-list" id="articles-container">
+            <article class="article-card" data-category="AI/ML" data-index="1">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Nvidia hits pause on chip shipments to Southeast Asia</h2>
+    <p class="article-original-title">原題: <em>Nvidia hits pause on chip shipments to Southeast Asia</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Nvidia is under pressure to do things differently, and a new WSJ report shows how far that’s going.According to the Journal, Nvidia has told manufacturing partners, including Dell and Super Micro, to hit pause on server shipments to Malaysia, Singapore, Thailand, and Indonesia for an unspecified period as it assesses whether its regional partners are meeting U.S.export requirements.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Nvidia is under pressure to do things differently, and a new WSJ report shows how far that’s going.According to the Journal, Nvidia has told manufacturing partners, including Dell and Super Micro, to hit pause on server shipments to Malaysia, Singapore, Thailand, and Indonesia for an unspecified period as it assesses whether its regional partners are meeting U.S.export requirements.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/nvidia.html" target="_blank" rel="noopener noreferrer" class="company-link">NVIDIA の解説</a> <a href="companies/techcrunch.html" target="_blank" rel="noopener noreferrer" class="company-link">TechCrunch の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/11/26/nvidia-hits-pause-on-chip-shipments-to-southeast-asia/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="2">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Is Alice Huang a spy or not?</h2>
+    <p class="article-original-title">原題: <em>Is Alice Huang a spy or not?</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">The central, still-unproven claim in the Nvidia scandal is that Alice Huang, a former executive at the data-center company Megaspeed, is a Chinese spy.She had an affair with Nvidia CEO Jensen Huang, who abruptly resigned on Nov.12 after acknowledging it and was just as abruptly reinstated on Monday of this week.What’s publicly known is murkier than the headlines suggest.U.S.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">The central, still-unproven claim in the Nvidia scandal is that Alice Huang, a former executive at the data-center company Megaspeed, is a Chinese spy.She had an affair with Nvidia CEO Jensen Huang, who abruptly resigned on Nov.12 after acknowledging it and was just as abruptly reinstated on Monday of this week.What’s publicly known is murkier than the headlines suggest.U.S.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/nvidia.html" target="_blank" rel="noopener noreferrer" class="company-link">NVIDIA の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/11/26/is-alice-huang-a-spy-or-not/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="3">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">X finally gets parental controls after 20 years</h2>
+    <p class="article-original-title">原題: <em>X finally gets parental controls after 20 years</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">After 20 years of existence, X, the social network formerly known as Twitter, has finally added parental controls for teenagers, giving parents and guardians a way to manage what their kids see and interact with on the platform.But unlike most platforms’ implementation of such controls, X is putting its own spin on the system by giving teens a say in the matter.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">After 20 years of existence, X, the social network formerly known as Twitter, has finally added parental controls for teenagers, giving parents and guardians a way to manage what their kids see and interact with on the platform.But unlike most platforms’ implementation of such controls, X is putting its own spin on the system by giving teens a say in the matter.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/11/26/x-finally-gets-parental-controls-after-20-years/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Mobile" data-index="4">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#6366f1">📱 Mobile</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">A month with the iPhone Duo has changed how I use my phone</h2>
+    <p class="article-original-title">原題: <em>A month with the iPhone Duo has changed how I use my phone</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">For years, the definition of a premium smartphone depended on its cameras, processors, and how light it felt when you stowed it in your pocket.The iPhone Duo challenges that concept by asking consumers to pay more for a fundamentally different smartphone experience, even if it means sacrificing what they’ve long thought of as high-end features.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">For years, the definition of a premium smartphone depended on its cameras, processors, and how light it felt when you stowed it in your pocket.The iPhone Duo challenges that concept by asking consumers to pay more for a fundamentally different smartphone experience, even if it means sacrificing what they’ve long thought of as high-end features.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/11/26/a-month-with-the-iphone-duo-has-changed-how-i-use-my-phone/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="5">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">TechCrunch</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Grand Theft Auto VI proves why efficiency isn&#x27;t a virtue</h2>
+    <p class="article-original-title">原題: <em>Grand Theft Auto VI proves why efficiency isn&#x27;t a virtue</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">It should have been impossible for “Grand Theft Auto VI” (GTA VI) to live up to the hype.Fans waited 13 years for the newest installment in the crime-adventure franchise, and Rockstar Games exceeded even those inconceivable expectations when the game finally came out last week.GTA VI launched as the highest-rated game of all time on Metacritic and made $3.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">It should have been impossible for “Grand Theft Auto VI” (GTA VI) to live up to the hype.Fans waited 13 years for the newest installment in the crime-adventure franchise, and Rockstar Games exceeded even those inconceivable expectations when the game finally came out last week.GTA VI launched as the highest-rated game of all time on Metacritic and made $3.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://techcrunch.com/2026/11/26/as-anthropic-ipos-grand-theft-auto-vi-proves-why-efficiency-isnt-a-virtue/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="6">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">The best Black Friday deals on smart home gear</h2>
+    <p class="article-original-title">原題: <em>The best Black Friday deals on smart home gear</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. From smart party speakers to even smarter mixers, I’ve rounded up some of my favorite connected home gadgets you can grab on sale this weekend.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. From smart party speakers to even smarter mixers, I’ve rounded up some of my favorite connected home gadgets you can grab on sale this weekend.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/gadgets/1043912/best-smart-home-deals-black-friday" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="7">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">The absolute best Black Friday deals we’ve found (so far)</h2>
+    <p class="article-original-title">原題: <em>The absolute best Black Friday deals we’ve found (so far)</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. Many of our favorite gadgets and gizmos are cheaper than they’ve been all year, making now the perfect time to shop.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. Many of our favorite gadgets and gizmos are cheaper than they’ve been all year, making now the perfect time to shop.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/gadgets/1039190/best-black-friday-2026-deals-tech-gadgets-gift-ideas" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="8">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Anker’s 100W universal travel charger is down to $60, its lowest price yet</h2>
+    <p class="article-original-title">原題: <em>Anker’s 100W universal travel charger is down to $60, its lowest price yet</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. The fast charger has four USB ports and fits outlets in more than 200 countries. It’s $20 off for Black Friday.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. The fast charger has four USB ports and fits outlets in more than 200 countries. It’s $20 off for Black Friday.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/gadgets/1041006/anker-100w-universal-travel-charger-black-friday-deal-sale" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="9">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Here are the best Black Friday deals you can grab for $30 or less</h2>
+    <p class="article-original-title">原題: <em>Here are the best Black Friday deals you can grab for $30 or less</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. From smart plugs to noise-canceling earbuds, there’s plenty of discounted tech for those on a tighter budget.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. From smart plugs to noise-canceling earbuds, there’s plenty of discounted tech for those on a tighter budget.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/gadgets/1039645/black-friday-best-cheap-tech-deals-under-30-2026" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="10">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">The Verge</span>
+    </div>
+
+    
+
+    <h2 class="article-title">The best Black Friday deals on AirPods, MacBooks, and other Apple gear</h2>
+    <p class="article-original-title">原題: <em>The best Black Friday deals on AirPods, MacBooks, and other Apple gear</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. We dug up the biggest price drops on Apple hardware and accessories, from tablets and laptops to chargers.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Posts from this topic will be added to your daily email digest and your homepage feed. We dug up the biggest price drops on Apple hardware and accessories, from tablets and laptops to chargers.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/apple.html" target="_blank" rel="noopener noreferrer" class="company-link">Apple の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.theverge.com/gadgets/1043935/best-black-friday-apple-deals-2026" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Other" data-index="11">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#6b7280">📰 Other</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Black Friday Deals That Make Great Donations: Household Essentials and Cheap Toys</h2>
+    <p class="article-original-title">原題: <em>Black Friday Deals That Make Great Donations: Household Essentials and Cheap Toys</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Everyone I know is scaling back for Christmas this year.Personally, I&#x27;m focusing on buying practical items and secondhand goods.And I know I&#x27;m not alone in the struggle, so I&#x27;m extra cognizant of my local toy and supply drives too.Black Friday is a great time to buy flashy tech and fun extravagances, but household necessities are on sale as well.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Everyone I know is scaling back for Christmas this year.Personally, I&#x27;m focusing on buying practical items and secondhand goods.And I know I&#x27;m not alone in the struggle, so I&#x27;m extra cognizant of my local toy and supply drives too.Black Friday is a great time to buy flashy tech and fun extravagances, but household necessities are on sale as well.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/story/black-friday-deals-essentials-11-27-2026/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Mobile" data-index="12">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#6366f1">📱 Mobile</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Black Friday Mattress Deals Are Wide Awake</h2>
+    <p class="article-original-title">原題: <em>Black Friday Mattress Deals Are Wide Awake</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Mattress sales come and go so often that it’s hard to determine what’s an actual deal.The times of year when we see the most legit mattress deals are Black Friday, Cyber Monday, Memorial Day, and Labor Day.And this year is no different.We’re seeing our favorite WIRED-tested bedding and mattress brands offering some of the best Black Friday deals and discounts we&#x27;ve seen this year.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Mattress sales come and go so often that it’s hard to determine what’s an actual deal.The times of year when we see the most legit mattress deals are Black Friday, Cyber Monday, Memorial Day, and Labor Day.And this year is no different.We’re seeing our favorite WIRED-tested bedding and mattress brands offering some of the best Black Friday deals and discounts we&#x27;ve seen this year.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/amazon.html" target="_blank" rel="noopener noreferrer" class="company-link">Amazon の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/story/black-friday-mattress-deals-11-27-2026/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="13">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">The Black Friday Bargains Worth Bagging</h2>
+    <p class="article-original-title">原題: <em>The Black Friday Bargains Worth Bagging</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">The Black Friday deals have arrived!Set yourself up with a turkey sandwich and a warm drink, because it&#x27;s time to shop the best sale event of the year.And after the year we&#x27;ve had, we could all use a few bargains to cheer us up, score that upgrade we&#x27;ve been needing, and get a few gifts in the bag.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">The Black Friday deals have arrived!Set yourself up with a turkey sandwich and a warm drink, because it&#x27;s time to shop the best sale event of the year.And after the year we&#x27;ve had, we could all use a few bargains to cheer us up, score that upgrade we&#x27;ve been needing, and get a few gifts in the bag.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/story/best-black-friday-deals-11-27-2026/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Other" data-index="14">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#6b7280">📰 Other</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Our Favorite Espresso Machines Are on Sale for Black Friday</h2>
+    <p class="article-original-title">原題: <em>Our Favorite Espresso Machines Are on Sale for Black Friday</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">If the barista at your neighborhood coffee shop knows your order before you even walk up to the counter, it might be time to consider learning to make that double Americano at home.Lucky for you, there&#x27;s no shortage of Black Friday espresso machine deals on a variety of options, including a basic De’Longhi selling for less than $200, an old-school machine handmade in Milan, and much more.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">If the barista at your neighborhood coffee shop knows your order before you even walk up to the counter, it might be time to consider learning to make that double Americano at home.Lucky for you, there&#x27;s no shortage of Black Friday espresso machine deals on a variety of options, including a basic De’Longhi selling for less than $200, an old-school machine handmade in Milan, and much more.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/story/black-friday-coffee-espresso-deals-11-27-2026/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="15">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">WIRED</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Save on LED Masks and More With CurrentBody’s Black Friday Deals</h2>
+    <p class="article-original-title">原題: <em>Save on LED Masks and More With CurrentBody’s Black Friday Deals</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Beauty tech titan CurrentBody&#x27;s Black Friday deals are live and run until December 8.Most of the brand&#x27;s products are 20 percent off, including bundles.While we haven’t reviewed every bundle, we’ve tested the majority of CurrentBody&#x27;s devices, and they’re consistently among our top recommendations.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Beauty tech titan CurrentBody&#x27;s Black Friday deals are live and run until December 8.Most of the brand&#x27;s products are 20 percent off, including bundles.While we haven’t reviewed every bundle, we’ve tested the majority of CurrentBody&#x27;s devices, and they’re consistently among our top recommendations.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.wired.com/story/currentbody-black-friday-deals-11-27-2026/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="16">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Ars Technica</span>
+    </div>
+
+    
+
+    <h2 class="article-title">The best Black Friday deals Ars could find</h2>
+    <p class="article-original-title">原題: <em>The best Black Friday deals Ars could find</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Perhaps some commerce, to help all the Turkey Day leftovers go down easier?Every year has a Prime Day—some years even have two Prime Days!—where we celebrate the life and achievements of the greatest leader the Autobots have ever known: the inimitable Optimus Prime.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Perhaps some commerce, to help all the Turkey Day leftovers go down easier?Every year has a Prime Day—some years even have two Prime Days!—where we celebrate the life and achievements of the greatest leader the Autobots have ever known: the inimitable Optimus Prime.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/shopping/2026/11/the-best-black-friday-deals-ars-could-find/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Policy" data-index="17">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#ec4899">⚖️ Policy</span>
+        <span class="source-chip">Ars Technica</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Intel faced a choice: Give Trump 10% or face the consequences</h2>
+    <p class="article-original-title">原題: <em>Intel faced a choice: Give Trump 10% or face the consequences</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Intel faced pressure to surrender a 10% stake to unlock billions in promised grants.The message from the Trump administration to one of the world’s leading semiconductor companies was clear: Give the US government a chunk of your company.Right now.Or else.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Intel faced pressure to surrender a 10% stake to unlock billions in promised grants.The message from the Trump administration to one of the world’s leading semiconductor companies was clear: Give the US government a chunk of your company.Right now.Or else.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/tech-policy/2026/11/intel-faced-a-choice-give-trump-10-or-face-the-consequences/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Hardware" data-index="18">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#06b6d4">⚙️ Hardware</span>
+        <span class="source-chip">Ars Technica</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Books, bikes, and The Burbs: These are Ars staff’s holiday gift picks for 2026</h2>
+    <p class="article-original-title">原題: <em>Books, bikes, and The Burbs: These are Ars staff’s holiday gift picks for 2026</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">We polled the Ars staff about their favorite pickups this year; here’s the list.The holiday shopping season is upon us, and as is our custom, we’re here with a list of Ars staffers’ favorite recent purchases that could make good gifts.(Or maybe they might be a gift you get yourself!</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">We polled the Ars staff about their favorite pickups this year; here’s the list.The holiday shopping season is upon us, and as is our custom, we’re here with a list of Ars staffers’ favorite recent purchases that could make good gifts.(Or maybe they might be a gift you get yourself!</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/shopping/2026/11/books-bikes-and-the-burbs-these-are-ars-staffs-holiday-gift-picks-for-2026/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="19">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Ars Technica</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Volvo&#x27;s big batteries: We drive its updated 2028 plug-in hybrids</h2>
+    <p class="article-original-title">原題: <em>Volvo&#x27;s big batteries: We drive its updated 2028 plug-in hybrids</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">There’s just one thing we still don’t know: How much will they cost?COPENHAGEN, Denmark—If we lived in the world that Volvo’s product planners expected back when the current XC90 debuted in 2015 , both it and the smaller but related XC60 (which arrived in 2017) might have been the last of their kind as everything went electric .</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">There’s just one thing we still don’t know: How much will they cost?COPENHAGEN, Denmark—If we lived in the world that Volvo’s product planners expected back when the current XC90 debuted in 2015 , both it and the smaller but related XC60 (which arrived in 2017) might have been the last of their kind as everything went electric .</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/cars/2026/11/volvos-big-batteries-we-drive-its-updated-2028-plug-in-hybrids/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="20">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Ars Technica</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Ford unveils the GT41 as it hopes to win Le Mans again</h2>
+    <p class="article-original-title">原題: <em>Ford unveils the GT41 as it hopes to win Le Mans again</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Ford enters the World Endurance Championship in 2027 with the new prototype.Sixty years ago, after two failed attempts, Ford won the 24 Hours of Le Mans with its GT40 race car.In the years since, the Blue Oval has been back to France more than a few times, with varying success.It could never replicate the GT40’s success winning overall, but it celebrated the 40th anniversary with a class win .</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Ford enters the World Endurance Championship in 2027 with the new prototype.Sixty years ago, after two failed attempts, Ford won the 24 Hours of Le Mans with its GT40 race car.In the years since, the Blue Oval has been back to France more than a few times, with varying success.It could never replicate the GT40’s success winning overall, but it celebrated the 40th anniversary with a class win .</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://arstechnica.com/cars/2026/11/ford-unveils-the-gt41-as-it-hopes-to-win-le-mans-again/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="21">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">The Download: Innovators Under 35 nominations are open, and a bionic window into the mind</h2>
+    <p class="article-original-title">原題: <em>The Download: Innovators Under 35 nominations are open, and a bionic window into the mind</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Plus: Nvidia&#x27;s crackdown on China’s chip access is reshaping Asian AI.This is today&#x27;s edition of The Download , our weekday newsletter that provides a daily dose of what&#x27;s going on in the world of technology.Every year, MIT Technology Review honors 35 of the world&#x27;s brightest young scientists, entrepreneurs, and inventors in our Innovators Under 35 list.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Plus: Nvidia&#x27;s crackdown on China’s chip access is reshaping Asian AI.This is today&#x27;s edition of The Download , our weekday newsletter that provides a daily dose of what&#x27;s going on in the world of technology.Every year, MIT Technology Review honors 35 of the world&#x27;s brightest young scientists, entrepreneurs, and inventors in our Innovators Under 35 list.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/nvidia.html" target="_blank" rel="noopener noreferrer" class="company-link">NVIDIA の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/11/27/1149960/the-download-the-download-innovators-under-35-nominations-bionic-hand/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Startups" data-index="22">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#8b5cf6">🚀 Startups</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Our 2027 Innovators Under 35 competition is now open</h2>
+    <p class="article-original-title">原題: <em>Our 2027 Innovators Under 35 competition is now open</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Nominate yourself or someone you know by January 19.Every year, the editors at MIT Technology Review select 35 of the world’s top young scientists, entrepreneurs, and inventors to honor as our newest class of Innovators Under 35.And starting today, our 2027 competition is officially open for nominations.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Nominate yourself or someone you know by January 19.Every year, the editors at MIT Technology Review select 35 of the world’s top young scientists, entrepreneurs, and inventors to honor as our newest class of Innovators Under 35.And starting today, our 2027 competition is officially open for nominations.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/11/27/1149857/2027-innovators-under-35-competition-nominate/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="23">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">How cutting-edge prosthetics can help probe the human mind</h2>
+    <p class="article-original-title">原題: <em>How cutting-edge prosthetics can help probe the human mind</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Avi Davidson has volunteered to find out how a bionic hand that feels might alter his brain and nervous system.Over the last few weeks, I’ve been talking to Alexander (Avi) Davidson.There are a lot of remarkable things about Avi.He sustained a horrific injury as a teenager, which left him paralyzed and without a left hand.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Avi Davidson has volunteered to find out how a bionic hand that feels might alter his brain and nervous system.Over the last few weeks, I’ve been talking to Alexander (Avi) Davidson.There are a lot of remarkable things about Avi.He sustained a horrific injury as a teenager, which left him paralyzed and without a left hand.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/11/27/1149946/cutting-edge-prosthetics-allow-researchers-to-probe-the-human-mind/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="24">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">The Download: Better bionic hands and AI’s natural-gas boom</h2>
+    <p class="article-original-title">原題: <em>The Download: Better bionic hands and AI’s natural-gas boom</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Plus: SpaceX has won approval to launch 1 million data center satellites.This is today&#x27;s edition of The Download , our weekday newsletter that provides a daily dose of what&#x27;s going on in the world of technology.Avi Davidson lost his left hand as a teenager.Since then, he&#x27;s cycled through a few prosthetics.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Plus: SpaceX has won approval to launch 1 million data center satellites.This is today&#x27;s edition of The Download , our weekday newsletter that provides a daily dose of what&#x27;s going on in the world of technology.Avi Davidson lost his left hand as a teenager.Since then, he&#x27;s cycled through a few prosthetics.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/spacex.html" target="_blank" rel="noopener noreferrer" class="company-link">SpaceX の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/11/26/1149934/the-download-better-bionic-hands-ai-natural-gas-boom/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Hardware" data-index="25">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#06b6d4">⚙️ Hardware</span>
+        <span class="source-chip">MIT Technology Review</span>
+    </div>
+
+    
+
+    <h2 class="article-title">The next generation of bionic hands is here—and they can feel</h2>
+    <p class="article-original-title">原題: <em>The next generation of bionic hands is here—and they can feel</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Avi Davidson is the first at-home user of an experimental prosthetic hand that lets him feel his wife’s hand in his own.Avi Davidson lost his left hand as a teenager.Since then, he’s cycled through a few prosthetics.But his latest is different—it’s wired up to nerves in the upper part of his forearm and allows him to feel pressure.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Avi Davidson is the first at-home user of an experimental prosthetic hand that lets him feel his wife’s hand in his own.Avi Davidson lost his left hand as a teenager.Since then, he’s cycled through a few prosthetics.But his latest is different—it’s wired up to nerves in the upper part of his forearm and allows him to feel pressure.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.technologyreview.com/2026/11/26/1149923/the-next-generation-of-bionic-hands-is-here-and-they-can-feel/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Security" data-index="26">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#f97316">🔒 Security</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    <p class="security-alert">🔒 セキュリティエンジニア向け重要記事 — キーワードベースの分類でセキュリティ関連と判定されました（Grok未設定のためフォールバック）</p>
+
+    <h2 class="article-title">Hackers reportedly infiltrated the Air Force&#x27;s cloud systems</h2>
+    <p class="article-original-title">原題: <em>Hackers reportedly infiltrated the Air Force&#x27;s cloud systems</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">The breach was discovered within the last month during system upgrade work, according to Reuters.Another day, another notable security incident .Hackers are said to have gained access to Cloud One, the Air Force&#x27;s cloud computing infrastructure.It&#x27;s not clear who the hackers were and what data they may have obtained, according to Reuters , which first reported the news.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">The breach was discovered within the last month during system upgrade work, according to Reuters.Another day, another notable security incident .Hackers are said to have gained access to Cloud One, the Air Force&#x27;s cloud computing infrastructure.It&#x27;s not clear who the hackers were and what data they may have obtained, according to Reuters , which first reported the news.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2329586/hackers-reportedly-infiltrated-the-air-force-cloud-systems/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="27">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">5 Costco Electronics With Deep Discounts For Black Friday 2026</h2>
+    <p class="article-original-title">原題: <em>5 Costco Electronics With Deep Discounts For Black Friday 2026</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Costco members can get some pretty great deals.We may receive a commission on purchases made from links.Black Friday has arrived, and with it every retailer is trying to compete for your hard-earned dollar.If you&#x27;re a Costco member, the company has a few notable deals that stand out from a lot of the cookie cutter tech deals that Amazon, Best Buy and Target are pushing this holiday season.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Costco members can get some pretty great deals.We may receive a commission on purchases made from links.Black Friday has arrived, and with it every retailer is trying to compete for your hard-earned dollar.If you&#x27;re a Costco member, the company has a few notable deals that stand out from a lot of the cookie cutter tech deals that Amazon, Best Buy and Target are pushing this holiday season.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/amazon.html" target="_blank" rel="noopener noreferrer" class="company-link">Amazon の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2329581/costco-electronics-deep-discounts-black-friday-2026/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="28">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">WhatsApp adds support for travel eSIMs</h2>
+    <p class="article-original-title">原題: <em>WhatsApp adds support for travel eSIMs</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Users will be able to buy the service directly from the platform.WhatsApp is finally adding support for travel eSIMs directly in the app, which is welcome news for those filled with wanderlust.These digital data-only eSIM cards help keep people connected while traveling, all while avoiding exorbitant roaming fees.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Users will be able to buy the service directly from the platform.WhatsApp is finally adding support for travel eSIMs directly in the app, which is welcome news for those filled with wanderlust.These digital data-only eSIM cards help keep people connected while traveling, all while avoiding exorbitant roaming fees.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2329553/whatsapp-adds-support-for-travel-esims/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="Mobile" data-index="29">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#6366f1">📱 Mobile</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Google will soon share Android developers&#x27; addresses publicly</h2>
+    <p class="article-original-title">原題: <em>Google will soon share Android developers&#x27; addresses publicly</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">Their phone numbers and addresses will be published globally, starting on March 1, 2027.Starting on March 1, 2027, Google will display Android developers&#x27; phone numbers and addresses with their apps, and users everywhere will be able to see them.As The Elec has reported, this decision has been met with criticism, specifically from smaller developers who operate out of their homes.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">Their phone numbers and addresses will be published globally, starting on March 1, 2027.Starting on March 1, 2027, Google will display Android developers&#x27; phone numbers and addresses with their apps, and users everywhere will be able to see them.As The Elec has reported, this decision has been met with criticism, specifically from smaller developers who operate out of their homes.</p></div>
+    </section>
+
+    <section class="article-section company-section">
+        <h3>関連企業の別ページ解説</h3>
+        <div class="company-links"><a href="companies/apple.html" target="_blank" rel="noopener noreferrer" class="company-link">Apple の解説</a> <a href="companies/google.html" target="_blank" rel="noopener noreferrer" class="company-link">Google の解説</a></div>
+    </section>
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2329389/google-will-soon-share-android-developers-addresses-publicly/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+<article class="article-card" data-category="AI/ML" data-index="30">
+    <div class="card-topline">
+        <span class="category-chip" style="background:#10b981">🤖 AI/ML</span>
+        <span class="source-chip">Engadget - Technology News &amp; Expert Reviews</span>
+    </div>
+
+    
+
+    <h2 class="article-title">Backloggd urges users to change their passwords after a breach</h2>
+    <p class="article-original-title">原題: <em>Backloggd urges users to change their passwords after a breach</em></p>
+
+    <section class="article-section">
+        <h3>記事の日本語要約</h3>
+        <div class="article-summary"><p class="article-paragraph">The website does not store payment, government ID or financial information, so none of that was exposed.Video game-logging site Backloggd has urged users to change their passwords after announcing a security breach .The website&#x27;s administrator MrProg wrote in a post dated November 25 that &quot;someone exploited a bug in Backloggd to gain access to the site&#x27;s admin tools.</p></div>
+    </section>
+
+    <section class="article-section">
+        <h3>English Summary</h3>
+        <div class="article-summary"><p class="article-paragraph">The website does not store payment, government ID or financial information, so none of that was exposed.Video game-logging site Backloggd has urged users to change their passwords after announcing a security breach .The website&#x27;s administrator MrProg wrote in a post dated November 25 that &quot;someone exploited a bug in Backloggd to gain access to the site&#x27;s admin tools.</p></div>
+    </section>
+
+    
+
+    <div class="article-actions">
+        <a href="https://www.engadget.com/2329256/backloggd-breach-november-2026-password-reset/" target="_blank" rel="noopener noreferrer" class="action-link primary">元記事を読む</a>
+    </div>
+</article>
+        </main>
+
+        <footer class="footer">
+            <p>本ページは公開記事をもとに自動生成しています。数値や仕様は必ず元記事で確認してください。</p>
+            <p>JSON データは同じフォルダ内の tech_news_digest.json で参照できます。</p>
+        </footer>
+    </div>
+
+    <script>
+
+        const categoryButtons = document.querySelectorAll('.category-btn');
+        const articleCards = document.querySelectorAll('.article-card');
+        const searchInput = document.getElementById('search-input');
+
+        let activeCategory = 'all';
+
+        function applyFilters() {
+            const query = searchInput.value.trim().toLowerCase();
+            articleCards.forEach(card => {
+                const matchesCategory = activeCategory === 'all' || card.dataset.category === activeCategory;
+                const searchableText = card.innerText.toLowerCase();
+                const matchesQuery = !query || searchableText.includes(query);
+                card.style.display = matchesCategory && matchesQuery ? '' : 'none';
+            });
+        }
+
+        categoryButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                categoryButtons.forEach(item => item.classList.remove('active'));
+                button.classList.add('active');
+                activeCategory = button.dataset.category;
+                applyFilters();
+            });
+        });
+
+        searchInput.addEventListener('input', applyFilters);
+    
+    </script>
+</body>
+</html>
